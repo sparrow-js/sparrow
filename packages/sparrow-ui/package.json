@@ -1,0 +1,38 @@
+{
+  "name": "sparrow-ui",
+  "version": "1.0.0",
+  "description": "sparrow",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run serve",
+    "serve": "cross-env LOCAL_DEBUG=1 node dist/server.js",
+    "watch-node": "cross-env LOCAL_DEBUG=1 nodemon dist/server.js",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sparrow"
+  ],
+  "author": "wuhaitao",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "got": "^10.0.1",
+    "lodash": "^4.17.15",
+    "sockjs": "^0.3.19"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.0.1",
+    "@types/errorhandler": "^0.0.32",
+    "@types/sockjs": "^0.3.31",
+    "cross-env": "^6.0.3",
+    "errorhandler": "^1.5.1",
+    "eslint": "^6.7.2",
+    "nodemon": "^2.0.1",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.2"
+  }
+}

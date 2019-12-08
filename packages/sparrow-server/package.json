@@ -1,0 +1,24 @@
+{
+  "name": "sparrow-server",
+  "version": "1.0.0",
+  "description": "sparrow server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sparrow",
+    "code"
+  ],
+  "author": "wuhaitao",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.7.1",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "sockjs": "^0.3.19"
+  }
+}
