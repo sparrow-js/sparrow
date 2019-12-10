@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BasicForm from '../../../BasicForm/src';
+import BasicForm from '../../../blocks/BasicForm/src/BasicForm';
 export default {
   name: "home",
   components: {
