@@ -107,7 +107,7 @@ export default class Dashboard extends Vue {
 .tab{
   & /deep/ .el-tabs__item{
     color: hsla(0,0%,100%,.65);
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 300;
     height: 60px;
     line-height: 60px;
