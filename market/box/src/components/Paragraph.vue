@@ -11,15 +11,13 @@
 <script>
 export default {
   methods: {
-    focus () {
-      window.console.log('*******8******');
-    }
+    focus () {}
   }
 }
 </script>
 <style lang="scss" scoped>
 .paragraph{
-  min-height: 48px;
+  height: 48px;
   box-sizing: border-box;
   padding: 5px;
   &-edit{

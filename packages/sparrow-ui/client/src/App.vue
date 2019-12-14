@@ -7,7 +7,11 @@
           <div class="main">
             <logo></logo>
             <div class="editor-box">
-              <editor></editor>
+              <iframe
+                class="view-content"
+                src="http://localhost:9000/"
+              />
+              <!-- <editor></editor> -->
             </div>
           </div>
         </el-main>
@@ -87,9 +91,13 @@ export default class App extends Vue {
   }
   .main{
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
   .editor-box{
     border-top: 1px solid #eee;
+    flex: 1;
   }
   .dashboard-box{
     position: fixed;
@@ -97,5 +105,10 @@ export default class App extends Vue {
     top: 50%;
     width: 60vw;
     transform: translate(-50%, -50%);
+  }
+  .view-content{
+    width: 100%;
+    height: 100%;
+    border: none;
   }
 </style>  

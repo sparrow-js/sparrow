@@ -9,6 +9,7 @@ import { readFileSync } from 'fs';
 import { join, resolve, dirname } from 'path';
 
 import * as userController from "./controllers/user";
+import RunViewTask from './connectors/RunViewTask'
 
 
 const LOCAL_DEBUG = process.env.LOCAL_DEBUG;

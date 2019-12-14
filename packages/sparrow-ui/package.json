@@ -19,6 +19,7 @@
   "dependencies": {
     "bluebird": "^3.7.2",
     "compression": "^1.7.4",
+    "execa": "^3.4.0",
     "express": "^4.17.1",
     "got": "^10.0.1",
     "lodash": "^4.17.15",
@@ -27,12 +28,18 @@
   "devDependencies": {
     "@types/compression": "^1.0.1",
     "@types/errorhandler": "^0.0.32",
+    "@types/execa": "^2.0.0",
     "@types/sockjs": "^0.3.31",
+    "@vue/cli-plugin-babel": "^4.1.1",
+    "@vue/cli-plugin-eslint": "^4.1.1",
+    "@vue/cli-service": "^4.1.1",
+    "@vue/eslint-config-standard": "^5.0.1",
     "cross-env": "^6.0.3",
     "errorhandler": "^1.5.1",
     "eslint": "^6.7.2",
     "nodemon": "^2.0.1",
     "ts-node": "^8.5.4",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.2",
+    "vue-template-compiler": "^2.6.11"
   }
 }
