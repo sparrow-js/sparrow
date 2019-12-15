@@ -12,7 +12,7 @@ export default {
 .logo{
     text-align: center;
     &-img{
-        width: 56px;
+        width: 60px;
     }
 }
 </style>
