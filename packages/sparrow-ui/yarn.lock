@@ -31,7 +31,7 @@
 
 "@babel/generator@^7.7.4":
   version "7.7.4"
-  resolved "https://registry.npm.taobao.org/@babel/generator/download/@babel/generator-7.7.4.tgz?cache=0&sync_timestamp=1574465736712&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fgenerator%2Fdownload%2F%40babel%2Fgenerator-7.7.4.tgz#db651e2840ca9aa66f327dcec1dc5f5fa9611369"
+  resolved "https://registry.npm.taobao.org/@babel/generator/download/@babel/generator-7.7.4.tgz#db651e2840ca9aa66f327dcec1dc5f5fa9611369"
   integrity sha1-22UeKEDKmqZvMn3OwdxfX6lhE2k=
   dependencies:
     "@babel/types" "^7.7.4"
@@ -670,7 +670,7 @@
     js-levenshtein "^1.1.3"
     semver "^5.5.0"
 
-"@babel/runtime@^7.7.4":
+"@babel/runtime@^7.7.4", "@babel/runtime@^7.7.6":
   version "7.7.6"
   resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.7.6.tgz?cache=0&sync_timestamp=1575764734217&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.7.6.tgz#d18c511121aff1b4f2cd1d452f1bac9601dd830f"
   integrity sha1-0YxRESGv8bTyzR1FLxuslgHdgw8=
@@ -688,7 +688,7 @@
 
 "@babel/traverse@^7.7.4":
   version "7.7.4"
-  resolved "https://registry.npm.taobao.org/@babel/traverse/download/@babel/traverse-7.7.4.tgz?cache=0&sync_timestamp=1574465744239&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Ftraverse%2Fdownload%2F%40babel%2Ftraverse-7.7.4.tgz#9c1e7c60fb679fe4fcfaa42500833333c2058558"
+  resolved "https://registry.npm.taobao.org/@babel/traverse/download/@babel/traverse-7.7.4.tgz?cache=0&sync_timestamp=1574465640801&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Ftraverse%2Fdownload%2F%40babel%2Ftraverse-7.7.4.tgz#9c1e7c60fb679fe4fcfaa42500833333c2058558"
   integrity sha1-nB58YPtnn+T8+qQlAIMzM8IFhVg=
   dependencies:
     "@babel/code-frame" "^7.5.5"
