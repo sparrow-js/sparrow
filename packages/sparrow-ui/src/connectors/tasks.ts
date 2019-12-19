@@ -20,6 +20,8 @@ function getTask (id: string) : any {
 export async function run (id: string, context?:any) {
   const task = getTask(id);
   let [command, ...args] = parseArgs(task.command);
+  console.log('****************');
+  console.log(task);
 
   const child = execa(command, args, {
     cwd: task.path,

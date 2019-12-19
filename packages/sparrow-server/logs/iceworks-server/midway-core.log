@@ -565,3 +565,422 @@ hostname: localhost
 2019-12-19 15:48:27,046 INFO 95847 [egg-watcher:application] watcher start success
 2019-12-19 15:48:27,071 INFO 95847 [egg:core] dump config after ready, 4ms
 2019-12-19 16:36:22,161 WARN 95847 [ClusterClient:Watcher] follower closed, and try to init it again
+2019-12-19 16:56:24,397 INFO 3509 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 16:56:24,422 INFO 3509 [egg-multipart] stream mode enable
+2019-12-19 16:56:24,531 INFO 3509 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 16:56:24,533 INFO 3509 [egg-security] use csrf middleware
+2019-12-19 16:56:24,534 INFO 3509 [egg-security] use methodnoallow middleware
+2019-12-19 16:56:24,534 INFO 3509 [egg-security] use noopen middleware
+2019-12-19 16:56:24,535 INFO 3509 [egg-security] use nosniff middleware
+2019-12-19 16:56:24,536 INFO 3509 [egg-security] use xssProtection middleware
+2019-12-19 16:56:24,536 INFO 3509 [egg-security] use xframe middleware
+2019-12-19 16:56:24,537 INFO 3509 [egg-security] use dta middleware
+2019-12-19 16:56:24,537 INFO 3509 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 16:56:24,545 INFO 3509 [egg:core] dump config after load, 7ms
+2019-12-19 16:56:24,562 INFO 3509 [egg-watcher:application] watcher start success
+2019-12-19 16:56:24,605 INFO 3509 [egg:core] dump config after ready, 6ms
+2019-12-19 16:56:48,560 INFO 3549 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 16:56:48,587 INFO 3549 [egg-multipart] stream mode enable
+2019-12-19 16:56:48,681 INFO 3549 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 16:56:48,683 INFO 3549 [egg-security] use csrf middleware
+2019-12-19 16:56:48,684 INFO 3549 [egg-security] use methodnoallow middleware
+2019-12-19 16:56:48,685 INFO 3549 [egg-security] use noopen middleware
+2019-12-19 16:56:48,686 INFO 3549 [egg-security] use nosniff middleware
+2019-12-19 16:56:48,687 INFO 3549 [egg-security] use xssProtection middleware
+2019-12-19 16:56:48,688 INFO 3549 [egg-security] use xframe middleware
+2019-12-19 16:56:48,689 INFO 3549 [egg-security] use dta middleware
+2019-12-19 16:56:48,689 INFO 3549 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 16:56:48,696 INFO 3549 [egg:core] dump config after load, 5ms
+2019-12-19 16:56:48,718 INFO 3549 [egg-watcher:application] watcher start success
+2019-12-19 16:56:48,741 INFO 3549 [egg:core] dump config after ready, 5ms
+2019-12-19 17:04:28,701 INFO 4148 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:04:28,743 INFO 4148 [egg-multipart] stream mode enable
+2019-12-19 17:04:28,849 INFO 4148 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:04:28,851 INFO 4148 [egg-security] use csrf middleware
+2019-12-19 17:04:28,852 INFO 4148 [egg-security] use methodnoallow middleware
+2019-12-19 17:04:28,852 INFO 4148 [egg-security] use noopen middleware
+2019-12-19 17:04:28,853 INFO 4148 [egg-security] use nosniff middleware
+2019-12-19 17:04:28,854 INFO 4148 [egg-security] use xssProtection middleware
+2019-12-19 17:04:28,854 INFO 4148 [egg-security] use xframe middleware
+2019-12-19 17:04:28,855 INFO 4148 [egg-security] use dta middleware
+2019-12-19 17:04:28,855 INFO 4148 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:04:28,863 INFO 4148 [egg:core] dump config after load, 7ms
+2019-12-19 17:04:28,884 INFO 4148 [egg-watcher:application] watcher start success
+2019-12-19 17:04:28,913 INFO 4148 [egg:core] dump config after ready, 4ms
+2019-12-19 17:04:38,358 INFO 4174 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:04:38,379 INFO 4174 [egg-multipart] stream mode enable
+2019-12-19 17:04:38,485 INFO 4174 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:04:38,488 INFO 4174 [egg-security] use csrf middleware
+2019-12-19 17:04:38,489 INFO 4174 [egg-security] use methodnoallow middleware
+2019-12-19 17:04:38,490 INFO 4174 [egg-security] use noopen middleware
+2019-12-19 17:04:38,492 INFO 4174 [egg-security] use nosniff middleware
+2019-12-19 17:04:38,493 INFO 4174 [egg-security] use xssProtection middleware
+2019-12-19 17:04:38,495 INFO 4174 [egg-security] use xframe middleware
+2019-12-19 17:04:38,496 INFO 4174 [egg-security] use dta middleware
+2019-12-19 17:04:38,496 INFO 4174 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:04:38,506 INFO 4174 [egg:core] dump config after load, 7ms
+2019-12-19 17:04:38,526 INFO 4174 [egg-watcher:application] watcher start success
+2019-12-19 17:04:38,562 INFO 4174 [egg:core] dump config after ready, 4ms
+2019-12-19 17:04:49,699 INFO 4185 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:04:49,723 INFO 4185 [egg-multipart] stream mode enable
+2019-12-19 17:04:49,812 INFO 4185 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:04:49,814 INFO 4185 [egg-security] use csrf middleware
+2019-12-19 17:04:49,815 INFO 4185 [egg-security] use methodnoallow middleware
+2019-12-19 17:04:49,815 INFO 4185 [egg-security] use noopen middleware
+2019-12-19 17:04:49,816 INFO 4185 [egg-security] use nosniff middleware
+2019-12-19 17:04:49,817 INFO 4185 [egg-security] use xssProtection middleware
+2019-12-19 17:04:49,817 INFO 4185 [egg-security] use xframe middleware
+2019-12-19 17:04:49,818 INFO 4185 [egg-security] use dta middleware
+2019-12-19 17:04:49,818 INFO 4185 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:04:49,824 INFO 4185 [egg:core] dump config after load, 5ms
+2019-12-19 17:04:49,841 INFO 4185 [egg-watcher:application] watcher start success
+2019-12-19 17:04:49,867 INFO 4185 [egg:core] dump config after ready, 4ms
+2019-12-19 17:05:11,366 INFO 4224 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:05:11,393 INFO 4224 [egg-multipart] stream mode enable
+2019-12-19 17:05:11,473 INFO 4224 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:05:11,475 INFO 4224 [egg-security] use csrf middleware
+2019-12-19 17:05:11,476 INFO 4224 [egg-security] use methodnoallow middleware
+2019-12-19 17:05:11,477 INFO 4224 [egg-security] use noopen middleware
+2019-12-19 17:05:11,478 INFO 4224 [egg-security] use nosniff middleware
+2019-12-19 17:05:11,478 INFO 4224 [egg-security] use xssProtection middleware
+2019-12-19 17:05:11,479 INFO 4224 [egg-security] use xframe middleware
+2019-12-19 17:05:11,479 INFO 4224 [egg-security] use dta middleware
+2019-12-19 17:05:11,479 INFO 4224 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:05:11,485 INFO 4224 [egg:core] dump config after load, 4ms
+2019-12-19 17:05:11,502 INFO 4224 [egg-watcher:application] watcher start success
+2019-12-19 17:05:11,530 INFO 4224 [egg:core] dump config after ready, 9ms
+2019-12-19 17:05:12,743 INFO 4233 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:05:12,766 INFO 4233 [egg-multipart] stream mode enable
+2019-12-19 17:05:12,804 INFO 4233 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:05:12,805 INFO 4233 [egg-security] use csrf middleware
+2019-12-19 17:05:12,806 INFO 4233 [egg-security] use methodnoallow middleware
+2019-12-19 17:05:12,806 INFO 4233 [egg-security] use noopen middleware
+2019-12-19 17:05:12,806 INFO 4233 [egg-security] use nosniff middleware
+2019-12-19 17:05:12,806 INFO 4233 [egg-security] use xssProtection middleware
+2019-12-19 17:05:12,807 INFO 4233 [egg-security] use xframe middleware
+2019-12-19 17:05:12,807 INFO 4233 [egg-security] use dta middleware
+2019-12-19 17:05:12,807 INFO 4233 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:05:12,813 INFO 4233 [egg:core] dump config after load, 5ms
+2019-12-19 17:05:12,829 INFO 4233 [egg-watcher:application] watcher start success
+2019-12-19 17:05:12,846 INFO 4233 [egg:core] dump config after ready, 4ms
+2019-12-19 17:05:28,976 INFO 4270 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:05:28,995 INFO 4270 [egg-multipart] stream mode enable
+2019-12-19 17:05:29,043 INFO 4270 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:05:29,044 INFO 4270 [egg-security] use csrf middleware
+2019-12-19 17:05:29,045 INFO 4270 [egg-security] use methodnoallow middleware
+2019-12-19 17:05:29,045 INFO 4270 [egg-security] use noopen middleware
+2019-12-19 17:05:29,045 INFO 4270 [egg-security] use nosniff middleware
+2019-12-19 17:05:29,045 INFO 4270 [egg-security] use xssProtection middleware
+2019-12-19 17:05:29,046 INFO 4270 [egg-security] use xframe middleware
+2019-12-19 17:05:29,046 INFO 4270 [egg-security] use dta middleware
+2019-12-19 17:05:29,046 INFO 4270 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:05:29,052 INFO 4270 [egg:core] dump config after load, 5ms
+2019-12-19 17:05:29,072 INFO 4270 [egg:core] dump config after ready, 5ms
+2019-12-19 17:05:29,079 INFO 4270 [egg-watcher:application] watcher start success
+2019-12-19 17:06:53,002 INFO 4396 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:06:53,021 INFO 4396 [egg-multipart] stream mode enable
+2019-12-19 17:06:53,127 INFO 4396 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:06:53,129 INFO 4396 [egg-security] use csrf middleware
+2019-12-19 17:06:53,131 INFO 4396 [egg-security] use methodnoallow middleware
+2019-12-19 17:06:53,132 INFO 4396 [egg-security] use noopen middleware
+2019-12-19 17:06:53,133 INFO 4396 [egg-security] use nosniff middleware
+2019-12-19 17:06:53,134 INFO 4396 [egg-security] use xssProtection middleware
+2019-12-19 17:06:53,135 INFO 4396 [egg-security] use xframe middleware
+2019-12-19 17:06:53,136 INFO 4396 [egg-security] use dta middleware
+2019-12-19 17:06:53,136 INFO 4396 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:06:53,143 INFO 4396 [egg:core] dump config after load, 5ms
+2019-12-19 17:06:53,162 INFO 4396 [egg:core] dump config after ready, 4ms
+2019-12-19 17:06:53,174 INFO 4396 [egg-watcher:application] watcher start success
+2019-12-19 17:08:50,167 INFO 4690 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:08:50,191 INFO 4690 [egg-multipart] stream mode enable
+2019-12-19 17:08:50,260 INFO 4690 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:08:50,262 INFO 4690 [egg-security] use csrf middleware
+2019-12-19 17:08:50,263 INFO 4690 [egg-security] use methodnoallow middleware
+2019-12-19 17:08:50,264 INFO 4690 [egg-security] use noopen middleware
+2019-12-19 17:08:50,265 INFO 4690 [egg-security] use nosniff middleware
+2019-12-19 17:08:50,265 INFO 4690 [egg-security] use xssProtection middleware
+2019-12-19 17:08:50,266 INFO 4690 [egg-security] use xframe middleware
+2019-12-19 17:08:50,266 INFO 4690 [egg-security] use dta middleware
+2019-12-19 17:08:50,266 INFO 4690 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:08:50,277 INFO 4690 [egg:core] dump config after load, 9ms
+2019-12-19 17:08:50,298 INFO 4690 [egg:core] dump config after ready, 5ms
+2019-12-19 17:08:50,309 INFO 4690 [egg-watcher:application] watcher start success
+2019-12-19 17:20:00,231 INFO 5600 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:20:00,251 INFO 5600 [egg-multipart] stream mode enable
+2019-12-19 17:20:00,318 INFO 5600 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:20:00,320 INFO 5600 [egg-security] use csrf middleware
+2019-12-19 17:20:00,320 INFO 5600 [egg-security] use methodnoallow middleware
+2019-12-19 17:20:00,321 INFO 5600 [egg-security] use noopen middleware
+2019-12-19 17:20:00,321 INFO 5600 [egg-security] use nosniff middleware
+2019-12-19 17:20:00,322 INFO 5600 [egg-security] use xssProtection middleware
+2019-12-19 17:20:00,322 INFO 5600 [egg-security] use xframe middleware
+2019-12-19 17:20:00,322 INFO 5600 [egg-security] use dta middleware
+2019-12-19 17:20:00,322 INFO 5600 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:20:00,329 INFO 5600 [egg:core] dump config after load, 5ms
+2019-12-19 17:20:00,350 ERROR 5600 nodejs.unhandledRejectionError: spawn /bin/sh ENOENT
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:264:19)
+    at onErrorNT (internal/child_process.js:456:16)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21)
+errno: "ENOENT"
+code: "ENOENT"
+syscall: "spawn /bin/sh"
+path: "/bin/sh"
+spawnargs: ["-c","vue-cli-service serve --port 9000"]
+name: "unhandledRejectionError"
+pid: 5600
+hostname: localhost
+
+2019-12-19 17:20:00,364 INFO 5600 [egg-watcher:application] watcher start success
+2019-12-19 17:20:00,391 INFO 5600 [egg:core] dump config after ready, 4ms
+2019-12-19 17:20:33,109 INFO 5639 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:20:33,129 INFO 5639 [egg-multipart] stream mode enable
+2019-12-19 17:20:33,195 INFO 5639 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:20:33,197 INFO 5639 [egg-security] use csrf middleware
+2019-12-19 17:20:33,197 INFO 5639 [egg-security] use methodnoallow middleware
+2019-12-19 17:20:33,198 INFO 5639 [egg-security] use noopen middleware
+2019-12-19 17:20:33,198 INFO 5639 [egg-security] use nosniff middleware
+2019-12-19 17:20:33,199 INFO 5639 [egg-security] use xssProtection middleware
+2019-12-19 17:20:33,199 INFO 5639 [egg-security] use xframe middleware
+2019-12-19 17:20:33,199 INFO 5639 [egg-security] use dta middleware
+2019-12-19 17:20:33,199 INFO 5639 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:20:33,206 INFO 5639 [egg:core] dump config after load, 5ms
+2019-12-19 17:20:33,221 ERROR 5639 nodejs.unhandledRejectionError: spawn /bin/sh ENOENT
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:264:19)
+    at onErrorNT (internal/child_process.js:456:16)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21)
+errno: "ENOENT"
+code: "ENOENT"
+syscall: "spawn /bin/sh"
+path: "/bin/sh"
+spawnargs: ["-c","vue-cli-service serve --port 9000"]
+name: "unhandledRejectionError"
+pid: 5639
+hostname: localhost
+
+2019-12-19 17:20:33,234 INFO 5639 [egg-watcher:application] watcher start success
+2019-12-19 17:20:33,258 INFO 5639 [egg:core] dump config after ready, 5ms
+2019-12-19 17:22:04,039 INFO 5775 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:22:04,061 INFO 5775 [egg-multipart] stream mode enable
+2019-12-19 17:22:04,126 INFO 5775 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:22:04,127 INFO 5775 [egg-security] use csrf middleware
+2019-12-19 17:22:04,128 INFO 5775 [egg-security] use methodnoallow middleware
+2019-12-19 17:22:04,128 INFO 5775 [egg-security] use noopen middleware
+2019-12-19 17:22:04,129 INFO 5775 [egg-security] use nosniff middleware
+2019-12-19 17:22:04,129 INFO 5775 [egg-security] use xssProtection middleware
+2019-12-19 17:22:04,130 INFO 5775 [egg-security] use xframe middleware
+2019-12-19 17:22:04,130 INFO 5775 [egg-security] use dta middleware
+2019-12-19 17:22:04,130 INFO 5775 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:22:04,136 INFO 5775 [egg:core] dump config after load, 5ms
+2019-12-19 17:22:04,159 ERROR 5775 nodejs.unhandledRejectionError: spawn /bin/sh ENOENT
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:264:19)
+    at onErrorNT (internal/child_process.js:456:16)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21)
+errno: "ENOENT"
+code: "ENOENT"
+syscall: "spawn /bin/sh"
+path: "/bin/sh"
+spawnargs: ["-c","vue-cli-service serve --port 9000"]
+name: "unhandledRejectionError"
+pid: 5775
+hostname: localhost
+
+2019-12-19 17:22:04,174 INFO 5775 [egg-watcher:application] watcher start success
+2019-12-19 17:22:04,199 INFO 5775 [egg:core] dump config after ready, 5ms
+2019-12-19 17:22:58,231 INFO 5845 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:22:58,251 INFO 5845 [egg-multipart] stream mode enable
+2019-12-19 17:22:58,316 INFO 5845 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:22:58,318 INFO 5845 [egg-security] use csrf middleware
+2019-12-19 17:22:58,318 INFO 5845 [egg-security] use methodnoallow middleware
+2019-12-19 17:22:58,319 INFO 5845 [egg-security] use noopen middleware
+2019-12-19 17:22:58,319 INFO 5845 [egg-security] use nosniff middleware
+2019-12-19 17:22:58,320 INFO 5845 [egg-security] use xssProtection middleware
+2019-12-19 17:22:58,320 INFO 5845 [egg-security] use xframe middleware
+2019-12-19 17:22:58,321 INFO 5845 [egg-security] use dta middleware
+2019-12-19 17:22:58,321 INFO 5845 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:22:58,326 INFO 5845 [egg:core] dump config after load, 4ms
+2019-12-19 17:22:58,355 INFO 5845 [egg-watcher:application] watcher start success
+2019-12-19 17:22:58,379 INFO 5845 [egg:core] dump config after ready, 5ms
+2019-12-19 17:24:39,286 WARN 5845 [ClusterClient:Watcher] follower closed, and try to init it again
+2019-12-19 17:26:55,947 INFO 6164 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:26:55,967 INFO 6164 [egg-multipart] stream mode enable
+2019-12-19 17:26:56,034 INFO 6164 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:26:56,036 INFO 6164 [egg-security] use csrf middleware
+2019-12-19 17:26:56,037 INFO 6164 [egg-security] use methodnoallow middleware
+2019-12-19 17:26:56,037 INFO 6164 [egg-security] use noopen middleware
+2019-12-19 17:26:56,038 INFO 6164 [egg-security] use nosniff middleware
+2019-12-19 17:26:56,038 INFO 6164 [egg-security] use xssProtection middleware
+2019-12-19 17:26:56,038 INFO 6164 [egg-security] use xframe middleware
+2019-12-19 17:26:56,039 INFO 6164 [egg-security] use dta middleware
+2019-12-19 17:26:56,039 INFO 6164 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:26:56,048 INFO 6164 [egg:core] dump config after load, 8ms
+2019-12-19 17:26:56,066 INFO 6164 [egg-watcher:application] watcher start success
+2019-12-19 17:26:56,090 INFO 6164 [egg:core] dump config after ready, 4ms
+2019-12-19 17:29:35,095 INFO 6407 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:29:35,125 INFO 6407 [egg-multipart] stream mode enable
+2019-12-19 17:29:35,209 INFO 6407 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:29:35,211 INFO 6407 [egg-security] use csrf middleware
+2019-12-19 17:29:35,212 INFO 6407 [egg-security] use methodnoallow middleware
+2019-12-19 17:29:35,213 INFO 6407 [egg-security] use noopen middleware
+2019-12-19 17:29:35,214 INFO 6407 [egg-security] use nosniff middleware
+2019-12-19 17:29:35,215 INFO 6407 [egg-security] use xssProtection middleware
+2019-12-19 17:29:35,216 INFO 6407 [egg-security] use xframe middleware
+2019-12-19 17:29:35,216 INFO 6407 [egg-security] use dta middleware
+2019-12-19 17:29:35,216 INFO 6407 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:29:35,222 INFO 6407 [egg:core] dump config after load, 4ms
+2019-12-19 17:29:35,240 INFO 6407 [egg-watcher:application] watcher start success
+2019-12-19 17:29:35,265 INFO 6407 [egg:core] dump config after ready, 4ms
+2019-12-19 17:29:36,506 INFO 6410 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:29:36,530 INFO 6410 [egg-multipart] stream mode enable
+2019-12-19 17:29:36,574 INFO 6410 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:29:36,575 INFO 6410 [egg-security] use csrf middleware
+2019-12-19 17:29:36,576 INFO 6410 [egg-security] use methodnoallow middleware
+2019-12-19 17:29:36,576 INFO 6410 [egg-security] use noopen middleware
+2019-12-19 17:29:36,576 INFO 6410 [egg-security] use nosniff middleware
+2019-12-19 17:29:36,576 INFO 6410 [egg-security] use xssProtection middleware
+2019-12-19 17:29:36,577 INFO 6410 [egg-security] use xframe middleware
+2019-12-19 17:29:36,577 INFO 6410 [egg-security] use dta middleware
+2019-12-19 17:29:36,577 INFO 6410 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:29:36,586 INFO 6410 [egg:core] dump config after load, 8ms
+2019-12-19 17:29:36,603 INFO 6410 [egg-watcher:application] watcher start success
+2019-12-19 17:29:36,622 INFO 6410 [egg:core] dump config after ready, 4ms
+2019-12-19 17:40:29,067 INFO 7260 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:40:29,091 INFO 7260 [egg-multipart] stream mode enable
+2019-12-19 17:40:29,170 INFO 7260 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:40:29,172 INFO 7260 [egg-security] use csrf middleware
+2019-12-19 17:40:29,173 INFO 7260 [egg-security] use methodnoallow middleware
+2019-12-19 17:40:29,173 INFO 7260 [egg-security] use noopen middleware
+2019-12-19 17:40:29,174 INFO 7260 [egg-security] use nosniff middleware
+2019-12-19 17:40:29,174 INFO 7260 [egg-security] use xssProtection middleware
+2019-12-19 17:40:29,175 INFO 7260 [egg-security] use xframe middleware
+2019-12-19 17:40:29,175 INFO 7260 [egg-security] use dta middleware
+2019-12-19 17:40:29,175 INFO 7260 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:40:29,184 INFO 7260 [egg:core] dump config after load, 7ms
+2019-12-19 17:40:29,206 INFO 7260 [egg-watcher:application] watcher start success
+2019-12-19 17:40:29,229 INFO 7260 [egg:core] dump config after ready, 4ms
+2019-12-19 17:50:55,649 INFO 8425 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 17:50:55,669 INFO 8425 [egg-multipart] stream mode enable
+2019-12-19 17:50:55,761 INFO 8425 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 17:50:55,763 INFO 8425 [egg-security] use csrf middleware
+2019-12-19 17:50:55,764 INFO 8425 [egg-security] use methodnoallow middleware
+2019-12-19 17:50:55,765 INFO 8425 [egg-security] use noopen middleware
+2019-12-19 17:50:55,765 INFO 8425 [egg-security] use nosniff middleware
+2019-12-19 17:50:55,766 INFO 8425 [egg-security] use xssProtection middleware
+2019-12-19 17:50:55,767 INFO 8425 [egg-security] use xframe middleware
+2019-12-19 17:50:55,767 INFO 8425 [egg-security] use dta middleware
+2019-12-19 17:50:55,767 INFO 8425 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 17:50:55,777 INFO 8425 [egg:core] dump config after load, 8ms
+2019-12-19 17:50:55,796 INFO 8425 [egg-watcher:application] watcher start success
+2019-12-19 17:50:55,824 INFO 8425 [egg:core] dump config after ready, 5ms
+2019-12-19 18:14:51,047 INFO 11108 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 18:14:51,086 INFO 11108 [egg-multipart] stream mode enable
+2019-12-19 18:14:51,188 INFO 11108 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 18:14:51,190 INFO 11108 [egg-security] use csrf middleware
+2019-12-19 18:14:51,191 INFO 11108 [egg-security] use methodnoallow middleware
+2019-12-19 18:14:51,191 INFO 11108 [egg-security] use noopen middleware
+2019-12-19 18:14:51,192 INFO 11108 [egg-security] use nosniff middleware
+2019-12-19 18:14:51,192 INFO 11108 [egg-security] use xssProtection middleware
+2019-12-19 18:14:51,193 INFO 11108 [egg-security] use xframe middleware
+2019-12-19 18:14:51,194 INFO 11108 [egg-security] use dta middleware
+2019-12-19 18:14:51,194 INFO 11108 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 18:14:51,202 INFO 11108 [egg:core] dump config after load, 7ms
+2019-12-19 18:14:51,232 INFO 11108 [egg-watcher:application] watcher start success
+2019-12-19 18:14:51,271 INFO 11108 [egg:core] dump config after ready, 4ms
+2019-12-19 18:17:55,315 INFO 11497 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 18:17:55,345 INFO 11497 [egg-multipart] stream mode enable
+2019-12-19 18:17:55,420 INFO 11497 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 18:17:55,422 INFO 11497 [egg-security] use csrf middleware
+2019-12-19 18:17:55,422 INFO 11497 [egg-security] use methodnoallow middleware
+2019-12-19 18:17:55,423 INFO 11497 [egg-security] use noopen middleware
+2019-12-19 18:17:55,423 INFO 11497 [egg-security] use nosniff middleware
+2019-12-19 18:17:55,424 INFO 11497 [egg-security] use xssProtection middleware
+2019-12-19 18:17:55,424 INFO 11497 [egg-security] use xframe middleware
+2019-12-19 18:17:55,425 INFO 11497 [egg-security] use dta middleware
+2019-12-19 18:17:55,425 INFO 11497 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 18:17:55,443 INFO 11497 [egg:core] dump config after load, 17ms
+2019-12-19 18:17:55,466 INFO 11497 [egg-watcher:application] watcher start success
+2019-12-19 18:17:55,530 INFO 11497 [egg:core] dump config after ready, 5ms
+2019-12-19 18:19:38,229 INFO 11851 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 18:19:38,254 INFO 11851 [egg-multipart] stream mode enable
+2019-12-19 18:19:38,343 INFO 11851 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 18:19:38,345 INFO 11851 [egg-security] use csrf middleware
+2019-12-19 18:19:38,347 INFO 11851 [egg-security] use methodnoallow middleware
+2019-12-19 18:19:38,347 INFO 11851 [egg-security] use noopen middleware
+2019-12-19 18:19:38,347 INFO 11851 [egg-security] use nosniff middleware
+2019-12-19 18:19:38,348 INFO 11851 [egg-security] use xssProtection middleware
+2019-12-19 18:19:38,348 INFO 11851 [egg-security] use xframe middleware
+2019-12-19 18:19:38,349 INFO 11851 [egg-security] use dta middleware
+2019-12-19 18:19:38,349 INFO 11851 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 18:19:38,356 INFO 11851 [egg:core] dump config after load, 6ms
+2019-12-19 18:19:38,388 INFO 11851 [egg-watcher:application] watcher start success
+2019-12-19 18:19:38,423 INFO 11851 [egg:core] dump config after ready, 5ms
+2019-12-19 18:20:09,054 INFO 11927 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 18:20:09,082 INFO 11927 [egg-multipart] stream mode enable
+2019-12-19 18:20:09,161 INFO 11927 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 18:20:09,162 INFO 11927 [egg-security] use csrf middleware
+2019-12-19 18:20:09,163 INFO 11927 [egg-security] use methodnoallow middleware
+2019-12-19 18:20:09,163 INFO 11927 [egg-security] use noopen middleware
+2019-12-19 18:20:09,164 INFO 11927 [egg-security] use nosniff middleware
+2019-12-19 18:20:09,164 INFO 11927 [egg-security] use xssProtection middleware
+2019-12-19 18:20:09,165 INFO 11927 [egg-security] use xframe middleware
+2019-12-19 18:20:09,165 INFO 11927 [egg-security] use dta middleware
+2019-12-19 18:20:09,165 INFO 11927 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 18:20:09,171 INFO 11927 [egg:core] dump config after load, 4ms
+2019-12-19 18:20:09,194 INFO 11927 [egg-watcher:application] watcher start success
+2019-12-19 18:20:09,221 INFO 11927 [egg:core] dump config after ready, 4ms
+2019-12-19 18:22:04,823 INFO 12116 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 18:22:04,845 INFO 12116 [egg-multipart] stream mode enable
+2019-12-19 18:22:04,944 INFO 12116 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 18:22:04,946 INFO 12116 [egg-security] use csrf middleware
+2019-12-19 18:22:04,947 INFO 12116 [egg-security] use methodnoallow middleware
+2019-12-19 18:22:04,947 INFO 12116 [egg-security] use noopen middleware
+2019-12-19 18:22:04,948 INFO 12116 [egg-security] use nosniff middleware
+2019-12-19 18:22:04,948 INFO 12116 [egg-security] use xssProtection middleware
+2019-12-19 18:22:04,948 INFO 12116 [egg-security] use xframe middleware
+2019-12-19 18:22:04,949 INFO 12116 [egg-security] use dta middleware
+2019-12-19 18:22:04,949 INFO 12116 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 18:22:04,957 INFO 12116 [egg:core] dump config after load, 6ms
+2019-12-19 18:22:04,983 INFO 12116 [egg-watcher:application] watcher start success
+2019-12-19 18:22:05,013 INFO 12116 [egg:core] dump config after ready, 5ms
+2019-12-19 18:23:47,380 INFO 12335 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 18:23:47,403 INFO 12335 [egg-multipart] stream mode enable
+2019-12-19 18:23:47,491 INFO 12335 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 18:23:47,493 INFO 12335 [egg-security] use csrf middleware
+2019-12-19 18:23:47,494 INFO 12335 [egg-security] use methodnoallow middleware
+2019-12-19 18:23:47,494 INFO 12335 [egg-security] use noopen middleware
+2019-12-19 18:23:47,495 INFO 12335 [egg-security] use nosniff middleware
+2019-12-19 18:23:47,495 INFO 12335 [egg-security] use xssProtection middleware
+2019-12-19 18:23:47,495 INFO 12335 [egg-security] use xframe middleware
+2019-12-19 18:23:47,496 INFO 12335 [egg-security] use dta middleware
+2019-12-19 18:23:47,496 INFO 12335 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 18:23:47,507 INFO 12335 [egg:core] dump config after load, 9ms
+2019-12-19 18:23:47,549 INFO 12335 [egg-watcher:application] watcher start success
+2019-12-19 18:23:47,580 INFO 12335 [egg:core] dump config after ready, 6ms
+2019-12-19 18:27:11,100 WARN 12335 [ClusterClient:Watcher] follower closed, and try to init it again
+2019-12-19 18:32:57,978 INFO 12960 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 18:32:58,012 INFO 12960 [egg-multipart] stream mode enable
+2019-12-19 18:32:58,119 INFO 12960 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 18:32:58,121 INFO 12960 [egg-security] use csrf middleware
+2019-12-19 18:32:58,122 INFO 12960 [egg-security] use methodnoallow middleware
+2019-12-19 18:32:58,122 INFO 12960 [egg-security] use noopen middleware
+2019-12-19 18:32:58,123 INFO 12960 [egg-security] use nosniff middleware
+2019-12-19 18:32:58,123 INFO 12960 [egg-security] use xssProtection middleware
+2019-12-19 18:32:58,124 INFO 12960 [egg-security] use xframe middleware
+2019-12-19 18:32:58,124 INFO 12960 [egg-security] use dta middleware
+2019-12-19 18:32:58,124 INFO 12960 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 18:32:58,133 INFO 12960 [egg:core] dump config after load, 8ms
+2019-12-19 18:32:58,161 INFO 12960 [egg-watcher:application] watcher start success
+2019-12-19 18:32:58,188 INFO 12960 [egg:core] dump config after ready, 4ms
+2019-12-19 18:34:33,706 INFO 13107 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 18:34:33,728 INFO 13107 [egg-multipart] stream mode enable
+2019-12-19 18:34:33,801 INFO 13107 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 18:34:33,803 INFO 13107 [egg-security] use csrf middleware
+2019-12-19 18:34:33,804 INFO 13107 [egg-security] use methodnoallow middleware
+2019-12-19 18:34:33,804 INFO 13107 [egg-security] use noopen middleware
+2019-12-19 18:34:33,805 INFO 13107 [egg-security] use nosniff middleware
+2019-12-19 18:34:33,805 INFO 13107 [egg-security] use xssProtection middleware
+2019-12-19 18:34:33,805 INFO 13107 [egg-security] use xframe middleware
+2019-12-19 18:34:33,806 INFO 13107 [egg-security] use dta middleware
+2019-12-19 18:34:33,806 INFO 13107 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 18:34:33,812 INFO 13107 [egg:core] dump config after load, 5ms
+2019-12-19 18:34:33,833 INFO 13107 [egg-watcher:application] watcher start success
+2019-12-19 18:34:33,862 INFO 13107 [egg:core] dump config after ready, 4ms

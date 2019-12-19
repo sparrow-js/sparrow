@@ -228,15 +228,21 @@
       "user-home": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
     },
     "devDependencies": {
+      "@types/execa": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "@types/mocha": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "@types/node": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "@vue/cli-plugin-babel": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "@vue/cli-plugin-eslint": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "@vue/cli-service": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "@vue/eslint-config-standard": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "cross-env": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "midway-bin": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "midway-mock": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "npm-run-all": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "ts-node": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "tslib": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
-      "typescript": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+      "typescript": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "vue-template-compiler": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
     },
     "engines": {
       "node": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
@@ -256,7 +262,8 @@
       "build": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "prepublishOnly": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "generate:project": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
-      "rm:project": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+      "rm:project": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "test1": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
     },
     "repository": {
       "type": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",

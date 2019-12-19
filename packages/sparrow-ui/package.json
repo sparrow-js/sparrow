@@ -9,7 +9,8 @@
     "watch-node": "cross-env LOCAL_DEBUG=1 nodemon dist/server.js",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test1": "node ./test.js"
   },
   "keywords": [
     "sparrow"

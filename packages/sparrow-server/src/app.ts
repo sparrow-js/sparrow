@@ -1,4 +1,6 @@
 import RemoteLogger from './lib/remoteLogger';
+import {run} from './util/runView';
+run();
 
 export default class AppBootHook {
   public app: any;

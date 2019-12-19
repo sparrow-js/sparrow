@@ -42,7 +42,9 @@ import socket from '@/util/socket.js'
   }
 })
 export default class App extends Vue {
-  created () {}
+  created () {
+    this.getProjetList();
+  }
   get showDashboard () {
     return AppModule.showDashboard
   }

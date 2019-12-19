@@ -261,3 +261,34 @@ hostname: HaitaodeMBP.lan
 2019-12-19 15:44:32,950 INFO 94339 home.project.list
 2019-12-19 15:48:06,657 INFO 94339 home.project.list
 2019-12-19 15:53:25,014 INFO 95847 home.project.list
+2019-12-19 17:05:29,064 ERROR 4270 [-/127.0.0.1/-/1ms GET /] nodejs.TypeError: execa_1.default is not a function
+    at Object.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/util/runView.ts:15:22)
+    at AppBootHook.didLoad (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts:13:5)
+    at Object.callFn (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/utils/index.js:44:42)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/lifecycle.js:256:13
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 4270
+hostname: localhost
+
+2019-12-19 17:06:53,155 ERROR 4396 [-/127.0.0.1/-/0ms GET /] nodejs.TypeError: execa_1.default is not a function
+    at Object.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/util/runView.ts:15:22)
+    at AppBootHook.didLoad (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts:13:5)
+    at Object.callFn (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/utils/index.js:44:42)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/lifecycle.js:256:13
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 4396
+hostname: localhost
+
+2019-12-19 17:08:50,292 ERROR 4690 [-/127.0.0.1/-/0ms GET /] nodejs.TypeError: execa_1.default is not a function
+    at Object.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/util/runView.ts:15:22)
+    at AppBootHook.didLoad (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts:13:5)
+    at Object.callFn (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/utils/index.js:44:42)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/lifecycle.js:256:13
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 4690
+hostname: localhost
+
+2019-12-19 18:35:12,035 INFO 13107 home.project.list

@@ -184,3 +184,268 @@ name: "ClusterClientNoResponseError"
 pid: 95841
 hostname: localhost
 
+2019-12-19 16:56:18,765 WARN 95841 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts change
+2019-12-19 16:56:18,528 INFO 95841 [egg-watcher] Recieved a change event from eventSource: {"path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","event":"change","stat":{"dev":16777220,"mode":33188,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29564094,"size":356,"blocks":8,"atimeMs":1576745778437.34,"mtimeMs":1576745778439.776,"ctimeMs":1576745778439.776,"birthtimeMs":1576677976217.0051,"atime":"2019-12-19T08:56:18.437Z","mtime":"2019-12-19T08:56:18.440Z","ctime":"2019-12-19T08:56:18.440Z","birthtime":"2019-12-18T14:06:16.217Z"}}
+2019-12-19 16:56:45,445 WARN 95841 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts change
+2019-12-19 16:56:45,225 INFO 95841 [egg-watcher] Recieved a change event from eventSource: {"path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","event":"change","stat":{"dev":16777220,"mode":33188,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29564094,"size":395,"blocks":8,"atimeMs":1576745805160.069,"mtimeMs":1576745805160.7144,"ctimeMs":1576745805160.7144,"birthtimeMs":1576677976217.0051,"atime":"2019-12-19T08:56:45.160Z","mtime":"2019-12-19T08:56:45.161Z","ctime":"2019-12-19T08:56:45.161Z","birthtime":"2019-12-18T14:06:16.217Z"}}
+2019-12-19 17:04:24,029 WARN 95841 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts change
+2019-12-19 17:04:23,823 INFO 95841 [egg-watcher] Recieved a change event from eventSource: {"path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","event":"change","stat":{"dev":16777220,"mode":33188,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29564094,"size":396,"blocks":8,"atimeMs":1576746263709.179,"mtimeMs":1576746263710.4077,"ctimeMs":1576746263710.4077,"birthtimeMs":1576677976217.0051,"atime":"2019-12-19T09:04:23.709Z","mtime":"2019-12-19T09:04:23.710Z","ctime":"2019-12-19T09:04:23.710Z","birthtime":"2019-12-18T14:06:16.217Z"}}
+2019-12-19 17:04:36,842 INFO 4173 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 17:04:36,852 INFO 4173 [egg:core] dump config after load, 5ms
+2019-12-19 17:04:36,892 INFO 4173 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 17:04:36,892 INFO 4173 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 17:04:36,893 INFO 4173 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 17:04:36,893 INFO 4173 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 17:04:36,893 INFO 4173 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 17:04:36,893 INFO 4173 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 17:04:36,899 INFO 4173 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 17:04:36,899 INFO 4173 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 17:04:36,900 INFO 4173 [egg-watcher:agent] watcher start success
+2019-12-19 17:04:36,912 INFO 4173 [egg:core] dump config after ready, 6ms
+2019-12-19 17:04:47,355 WARN 4173 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts change
+2019-12-19 17:04:47,099 INFO 4173 [egg-watcher] Recieved a change event from eventSource: {"path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","event":"change","stat":{"dev":16777220,"mode":33188,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29564094,"size":356,"blocks":8,"atimeMs":1576746287087.497,"mtimeMs":1576746287088.0112,"ctimeMs":1576746287088.0112,"birthtimeMs":1576677976217.0051,"atime":"2019-12-19T09:04:47.087Z","mtime":"2019-12-19T09:04:47.088Z","ctime":"2019-12-19T09:04:47.088Z","birthtime":"2019-12-18T14:06:16.217Z"}}
+2019-12-19 17:04:47,150 INFO 4173 [egg-watcher] Recieved a change event from eventSource: {"path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","event":"change","stat":{"dev":16777220,"mode":33188,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29564094,"size":356,"blocks":8,"atimeMs":1576746287087.497,"mtimeMs":1576746287088.0112,"ctimeMs":1576746287088.0112,"birthtimeMs":1576677976217.0051,"atime":"2019-12-19T09:04:47.087Z","mtime":"2019-12-19T09:04:47.088Z","ctime":"2019-12-19T09:04:47.088Z","birthtime":"2019-12-18T14:06:16.217Z"}}
+2019-12-19 17:05:07,274 WARN 4173 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts change
+2019-12-19 17:05:07,069 INFO 4173 [egg-watcher] Recieved a change event from eventSource: {"path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","event":"change","stat":{"dev":16777220,"mode":33188,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29564094,"size":391,"blocks":8,"atimeMs":1576746306953.9343,"mtimeMs":1576746306955.6975,"ctimeMs":1576746306955.6975,"birthtimeMs":1576677976217.0051,"atime":"2019-12-19T09:05:06.954Z","mtime":"2019-12-19T09:05:06.956Z","ctime":"2019-12-19T09:05:06.956Z","birthtime":"2019-12-18T14:06:16.217Z"}}
+2019-12-19 17:05:08,642 WARN 4173 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts change
+2019-12-19 17:05:08,439 INFO 4173 [egg-watcher] Recieved a change event from eventSource: {"path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","event":"change","stat":{"dev":16777220,"mode":33188,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29564094,"size":392,"blocks":8,"atimeMs":1576746308427.74,"mtimeMs":1576746308428.2246,"ctimeMs":1576746308428.2246,"birthtimeMs":1576677976217.0051,"atime":"2019-12-19T09:05:08.428Z","mtime":"2019-12-19T09:05:08.428Z","ctime":"2019-12-19T09:05:08.428Z","birthtime":"2019-12-18T14:06:16.217Z"}}
+2019-12-19 17:05:19,337 WARN 4173 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts change
+2019-12-19 17:05:19,136 INFO 4173 [egg-watcher] Recieved a change event from eventSource: {"path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","event":"change","stat":{"dev":16777220,"mode":33188,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29564094,"size":403,"blocks":8,"atimeMs":1576746319124.3635,"mtimeMs":1576746319124.9702,"ctimeMs":1576746319124.9702,"birthtimeMs":1576677976217.0051,"atime":"2019-12-19T09:05:19.124Z","mtime":"2019-12-19T09:05:19.125Z","ctime":"2019-12-19T09:05:19.125Z","birthtime":"2019-12-18T14:06:16.217Z"}}
+2019-12-19 17:05:27,759 INFO 4269 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 17:05:27,771 INFO 4269 [egg:core] dump config after load, 9ms
+2019-12-19 17:05:27,804 INFO 4269 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 17:05:27,804 INFO 4269 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 17:05:27,804 INFO 4269 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 17:05:27,804 INFO 4269 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 17:05:27,804 INFO 4269 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 17:05:27,804 INFO 4269 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 17:05:27,813 INFO 4269 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 17:05:27,814 INFO 4269 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 17:05:27,814 INFO 4269 [egg-watcher:agent] watcher start success
+2019-12-19 17:05:27,825 INFO 4269 [egg:core] dump config after ready, 5ms
+2019-12-19 17:06:51,605 INFO 4395 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 17:06:51,620 INFO 4395 [egg:core] dump config after load, 11ms
+2019-12-19 17:06:51,658 INFO 4395 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 17:06:51,658 INFO 4395 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 17:06:51,659 INFO 4395 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 17:06:51,659 INFO 4395 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 17:06:51,659 INFO 4395 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 17:06:51,659 INFO 4395 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 17:06:51,668 INFO 4395 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 17:06:51,668 INFO 4395 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 17:06:51,669 INFO 4395 [egg-watcher:agent] watcher start success
+2019-12-19 17:06:51,681 INFO 4395 [egg:core] dump config after ready, 7ms
+2019-12-19 17:08:48,668 INFO 4660 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 17:08:48,676 INFO 4660 [egg:core] dump config after load, 4ms
+2019-12-19 17:08:48,716 INFO 4660 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 17:08:48,716 INFO 4660 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 17:08:48,716 INFO 4660 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 17:08:48,716 INFO 4660 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 17:08:48,716 INFO 4660 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 17:08:48,716 INFO 4660 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 17:08:48,723 INFO 4660 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 17:08:48,723 INFO 4660 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 17:08:48,723 INFO 4660 [egg-watcher:agent] watcher start success
+2019-12-19 17:08:48,743 INFO 4660 [egg:core] dump config after ready, 9ms
+2019-12-19 17:19:58,828 INFO 5599 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 17:19:58,837 INFO 5599 [egg:core] dump config after load, 5ms
+2019-12-19 17:19:58,875 INFO 5599 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 17:19:58,875 INFO 5599 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 17:19:58,875 INFO 5599 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 17:19:58,875 INFO 5599 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 17:19:58,875 INFO 5599 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 17:19:58,875 INFO 5599 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 17:19:58,883 INFO 5599 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 17:19:58,883 INFO 5599 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 17:19:58,883 INFO 5599 [egg-watcher:agent] watcher start success
+2019-12-19 17:19:58,895 INFO 5599 [egg:core] dump config after ready, 6ms
+2019-12-19 17:20:31,824 INFO 5638 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 17:20:31,831 INFO 5638 [egg:core] dump config after load, 4ms
+2019-12-19 17:20:31,868 INFO 5638 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 17:20:31,868 INFO 5638 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 17:20:31,868 INFO 5638 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 17:20:31,868 INFO 5638 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 17:20:31,868 INFO 5638 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 17:20:31,868 INFO 5638 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 17:20:31,876 INFO 5638 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 17:20:31,877 INFO 5638 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 17:20:31,877 INFO 5638 [egg-watcher:agent] watcher start success
+2019-12-19 17:20:31,886 INFO 5638 [egg:core] dump config after ready, 5ms
+2019-12-19 17:22:02,649 INFO 5760 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 17:22:02,656 INFO 5760 [egg:core] dump config after load, 4ms
+2019-12-19 17:22:02,691 INFO 5760 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 17:22:02,691 INFO 5760 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 17:22:02,691 INFO 5760 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 17:22:02,691 INFO 5760 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 17:22:02,691 INFO 5760 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 17:22:02,691 INFO 5760 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 17:22:02,698 INFO 5760 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 17:22:02,698 INFO 5760 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 17:22:02,698 INFO 5760 [egg-watcher:agent] watcher start success
+2019-12-19 17:22:02,709 INFO 5760 [egg:core] dump config after ready, 7ms
+2019-12-19 17:22:56,960 INFO 5844 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 17:22:56,968 INFO 5844 [egg:core] dump config after load, 5ms
+2019-12-19 17:22:57,001 INFO 5844 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 17:22:57,001 INFO 5844 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 17:22:57,002 INFO 5844 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 17:22:57,002 INFO 5844 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 17:22:57,002 INFO 5844 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 17:22:57,002 INFO 5844 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 17:22:57,008 INFO 5844 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 17:22:57,008 INFO 5844 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 17:22:57,009 INFO 5844 [egg-watcher:agent] watcher start success
+2019-12-19 17:22:57,020 INFO 5844 [egg:core] dump config after ready, 6ms
+2019-12-19 17:24:39,290 ERROR 5844 nodejs.ClusterClientNoResponseError: client no response in 60908ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 5844
+hostname: localhost
+
+2019-12-19 17:26:54,557 INFO 6159 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 17:26:54,564 INFO 6159 [egg:core] dump config after load, 4ms
+2019-12-19 17:26:54,599 INFO 6159 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 17:26:54,599 INFO 6159 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 17:26:54,600 INFO 6159 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 17:26:54,600 INFO 6159 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 17:26:54,600 INFO 6159 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 17:26:54,600 INFO 6159 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 17:26:54,607 INFO 6159 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 17:26:54,607 INFO 6159 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 17:26:54,607 INFO 6159 [egg-watcher:agent] watcher start success
+2019-12-19 17:26:54,617 INFO 6159 [egg:core] dump config after ready, 4ms
+2019-12-19 17:29:30,209 WARN 6159 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts change
+2019-12-19 17:29:30,001 INFO 6159 [egg-watcher] Recieved a change event from eventSource: {"path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","event":"change","stat":{"dev":16777220,"mode":33188,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29564094,"size":399,"blocks":8,"atimeMs":1576747769901.3313,"mtimeMs":1576747769902.2092,"ctimeMs":1576747769902.2092,"birthtimeMs":1576677976217.0051,"atime":"2019-12-19T09:29:29.901Z","mtime":"2019-12-19T09:29:29.902Z","ctime":"2019-12-19T09:29:29.902Z","birthtime":"2019-12-18T14:06:16.217Z"}}
+2019-12-19 17:29:30,860 INFO 6159 [egg-watcher] Recieved a change event from eventSource: {"path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","event":"change","stat":{"dev":16777220,"mode":33188,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29564094,"size":399,"blocks":8,"atimeMs":1576747770849.7812,"mtimeMs":1576747770850.1743,"ctimeMs":1576747770850.1743,"birthtimeMs":1576677976217.0051,"atime":"2019-12-19T09:29:30.850Z","mtime":"2019-12-19T09:29:30.850Z","ctime":"2019-12-19T09:29:30.850Z","birthtime":"2019-12-18T14:06:16.217Z"}}
+2019-12-19 17:29:31,064 WARN 6159 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts change
+2019-12-19 17:40:27,623 INFO 7257 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 17:40:27,630 INFO 7257 [egg:core] dump config after load, 4ms
+2019-12-19 17:40:27,671 INFO 7257 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 17:40:27,671 INFO 7257 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 17:40:27,671 INFO 7257 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 17:40:27,671 INFO 7257 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 17:40:27,671 INFO 7257 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 17:40:27,671 INFO 7257 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 17:40:27,682 INFO 7257 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 17:40:27,682 INFO 7257 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 17:40:27,683 INFO 7257 [egg-watcher:agent] watcher start success
+2019-12-19 17:40:27,696 INFO 7257 [egg:core] dump config after ready, 4ms
+2019-12-19 17:44:00,119 INFO 7825 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 17:44:00,126 INFO 7825 [egg:core] dump config after load, 4ms
+2019-12-19 17:44:00,166 INFO 7825 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 17:44:00,166 INFO 7825 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 17:44:00,166 INFO 7825 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 17:44:00,166 INFO 7825 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 17:44:00,166 INFO 7825 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 17:44:00,166 INFO 7825 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 17:44:00,173 INFO 7825 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 17:44:00,173 INFO 7825 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 17:44:00,173 INFO 7825 [egg-watcher:agent] watcher start success
+2019-12-19 17:44:00,186 INFO 7825 [egg:core] dump config after ready, 4ms
+2019-12-19 17:50:54,269 INFO 8422 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 17:50:54,276 INFO 8422 [egg:core] dump config after load, 4ms
+2019-12-19 17:50:54,318 INFO 8422 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 17:50:54,318 INFO 8422 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 17:50:54,318 INFO 8422 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 17:50:54,318 INFO 8422 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 17:50:54,318 INFO 8422 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 17:50:54,318 INFO 8422 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 17:50:54,327 INFO 8422 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 17:50:54,327 INFO 8422 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 17:50:54,327 INFO 8422 [egg-watcher:agent] watcher start success
+2019-12-19 17:50:54,341 INFO 8422 [egg:core] dump config after ready, 4ms
+2019-12-19 18:14:49,328 INFO 11095 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 18:14:49,336 INFO 11095 [egg:core] dump config after load, 5ms
+2019-12-19 18:14:49,373 INFO 11095 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 18:14:49,373 INFO 11095 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 18:14:49,373 INFO 11095 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 18:14:49,373 INFO 11095 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 18:14:49,374 INFO 11095 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 18:14:49,374 INFO 11095 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 18:14:49,382 INFO 11095 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 18:14:49,382 INFO 11095 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 18:14:49,382 INFO 11095 [egg-watcher:agent] watcher start success
+2019-12-19 18:14:49,394 INFO 11095 [egg:core] dump config after ready, 4ms
+2019-12-19 18:17:53,651 INFO 11488 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 18:17:53,659 INFO 11488 [egg:core] dump config after load, 4ms
+2019-12-19 18:17:53,699 INFO 11488 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 18:17:53,699 INFO 11488 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 18:17:53,700 INFO 11488 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 18:17:53,700 INFO 11488 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 18:17:53,700 INFO 11488 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 18:17:53,700 INFO 11488 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 18:17:53,707 INFO 11488 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 18:17:53,707 INFO 11488 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 18:17:53,707 INFO 11488 [egg-watcher:agent] watcher start success
+2019-12-19 18:17:53,719 INFO 11488 [egg:core] dump config after ready, 4ms
+2019-12-19 18:19:36,775 INFO 11843 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 18:19:36,783 INFO 11843 [egg:core] dump config after load, 5ms
+2019-12-19 18:19:36,816 INFO 11843 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 18:19:36,816 INFO 11843 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 18:19:36,816 INFO 11843 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 18:19:36,816 INFO 11843 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 18:19:36,816 INFO 11843 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 18:19:36,816 INFO 11843 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 18:19:36,823 INFO 11843 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 18:19:36,823 INFO 11843 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 18:19:36,824 INFO 11843 [egg-watcher:agent] watcher start success
+2019-12-19 18:19:36,837 INFO 11843 [egg:core] dump config after ready, 5ms
+2019-12-19 18:20:07,601 INFO 11922 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 18:20:07,609 INFO 11922 [egg:core] dump config after load, 4ms
+2019-12-19 18:20:07,646 INFO 11922 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 18:20:07,646 INFO 11922 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 18:20:07,647 INFO 11922 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 18:20:07,647 INFO 11922 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 18:20:07,647 INFO 11922 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 18:20:07,647 INFO 11922 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 18:20:07,653 INFO 11922 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 18:20:07,653 INFO 11922 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 18:20:07,654 INFO 11922 [egg-watcher:agent] watcher start success
+2019-12-19 18:20:07,666 INFO 11922 [egg:core] dump config after ready, 5ms
+2019-12-19 18:22:03,341 INFO 12111 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 18:22:03,355 INFO 12111 [egg:core] dump config after load, 11ms
+2019-12-19 18:22:03,388 INFO 12111 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 18:22:03,389 INFO 12111 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 18:22:03,389 INFO 12111 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 18:22:03,389 INFO 12111 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 18:22:03,389 INFO 12111 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 18:22:03,389 INFO 12111 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 18:22:03,396 INFO 12111 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 18:22:03,396 INFO 12111 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 18:22:03,396 INFO 12111 [egg-watcher:agent] watcher start success
+2019-12-19 18:22:03,407 INFO 12111 [egg:core] dump config after ready, 5ms
+2019-12-19 18:23:45,954 INFO 12315 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 18:23:45,962 INFO 12315 [egg:core] dump config after load, 5ms
+2019-12-19 18:23:46,006 INFO 12315 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 18:23:46,006 INFO 12315 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 18:23:46,006 INFO 12315 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 18:23:46,007 INFO 12315 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 18:23:46,007 INFO 12315 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 18:23:46,007 INFO 12315 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 18:23:46,013 INFO 12315 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 18:23:46,013 INFO 12315 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 18:23:46,014 INFO 12315 [egg-watcher:agent] watcher start success
+2019-12-19 18:23:46,025 INFO 12315 [egg:core] dump config after ready, 5ms
+2019-12-19 18:27:11,823 ERROR 12315 nodejs.ClusterClientNoResponseError: client no response in 123482ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 12315
+hostname: localhost
+
+2019-12-19 18:32:56,387 INFO 12955 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-19 18:32:56,395 INFO 12955 [egg:core] dump config after load, 4ms
+2019-12-19 18:32:56,435 INFO 12955 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-19 18:32:56,435 INFO 12955 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-19 18:32:56,436 INFO 12955 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-19 18:32:56,436 INFO 12955 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-19 18:32:56,436 INFO 12955 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-19 18:32:56,436 INFO 12955 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-19 18:32:56,442 INFO 12955 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-19 18:32:56,443 INFO 12955 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-19 18:32:56,443 INFO 12955 [egg-watcher:agent] watcher start success
+2019-12-19 18:32:56,455 INFO 12955 [egg:core] dump config after ready, 6ms
+2019-12-19 18:34:31,418 INFO 12955 [egg-watcher] Recieved a change event from eventSource: {"path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","event":"change","stat":{"dev":16777220,"mode":33188,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29564094,"size":399,"blocks":8,"atimeMs":1576751671356.226,"mtimeMs":1576751671356.8977,"ctimeMs":1576751671356.8977,"birthtimeMs":1576677976217.0051,"atime":"2019-12-19T10:34:31.356Z","mtime":"2019-12-19T10:34:31.357Z","ctime":"2019-12-19T10:34:31.357Z","birthtime":"2019-12-18T14:06:16.217Z"}}
+2019-12-19 18:34:31,620 WARN 12955 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts change
