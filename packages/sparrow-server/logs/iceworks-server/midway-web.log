@@ -295,3 +295,23 @@ hostname: localhost
 2019-12-19 19:52:52,806 INFO 13107 home.project.list
 2019-12-19 20:00:09,416 INFO 13107 home.project.list
 2019-12-19 20:00:38,937 INFO 13107 home.project.list
+2019-12-19 20:19:20,145 INFO 23077 home.project.list
+2019-12-19 20:40:00,484 INFO 23982 home.project.list
+2019-12-19 20:42:41,322 INFO 23982 home.project.list
+2019-12-19 20:43:18,773 INFO 23982 home.project.list
+2019-12-19 20:45:59,022 INFO 25526 home.project.list
+2019-12-19 20:50:33,578 INFO 26068 home.project.list
+2019-12-19 20:56:28,207 INFO 26628 home.project.list
+2019-12-19 20:58:47,133 ERROR 26825 [-/127.0.0.1/-/0ms GET /] nodejs.AssertionError: can't find middleware: adapter !
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:48:11
+    at Object.callFn (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/utils/index.js:44:42)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/lifecycle.js:256:13
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+generatedMessage: false
+code: "ERR_ASSERTION"
+actual: undefined
+expected: true
+operator: "=="
+pid: 26825
+hostname: localhost
+
