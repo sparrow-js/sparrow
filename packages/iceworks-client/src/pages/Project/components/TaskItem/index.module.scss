@@ -1,0 +1,41 @@
+@import '../../../../variables.scss';
+
+.taskItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  .taskInfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .title {
+      margin: 0 0 0 10px;
+    }
+
+    .desc {
+      margin: 0;
+    }
+  }
+
+  .taskMeta {
+    margin-top: 10px;
+    color: $text-color-normal;
+    font-size: $font-size-base;
+    .metaItem {
+      margin: 4px 0;
+    }
+  }
+
+  .settingButton {
+    display: inline-flex;
+    align-items: center;
+
+    .settingIcon {
+      margin-right: 5px;
+    }
+  }
+}

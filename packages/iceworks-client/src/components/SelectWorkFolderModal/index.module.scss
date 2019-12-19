@@ -1,0 +1,56 @@
+@import '../../variables.scss';
+
+.wrap {
+  width: 460px;
+
+  .bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+
+    .up {
+      cursor: pointer;
+      color: $brand-color-primary;
+    }
+
+    .input {
+      margin-left: 4px;
+      width: 100%;
+      padding-right: 20px;
+    }
+
+    .edit {
+      position: absolute;
+      right: 5px;
+      top: 4px;
+      cursor: pointer;
+    }
+  }
+
+  .list {
+    height: 400px;
+    padding: 0 14px;
+    overflow-y: auto;
+    margin-top: 12px;
+
+    .item {
+      padding: 6px 0;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+
+      &:hover {
+        background-color: $background-color-base;
+      }
+
+      span {
+        display: flex;
+        align-items: center;
+        height: 24px;
+        font-size: 16px;
+        margin-left: 6px;
+      }
+    }
+  }
+}

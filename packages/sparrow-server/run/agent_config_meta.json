@@ -1,0 +1,374 @@
+{
+  "keys": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config/config.default.ts",
+  "middleware": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config/config.default.ts",
+  "view": {
+    "defaultViewEngine": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config/config.default.ts",
+    "mapping": {
+      ".html": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config/config.default.ts"
+    },
+    "root": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view/config/config.default.js",
+    "cache": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view/config/config.local.js",
+    "defaultExtension": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view/config/config.default.js"
+  },
+  "io": {
+    "namespace": {
+      "/": {
+        "connectionMiddleware": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config/config.default.ts",
+        "packetMiddleware": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config/config.default.ts"
+      }
+    },
+    "init": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/config/config.default.js"
+  },
+  "cors": {
+    "origin": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config/config.default.ts",
+    "allowMethods": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config/config.default.ts"
+  },
+  "security": {
+    "csrf": {
+      "headerName": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config/config.default.ts",
+      "ignore": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config/config.default.ts",
+      "enable": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "type": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "ignoreJSON": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/config.local.js",
+      "useSession": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "cookieName": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "sessionName": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "bodyName": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "queryName": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "refererWhiteList": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+    },
+    "domainWhiteList": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+    "protocolWhiteList": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+    "defaultMiddleware": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+    "xframe": {
+      "enable": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "value": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+    },
+    "hsts": {
+      "enable": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.local.js",
+      "maxAge": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "includeSubdomains": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+    },
+    "dta": {
+      "enable": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+    },
+    "methodnoallow": {
+      "enable": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+    },
+    "noopen": {
+      "enable": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+    },
+    "nosniff": {
+      "enable": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+    },
+    "referrerPolicy": {
+      "enable": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "value": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+    },
+    "xssProtection": {
+      "enable": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "value": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+    },
+    "csp": {
+      "enable": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "policy": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+    },
+    "ssrf": {
+      "ipBlackList": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+      "checkAddress": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+    }
+  },
+  "development": {
+    "watchDirs": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config/config.local.ts",
+    "overrideDefault": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config/config.local.ts",
+    "ignoreDirs": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-development/config/config.default.js",
+    "fastReady": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-development/config/config.default.js",
+    "reloadOnDebug": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-development/config/config.default.js"
+  },
+  "session": {
+    "maxAge": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-session/config/config.default.js",
+    "key": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-session/config/config.default.js",
+    "httpOnly": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-session/config/config.default.js",
+    "encrypt": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-session/config/config.default.js"
+  },
+  "helper": {
+    "shtml": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+  },
+  "jsonp": {
+    "limit": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-jsonp/config/config.default.js",
+    "callback": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-jsonp/config/config.default.js",
+    "csrf": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-jsonp/config/config.default.js"
+  },
+  "onerror": {
+    "errorPageUrl": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-onerror/config/config.default.js",
+    "appErrorFilter": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-onerror/config/config.default.js",
+    "templatePath": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-onerror/config/config.default.js"
+  },
+  "watcher": {
+    "type": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-watcher/config/config.local.js",
+    "eventSources": {
+      "default": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-watcher/config/config.default.js",
+      "development": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-watcher/config/config.default.js"
+    }
+  },
+  "customLogger": {
+    "scheduleLogger": {
+      "consoleLevel": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-schedule/config/config.default.js",
+      "file": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-schedule/config/config.default.js"
+    }
+  },
+  "schedule": {
+    "directory": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-schedule/config/config.default.js"
+  },
+  "multipart": {
+    "mode": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js",
+    "autoFields": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js",
+    "defaultCharset": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js",
+    "fieldNameSize": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js",
+    "fieldSize": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js",
+    "fields": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js",
+    "fileSize": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js",
+    "files": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js",
+    "fileExtensions": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js",
+    "whitelist": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js",
+    "tmpdir": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js",
+    "cleanSchedule": {
+      "cron": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js"
+    }
+  },
+  "logrotator": {
+    "filesRotateByHour": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/config/config.default.js",
+    "hourDelimiter": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/config/config.default.js",
+    "filesRotateBySize": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/config/config.default.js",
+    "maxFileSize": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/config/config.default.js",
+    "maxFiles": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/config/config.default.js",
+    "rotateDuration": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/config/config.default.js",
+    "maxDays": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/config/config.default.js"
+  },
+  "static": {
+    "prefix": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-static/config/config.default.js",
+    "dir": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-static/config/config.default.js",
+    "dynamic": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-static/config/config.default.js",
+    "preload": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-static/config/config.default.js",
+    "buffer": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-static/config/config.default.js",
+    "maxFiles": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-static/config/config.default.js"
+  },
+  "nunjucks": {
+    "autoescape": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view-nunjucks/config/config.default.js",
+    "throwOnUndefined": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view-nunjucks/config/config.default.js",
+    "trimBlocks": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view-nunjucks/config/config.default.js",
+    "lstripBlocks": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view-nunjucks/config/config.default.js",
+    "cache": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view-nunjucks/config/config.local.js"
+  },
+  "env": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "name": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "cookies": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "proxy": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "maxIpsCount": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "maxProxyCount": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "protocolHeaders": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "ipHeaders": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "hostHeaders": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "pkg": {
+    "name": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "version": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "description": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "files": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "dependencies": {
+      "@babel/generator": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "@babel/parser": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "@babel/plugin-syntax-dynamic-import": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "@babel/traverse": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "@babel/types": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "ali-oss": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "array-move": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "camelcase": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "chalk": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "conf": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "detect-port": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "egg-cors": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "egg-scripts": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "egg-socket.io": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "egg-view": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "egg-view-nunjucks": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "ejs": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "execa": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "fs-extra": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "ice-npm-utils": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "iconv-jschardet": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "iconv-lite": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "isbinaryfile": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "junk": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "latest-version": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "launch-code-editor": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "line-by-line": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "lodash": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "lodash.uniqby": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "midway-mirror": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "mkdirp": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "mv": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "node-dir": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "node-ipc": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "open": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "package-json": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "path-exists": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "prettier": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "recursive-readdir": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "request": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "request-promise-native": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "rimraf": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "semver": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "shell-path": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "simple-git": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "tar": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "terminate": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "trash": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "uid": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "uppercamelcase": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "user-home": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+    },
+    "devDependencies": {
+      "@types/mocha": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "@types/node": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "cross-env": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "midway-bin": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "midway-mock": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "npm-run-all": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "ts-node": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "tslib": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "typescript": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+    },
+    "engines": {
+      "node": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+    },
+    "scripts": {
+      "postinstall": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "start": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "stop": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "start_build": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "dev": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "debug": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "midway_test": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "midway_cov": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "test": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "cov": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "ci": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "build": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "prepublishOnly": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "generate:project": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "rm:project": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+    },
+    "repository": {
+      "type": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "url": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+    },
+    "nyc": {
+      "include": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "extension": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+    },
+    "midway-bin-build": {
+      "include": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+    },
+    "author": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "license": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+  },
+  "baseDir": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "HOME": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "rundir": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/config.default.js",
+  "dump": {
+    "ignore": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+  },
+  "confusedConfigurations": {
+    "bodyparser": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "notFound": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "sitefile": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "middlewares": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "httpClient": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+  },
+  "notfound": {
+    "pageUrl": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+  },
+  "siteFile": {
+    "/favicon.ico": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+  },
+  "bodyParser": {
+    "enable": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "encoding": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "formLimit": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "jsonLimit": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "textLimit": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "strict": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "queryString": {
+      "arrayLimit": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "depth": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "parameterLimit": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+    },
+    "onerror": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+  },
+  "logger": {
+    "dir": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "encoding": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "env": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "level": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "consoleLevel": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "disableConsoleAfterReady": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "outputJSON": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "buffer": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "appLogName": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/config.default.js",
+    "coreLogName": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/config.default.js",
+    "agentLogName": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/config.default.js",
+    "errorLogName": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "coreLogger": {
+      "consoleLevel": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.local.js"
+    },
+    "allowDebugAtProd": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+  },
+  "httpclient": {
+    "enableDNSCache": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "dnsCacheLookupInterval": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "dnsCacheMaxLength": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "request": {
+      "timeout": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+    },
+    "httpAgent": {
+      "keepAlive": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "freeSocketTimeout": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "maxSockets": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "maxFreeSockets": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+    },
+    "httpsAgent": {
+      "keepAlive": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "freeSocketTimeout": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "maxSockets": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "maxFreeSockets": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+    }
+  },
+  "meta": {
+    "enable": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "logging": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+  },
+  "coreMiddleware": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "workerStartTimeout": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "serverTimeout": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "cluster": {
+    "listen": {
+      "path": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "port": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "hostname": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+    }
+  },
+  "clusterClient": {
+    "maxWaitTime": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "responseTimeout": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
+  },
+  "onClientError": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+  "pluginOverwrite": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/config.default.js",
+  "container": {
+    "ignore": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/config.default.js"
+  },
+  "alinode": {
+    "logdir": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/config.default.js",
+    "error_log": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/config.default.js",
+    "packages": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/config.default.js"
+  }
+}

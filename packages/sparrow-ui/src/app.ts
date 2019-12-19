@@ -57,8 +57,7 @@ const ss = sockjs.createServer();
 
 
 ss.on('connection', conn => {
-  conn.on('close', () => {
-  });
+  conn.on('close', () => {});
   conn.on('data', message => {
     conn.write(message)
   });

@@ -1,0 +1,567 @@
+2019-12-19 00:00:01,053 INFO 55850 [egg-logrotator] app logger reload: got log-reload message
+2019-12-19 00:35:18,106 INFO 60032 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 00:35:18,127 INFO 60032 [egg-multipart] stream mode enable
+2019-12-19 00:35:18,219 INFO 60032 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 00:35:18,221 INFO 60032 [egg-security] use csrf middleware
+2019-12-19 00:35:18,225 INFO 60032 [egg-security] use methodnoallow middleware
+2019-12-19 00:35:18,226 INFO 60032 [egg-security] use noopen middleware
+2019-12-19 00:35:18,226 INFO 60032 [egg-security] use nosniff middleware
+2019-12-19 00:35:18,227 INFO 60032 [egg-security] use xssProtection middleware
+2019-12-19 00:35:18,228 INFO 60032 [egg-security] use xframe middleware
+2019-12-19 00:35:18,228 INFO 60032 [egg-security] use dta middleware
+2019-12-19 00:35:18,228 INFO 60032 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 00:35:18,236 INFO 60032 [egg:core] dump config after load, 6ms
+2019-12-19 00:35:18,248 INFO 60032 [egg-watcher:application] watcher start success
+2019-12-19 00:35:18,267 INFO 60032 [egg:core] dump config after ready, 4ms
+2019-12-19 00:40:04,989 INFO 60406 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 00:40:05,015 INFO 60406 [egg-multipart] stream mode enable
+2019-12-19 00:40:05,104 INFO 60406 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 00:40:05,106 INFO 60406 [egg-security] use csrf middleware
+2019-12-19 00:40:05,107 INFO 60406 [egg-security] use methodnoallow middleware
+2019-12-19 00:40:05,107 INFO 60406 [egg-security] use noopen middleware
+2019-12-19 00:40:05,108 INFO 60406 [egg-security] use nosniff middleware
+2019-12-19 00:40:05,108 INFO 60406 [egg-security] use xssProtection middleware
+2019-12-19 00:40:05,109 INFO 60406 [egg-security] use xframe middleware
+2019-12-19 00:40:05,109 INFO 60406 [egg-security] use dta middleware
+2019-12-19 00:40:05,109 INFO 60406 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 00:40:05,117 INFO 60406 [egg:core] dump config after load, 6ms
+2019-12-19 00:40:05,127 INFO 60406 [egg-watcher:application] watcher start success
+2019-12-19 00:40:05,147 INFO 60406 [egg:core] dump config after ready, 5ms
+2019-12-19 00:41:44,052 INFO 60538 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 00:41:44,083 INFO 60538 [egg-multipart] stream mode enable
+2019-12-19 00:41:44,158 INFO 60538 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 00:41:44,161 INFO 60538 [egg-security] use csrf middleware
+2019-12-19 00:41:44,162 INFO 60538 [egg-security] use methodnoallow middleware
+2019-12-19 00:41:44,162 INFO 60538 [egg-security] use noopen middleware
+2019-12-19 00:41:44,163 INFO 60538 [egg-security] use nosniff middleware
+2019-12-19 00:41:44,163 INFO 60538 [egg-security] use xssProtection middleware
+2019-12-19 00:41:44,164 INFO 60538 [egg-security] use xframe middleware
+2019-12-19 00:41:44,164 INFO 60538 [egg-security] use dta middleware
+2019-12-19 00:41:44,164 INFO 60538 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 00:41:44,170 INFO 60538 [egg:core] dump config after load, 4ms
+2019-12-19 00:41:44,185 INFO 60538 [egg-watcher:application] watcher start success
+2019-12-19 00:41:44,212 INFO 60538 [egg:core] dump config after ready, 7ms
+2019-12-19 00:42:28,508 INFO 60604 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 00:42:28,528 INFO 60604 [egg-multipart] stream mode enable
+2019-12-19 00:42:28,599 INFO 60604 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 00:42:28,601 INFO 60604 [egg-security] use csrf middleware
+2019-12-19 00:42:28,602 INFO 60604 [egg-security] use methodnoallow middleware
+2019-12-19 00:42:28,602 INFO 60604 [egg-security] use noopen middleware
+2019-12-19 00:42:28,603 INFO 60604 [egg-security] use nosniff middleware
+2019-12-19 00:42:28,604 INFO 60604 [egg-security] use xssProtection middleware
+2019-12-19 00:42:28,604 INFO 60604 [egg-security] use xframe middleware
+2019-12-19 00:42:28,605 INFO 60604 [egg-security] use dta middleware
+2019-12-19 00:42:28,605 INFO 60604 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 00:42:28,614 INFO 60604 [egg:core] dump config after load, 4ms
+2019-12-19 00:42:28,627 INFO 60604 [egg-watcher:application] watcher start success
+2019-12-19 00:42:28,644 INFO 60604 [egg:core] dump config after ready, 4ms
+2019-12-19 00:42:35,793 ERROR 60604 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:26:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 60604
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:43:33,422 INFO 60683 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 00:43:33,447 INFO 60683 [egg-multipart] stream mode enable
+2019-12-19 00:43:33,525 INFO 60683 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 00:43:33,527 INFO 60683 [egg-security] use csrf middleware
+2019-12-19 00:43:33,528 INFO 60683 [egg-security] use methodnoallow middleware
+2019-12-19 00:43:33,528 INFO 60683 [egg-security] use noopen middleware
+2019-12-19 00:43:33,529 INFO 60683 [egg-security] use nosniff middleware
+2019-12-19 00:43:33,529 INFO 60683 [egg-security] use xssProtection middleware
+2019-12-19 00:43:33,530 INFO 60683 [egg-security] use xframe middleware
+2019-12-19 00:43:33,530 INFO 60683 [egg-security] use dta middleware
+2019-12-19 00:43:33,530 INFO 60683 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 00:43:33,536 INFO 60683 [egg:core] dump config after load, 5ms
+2019-12-19 00:43:33,547 INFO 60683 [egg-watcher:application] watcher start success
+2019-12-19 00:43:33,564 INFO 60683 [egg:core] dump config after ready, 5ms
+2019-12-19 00:43:35,253 ERROR 60683 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:27:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 60683
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:43:39,354 ERROR 60683 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:27:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 60683
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:44:13,795 INFO 60758 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 00:44:13,821 INFO 60758 [egg-multipart] stream mode enable
+2019-12-19 00:44:13,904 INFO 60758 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 00:44:13,906 INFO 60758 [egg-security] use csrf middleware
+2019-12-19 00:44:13,907 INFO 60758 [egg-security] use methodnoallow middleware
+2019-12-19 00:44:13,907 INFO 60758 [egg-security] use noopen middleware
+2019-12-19 00:44:13,908 INFO 60758 [egg-security] use nosniff middleware
+2019-12-19 00:44:13,908 INFO 60758 [egg-security] use xssProtection middleware
+2019-12-19 00:44:13,909 INFO 60758 [egg-security] use xframe middleware
+2019-12-19 00:44:13,910 INFO 60758 [egg-security] use dta middleware
+2019-12-19 00:44:13,910 INFO 60758 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 00:44:13,915 INFO 60758 [egg:core] dump config after load, 4ms
+2019-12-19 00:44:13,926 INFO 60758 [egg-watcher:application] watcher start success
+2019-12-19 00:44:13,943 INFO 60758 [egg:core] dump config after ready, 5ms
+2019-12-19 00:44:14,693 ERROR 60758 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:28:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 60758
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:44:14,945 INFO 60765 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 00:44:14,967 INFO 60765 [egg-multipart] stream mode enable
+2019-12-19 00:44:15,005 INFO 60765 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 00:44:15,011 INFO 60765 [egg-security] use csrf middleware
+2019-12-19 00:44:15,011 INFO 60765 [egg-security] use methodnoallow middleware
+2019-12-19 00:44:15,012 INFO 60765 [egg-security] use noopen middleware
+2019-12-19 00:44:15,012 INFO 60765 [egg-security] use nosniff middleware
+2019-12-19 00:44:15,012 INFO 60765 [egg-security] use xssProtection middleware
+2019-12-19 00:44:15,012 INFO 60765 [egg-security] use xframe middleware
+2019-12-19 00:44:15,012 INFO 60765 [egg-security] use dta middleware
+2019-12-19 00:44:15,012 INFO 60765 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 00:44:15,019 INFO 60765 [egg:core] dump config after load, 5ms
+2019-12-19 00:44:15,028 INFO 60765 [egg-watcher:application] watcher start success
+2019-12-19 00:44:15,039 INFO 60765 [egg:core] dump config after ready, 5ms
+2019-12-19 00:44:16,068 ERROR 60765 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:28:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 60765
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:44:18,817 ERROR 60765 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:28:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 60765
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:45:55,077 INFO 60880 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 00:45:55,105 INFO 60880 [egg-multipart] stream mode enable
+2019-12-19 00:45:55,195 INFO 60880 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 00:45:55,197 INFO 60880 [egg-security] use csrf middleware
+2019-12-19 00:45:55,198 INFO 60880 [egg-security] use methodnoallow middleware
+2019-12-19 00:45:55,199 INFO 60880 [egg-security] use noopen middleware
+2019-12-19 00:45:55,199 INFO 60880 [egg-security] use nosniff middleware
+2019-12-19 00:45:55,200 INFO 60880 [egg-security] use xssProtection middleware
+2019-12-19 00:45:55,200 INFO 60880 [egg-security] use xframe middleware
+2019-12-19 00:45:55,201 INFO 60880 [egg-security] use dta middleware
+2019-12-19 00:45:55,201 INFO 60880 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 00:45:55,208 INFO 60880 [egg:core] dump config after load, 5ms
+2019-12-19 00:45:55,219 INFO 60880 [egg-watcher:application] watcher start success
+2019-12-19 00:45:55,237 INFO 60880 [egg:core] dump config after ready, 5ms
+2019-12-19 00:45:56,080 ERROR 60880 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:28:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 60880
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:45:57,667 ERROR 60880 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:28:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 60880
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:46:58,984 INFO 60976 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 00:46:59,014 INFO 60976 [egg-multipart] stream mode enable
+2019-12-19 00:46:59,124 INFO 60976 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 00:46:59,126 INFO 60976 [egg-security] use csrf middleware
+2019-12-19 00:46:59,127 INFO 60976 [egg-security] use methodnoallow middleware
+2019-12-19 00:46:59,128 INFO 60976 [egg-security] use noopen middleware
+2019-12-19 00:46:59,128 INFO 60976 [egg-security] use nosniff middleware
+2019-12-19 00:46:59,129 INFO 60976 [egg-security] use xssProtection middleware
+2019-12-19 00:46:59,130 INFO 60976 [egg-security] use xframe middleware
+2019-12-19 00:46:59,130 INFO 60976 [egg-security] use dta middleware
+2019-12-19 00:46:59,130 INFO 60976 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 00:46:59,138 INFO 60976 [egg:core] dump config after load, 7ms
+2019-12-19 00:46:59,149 INFO 60976 [egg-watcher:application] watcher start success
+2019-12-19 00:46:59,168 INFO 60976 [egg:core] dump config after ready, 7ms
+2019-12-19 00:46:59,900 ERROR 60976 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:28:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 60976
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:47:04,216 ERROR 60976 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:28:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 60976
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:49:05,145 ERROR 60976 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:28:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 60976
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:49:05,757 INFO 61124 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 00:49:05,787 INFO 61124 [egg-multipart] stream mode enable
+2019-12-19 00:49:05,880 INFO 61124 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 00:49:05,882 INFO 61124 [egg-security] use csrf middleware
+2019-12-19 00:49:05,883 INFO 61124 [egg-security] use methodnoallow middleware
+2019-12-19 00:49:05,884 INFO 61124 [egg-security] use noopen middleware
+2019-12-19 00:49:05,884 INFO 61124 [egg-security] use nosniff middleware
+2019-12-19 00:49:05,886 INFO 61124 [egg-security] use xssProtection middleware
+2019-12-19 00:49:05,888 INFO 61124 [egg-security] use xframe middleware
+2019-12-19 00:49:05,889 INFO 61124 [egg-security] use dta middleware
+2019-12-19 00:49:05,889 INFO 61124 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 00:49:05,897 INFO 61124 [egg:core] dump config after load, 7ms
+2019-12-19 00:49:05,909 INFO 61124 [egg-watcher:application] watcher start success
+2019-12-19 00:49:05,928 INFO 61124 [egg:core] dump config after ready, 5ms
+2019-12-19 00:49:07,497 ERROR 61124 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:29:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 61124
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:49:12,320 ERROR 61124 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:29:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 61124
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:49:29,482 ERROR 61124 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:29:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 61124
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:49:30,900 INFO 61170 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 00:49:30,927 INFO 61170 [egg-multipart] stream mode enable
+2019-12-19 00:49:31,006 INFO 61170 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 00:49:31,008 INFO 61170 [egg-security] use csrf middleware
+2019-12-19 00:49:31,008 INFO 61170 [egg-security] use methodnoallow middleware
+2019-12-19 00:49:31,009 INFO 61170 [egg-security] use noopen middleware
+2019-12-19 00:49:31,010 INFO 61170 [egg-security] use nosniff middleware
+2019-12-19 00:49:31,010 INFO 61170 [egg-security] use xssProtection middleware
+2019-12-19 00:49:31,011 INFO 61170 [egg-security] use xframe middleware
+2019-12-19 00:49:31,012 INFO 61170 [egg-security] use dta middleware
+2019-12-19 00:49:31,012 INFO 61170 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 00:49:31,018 INFO 61170 [egg:core] dump config after load, 5ms
+2019-12-19 00:49:31,028 INFO 61170 [egg-watcher:application] watcher start success
+2019-12-19 00:49:31,045 INFO 61170 [egg:core] dump config after ready, 5ms
+2019-12-19 00:49:31,797 ERROR 61170 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:29:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 61170
+hostname: HaitaodeMBP.lan
+
+2019-12-19 00:49:34,125 ERROR 61170 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:29:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 61170
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:12:35,587 INFO 64321 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 01:12:35,610 INFO 64321 [egg-multipart] stream mode enable
+2019-12-19 01:12:35,788 INFO 64321 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 01:12:35,790 INFO 64321 [egg-security] use csrf middleware
+2019-12-19 01:12:35,791 INFO 64321 [egg-security] use methodnoallow middleware
+2019-12-19 01:12:35,791 INFO 64321 [egg-security] use noopen middleware
+2019-12-19 01:12:35,792 INFO 64321 [egg-security] use nosniff middleware
+2019-12-19 01:12:35,793 INFO 64321 [egg-security] use xssProtection middleware
+2019-12-19 01:12:35,793 INFO 64321 [egg-security] use xframe middleware
+2019-12-19 01:12:35,794 INFO 64321 [egg-security] use dta middleware
+2019-12-19 01:12:35,795 INFO 64321 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 01:12:35,803 INFO 64321 [egg:core] dump config after load, 7ms
+2019-12-19 01:12:35,815 INFO 64321 [egg-watcher:application] watcher start success
+2019-12-19 01:12:35,834 INFO 64321 [egg:core] dump config after ready, 4ms
+2019-12-19 01:12:41,618 ERROR 64321 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:29:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 64321
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:13:13,834 INFO 64413 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 01:13:13,859 INFO 64413 [egg-multipart] stream mode enable
+2019-12-19 01:13:13,950 INFO 64413 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 01:13:13,952 INFO 64413 [egg-security] use csrf middleware
+2019-12-19 01:13:13,952 INFO 64413 [egg-security] use methodnoallow middleware
+2019-12-19 01:13:13,953 INFO 64413 [egg-security] use noopen middleware
+2019-12-19 01:13:13,954 INFO 64413 [egg-security] use nosniff middleware
+2019-12-19 01:13:13,954 INFO 64413 [egg-security] use xssProtection middleware
+2019-12-19 01:13:13,955 INFO 64413 [egg-security] use xframe middleware
+2019-12-19 01:13:13,956 INFO 64413 [egg-security] use dta middleware
+2019-12-19 01:13:13,956 INFO 64413 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 01:13:13,965 INFO 64413 [egg:core] dump config after load, 5ms
+2019-12-19 01:13:13,974 INFO 64413 [egg-watcher:application] watcher start success
+2019-12-19 01:13:13,989 INFO 64413 [egg:core] dump config after ready, 5ms
+2019-12-19 01:13:15,094 ERROR 64413 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:29:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 64413
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:14:11,581 ERROR 64413 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:29:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 64413
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:14:25,985 INFO 64584 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 01:14:26,013 INFO 64584 [egg-multipart] stream mode enable
+2019-12-19 01:14:26,116 INFO 64584 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 01:14:26,119 INFO 64584 [egg-security] use csrf middleware
+2019-12-19 01:14:26,120 INFO 64584 [egg-security] use methodnoallow middleware
+2019-12-19 01:14:26,121 INFO 64584 [egg-security] use noopen middleware
+2019-12-19 01:14:26,121 INFO 64584 [egg-security] use nosniff middleware
+2019-12-19 01:14:26,122 INFO 64584 [egg-security] use xssProtection middleware
+2019-12-19 01:14:26,122 INFO 64584 [egg-security] use xframe middleware
+2019-12-19 01:14:26,123 INFO 64584 [egg-security] use dta middleware
+2019-12-19 01:14:26,123 INFO 64584 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 01:14:26,131 INFO 64584 [egg:core] dump config after load, 6ms
+2019-12-19 01:14:26,155 INFO 64584 [egg-watcher:application] watcher start success
+2019-12-19 01:14:26,228 INFO 64584 [egg:core] dump config after ready, 5ms
+2019-12-19 01:14:26,691 ERROR 64584 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:29:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 64584
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:16:32,282 INFO 65126 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 01:16:32,303 INFO 65126 [egg-multipart] stream mode enable
+2019-12-19 01:16:32,399 INFO 65126 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 01:16:32,402 INFO 65126 [egg-security] use csrf middleware
+2019-12-19 01:16:32,403 INFO 65126 [egg-security] use methodnoallow middleware
+2019-12-19 01:16:32,403 INFO 65126 [egg-security] use noopen middleware
+2019-12-19 01:16:32,404 INFO 65126 [egg-security] use nosniff middleware
+2019-12-19 01:16:32,405 INFO 65126 [egg-security] use xssProtection middleware
+2019-12-19 01:16:32,405 INFO 65126 [egg-security] use xframe middleware
+2019-12-19 01:16:32,406 INFO 65126 [egg-security] use dta middleware
+2019-12-19 01:16:32,406 INFO 65126 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 01:16:32,413 INFO 65126 [egg:core] dump config after load, 5ms
+2019-12-19 01:16:32,434 INFO 65126 [egg-watcher:application] watcher start success
+2019-12-19 01:16:32,489 INFO 65126 [egg:core] dump config after ready, 9ms
+2019-12-19 01:16:36,082 ERROR 65126 nodejs.TypeError: [egg-socket.io] controller execute error: Cannot read property 'toString' of undefined
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:53:28)
+    at Socket.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:104:23)
+    at Socket.emit (events.js:209:13)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:528:12
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 65126
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:17:34,167 INFO 65217 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 01:17:34,187 INFO 65217 [egg-multipart] stream mode enable
+2019-12-19 01:17:34,266 INFO 65217 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 01:17:34,268 INFO 65217 [egg-security] use csrf middleware
+2019-12-19 01:17:34,269 INFO 65217 [egg-security] use methodnoallow middleware
+2019-12-19 01:17:34,269 INFO 65217 [egg-security] use noopen middleware
+2019-12-19 01:17:34,270 INFO 65217 [egg-security] use nosniff middleware
+2019-12-19 01:17:34,270 INFO 65217 [egg-security] use xssProtection middleware
+2019-12-19 01:17:34,271 INFO 65217 [egg-security] use xframe middleware
+2019-12-19 01:17:34,272 INFO 65217 [egg-security] use dta middleware
+2019-12-19 01:17:34,272 INFO 65217 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 01:17:34,279 INFO 65217 [egg:core] dump config after load, 4ms
+2019-12-19 01:17:34,300 INFO 65217 [egg-watcher:application] watcher start success
+2019-12-19 01:17:34,358 INFO 65217 [egg:core] dump config after ready, 11ms
+2019-12-19 01:17:37,858 ERROR 65217 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:61:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 65217
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:18:29,251 ERROR 65217 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:61:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 65217
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:18:29,602 ERROR 65217 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:61:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 65217
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:18:44,799 ERROR 65217 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:61:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 65217
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:18:44,809 ERROR 65217 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:61:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 65217
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:18:46,713 ERROR 65217 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:61:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 65217
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:18:51,694 ERROR 65217 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:61:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 65217
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:19:26,457 ERROR 65217 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:61:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 65217
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:19:26,784 ERROR 65217 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:61:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 65217
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:19:28,091 ERROR 65217 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:61:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 65217
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:19:33,899 ERROR 65217 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:61:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 65217
+hostname: HaitaodeMBP.lan
+
+2019-12-19 01:19:53,839 ERROR 65217 nodejs.TypeError: [egg-socket.io] controller execute error: callback is not a function
+    at Object.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/router.ts:61:9)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+pid: 65217
+hostname: HaitaodeMBP.lan
+
+2019-12-19 14:54:58,991 INFO 92651 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 14:54:59,012 INFO 92651 [egg-multipart] stream mode enable
+2019-12-19 14:54:59,108 INFO 92651 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 14:54:59,110 INFO 92651 [egg-security] use csrf middleware
+2019-12-19 14:54:59,111 INFO 92651 [egg-security] use methodnoallow middleware
+2019-12-19 14:54:59,112 INFO 92651 [egg-security] use noopen middleware
+2019-12-19 14:54:59,113 INFO 92651 [egg-security] use nosniff middleware
+2019-12-19 14:54:59,113 INFO 92651 [egg-security] use xssProtection middleware
+2019-12-19 14:54:59,114 INFO 92651 [egg-security] use xframe middleware
+2019-12-19 14:54:59,114 INFO 92651 [egg-security] use dta middleware
+2019-12-19 14:54:59,115 INFO 92651 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 14:54:59,121 INFO 92651 [egg:core] dump config after load, 5ms
+2019-12-19 14:54:59,143 INFO 92651 [egg-watcher:application] watcher start success
+2019-12-19 14:54:59,200 INFO 92651 [egg:core] dump config after ready, 11ms
+2019-12-19 15:02:03,071 WARN 92651 [ClusterClient:Watcher] follower closed, and try to init it again
+2019-12-19 15:15:29,646 INFO 93959 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 15:15:29,669 INFO 93959 [egg-multipart] stream mode enable
+2019-12-19 15:15:29,761 INFO 93959 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 15:15:29,763 INFO 93959 [egg-security] use csrf middleware
+2019-12-19 15:15:29,764 INFO 93959 [egg-security] use methodnoallow middleware
+2019-12-19 15:15:29,765 INFO 93959 [egg-security] use noopen middleware
+2019-12-19 15:15:29,765 INFO 93959 [egg-security] use nosniff middleware
+2019-12-19 15:15:29,766 INFO 93959 [egg-security] use xssProtection middleware
+2019-12-19 15:15:29,766 INFO 93959 [egg-security] use xframe middleware
+2019-12-19 15:15:29,767 INFO 93959 [egg-security] use dta middleware
+2019-12-19 15:15:29,767 INFO 93959 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 15:15:29,775 INFO 93959 [egg:core] dump config after load, 7ms
+2019-12-19 15:15:29,791 INFO 93959 [egg-watcher:application] watcher start success
+2019-12-19 15:15:29,816 ERROR 93959 nodejs.unhandledRejectionError: Cannot find module '../../adapter-react-v3'
+Require stack:
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-core/dist/container.js
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-core/dist/loader.js
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-core/dist/index.js
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/dist/index.js
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-mirror/dist/index.js
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-cluster/lib/app_worker.js
+Require stack:
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-core/dist/container.js
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-core/dist/loader.js
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-core/dist/index.js
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/dist/index.js
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-mirror/dist/index.js
+- /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-cluster/lib/app_worker.js
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:772:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:677:27)
+    at Module.require (internal/modules/cjs/loader.js:830:19)
+    at require (internal/modules/cjs/helpers.js:68:18)
+    at Project.interopRequire (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts:129:13)
+    at Project.loadAdapter (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts:147:31)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts:290:23
+    at Array.map (<anonymous>)
+    at ProjectManager.createProjects (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts:288:16)
+    at ProjectManager.refresh (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts:277:32)
+    at ProjectManager.ready (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts:298:10)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts:507:5
+code: "MODULE_NOT_FOUND"
+requireStack: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-core/dist/container.js","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-core/dist/loader.js","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-core/dist/index.js","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/dist/index.js","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-mirror/dist/index.js","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-cluster/lib/app_worker.js"]
+name: "unhandledRejectionError"
+pid: 93959
+hostname: localhost
+
+2019-12-19 15:15:29,834 INFO 93959 [egg:core] dump config after ready, 5ms
+2019-12-19 15:16:20,349 INFO 94066 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 15:16:20,371 INFO 94066 [egg-multipart] stream mode enable
+2019-12-19 15:16:20,474 INFO 94066 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 15:16:20,476 INFO 94066 [egg-security] use csrf middleware
+2019-12-19 15:16:20,477 INFO 94066 [egg-security] use methodnoallow middleware
+2019-12-19 15:16:20,478 INFO 94066 [egg-security] use noopen middleware
+2019-12-19 15:16:20,480 INFO 94066 [egg-security] use nosniff middleware
+2019-12-19 15:16:20,481 INFO 94066 [egg-security] use xssProtection middleware
+2019-12-19 15:16:20,482 INFO 94066 [egg-security] use xframe middleware
+2019-12-19 15:16:20,483 INFO 94066 [egg-security] use dta middleware
+2019-12-19 15:16:20,483 INFO 94066 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 15:16:20,490 INFO 94066 [egg:core] dump config after load, 5ms
+2019-12-19 15:16:20,507 INFO 94066 [egg-watcher:application] watcher start success
+2019-12-19 15:16:20,534 INFO 94066 [egg:core] dump config after ready, 4ms
+2019-12-19 15:30:12,446 WARN 94066 [ClusterClient:Watcher] follower closed, and try to init it again
+2019-12-19 15:31:56,203 INFO 94339 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 15:31:56,224 INFO 94339 [egg-multipart] stream mode enable
+2019-12-19 15:31:56,347 INFO 94339 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 15:31:56,350 INFO 94339 [egg-security] use csrf middleware
+2019-12-19 15:31:56,351 INFO 94339 [egg-security] use methodnoallow middleware
+2019-12-19 15:31:56,352 INFO 94339 [egg-security] use noopen middleware
+2019-12-19 15:31:56,354 INFO 94339 [egg-security] use nosniff middleware
+2019-12-19 15:31:56,355 INFO 94339 [egg-security] use xssProtection middleware
+2019-12-19 15:31:56,356 INFO 94339 [egg-security] use xframe middleware
+2019-12-19 15:31:56,357 INFO 94339 [egg-security] use dta middleware
+2019-12-19 15:31:56,357 INFO 94339 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 15:31:56,365 INFO 94339 [egg:core] dump config after load, 6ms
+2019-12-19 15:31:56,382 INFO 94339 [egg-watcher:application] watcher start success
+2019-12-19 15:31:56,421 INFO 94339 [egg:core] dump config after ready, 5ms
+2019-12-19 15:48:26,907 INFO 95847 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-19 15:48:26,928 INFO 95847 [egg-multipart] stream mode enable
+2019-12-19 15:48:27,015 INFO 95847 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-19 15:48:27,017 INFO 95847 [egg-security] use csrf middleware
+2019-12-19 15:48:27,018 INFO 95847 [egg-security] use methodnoallow middleware
+2019-12-19 15:48:27,019 INFO 95847 [egg-security] use noopen middleware
+2019-12-19 15:48:27,019 INFO 95847 [egg-security] use nosniff middleware
+2019-12-19 15:48:27,020 INFO 95847 [egg-security] use xssProtection middleware
+2019-12-19 15:48:27,021 INFO 95847 [egg-security] use xframe middleware
+2019-12-19 15:48:27,022 INFO 95847 [egg-security] use dta middleware
+2019-12-19 15:48:27,022 INFO 95847 [egg-security] compose 7 middlewares into one security middleware
+2019-12-19 15:48:27,030 INFO 95847 [egg:core] dump config after load, 7ms
+2019-12-19 15:48:27,046 INFO 95847 [egg-watcher:application] watcher start success
+2019-12-19 15:48:27,071 INFO 95847 [egg:core] dump config after ready, 4ms
+2019-12-19 16:36:22,161 WARN 95847 [ClusterClient:Watcher] follower closed, and try to init it again

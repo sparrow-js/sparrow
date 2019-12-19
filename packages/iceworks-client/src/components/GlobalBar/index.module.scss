@@ -1,0 +1,120 @@
+@import "../../variables.scss";
+
+.container {
+  position: relative;
+  box-shadow: 0 -2px 10px rgba(51, 51, 51, 0.35);
+  z-index: 9;
+
+  .globalTerminal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    height: 300px;
+    overflow: hidden;
+    box-shadow: 0 -2px 10px rgba(51, 51, 51, 0.35);
+    visibility: visible;
+
+    .tabsNavScroll {
+      overflow: hidden;
+      white-space: nowrap;
+      background-color: $tab-bar-bg;
+
+      .tabsNav {
+        display: inline-block;
+        position: relative;
+        padding: 0;
+        margin: 0;
+
+        .tab {
+          display: inline-block;
+          position: relative;
+          color: $tab-bar-color;
+
+          .tabInner {
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 12px 16px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .terminalWrap {
+      position: relative;
+      overflow: hidden;
+      height: 289px;
+
+      .terminal {
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+      }
+    }
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  .tabActive {
+    color: $tab-bar-active !important;
+    border-bottom: 2px solid $tab-bar-active;
+  }
+
+  .closeIcon {
+    position: absolute;
+    right: 15px;
+    z-index: 9;
+    top: 10px;
+    cursor: pointer;
+  }
+
+  .globalBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: auto 0 0;
+    height: 40px;
+    padding: 0 20px;
+    background: $global-bar-bg;
+    color: $color-white;
+    box-shadow: $shadow-up;
+
+    .projectName {
+      max-width: 80px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .leftContent,
+    .rightContent {
+      display: flex;
+      .item {
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        height: 40px;
+        cursor: pointer;
+        .icon {
+          margin-right: 5px;
+        }
+        &:hover {
+          background: $brand-color-primary;
+        }
+      }
+    }
+
+    .leftContent {
+      .item:first-child {
+        cursor: default;
+        &:hover {
+          background: none;
+        }
+      }
+    }
+  }
+}
