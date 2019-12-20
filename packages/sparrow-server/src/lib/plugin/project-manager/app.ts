@@ -27,8 +27,6 @@ const packageJSONFilename = 'package.json';
 const abcJSONFilename = 'abc.json';
 const DEFAULT_TYPE = 'react';
 const DEFAULT_ADAPTER = [
-  'adapter-cra-v1',
-  'adapter-vue-v1',
   'adapter-vue-v2',
 ];
 

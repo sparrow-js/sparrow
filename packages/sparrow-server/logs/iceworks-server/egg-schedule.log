@@ -484,3 +484,9 @@
 2019-12-20 16:29:05,317 INFO 70267 [egg-schedule]: register schedule /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/app/schedule/clean_tmpdir.js
 2019-12-20 16:29:05,317 INFO 70267 [egg-schedule]: register schedule /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/app/schedule/clean_log.js
 2019-12-20 16:29:05,317 INFO 70267 [egg-schedule]: register schedule /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/app/schedule/rotate_by_file.js
+2019-12-20 16:39:14,641 INFO 71498 [Timer] /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/app/schedule/clean_tmpdir.js next time will execute after 42645362ms at 2019-12-21 04:30:00.003
+2019-12-20 16:39:14,642 INFO 71498 [Timer] /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/app/schedule/clean_log.js next time will execute after 26445359ms at 2019-12-21 00:00:00.001
+2019-12-20 16:39:14,642 INFO 71498 [Timer] /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/app/schedule/rotate_by_file.js next time will execute after 26446358ms at 2019-12-21 00:00:01.000
+2019-12-20 16:39:14,490 INFO 71499 [egg-schedule]: register schedule /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/app/schedule/clean_tmpdir.js
+2019-12-20 16:39:14,490 INFO 71499 [egg-schedule]: register schedule /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/app/schedule/clean_log.js
+2019-12-20 16:39:14,490 INFO 71499 [egg-schedule]: register schedule /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/app/schedule/rotate_by_file.js

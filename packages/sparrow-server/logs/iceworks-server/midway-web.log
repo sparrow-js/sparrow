@@ -390,3 +390,6 @@ hostname: localhost
     at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:7)
 2019-12-20 16:19:11,736 INFO 69123 home.project.list
 2019-12-20 16:25:25,841 INFO 69889 home.project.list
+2019-12-20 16:38:00,352 INFO 70267 home.project.list
+2019-12-20 16:39:26,961 INFO 71499 home.project.list
+2019-12-20 16:39:30,632 INFO 71499 home.project.list
