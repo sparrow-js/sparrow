@@ -39,12 +39,12 @@ socket.emit = function emit(...args) {
     if (eventNameStr.indexOf('adapter') > -1) {
       const eventNameArr = eventNameStr.split('.');
       const [namespace, module, action] = eventNameArr;
-      goldlog({
-        namespace,
-        module,
-        action,
-        data: args[1] ? args[1] : {},
-      });
+      // goldlog({
+      //   namespace,
+      //   module,
+      //   action,
+      //   data: args[1] ? args[1] : {},
+      // });
     }
 
     if (!args[1]) {

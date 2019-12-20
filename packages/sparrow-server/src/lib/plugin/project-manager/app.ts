@@ -27,6 +27,8 @@ const packageJSONFilename = 'package.json';
 const abcJSONFilename = 'abc.json';
 const DEFAULT_TYPE = 'react';
 const DEFAULT_ADAPTER = [
+  'adapter-cra-v1',
+  'adapter-vue-v1',
   'adapter-vue-v2',
 ];
 
@@ -137,7 +139,6 @@ class Project implements IProject {
     const adapterName = pkgContent.iceworks ? pkgContent.iceworks.adapter : null;
     if (adapterName && DEFAULT_ADAPTER.includes(adapterName)) {
       this.adapterName = adapterName;
-
       const getAdapter = this.interopRequire(`../../${adapterName}`);
       const adapter = await getAdapter(i18n);
 

@@ -180,6 +180,10 @@ export default class Page implements IPageModule {
     return _.orderBy(pages, 'name', 'asc');
   }
 
+  public getTest() {
+    return {test: 1, message: 'hello world!'};
+  }
+
   public async create(page: ICreatePageParam, ctx: IContext): Promise<any> {
     const { name, blocks } = page;
     const { socket, i18n, logger } = ctx;

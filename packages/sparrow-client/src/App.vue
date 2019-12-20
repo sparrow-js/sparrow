@@ -43,10 +43,16 @@ import socket from '@/util/socket.js'
 })
 export default class App extends Vue {
   created () {
+    this.getAllTest();
     this.getProjetList();
   }
   get showDashboard () {
     return AppModule.showDashboard
+  }
+
+  async getAllTest () {
+    const result = await socket.emit('adapter.page.getTest');
+    console.log(result);
   }
 
   async getProjetList () {

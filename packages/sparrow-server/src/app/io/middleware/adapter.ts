@@ -5,7 +5,6 @@ export default app => {
     const { packet } = ctx;
     const [ eventName, args, callback ] = packet;
     const [ namespace, moduleName, methodName ] = eventName.split('.');
-
     if (namespace === 'adapter') {
       try {
         const { projectManager, i18n } = app;
