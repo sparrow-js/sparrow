@@ -315,3 +315,4 @@ operator: "=="
 pid: 26825
 hostname: localhost
 
+2019-12-20 00:06:57,526 INFO 35487 home.project.list

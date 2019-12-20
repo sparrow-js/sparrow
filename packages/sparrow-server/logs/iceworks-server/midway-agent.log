@@ -657,3 +657,61 @@ name: "ClusterClientNoResponseError"
 pid: 26894
 hostname: localhost
 
+2019-12-19 23:59:00,590 INFO 26894 [egg-watcher] Recieved a change event from eventSource: {"event":"rename","path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/controller/material","remove":true,"isDirectory":true,"isFile":false}
+2019-12-20 00:06:26,306 WARN 26894 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts change
+2019-12-20 00:06:26,092 INFO 26894 [egg-watcher] Recieved a change event from eventSource: {"event":"change","path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts","stat":{"dev":16777220,"mode":33261,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29763430,"size":14366,"blocks":32,"atimeMs":1576771586023.2715,"mtimeMs":1576771586033.5498,"ctimeMs":1576771586033.5498,"birthtimeMs":1576689218344.3867,"atime":"2019-12-19T16:06:26.023Z","mtime":"2019-12-19T16:06:26.034Z","ctime":"2019-12-19T16:06:26.034Z","birthtime":"2019-12-18T17:13:38.344Z"},"remove":false,"isDirectory":false,"isFile":true}
+2019-12-20 00:06:34,321 INFO 26894 [egg-watcher] Recieved a change event from eventSource: {"event":"rename","path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue-v1","remove":true,"isDirectory":true,"isFile":false}
+2019-12-20 00:06:47,432 INFO 35486 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-20 00:06:47,441 INFO 35486 [egg:core] dump config after load, 4ms
+2019-12-20 00:06:47,480 INFO 35486 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-20 00:06:47,480 INFO 35486 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-20 00:06:47,480 INFO 35486 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-20 00:06:47,480 INFO 35486 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-20 00:06:47,480 INFO 35486 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-20 00:06:47,480 INFO 35486 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-20 00:06:47,487 INFO 35486 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-20 00:06:47,487 INFO 35486 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-20 00:06:47,488 INFO 35486 [egg-watcher:agent] watcher start success
+2019-12-20 00:06:47,499 INFO 35486 [egg:core] dump config after ready, 7ms
+2019-12-20 00:08:48,125 WARN 35486 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts change
+2019-12-20 00:08:47,917 INFO 35486 [egg-watcher] Recieved a change event from eventSource: {"event":"change","path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/project-manager/app.ts","stat":{"dev":16777220,"mode":33261,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":29763430,"size":14366,"blocks":32,"atimeMs":1576771727852.8765,"mtimeMs":1576771727853.7395,"ctimeMs":1576771727853.7395,"birthtimeMs":1576689218344.3867,"atime":"2019-12-19T16:08:47.853Z","mtime":"2019-12-19T16:08:47.854Z","ctime":"2019-12-19T16:08:47.854Z","birthtime":"2019-12-18T17:13:38.344Z"},"remove":false,"isDirectory":false,"isFile":true}
+2019-12-20 01:26:29,930 ERROR 35486 nodejs.ClusterClientNoResponseError: client no response in 298732ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 35486
+hostname: HaitaodeMacBook-Pro.local
+
+2019-12-20 09:28:42,643 ERROR 35486 nodejs.ClusterClientNoResponseError: client no response in 28912685ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 35486
+hostname: HaitaodeMacBook-Pro.local
+
+2019-12-20 09:33:48,495 ERROR 35486 nodejs.ClusterClientNoResponseError: client no response in 305835ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 35486
+hostname: HaitaodeMacBook-Pro.local
+
+2019-12-20 10:10:00,777 ERROR 35486 nodejs.ClusterClientNoResponseError: client no response in 2152217ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 35486
+hostname: HaitaodeMacBook-Pro.local
+
+2019-12-20 10:35:10,826 ERROR 35486 nodejs.ClusterClientNoResponseError: client no response in 1509875ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 35486
+hostname: HaitaodeMacBook-Pro.local
+

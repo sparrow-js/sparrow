@@ -637,3 +637,43 @@ name: "ClusterClientNoResponseError"
 pid: 26894
 hostname: localhost
 
+2019-12-20 01:26:29,929 ERROR 35486 nodejs.ClusterClientNoResponseError: client no response in 298732ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 35486
+hostname: HaitaodeMacBook-Pro.local
+
+2019-12-20 09:28:42,641 ERROR 35486 nodejs.ClusterClientNoResponseError: client no response in 28912685ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 35486
+hostname: HaitaodeMacBook-Pro.local
+
+2019-12-20 09:33:48,494 ERROR 35486 nodejs.ClusterClientNoResponseError: client no response in 305835ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 35486
+hostname: HaitaodeMacBook-Pro.local
+
+2019-12-20 10:10:00,763 ERROR 35486 nodejs.ClusterClientNoResponseError: client no response in 2152217ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 35486
+hostname: HaitaodeMacBook-Pro.local
+
+2019-12-20 10:35:10,825 ERROR 35486 nodejs.ClusterClientNoResponseError: client no response in 1509875ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 35486
+hostname: HaitaodeMacBook-Pro.local
+
