@@ -1,6 +1,8 @@
 <template>
   <div class="home">
     Welcome to sparrow
+    <box-test />
+    <box />
   </div>
 </template>
 

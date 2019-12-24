@@ -1,4 +1,2 @@
-node_modules/
-dist/
-*.d.ts
-*.min.js
+src/directives
+src/utils/throttle.js

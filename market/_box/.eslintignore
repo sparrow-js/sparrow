@@ -1,0 +1,4 @@
+node_modules/
+dist/
+*.d.ts
+*.min.js

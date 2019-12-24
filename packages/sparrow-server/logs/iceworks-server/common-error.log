@@ -741,3 +741,150 @@ hostname: localhost
     at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:18:57
     at processTicksAndRejections (internal/process/task_queues.js:93:5)
     at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:7)
+2019-12-20 16:51:50,222 ERROR 71498 nodejs.ClusterClientNoResponseError: client no response in 377022ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 71498
+hostname: localhost
+
+2019-12-20 20:19:15,572 ERROR 71498 nodejs.ClusterClientNoResponseError: client no response in 303665ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 71498
+hostname: localhost
+
+2019-12-21 23:48:25,020 ERROR 67226 [-/127.0.0.1/-/0ms GET /] nodejs.TypeError: app.projectManager.ready is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/generator/app.ts:17:30
+    at Object.callFn (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/utils/index.js:44:42)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/lifecycle.js:256:13
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 67226
+hostname: HaitaodeMBP.lan
+
+2019-12-21 23:48:26,310 ERROR 67234 [-/127.0.0.1/-/1ms GET /] nodejs.TypeError: app.projectManager.ready is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/generator/app.ts:17:30
+    at Object.callFn (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/utils/index.js:44:42)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/lifecycle.js:256:13
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 67234
+hostname: HaitaodeMBP.lan
+
+2019-12-21 23:48:37,986 ERROR 67258 [-/127.0.0.1/-/1ms GET /] nodejs.TypeError: app.projectManager.ready is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/generator/app.ts:17:30
+    at Object.callFn (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/utils/index.js:44:42)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/lifecycle.js:256:13
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 67258
+hostname: HaitaodeMBP.lan
+
+2019-12-22 01:13:18,126 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 291402ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+
+2019-12-22 01:18:59,153 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 301639ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+
+2019-12-22 01:24:41,071 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 301880ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+
+2019-12-22 01:30:23,014 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 301895ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+
+2019-12-22 01:35:44,908 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 301836ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+
+2019-12-22 01:41:26,889 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 301960ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+
+2019-12-22 02:20:57,626 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 2330647ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+
+2019-12-22 02:26:20,754 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 303118ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+
+2019-12-22 02:32:02,741 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 301963ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+
+2019-12-22 02:38:04,919 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 301733ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+
+2019-12-22 02:43:46,628 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 301488ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+
+2019-12-22 02:49:28,511 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 301764ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+
+2019-12-22 02:54:50,358 ERROR 68693 nodejs.ClusterClientNoResponseError: client no response in 301730ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 68693
+hostname: HaitaodeMBP.lan
+

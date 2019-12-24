@@ -25,4 +25,10 @@ export = {
     enable: true,
     path: path.join(__dirname, '../lib/plugin/i18n'),
   },
+
+  generator: {
+    enable: true,
+    path: path.join(__dirname, '../lib/plugin/generator')
+  }
+
 };

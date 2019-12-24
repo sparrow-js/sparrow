@@ -2,14 +2,14 @@
   <div class="home">
     <ul class="block-list">
       <li class="block-item">
-        <block :index="0">
+        <box :index="0">
           <paragraph></paragraph>
-        </block>
+        </box>
       </li>
       <li class="block-item">
-        <block :index="1">
+        <box :index="1">
           <layout :col="3" :row="2"></layout>
-        </block>
+        </box>
       </li>
       <li>
         <div>
@@ -21,24 +21,11 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import Block from "@/components/Block";
-import Paragraph from '@/components/Paragraph';
-import Layout from '@/components/Layout';
-import Event from '../utils/Event';
-import Toolbar from '@/components/Toolbar';
 
 export default {
   name: "home",
-  components: {
-    Block,
-    Paragraph,
-    Layout,
-    Toolbar
-  },
   created () {
     Event.on('test', () => {
-      console.log('**********10******');
     })
   }
 };

@@ -393,3 +393,36 @@ hostname: localhost
 2019-12-20 16:38:00,352 INFO 70267 home.project.list
 2019-12-20 16:39:26,961 INFO 71499 home.project.list
 2019-12-20 16:39:30,632 INFO 71499 home.project.list
+2019-12-21 23:42:25,328 INFO 66683 home.project.list
+2019-12-21 23:48:25,021 ERROR 67226 [-/127.0.0.1/-/0ms GET /] nodejs.TypeError: app.projectManager.ready is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/generator/app.ts:17:30
+    at Object.callFn (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/utils/index.js:44:42)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/lifecycle.js:256:13
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 67226
+hostname: HaitaodeMBP.lan
+
+2019-12-21 23:48:26,311 ERROR 67234 [-/127.0.0.1/-/1ms GET /] nodejs.TypeError: app.projectManager.ready is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/generator/app.ts:17:30
+    at Object.callFn (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/utils/index.js:44:42)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/lifecycle.js:256:13
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 67234
+hostname: HaitaodeMBP.lan
+
+2019-12-21 23:48:37,987 ERROR 67258 [-/127.0.0.1/-/1ms GET /] nodejs.TypeError: app.projectManager.ready is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/generator/app.ts:17:30
+    at Object.callFn (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/utils/index.js:44:42)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/lifecycle.js:256:13
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 67258
+hostname: HaitaodeMBP.lan
+
+2019-12-22 00:05:42,985 INFO 68697 home.project.list
+2019-12-22 00:09:00,342 INFO 68980 home.project.list
+2019-12-22 00:10:11,553 INFO 68980 home.project.list
+2019-12-22 00:10:20,813 INFO 69093 home.project.list
+2019-12-22 00:10:58,015 INFO 69142 home.project.list
