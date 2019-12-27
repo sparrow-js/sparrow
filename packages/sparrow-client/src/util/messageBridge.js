@@ -1,5 +1,5 @@
 import socket from "./socket";
-
+let viewFrame = null;
 export function receiveMessage() {
   window.addEventListener(
     "message",
@@ -7,7 +7,11 @@ export function receiveMessage() {
       const { data } = event;
       if (data && data.handler) {
         const result = await socket.emit(data.handler, data);
-        console.log(result);
+        if (!viewFrame) {
+          viewFrame = document.querySelector("#viewContent");
+        }
+        result.uniqueId = data.uniqueId;
+        viewFrame.contentWindow.postMessage(result, '*')
       }
     },
     false

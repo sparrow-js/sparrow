@@ -13,10 +13,10 @@
     </div>
     <div class="toolbar__box" v-show="showBoxTool">
       <ul class="toolbar__box-list">
-        <li class="toolbar__box-item">文本</li>
-        <li class="toolbar__box-item">搜索</li>
-        <li class="toolbar__box-item">
-          <el-popover
+        <li class="toolbar__box-item" v-for="item in list" :key="item.id">
+          <span v-if="item.id !== 10003">{{item.name}}</span>
+           <el-popover
+            v-if="item.id === 10003"
             placement="bottom"
             trigger="hover"
             width="280">
@@ -27,11 +27,9 @@
               <el-input  class="toolbar__box-layout-input" v-model="form.col" size="mini" placeholder="col"></el-input>
               <el-button size="mini" type="primary" round @click="layoutSure">确定</el-button>
             </div>
-            <span slot="reference">布局</span>
+            <span slot="reference">{{item.name}}</span>
           </el-popover>
-          
         </li>
-        <li class="toolbar__box-item">list</li>
       </ul>
     </div>
     <div 
@@ -54,6 +52,12 @@
 import Event from '../../utils/Event'
 
 export default {
+  props: {
+    list: {
+      type: Array,
+      default: []
+    }
+  },
   data () {
     return {
       showToolbar: false,

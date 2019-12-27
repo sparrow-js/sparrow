@@ -1299,3 +1299,5 @@ name: "ClusterClientNoResponseError"
 pid: 37119
 hostname: localhost
 
+2019-12-27 22:11:47,589 INFO 37119 [egg-watcher] Recieved a change event from eventSource: {"event":"change","path":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/generator/app.ts","stat":{"dev":16777220,"mode":33188,"nlink":1,"uid":501,"gid":20,"rdev":0,"blksize":4096,"ino":30484759,"size":361,"blocks":8,"atimeMs":1577455907491.3804,"mtimeMs":1577455907491.964,"ctimeMs":1577455907491.964,"birthtimeMs":1576831526338.2893,"atime":"2019-12-27T14:11:47.491Z","mtime":"2019-12-27T14:11:47.492Z","ctime":"2019-12-27T14:11:47.492Z","birthtime":"2019-12-20T08:45:26.338Z"},"remove":false,"isDirectory":false,"isFile":true}
+2019-12-27 22:11:47,808 WARN 37119 [agent:development] reload worker because /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/plugin/generator/app.ts change

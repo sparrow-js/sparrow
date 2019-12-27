@@ -34,7 +34,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Logo from '@/components/logo.vue';
-import Editor from '@/components/Editor.vue';
 import Dashboard from '@/components/materiel/Dashboard.vue';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js'
@@ -42,32 +41,12 @@ import socket from '@/util/socket.js'
 @Component({
   components: {
     Logo,
-    Editor,
     Dashboard,
   }
 })
 export default class App extends Vue {
-  created () {
-    this.getBoxData();
-    this.getAllTest();
-  }
   get showDashboard () {
     return AppModule.showDashboard
-  }
-
-  async getAllTest () {
-    const result = await socket.emit('adapter.page.getTest');
-    console.log(result);
-  }
-
-  async getProjetList () {
-    const result = await socket.emit('home.project.list');
-    console.log(result);
-  }
-
-  async getBoxData () {
-    const result = await socket.emit('generator.scene.test');
-    console.log(result);
   }
 }
 </script>

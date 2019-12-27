@@ -2781,3 +2781,1004 @@ hostname: localhost
 2019-12-27 19:45:05,851 INFO 37123 [egg:core] dump config after ready, 6ms
 2019-12-27 20:27:56,791 WARN 37123 [ClusterClient:Watcher] follower closed, and try to init it again
 2019-12-27 21:26:55,148 WARN 37123 [ClusterClient:Watcher] follower closed, and try to init it again
+2019-12-27 22:11:50,833 INFO 43027 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-27 22:11:50,860 INFO 43027 [egg-multipart] stream mode enable
+2019-12-27 22:11:50,960 INFO 43027 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-27 22:11:50,963 INFO 43027 [egg-security] use csrf middleware
+2019-12-27 22:11:50,964 INFO 43027 [egg-security] use methodnoallow middleware
+2019-12-27 22:11:50,964 INFO 43027 [egg-security] use noopen middleware
+2019-12-27 22:11:50,965 INFO 43027 [egg-security] use nosniff middleware
+2019-12-27 22:11:50,965 INFO 43027 [egg-security] use xssProtection middleware
+2019-12-27 22:11:50,966 INFO 43027 [egg-security] use xframe middleware
+2019-12-27 22:11:50,967 INFO 43027 [egg-security] use dta middleware
+2019-12-27 22:11:50,967 INFO 43027 [egg-security] compose 7 middlewares into one security middleware
+2019-12-27 22:11:50,973 INFO 43027 [egg:core] dump config after load, 5ms
+2019-12-27 22:11:50,989 INFO 43027 [egg-watcher:application] watcher start success
+2019-12-27 22:11:51,070 INFO 43027 [egg:core] dump config after ready, 4ms
+2019-12-27 22:21:33,125 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:21:47,673 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:22:25,400 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:22:48,101 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:24:22,980 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:24:39,862 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:25:03,133 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:25:21,316 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:26:47,598 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:26:51,902 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:27:52,161 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:27:55,387 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:28:34,453 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:28:38,506 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:29:46,653 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:30:23,087 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:31:12,027 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:31:30,065 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:31:43,182 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:32:25,779 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:33:35,719 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:33:59,754 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:35:09,094 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:35:16,975 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:35:28,270 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:35:31,583 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:36:00,601 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:36:09,314 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:36:50,853 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:37:10,878 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:37:14,419 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:38:33,863 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:42:10,964 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:42:33,912 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:43:28,470 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:43:52,494 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:44:25,691 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:44:34,132 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:44:51,886 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-27 22:45:45,017 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-28 00:01:49,830 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-28 00:02:15,063 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-28 00:11:15,794 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-28 00:12:40,572 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-28 00:16:11,137 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-28 00:18:52,318 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
+2019-12-28 00:26:24,578 ERROR 43027 nodejs.TypeError: generator[moduleName][methodName] is not a function
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 43027
+hostname: HaitaodeMBP.lan
+
