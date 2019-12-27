@@ -2765,3 +2765,19 @@ hostname: localhost
 2019-12-27 14:24:21,374 WARN 16504 [ClusterClient:Watcher] follower closed, and try to init it again
 2019-12-27 16:04:25,751 WARN 16504 [ClusterClient:Watcher] follower closed, and try to init it again
 2019-12-27 16:06:14,141 WARN 16504 [ClusterClient:Watcher] follower closed, and try to init it again
+2019-12-27 19:45:05,533 INFO 37123 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2019-12-27 19:45:05,553 INFO 37123 [egg-multipart] stream mode enable
+2019-12-27 19:45:05,655 INFO 37123 [egg-static] starting static serve /public/ -> /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/public
+2019-12-27 19:45:05,659 INFO 37123 [egg-security] use csrf middleware
+2019-12-27 19:45:05,659 INFO 37123 [egg-security] use methodnoallow middleware
+2019-12-27 19:45:05,660 INFO 37123 [egg-security] use noopen middleware
+2019-12-27 19:45:05,661 INFO 37123 [egg-security] use nosniff middleware
+2019-12-27 19:45:05,661 INFO 37123 [egg-security] use xssProtection middleware
+2019-12-27 19:45:05,662 INFO 37123 [egg-security] use xframe middleware
+2019-12-27 19:45:05,663 INFO 37123 [egg-security] use dta middleware
+2019-12-27 19:45:05,663 INFO 37123 [egg-security] compose 7 middlewares into one security middleware
+2019-12-27 19:45:05,669 INFO 37123 [egg:core] dump config after load, 5ms
+2019-12-27 19:45:05,685 INFO 37123 [egg-watcher:application] watcher start success
+2019-12-27 19:45:05,851 INFO 37123 [egg:core] dump config after ready, 6ms
+2019-12-27 20:27:56,791 WARN 37123 [ClusterClient:Watcher] follower closed, and try to init it again
+2019-12-27 21:26:55,148 WARN 37123 [ClusterClient:Watcher] follower closed, and try to init it again

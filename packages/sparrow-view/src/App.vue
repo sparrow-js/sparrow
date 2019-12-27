@@ -17,9 +17,7 @@ export default {
   },
   methods: {
     async getToolbarList () {
-      const result = await message.emit({
-        handler: 'generator.data.getBoxList'
-      })
+      const result = await message.emit('generator.data.getBoxList')
       console.log(result);
     }
   }

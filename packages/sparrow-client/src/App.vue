@@ -13,6 +13,7 @@
             <logo></logo>
             <div class="editor-box">
               <iframe
+                id="viewContent"
                 class="view-content"
                 src="http://localhost:9000/"
               />

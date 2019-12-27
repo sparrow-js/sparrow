@@ -1271,3 +1271,31 @@ name: "ClusterClientNoResponseError"
 pid: 13290
 hostname: localhost
 
+2019-12-27 19:45:03,733 INFO 37119 [egg:logger] init all loggers with options: {"dir":"/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"midway-web.log","coreLogName":"midway-core.log","agentLogName":"midway-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-12-27 19:45:03,743 INFO 37119 [egg:core] dump config after load, 6ms
+2019-12-27 19:45:03,802 INFO 37119 [egg-watcher] Start watching: ["/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts","/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"]
+2019-12-27 19:45:03,802 INFO 37119 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app"
+2019-12-27 19:45:03,802 INFO 37119 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib"
+2019-12-27 19:45:03,802 INFO 37119 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/service"
+2019-12-27 19:45:03,803 INFO 37119 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/config"
+2019-12-27 19:45:03,803 INFO 37119 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app.ts"
+2019-12-27 19:45:03,811 INFO 37119 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/agent.ts"
+2019-12-27 19:45:03,811 INFO 37119 [egg-watcher] Start watching: "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/interface.ts"
+2019-12-27 19:45:03,811 INFO 37119 [egg-watcher:agent] watcher start success
+2019-12-27 19:45:03,866 INFO 37119 [egg:core] dump config after ready, 18ms
+2019-12-27 20:27:56,836 ERROR 37119 nodejs.ClusterClientNoResponseError: client no response in 210551ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 37119
+hostname: localhost
+
+2019-12-27 21:26:55,148 ERROR 37119 nodejs.ClusterClientNoResponseError: client no response in 3538306ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 37119
+hostname: localhost
+

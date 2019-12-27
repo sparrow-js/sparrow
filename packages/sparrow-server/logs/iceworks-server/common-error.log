@@ -936,3 +936,19 @@ name: "ClusterClientNoResponseError"
 pid: 13290
 hostname: localhost
 
+2019-12-27 20:27:56,827 ERROR 37119 nodejs.ClusterClientNoResponseError: client no response in 210551ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 37119
+hostname: localhost
+
+2019-12-27 21:26:55,148 ERROR 37119 nodejs.ClusterClientNoResponseError: client no response in 3538306ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 37119
+hostname: localhost
+

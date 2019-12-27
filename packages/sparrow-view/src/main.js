@@ -5,12 +5,12 @@ import box from '@sparrow/box'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './styles/base.scss';
-import initMessage from './utils/message'
+import message from './utils/message';
 
 Vue.config.productionTip = false
 Vue.use(box)
 Vue.use(ElementUI);
-initMessage();
+message.emit('generator.data.getBoxList')
 
 new Vue({
   router,
