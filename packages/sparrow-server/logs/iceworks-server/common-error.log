@@ -888,3 +888,51 @@ name: "ClusterClientNoResponseError"
 pid: 68693
 hostname: HaitaodeMBP.lan
 
+2019-12-27 13:06:08,231 ERROR 13290 nodejs.ClusterClientNoResponseError: client no response in 2270954ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 13290
+hostname: localhost
+
+2019-12-27 13:21:59,143 ERROR 13290 nodejs.ClusterClientNoResponseError: client no response in 910938ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 13290
+hostname: localhost
+
+2019-12-27 14:04:01,377 ERROR 13290 nodejs.ClusterClientNoResponseError: client no response in 641636ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 13290
+hostname: localhost
+
+2019-12-27 14:24:21,375 ERROR 13290 nodejs.ClusterClientNoResponseError: client no response in 319789ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 13290
+hostname: localhost
+
+2019-12-27 16:04:25,773 ERROR 13290 nodejs.ClusterClientNoResponseError: client no response in 1843747ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 13290
+hostname: localhost
+
+2019-12-27 16:06:14,141 ERROR 13290 nodejs.ClusterClientNoResponseError: client no response in 88417ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 13290
+hostname: localhost
+

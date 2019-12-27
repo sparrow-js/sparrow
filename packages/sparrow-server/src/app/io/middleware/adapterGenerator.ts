@@ -3,11 +3,12 @@ export default app => {
 
   return async (ctx, next) => {
     const { packet } = ctx;
-    const { generator } = app;
-
-    console.log('*********8*99*****')
-    console.log(generator.ready.toString())
-    
+    const [ eventName, args, callback ] = packet;
+    const [ namespace, moduleName, methodName ] = eventName.split('.');
+    if (namespace === 'generator') {
+      const { generator } = app;
+      callback(null, await generator[moduleName][methodName](args, ctx));
+    }
     await next();
   };
 };

@@ -1,35 +1,20 @@
+import Scene from '../../adapter-vue'
+import Data from '../../adapter-vue/data';
 
 class generator{
+  scene: any;
+  data: any;
   constructor () {}
 
-  public init () {
-    return {
-      id: '12345',
-      message: 'test test test'
-    }
-  }
-
   public ready() {
-    return {
-      id: '678901',
-      message: 'hello world'
-    }
+    this.scene = new Scene();
+    this.data = new Data();
   }
-  
-  public addBox (id) {
-    
-  }
-
-  public updateBox (config) {
-
-  }
-
-  public removeBox () {}
-
 }
 
 export default (app) => {
   app.beforeStart(async () => {
     app.generator = new generator();
+    app.generator.ready();
   });
 };

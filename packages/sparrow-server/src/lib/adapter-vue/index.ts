@@ -1,11 +1,2 @@
-import Block from './modules/block'
-
-
-export default async () => {
-  return {
-    block: {
-      isAvailable: true,
-      module: Block,
-    }
-  }
-}
+import Scene from './modules/scene'
+export default Scene;

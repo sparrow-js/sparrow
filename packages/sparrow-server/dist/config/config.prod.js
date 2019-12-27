@@ -1,4 +1,0 @@
-exports.logger = {
-    disableConsoleAfterReady: false,
-};
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29uZmlnLnByb2QuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zcmMvY29uZmlnL2NvbmZpZy5wcm9kLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sQ0FBQyxNQUFNLEdBQUc7SUFDZix3QkFBd0IsRUFBRSxLQUFLO0NBQ2hDLENBQUMifQ==

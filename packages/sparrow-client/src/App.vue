@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <el-aside width="200px"></el-aside>
+      <el-aside width="200px">
+        <div class="toolbar">
+          <div class="toolbar__item toolbar__preview">预览</div>
+          <div class="toolbar__item toolbar__export">导出</div>
+        </div>
+      </el-aside>
       <el-container>
         <el-main>
           <div class="main">
@@ -11,7 +16,6 @@
                 class="view-content"
                 src="http://localhost:9000/"
               />
-              <!-- <editor></editor> -->
             </div>
           </div>
         </el-main>
@@ -43,8 +47,8 @@ import socket from '@/util/socket.js'
 })
 export default class App extends Vue {
   created () {
+    this.getBoxData();
     this.getAllTest();
-    this.getProjetList();
   }
   get showDashboard () {
     return AppModule.showDashboard
@@ -59,9 +63,15 @@ export default class App extends Vue {
     const result = await socket.emit('home.project.list');
     console.log(result);
   }
+
+  async getBoxData () {
+    const result = await socket.emit('generator.scene.test');
+    console.log(result);
+  }
 }
 </script>
-<style>
+
+<style lang="scss">
   html, body{
     height: 100%;
   }
@@ -105,5 +115,25 @@ export default class App extends Vue {
     width: 100%;
     height: 100%;
     border: none;
+  }
+  .toolbar{
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    padding-top: 60px;
+    &__item{
+      width: 80px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 6px;
+      background: #409eff;
+      color: #fff;
+      font-size: 15px;
+      &:hover{
+        background: #53a7fd;
+      }
+    }
   }
 </style>  

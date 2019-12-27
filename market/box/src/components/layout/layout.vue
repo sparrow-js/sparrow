@@ -23,15 +23,16 @@ export default {
     return (
       <div class="layout">
         {
-          (new Array(this.row).fill('')).map(() => {
+          (new Array(this.row).fill('')).map((rowItem, rowIndex) => {
+            console.log(rowIndex);
             return (
               <el-row>
                 {
-                  (new Array(this.col).fill('')).map(item => {
+                  (new Array(this.col).fill('')).map((item, index) => {
                     return (
                       <el-col span={this.colSpan}>
                         <div class="layout-col">
-                          <paragraph></paragraph>
+                        {this.$slots[`${rowIndex}_${index}`] ? h('div', this.$slots[`${rowIndex}_${index}`]) : <paragraph></paragraph>}
                         </div>
                       </el-col>
                     );

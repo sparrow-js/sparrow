@@ -15,7 +15,22 @@
       <ul class="toolbar__box-list">
         <li class="toolbar__box-item">文本</li>
         <li class="toolbar__box-item">搜索</li>
-        <li class="toolbar__box-item">布局</li>
+        <li class="toolbar__box-item">
+          <el-popover
+            placement="bottom"
+            trigger="hover"
+            width="280">
+            <div class="toolbar__box-layout">
+              <el-checkbox v-model="form.checked">表单</el-checkbox>
+              <el-input class="toolbar__box-layout-input" size="mini" v-model="form.row" placeholder="row"></el-input>
+              <span>x</span>
+              <el-input  class="toolbar__box-layout-input" v-model="form.col" size="mini" placeholder="col"></el-input>
+              <el-button size="mini" type="primary" round @click="layoutSure">确定</el-button>
+            </div>
+            <span slot="reference">布局</span>
+          </el-popover>
+          
+        </li>
         <li class="toolbar__box-item">list</li>
       </ul>
     </div>
@@ -49,6 +64,11 @@ export default {
       },
       actionsStyles: {
         transform: 'translate3d(100px, 0px, 0)'
+      },
+      form: {
+        checked: false,
+        row: '',
+        col: '',
       }
     };
   },
@@ -69,6 +89,10 @@ export default {
     },
     handlerActions () {
       this.showActions = !this.showActions;
+    },
+    layoutSure () {
+      Event.on('toolbar-layout-data', this.form)
+      console.log();
     }
   }
 }
@@ -112,6 +136,15 @@ export default {
       font-weight: bold;
       color: #5668f3;
     }
+  }
+  &__box-layout{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__box-layout-input{
+    width: 60px;
   }
   &__actions{
     width: 30px;

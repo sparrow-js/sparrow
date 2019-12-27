@@ -8,7 +8,18 @@
       </li>
       <li class="block-item">
         <box :index="1">
-          <layout :col="3" :row="2"></layout>
+          <layout :col="3" :row="2">
+            <div slot="0_1" @click="handlerClickLabel">
+              <el-form :model="form" class="demo-form-inline" label-width="80px">
+                <el-form-item label="审批人">
+                  <el-input v-model="form.user" placeholder="审批人"></el-input>
+                </el-form-item>
+              </el-form> 
+            </div>
+            <el-switch slot="1_1" v-model="form.delivery"></el-switch>
+            <el-switch slot="0_0" v-model="form.delivery"></el-switch>
+            <el-switch v-model="form.delivery"></el-switch>
+          </layout>
         </box>
       </li>
       <li>
@@ -21,12 +32,26 @@
 </template>
 
 <script>
-
+import Event from '../../src/utils/Event'
 export default {
   name: "home",
+  data () {
+    return {
+      form: {
+        delivery: '',
+        user: ''
+      }
+    }
+  },
   created () {
-    Event.on('test', () => {
+    Event.on('operate_pivot', (data) => {
     })
+  },
+  methods: {
+    handlerClickLabel (event) {
+      console.log('************')
+      console.log(event);
+    }
   }
 };
 </script>

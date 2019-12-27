@@ -1,8 +1,30 @@
 <template>
   <div id="app"> 
     <router-view/>
+    <toolbar :list="toolbarList"/>
   </div>
 </template>
+<script>
+import message from './utils/message'
+export default {
+  data () {
+    return {
+      toolbarList: []
+    }
+  },
+  created () {
+    this.getToolbarList();
+  },
+  methods: {
+    async getToolbarList () {
+      const result = await message.emit({
+        handler: 'generator.data.getBoxList'
+      })
+      console.log(result);
+    }
+  }
+}
+</script>
 
 <style>
 #app {

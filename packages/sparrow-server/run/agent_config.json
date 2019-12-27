@@ -229,6 +229,7 @@
         "node-ipc": "^9.1.1",
         "open": "^6.3.0",
         "package-json": "^6.5.0",
+        "parse5": "^5.1.1",
         "path-exists": "^4.0.0",
         "prettier": "^1.17.1",
         "recursive-readdir": "^2.2.2",

@@ -1,7 +1,8 @@
 import Box from './components/box';
 import Layout from './components/layout';
 import Paragraph from './components/paragraph';
-import Toolbar from './components/toolbar'
+import Toolbar from './components/toolbar';
+import Event from './utils/Event';
 
 const components = {
     Box,
@@ -28,6 +29,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 const API = {
     version: process.env.VERSION, // eslint-disable-line no-undef
     install,
+    Event,
     ...components
 };
 

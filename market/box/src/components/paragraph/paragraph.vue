@@ -9,7 +9,14 @@
   </div>
 </template>
 <script>
+import Event from '../../utils/Event'
 export default {
+  created () {
+    Event.emit('operate_pivot', {
+      id: '10000',
+      message: 'hello world'
+    })
+  },
   methods: {
     focus () {}
   }
