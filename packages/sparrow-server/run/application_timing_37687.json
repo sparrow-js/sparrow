@@ -1,0 +1,690 @@
+[
+  {
+    "name": "Application Start",
+    "start": 1577630427247,
+    "end": 1577630430629,
+    "duration": 3382,
+    "pid": 37687,
+    "index": 0
+  },
+  {
+    "name": "Load Plugin",
+    "start": 1577630427251,
+    "end": 1577630427271,
+    "duration": 20,
+    "pid": 37687,
+    "index": 1
+  },
+  {
+    "name": "Load Config",
+    "start": 1577630427271,
+    "end": 1577630427294,
+    "duration": 23,
+    "pid": 37687,
+    "index": 2
+  },
+  {
+    "name": "Require(0) config/config.default.ts",
+    "start": 1577630427271,
+    "end": 1577630427272,
+    "duration": 1,
+    "pid": 37687,
+    "index": 3
+  },
+  {
+    "name": "Require(1) config/config.local.ts",
+    "start": 1577630427273,
+    "end": 1577630427274,
+    "duration": 1,
+    "pid": 37687,
+    "index": 4
+  },
+  {
+    "name": "Require(2) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-session/config/config.default.js",
+    "start": 1577630427275,
+    "end": 1577630427275,
+    "duration": 0,
+    "pid": 37687,
+    "index": 5
+  },
+  {
+    "name": "Require(3) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
+    "start": 1577630427276,
+    "end": 1577630427276,
+    "duration": 0,
+    "pid": 37687,
+    "index": 6
+  },
+  {
+    "name": "Require(4) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-jsonp/config/config.default.js",
+    "start": 1577630427277,
+    "end": 1577630427277,
+    "duration": 0,
+    "pid": 37687,
+    "index": 7
+  },
+  {
+    "name": "Require(5) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-onerror/config/config.default.js",
+    "start": 1577630427277,
+    "end": 1577630427278,
+    "duration": 1,
+    "pid": 37687,
+    "index": 8
+  },
+  {
+    "name": "Require(6) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-watcher/config/config.default.js",
+    "start": 1577630427278,
+    "end": 1577630427278,
+    "duration": 0,
+    "pid": 37687,
+    "index": 9
+  },
+  {
+    "name": "Require(7) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-schedule/config/config.default.js",
+    "start": 1577630427279,
+    "end": 1577630427279,
+    "duration": 0,
+    "pid": 37687,
+    "index": 10
+  },
+  {
+    "name": "Require(8) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/config/config.default.js",
+    "start": 1577630427279,
+    "end": 1577630427280,
+    "duration": 1,
+    "pid": 37687,
+    "index": 11
+  },
+  {
+    "name": "Require(9) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-development/config/config.default.js",
+    "start": 1577630427280,
+    "end": 1577630427281,
+    "duration": 1,
+    "pid": 37687,
+    "index": 12
+  },
+  {
+    "name": "Require(10) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/config/config.default.js",
+    "start": 1577630427282,
+    "end": 1577630427282,
+    "duration": 0,
+    "pid": 37687,
+    "index": 13
+  },
+  {
+    "name": "Require(11) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-static/config/config.default.js",
+    "start": 1577630427283,
+    "end": 1577630427283,
+    "duration": 0,
+    "pid": 37687,
+    "index": 14
+  },
+  {
+    "name": "Require(12) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view/config/config.default.js",
+    "start": 1577630427283,
+    "end": 1577630427284,
+    "duration": 1,
+    "pid": 37687,
+    "index": 15
+  },
+  {
+    "name": "Require(13) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view-nunjucks/config/config.default.js",
+    "start": 1577630427284,
+    "end": 1577630427285,
+    "duration": 1,
+    "pid": 37687,
+    "index": 16
+  },
+  {
+    "name": "Require(14) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/config/config.default.js",
+    "start": 1577630427285,
+    "end": 1577630427285,
+    "duration": 0,
+    "pid": 37687,
+    "index": 17
+  },
+  {
+    "name": "Require(15) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-cors/config/config.default.js",
+    "start": 1577630427286,
+    "end": 1577630427286,
+    "duration": 0,
+    "pid": 37687,
+    "index": 18
+  },
+  {
+    "name": "Require(16) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+    "start": 1577630427287,
+    "end": 1577630427287,
+    "duration": 0,
+    "pid": 37687,
+    "index": 19
+  },
+  {
+    "name": "Require(17) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/config.default.js",
+    "start": 1577630427289,
+    "end": 1577630427289,
+    "duration": 0,
+    "pid": 37687,
+    "index": 20
+  },
+  {
+    "name": "Require(18) config/config.default.ts",
+    "start": 1577630427290,
+    "end": 1577630427290,
+    "duration": 0,
+    "pid": 37687,
+    "index": 21
+  },
+  {
+    "name": "Require(19) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.local.js",
+    "start": 1577630427290,
+    "end": 1577630427291,
+    "duration": 1,
+    "pid": 37687,
+    "index": 22
+  },
+  {
+    "name": "Require(20) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-watcher/config/config.local.js",
+    "start": 1577630427291,
+    "end": 1577630427291,
+    "duration": 0,
+    "pid": 37687,
+    "index": 23
+  },
+  {
+    "name": "Require(21) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view/config/config.local.js",
+    "start": 1577630427292,
+    "end": 1577630427292,
+    "duration": 0,
+    "pid": 37687,
+    "index": 24
+  },
+  {
+    "name": "Require(22) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view-nunjucks/config/config.local.js",
+    "start": 1577630427292,
+    "end": 1577630427293,
+    "duration": 1,
+    "pid": 37687,
+    "index": 25
+  },
+  {
+    "name": "Require(23) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.local.js",
+    "start": 1577630427293,
+    "end": 1577630427294,
+    "duration": 1,
+    "pid": 37687,
+    "index": 26
+  },
+  {
+    "name": "Require(24) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/config.local.js",
+    "start": 1577630427294,
+    "end": 1577630427294,
+    "duration": 0,
+    "pid": 37687,
+    "index": 27
+  },
+  {
+    "name": "Require(25) config/config.local.ts",
+    "start": 1577630427294,
+    "end": 1577630427294,
+    "duration": 0,
+    "pid": 37687,
+    "index": 28
+  },
+  {
+    "name": "Load extend/application.js",
+    "start": 1577630427295,
+    "end": 1577630427385,
+    "duration": 90,
+    "pid": 37687,
+    "index": 29
+  },
+  {
+    "name": "Require(26) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-session/app/extend/application.js",
+    "start": 1577630427299,
+    "end": 1577630427300,
+    "duration": 1,
+    "pid": 37687,
+    "index": 30
+  },
+  {
+    "name": "Require(27) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/app/extend/application.js",
+    "start": 1577630427300,
+    "end": 1577630427301,
+    "duration": 1,
+    "pid": 37687,
+    "index": 31
+  },
+  {
+    "name": "Require(28) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-jsonp/app/extend/application.js",
+    "start": 1577630427301,
+    "end": 1577630427302,
+    "duration": 1,
+    "pid": 37687,
+    "index": 32
+  },
+  {
+    "name": "Require(29) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/app/extend/application.js",
+    "start": 1577630427303,
+    "end": 1577630427304,
+    "duration": 1,
+    "pid": 37687,
+    "index": 33
+  },
+  {
+    "name": "Require(30) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view/app/extend/application.js",
+    "start": 1577630427304,
+    "end": 1577630427305,
+    "duration": 1,
+    "pid": 37687,
+    "index": 34
+  },
+  {
+    "name": "Require(31) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view-nunjucks/app/extend/application.js",
+    "start": 1577630427306,
+    "end": 1577630427357,
+    "duration": 51,
+    "pid": 37687,
+    "index": 35
+  },
+  {
+    "name": "Require(32) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/app/extend/application.js",
+    "start": 1577630427357,
+    "end": 1577630427384,
+    "duration": 27,
+    "pid": 37687,
+    "index": 36
+  },
+  {
+    "name": "Load extend/request.js",
+    "start": 1577630427385,
+    "end": 1577630427387,
+    "duration": 2,
+    "pid": 37687,
+    "index": 37
+  },
+  {
+    "name": "Require(33) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/app/extend/request.js",
+    "start": 1577630427385,
+    "end": 1577630427386,
+    "duration": 1,
+    "pid": 37687,
+    "index": 38
+  },
+  {
+    "name": "Load extend/response.js",
+    "start": 1577630427387,
+    "end": 1577630427390,
+    "duration": 3,
+    "pid": 37687,
+    "index": 39
+  },
+  {
+    "name": "Require(34) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/app/extend/response.js",
+    "start": 1577630427388,
+    "end": 1577630427389,
+    "duration": 1,
+    "pid": 37687,
+    "index": 40
+  },
+  {
+    "name": "Load extend/context.js",
+    "start": 1577630427390,
+    "end": 1577630427428,
+    "duration": 38,
+    "pid": 37687,
+    "index": 41
+  },
+  {
+    "name": "Require(35) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/app/extend/context.js",
+    "start": 1577630427390,
+    "end": 1577630427396,
+    "duration": 6,
+    "pid": 37687,
+    "index": 42
+  },
+  {
+    "name": "Require(36) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-jsonp/app/extend/context.js",
+    "start": 1577630427396,
+    "end": 1577630427397,
+    "duration": 1,
+    "pid": 37687,
+    "index": 43
+  },
+  {
+    "name": "Require(37) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/app/extend/context.js",
+    "start": 1577630427397,
+    "end": 1577630427424,
+    "duration": 27,
+    "pid": 37687,
+    "index": 44
+  },
+  {
+    "name": "Require(38) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view/app/extend/context.js",
+    "start": 1577630427424,
+    "end": 1577630427425,
+    "duration": 1,
+    "pid": 37687,
+    "index": 45
+  },
+  {
+    "name": "Require(39) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/app/extend/context.js",
+    "start": 1577630427425,
+    "end": 1577630427426,
+    "duration": 1,
+    "pid": 37687,
+    "index": 46
+  },
+  {
+    "name": "Require(40) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/app/extend/context.js",
+    "start": 1577630427427,
+    "end": 1577630427427,
+    "duration": 0,
+    "pid": 37687,
+    "index": 47
+  },
+  {
+    "name": "Load extend/helper.js",
+    "start": 1577630427428,
+    "end": 1577630427441,
+    "duration": 13,
+    "pid": 37687,
+    "index": 48
+  },
+  {
+    "name": "Require(41) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/app/extend/helper.js",
+    "start": 1577630427428,
+    "end": 1577630427439,
+    "duration": 11,
+    "pid": 37687,
+    "index": 49
+  },
+  {
+    "name": "Require(42) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/app/extend/helper.js",
+    "start": 1577630427439,
+    "end": 1577630427440,
+    "duration": 1,
+    "pid": 37687,
+    "index": 50
+  },
+  {
+    "name": "Load app.js",
+    "start": 1577630430358,
+    "end": 1577630430420,
+    "duration": 62,
+    "pid": 37687,
+    "index": 51
+  },
+  {
+    "name": "Require(43) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-session/app.js",
+    "start": 1577630430358,
+    "end": 1577630430359,
+    "duration": 1,
+    "pid": 37687,
+    "index": 52
+  },
+  {
+    "name": "Require(44) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-security/app.js",
+    "start": 1577630430359,
+    "end": 1577630430361,
+    "duration": 2,
+    "pid": 37687,
+    "index": 53
+  },
+  {
+    "name": "Require(45) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-onerror/app.js",
+    "start": 1577630430361,
+    "end": 1577630430370,
+    "duration": 9,
+    "pid": 37687,
+    "index": 54
+  },
+  {
+    "name": "Require(46) lib/plugin/i18n/app.ts",
+    "start": 1577630430371,
+    "end": 1577630430371,
+    "duration": 0,
+    "pid": 37687,
+    "index": 55
+  },
+  {
+    "name": "Require(47) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-watcher/app.js",
+    "start": 1577630430371,
+    "end": 1577630430373,
+    "duration": 2,
+    "pid": 37687,
+    "index": 56
+  },
+  {
+    "name": "Require(48) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-schedule/app.js",
+    "start": 1577630430373,
+    "end": 1577630430375,
+    "duration": 2,
+    "pid": 37687,
+    "index": 57
+  },
+  {
+    "name": "Require(49) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/app.js",
+    "start": 1577630430375,
+    "end": 1577630430377,
+    "duration": 2,
+    "pid": 37687,
+    "index": 58
+  },
+  {
+    "name": "Require(50) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-development/app.js",
+    "start": 1577630430377,
+    "end": 1577630430378,
+    "duration": 1,
+    "pid": 37687,
+    "index": 59
+  },
+  {
+    "name": "Require(51) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator/app.js",
+    "start": 1577630430378,
+    "end": 1577630430378,
+    "duration": 0,
+    "pid": 37687,
+    "index": 60
+  },
+  {
+    "name": "Require(52) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-static/app.js",
+    "start": 1577630430378,
+    "end": 1577630430379,
+    "duration": 1,
+    "pid": 37687,
+    "index": 61
+  },
+  {
+    "name": "Require(53) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-schedule/app.js",
+    "start": 1577630430379,
+    "end": 1577630430380,
+    "duration": 1,
+    "pid": 37687,
+    "index": 62
+  },
+  {
+    "name": "Require(54) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-view-nunjucks/app.js",
+    "start": 1577630430380,
+    "end": 1577630430380,
+    "duration": 0,
+    "pid": 37687,
+    "index": 63
+  },
+  {
+    "name": "Require(55) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/app.js",
+    "start": 1577630430380,
+    "end": 1577630430417,
+    "duration": 37,
+    "pid": 37687,
+    "index": 64
+  },
+  {
+    "name": "Require(56) /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-cors/app.js",
+    "start": 1577630430417,
+    "end": 1577630430418,
+    "duration": 1,
+    "pid": 37687,
+    "index": 65
+  },
+  {
+    "name": "Require(57) lib/plugin/project-manager/app.ts",
+    "start": 1577630430418,
+    "end": 1577630430418,
+    "duration": 0,
+    "pid": 37687,
+    "index": 66
+  },
+  {
+    "name": "Require(58) lib/plugin/generator/app.ts",
+    "start": 1577630430418,
+    "end": 1577630430418,
+    "duration": 0,
+    "pid": 37687,
+    "index": 67
+  },
+  {
+    "name": "Require(59) app.ts",
+    "start": 1577630430419,
+    "end": 1577630430419,
+    "duration": 0,
+    "pid": 37687,
+    "index": 68
+  },
+  {
+    "name": "Before Start in /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-watcher/lib/init.js:15:14",
+    "start": 1577630430426,
+    "end": 1577630430560,
+    "duration": 134,
+    "pid": 37687,
+    "index": 69
+  },
+  {
+    "name": "Load Controller",
+    "start": 1577630430460,
+    "end": 1577630430530,
+    "duration": 70,
+    "pid": 37687,
+    "index": 70
+  },
+  {
+    "name": "Load \"controller\" to Application",
+    "start": 1577630430460,
+    "end": 1577630430530,
+    "duration": 70,
+    "pid": 37687,
+    "index": 71
+  },
+  {
+    "name": "Before Start in /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:26:7",
+    "start": 1577630430463,
+    "end": 1577630430545,
+    "duration": 82,
+    "pid": 37687,
+    "index": 72
+  },
+  {
+    "name": "Before Start in lib/plugin/project-manager/app.ts:395:9",
+    "start": 1577630430463,
+    "end": 1577630430628,
+    "duration": 165,
+    "pid": 37687,
+    "index": 73
+  },
+  {
+    "name": "Before Start in lib/plugin/generator/app.ts:13:9",
+    "start": 1577630430463,
+    "end": 1577630430545,
+    "duration": 82,
+    "pid": 37687,
+    "index": 74
+  },
+  {
+    "name": "Did Load in app.ts:didLoad",
+    "start": 1577630430464,
+    "end": 1577630430545,
+    "duration": 81,
+    "pid": 37687,
+    "index": 75
+  },
+  {
+    "name": "Load Service",
+    "start": 1577630430464,
+    "end": 1577630430467,
+    "duration": 3,
+    "pid": 37687,
+    "index": 76
+  },
+  {
+    "name": "Load \"service\" to Context",
+    "start": 1577630430464,
+    "end": 1577630430467,
+    "duration": 3,
+    "pid": 37687,
+    "index": 77
+  },
+  {
+    "name": "Load Middleware",
+    "start": 1577630430467,
+    "end": 1577630430530,
+    "duration": 63,
+    "pid": 37687,
+    "index": 78
+  },
+  {
+    "name": "Load \"middlewares\" to Application",
+    "start": 1577630430467,
+    "end": 1577630430524,
+    "duration": 57,
+    "pid": 37687,
+    "index": 79
+  },
+  {
+    "name": "Load Controller",
+    "start": 1577630430530,
+    "end": 1577630430531,
+    "duration": 1,
+    "pid": 37687,
+    "index": 80
+  },
+  {
+    "name": "Load \"controller\" to Application",
+    "start": 1577630430530,
+    "end": 1577630430531,
+    "duration": 1,
+    "pid": 37687,
+    "index": 81
+  },
+  {
+    "name": "Load Router",
+    "start": 1577630430531,
+    "end": 1577630430531,
+    "duration": 0,
+    "pid": 37687,
+    "index": 82
+  },
+  {
+    "name": "Require(60) app/router.ts",
+    "start": 1577630430531,
+    "end": 1577630430531,
+    "duration": 0,
+    "pid": 37687,
+    "index": 83
+  },
+  {
+    "name": "Before Start in /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/midway-web/dist/loader/loader.js:28:18",
+    "start": 1577630430531,
+    "end": 1577630430547,
+    "duration": 16,
+    "pid": 37687,
+    "index": 84
+  },
+  {
+    "name": "Before Start in /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-core/lib/egg.js:303:10",
+    "start": 1577630430541,
+    "end": 1577630430545,
+    "duration": 4,
+    "pid": 37687,
+    "index": 85
+  }
+]

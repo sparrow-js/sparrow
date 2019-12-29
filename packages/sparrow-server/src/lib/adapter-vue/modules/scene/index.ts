@@ -3,7 +3,7 @@ import * as fsExtra from 'fs-extra';
 import * as parser from '@babel/parser';
 // import generate from '@babel/generator';
 // import traverse from '@babel/traverse';
-import sceneFragment from '../fragment/scene';
+import {initBlock, blockList, paragraph} from '../fragment/scene';
 import * as cheerio from 'cheerio';
 
 import Box from '../box'
@@ -34,6 +34,10 @@ export default class Scene {
     this.$ = cheerio.load(templateStr, {
       xmlMode: true
     });
+
+    this.renderPage();
+    // this.$('.home').append(sceneFragment.blockList);
+
     // console.log(this.$.html());
     // this.scriptData = parser.parse(scriptStr, {
     //   sourceType: 'module',
@@ -53,7 +57,7 @@ export default class Scene {
 
   public addBox (id) {
     this.boxs.push(new Box(id));
-    this.renderPage();
+    // this.renderPage();
   }
 
   public removeBox (index) {
@@ -61,7 +65,11 @@ export default class Scene {
   }
 
   public renderPage () {
-    this.$('.home').append(sceneFragment.blockList);
-    console.log(this.$.html())
+    this.$('.home').append(initBlock(0));
+    // console.log(this.$.html())
+  }
+
+  private writeTemplate () {
+    
   }
 }

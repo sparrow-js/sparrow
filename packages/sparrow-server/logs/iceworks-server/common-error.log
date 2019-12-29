@@ -90,3 +90,15 @@ name: "ClusterClientNoResponseError"
 pid: 28016
 hostname: HaitaodeMBP.lan
 
+2019-12-29 22:48:04,917 ERROR 38271 nodejs.TypeError: Cannot read property 'blockList' of undefined
+    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:38:42)
+
+pid: 38271
+hostname: HaitaodeMBP.lan
+
+2019-12-29 22:48:06,400 ERROR 38272 nodejs.TypeError: Cannot read property 'blockList' of undefined
+    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:38:42)
+
+pid: 38272
+hostname: HaitaodeMBP.lan
+
