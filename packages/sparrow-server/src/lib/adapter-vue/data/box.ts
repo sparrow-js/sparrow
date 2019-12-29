@@ -15,6 +15,10 @@ export default {
     {
       id: 10004,
       name: 'list'
+    },
+    {
+      id: 10005,
+      name: '表格'
     }
   ]
 }

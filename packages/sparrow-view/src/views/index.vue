@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="block-list">
-      <box :index="0" class="block-item">
+      <box :index="0" :active="true" class="block-item">
         <paragraph></paragraph>
       </box>
       <box :index="1" class="block-item">

@@ -11,11 +11,12 @@ import Event from '../../utils/Event'
 export default {
   name: 'box',
   props: {
-    index: Number
+    index: Number,
+    active: Boolean
   },
   data () {
     return {
-      isActive: false
+      isActive: this.active || false
     };
   },
   created () {
@@ -34,6 +35,7 @@ export default {
       if (rect) {
         Event.emit('toolbar-show-position', {
           rect,
+          index: this.index
         })
       }
     },

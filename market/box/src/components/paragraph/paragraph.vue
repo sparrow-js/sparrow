@@ -1,6 +1,6 @@
 <template>
   <div class="paragraph">
-    <div class="paragraph-edit" contenteditable="true" @focus="focus"></div>
+    <div class="paragraph-edit" contenteditable="true"></div>
     <div class="operate-box" v-if="false">
       <span>编辑</span>
       <span>删除</span>
@@ -11,12 +11,6 @@
 <script>
 import Event from '../../utils/Event'
 export default {
-  created () {
-    Event.emit('operate_pivot', {
-      id: '10000',
-      message: 'hello world'
-    })
-  },
   methods: {
     focus () {}
   }

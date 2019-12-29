@@ -1,13 +1,7 @@
 import io from 'socket.io-client';
 
-// ref: https://socket.io/docs/client-api/#new-Manager-url-options
 const socket = io('//127.0.0.1:7001/', {
-  // number of reconnection attempts before giving up
   reconnectionAttempts: 3,
-
-  // Note: Why set up websocket
-  // MR：https://github.com/alibaba/ice/pull/2450
-  // Refs：https://socket.io/docs/client-api/#With-websocket-transport-only
   transports: ['websocket'],
 });
 

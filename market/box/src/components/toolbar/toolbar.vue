@@ -13,7 +13,7 @@
     </div>
     <div class="toolbar__box" v-show="showBoxTool">
       <ul class="toolbar__box-list">
-        <li class="toolbar__box-item" v-for="item in list" :key="item.id">
+        <li class="toolbar__box-item" v-for="item in list" :key="item.id" @click="handlerClick(item)">
           <span v-if="item.id !== 10003">{{item.name}}</span>
            <el-popover
             v-if="item.id === 10003"
@@ -55,7 +55,9 @@ export default {
   props: {
     list: {
       type: Array,
-      default: []
+      default: () => {
+        return [];
+      }
     }
   },
   data () {
@@ -94,9 +96,24 @@ export default {
     handlerActions () {
       this.showActions = !this.showActions;
     },
-    layoutSure () {
-      Event.on('toolbar-layout-data', this.form)
-      console.log();
+    handlerClick (id) {
+      if (id !== 10003) {
+        Event.emit('pivot_operate', {
+          handler: 'generator.scene.addBox',
+          data: {
+            id: id
+          }
+        })
+      }
+    },
+    layoutSure (id) {
+      Event.emit('pivot_operate', {
+        handler: 'generator.scene.addBox',
+        data: {
+          id: id,
+          params: this.form
+        }
+      })
     }
   }
 }

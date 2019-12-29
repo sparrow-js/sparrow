@@ -24,7 +24,7 @@
       </li>
       <li>
         <div>
-          <toolbar />
+          <toolbar :list="toolbarList"/>
         </div>
       </li>
     </ul>
@@ -39,8 +39,30 @@ export default {
     return {
       form: {
         delivery: '',
-        user: ''
-      }
+        user: '',
+      },
+       toolbarList: [
+          {
+            id: 10001,
+            name: '文本'
+          },
+          {
+            id: 10002,
+            name: '搜索'
+          },
+          {
+            id: 10003,
+            name: '布局'
+          },
+          {
+            id: 10004,
+            name: 'list'
+          },
+          {
+            id: 10005,
+            name: '表格'
+          }
+        ]
     }
   },
   created () {
