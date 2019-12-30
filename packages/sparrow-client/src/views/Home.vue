@@ -1,7 +1,5 @@
 <template>
-  <div class="home">
-    test
-  </div>
+  <div class="home">test</div>
 </template>
 
 <script lang="ts">
@@ -12,7 +10,6 @@ import { Observer } from "mobx-vue";
 @Observer
 @Component
 export default class App extends Vue {
-    mounted() {
-    }
+  mounted() {}
 }
 </script>

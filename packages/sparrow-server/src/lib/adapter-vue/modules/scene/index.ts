@@ -1,12 +1,15 @@
 import * as path from 'path';
 import * as fsExtra from 'fs-extra';
 import * as parser from '@babel/parser';
-// import generate from '@babel/generator';
+import generate from '@babel/generator';
 // import traverse from '@babel/traverse';
 import {initBlock, blockList, paragraph} from '../fragment/scene';
 import * as cheerio from 'cheerio';
 
 import Box from '../box'
+// cwd.split('sparrow-server')[0] + 'sparrow-view'
+const cwd = process.cwd();
+const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
 
 
 export default class Scene {
@@ -34,14 +37,12 @@ export default class Scene {
     this.$ = cheerio.load(templateStr, {
       xmlMode: true
     });
+    this.scriptData = parser.parse(scriptStr, {
+      sourceType: 'module',
+    });
 
     this.renderPage();
-    // this.$('.home').append(sceneFragment.blockList);
 
-    // console.log(this.$.html());
-    // this.scriptData = parser.parse(scriptStr, {
-    //   sourceType: 'module',
-    // });
     /**
       traverse(this.scriptData, {
         enter(path) {
@@ -66,10 +67,11 @@ export default class Scene {
 
   public renderPage () {
     this.$('.home').append(initBlock(0));
-    // console.log(this.$.html())
+    this.writeTemplate();
   }
 
   private writeTemplate () {
-    
+    const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script>`
+    fsExtra.writeFile(viewPath, template, 'utf8');
   }
 }

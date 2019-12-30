@@ -1,30 +1,16 @@
 
-import parse5 from 'parse5';
 import BoxFragment from '../fragment/box';
+import LayoutBox from './layout';
 
 export default class Box {
-  blocks: any;
-  components: any;
-  fragment: any;
-  id: number;
-  
-  constructor (id:number , config?: any) {
-    this.id = id;
-    if (id === 10003) {
-      this.fragment = parse5.parseFragment(BoxFragment.layout);
+  public createBox (id: number) {
+    let curBox: any;
+    switch (id) {
+      case 10003:
+        curBox = new LayoutBox();
+        break;
+      default:
+        break;
     }
   }
-
-  public getFragment () {
-    return this.fragment;
-  }
-  // public addComponent (component) {
-  //   this.components.push(component);
-  // }
-
-  // public removeComponent (index) {
-  //   this.components.splice(index, 1);
-  // }
-
-
 }

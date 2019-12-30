@@ -2,6 +2,7 @@ export function initBlock (index: number) {
   return `
     <div class="block-list">
       <box :index="${index}" class="block-item">
+        <paragraph></paragraph>
       </box>
     </div>`
 }

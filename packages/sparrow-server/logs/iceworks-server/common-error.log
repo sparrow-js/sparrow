@@ -102,3 +102,35 @@ hostname: HaitaodeMBP.lan
 pid: 38272
 hostname: HaitaodeMBP.lan
 
+2019-12-30 05:28:49,569 ERROR 43931 nodejs.ClusterClientNoResponseError: client no response in 10805132ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 43931
+hostname: HaitaodeMBP.lan
+
+2019-12-30 09:48:26,777 ERROR 43931 nodejs.ClusterClientNoResponseError: client no response in 15577187ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 43931
+hostname: HaitaodeMBP.lan
+
+2019-12-30 10:37:57,966 ERROR 43931 nodejs.ClusterClientNoResponseError: client no response in 2951104ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 43931
+hostname: HaitaodeMBP.lan
+
+2019-12-30 10:39:53,696 ERROR 43931 nodejs.ClusterClientNoResponseError: client no response in 95806ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 43931
+hostname: HaitaodeMBP.lan
+

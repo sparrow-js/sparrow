@@ -1,16 +1,15 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <el-aside width="200px">
-        <div class="toolbar">
-          <div class="toolbar__item toolbar__preview">预览</div>
-          <div class="toolbar__item toolbar__export">导出</div>
-        </div>
-      </el-aside>
+      <el-aside width="200px"></el-aside>
       <el-container>
         <el-main>
           <div class="main">
             <logo></logo>
+            <div class="toolbar">
+              <div class="toolbar__item toolbar__preview">预览</div>
+              <div class="toolbar__item toolbar__export">导出</div>
+            </div>
             <div class="editor-box">
               <iframe
                 id="viewContent"
@@ -98,21 +97,18 @@ export default class App extends Vue {
   }
   .toolbar{
     display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-    padding-top: 60px;
+    flex-direction: row;
     &__item{
-      width: 80px;
+      width: 56px;
       height: 32px;
       display: flex;
       justify-content: center;
       align-items: center;
       margin-bottom: 6px;
-      background: #409eff;
-      color: #fff;
-      font-size: 15px;
+      color: #409eff;
+      font-size: 14px;
       &:hover{
-        background: #53a7fd;
+        color: #53a7fd;
       }
     }
   }
