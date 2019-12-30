@@ -1,5 +1,5 @@
-export interface IBaseBox {
-  getBox(): Promise<void>,
+export default interface IBaseBox {
+  getBoxFragment(): any,
 }
 
 

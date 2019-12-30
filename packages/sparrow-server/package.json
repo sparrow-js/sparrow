@@ -67,6 +67,7 @@
     "@types/execa": "^2.0.0",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.5.5",
+    "@types/prettier": "^1.19.0",
     "@vue/cli-plugin-babel": "^4.1.1",
     "@vue/cli-plugin-eslint": "^4.1.1",
     "@vue/cli-service": "^4.1.1",

@@ -13,7 +13,7 @@
     </div>
     <div class="toolbar__box" v-show="showBoxTool">
       <ul class="toolbar__box-list">
-        <li class="toolbar__box-item" v-for="item in list" :key="item.id" @click="handlerClick(item)">
+        <li class="toolbar__box-item" v-for="(item) in list" :key="item.id" @click="handlerClick(item.id)">
           <span v-if="item.id !== 10003">{{item.name}}</span>
            <el-popover
             v-if="item.id === 10003"
@@ -21,11 +21,11 @@
             trigger="hover"
             width="280">
             <div class="toolbar__box-layout">
-              <el-checkbox v-model="form.checked">表单</el-checkbox>
+              <el-checkbox v-model="form.isForm">表单</el-checkbox>
               <el-input class="toolbar__box-layout-input" size="mini" v-model="form.row" placeholder="row"></el-input>
               <span>x</span>
               <el-input  class="toolbar__box-layout-input" v-model="form.col" size="mini" placeholder="col"></el-input>
-              <el-button size="mini" type="primary" round @click="layoutSure">确定</el-button>
+              <el-button size="mini" type="primary" round @click="layoutSure(item.id)">确定</el-button>
             </div>
             <span slot="reference">{{item.name}}</span>
           </el-popover>
@@ -72,10 +72,11 @@ export default {
         transform: 'translate3d(100px, 0px, 0)'
       },
       form: {
-        checked: false,
+        isForm: false,
         row: '',
         col: '',
-      }
+      },
+      boxIndex: 0
     };
   },
   created () {
@@ -86,24 +87,26 @@ export default {
       this.showBoxTool = !this.showBoxTool;
     },
     handlerShowPosition (data) {
-      const {rect} = data;
+      const {rect, index} = data;
+      this.boxIndex = index;
       this.showToolbar = true;
-      this.styles.transform = `translate3d(${rect.left}px, ${rect.top + 10}px, 0)`;
+      const scrollY = window.scrollY;
+      this.styles.transform = `translate3d(${rect.left}px, ${rect.top + scrollY + 10}px, 0)`;
       this.actionsStyles.transform = `translate3d(${rect.width - 30}px, 0px, 0)`;
       this.showBoxTool = false;
       this.showActions = false;
     },
-    handlerActions () {
-      this.showActions = !this.showActions;
-    },
+    handlerActions () {},
     handlerClick (id) {
       if (id !== 10003) {
         Event.emit('pivot_operate', {
           handler: 'generator.scene.addBox',
           data: {
-            id: id
+            id,
+            boxIndex: this.boxIndex,
           }
         })
+        this.showToolbar = false;
       }
     },
     layoutSure (id) {
@@ -111,9 +114,11 @@ export default {
         handler: 'generator.scene.addBox',
         data: {
           id: id,
+          boxIndex: this.boxIndex,
           params: this.form
         }
       })
+      this.showToolbar = false;
     }
   }
 }

@@ -235,6 +235,7 @@
       "@types/execa": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "@types/mocha": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "@types/node": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "@types/prettier": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "@vue/cli-plugin-babel": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "@vue/cli-plugin-eslint": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "@vue/cli-service": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",

@@ -5,6 +5,7 @@ import generate from '@babel/generator';
 // import traverse from '@babel/traverse';
 import {initBlock, blockList, paragraph} from '../fragment/scene';
 import * as cheerio from 'cheerio';
+import * as prettier from 'prettier';
 
 import Box from '../box'
 // cwd.split('sparrow-server')[0] + 'sparrow-view'
@@ -21,11 +22,13 @@ export default class Scene {
   templateData: any;
   scriptData: any;
   $: any;
+  boxInstance: any;
 
   private blockMap = new Map();
 
   constructor () {
     this.templateFilePath = path.join(__dirname, '..', 'fragment/scene/template.vue');
+    this.boxInstance = new Box;
     this.init();
   }
 
@@ -56,9 +59,15 @@ export default class Scene {
      */
   }
 
-  public addBox (id) {
-    this.boxs.push(new Box(id));
-    // this.renderPage();
+  public addBox (data: any) {
+    const curData = data.data;
+    const { boxIndex } = curData;
+    if (this.boxs[boxIndex] === undefined) {
+      this.boxs.push(this.boxInstance.createBox(curData));
+    } else {
+      this.boxs[boxIndex] = this.boxInstance.createBox(data);
+    }
+    this.renderPage();
   }
 
   public removeBox (index) {
@@ -66,12 +75,19 @@ export default class Scene {
   }
 
   public renderPage () {
-    this.$('.home').append(initBlock(0));
+    this.$('.home').empty();
+    // this.boxs
+    this.boxs.forEach((item, index) => {
+      const blockListStr = blockList(index, item.getBoxFragment().html());
+      this.$('.home').append(blockListStr);
+    });
+    this.$('.home').append(initBlock(this.boxs.length));
     this.writeTemplate();
   }
 
   private writeTemplate () {
     const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script>`
-    fsExtra.writeFile(viewPath, template, 'utf8');
+    const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
+    fsExtra.writeFile(viewPath, formatTemp, 'utf8');
   }
 }

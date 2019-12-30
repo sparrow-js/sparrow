@@ -8,18 +8,18 @@
       </li>
       <li class="block-item">
         <box :index="1">
-          <layout :col="3" :row="2">
-            <div slot="0_1" @click="handlerClickLabel">
-              <el-form :model="form" class="demo-form-inline" label-width="80px">
-                <el-form-item label="审批人">
-                  <el-input v-model="form.user" placeholder="审批人"></el-input>
-                </el-form-item>
-              </el-form> 
-            </div>
-            <el-switch slot="1_1" v-model="form.delivery"></el-switch>
-            <el-switch slot="0_0" v-model="form.delivery"></el-switch>
-            <el-switch v-model="form.delivery"></el-switch>
-          </layout>
+          <el-form class="demo-form-inline" label-width="80px">
+            <layout :col="3" :row="2">
+              <div slot="0_1" @click="handlerClickLabel">
+                  <el-form-item label="审批人">
+                    <el-input placeholder="审批人"></el-input>
+                  </el-form-item>
+              </div>
+              <el-switch slot="1_1"></el-switch>
+              <el-switch slot="0_0"></el-switch>
+              <el-switch></el-switch>
+            </layout>
+          </el-form> 
         </box>
       </li>
       <li>

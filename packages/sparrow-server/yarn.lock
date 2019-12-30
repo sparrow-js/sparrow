@@ -1289,6 +1289,11 @@
     "@types/empower" "*"
     "@types/power-assert-formatter" "*"
 
+"@types/prettier@^1.19.0":
+  version "1.19.0"
+  resolved "https://registry.npm.taobao.org/@types/prettier/download/@types/prettier-1.19.0.tgz#a2502fb7ce9b6626fdbfc2e2a496f472de1bdd05"
+  integrity sha1-olAvt86bZib9v8LipJb0ct4b3QU=
+
 "@types/q@^1.5.1":
   version "1.5.2"
   resolved "https://registry.npm.taobao.org/@types/q/download/@types/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"

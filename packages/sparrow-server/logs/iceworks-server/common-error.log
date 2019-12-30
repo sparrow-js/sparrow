@@ -134,3 +134,158 @@ name: "ClusterClientNoResponseError"
 pid: 43931
 hostname: HaitaodeMBP.lan
 
+2019-12-30 18:28:15,885 ERROR 35151 nodejs.ClusterClientNoResponseError: client no response in 162279ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 35151
+hostname: localhost
+
+2019-12-30 21:34:18,991 ERROR 42490 nodejs.ClusterClientNoResponseError: client no response in 565265ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 42490
+hostname: localhost
+
+2019-12-31 00:20:02,321 ERROR 53136 nodejs.TypeError: Cannot read property 'getBoxFragment' of undefined
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:80:50
+    at Array.forEach (<anonymous>)
+    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:79:15)
+    at Scene.addBox (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:69:10)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 53136
+hostname: HaitaodeMBP.lan
+
+2019-12-31 00:20:05,512 ERROR 53136 nodejs.TypeError: Cannot read property 'getBoxFragment' of undefined
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:80:50
+    at Array.forEach (<anonymous>)
+    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:79:15)
+    at Scene.addBox (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:69:10)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 53136
+hostname: HaitaodeMBP.lan
+
+2019-12-31 00:35:04,828 ERROR 54166 nodejs.TypeError: Cannot read property 'format' of undefined
+    at Scene.writeTemplate (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:90:33)
+    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:85:10)
+    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:47:10)
+
+pid: 54166
+hostname: HaitaodeMBP.lan
+
+2019-12-31 00:35:07,796 ERROR 54173 nodejs.TypeError: Cannot read property 'format' of undefined
+    at Scene.writeTemplate (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:90:33)
+    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:85:10)
+    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:47:10)
+
+pid: 54173
+hostname: HaitaodeMBP.lan
+
+2019-12-31 00:35:38,323 ERROR 54225 nodejs.TypeError: Cannot read property 'format' of undefined
+    at Scene.writeTemplate (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:90:33)
+    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:85:10)
+    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:47:10)
+
+pid: 54225
+hostname: HaitaodeMBP.lan
+
+2019-12-31 00:35:42,792 ERROR 54226 nodejs.TypeError: Cannot read property 'format' of undefined
+    at Scene.writeTemplate (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:90:33)
+    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:85:10)
+    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:47:10)
+
+pid: 54226
+hostname: HaitaodeMBP.lan
+
+2019-12-31 00:36:19,993 ERROR 54226 nodejs.TypeError: Cannot read property 'format' of undefined
+    at Scene.writeTemplate (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:90:33)
+    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:85:10)
+    at Scene.addBox (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:70:10)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 54226
+hostname: HaitaodeMBP.lan
+
+2019-12-31 00:36:47,677 ERROR 54226 nodejs.TypeError: Cannot read property 'getBoxFragment' of undefined
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:81:50
+    at Array.forEach (<anonymous>)
+    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:80:15)
+    at Scene.addBox (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:70:10)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
+    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
+    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
+    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
+    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
+    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
+    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
+    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
+    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
+    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+
+pid: 54226
+hostname: HaitaodeMBP.lan
+
+2019-12-31 00:39:21,116 ERROR 54486 nodejs.TypeError: Cannot read property 'format' of undefined
+    at Scene.writeTemplate (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:90:33)
+    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:85:10)
+    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:47:10)
+
+pid: 54486
+hostname: HaitaodeMBP.lan
+

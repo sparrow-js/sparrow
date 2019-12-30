@@ -7,11 +7,10 @@ export function initBlock (index: number) {
     </div>`
 }
 
-export function blockList (index: number) {
+export function blockList (index: number, content: string) {
   return `
     <div class="block-list">
-      <box :index="${index}" class="block-item">
-      </box>
+      ${content}
     </div>
   `;
 }
