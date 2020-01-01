@@ -1,0 +1,22 @@
+[
+  "form-register",
+  "button-basic",
+  "select-basic",
+  "modal-basic",
+  "table-basic",
+  "form-normal-login",
+  "form-inline-login",
+  "form-validate-other",
+  "button-size",
+  "input-basic",
+  "input-search-input",
+  "grid-basic",
+  "select-search",
+  "form-validate-static",
+  "date-picker-basic",
+  "tabs-basic",
+  "checkbox-basic",
+  "form-coordinated",
+  "table-row-selection",
+  "upload-avatar"
+]
