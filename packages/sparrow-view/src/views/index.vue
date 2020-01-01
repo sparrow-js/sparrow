@@ -2,7 +2,9 @@
   <div class="home">
     <div class="block-list">
       <box :index="0" class="block-item">
-        <layout :col="2" :row="3" />
+        <el-form label-width="80px">
+          <layout :col="2" :row="3" />
+        </el-form>
       </box>
     </div>
 

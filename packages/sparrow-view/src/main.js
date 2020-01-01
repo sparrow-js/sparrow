@@ -12,6 +12,7 @@ Event.on('pivot_operate', (data) => {
   message.emit(data.handler, data);
 })
 
+
 Vue.config.productionTip = false
 Vue.use(box)
 Vue.use(ElementUI);

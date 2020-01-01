@@ -80,7 +80,7 @@ export default {
     };
   },
   created () {
-    Event.on('toolbar-show-position', this.handlerShowPosition)
+    Event.on('block-selected', this.handlerShowPosition)
   },
   methods: {
     openBoxTool () {
@@ -96,7 +96,9 @@ export default {
       this.showBoxTool = false;
       this.showActions = false;
     },
-    handlerActions () {},
+    handlerActions () {
+      this.showActions = !this.showActions;
+    },
     handlerClick (id) {
       if (id !== 10003) {
         Event.emit('pivot_operate', {

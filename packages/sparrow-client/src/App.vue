@@ -23,10 +23,10 @@
       <el-aside width="200px"></el-aside>
     </el-container>
     <div 
-      class="dashboard-box" 
-      v-show="showDashboard"
+      class="dashboard-box"
+      v-show="showDashboard" 
     >
-      <dashboard></dashboard>
+      <dashboard :show="showDashboard" @on-selected="selectedHandler(data)"></dashboard>
     </div>
   </div>
 </template>
@@ -35,7 +35,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import Logo from '@/components/logo.vue';
 import Dashboard from '@/components/materiel/Dashboard.vue';
 import { AppModule } from '@/store/modules/app';
-import socket from '@/util/socket.js'
+import socket from '@/util/socket.js';
 
 @Component({
   components: {
@@ -44,9 +44,28 @@ import socket from '@/util/socket.js'
   }
 })
 export default class App extends Vue {
+
   get showDashboard () {
-    return AppModule.showDashboard
+    return AppModule.showDashboard;
   }
+
+  created() {
+     window.addEventListener("message", async event => {
+        const {data} = event;
+        if (!data.handler) return;
+        const handlerFirst = data.handler.split('.')[0];
+        if (handlerFirst !== 'client') return;
+        console.log(data);
+        if (data.handler === 'client.dashboard.show') {
+          AppModule.SetShowDashboard(true);
+        }
+     });
+  }
+
+  private selectedHandler(data) {
+    console.log(data);
+  }
+
 }
 </script>
 

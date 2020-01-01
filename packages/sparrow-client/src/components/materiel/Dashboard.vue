@@ -37,7 +37,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import Sidebar from './Sidebar.vue';
 import BlockBox from './BlockBox.vue';
 import { AppModule } from '@/store/modules/app'
@@ -50,8 +50,11 @@ import { AppModule } from '@/store/modules/app'
 })
 
 export default class Dashboard extends Vue {
-  activeName = 'first';
-  searchText = '';
+  // show
+  private activeName = 'first';
+  private searchText = '';
+  
+
   private handleTab () {
 
   }

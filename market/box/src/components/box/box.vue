@@ -33,7 +33,7 @@ export default {
       const currentBlock = this.findBlock(event.target);
       const rect = currentBlock ? currentBlock.getBoundingClientRect() : null; 
       if (rect) {
-        Event.emit('toolbar-show-position', {
+        Event.emit('block-selected', {
           rect,
           index: this.index
         })

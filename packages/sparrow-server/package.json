@@ -1,7 +1,7 @@
 {
-  "name": "iceworks-server",
+  "name": "sparrow-server",
   "version": "3.4.2",
-  "description": "iceworks server",
+  "description": "sparrow server",
   "files": [
     "dist/",
     "scripts/"

@@ -5,15 +5,29 @@
   </div>
 </template>
 <script>
-import message from './utils/message'
+import message from './utils/message';
+import { Event } from '@sparrow/box'
+
 export default {
   data () {
     return {
-      toolbarList: []
+      toolbarList: [],
+      boxIndex: null
     }
   },
   created () {
     this.getToolbarList();
+    Event.on('block-selected', (data) => {
+      this.boxIndex = data.index;
+    });
+    Event.on('insert_handler', (data) => {
+      setTimeout(() => {
+        message.emit('client.dashboard.show', {
+          boxIndex: this.boxIndex,
+          data,
+        });
+      }, 300);
+    })
   },
   methods: {
     async getToolbarList () {

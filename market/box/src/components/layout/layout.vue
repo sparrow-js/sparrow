@@ -24,7 +24,6 @@ export default {
       <div class="layout">
         {
           (new Array(this.row).fill('')).map((rowItem, rowIndex) => {
-            console.log(rowIndex);
             return (
               <el-row>
                 {
@@ -32,7 +31,12 @@ export default {
                     return (
                       <el-col span={this.colSpan}>
                         <div class="layout-col">
-                        {this.$slots[`${rowIndex}_${index}`] ? h('div', this.$slots[`${rowIndex}_${index}`]) : <paragraph></paragraph>}
+                        {this.$slots[`${rowIndex}_${index}`] ?
+                          h('div', this.$slots[`${rowIndex}_${index}`]) :
+                          <paragraph 
+                            params={{ row:rowIndex, col: index }}
+                            type={'layout'}
+                          ></paragraph>}
                         </div>
                       </el-col>
                     );

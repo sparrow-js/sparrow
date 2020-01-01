@@ -1,291 +1,88 @@
-2019-12-29 00:28:31,428 ERROR 90276 nodejs.TypeError: Cannot read property 'parseFragment' of undefined
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:24:27)
-
-pid: 90276
-hostname: HaitaodeMBP.lan
-
-2019-12-29 00:28:34,450 ERROR 90283 nodejs.TypeError: Cannot read property 'parseFragment' of undefined
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:24:27)
-
-pid: 90283
-hostname: HaitaodeMBP.lan
-
-2019-12-29 00:29:11,240 ERROR 90341 nodejs.TypeError: Cannot read property 'parseFragment' of undefined
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:24:27)
-
-pid: 90341
-hostname: HaitaodeMBP.lan
-
-2019-12-29 00:29:20,364 ERROR 90364 nodejs.TypeError: Cannot read property 'parseFragment' of undefined
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:24:27)
-
-pid: 90364
-hostname: HaitaodeMBP.lan
-
-2019-12-29 12:28:00,469 ERROR 5555 nodejs.SyntaxError: 'import' and 'export' may appear only with 'sourceType: "module"' (2:0)
-    at Parser.raise (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/@babel/parser/src/parser/location.js:41:63)
-    at Parser.assertModuleNodeAllowed (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/@babel/parser/src/parser/statement.js:304:12)
-    at Parser.parseStatementContent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/@babel/parser/src/parser/statement.js:264:14)
-    at Parser.parseStatement (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/@babel/parser/src/parser/statement.js:141:17)
-    at Parser.parseBlockOrModuleBlockBody (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/@babel/parser/src/parser/statement.js:860:25)
-    at Parser.parseBlockBody (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/@babel/parser/src/parser/statement.js:836:10)
-    at Parser.parseTopLevel (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/@babel/parser/src/parser/statement.js:47:10)
-    at Parser.parse (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/@babel/parser/src/parser/index.js:43:10)
-    at Object.parse (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/@babel/parser/src/index.js:58:38)
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:31:30)
-pos: 1
-loc: {"line":2,"column":0}
-code: "BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED"
-pid: 5555
-hostname: HaitaodeMBP.lan
-
-2019-12-29 16:56:28,731 ERROR 19976 nodejs.TypeError: Cannot read property 'createElement' of undefined
-    at Parser.parseFragment (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/parse5/lib/parser/index.js:353:48)
-    at Object.parseFragment (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/parse5/lib/index.js:22:19)
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:33:32)
-
-pid: 19976
-hostname: HaitaodeMBP.lan
-
-2019-12-29 17:19:42,512 ERROR 21791 nodejs.TypeError: Cannot read property 'parent' of undefined
-    at Function.exports.update (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cheerio/lib/parse.js:69:26)
-    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cheerio/lib/parse.js:19:11)
-    at Function.exports.load (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cheerio/lib/static.js:27:14)
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:33:23)
-
-pid: 21791
-hostname: HaitaodeMBP.lan
-
-2019-12-29 17:31:52,015 ERROR 22554 nodejs.TypeError: Cannot read property 'parent' of undefined
-    at Function.exports.update (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cheerio/lib/parse.js:69:26)
-    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cheerio/lib/parse.js:19:11)
-    at Function.exports.load (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cheerio/lib/static.js:27:14)
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:33:23)
-
-pid: 22554
-hostname: HaitaodeMBP.lan
-
-2019-12-29 17:31:54,209 ERROR 22576 nodejs.TypeError: Cannot read property 'parent' of undefined
-    at Function.exports.update (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cheerio/lib/parse.js:69:26)
-    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cheerio/lib/parse.js:19:11)
-    at Function.exports.load (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cheerio/lib/static.js:27:14)
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:33:23)
-
-pid: 22576
-hostname: HaitaodeMBP.lan
-
-2019-12-29 20:27:09,862 ERROR 28016 nodejs.ClusterClientNoResponseError: client no response in 300120ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+2020-01-01 14:27:56,121 ERROR 96297 nodejs.ClusterClientNoResponseError: client no response in 301617ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
     at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
     at listOnTimeout (internal/timers.js:531:17)
     at processTimers (internal/timers.js:475:7)
 name: "ClusterClientNoResponseError"
-pid: 28016
-hostname: HaitaodeMBP.lan
-
-2019-12-29 21:38:51,519 ERROR 28016 nodejs.ClusterClientNoResponseError: client no response in 4301650ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
-    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
-    at listOnTimeout (internal/timers.js:531:17)
-    at processTimers (internal/timers.js:475:7)
-name: "ClusterClientNoResponseError"
-pid: 28016
-hostname: HaitaodeMBP.lan
-
-2019-12-29 22:48:04,917 ERROR 38271 nodejs.TypeError: Cannot read property 'blockList' of undefined
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:38:42)
-
-pid: 38271
-hostname: HaitaodeMBP.lan
-
-2019-12-29 22:48:06,400 ERROR 38272 nodejs.TypeError: Cannot read property 'blockList' of undefined
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:38:42)
-
-pid: 38272
-hostname: HaitaodeMBP.lan
-
-2019-12-30 05:28:49,569 ERROR 43931 nodejs.ClusterClientNoResponseError: client no response in 10805132ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
-    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
-    at listOnTimeout (internal/timers.js:531:17)
-    at processTimers (internal/timers.js:475:7)
-name: "ClusterClientNoResponseError"
-pid: 43931
-hostname: HaitaodeMBP.lan
-
-2019-12-30 09:48:26,777 ERROR 43931 nodejs.ClusterClientNoResponseError: client no response in 15577187ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
-    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
-    at listOnTimeout (internal/timers.js:531:17)
-    at processTimers (internal/timers.js:475:7)
-name: "ClusterClientNoResponseError"
-pid: 43931
-hostname: HaitaodeMBP.lan
-
-2019-12-30 10:37:57,966 ERROR 43931 nodejs.ClusterClientNoResponseError: client no response in 2951104ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
-    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
-    at listOnTimeout (internal/timers.js:531:17)
-    at processTimers (internal/timers.js:475:7)
-name: "ClusterClientNoResponseError"
-pid: 43931
-hostname: HaitaodeMBP.lan
-
-2019-12-30 10:39:53,696 ERROR 43931 nodejs.ClusterClientNoResponseError: client no response in 95806ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
-    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
-    at listOnTimeout (internal/timers.js:531:17)
-    at processTimers (internal/timers.js:475:7)
-name: "ClusterClientNoResponseError"
-pid: 43931
-hostname: HaitaodeMBP.lan
-
-2019-12-30 18:28:15,885 ERROR 35151 nodejs.ClusterClientNoResponseError: client no response in 162279ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
-    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
-    at listOnTimeout (internal/timers.js:531:17)
-    at processTimers (internal/timers.js:475:7)
-name: "ClusterClientNoResponseError"
-pid: 35151
+pid: 96297
 hostname: localhost
 
-2019-12-30 21:34:18,991 ERROR 42490 nodejs.ClusterClientNoResponseError: client no response in 565265ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+2020-01-01 15:08:19,999 ERROR 96297 nodejs.ClusterClientNoResponseError: client no response in 2423801ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
     at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
     at listOnTimeout (internal/timers.js:531:17)
     at processTimers (internal/timers.js:475:7)
 name: "ClusterClientNoResponseError"
-pid: 42490
+pid: 96297
 hostname: localhost
 
-2019-12-31 00:20:02,321 ERROR 53136 nodejs.TypeError: Cannot read property 'getBoxFragment' of undefined
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:80:50
-    at Array.forEach (<anonymous>)
-    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:79:15)
-    at Scene.addBox (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:69:10)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
-    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
-    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
-    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
-    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
-    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
-    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
-    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
-    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
-    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
-    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
-    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
-    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+2020-01-01 20:45:42,530 ERROR 96297 nodejs.ClusterClientNoResponseError: client no response in 98269ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 96297
+hostname: localhost
 
-pid: 53136
-hostname: HaitaodeMBP.lan
+2020-01-01 20:53:23,734 ERROR 96297 nodejs.ClusterClientNoResponseError: client no response in 221457ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 96297
+hostname: localhost
 
-2019-12-31 00:20:05,512 ERROR 53136 nodejs.TypeError: Cannot read property 'getBoxFragment' of undefined
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:80:50
-    at Array.forEach (<anonymous>)
-    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:79:15)
-    at Scene.addBox (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:69:10)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
-    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
-    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
-    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
-    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
-    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
-    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
-    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
-    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
-    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
-    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
-    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
-    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+2020-01-01 21:01:45,507 ERROR 96297 nodejs.ClusterClientNoResponseError: client no response in 301726ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 96297
+hostname: localhost
 
-pid: 53136
-hostname: HaitaodeMBP.lan
+2020-01-01 21:07:27,277 ERROR 96297 nodejs.ClusterClientNoResponseError: client no response in 301743ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 96297
+hostname: localhost
 
-2019-12-31 00:35:04,828 ERROR 54166 nodejs.TypeError: Cannot read property 'format' of undefined
-    at Scene.writeTemplate (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:90:33)
-    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:85:10)
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:47:10)
+2020-01-01 21:13:09,066 ERROR 96297 nodejs.ClusterClientNoResponseError: client no response in 301753ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 96297
+hostname: localhost
 
-pid: 54166
-hostname: HaitaodeMBP.lan
+2020-01-01 21:18:30,817 ERROR 96297 nodejs.ClusterClientNoResponseError: client no response in 301731ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 96297
+hostname: localhost
 
-2019-12-31 00:35:07,796 ERROR 54173 nodejs.TypeError: Cannot read property 'format' of undefined
-    at Scene.writeTemplate (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:90:33)
-    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:85:10)
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:47:10)
+2020-01-01 21:24:12,646 ERROR 96297 nodejs.ClusterClientNoResponseError: client no response in 301788ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 96297
+hostname: localhost
 
-pid: 54173
-hostname: HaitaodeMBP.lan
+2020-01-01 21:29:54,384 ERROR 96297 nodejs.ClusterClientNoResponseError: client no response in 301720ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 96297
+hostname: localhost
 
-2019-12-31 00:35:38,323 ERROR 54225 nodejs.TypeError: Cannot read property 'format' of undefined
-    at Scene.writeTemplate (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:90:33)
-    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:85:10)
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:47:10)
-
-pid: 54225
-hostname: HaitaodeMBP.lan
-
-2019-12-31 00:35:42,792 ERROR 54226 nodejs.TypeError: Cannot read property 'format' of undefined
-    at Scene.writeTemplate (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:90:33)
-    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:85:10)
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:47:10)
-
-pid: 54226
-hostname: HaitaodeMBP.lan
-
-2019-12-31 00:36:19,993 ERROR 54226 nodejs.TypeError: Cannot read property 'format' of undefined
-    at Scene.writeTemplate (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:90:33)
-    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:85:10)
-    at Scene.addBox (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:70:10)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
-    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
-    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
-    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
-    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
-    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
-    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
-    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
-    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
-    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
-    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
-    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
-    at processTicksAndRejections (internal/process/task_queues.js:75:11)
-
-pid: 54226
-hostname: HaitaodeMBP.lan
-
-2019-12-31 00:36:47,677 ERROR 54226 nodejs.TypeError: Cannot read property 'getBoxFragment' of undefined
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:81:50
-    at Array.forEach (<anonymous>)
-    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:80:15)
-    at Scene.addBox (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:70:10)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapterGenerator.ts:10:61
-    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/app/io/middleware/adapter.ts:24:11
-    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
-    at session (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-session/index.js:41:13)
-    at dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:42:32)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/koa-compose/index.js:34:12
-    at module.exports (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/packetMiddlewareInit.js:19:3)
-    at Array.<anonymous> (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io/lib/io.js:82:9)
-    at run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:559:11)
-    at Socket.run (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:571:3)
-    at Socket.dispatch (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:531:8)
-    at Socket.onevent (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:364:8)
-    at Socket.onpacket (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/socket.js:324:12)
-    at /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/socket.io/lib/client.js:214:16
-    at processTicksAndRejections (internal/process/task_queues.js:75:11)
-
-pid: 54226
-hostname: HaitaodeMBP.lan
-
-2019-12-31 00:39:21,116 ERROR 54486 nodejs.TypeError: Cannot read property 'format' of undefined
-    at Scene.writeTemplate (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:90:33)
-    at Scene.renderPage (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:85:10)
-    at Scene.init (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/src/lib/adapter-vue/modules/scene/index.ts:47:10)
-
-pid: 54486
-hostname: HaitaodeMBP.lan
+2020-01-01 21:57:08,243 ERROR 96297 nodejs.ClusterClientNoResponseError: client no response in 1613838ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/cluster-client/lib/leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 96297
+hostname: localhost
 

@@ -1,6 +1,6 @@
 <template>
   <div class="paragraph">
-    <div class="paragraph-edit" contenteditable="true"></div>
+    <div class="paragraph-edit" contenteditable="true" @focus="focus"></div>
     <div class="operate-box" v-if="false">
       <span>编辑</span>
       <span>删除</span>
@@ -11,8 +11,22 @@
 <script>
 import Event from '../../utils/Event'
 export default {
+  props: {
+    type: {
+      type: String,
+      default: ''
+    },
+    params: Object,
+  },
   methods: {
-    focus () {}
+    focus () {
+      if (this.type) {
+        Event.emit('insert_handler', {
+          type: this.type,
+          params: this.params
+        })
+      }
+    }
   }
 }
 </script>
