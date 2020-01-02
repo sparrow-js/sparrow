@@ -1,15 +1,14 @@
 {
-  "name": "@vue-materials/bar-chart-block",
+  "name": "@sparrow-vue/bar-chart-block",
   "version": "1.0.0",
   "description": "v-charts 条形图",
-  "author": "ice-admin@alibaba-inc.com",
   "files": [
     "src/",
     "lib/"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ice-lab/vue-materials/tree/master/blocks/BarChart"
+    "url": "https://github.com/sparrow-js/sparrow-vue/tree/master/blocks/BarChart"
   },
   "license": "MIT",
   "keywords": [

@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test": "node ./__script/fetchPackage.js"
   },
   "dependencies": {
     "@vue-materials/basic-container": "^1.0.0",
