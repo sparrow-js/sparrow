@@ -1,26 +1,31 @@
-const execa = require('execa');
 
+const execa = require('execa');
 const cwd = process.cwd();
-console.log(cwd);
 
 const task = {
   id: cwd,
   command: 'vue-cli-service serve',
   path: cwd
 };
+
 let child = null;
 function run () {
-  child = execa('vue-cli-service', ['serve'], {
-    cwd: task.path,
-    stdio: ['inherit', 'pipe', 'pipe'],
-    shell: true
-  });
-
-  child.stdout.on('data', buffer => {
-    console.log(buffer.toString())
-  })
-  child.stderr.on('data', buffer => {
-    console.log(buffer.toString());
+  return new Promise((resolve) => {
+    child = execa('vue-cli-service', ['serve'], {
+      cwd: task.path,
+      stdio: ['inherit', 'pipe', 'pipe'],
+      shell: true
+    });
+  
+    child.stdout.on('data', buffer => {
+      if (/DONE/.test(buffer.toString())) {
+        resolve();
+      }
+      console.log(buffer.toString())
+    })
+    child.stderr.on('data', buffer => {
+      console.log(buffer.toString());
+    })
   })
 }
 

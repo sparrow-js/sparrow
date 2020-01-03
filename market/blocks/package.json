@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "node ./__script/devServer.js"
+    "test": "node ./__script/screenshot.js"
   },
   "dependencies": {
     "@vue-materials/basic-container": "^1.0.0",

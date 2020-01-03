@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const ora = require('ora');
-
+const utils = require('./utils');
 
 const spinner = ora();
 
@@ -27,10 +27,7 @@ const fetchPackages = async () => {
   spinner.start('fetch antd demos');
   const fileNames = await fs.readdir(blocksDir);
 
-  const blockNames = fileNames.filter(fileName => {
-    const filePath = path.join(blocksDir, fileName);
-    return !filterFolders.includes(fileName) && fs.statSync(filePath).isDirectory();
-  });
+  const blockNames = await utils.getBlockNames();
   
   await Promise.all(
     blockNames.map(async name => {
@@ -38,8 +35,6 @@ const fetchPackages = async () => {
       packages.push(result);
     })
   );
-  console.log(packages);
-  console.log('*************')
 }
 fetchPackages();
 module.exports = fetchPackages;
