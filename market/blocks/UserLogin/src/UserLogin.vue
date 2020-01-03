@@ -58,11 +58,9 @@
 </template>
 
 <script>
-import BasicContainer from '@vue-materials/basic-container';
 const backgroundImage =
   'https://img.alicdn.com/tfs/TB1zsNhXTtYBeNjy1XdXXXXyVXa-2252-1500.png';
 export default {
-  components: { BasicContainer },
   name: 'UserLogin',
 
   data() {
@@ -74,8 +72,6 @@ export default {
       },
     };
   },
-
-  created() {},
 
   methods: {
     submitBtn() {

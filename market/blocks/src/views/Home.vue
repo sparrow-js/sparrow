@@ -1,18 +1,18 @@
-<template>
-  <div class="home">
-    <BasicForm />
-    <div>test</div>
-  </div>
-</template>
 
-<script>
-// @ is an alias to /src
-import BasicForm from '../../BasicForm/src';
-
-export default {
-  name: "home",
-  components: {
-    BasicForm
-  }
-};
-</script>
+    <template>
+      <div class="home">
+        <WaterfallChart />
+      </div>
+    </template>
+    
+    <script>
+    import WaterfallChart from '../../WaterfallChart/src';
+    
+    export default {
+      name: "home",
+      components: {
+        WaterfallChart
+      }
+    };
+    </script>
+  

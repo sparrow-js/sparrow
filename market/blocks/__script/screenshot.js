@@ -2,6 +2,7 @@ const devServer = require('./devServer');
 const utils = require('./utils');
 const puppeteer = require('puppeteer');
 const path = require('path');
+const fs = require('fs-extra');
 
 let browser = null;
 let page = null;
@@ -12,7 +13,7 @@ const viewPath = path.join(projectDir, 'src/views/Home.vue');
 
 const insertTemplate = (blockName) => {
   const template = utils.getTemplate(blockName);
-  fsExtra.writeFile(viewPath, template, 'utf8');
+  fs.writeFile(viewPath, template, 'utf8');
 };
 
 const screenshot = async (blockName, nextblockName, width, height) => {
@@ -21,7 +22,7 @@ const screenshot = async (blockName, nextblockName, width, height) => {
     await page.goto(devServerUrl);
     await page.evaluate(() => {
       document.body.style.padding = '24px';
-      const root = document.getElementById('root');
+      const root = document.getElementById('app');
       root.style.border = '1px solid #ddd';
       root.style.height = '100%';
       root.style.width = '100%';
@@ -67,17 +68,23 @@ const openBrowser = async () => {
 
 
 async function startScreenShot () {
-  openBrowser();
+  await openBrowser();
   const blockNames = await utils.getBlockNames();
   blockNames.unshift('');
-  devServer.run().then(() => {
+  devServer.run(() => {
     const blockName = blockNames.shift();
     const nextBlockName = blockNames[0];
-    screenshot(blockName, nextBlockName, 200, 200);
-    if (!nextBlockName) {
-      devServer.stop();
+    if(nextBlockName) {
+      console.log(`${nextBlockName} start sreenshot`);
     }
-  });
+    screenshot(blockName, nextBlockName, 400, 400);
+    if (!nextBlockName) {
+      console.log(`${nextBlockName} end sreenshot`);
+      devServer.stop();
+      process.exit()
+    }
+  })
 }
+
 
 startScreenShot();
