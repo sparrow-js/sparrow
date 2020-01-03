@@ -20,16 +20,6 @@ const screenshot = async (blockName, nextblockName, width, height) => {
   if (blockName) {
     const imagePath = path.join(projectDir, blockName, 'snapshot.png');
     await page.goto(devServerUrl);
-    await page.evaluate(() => {
-      document.body.style.padding = '24px';
-      const root = document.getElementById('app');
-      root.style.border = '1px solid #ddd';
-      root.style.height = '100%';
-      root.style.width = '100%';
-      root.style.padding = '24px';
-      root.style.position = 'relative';
-      root.style.transform = 'scale(1, 1)';
-    });
   
     await page.setViewport({
       width: width + 56,
@@ -77,7 +67,7 @@ async function startScreenShot () {
     if(nextBlockName) {
       console.log(`${nextBlockName} start sreenshot`);
     }
-    screenshot(blockName, nextBlockName, 400, 400);
+    screenshot(blockName, nextBlockName, 900, 500);
     if (!nextBlockName) {
       console.log(`${nextBlockName} end sreenshot`);
       devServer.stop();
