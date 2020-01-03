@@ -45,18 +45,6 @@ export default class Scene {
     });
 
     this.renderPage();
-
-    /**
-      traverse(this.scriptData, {
-        enter(path) {
-          // console.log(path);
-          console.log('*******888*******');
-        }
-      });
-      traverse
-      const code = generate(this.scriptData).code;
-      console.log(code);
-     */
   }
 
   public addBox (data: any) {

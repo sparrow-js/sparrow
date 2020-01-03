@@ -105,7 +105,7 @@
       "files": 10,
       "fileExtensions": [],
       "whitelist": null,
-      "tmpdir": "/var/folders/j0/c7q04h3j6l50bjrddgf4_38m0000gn/T/egg-multipart-tmp/iceworks-server",
+      "tmpdir": "/var/folders/j0/c7q04h3j6l50bjrddgf4_38m0000gn/T/egg-multipart-tmp/sparrow-server",
       "cleanSchedule": {
         "cron": "0 30 4 * * *"
       }
@@ -175,8 +175,8 @@
       "allowMethods": "GET,PUT,POST,DELETE"
     },
     "env": "local",
-    "name": "iceworks-server",
-    "keys": "<String len: 34>",
+    "name": "sparrow-server",
+    "keys": "<String len: 33>",
     "cookies": {},
     "proxy": false,
     "maxIpsCount": 0,
@@ -185,9 +185,9 @@
     "ipHeaders": "x-forwarded-for",
     "hostHeaders": "",
     "pkg": {
-      "name": "iceworks-server",
+      "name": "sparrow-server",
       "version": "3.4.2",
-      "description": "iceworks server",
+      "description": "sparrow server",
       "files": [
         "dist/",
         "scripts/"
@@ -345,7 +345,7 @@
       "onerror": "<Function onerror>"
     },
     "logger": {
-      "dir": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server",
+      "dir": "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/sparrow-server",
       "encoding": "utf8",
       "env": "local",
       "level": "INFO",
@@ -425,7 +425,7 @@
     "alinode": {
       "logdir": "/tmp",
       "error_log": [
-        "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/iceworks-server/common-error.log",
+        "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/sparrow-server/common-error.log",
         "/Users/haitaowu/real-lab/sparrow/packages/sparrow-server/logs/stderr.log"
       ],
       "packages": [

@@ -233,7 +233,7 @@ export default class Page implements IPageModule {
     const dist = path.join(pageDir, fileName);
     const rendered = prettier.format(
       fileContent,
-      { singleQuote: true, trailingComma: 'es5', parser: this.prettierParseType }
+      { singleQuote: true, trailingComma: 'es5', parser: 'babel' }
     );
 
     await writeFileAsync(dist, rendered, 'utf-8');
