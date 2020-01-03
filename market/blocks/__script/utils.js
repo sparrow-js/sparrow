@@ -3,6 +3,15 @@ const fs = require('fs-extra');
 
 const blocksDir = path.join(__dirname, '..');
 
+const filterFolders = [
+  'src',
+  'node_modules',
+  'public',
+  '__script',
+  '_script',
+  'script'
+];
+
 const getBlockNames = async () => {
   const fileNames = await fs.readdir(blocksDir);
 

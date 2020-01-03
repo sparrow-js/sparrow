@@ -8,7 +8,7 @@ let page = null;
 
 const projectDir = process.cwd();
 const devServerUrl = 'http://localhost:8080/#/';
-const viewPath = poth.join(projectDir, 'src/views/Home.vue');
+const viewPath = path.join(projectDir, 'src/views/Home.vue');
 
 const insertTemplate = (blockName) => {
   const template = utils.getTemplate(blockName);
@@ -71,7 +71,12 @@ async function startScreenShot () {
   const blockNames = await utils.getBlockNames();
   blockNames.unshift('');
   devServer.run().then(() => {
-    screenshot(blockNames.shift, blockNames[0]);
+    const blockName = blockNames.shift();
+    const nextBlockName = blockNames[0];
+    screenshot(blockName, nextBlockName, 200, 200);
+    if (!nextBlockName) {
+      devServer.stop();
+    }
   });
 }
 

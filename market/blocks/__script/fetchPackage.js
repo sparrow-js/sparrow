@@ -9,14 +9,6 @@ const blocksDir = path.join(__dirname, '..');
 
 const packages = [];
 
-filterFolders = [
-  'src',
-  'node_modules',
-  'public',
-  '__script',
-  '_script',
-  'script'
-];
 const fetchPackage = async (blockName) => {
   const blocktPath = path.join(blocksDir, blockName);
   const packagePath = path.join(blocktPath, 'package.json');
@@ -25,7 +17,6 @@ const fetchPackage = async (blockName) => {
 }
 const fetchPackages = async () => {
   spinner.start('fetch antd demos');
-  const fileNames = await fs.readdir(blocksDir);
 
   const blockNames = await utils.getBlockNames();
   
