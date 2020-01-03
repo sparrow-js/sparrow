@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "node ./__script/fetchPackage.js"
+    "test": "node ./__script/devServer.js"
   },
   "dependencies": {
     "@vue-materials/basic-container": "^1.0.0",
@@ -25,6 +25,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
+    "execa": "^4.0.0",
     "fs-extra": "^8.1.0",
     "ora": "^4.0.3",
     "prettier": "^1.19.1",

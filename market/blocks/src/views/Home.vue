@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <BasicForm />
+    <div>test</div>
   </div>
 </template>
 
