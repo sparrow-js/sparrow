@@ -1,7 +1,18 @@
 <template>
   <div class="block">
-    <div class="block-preview">
-      <div class="block-preview__img"></div>
+    <div class="block__toolbar">
+      <div 
+        class="block__preview" 
+        style="background-image: url(https://gitee.com/ant-design/ant-design-blocks/raw/master/select-basic/snapshot.png);"
+      ></div>
+      <div class="block__operate">
+        <div style="margin-bottom: 4px;">
+          <el-button type="primary" size="small">添加组件</el-button>
+        </div>
+        <div>
+          <el-button size="small">预览图片</el-button>
+        </div>
+      </div>
     </div>
     <div class="block-content">
       <h2 class="block-title">form-基础表单</h2>
@@ -20,10 +31,36 @@ export default {
 </script>
 <style lang="scss" scoped>
 .block{
-  &-preview{
+  &__toolbar{
     background-color: #30303d;
     height: 150px;
+    position: relative;
   }
+  &__preview{
+    width: 100%;
+    height: 100%;
+    background-position: top center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: #fff;
+  }
+  &__operate{
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.65);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__operate:hover{
+    opacity: 1;
+  }
+
   &-content{
     background-color: #30303d;
     padding: 10px;

@@ -2,10 +2,12 @@
   <div class="dashboard">
     <div class="dashboard-tab">
       <el-tabs class="tab" v-model="activeName" @tab-click="handleTab">
-        <el-tab-pane label="组件" name="first"></el-tab-pane>
-        <el-tab-pane label="区块" name="second"></el-tab-pane>
-        <el-tab-pane label="模版" name="third"></el-tab-pane>
-        <el-tab-pane label="场景" name="fourth"></el-tab-pane>
+        <el-tab-pane 
+          v-for="tabItem in tabsMap" 
+          :key="tabItem.id"
+          :label="tabItem.title"
+          :name="tabItem.id"
+        ></el-tab-pane>
       </el-tabs>
       <div class="dashboard-tab__operate--right">
         <el-input
@@ -19,13 +21,15 @@
     </div>
     <el-container>
       <el-container>
-        <el-aside width="200px" class="dashboard-side">
+
+        <!-- <el-aside width="200px" class="dashboard-side">
           <sidebar></sidebar>
-        </el-aside>
+        </el-aside> -->
+
         <el-container>
           <el-main>
             <div class="dashboard-blocks">
-              <block-box></block-box>
+              <block-box :list="list"></block-box>
             </div>
           </el-main>
         </el-container>
@@ -40,7 +44,27 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Sidebar from './Sidebar.vue';
 import BlockBox from './BlockBox.vue';
-import { AppModule } from '@/store/modules/app'
+import { AppModule } from '@/store/modules/app';
+import socket from '@/util/socket.js';
+
+const tabsMap = [
+  {
+    title: '组件',
+    value: 0,
+  },
+  {
+    title: '区块',
+    value: 1,
+  },
+  {
+    title: '模版',
+    value: 2,
+  },
+  {
+    title: '模版',
+    value: 3,
+  }
+];
 
 @Component({
   components: {
@@ -51,12 +75,20 @@ import { AppModule } from '@/store/modules/app'
 
 export default class Dashboard extends Vue {
   // show
-  private activeName = 'first';
+  private activeName = 0;
   private searchText = '';
+  private tabsMap = tabsMap;
+
+  private list = [];
   
+  async created() {
+    const result = await socket.emit('generator.data.getComponentList');
+    console.log(result);
+    console.log('********1*******');
+  }
 
   private handleTab () {
-
+    
   }
 
   private handleClose () {

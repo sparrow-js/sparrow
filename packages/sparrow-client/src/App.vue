@@ -55,14 +55,14 @@ export default class App extends Vue {
         if (!data.handler) return;
         const handlerFirst = data.handler.split('.')[0];
         if (handlerFirst !== 'client') return;
-        console.log(data);
         if (data.handler === 'client.dashboard.show') {
+          AppModule.InsertData(data);
           AppModule.SetShowDashboard(true);
         }
      });
   }
 
-  private selectedHandler(data) {
+  private async selectedHandler(data) {
     console.log(data);
   }
 
