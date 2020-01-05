@@ -47,6 +47,7 @@ import BlockBox from './BlockBox.vue';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
 
+const materielData = {};
 const tabsMap = [
   {
     title: '组件',
@@ -72,7 +73,6 @@ const tabsMap = [
     BlockBox
   }
 })
-
 export default class Dashboard extends Vue {
   // show
   private activeName = 0;
@@ -83,8 +83,9 @@ export default class Dashboard extends Vue {
   
   async created() {
     const result = await socket.emit('generator.data.getComponentList');
-    console.log(result);
-    console.log('********1*******');
+    const {list} = result;
+    materielData[0] = list;
+    this.list = list;
   }
 
   private handleTab () {

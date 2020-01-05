@@ -7,7 +7,7 @@
       ></div>
       <div class="block__operate">
         <div style="margin-bottom: 4px;">
-          <el-button type="primary" size="small">添加组件</el-button>
+          <el-button type="primary" size="small" @click="openComponentDialog">添加组件</el-button>
         </div>
         <div>
           <el-button size="small">预览图片</el-button>
@@ -15,18 +15,55 @@
       </div>
     </div>
     <div class="block-content">
-      <h2 class="block-title">form-基础表单</h2>
-      <p class="block-des">用户填写必须的信息以注册新用户。</p>
+      <h2 class="block-title">{{info.title}}</h2>
+      <p class="block-des">{{info.description}}</p>
       <div class="block-label__box">
-        <span class="block-label__item">标签1</span>
-        <span class="block-label__item">标签2</span>
+        <span 
+          class="block-label__item" 
+          v-for="(tagItem, index) in info.tags"
+          :key="index"
+        >{{tagItem}}</span>
       </div>
     </div>
+    <el-dialog
+      title="添加"
+      :visible.sync="dialogVisible"
+      :modal-append-to-body="false"
+      width="300px"
+    >
+      <div class="add-component">
+        <span class="add-component__label">变量名:</span>
+        <el-input v-model="name" placeholder="请输入内容"></el-input>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="addComponent">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
+
+@Component({})
+export default class BlockItem extends Vue {
+  @Prop({ default: () => {} }) private info: any;
+
+  private dialogVisible = false;
+  private name = '';
+
+  private openComponentDialog () {
+    this.dialogVisible = true;
+  }
   
+  private addComponent () {
+    console.log(this.info);
+    console.log('************1**********');
+  }
+
+  private handleClose () {
+
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -92,6 +129,14 @@ export default {
     margin-right: 4px;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.45);
+  }
+}
+.add-component{
+  display: flex;
+  flex-direction: column;
+  &__label{
+    text-align: left;
+    margin-bottom: 3px;
   }
 }
 </style>

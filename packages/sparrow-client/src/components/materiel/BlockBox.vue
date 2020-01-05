@@ -1,33 +1,27 @@
 <template>
   <div class="blockbox">
     <ul class="blockbox-list">
-      <li class="blockbox-item">
-        <block-item></block-item>
-      </li>
-      <li class="blockbox-item">
-        <block-item></block-item>
-      </li>
-      <li class="blockbox-item">
-        <block-item></block-item>
-      </li>
-      <li class="blockbox-item">
-        <block-item></block-item>
-      </li>
-      <li class="blockbox-item">
-        <block-item></block-item>
-      </li>
-      <li class="blockbox-item">
-        <block-item></block-item>
+      <li 
+        class="blockbox-item"
+        v-for="item in list"
+        :key="item.key"
+      >
+        <block-item :info="item"></block-item>
       </li>
     </ul>
   </div>
 </template>
-<script>
-import BlockItem from './BlockItem';
-export default {
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import BlockItem from './BlockItem.vue';
+
+@Component({
   components: {
     BlockItem
   }
+})
+export default class BlockBox extends Vue{
+  @Prop({default: () => []}) private list: any;
 }
 </script>
 <style lang="scss" scoped>
