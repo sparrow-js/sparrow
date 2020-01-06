@@ -4,15 +4,15 @@ import * as boxFragment from '../fragment/box'
 
 export default class Layout implements IBaseBox{
   $fragment: any;
-  components: any;
+  components: any = {};
 
   constructor (data: any) {
     const { boxIndex, params } = data;
     this.$fragment = cheerio.load(boxFragment.box(boxIndex), {
-      xmlMode: true
+      xmlMode: true,
+      decodeEntities: false
     });
     
-
     const layoutFragment = boxFragment.layout(params.col, params.row);
     const eform = boxFragment.eform(layoutFragment)
     if (params.isForm) {
@@ -30,13 +30,14 @@ export default class Layout implements IBaseBox{
         name: 'name'
       }
     */
-    // this.components[]
-    console.log(data);
     const { key, boxData, name } = data;
-    console.log('**************');
-    const obj = require(`../component/${key}`).default;
-    console.log(new obj());
-    // const fragment = components[data.key].fragment();
+    const { params } = boxData;
+    const dynamicObj = require(`../component/${key}`).default;
+    const componentKey = `${params.row}_${params.col}`
+    this.components[componentKey] = new dynamicObj({
+      'slot': componentKey,
+    });
+    this.render();
   } 
 
   public getBoxFragment(): any {
@@ -44,6 +45,12 @@ export default class Layout implements IBaseBox{
   }
 
   render () {
-
+    this.$fragment('layout').empty();
+    Object
+      .keys(this.components)
+      .forEach(item => {
+        const component = this.components[item];
+        this.$fragment('layout').append(component.getFragment().html());
+      });
   }
 }

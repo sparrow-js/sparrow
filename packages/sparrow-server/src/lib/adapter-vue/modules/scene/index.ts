@@ -38,7 +38,8 @@ export default class Scene {
     const scriptStr = fileStr.match(/(?<=<script>)[\s\S]*(?=<\/script>)/g)[0];
     
     this.$ = cheerio.load(templateStr, {
-      xmlMode: true
+      xmlMode: true,
+      decodeEntities: false
     });
     this.scriptData = parser.parse(scriptStr, {
       sourceType: 'module',
@@ -65,9 +66,9 @@ export default class Scene {
   public addComponent (params) {
     const {boxIndex, data} = params;
     this.boxs[boxIndex].addComponent(data);
+    this.renderPage();
     return {
-      status: 0,
-      progress: '0%'
+      status: 0
     };
   }
 

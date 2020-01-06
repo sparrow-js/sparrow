@@ -57,10 +57,13 @@ export default {
   border-right: 1px dashed #ccc;
   border-top: 1px dashed #ccc;
   &-col{
-    height: 48px;
+    height: 60px;
     width: 100%;
     border-bottom: 1px dashed #ccc;
     border-right: 1px dashed #ccc;
+    padding: 6px;
+    box-sizing: border-box;
+    overflow: hidden;
   }
   &-edit{
     width: 100%;

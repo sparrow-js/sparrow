@@ -1,6 +1,6 @@
 export function eform (content: string) {
   return `
-    <el-form label-width="80px">${content}</el-form>
+    <el-form label-width="100px">${content}</el-form>
   `;
 }
 

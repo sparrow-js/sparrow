@@ -72,9 +72,9 @@ export default class BlockItem extends Vue {
         name: this.name
       }
     };
-    const result = await socket.emit('generator.scene.addComponent', params);
-    // console.log(result);
-    // console.log('*******1*****')
+    await socket.emit('generator.scene.addComponent', params);
+    this.dialogVisible = false;
+    AppModule.SetShowDashboard(false);
   }
 
   private handleClose () {

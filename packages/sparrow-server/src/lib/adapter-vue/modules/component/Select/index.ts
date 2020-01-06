@@ -1,13 +1,9 @@
-import * as cheerio from 'cheerio';
+import Base from '../Base';
 
-export default class InputNumber {
-  public type = 'form';
-  public $fragment: any;
+export default class Select extends Base {
 
-  constructor () {
-    this.$fragment = cheerio.load(this.fragment(), {
-      xmlMode: true
-    });
+  constructor (attrs: any) {
+    super(attrs)
   }
 
   public fragment () {
@@ -19,9 +15,5 @@ export default class InputNumber {
         </el-select>
       </el-form-item>
     `;
-  }
-
-  public getFragment () {
-    return this.$fragment;
   }
 }

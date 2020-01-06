@@ -7,7 +7,6 @@ const filterFolders = [
   'src',
   'node_modules',
   'public',
-  '__script',
   '_script',
   'script'
 ];

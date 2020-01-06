@@ -1,24 +1,16 @@
-import * as cheerio from 'cheerio';
+import Base from '../Base';
 
-export default class InputNumber {
-  public type = 'form';
-  public $fragment: any;
+export default class InputNumber extends Base{
 
-  constructor () {
-    this.$fragment = cheerio.load(this.fragment(), {
-      xmlMode: true
-    });
+  constructor (attrs: any) {
+    super(attrs)
   }
 
   public fragment () {
     return `
-      <el-form-item label="基础数字框" prop="name">
+      <el-form-item label="数字文本框" prop="name">
         <el-input-number :min="1" :max="10"></el-input-number>
       </el-form-item>
     `;
-  }
-
-  public getFragment () {
-    return this.$fragment;
   }
 }

@@ -1,24 +1,15 @@
-import * as cheerio from 'cheerio';
+import Base from '../Base';
 
-export default class InputNumber {
-  public type = 'form';
-  public $fragment: any;
-
-  constructor () {
-    this.$fragment = cheerio.load(this.fragment(), {
-      xmlMode: true
-    });
+export default class Textarea extends Base {
+  constructor (attrs: any) {
+    super(attrs)
   }
 
   public fragment () {
     return `
       <el-form-item label="活动形式">
-        <el-input type="textarea" v-model="form.desc"></el-input>
+        <el-input type="textarea"></el-input>
       </el-form-item>
     `;
-  }
-
-  public getFragment () {
-    return this.$fragment;
   }
 }

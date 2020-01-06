@@ -10,5 +10,4 @@ export default class Data {
   public getComponentList () {
     return component;
   }
-
 }

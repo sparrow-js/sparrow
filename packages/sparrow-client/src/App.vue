@@ -51,16 +51,16 @@ export default class App extends Vue {
   }
 
   created() {
-     window.addEventListener("message", async event => {
-        const {data} = event;
-        if (!data.handler) return;
-        const handlerFirst = data.handler.split('.')[0];
-        if (handlerFirst !== 'client') return;
-        if (data.handler === 'client.dashboard.show') {
-          AppModule.InsertData(data);
-          AppModule.SetShowDashboard(true);
-        }
-     });
+    window.addEventListener("message", async event => {
+      const {data} = event;
+      if (!data.handler) return;
+      const handlerFirst = data.handler.split('.')[0];
+      if (handlerFirst !== 'client') return;
+      if (data.handler === 'client.dashboard.show') {
+        AppModule.InsertData(data);
+        AppModule.SetShowDashboard(true);
+      }
+    });
   }
 
   private async selectedHandler(data) {
@@ -123,10 +123,10 @@ export default class App extends Vue {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 10px;
-      color: #409eff;
+      margin-bottom: 6px;
+      color: #999;
       font-size: 14px;
-      margin-right: 6px;
+      margin-right: 16px;
       &:hover{
         color: #53a7fd;
       }
