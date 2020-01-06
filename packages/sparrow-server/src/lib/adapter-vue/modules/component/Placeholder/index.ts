@@ -1,3 +1,5 @@
+import * as cheerio from 'cheerio';
+
 export default class Placeholder {
   public type = 'form';
   public $fragment: any;

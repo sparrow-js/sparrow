@@ -1,7 +1,6 @@
 import IBaseBox from './IBaseBox';
 import * as cheerio from 'cheerio';
 import * as boxFragment from '../fragment/box'
-import components from '../fragment/scene/components'
 
 export default class Layout implements IBaseBox{
   $fragment: any;
@@ -12,6 +11,7 @@ export default class Layout implements IBaseBox{
     this.$fragment = cheerio.load(boxFragment.box(boxIndex), {
       xmlMode: true
     });
+    
 
     const layoutFragment = boxFragment.layout(params.col, params.row);
     const eform = boxFragment.eform(layoutFragment)
@@ -34,7 +34,7 @@ export default class Layout implements IBaseBox{
     console.log(data);
     const { key, boxData, name } = data;
     console.log('**************');
-    const obj = require(`../component/${key}`);
+    const obj = require(`../component/${key}`).default;
     console.log(new obj());
     // const fragment = components[data.key].fragment();
   } 
