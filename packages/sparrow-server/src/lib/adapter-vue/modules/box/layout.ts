@@ -5,6 +5,7 @@ import components from '../fragment/scene/components'
 
 export default class Layout implements IBaseBox{
   $fragment: any;
+  components: any;
 
   constructor (data: any) {
     const { boxIndex, params } = data;
@@ -22,10 +23,27 @@ export default class Layout implements IBaseBox{
   }
   
   addComponent (data: any) {
-    const fragment = components[data.key].fragment();
+    /**
+      {
+        boxData: { type: 'layout', params: { row: 0, col: 0 } },
+        key: 'Placeholder',
+        name: 'name'
+      }
+    */
+    // this.components[]
+    console.log(data);
+    const { key, boxData, name } = data;
+    console.log('**************');
+    const obj = require(`../component/${key}`);
+    console.log(new obj());
+    // const fragment = components[data.key].fragment();
   } 
 
   public getBoxFragment(): any {
     return this.$fragment;
+  }
+
+  render () {
+
   }
 }

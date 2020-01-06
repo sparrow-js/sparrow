@@ -1,6 +1,14 @@
-export default {
-  type: 'form',
-  fragment () {
+export default class InputNumber {
+  public type = 'form';
+  public $fragment: any;
+
+  constructor () {
+    this.$fragment = cheerio.load(this.fragment(), {
+      xmlMode: true
+    });
+  }
+
+  public fragment () {
     return `
       <el-form-item label="特殊资源">
         <el-radio-group v-model="form.resource">
@@ -9,5 +17,9 @@ export default {
         </el-radio-group>
       </el-form-item>
     `;
+  }
+
+  public getFragment () {
+    return this.$fragment;
   }
 }

@@ -1,6 +1,14 @@
-export default {
-  type: 'form',
-  fragment () {
+export default class InputNumber {
+  public type = 'form';
+  public $fragment: any;
+
+  constructor () {
+    this.$fragment = cheerio.load(this.fragment(), {
+      xmlMode: true
+    });
+  }
+
+  public fragment () {
     return `
       <el-form-item label="活动区域">
         <el-select placeholder="请选择">
@@ -10,4 +18,8 @@ export default {
       </el-form-item>
     `;
   }
-};
+
+  public getFragment () {
+    return this.$fragment;
+  }
+}

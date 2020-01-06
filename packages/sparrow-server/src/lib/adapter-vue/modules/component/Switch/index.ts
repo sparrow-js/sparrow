@@ -1,6 +1,4 @@
-import * as cheerio from 'cheerio';
-
-export default class BaseInput {
+export default class InputNumber {
   public type = 'form';
   public $fragment: any;
 
@@ -10,10 +8,10 @@ export default class BaseInput {
     });
   }
 
-  private fragment () {
+  public fragment () {
     return `
-      <el-form-item label="基础文本框" prop="name">
-        <el-input></el-input>
+      <el-form-item label="即时配送">
+        <el-switch></el-switch>
       </el-form-item>
     `;
   }
@@ -21,5 +19,4 @@ export default class BaseInput {
   public getFragment () {
     return this.$fragment;
   }
-
 }

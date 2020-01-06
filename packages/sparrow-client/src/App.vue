@@ -9,6 +9,7 @@
             <div class="toolbar">
               <div class="toolbar__item toolbar__preview">预览</div>
               <div class="toolbar__item toolbar__export">导出</div>
+              <div class="toolbar__item toolbar__export">源代码</div>
             </div>
             <div class="editor-box">
               <iframe
@@ -118,14 +119,14 @@ export default class App extends Vue {
     display: flex;
     flex-direction: row;
     &__item{
-      width: 56px;
       height: 32px;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
       color: #409eff;
       font-size: 14px;
+      margin-right: 6px;
       &:hover{
         color: #53a7fd;
       }

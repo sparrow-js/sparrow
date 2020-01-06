@@ -1,6 +1,14 @@
-export default {
-  type: 'form',
-  fragment () {
+export default class CheckboxGroup {
+  public type = 'form';
+  public $fragment: any;
+
+  constructor () {
+    this.$fragment = cheerio.load(this.fragment(), {
+      xmlMode: true
+    });
+  }
+
+  public fragment () {
     return `
       <el-form-item label="基础checkbox">
         <el-checkbox-group v-model="form.type">
@@ -11,5 +19,9 @@ export default {
         </el-checkbox-group>
       </el-form-item>
     `;
+  }
+  
+  public getFragment () {
+    return this.$fragment;
   }
 }
