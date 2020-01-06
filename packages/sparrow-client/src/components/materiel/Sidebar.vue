@@ -24,12 +24,8 @@
 <script>
 export default {
   methods: {
-      handleOpen(key, keyPath) {
-        window.console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        window.console.log(key, keyPath);
-      }
+      handleOpen(key, keyPath) {},
+      handleClose(key, keyPath) {}
     }
 }
 </script>

@@ -58,13 +58,9 @@ const tabsMap = [
     value: 1,
   },
   {
-    title: '模版',
+    title: '场景',
     value: 2,
   },
-  {
-    title: '模版',
-    value: 3,
-  }
 ];
 
 @Component({

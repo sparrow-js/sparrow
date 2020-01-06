@@ -44,6 +44,8 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import { AppModule } from '@/store/modules/app';
+import socket from '@/util/socket.js';
 
 @Component({})
 export default class BlockItem extends Vue {
@@ -51,14 +53,28 @@ export default class BlockItem extends Vue {
 
   private dialogVisible = false;
   private name = '';
+  // insertData
+
+   get insertData () {
+    return AppModule.insertData;
+  }
 
   private openComponentDialog () {
     this.dialogVisible = true;
   }
   
-  private addComponent () {
-    console.log(this.info);
-    console.log('************1**********');
+  private async addComponent () {
+    const params = {
+      boxIndex: this.insertData.boxIndex,
+      data: {
+        boxData: this.insertData.data,
+        key: this.info.key,
+        name: this.name
+      }
+    };
+    const result = await socket.emit('generator.scene.addComponent', params);
+    // console.log(result);
+    // console.log('*******1*****')
   }
 
   private handleClose () {

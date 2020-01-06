@@ -62,9 +62,17 @@ export default class Scene {
     this.boxs.splice(index, 1);
   }
 
+  public addComponent (params) {
+    const {boxIndex, data} = params;
+    this.boxs[boxIndex].addComponent(data);
+    return {
+      status: 0,
+      progress: '0%'
+    };
+  }
+
   public renderPage () {
     this.$('.home').empty();
-    // this.boxs
     this.boxs.forEach((item, index) => {
       const blockListStr = blockList(index, item.getBoxFragment().html());
       this.$('.home').append(blockListStr);

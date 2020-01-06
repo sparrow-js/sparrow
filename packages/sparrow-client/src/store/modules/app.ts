@@ -3,13 +3,19 @@ import store from '@/store'
 
 export interface IAppState {
   showDashboard: boolean,
-  insertData: any,
+  insertData: {
+    boxIndex: number,
+    data: any,
+  },
 }
 
 @Module({ dynamic: true, store, name: 'app' })
 class App extends VuexModule implements IAppState {
   public showDashboard = false;
-  public insertData = {};
+  public insertData = {
+    boxIndex: -1,
+    data: {}
+  };
 
   @Mutation
   private SHOW_DASHBOARD (showDashboard: boolean) {
