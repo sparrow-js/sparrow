@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/heatmap-chart-block",
+  "name": "@sparrow-vue/heatmap-chart-block",
   "version": "1.0.0",
   "description": "v-chart 高德地图热力图",
-  "author": "mowatermelon <neefoxmo@gmail.com>",
+  "author": "",
   "files": [
     "src/",
     "lib/"

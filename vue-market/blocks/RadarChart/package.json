@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/radar-chart-block",
+  "name": "@sparrow-vue/radar-chart-block",
   "version": "1.0.0",
   "description": "v-chart 雷达图",
-  "author": "mowatermelon <neefoxmo@gmail.com>",
+  "author": "",
   "files": [
     "src/",
     "lib/"

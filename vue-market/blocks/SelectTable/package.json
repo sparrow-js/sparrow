@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/select-table-block",
+  "name": "@sparrow-vue/select-table-block",
   "version": "1.0.0",
   "description": "多选表格",
-  "author": "Yuan Fu <fuyuanx@gmail.com>",
+  "author": "",
   "files": [
     "src/",
     "lib/"

@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/waterfall-chart-block",
+  "name": "@sparrow-vue/waterfall-chart-block",
   "version": "1.0.0",
   "description": "v-chart 瀑布图",
-  "author": "Yuan Fu <fuyuanx@gmail.com>",
+  "author": "",
   "files": [
     "src/",
     "lib/"

@@ -2,7 +2,7 @@
   "name": "@vue-materials/normal-toggle-chart-block",
   "version": "1.0.0",
   "description": "v-chart 自带的图表切换",
-  "author": "mowatermelon <neefoxmo@gmail.com>",
+  "author": "",
   "files": [
     "src/",
     "lib/"

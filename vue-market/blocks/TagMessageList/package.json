@@ -1,10 +1,10 @@
 {
-  "name": "@vue-materials/tag-message-list-block",
+  "name": "@sparrow-vue/tag-message-list-block",
   "version": "1.0.0",
   "description": "标签消息列表",
   "author": {
-    "name": "sjy",
-    "email": "shijianyue47@gmail.com"
+    "name": "",
+    "email": ""
   },
   "files": [
     "src/",

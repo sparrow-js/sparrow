@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/gauge-chart-block",
+  "name": "@sparrow-vue/gauge-chart-block",
   "version": "1.0.0",
   "description": "v-chart 仪表盘",
-  "author": "mowatermelon <neefoxmo@gmail.com>",
+  "author": "",
   "files": [
     "src/",
     "lib/"

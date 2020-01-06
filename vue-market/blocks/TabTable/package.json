@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/tab-table-block",
+  "name": "@sparrow-vue/tab-table-block",
   "version": "1.0.0",
   "description": "基于element的标签页表格组合",
-  "author": "james-cain <m15960192140@163.com>",
+  "author": "",
   "files": [
     "src/",
     "lib/"

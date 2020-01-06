@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/user-login-block",
+  "name": "@sparrow-vue/user-login-block",
   "version": "1.0.1",
   "description": "基于element-ui组件的用户登录界面",
-  "author": "smallwei <1634566606@qq.com>",
+  "author": "",
   "files": [
     "src/",
     "lib/"

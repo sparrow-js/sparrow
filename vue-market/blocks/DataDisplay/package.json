@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/data-display-block",
+  "name": "@sparrow-vue/data-display-block",
   "version": "1.0.0",
   "description": "用于简单数据的模板展示",
-  "author": "smallwei <1634566606@qq.com>",
+  "author": "",
   "files": [
     "src/",
     "lib/"

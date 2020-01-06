@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/histogram-chart-block",
+  "name": "@sparrow-vue/histogram-chart-block",
   "version": "1.0.0",
   "description": "v-charts 柱状图",
-  "author": "ice-admin@alibaba-inc.com",
+  "author": "",
   "files": [
     "src/",
     "lib/"

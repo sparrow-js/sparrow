@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/simple-footer-block",
+  "name": "@sparrow-vue/simple-footer-block",
   "version": "0.1.0",
   "description": "LOGO和导航组合的页脚",
-  "author": "savokiss <jaynaruto@qq.com>",
+  "author": "",
   "files": [
     "src/",
     "lib/"

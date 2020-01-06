@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/line-chart-block",
+  "name": "@sparrow-vue/line-chart-block",
   "version": "1.0.0",
   "description": "v-charts 折线图",
-  "author": "ice-admin@alibaba-inc.com",
+  "author": "",
   "files": [
     "src/",
     "lib/"

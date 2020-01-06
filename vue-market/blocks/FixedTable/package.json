@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/fixed-table-block",
+  "name": "@sparrow-vue/fixed-table-block",
   "version": "1.0.0",
   "description": "固定列和表头的表格",
-  "author": "ice-admin@alibaba-inc.com",
+  "author": "",
   "files": [
     "src/",
     "lib/"

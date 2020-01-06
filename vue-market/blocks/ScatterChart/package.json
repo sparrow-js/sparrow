@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/scatter-chart-block",
+  "name": "@sparrow-vue/scatter-chart-block",
   "version": "1.0.0",
   "description": "v-chart 散点图",
-  "author": "mowatermelon <neefoxmo@gmail.com>",
+  "author": "",
   "files": [
     "src/",
     "lib/"

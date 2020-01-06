@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/not-permission-block",
+  "name": "@sparrow-vue/not-permission-block",
   "version": "1.0.1",
   "description": "基于element-ui组件的无权限提示",
-  "author": "mowatermelon <neefoxmo@gmail.com>",
+  "author": "",
   "files": ["src/", "lib/"],
   "repository": {
     "type": "git",

@@ -1,8 +1,8 @@
 {
-  "name": "@vue-materials/ring-chart-block",
+  "name": "@sparrow-vue/ring-chart-block",
   "version": "1.0.0",
   "description": "v-chart 环图",
-  "author": "mowatermelon <neefoxmo@gmail.com>",
+  "author": "",
   "files": [
     "src/",
     "lib/"
