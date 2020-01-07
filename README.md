@@ -1,1 +1,1 @@
-### 源代码可视化编程工具，有缘人感兴趣一起开发，联系方式：sparrowwht7#gmail.com
+### 源代码可视化编程工具, email: sparrowwht7#gmail.com
