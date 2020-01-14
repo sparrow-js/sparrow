@@ -16,6 +16,7 @@ class App extends VuexModule implements IAppState {
     boxIndex: -1,
     data: {}
   };
+  public dashboardTabIndex = 0;
 
   @Mutation
   private SHOW_DASHBOARD (showDashboard: boolean) {
@@ -27,6 +28,7 @@ class App extends VuexModule implements IAppState {
     this.insertData = insertData;
   }
 
+
   @Action
   public SetShowDashboard(showDashboard: boolean) {
     this.SHOW_DASHBOARD(showDashboard);
@@ -36,5 +38,7 @@ class App extends VuexModule implements IAppState {
   public InsertData (insertData: any) {
     this.INSERT_DATA(insertData);
   }
+
+
 }
 export const AppModule = getModule(App)

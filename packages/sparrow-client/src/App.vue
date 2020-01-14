@@ -6,11 +6,7 @@
         <el-main>
           <div class="main">
             <logo></logo>
-            <div class="toolbar">
-              <div class="toolbar__item toolbar__preview">预览</div>
-              <div class="toolbar__item toolbar__export">导出</div>
-              <div class="toolbar__item toolbar__export">源代码</div>
-            </div>
+            <top-toolbar></top-toolbar>
             <div class="editor-box">
               <iframe
                 id="viewContent"
@@ -25,9 +21,12 @@
     </el-container>
     <div 
       class="dashboard-box"
-      v-show="showDashboard" 
+      v-if="showDashboard"
     >
-      <dashboard :show="showDashboard" @on-selected="selectedHandler(data)"></dashboard>
+      <dashboard 
+        @on-selected="selectedHandler(data)"
+        :tab-index="dashboardTabIndex"
+      ></dashboard>
     </div>
   </div>
 </template>
@@ -37,14 +36,17 @@ import Logo from '@/components/logo.vue';
 import Dashboard from '@/components/materiel/Dashboard.vue';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
+import TopToolbar from '@/components/TopToolbar.vue'
 
 @Component({
   components: {
     Logo,
     Dashboard,
+    TopToolbar
   }
 })
 export default class App extends Vue {
+  private dashboardTabIndex = '0';
 
   get showDashboard () {
     return AppModule.showDashboard;
@@ -57,8 +59,12 @@ export default class App extends Vue {
       const handlerFirst = data.handler.split('.')[0];
       if (handlerFirst !== 'client') return;
       if (data.handler === 'client.dashboard.show') {
+        console.log('insert-data', data);
         AppModule.InsertData(data);
         AppModule.SetShowDashboard(true);
+        if (['block'].includes(data.data.type)) {
+          this.dashboardTabIndex = '1';
+        }
       }
     });
   }
@@ -115,21 +121,5 @@ export default class App extends Vue {
     height: 100%;
     border: none;
   }
-  .toolbar{
-    display: flex;
-    flex-direction: row;
-    &__item{
-      height: 32px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 6px;
-      color: #999;
-      font-size: 14px;
-      margin-right: 16px;
-      &:hover{
-        color: #53a7fd;
-      }
-    }
-  }
+
 </style>  

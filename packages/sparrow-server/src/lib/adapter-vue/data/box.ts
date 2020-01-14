@@ -6,7 +6,7 @@ export default {
     },
     {
       id: 10002,
-      name: '搜索'
+      name: '区块'
     },
     {
       id: 10003,

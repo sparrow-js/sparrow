@@ -3,7 +3,7 @@ export function eform (content: string) {
     <el-form label-width="100px">${content}</el-form>
   `;
 }
-
+// 布局
 export function layout (col: number = 3, row: number = 2) {
   return `
     <layout :col="${col}" :row="${row}"></layout>
@@ -13,5 +13,12 @@ export function layout (col: number = 3, row: number = 2) {
 export function box (index: number) {
   return `
     <box :index="${index}" class="block-item"></box>
+  `;
+}
+
+// 区块
+export function block () {
+  return `
+    <block></block>
   `;
 }

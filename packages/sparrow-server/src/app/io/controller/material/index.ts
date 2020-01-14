@@ -1,0 +1,42 @@
+import * as rp from 'request-promise-native';
+const blockUrl = 'https://raw.githubusercontent.com/sparrow-js/vue-market/master/blocks/block.json';
+
+export default (app) => {
+  return class MaterialController extends app.Controller {
+    public async getBlocks (ctx) {
+      const data = await request(blockUrl);
+      const formatData = data.map((item) => {
+        const {blockConfig, name, description} = item;
+        return {
+          key: name,
+          title: blockConfig.title,
+          description: description,
+          img: blockConfig.screenshot,
+          tags: blockConfig.blockConfig,
+          originData: item,
+        };
+      });
+      console.log(formatData);
+      return {
+        list: formatData,
+      }
+    }
+  }
+}
+
+const request = async (uri: string, options = {}) => {
+  options = Object.assign(
+    {
+      uri,
+      json: true,
+      rejectUnauthorized: false,
+      headers: {
+        'Cache-Control': 'no-cache',
+      },
+      timeout: 5000,
+    },
+    options
+  );
+
+  return await rp(options);
+};

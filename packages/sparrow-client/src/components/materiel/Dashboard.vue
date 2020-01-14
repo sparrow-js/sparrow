@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <div class="dashboard-tab">
-      <el-tabs class="tab" v-model="activeName" @tab-click="handleTab">
+      <el-tabs class="tab" v-model.number="activeName" @tab-click="handleTab">
         <el-tab-pane 
           v-for="tabItem in tabsMap" 
           :key="tabItem.id"
@@ -29,7 +29,7 @@
         <el-container>
           <el-main>
             <div class="dashboard-blocks">
-              <block-box :list="list"></block-box>
+              <block-box :list="list" :type="activeName"></block-box>
             </div>
           </el-main>
         </el-container>
@@ -71,7 +71,10 @@ const tabsMap = [
 })
 export default class Dashboard extends Vue {
   // show
-  private activeName = 0;
+  @Prop({ default: '0' }) private tabIndex : string;
+
+
+  private activeName = this.tabIndex || '0';
   private searchText = '';
   private tabsMap = tabsMap;
 
@@ -81,7 +84,9 @@ export default class Dashboard extends Vue {
     const result = await socket.emit('generator.data.getComponentList');
     const {list} = result;
     materielData[0] = list;
-    this.list = list;
+    const blockList = await socket.emit('material.index.getBlocks');
+    materielData[1] = blockList.list;
+    this.list = materielData[this.activeName];
   }
 
   private handleTab () {

@@ -8,6 +8,7 @@ export default (app: Application) => {
 
   const routers: [string, () => {}][] = [
     ['home.project.list', home.project.list],
+    ['material.index.getBlocks', material.index.getBlocks]
   ];
 
   routers.forEach(([eventName, handle]) => {

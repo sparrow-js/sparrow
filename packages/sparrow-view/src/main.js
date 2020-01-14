@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import box, { Event } from '@sparrow/box'
+import box, { Event } from '@sparrow-vue/boxs'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './styles/base.scss';

@@ -6,7 +6,7 @@
 </template>
 <script>
 import message from './utils/message';
-import { Event } from '@sparrow/box'
+import { Event } from '@sparrow-vue/boxs'
 
 export default {
   data () {

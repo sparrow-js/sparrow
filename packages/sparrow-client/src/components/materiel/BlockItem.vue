@@ -50,6 +50,7 @@ import socket from '@/util/socket.js';
 @Component({})
 export default class BlockItem extends Vue {
   @Prop({ default: () => {} }) private info: any;
+  @Prop({ default: () => {} }) private type: string|number;
 
   private dialogVisible = false;
   private name = '';
@@ -72,7 +73,11 @@ export default class BlockItem extends Vue {
         name: this.name
       }
     };
-    await socket.emit('generator.scene.addComponent', params);
+    if (this.type === 0) {
+      await socket.emit('generator.scene.addComponent', params);
+    } else {
+      await socket.emit('generator.scene.addBlock', params);
+    }
     this.dialogVisible = false;
     AppModule.SetShowDashboard(false);
   }

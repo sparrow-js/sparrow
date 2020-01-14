@@ -97,10 +97,7 @@
     "cov": "npm-run-all --continue-on-error generate:project midway_cov rm:project",
     "ci": "npm run cov",
     "build": "midway-bin build -c",
-    "prepublishOnly": "npm run build",
-    "generate:project": "node ./scripts/generateProject.js",
-    "rm:project": "node ./scripts/removeProject.js",
-    "test1": "node ./dist/util/index.js"
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
