@@ -70,7 +70,8 @@ export default class BlockItem extends Vue {
       data: {
         boxData: this.insertData.data,
         key: this.info.key,
-        name: this.name
+        name: this.name,
+        originData: this.info.originData
       }
     };
     if (this.type === 0) {

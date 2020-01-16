@@ -12,7 +12,6 @@ import Box from '../box'
 const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
 
-
 export default class Scene {
   boxs: any = [];
   blocks: any;
@@ -72,11 +71,21 @@ export default class Scene {
     };
   }
 
+  public async addBlock (params) {
+    const {boxIndex, data} = params;
+    await this.boxs[boxIndex].addBlock(data);
+    this.renderPage();
+  }
+
   public renderPage () {
     this.$('.home').empty();
     this.boxs.forEach((item, index) => {
       const blockListStr = blockList(index, item.getBoxFragment().html());
       this.$('.home').append(blockListStr);
+      if (item.insertComponents && item.insertComponents.length) {
+        console.log('******instert******');
+        console.log(item.insertComponents);
+      }
     });
     this.$('.home').append(initBlock(this.boxs.length));
     this.writeTemplate();

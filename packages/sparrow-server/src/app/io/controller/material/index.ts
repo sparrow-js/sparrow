@@ -8,7 +8,7 @@ export default (app) => {
       const formatData = data.map((item) => {
         const {blockConfig, name, description} = item;
         return {
-          key: name,
+          key: blockConfig.name,
           title: blockConfig.title,
           description: description,
           img: blockConfig.screenshot,
@@ -16,7 +16,6 @@ export default (app) => {
           originData: item,
         };
       });
-      console.log(formatData);
       return {
         list: formatData,
       }

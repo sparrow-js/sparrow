@@ -23,13 +23,6 @@ export default class Layout implements IBaseBox{
   }
   
   addComponent (data: any) {
-    /**
-      {
-        boxData: { type: 'layout', params: { row: 0, col: 0 } },
-        key: 'Placeholder',
-        name: 'name'
-      }
-    */
     const { key, boxData, name } = data;
     const { params } = boxData;
     const dynamicObj = require(`../component/${key}`).default;
