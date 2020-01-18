@@ -1,8 +1,6 @@
 import * as path from 'path';
 import * as fsExtra from 'fs-extra';
-import * as parser from '@babel/parser';
 import generate from '@babel/generator';
-// import traverse from '@babel/traverse';
 import {initBlock, blockList, paragraph} from '../fragment/scene';
 import * as cheerio from 'cheerio';
 import * as prettier from 'prettier';
@@ -56,10 +54,44 @@ export default class Scene {
     }
     this.renderPage();
   }
+  /**
+   * 
+   * @param data 
+   * {
+      handler: 'generator.scene.bottomBox',
+      data: { boxIndex: 0 },
+      uniqueId: 'message_5'
+    }
+   */
 
-  public removeBox (index) {
-    this.boxs.splice(index, 1);
+  public bottomBox (params: any) {
+    const { data } = params;
+    const boxIndex = data.boxIndex;
+    if (this.boxs.length > boxIndex + 1) {
+      const temp = this.boxs[boxIndex];
+      this.boxs[boxIndex] = this.boxs[boxIndex + 1];
+      this.boxs[boxIndex + 1] = temp;
+      this.renderPage();
+    }
   }
+
+  public removeBox (params: any) {
+    const { data } = params;
+    this.boxs.splice(data.boxIndex, 1);
+    this.renderPage();
+  }
+
+  public topBox (params: any) {
+    const { data } = params;
+    const boxIndex = data.boxIndex;
+    if (boxIndex > 0) {
+      const temp = this.boxs[boxIndex];
+      this.boxs[boxIndex] = this.boxs[boxIndex - 1];
+      this.boxs[boxIndex - 1] = temp;
+      this.renderPage();
+    }
+  }
+
 
   public addComponent (params) {
     const {boxIndex, data} = params;
@@ -75,6 +107,9 @@ export default class Scene {
     await this.boxs[boxIndex].addBlock(data);
     this.renderPage();
   }
+
+
+
 
   public async renderPage () {
     this.$('.home').empty();

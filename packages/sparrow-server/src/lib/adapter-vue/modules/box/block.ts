@@ -122,6 +122,7 @@ export default class Block implements IBaseBox{
     await this.installBlocksDependencies(data);
     this.render();
   }
+  
   render () {
     this.$fragment('block').empty();
     this.$fragment('block').append(`<${this.name}></${this.name}>`);

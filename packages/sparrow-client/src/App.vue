@@ -92,9 +92,10 @@ export default class App extends Vue {
     border-bottom: 1px solid #eaeefb;
   }
   
-  .el-main {
+  #app .el-main {
     color: #333;
     text-align: center;
+    padding-top: 0;
   }
   .container{
     height: 100%;
