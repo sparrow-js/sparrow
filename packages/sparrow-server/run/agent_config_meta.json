@@ -104,6 +104,14 @@
     "appErrorFilter": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-onerror/config/config.default.js",
     "templatePath": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-onerror/config/config.default.js"
   },
+  "i18n": {
+    "defaultLocale": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-i18n/config/config.default.js",
+    "dirs": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-i18n/config/config.default.js",
+    "queryField": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-i18n/config/config.default.js",
+    "cookieField": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-i18n/config/config.default.js",
+    "cookieDomain": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-i18n/config/config.default.js",
+    "cookieMaxAge": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-i18n/config/config.default.js"
+  },
   "watcher": {
     "type": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-watcher/config/config.local.js",
     "eventSources": {

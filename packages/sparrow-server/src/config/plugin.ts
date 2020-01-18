@@ -16,16 +16,6 @@ export = {
     package: 'egg-cors',
   },
 
-  projectManager: {
-    enable: true,
-    path: path.join(__dirname, '../lib/plugin/project-manager'),
-  },
-
-  i18n: {
-    enable: true,
-    path: path.join(__dirname, '../lib/plugin/i18n'),
-  },
-
   generator: {
     enable: true,
     path: path.join(__dirname, '../lib/plugin/generator')
