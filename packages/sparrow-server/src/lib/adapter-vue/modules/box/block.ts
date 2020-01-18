@@ -37,27 +37,10 @@ export default class Block implements IBaseBox{
   }
 
 
-  private async downloadBlockToPage(key: string, blockSource: string) : Promise<void>{
+  private async downloadBlockToPage(blockName: string, blockSource: string) : Promise<void>{
     const componentsDir = Config.componentsDir;
-    await new Promise((resolve,reject) => {
-      mkdirp(componentsDir, (err) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
-        }
-      })
-    });
-    
-    let blockName = upperCamelCase(key);
-    const blockNames = await fileUtil.getBlockNames(componentsDir);
-    const hasBlocks = blockNames.filter(item => {
-      return new RegExp(item).test(blockName);
-    });
 
-    if (hasBlocks.length !== 0) {
-      blockName = `${hasBlocks}${hasBlocks.length}`;
-    }
+    console.log('***********6**********');
     
     let tarballURL: string;
 
@@ -111,9 +94,31 @@ export default class Block implements IBaseBox{
 
   public async addBlock (data: any) {
     const {key, originData} = data;
-    this.name = key;
-    this.insertComponents.push(key)
-    await this.downloadBlockToPage(key, originData.name);
+    const {componentsDir} = Config;
+    await new Promise((resolve,reject) => {
+      mkdirp(componentsDir, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      })
+    });
+    let blockName = upperCamelCase(key);
+    const blockNames = await fileUtil.getBlockNames(componentsDir);
+    const hasBlocks = blockNames.filter(item => {
+      return (new RegExp(blockName)).test(item);
+    });
+
+    if (hasBlocks.length !== 0) {
+      blockName = `${blockName}${hasBlocks.length}`;
+    }
+
+
+    this.name = blockName;
+    this.insertComponents.push(blockName)
+    
+    await this.downloadBlockToPage(blockName, originData.name);
     await this.installBlocksDependencies(data);
     this.render();
   }

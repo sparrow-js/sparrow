@@ -231,6 +231,7 @@
       "user-home": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
     },
     "devDependencies": {
+      "@babel/template": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "@types/cheerio": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "@types/execa": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "@types/mocha": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
@@ -253,7 +254,6 @@
       "node": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js"
     },
     "scripts": {
-      "postinstall": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "start": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "stop": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "start_build": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",

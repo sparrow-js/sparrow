@@ -6,9 +6,10 @@ import generate from '@babel/generator';
 import {initBlock, blockList, paragraph} from '../fragment/scene';
 import * as cheerio from 'cheerio';
 import * as prettier from 'prettier';
+import {appendComponent, getScript, setInitScript} from './generatorAst';
+import * as upperCamelCase from 'uppercamelcase';
 
 import Box from '../box'
-// cwd.split('sparrow-server')[0] + 'sparrow-view'
 const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
 
@@ -40,9 +41,7 @@ export default class Scene {
       xmlMode: true,
       decodeEntities: false
     });
-    this.scriptData = parser.parse(scriptStr, {
-      sourceType: 'module',
-    });
+    this.scriptData = getScript();
 
     this.renderPage();
   }
@@ -77,22 +76,27 @@ export default class Scene {
     this.renderPage();
   }
 
-  public renderPage () {
+  public async renderPage () {
     this.$('.home').empty();
-    this.boxs.forEach((item, index) => {
+    setInitScript();
+
+    await Promise.all(this.boxs.map(async (item, index) => {
       const blockListStr = blockList(index, item.getBoxFragment().html());
       this.$('.home').append(blockListStr);
       if (item.insertComponents && item.insertComponents.length) {
-        console.log('******instert******');
-        console.log(item.insertComponents);
+        await appendComponent(upperCamelCase(item.insertComponents[0]));
       }
-    });
+    }))
+    
+    this.scriptData = getScript();
+
     this.$('.home').append(initBlock(this.boxs.length));
     this.writeTemplate();
   }
 
   private writeTemplate () {
-    const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script>`
+    const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script>`;
+    console.log(generate(this.scriptData).code);
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
     fsExtra.writeFile(viewPath, formatTemp, 'utf8');
   }

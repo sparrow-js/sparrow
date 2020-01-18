@@ -197,7 +197,7 @@
         "@babel/parser": "^7.4.5",
         "@babel/plugin-syntax-dynamic-import": "^7.2.0",
         "@babel/traverse": "^7.4.5",
-        "@babel/types": "^7.4.4",
+        "@babel/types": "^7.8.3",
         "ali-oss": "^6.1.1",
         "array-move": "^2.1.0",
         "camelcase": "^5.3.1",
@@ -249,6 +249,7 @@
         "user-home": "^2.0.0"
       },
       "devDependencies": {
+        "@babel/template": "^7.8.3",
         "@types/cheerio": "^0.22.15",
         "@types/execa": "^2.0.0",
         "@types/mocha": "^5.2.5",
@@ -271,7 +272,6 @@
         "node": ">=8.9.0"
       },
       "scripts": {
-        "postinstall": "node ./scripts/install.js",
         "start": "egg-scripts start --title=egg-server-iceworks-server --framework=midway-mirror --workers=1 --sticky",
         "stop": "egg-scripts stop --title=egg-server-iceworks-server",
         "start_build": "npm run build && NODE_ENV=development midway-bin dev",

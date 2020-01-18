@@ -9,7 +9,6 @@ export * from './component';
 export * from './router';
 export * from './dependency';
 export * from './todo';
-export * from './mock';
 export * from './task';
 export * from './configuration';
 export * from './router';
