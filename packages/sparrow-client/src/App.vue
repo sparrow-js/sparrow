@@ -36,7 +36,8 @@ import Logo from '@/components/logo.vue';
 import Dashboard from '@/components/materiel/Dashboard.vue';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
-import TopToolbar from '@/components/TopToolbar.vue'
+import TopToolbar from '@/components/TopToolbar.vue';
+import Loading  from '@/util/loading';
 
 @Component({
   components: {
@@ -66,6 +67,13 @@ export default class App extends Vue {
           this.dashboardTabIndex = '1';
         }
       }
+    });
+
+    // block 进度
+    socket.on('generator.scene.block.status', (data) => {
+      Loading.close();
+      console.log('**************');
+      console.log(data);
     });
   }
 

@@ -46,6 +46,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
+import Loading  from '@/util/loading';
 
 @Component({})
 export default class BlockItem extends Vue {
@@ -61,7 +62,11 @@ export default class BlockItem extends Vue {
   }
 
   private openComponentDialog () {
-    this.dialogVisible = true;
+    if (this.type === '0') {
+      this.dialogVisible = true;
+    } else if (this.type === '1') {
+      this.addBlock();
+    }
   }
   
   private async addComponent () {
@@ -71,20 +76,28 @@ export default class BlockItem extends Vue {
         boxData: this.insertData.data,
         key: this.info.key,
         name: this.name,
-        originData: this.info.originData
       }
     };
-    if (this.type === 0) {
-      await socket.emit('generator.scene.addComponent', params);
-    } else {
-      await socket.emit('generator.scene.addBlock', params);
-    }
+    Loading.open();
+    await socket.emit('generator.scene.addComponent', params);
+    Loading.close();
     this.dialogVisible = false;
     AppModule.SetShowDashboard(false);
   }
 
-  private handleClose () {
-
+  private async addBlock () {
+    const params = {
+      boxIndex: this.insertData.boxIndex,
+      data: {
+        boxData: this.insertData.data,
+        key: this.info.key,
+        name: this.name,
+        originData: this.info.originData
+      }
+    };
+    AppModule.SetShowDashboard(false);
+    Loading.open();
+    await socket.emit('generator.scene.addBlock', params);
   }
 }
 </script>

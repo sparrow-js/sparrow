@@ -6,7 +6,7 @@
         v-for="item in list"
         :key="item.key"
       >
-        <block-item :info="item"></block-item>
+        <block-item :info="item" :type="type"></block-item>
       </li>
     </ul>
   </div>
@@ -22,6 +22,7 @@ import BlockItem from './BlockItem.vue';
 })
 export default class BlockBox extends Vue{
   @Prop({default: () => []}) private list: any;
+  @Prop() private type: string; 
 }
 </script>
 <style lang="scss" scoped>

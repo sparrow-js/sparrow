@@ -6,8 +6,16 @@ export default app => {
     const [ eventName, args, callback ] = packet;
     const [ namespace, moduleName, methodName ] = eventName.split('.');
     if (namespace === 'generator') {
-      const { generator } = app;
-      callback(null, await generator[moduleName][methodName](args, ctx));
+      try {
+        const { generator } = app;
+        callback(null, await generator[moduleName][methodName](args, ctx));
+      } catch (error) {
+        callback({
+          code: error.code,
+          message: error.message,
+        });
+      }
+
     }
     await next();
   };

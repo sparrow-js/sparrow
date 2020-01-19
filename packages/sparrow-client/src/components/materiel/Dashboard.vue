@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <div class="dashboard-tab">
-      <el-tabs class="tab" v-model.number="activeName" @tab-click="handleTab">
+      <el-tabs class="tab" v-model="activeName" @tab-click="handleTab">
         <el-tab-pane 
           v-for="tabItem in tabsMap" 
           :key="tabItem.id"
@@ -51,15 +51,15 @@ const materielData = {};
 const tabsMap = [
   {
     title: '组件',
-    value: 0,
+    value: '0',
   },
   {
     title: '区块',
-    value: 1,
+    value: '1',
   },
   {
     title: '场景',
-    value: 2,
+    value: '2',
   },
 ];
 
@@ -89,8 +89,9 @@ export default class Dashboard extends Vue {
     this.list = materielData[this.activeName];
   }
 
-  private handleTab () {
-    
+  private handleTab (data) {
+    console.log(data);
+    console.log('**********9********');
   }
 
   private handleClose () {

@@ -33,7 +33,7 @@ export default class Scene {
   private async init () {
     const fileStr = await fsExtra.readFile(this.templateFilePath, 'utf8');
     const templateStr = fileStr.match(/<template>([\s\S])*<\/template>/g)[0];
-    const scriptStr = fileStr.match(/(?<=<script>)[\s\S]*(?=<\/script>)/g)[0];
+    // const scriptStr = fileStr.match(/(?<=<script>)[\s\S]*(?=<\/script>)/g)[0];
     
     this.$ = cheerio.load(templateStr, {
       xmlMode: true,
@@ -81,7 +81,7 @@ export default class Scene {
     this.renderPage();
   }
 
-  public topBox (params: any) {
+  public async topBox (params: any) {
     const { data } = params;
     const boxIndex = data.boxIndex;
     if (boxIndex > 0) {
@@ -102,26 +102,29 @@ export default class Scene {
     };
   }
 
-  public async addBlock (params) {
+  public async addBlock (params, ctx) {
     const {boxIndex, data} = params;
     await this.boxs[boxIndex].addBlock(data);
     this.renderPage();
+    const { socket } = ctx;
+    socket.emit('generator.scene.block.status', {status: 0, data: {
+      status: 2,
+      message: 'complete',
+    }});
   }
-
-
 
 
   public async renderPage () {
     this.$('.home').empty();
     setInitScript();
 
-    await Promise.all(this.boxs.map(async (item, index) => {
+    this.boxs.map(async (item, index) => {
       const blockListStr = blockList(index, item.getBoxFragment().html());
       this.$('.home').append(blockListStr);
       if (item.insertComponents && item.insertComponents.length) {
-        await appendComponent(upperCamelCase(item.insertComponents[0]));
+        appendComponent(upperCamelCase(item.insertComponents[0]));
       }
-    }))
+    })
     
     this.scriptData = getScript();
 
@@ -131,7 +134,6 @@ export default class Scene {
 
   private writeTemplate () {
     const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script>`;
-    console.log(generate(this.scriptData).code);
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
     fsExtra.writeFile(viewPath, formatTemp, 'utf8');
   }
