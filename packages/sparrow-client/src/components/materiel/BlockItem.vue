@@ -55,9 +55,8 @@ export default class BlockItem extends Vue {
 
   private dialogVisible = false;
   private name = '';
-  // insertData
 
-   get insertData () {
+  get insertData () {
     return AppModule.insertData;
   }
 

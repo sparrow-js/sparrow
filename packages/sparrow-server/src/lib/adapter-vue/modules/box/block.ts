@@ -32,16 +32,14 @@ export default class Block implements IBaseBox{
     this.$fragment('box').append(boxFragment.block());
   }
 
-  public getBoxFragment(): any {
+  public getBoxFragment(index: number): any {
+    this.$fragment('box').attr(':index', index);
     return this.$fragment;
   }
 
 
   private async downloadBlockToPage(blockName: string, blockSource: string) : Promise<void>{
-    const componentsDir = Config.componentsDir;
-
-    console.log('***********6**********');
-    
+    const componentsDir = Config.componentsDir;    
     let tarballURL: string;
 
     const blockDir = path.join(componentsDir, blockName);

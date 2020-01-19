@@ -11,7 +11,7 @@ let scriptStr = `
   };
 `; 
 
-const initScript = `
+const initScriptStr = `
   export default {
     mixins: [],
     data () {
@@ -22,16 +22,14 @@ const initScript = `
   }
 `;
 
-let pageAST = parser.parse(scriptStr, {
-  sourceType: 'module',
-});
+let pageAST = null;
 
-const scriptAst = parser.parse(initScript, {
-  sourceType: 'module',
-});
 
 function getScriptValue (propName: string): any {
   let props = [];
+  const scriptAst = parser.parse(initScriptStr, {
+    sourceType: 'module',
+  });
   traverse(scriptAst, {
     ExportDefaultDeclaration ({node}) {
       props = node.declaration.properties;
@@ -56,14 +54,11 @@ function importStr (componentName: string) {
   return `import ${componentName} from './components/${componentName}'`;
 }
 
-export function getScript () {
-  return pageAST;
-}
-
-export function setInitScript () {
+export function initScript () {
   pageAST = parser.parse(scriptStr, {
     sourceType: 'module',
   });
+  return pageAST;
 }
 
 

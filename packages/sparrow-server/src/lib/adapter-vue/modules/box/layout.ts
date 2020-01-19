@@ -33,7 +33,8 @@ export default class Layout implements IBaseBox{
     this.render();
   } 
 
-  public getBoxFragment(): any {
+  public getBoxFragment(index: number): any {
+    this.$fragment('box').attr(':index', index);
     return this.$fragment;
   }
 

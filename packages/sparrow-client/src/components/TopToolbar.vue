@@ -16,6 +16,7 @@ export default class TopToolbar extends Vue {
   .toolbar{
     display: flex;
     flex-direction: row;
+    margin-left: 10px;
     &__item{
       height: 32px;
       display: flex;

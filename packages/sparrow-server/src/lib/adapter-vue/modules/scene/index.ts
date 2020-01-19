@@ -4,7 +4,7 @@ import generate from '@babel/generator';
 import {initBlock, blockList, paragraph} from '../fragment/scene';
 import * as cheerio from 'cheerio';
 import * as prettier from 'prettier';
-import {appendComponent, getScript, setInitScript} from './generatorAst';
+import {appendComponent, getScript, initScript} from './generatorAst';
 import * as upperCamelCase from 'uppercamelcase';
 
 import Box from '../box'
@@ -39,7 +39,7 @@ export default class Scene {
       xmlMode: true,
       decodeEntities: false
     });
-    this.scriptData = getScript();
+    this.scriptData = initScript();
 
     this.renderPage();
   }
@@ -116,18 +116,16 @@ export default class Scene {
 
   public async renderPage () {
     this.$('.home').empty();
-    setInitScript();
+    this.scriptData = initScript();
 
     this.boxs.map(async (item, index) => {
-      const blockListStr = blockList(index, item.getBoxFragment().html());
+      const blockListStr = blockList(index, item.getBoxFragment(index).html());
       this.$('.home').append(blockListStr);
       if (item.insertComponents && item.insertComponents.length) {
         appendComponent(upperCamelCase(item.insertComponents[0]));
       }
     })
     
-    this.scriptData = getScript();
-
     this.$('.home').append(initBlock(this.boxs.length));
     this.writeTemplate();
   }
