@@ -8,27 +8,27 @@ const socket = io('//127.0.0.1:7001/', {
   // Note: Why set up websocket
   // MR：https://github.com/alibaba/ice/pull/2450
   // Refs：https://socket.io/docs/client-api/#With-websocket-transport-only
-  transports: ['websocket'],
+  transports: ['websocket']
 });
 
 socket.on('error', error => {
-  window.console.log('error')
+  window.console.log('error');
 });
 
 socket.on('connect', () => {
-  window.console.log('服务连接成功')
+  window.console.log('服务连接成功');
 });
 
 socket.on('reconnecting', () => {
-  window.console.log('reconnecting')
+  window.console.log('reconnecting');
 });
 
 socket.on('reconnect_failed', () => {
-  window.console.log('reconnect_failed')
+  window.console.log('reconnect_failed');
 });
 
 socket.on('disconnect', () => {
-  window.console.log('disconnect')
+  window.console.log('disconnect');
 });
 
 const originalEmit = socket.emit.bind(socket);

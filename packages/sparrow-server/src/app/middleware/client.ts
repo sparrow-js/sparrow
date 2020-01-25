@@ -1,4 +1,3 @@
-import { checkAliInternal } from 'ice-npm-utils';
 
 export default function() {
   return async function client(ctx, next) {
@@ -10,7 +9,6 @@ export default function() {
     ctx.clientConfig = {
       socketUrl: `//127.0.0.1:${process.env.PORT}/`,
       apiUrl: `//127.0.0.1:${process.env.PORT}/api/`,
-      isAliInternal: await checkAliInternal(),
     };
 
     await next();

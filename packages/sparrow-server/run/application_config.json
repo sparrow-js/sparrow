@@ -349,8 +349,7 @@
       "midway-bin-build": {
         "include": [
           "app/view",
-          "lib/adapter/modules/page/template.jsx.ejs",
-          "lib/adapter-vue-v2/modules/page/template.vue.ejs"
+          "app/public"
         ]
       },
       "author": "chenbin92",

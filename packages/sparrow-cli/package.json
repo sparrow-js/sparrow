@@ -2,10 +2,17 @@
   "name": "sparrow",
   "version": "0.5.0",
   "description": "vue sparrow code",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "bin/sparrow.js",
+  "bin": {
+    "sparrow": "bin/sparrow.js"
   },
+  "scripts": {},
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "cross-spawn": "^7.0.1",
+    "mkdirp": "^0.5.1",
+    "user-home": "^2.0.0"
+  }
 }

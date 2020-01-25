@@ -4,7 +4,7 @@ import generate from '@babel/generator';
 import {initBlock, blockList, paragraph} from '../fragment/scene';
 import * as cheerio from 'cheerio';
 import * as prettier from 'prettier';
-import {appendComponent, getScript, initScript} from './generatorAst';
+import {appendComponent, initScript} from './generatorAst';
 import * as upperCamelCase from 'uppercamelcase';
 
 import Box from '../box'
@@ -25,16 +25,25 @@ export default class Scene {
   private blockMap = new Map();
 
   constructor () {
-    this.templateFilePath = path.join(__dirname, '..', 'fragment/scene/template.vue');
+    // this.templateFilePath = path.join(__dirname, '..', 'fragment/scene/template.vue');
     this.boxInstance = new Box;
     this.init();
   }
 
   private async init () {
-    const fileStr = await fsExtra.readFile(this.templateFilePath, 'utf8');
-    const templateStr = fileStr.match(/<template>([\s\S])*<\/template>/g)[0];
-    // const scriptStr = fileStr.match(/(?<=<script>)[\s\S]*(?=<\/script>)/g)[0];
+    /**
+     * const fileStr = await fsExtra.readFile(this.templateFilePath, 'utf8');
+     *  // fileStr.match(/<template>([\s\S])*<\/template>/g)[0];
+        // const scriptStr = fileStr.match(/(?<=<script>)[\s\S]*(?=<\/script>)/g)[0];
     
+     */
+    
+    const templateStr =  `
+      <template>
+        <div class="home">
+        </div>
+      </template>
+    `;
     this.$ = cheerio.load(templateStr, {
       xmlMode: true,
       decodeEntities: false
