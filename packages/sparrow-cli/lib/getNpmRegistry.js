@@ -1,4 +1,3 @@
-const { isAliNpm } = require('ice-npm-utils');
 const config = require('./config');
 
 module.exports = async function(npmName, materialConfig, publishConfig) {

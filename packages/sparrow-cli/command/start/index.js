@@ -9,13 +9,51 @@ const portfinder = require('portfinder');
 const ora = require('ora');
 const open = require('open');
 const spawn = require('cross-spawn');
+const checkVersion = require('../../lib/checkVersion');
+const downloadView = require('./downloadView');
 
 
 
 const SPARROW_PATH = path.join(userHome, '.sparrow');
 const SERVER_PATH = path.join(SPARROW_PATH, 'sparrow-server');
+const VIEW_PATH = path.join(SPARROW_PATH, 'sparrow-view');
+
+
+async function startView(options = {}) {
+  const pkgPath = path.join(VIEW_PATH, 'package.json');
+  let packageConfig;
+  try {
+    packageConfig = require(pkgPath);
+  } catch (err) {
+    const answers = await inquirer.prompt([
+      {
+        type: 'confirm',
+        message: `${pkgPath} 不存在，请重新下载 sparrow-server！`,
+        name: 'download',
+        default: true,
+      },
+    ]);
+    if (answers.download) {
+      await downloadView();
+    } else {
+      console.error(err);
+      process.exit(1);
+    }
+  }
+
+  const packageName = packageConfig.name;
+  const packageVersion = packageConfig.version;
+  console.log(chalk.grey('sparrow view Core:', packageVersion, SERVER_PATH));
+
+  const answers = await checkServerVersion(packageName, packageVersion);
+  if (answers && answers.update) {
+    await downloadView();
+  }
+}
 
 async function start(options = {}) {
+  await startView();
+
   const pkgPath = path.join(SERVER_PATH, 'package.json');
   let packageConfig;
 
@@ -46,18 +84,18 @@ async function start(options = {}) {
   console.log(chalk.grey('sparrow Core:', packageVersion, SERVER_PATH));
 
   if (options.command === 'use') {
-    // if (!semver.valid(options.version)) {
-    //   console.error('Invalid version specified');
-    //   process.exit(1);
-    // }
+    if (!semver.valid(options.version)) {
+      console.error('Invalid version specified');
+      process.exit(1);
+    }
     if (packageVersion !== options.version) {
       await downloadServer(options.version);
     }
   } else {
-    // const answers = await checkServerVersion(packageName, packageVersion);
-    // if (answers && answers.update) {
-    // }
-    await downloadServer();
+    const answers = await checkServerVersion(packageName, packageVersion);
+    if (answers && answers.update) {
+      await downloadServer();
+    }
   }
 
   await startSparrowworks(options);
@@ -65,8 +103,6 @@ async function start(options = {}) {
 
 // npm run start
 async function startSparrowworks(options) {
-  console.log('*****6*****')
-
   const host = options.host || 'http://127.0.0.1';
 
   let port = options.port;
