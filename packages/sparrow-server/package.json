@@ -1,6 +1,6 @@
 {
   "name": "sparrow-server",
-  "version": "3.4.2",
+  "version": "0.4.6",
   "description": "sparrow server",
   "files": [
     "dist/",
@@ -118,6 +118,6 @@
       "app/public"
     ]
   },
-  "author": "chenbin92",
+  "author": "wuhaitao",
   "license": "MIT"
 }
