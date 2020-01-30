@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <el-aside width="200px"></el-aside>
+      <el-aside width="160px"></el-aside>
       <el-container>
         <el-main>
           <div class="main">
@@ -17,7 +17,7 @@
           </div>
         </el-main>
       </el-container>
-      <el-aside width="200px"></el-aside>
+      <el-aside width="160px"></el-aside>
     </el-container>
     <div 
       class="dashboard-box"

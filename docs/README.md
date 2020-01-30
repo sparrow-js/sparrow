@@ -1,1 +1,1 @@
-### 待写，有缘人看到可以一起开发，email：sparrowwht7#gmail.com
+### 待写，email：sparrowwht7#gmail.com
