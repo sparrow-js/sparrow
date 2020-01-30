@@ -1,8 +1,20 @@
 <template>
   <div class="toolbar">
-    <div class="toolbar__item toolbar__preview">预览</div>
-    <div class="toolbar__item toolbar__export">导出</div>
-    <div class="toolbar__item toolbar__export">源代码</div>
+    <div class="toolbar__item toolbar__preview">
+      <el-tooltip class="item" effect="dark" content="预览" placement="top">
+        <font-awesome-icon :icon="['fas', 'eye']" />
+      </el-tooltip>
+    </div>
+    <div class="toolbar__item toolbar__export">
+      <el-tooltip class="item" effect="dark" content="导出" placement="top">
+        <font-awesome-icon :icon="['fas', 'file-export']" />
+      </el-tooltip>
+    </div>
+    <div class="toolbar__item toolbar__export">
+      <el-tooltip class="item" effect="dark" content="源代码" placement="top">
+        <font-awesome-icon :icon="['fas', 'code']" />
+      </el-tooltip>
+    </div>
   </div>
 </template>
 <script lang="ts">
