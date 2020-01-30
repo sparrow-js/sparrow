@@ -23,5 +23,9 @@ export function run () {
   })
   child.stderr.on('data', buffer => {
     console.log(buffer.toString());
-  })
+  });
+
+  child.on('error', error => {
+    console.log(error);
+  });
 }

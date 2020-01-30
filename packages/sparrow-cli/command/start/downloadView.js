@@ -8,7 +8,7 @@ const installDependencies = require('../../lib/installDependencies');
 
 const NPM_NAME = 'sparrow-view';
 const DEST_DIR = path.join(userHome, `.sparrow/${NPM_NAME}`);
-const REGISTRY = process.env.REGISTRY || 'https://registry.npmjs.org';
+const REGISTRY = process.env.REGISTRY || 'https://registry.npm.taobao.org';
 
 module.exports = function downloadView (version = 'latest') {
   const npmName = NPM_NAME;

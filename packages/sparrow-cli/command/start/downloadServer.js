@@ -8,7 +8,7 @@ const spawn = require('cross-spawn');
 
 const NPM_NAME = 'sparrow-server';
 const DEST_DIR = path.join(userHome, `.sparrow/${NPM_NAME}`);
-const REGISTRY = process.env.REGISTRY || 'https://registry.npmjs.org';
+const REGISTRY = process.env.REGISTRY || 'https://registry.npm.taobao.org';
 
 module.exports = function downloadServer(version = 'latest') {
   const npmName = NPM_NAME;

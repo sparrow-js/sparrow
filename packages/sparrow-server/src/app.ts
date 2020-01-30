@@ -9,6 +9,7 @@ export default class AppBootHook {
   }
 
   public async didLoad() {
+    run();
     // send server log to remote in production
     if (this.app.config.env === 'prod') {}
   }

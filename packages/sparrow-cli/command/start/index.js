@@ -39,6 +39,7 @@ async function startView(options = {}) {
       console.error(err);
       process.exit(1);
     }
+    return;
   }
 
   const packageName = packageConfig.name;
@@ -53,7 +54,6 @@ async function startView(options = {}) {
 
 async function start(options = {}) {
   await startView();
-
   const pkgPath = path.join(SERVER_PATH, 'package.json');
   let packageConfig;
 
