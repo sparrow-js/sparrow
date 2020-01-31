@@ -35,7 +35,7 @@ export default class TopToolbar extends Vue {
       justify-content: center;
       align-items: center;
       margin-bottom: 6px;
-      color: #555;
+      color: #666;
       font-size: 14px;
       margin-right: 16px;
       &:hover{
