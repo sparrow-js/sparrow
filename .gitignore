@@ -4,5 +4,6 @@ npm-debug.log
 yarn-error.log
 yarn.lock
 .DS_Store
+sparrow-view/src/views/components
 
 .vscode/
