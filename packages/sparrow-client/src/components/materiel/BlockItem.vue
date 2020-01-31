@@ -3,7 +3,7 @@
     <div class="block__toolbar">
       <div 
         class="block__preview" 
-        style="background-image: url(https://gitee.com/ant-design/ant-design-blocks/raw/master/select-basic/snapshot.png);"
+        :style="{ 'background-image': `url(${info.img})`}"
       ></div>
       <div class="block__operate">
         <div style="margin-bottom: 4px;">
