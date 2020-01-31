@@ -5,8 +5,11 @@
 > email: sparrowwht7@gmail.com
 ---
 ## 基本功能
-- 动态容器
-- 物料
+##### sparrow-添加区块-预览
+![sparrow-添加区块-预览](https://raw.githubusercontent.com/sparrow-js/sparrow/master/docs/images/preview-block.png)
+
+##### sparrow-添加布局盒子-预览
+![sparrow-添加布局容器-预览](https://raw.githubusercontent.com/sparrow-js/sparrow/master/docs/images/preview-layout.png)
 
 ## 快速上手
 ```bash
