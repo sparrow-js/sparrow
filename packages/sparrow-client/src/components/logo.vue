@@ -1,6 +1,8 @@
 <template>
     <div class="logo">
-        <img class="logo-img" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3749090985,1374755556&fm=26&gp=0.jpg"/>
+        <div class="logo-box">
+            <img class="logo-img" src="https://raw.githubusercontent.com/sparrow-js/sparrow/master/docs/images/sparrow.jpeg"/>
+        </div>
     </div>
 </template>
 <script>
@@ -11,8 +13,18 @@ export default {
 <style lang="scss" scoped>
 .logo{
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &-img{
         width: 60px;
+    }
+    &-box{
+        width:80px;
+        height: 80px;
+        border-radius: 80px;
+        background-color: #f6f6f6;
+        overflow: hidden;
     }
 }
 </style>
