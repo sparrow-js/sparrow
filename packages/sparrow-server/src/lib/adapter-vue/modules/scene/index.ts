@@ -31,13 +31,6 @@ export default class Scene {
   }
 
   private async init () {
-    /**
-     * const fileStr = await fsExtra.readFile(this.templateFilePath, 'utf8');
-     *  // fileStr.match(/<template>([\s\S])*<\/template>/g)[0];
-        // const scriptStr = fileStr.match(/(?<=<script>)[\s\S]*(?=<\/script>)/g)[0];
-    
-     */
-    
     const templateStr =  `
       <template>
         <div class="home">
