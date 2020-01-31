@@ -6,10 +6,10 @@
 ---
 ## 基本功能
 ##### sparrow-添加区块-预览
-![sparrow-添加区块-预览](https://raw.githubusercontent.com/sparrow-js/sparrow/master/docs/images/preview-block.png)
+![sparrow-添加区块-预览](https://raw.githubusercontent.com/sparrow-js/sparrow/master/docs/images/block.png)
 
 ##### sparrow-添加布局盒子-预览
-![sparrow-添加布局容器-预览](https://raw.githubusercontent.com/sparrow-js/sparrow/master/docs/images/preview-layout.png)
+![sparrow-添加布局容器-预览](https://raw.githubusercontent.com/sparrow-js/sparrow/master/docs/images/box.png)
 
 ## 快速上手
 ```bash
