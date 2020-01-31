@@ -91,7 +91,6 @@ export default class Dashboard extends Vue {
 
   private handleTab (data) {
     console.log(data);
-    console.log('**********9********');
   }
 
   private handleClose () {

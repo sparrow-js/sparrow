@@ -72,8 +72,6 @@ export default class App extends Vue {
     // block 进度
     socket.on('generator.scene.block.status', (data) => {
       Loading.close();
-      console.log('**************');
-      console.log(data);
     });
   }
 

@@ -1,4 +1,7 @@
 import io from 'socket.io-client';
+import loading from './loading';
+import { Notification } from 'element-ui';
+
 
 const socket = io(window.socketUrl || '//127.0.0.1:7001/', {
   reconnectionAttempts: 3,
@@ -41,6 +44,11 @@ socket.emit = function emit(...args) {
 
     args.push((error, data) => {
       if (error) {
+        loading.close();
+        Notification.error({
+          title: '错误',
+          message: error.message || '报错了！'
+        });
         reject(error);
       } else {
         resolve(data);
