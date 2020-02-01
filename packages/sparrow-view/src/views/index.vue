@@ -2,23 +2,15 @@
   <div class="home">
     <div class="block-list">
       <box :index="0" class="block-item">
-        <el-form label-width="100px">
-          <layout :col="3" :row="2">
-            <el-form-item label="基础文本框" prop="name" slot="0_0">
-              <el-input />
-            </el-form-item>
-
-            <el-form-item label="基础文本框" prop="name" slot="0_2">
-              <el-input />
-            </el-form-item>
-          </layout>
-        </el-form>
+        <block><BasicTable /></block>
       </box>
     </div>
 
     <div class="block-list">
       <box :index="1" class="block-item">
-        <block><DataDisplay /></block>
+        <el-form label-width="100px">
+          <layout :col="3" :row="2" />
+        </el-form>
       </box>
     </div>
 
@@ -31,11 +23,11 @@
 </template>
 
 <script>
-import DataDisplay from "./components/DataDisplay";
+import BasicTable from "./components/BasicTable";
 import generatorMixin from "../mixins/generatorMixin";
 export default {
   components: {
-    DataDisplay
+    BasicTable
   },
   mixins: [generatorMixin]
 };
