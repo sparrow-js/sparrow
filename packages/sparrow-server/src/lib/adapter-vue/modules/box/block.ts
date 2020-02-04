@@ -21,6 +21,7 @@ export default class Block implements IBaseBox{
   $fragment: any;
   type: string = 'block';
   name: string;
+  template: string;
   public insertComponents: string[] = [];
 
   constructor (data: any) {
@@ -124,5 +125,11 @@ export default class Block implements IBaseBox{
   render () {
     this.$fragment('block').empty();
     this.$fragment('block').append(`<${this.name}></${this.name}>`);
+    this.setTemplate();
   }
+  
+  setTemplate () {
+    this.template = `<${this.name}></${this.name}>`;
+  }
+  
 }

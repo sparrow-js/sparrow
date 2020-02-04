@@ -25,7 +25,6 @@ export default class Scene {
   private blockMap = new Map();
 
   constructor () {
-    // this.templateFilePath = path.join(__dirname, '..', 'fragment/scene/template.vue');
     this.boxInstance = new Box;
     this.init();
   }
@@ -116,19 +115,26 @@ export default class Scene {
   }
 
 
-  public async renderPage () {
+  public async renderPage (renderType: number = 0) {
     this.$('.home').empty();
     this.scriptData = initScript();
 
     this.boxs.map(async (item, index) => {
-      const blockListStr = blockList(index, item.getBoxFragment(index).html());
-      this.$('.home').append(blockListStr);
+      if (renderType === 0) {
+        const blockListStr = blockList(index, item.getBoxFragment(index).html());
+        this.$('.home').append(blockListStr);
+      } else {
+        const blockListStr = blockList(index, item.template);
+        this.$('.home').append(blockListStr);
+      }
+
       if (item.insertComponents && item.insertComponents.length) {
         appendComponent(upperCamelCase(item.insertComponents[0]));
       }
-    })
-    
-    this.$('.home').append(initBlock(this.boxs.length));
+    });
+    if (renderType === 0) {
+      this.$('.home').append(initBlock(this.boxs.length));
+    }
     this.writeTemplate();
   }
 

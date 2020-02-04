@@ -26,4 +26,8 @@ export default class Base {
     return this.$fragment;
   }
 
+  public removeAttr (attr: string) {
+    this.$fragment.root().children().removeAttr(attr);
+  }
+
 }

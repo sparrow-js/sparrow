@@ -1,7 +1,11 @@
 <template>
   <div id="app"> 
     <router-view/>
-    <toolbar :list="toolbarList"/>
+    <toolbar 
+      :list="toolbarList" 
+      :is-show-toolbar="isShowToolbar" 
+      @change="showToolbarChange"
+    />
   </div>
 </template>
 <script>
@@ -12,10 +16,17 @@ export default {
   data () {
     return {
       toolbarList: [],
-      boxIndex: null
+      boxIndex: null,
+      isShowToolbar: false
     }
   },
   created () {
+    window.addEventListener('message',(e) => {
+      const {data} = e;
+      if (data && data.handler === 'document-click') {
+        this.isShowToolbar = false;
+      }
+    },false);
     this.getToolbarList();
     Event.on('block-selected', (data) => {
       this.boxIndex = data.index;
@@ -33,6 +44,9 @@ export default {
     async getToolbarList () {
       const result = await message.emit('generator.data.getBoxList')
       this.toolbarList = result.list;
+    },
+    showToolbarChange (data) {
+      this.isShowToolbar = data;
     }
   }
 }

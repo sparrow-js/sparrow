@@ -5,22 +5,24 @@ import store from "./store";
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 import {receiveMessage} from './util/messageBridge';
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { 
   faCode,
   faEye,
-  faFileExport
+  faFileExport,
+  faTrashRestoreAlt
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+
+// trash-restore-alt
+
 library.add(faCode);
 library.add(faEye);
-library.add(faFileExport)
-
-
+library.add(faFileExport);
+library.add(faTrashRestoreAlt);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-
 Vue.config.productionTip = false;
 receiveMessage();
 Vue.use(Element);

@@ -10,6 +10,7 @@
             <div class="editor-box">
               <iframe
                 id="viewContent"
+                ref="viewContent"
                 class="view-content"
                 src="http://localhost:9000/"
               />
@@ -72,6 +73,13 @@ export default class App extends Vue {
     // block 进度
     socket.on('generator.scene.block.status', (data) => {
       Loading.close();
+    });
+  }
+
+  mounted () {
+    const viewContent: any = this.$refs.viewContent;
+    viewContent.addEventListener('click', (e) => {
+      e.stopPropagation();
     });
   }
 
