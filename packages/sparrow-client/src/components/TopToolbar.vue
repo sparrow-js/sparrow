@@ -20,7 +20,11 @@
     </div>
     <div class="toolbar__item">
       <el-tooltip class="item" effect="dark" content="导出" placement="top">
-        <font-awesome-icon :icon="['fas', 'file-export']" />
+        <span
+          @click="fileExportHandler"
+        >
+          <font-awesome-icon :icon="['fas', 'file-export']" />
+        </span>
       </el-tooltip>
     </div>
     <div class="toolbar__item">
@@ -56,6 +60,10 @@ export default class extends Vue {
     }).then(async () => {
       await socket.emit('generator.toolbar.trash');
     }).catch(() => {});
+  }
+
+  private fileExportHandler () {
+    
   }
 
   private toolbarClick () {
