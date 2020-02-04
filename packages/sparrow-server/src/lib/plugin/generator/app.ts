@@ -13,13 +13,15 @@ class generator{
   toolbar: any;
 
 
-  constructor () {}
+  constructor () {
+    this.data = new Data();
+  }
 
   public ready() {
     this.scene = new Scene();
-    this.data = new Data();
     this.toolbar = new Toolbar(this.scene);
-    this.toolbar.trash = this.trash;
+    console.log(this.toolbar);
+    this.toolbar.trash = this.trash.bind(this);
   }
 
   public async trash () {
