@@ -8,7 +8,10 @@ export default (app: Application) => {
 
   const routers: [string, () => {}][] = [
     ['home.project.list', home.project.list],
-    ['material.index.getBlocks', material.index.getBlocks]
+    ['material.index.getBlocks', material.index.getBlocks],
+
+    ['home.setting.workFolder', home.setting.getWorkFolder],
+    ['home.setting.setWorkFolderBySub', home.setting.setWorkFolderBySub]
   ];
 
   routers.forEach(([eventName, handle]) => {

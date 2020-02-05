@@ -20,7 +20,6 @@ class generator{
   public ready() {
     this.scene = new Scene();
     this.toolbar = new Toolbar(this.scene);
-    console.log(this.toolbar);
     this.toolbar.trash = this.trash.bind(this);
   }
 

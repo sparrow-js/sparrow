@@ -1,7 +1,7 @@
 <template>
   <div class="toolbar" @click="toolbarClick">
     <div class="toolbar__item">
-      <el-tooltip class="item" effect="dark" content="预览" placement="top">
+      <el-tooltip class="item" effect="dark" content="重置" placement="top">
         <span @click="trashHandler">
           <font-awesome-icon :icon="['fas', 'trash-restore-alt']" />
         </span>
@@ -32,17 +32,32 @@
         <font-awesome-icon :icon="['fas', 'code']" />
       </el-tooltip>
     </div>
+    <file-export
+      :dialog-visible.sync="dialogVisible" 
+      :work-folder="workFolder"
+      v-if="workFolder"
+    ></file-export>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import socket from '@/util/socket.js';
+import FileExport from './FileExport.vue';
 
 @Component({
-  name: 'TopToolbar'
+  name: 'TopToolbar',
+  components: {
+    FileExport
+  }
 })
 export default class extends Vue {
   private previewStatus = false;
+  private dialogVisible = false;
+  private workFolder = null;
+  async created() {
+    const result = await socket.emit('home.setting.workFolder');
+    this.workFolder = result;
+  }
 
   private async previewHandler () {
     this.previewStatus = !this.previewStatus;
@@ -63,7 +78,7 @@ export default class extends Vue {
   }
 
   private fileExportHandler () {
-    
+    this.dialogVisible = true;
   }
 
   private toolbarClick () {

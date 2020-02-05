@@ -11,6 +11,10 @@ export default class Toolbar {
     this.scene.renderPage(+data.status);
   }
 
+  public exportFile (data: any) {
+    console.log(data);
+  }
+
   public resetScene (scene: any) {
     this.scene = scene;
   }
