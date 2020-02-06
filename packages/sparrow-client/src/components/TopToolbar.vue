@@ -29,7 +29,11 @@
     </div>
     <div class="toolbar__item">
       <el-tooltip class="item" effect="dark" content="源代码" placement="top">
-        <font-awesome-icon :icon="['fas', 'code']" />
+        <span
+          @click="openEditorHandler"
+        >
+          <font-awesome-icon :icon="['fas', 'code']" />
+        </span>
       </el-tooltip>
     </div>
     <file-export
@@ -85,7 +89,10 @@ export default class extends Vue {
     const viewFrame: any = document.querySelector('#viewContent');
     viewFrame.contentWindow.postMessage({handler: 'document-click'}, '*');
   }
-  
+
+  private async openEditorHandler () {
+    await socket.emit('generator.toolbar.openCodeEditor');
+  }
 }
 </script>
 <style lang="scss" scoped>
