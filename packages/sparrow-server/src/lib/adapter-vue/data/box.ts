@@ -1,28 +1,40 @@
 export default {
   list: [
     {
-      id: 10002,
+      id: 'block',
       value: 'block',
       name: '区块',
       icon: 'braille'
     },
     {
-      id: 10003,
+      id: 'form',
+      value: 'form',
+      name: '表单',
+      icon: ''
+    },
+    {
+      id: 'table',
+      value: 'table',
+      name: '表格',
+      icon: 'table'
+    },
+    {
+      id: 'inline',
+      value: 'inline',
+      name: '行内',
+      icon: ''
+    },
+    {
+      id: 'layout',
       value: 'layout',
       name: '布局',
       icon: 'grip-horizontal'
     },
     {
-      id: 10004,
+      id: 'list',
       value: 'list',
       name: 'list',
       icon: 'list',
     },
-    {
-      id: 10005,
-      value: 'table',
-      name: '表格',
-      icon: 'table'
-    }
   ]
 }

@@ -7,10 +7,10 @@ export default class Box {
     let curBox: any;
     const {id} = data;
     switch (id) {
-      case 10002:
+      case 'block':
         curBox = new Block(data);
         break;
-      case 10003:
+      case 'layout':
         curBox = new LayoutBox(data);
         break;
       default:
