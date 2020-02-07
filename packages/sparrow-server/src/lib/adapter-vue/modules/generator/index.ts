@@ -7,8 +7,11 @@ import fragment from './fragment';
 
 export default class VueGenerator {
   pageAST: any;
+  type: string;
 
-  constructor () {}
+  constructor (type?: string) {
+    this.type = type
+  }
 
   public getScriptValue (propName: string): any {
     let props = [];
@@ -39,7 +42,11 @@ export default class VueGenerator {
   }
 
   public initScript () {
-    const pageAST = parser.parse(fragment.scriptViewStr, {
+    let scriptStr = fragment.scriptViewStr;
+    if (this.type === 'block') {
+      scriptStr = fragment.scriptViewStr;
+    }
+    const pageAST = parser.parse(scriptStr, {
       sourceType: 'module',
     });
     this.pageAST = pageAST;

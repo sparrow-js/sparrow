@@ -7,20 +7,32 @@ import * as cheerio from 'cheerio';
 import * as mkdirp from 'mkdirp';
 import * as util from 'util';
 import Config from '../../../config';
+import VueGenerator from '../../generator'
 
 const mkdirpAsync = util.promisify(mkdirp);
 
+const templateStr =  `
+  <template>
+    <div class="root"></div>
+  </template>
+`;
 
 export default class Form implements IBaseBox{
   $fragment: any;
   template: string;
+  name: string;
+  VueGenerator: any;
+  blockPath: string;
 
   constructor (data: any) {
     const { boxIndex, params } = data;
-    this.$fragment = cheerio.load(boxFragment.box(boxIndex), {
+    const {blockName} = params;
+    this.name = blockName;
+    this.$fragment = cheerio.load(boxFragment.box(boxIndex, `<${this.name} />`), {
       xmlMode: true,
       decodeEntities: false
     });
+    this.VueGenerator = new VueGenerator('block');
     this.init();
   }
 
@@ -29,8 +41,7 @@ export default class Form implements IBaseBox{
     const boxForm = fragment.BoxForm(form);
     this.$fragment('box').append(boxForm);
     await mkdirpAsync(Config.componentsDir);
-    const viewPath = path.join(Config.componentsDir, 'form11.vue');
-    fsExtra.writeFile(viewPath, '<tempate></template>', 'utf8')
+    this.blockPath = path.join(Config.componentsDir, `${this.name}.vue`);
   }
 
   public getBoxFragment(index: number): any {
@@ -38,7 +49,7 @@ export default class Form implements IBaseBox{
   }
 
   public addComponent (data: any) {
-
+    fsExtra.writeFile(this.blockPath, templateStr, 'utf8')
   }
 
   public render () {
