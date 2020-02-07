@@ -10,7 +10,8 @@ export default class VueGenerator {
   type: string;
 
   constructor (type?: string) {
-    this.type = type
+    this.type = type;
+    this.initScript();
   }
 
   public getScriptValue (propName: string): any {

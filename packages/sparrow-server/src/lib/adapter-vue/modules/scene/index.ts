@@ -4,7 +4,6 @@ import generate from '@babel/generator';
 import {initBlock, blockList, paragraph} from '../fragment/scene';
 import * as cheerio from 'cheerio';
 import * as prettier from 'prettier';
-import {appendComponent, initScript} from './generatorAst';
 import * as upperCamelCase from 'uppercamelcase';
 import VueGenerator from '../generator';
 

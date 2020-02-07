@@ -7,7 +7,10 @@ import * as cheerio from 'cheerio';
 import * as mkdirp from 'mkdirp';
 import * as util from 'util';
 import Config from '../../../config';
-import VueGenerator from '../../generator'
+import VueGenerator from '../../generator';
+import * as prettier from 'prettier';
+import generate from '@babel/generator';
+
 
 const mkdirpAsync = util.promisify(mkdirp);
 
@@ -42,6 +45,7 @@ export default class Form implements IBaseBox{
     this.$fragment('box').append(boxForm);
     await mkdirpAsync(Config.componentsDir);
     this.blockPath = path.join(Config.componentsDir, `${this.name}.vue`);
+    this.render();
   }
 
   public getBoxFragment(index: number): any {
@@ -49,11 +53,13 @@ export default class Form implements IBaseBox{
   }
 
   public addComponent (data: any) {
-    fsExtra.writeFile(this.blockPath, templateStr, 'utf8')
+    fsExtra.writeFile(this.blockPath, templateStr, 'utf8');
   }
 
   public render () {
-    
+    const template = `${templateStr}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
+    const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
+    fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
   }
 
   setTemplate () {
