@@ -1,6 +1,7 @@
 
 import LayoutBox from './layout';
 import Block from './block';
+import Form from './form';
 
 export default class Box {
   public createBox (data: any) {
@@ -13,6 +14,8 @@ export default class Box {
       case 'layout':
         curBox = new LayoutBox(data);
         break;
+      case 'form':
+        curBox = new Form(data);
       default:
         break;
     }

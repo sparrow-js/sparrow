@@ -1,4 +1,4 @@
-export function eform (content: string) {
+export function eform (content: string = '') {
   return `
     <el-form label-width="100px">${content}</el-form>
   `;

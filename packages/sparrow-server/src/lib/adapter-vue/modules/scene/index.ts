@@ -6,6 +6,7 @@ import * as cheerio from 'cheerio';
 import * as prettier from 'prettier';
 import {appendComponent, initScript} from './generatorAst';
 import * as upperCamelCase from 'uppercamelcase';
+import VueGenerator from '../generator';
 
 import Box from '../box'
 const cwd = process.cwd();
@@ -21,11 +22,13 @@ export default class Scene {
   scriptData: any;
   $: any;
   boxInstance: any;
+  VueGenerator: any;
 
   private blockMap = new Map();
 
   constructor () {
     this.boxInstance = new Box;
+    this.VueGenerator = new VueGenerator();
     this.init();
   }
 
@@ -40,7 +43,7 @@ export default class Scene {
       xmlMode: true,
       decodeEntities: false
     });
-    this.scriptData = initScript();
+    this.scriptData = this.VueGenerator.initScript();
 
     this.renderPage();
   }
@@ -117,7 +120,7 @@ export default class Scene {
 
   public async renderPage (renderType: number = 0) {
     this.$('.home').empty();
-    this.scriptData = initScript();
+    this.scriptData = this.VueGenerator.initScript();
 
     this.boxs.map(async (item, index) => {
       if (renderType === 0) {
@@ -129,7 +132,7 @@ export default class Scene {
       }
 
       if (item.insertComponents && item.insertComponents.length) {
-        appendComponent(upperCamelCase(item.insertComponents[0]));
+        this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));
       }
     });
     if (renderType === 0) {
