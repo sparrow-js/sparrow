@@ -45,7 +45,7 @@ export default class VueGenerator {
   public initScript () {
     let scriptStr = fragment.scriptViewStr;
     if (this.type === 'block') {
-      scriptStr = fragment.scriptViewStr;
+      scriptStr = fragment.scriptBlockStr;
     }
     const pageAST = parser.parse(scriptStr, {
       sourceType: 'module',
@@ -54,30 +54,37 @@ export default class VueGenerator {
     return this.pageAST;
   }
 
+  /**
+   * 
+    traverse(data, (node, array, index) => {
+      if (node[primaryKey] === dragKey) {
+        array.splice(index, 1);
+        dragNode = node;
+      }
+    }, true);
+   */
   public appendComponent (componentName: string) {
-    const self = this;
     traverse(this.pageAST, {
-      Program({ node }) {
+      Program: ({ node }) => {
         // import components
-        traverse(self.getAstByCode(self.importStr(componentName)), {
-          Program(path) {
+        traverse(this.getAstByCode(this.importStr(componentName)), {
+          Program: (path) => {
             node.body.unshift(path.node.body[0]);
           }
         });
       },
-      ObjectExpression (path) {
+      ObjectExpression: (path) => {
         if (path.parent.type === 'ExportDefaultDeclaration') {
           const {node} = path;
           let componentsNode = node.properties.find(item => item.key.name === 'components')
           if (!componentsNode) {
-            componentsNode = self.getScriptValue('components');
+            componentsNode = this.getScriptValue('components');
             node.properties.unshift(componentsNode);
           }
           // vue components add component
           componentsNode.value.properties.push(
             t.objectProperty(t.identifier(componentName), t.identifier(componentName), false, true)
           );
-          
         }
       }
     });

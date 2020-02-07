@@ -26,11 +26,13 @@ export default class Form implements IBaseBox{
   name: string;
   VueGenerator: any;
   blockPath: string;
+  insertComponents:string[] = []
 
   constructor (data: any) {
     const { boxIndex, params } = data;
     const {blockName} = params;
     this.name = blockName;
+    this.insertComponents.push(this.name);
     this.$fragment = cheerio.load(boxFragment.box(boxIndex, `<${this.name} />`), {
       xmlMode: true,
       decodeEntities: false
@@ -40,9 +42,6 @@ export default class Form implements IBaseBox{
   }
 
   async init () {
-    const form = boxFragment.eform();
-    const boxForm = fragment.BoxForm(form);
-    this.$fragment('box').append(boxForm);
     await mkdirpAsync(Config.componentsDir);
     this.blockPath = path.join(Config.componentsDir, `${this.name}.vue`);
     this.render();
