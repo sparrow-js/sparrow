@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <el-aside width="160px"></el-aside>
+
+      <el-aside width="80px"></el-aside>
+
       <el-container>
         <el-main>
           <div class="main">
@@ -18,13 +20,19 @@
           </div>
         </el-main>
       </el-container>
-      <el-aside width="160px"></el-aside>
+
+      <el-aside :width="showSetting ? '240px' : '80px'">
+        <setting
+          setting-data="settingData"
+        ></setting>
+      </el-aside>
+
     </el-container>
     <div 
       class="dashboard-box"
       v-if="showDashboard"
     >
-      <dashboard 
+      <dashboard
         @on-selected="selectedHandler(data)"
         :tab-index="dashboardTabIndex"
       ></dashboard>
@@ -32,26 +40,42 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import Logo from '@/components/logo.vue';
 import Dashboard from '@/components/materiel/Dashboard.vue';
-import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
 import TopToolbar from '@/components/TopToolbar.vue';
 import Loading  from '@/util/loading';
+import Setting from '@/components/setting/index.vue';
+import { AppModule } from '@/store/modules/app';
+import { SettingModule } from '@/store/modules/setting';
 
 @Component({
   components: {
     Logo,
     Dashboard,
-    TopToolbar
+    TopToolbar,
+    Setting
   }
 })
 export default class App extends Vue {
   private dashboardTabIndex = '0';
+  private settingData = null;
+  private settingWidth = '80px';
 
   get showDashboard () {
     return AppModule.showDashboard;
+  }
+
+  get showSetting () {
+    return SettingModule.showSetting;
+  }
+
+  @Watch('settingData')
+  private settingDataChange() {
+    if (this.settingData) {
+      SettingModule.setShowSettingHandler(true);
+    }
   }
 
   created() {
@@ -68,12 +92,21 @@ export default class App extends Vue {
           this.dashboardTabIndex = '1';
         }
       }
+
+      if (data.handler === 'client.setting.show') {
+        const {box, setting} = data;
+        AppModule.SetDoxIndex(box.index);
+        SettingModule.setSettingData(setting.data);
+        console.log('*********9******', data);
+      }
     });
 
     // block 进度
     socket.on('generator.scene.block.status', (data) => {
       Loading.close();
     });
+    
+    this.settingData = {};
   }
 
   mounted () {

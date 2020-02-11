@@ -54,15 +54,6 @@ export default class VueGenerator {
     return this.pageAST;
   }
 
-  /**
-   * 
-    traverse(data, (node, array, index) => {
-      if (node[primaryKey] === dragKey) {
-        array.splice(index, 1);
-        dragNode = node;
-      }
-    }, true);
-   */
   public appendComponent (componentName: string) {
     traverse(this.pageAST, {
       Program: ({ node }) => {
@@ -90,4 +81,18 @@ export default class VueGenerator {
     });
   }
 
+  public appendData () {
+    traverse(this.pageAST, {
+      ObjectExpression: (path) => {
+        if (path.parent.type === 'ExportDefaultDeclaration') {
+          const {node} = path;
+          let dataNode = node.properties.find(item => item.key.name === 'data');
+          if (!dataNode) {
+            dataNode = this.getScriptValue('data');
+            node.properties.unshift(dataNode);
+          }
+        }
+      }
+    })
+  }
 }

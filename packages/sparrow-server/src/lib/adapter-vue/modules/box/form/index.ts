@@ -16,7 +16,9 @@ const mkdirpAsync = util.promisify(mkdirp);
 
 const templateStr =  `
   <template>
-    <div class="root"></div>
+    <div class="root">
+      <box-form />
+    </div>
   </template>
 `;
 
@@ -39,6 +41,7 @@ export default class Form implements IBaseBox{
     });
     this.VueGenerator = new VueGenerator('block');
     this.init();
+    this.VueGenerator.appendData();
   }
 
   async init () {

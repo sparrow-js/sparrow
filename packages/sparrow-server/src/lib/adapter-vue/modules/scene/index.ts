@@ -116,6 +116,10 @@ export default class Scene {
     }});
   }
 
+  public async setting () {
+    console.log('******9*******');
+  }
+
 
   public async renderPage (renderType: number = 0) {
     this.$('.home').empty();

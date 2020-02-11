@@ -10,7 +10,11 @@ import message from './utils/message';
 Event.on('pivot_operate', (data) => {
   console.log('pivot_operate', data);
   message.emit(data.handler, data);
-})
+});
+
+Event.on('pivot_setting', (data) => {
+  message.emit('pivot_setting', data);
+});
 
 
 Vue.config.productionTip = false

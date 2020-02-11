@@ -13,8 +13,8 @@ import {
   faTrashRestoreAlt
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-
+import codeMirrorInstall from './codemirror';
+codeMirrorInstall(Vue);
 // trash-restore-alt
 
 library.add(faCode);

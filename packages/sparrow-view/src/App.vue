@@ -31,6 +31,8 @@ export default {
     Event.on('block-selected', (data) => {
       this.boxIndex = data.index;
     });
+
+    // 插入物料处理
     Event.on('insert_handler', (data) => {
       setTimeout(() => {
         message.emit('client.dashboard.show', {
@@ -39,6 +41,18 @@ export default {
         });
       }, 300);
     })
+
+    Event.on('pivot_setting', (setting) => {
+      setTimeout(() => {
+        message.emit('client.setting.show', {
+          box: {
+            index: this.boxIndex
+          },
+          setting
+        });
+      }, 300);
+    });
+
   },
   methods: {
     async getToolbarList () {

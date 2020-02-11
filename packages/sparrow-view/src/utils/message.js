@@ -13,7 +13,7 @@ window.addEventListener('message', (event) => {
 
 message.emit = (handler, data = {}) => {
   data.uniqueId = _.uniqueId('message_');
-  data.handler = handler;
+  data.handler = handler || '';
   return new Promise((resolve, reject) => {
     window.parent.postMessage(data, '*');
     messageMap.set(data.uniqueId, {

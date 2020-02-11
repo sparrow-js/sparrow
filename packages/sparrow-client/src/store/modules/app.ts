@@ -3,6 +3,7 @@ import store from '@/store'
 
 export interface IAppState {
   showDashboard: boolean,
+  boxIndex: number,
   insertData: {
     boxIndex: number,
     data: any,
@@ -12,6 +13,7 @@ export interface IAppState {
 @Module({ dynamic: true, store, name: 'app' })
 class App extends VuexModule implements IAppState {
   public showDashboard = false;
+  public boxIndex = -1;
   public insertData = {
     boxIndex: -1,
     data: {}
@@ -28,6 +30,11 @@ class App extends VuexModule implements IAppState {
     this.insertData = insertData;
   }
 
+  @Mutation
+  private SET_BOX_INDEX (index: number) {
+    this.boxIndex = index;
+  }
+
 
   @Action
   public SetShowDashboard(showDashboard: boolean) {
@@ -39,6 +46,10 @@ class App extends VuexModule implements IAppState {
     this.INSERT_DATA(insertData);
   }
 
+  @Action
+  public SetDoxIndex (index: number) {
+    this.SET_BOX_INDEX(index);
+  }
 
 }
 export const AppModule = getModule(App)
