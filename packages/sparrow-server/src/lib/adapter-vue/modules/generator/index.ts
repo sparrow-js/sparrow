@@ -81,7 +81,21 @@ export default class VueGenerator {
     });
   }
 
-  public appendData () {
+  public appendData (code?: string) {
+    let dataCodeNode: any;
+    if (code) {
+      const codeAst = this.getAstByCode(code);
+      traverse(codeAst, {
+        ObjectExpression: (path) => {
+          if (path.parent.type === 'VariableDeclarator') {
+            // console.log(path.node);
+            dataCodeNode = path.node;
+            console.log(JSON.stringify(dataCodeNode, null, 2));
+          }
+        }
+      })
+    }
+
     traverse(this.pageAST, {
       ObjectExpression: (path) => {
         if (path.parent.type === 'ExportDefaultDeclaration') {
@@ -92,7 +106,20 @@ export default class VueGenerator {
             node.properties.unshift(dataNode);
           }
         }
+      },
+      ObjectMethod: (path) => {
+        const { node } = path;
+        if (node.key && node.key.name === 'data') {
+          path.traverse({
+            ReturnStatement: (pathData) => {
+              if (dataCodeNode) {
+                pathData.node.argument = dataCodeNode;
+              }
+            } 
+          })
+        }
       }
     })
+    // console.log(JSON.stringify(this.pageAST, null, 2));
   }
 }

@@ -87,6 +87,7 @@ export default class App extends Vue {
       if (data.handler === 'client.dashboard.show') {
         console.log('insert-data', data);
         AppModule.InsertData(data);
+        AppModule.SetDoxIndex(data.boxIndex);
         AppModule.SetShowDashboard(true);
         if (['block'].includes(data.data.type)) {
           this.dashboardTabIndex = '1';
@@ -97,7 +98,7 @@ export default class App extends Vue {
         const {box, setting} = data;
         AppModule.SetDoxIndex(box.index);
         SettingModule.setSettingData(setting.data);
-        console.log('*********9******', data);
+        console.log('******9******', data);
       }
     });
 

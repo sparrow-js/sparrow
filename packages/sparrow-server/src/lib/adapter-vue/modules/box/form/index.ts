@@ -11,7 +11,6 @@ import VueGenerator from '../../generator';
 import * as prettier from 'prettier';
 import generate from '@babel/generator';
 
-
 const mkdirpAsync = util.promisify(mkdirp);
 
 const templateStr =  `
@@ -28,7 +27,8 @@ export default class Form implements IBaseBox{
   name: string;
   VueGenerator: any;
   blockPath: string;
-  insertComponents:string[] = []
+  insertComponents:string[] = [];
+  dataCode: string = `var data = {}`
 
   constructor (data: any) {
     const { boxIndex, params } = data;
@@ -57,6 +57,24 @@ export default class Form implements IBaseBox{
   public addComponent (data: any) {
     fsExtra.writeFile(this.blockPath, templateStr, 'utf8');
   }
+
+  public setting (data: any) {
+    const {handler} = data;
+    // this.VueGenerator.
+    if (handler === 'data') {
+      this.dataCode = data.code;
+      this.VueGenerator.appendData(data.code);
+    }
+    this.render();
+  }
+  
+  public getSetting () {
+    return {
+      data: {
+        code: this.dataCode
+      }
+    }
+  } 
 
   public render () {
     const template = `${templateStr}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
