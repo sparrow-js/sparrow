@@ -116,8 +116,11 @@ export default class Scene {
     }});
   }
 
-  public async setting () {
-    console.log('******9*******');
+  public async setting (params: any) {
+    const {boxIndex, data} = params;
+    if (boxIndex >= 0) {
+      this.boxs[boxIndex].setting(data);
+    }
   }
 
 

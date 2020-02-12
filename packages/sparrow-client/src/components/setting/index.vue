@@ -19,7 +19,9 @@
         <el-collapse-item title="data" name="2">
           <template slot="title">
             <span>data</span>
-            <span class="update-data">更新</span>
+            <span class="update-data"
+              @click.stop="updateCodeData"
+            >更新</span>
           </template>
           <codemirror v-model="code"></codemirror>
         </el-collapse-item>
@@ -30,6 +32,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { SettingModule } from '@/store/modules/setting';
+import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
 
 
@@ -44,6 +47,9 @@ export default class extends Vue {
   get showSetting () {
     return SettingModule.showSetting;
   }
+
+
+
   
   private showSettingHandler () {
     SettingModule.setShowSettingHandler(!SettingModule.showSetting);
@@ -51,8 +57,22 @@ export default class extends Vue {
 
   private async displayChange () {
     await socket.emit('generator.scene.setting', {
-      inline: this.inline,
-      code: this.code,
+      boxIndex: AppModule.boxIndex,
+      data: {
+        handler: 'attr',
+        key: ':inline',
+        value: this.inline,
+      }
+    });
+  }
+
+  private async updateCodeData () {
+    await socket.emit('generator.scene.setting', {
+      boxIndex: AppModule.boxIndex,
+      data: {
+        handler: 'data',
+        code: this.code,
+      }
     });
   }
 }
