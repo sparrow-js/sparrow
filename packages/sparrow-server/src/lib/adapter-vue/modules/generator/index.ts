@@ -88,9 +88,7 @@ export default class VueGenerator {
       traverse(codeAst, {
         ObjectExpression: (path) => {
           if (path.parent.type === 'VariableDeclarator') {
-            // console.log(path.node);
             dataCodeNode = path.node;
-            console.log(JSON.stringify(dataCodeNode, null, 2));
           }
         }
       })
@@ -120,6 +118,5 @@ export default class VueGenerator {
         }
       }
     })
-    // console.log(JSON.stringify(this.pageAST, null, 2));
   }
 }
