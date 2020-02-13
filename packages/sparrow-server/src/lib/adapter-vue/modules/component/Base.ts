@@ -13,7 +13,8 @@ export default class Base {
       Object
         .keys(attrs)
         .forEach(item => {
-          this.$fragment.root().children().attr(item, attrs[item]);
+          this.$fragment('el-form-item').children().attr(item, attrs[item])
+          // this.$fragment.root().children().attr(item, attrs[item]);
         })
     }
   }

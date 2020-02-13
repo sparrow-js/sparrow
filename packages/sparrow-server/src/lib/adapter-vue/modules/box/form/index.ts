@@ -16,7 +16,7 @@ const mkdirpAsync = util.promisify(mkdirp);
 const templateStr =  `
   <template>
     <div class="root">
-      <box-form />
+      <box-form></box-form>
     </div>
   </template>
 `;
@@ -28,7 +28,9 @@ export default class Form implements IBaseBox{
   VueGenerator: any;
   blockPath: string;
   insertComponents:string[] = [];
-  dataCode: string = `var data = {}`
+  dataCode: string = `var data = {}`;
+  components: any = [];
+  $blockTemplate: any;
 
   constructor (data: any) {
     const { boxIndex, params } = data;
@@ -39,6 +41,13 @@ export default class Form implements IBaseBox{
       xmlMode: true,
       decodeEntities: false
     });
+
+    this.$blockTemplate = cheerio.load(templateStr, {
+      xmlMode: true,
+      decodeEntities: false
+    });
+
+    this.$blockTemplate('box-form').append(fragment.eform());
     this.VueGenerator = new VueGenerator('block');
     this.init();
     this.VueGenerator.appendData();
@@ -55,15 +64,28 @@ export default class Form implements IBaseBox{
   }
 
   public addComponent (data: any) {
-    fsExtra.writeFile(this.blockPath, templateStr, 'utf8');
-  }
+    console.log('******9******',  data);
+    // { boxData: { type: 'form' }, key: 'BaseInput', name: 'form.id' }
+    const { key, boxData, name } = data;
+    const { params } = boxData;
+    const dynamicObj = require(`../../component/${key}`).default;
+    this.components.push(new dynamicObj({
+      'v-model': name
+    }));
+    this.$blockTemplate('el-form').empty();
+    this.components.forEach((component) => {
+      this.$blockTemplate('el-form').append(component.getFragment().html());
+    });
+    this.render();
+  } 
+
 
   public setting (data: any) {
     const {handler} = data;
     // this.VueGenerator.
     if (handler === 'data') {
       this.dataCode = data.code;
-      this.VueGenerator.appendData(data.code);
+      this.VueGenerator.appendData(this.dataCode);
     }
     this.render();
   }
@@ -77,7 +99,7 @@ export default class Form implements IBaseBox{
   } 
 
   public render () {
-    const template = `${templateStr}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
+    const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
     fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
   }
