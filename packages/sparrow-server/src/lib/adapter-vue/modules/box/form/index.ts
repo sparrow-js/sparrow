@@ -73,7 +73,6 @@ export default class Form implements IBaseBox{
   }
 
   public addComponent (data: any) {
-    console.log('******9******',  data);
     // { boxData: { type: 'form' }, key: 'BaseInput', name: 'form.id' }
     const { key, boxData, name } = data;
     const { params } = boxData;
