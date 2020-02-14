@@ -28,10 +28,13 @@ export default class extends Vue {
   private code = `var data = {};`;
   private activeNames = ['1', '2'];
   private inline = false;
-  private settingComponent = 'FormSetting';
 
   get showSetting () {
     return SettingModule.showSetting;
+  }
+
+  get settingComponent () {
+    return SettingModule.settingComponent;
   }
   
   private showSettingHandler () {

@@ -123,6 +123,12 @@ export default class Scene {
     }
   }
 
+  public getSetting (params) {
+    const { boxIndex } = params;
+    if (boxIndex >= 0) {
+      return this.boxs[boxIndex].getSetting();
+    }
+  }
 
   public async renderPage (renderType: number = 0) {
     this.$('.home').empty();

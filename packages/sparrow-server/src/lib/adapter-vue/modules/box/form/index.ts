@@ -21,6 +21,11 @@ const templateStr =  `
   </template>
 `;
 
+export interface IFormSetting{
+  dataCode: string;
+  inline: boolean;
+}
+
 export default class Form implements IBaseBox{
   $fragment: any;
   template: string;
@@ -28,9 +33,13 @@ export default class Form implements IBaseBox{
   VueGenerator: any;
   blockPath: string;
   insertComponents:string[] = [];
-  dataCode: string = `var data = {}`;
   components: any = [];
   $blockTemplate: any;
+
+  settingData: IFormSetting = {
+    dataCode: `var data = {}`,
+    inline: false
+  }
 
   constructor (data: any) {
     const { boxIndex, params } = data;
@@ -84,17 +93,15 @@ export default class Form implements IBaseBox{
     const {handler} = data;
     // this.VueGenerator.
     if (handler === 'data') {
-      this.dataCode = data.code;
-      this.VueGenerator.appendData(this.dataCode);
+      this.settingData.dataCode = data.code;
+      this.VueGenerator.appendData(this.settingData.dataCode);
     }
     this.render();
   }
   
   public getSetting () {
     return {
-      data: {
-        code: this.dataCode
-      }
+      data: this.settingData
     }
   } 
 

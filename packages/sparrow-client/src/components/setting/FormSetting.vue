@@ -4,7 +4,7 @@
       <el-collapse v-model="activeNames">
         <el-collapse-item title="模式" name="1">
           <el-switch
-            v-model="inline"
+            v-model="setting.inline"
             active-text="块"
             inactive-text="行内"
             @change="displayChange"
@@ -18,7 +18,7 @@
               @click.stop="updateCodeData"
             >更新</span>
           </template>
-          <codemirror v-model="code"></codemirror>
+          <codemirror v-model="setting.dataCode"></codemirror>
         </el-collapse-item>
       </el-collapse>
     </div>
@@ -35,15 +35,26 @@ import socket from '@/util/socket.js';
   name: 'Setting',
 })
 export default class extends Vue {
-  private code = `var data = {};`;
   private activeNames = ['1', '2'];
-  private inline = false;
+  private setting = {
+    dataCode: '',
+    inline: false
+  };
+
 
   get showSetting () {
     return SettingModule.showSetting;
   }
 
-  private created () {}
+  private async created () {
+    const result = await socket.emit('generator.scene.getSetting', {
+      boxIndex: AppModule.boxIndex
+    });
+    if (result) {
+      this.setting = result.data;
+    }
+    console.log(this.setting);
+  }
 
   private showSettingHandler () {
     SettingModule.setShowSettingHandler(!SettingModule.showSetting);
@@ -55,7 +66,7 @@ export default class extends Vue {
       data: {
         handler: 'attr',
         key: ':inline',
-        value: this.inline,
+        value: this.setting.inline,
       }
     });
   }
@@ -65,7 +76,7 @@ export default class extends Vue {
       boxIndex: AppModule.boxIndex,
       data: {
         handler: 'data',
-        code: this.code,
+        code: this.setting.dataCode,
       }
     });
   }
