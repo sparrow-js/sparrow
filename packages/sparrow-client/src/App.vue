@@ -68,15 +68,10 @@ export default class App extends Vue {
   }
 
   get showSetting () {
+    console.log(SettingModule.showSetting);
     return SettingModule.showSetting;
   }
 
-  @Watch('settingData')
-  private settingDataChange() {
-    if (this.settingData) {
-      SettingModule.setShowSettingHandler(true);
-    }
-  }
 
   created() {
     window.addEventListener("message", async event => {
@@ -98,7 +93,7 @@ export default class App extends Vue {
         const {box, setting} = data;
         AppModule.SetDoxIndex(box.index);
         SettingModule.setSettingData(setting.data);
-        console.log('******9******', data);
+        SettingModule.setSettingComponent('FormSetting');
       }
     });
 

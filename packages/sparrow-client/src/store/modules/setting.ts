@@ -4,13 +4,15 @@ import store from '@/store';
 
 export interface ISettingState {
   showSetting: boolean,
-  settingData: any
+  settingData: any,
+  settingComponent: string,
 }
 
 @Module({ dynamic: true, store, name: 'setting' })
 class Setting extends VuexModule implements ISettingState {
-  public showSetting = true;
+  public showSetting = false;
   public settingData = {};
+  public settingComponent = '';
 
   @Mutation
   private SET_SHOW_SETTING(show: boolean) {
@@ -22,6 +24,11 @@ class Setting extends VuexModule implements ISettingState {
     this.settingData = data;
   }
 
+  @Mutation
+  private SET_STTING_COMPONENT(compName: string) {
+    this.settingComponent = compName;
+  }
+
   @Action
   public setShowSettingHandler(show: boolean) {
     this.SET_SHOW_SETTING(show);
@@ -30,6 +37,15 @@ class Setting extends VuexModule implements ISettingState {
   @Action 
   public setSettingData(data: any) {
     this.SET_SETTING_DATA(data);
+  }
+
+  @Action
+  public setSettingComponent(compName: string) {
+    this.SET_STTING_COMPONENT('');
+    setTimeout(() => {
+      this.SET_STTING_COMPONENT(compName);
+      this.SET_SHOW_SETTING(true);
+    }, 100);
   }
 }
 

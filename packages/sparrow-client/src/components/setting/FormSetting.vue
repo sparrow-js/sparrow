@@ -1,12 +1,26 @@
 <template>
   <div class="setting">
-    <div 
-      @click="showSettingHandler"
-    >
-      <span class="el-icon-s-fold"></span>
-    </div>
-    <div v-if="settingComponent">
-      <component  v-bind:is="settingComponent"></component>
+    <div v-show="showSetting">
+      <el-collapse v-model="activeNames">
+        <el-collapse-item title="模式" name="1">
+          <el-switch
+            v-model="inline"
+            active-text="块"
+            inactive-text="行内"
+            @change="displayChange"
+          >
+          </el-switch>
+        </el-collapse-item>
+        <el-collapse-item title="data" name="2">
+          <template slot="title">
+            <span>data</span>
+            <span class="update-data"
+              @click.stop="updateCodeData"
+            >更新</span>
+          </template>
+          <codemirror v-model="code"></codemirror>
+        </el-collapse-item>
+      </el-collapse>
     </div>
   </div>
 </template>
@@ -15,25 +29,22 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import { SettingModule } from '@/store/modules/setting';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
-import FormSetting from './FormSetting.vue';
 
 
 @Component({
   name: 'Setting',
-  components: {
-    FormSetting
-  },
 })
 export default class extends Vue {
   private code = `var data = {};`;
   private activeNames = ['1', '2'];
   private inline = false;
-  private settingComponent = 'FormSetting';
 
   get showSetting () {
     return SettingModule.showSetting;
   }
-  
+
+  private created () {}
+
   private showSettingHandler () {
     SettingModule.setShowSettingHandler(!SettingModule.showSetting);
   }
