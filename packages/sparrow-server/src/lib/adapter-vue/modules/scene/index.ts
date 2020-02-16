@@ -120,6 +120,12 @@ export default class Scene {
     const {boxIndex, data} = params;
     if (boxIndex >= 0) {
       this.boxs[boxIndex].setting(data);
+      return {
+        status: 0
+      }
+    }
+    return {
+      status: 1
     }
   }
 

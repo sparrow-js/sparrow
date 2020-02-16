@@ -94,6 +94,10 @@ export default class Form implements IBaseBox{
     if (handler === 'data') {
       this.settingData.dataCode = data.code;
       this.VueGenerator.appendData(this.settingData.dataCode);
+    } else if (handler === 'formInline') {
+      this.$blockTemplate('el-form').attr(data.key, data.value);
+      console.log(data);
+      console.log('*******1******');
     }
     this.render();
   }

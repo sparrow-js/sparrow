@@ -30,7 +30,6 @@ import { SettingModule } from '@/store/modules/setting';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
 
-
 @Component({
   name: 'Setting',
 })
@@ -61,24 +60,39 @@ export default class extends Vue {
   }
 
   private async displayChange () {
-    await socket.emit('generator.scene.setting', {
+    const result = await socket.emit('generator.scene.setting', {
       boxIndex: AppModule.boxIndex,
       data: {
-        handler: 'attr',
+        handler: 'formInline',
         key: ':inline',
         value: this.setting.inline,
       }
     });
+
+    if (result && result.status === 0) {
+      this.$message({
+        message: '操作成功',
+        type: 'success'
+      });
+    }
   }
 
   private async updateCodeData () {
-    await socket.emit('generator.scene.setting', {
+    
+   const result =  await socket.emit('generator.scene.setting', {
       boxIndex: AppModule.boxIndex,
       data: {
         handler: 'data',
         code: this.setting.dataCode,
       }
     });
+
+    if (result && result.status === 0) {
+      this.$message({
+        message: '操作成功',
+        type: 'success'
+      });
+    }
   }
 }
 </script>
