@@ -1,9 +1,8 @@
 <template>
   <div id="app">
     <el-container class="container">
-
       <el-aside width="80px"></el-aside>
-
+      <!-- <json-handler></json-handler> -->
       <el-container>
         <el-main>
           <div class="main">
@@ -49,13 +48,14 @@ import Loading  from '@/util/loading';
 import Setting from '@/components/setting/index.vue';
 import { AppModule } from '@/store/modules/app';
 import { SettingModule } from '@/store/modules/setting';
-
+import JsonHandler from '@/components/jsonhandler/index.vue';
 @Component({
   components: {
     Logo,
     Dashboard,
     TopToolbar,
-    Setting
+    Setting,
+    JsonHandler
   }
 })
 export default class App extends Vue {

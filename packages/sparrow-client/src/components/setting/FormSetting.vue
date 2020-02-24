@@ -18,7 +18,14 @@
               @click.stop="updateCodeData"
             >更新</span>
           </template>
-          <codemirror v-model="setting.dataCode"></codemirror>
+          <codemirror 
+            ref="codemirror"
+            v-model="setting.dataCode"
+            @cursorActivity="focusCode"
+            @dblclick="dblclickCode"
+            @change="beforeSelectionChange"
+            @scrollCursorIntoView="gutterClick"
+          ></codemirror>
         </el-collapse-item>
       </el-collapse>
     </div>
@@ -93,6 +100,28 @@ export default class extends Vue {
         type: 'success'
       });
     }
+  }
+
+  private focusCode (data) {
+    // console.log(this.$refs.codemirror)
+    // console.log('******8*****');
+    // // console.log(data);
+    // // console.log(data.doc.getCursor());
+  }
+
+  private dblclickCode (instance, event) {
+    // console.log(instance)
+    // console.log(event)
+  }
+
+  private beforeSelectionChange (doc, selection) {
+    console.log('**********************')
+    // console.log(doc.getSelection());
+    // console.log(selection);
+  }
+
+  private gutterClick () {
+    console.log('gutterClick gutterClick')
   }
 }
 </script>

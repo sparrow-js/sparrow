@@ -13,6 +13,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.9",
     "core-js": "^3.3.2",
     "element-ui": "^2.13.0",
+    "jsoneditor": "^8.6.0",
     "mmlpx": "^4.0.2",
     "mobx": "^5.15.0",
     "mobx-state-tree": "^3.15.0",
