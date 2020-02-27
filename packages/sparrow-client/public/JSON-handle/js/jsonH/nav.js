@@ -133,8 +133,8 @@ JH.mod.add(['treeNav'], 'jsonH.nav', function (modName, JH, $$) {
 				}
 			},
 			"clickElmCallback" : function (eBlock) {
-
 				var oPath = _pri.parsePathByElm(eBlock);
+				console.log('******oPath*****', oPath.toString());
 				$('#showPath').val(oPath);
 				$('#showPath').attr('parentPath', oPath.sParent);
 				

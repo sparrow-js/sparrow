@@ -12,12 +12,12 @@ setTimeout(function() {
 	
 JH.request({}).create(null, 'getIni', {succeed : function (oResp) {
 
-
 	var _pub_static = function () {var _pri = {}, _pub = {};
 		var _init = function (oIni) {
 			JH.md.jsonH.language = oIni.lang;
 			JH.md.jsonH.oIni = oIni;
 			_pri.oIni = oIni;
+			
 			if(config.mode === 'request') {
 				var jsonH_Request = JH.request(_pub);
 				var getJsonStringRequest = jsonH_Request.create(JH.request.NS.jsonH, 'getJsonString', {succeed : function (oResponseData, oRequestData) {
@@ -43,10 +43,12 @@ JH.request({}).create(null, 'getIni', {succeed : function (oResp) {
 				_pri.startJsonH();
 			}
 
+			// console.log(_pri);
 		};
 		
 		_pri["startJsonH"] = function (sJson) {
 			var oJH = JH.md.jsonH(sJson);
+			console.log(JH.md.jsonH._pri.uiEvtCallback.submitEnterForm(JSON.stringify({id: 1})))
 			JH.e('#enterValue').select();
 
 			if(_pri.oIni) {

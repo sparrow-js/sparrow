@@ -363,12 +363,18 @@ JH.mod.add(['jsonH.nav', 'listenResizeWin', 'ad', 'lang'], 'jsonH', function (mo
 					}
 				},
 				submitEnterForm : function (evt) {
-					if(evt) {
-						evt.preventDefault();
+					var sData = '';
+					if (typeof evt === 'string') {
+						sData = evt;
+					} else {
+						if(evt) {
+							evt.preventDefault();
+						}
+						_pri.hasError = false;
+	
+						sData = _pri.node['enterValue'].value;
 					}
-					_pri.hasError = false;
 
-					var sData = _pri.node['enterValue'].value;
 					var sTxt;
 					if(_pri.inputFormatIsJsObj) {
 						try{
@@ -643,6 +649,7 @@ JH.mod.add(['jsonH.nav', 'listenResizeWin', 'ad', 'lang'], 'jsonH', function (mo
 			
 		
 		});
+		
 
 		JH.mergePropertyFrom(_pub, {
 			
@@ -741,6 +748,7 @@ JH.mod.add(['jsonH.nav', 'listenResizeWin', 'ad', 'lang'], 'jsonH', function (mo
 		};
 		_init();
 		
+		_pub_static._pri = _pri;
 
 
 		return _pub;
@@ -749,7 +757,7 @@ JH.mod.add(['jsonH.nav', 'listenResizeWin', 'ad', 'lang'], 'jsonH', function (mo
 
 	return JH.mergePropertyFrom(_pub_static, {
 	
-		language : 'en'
+		language : 'en',
 	
 	});
 });

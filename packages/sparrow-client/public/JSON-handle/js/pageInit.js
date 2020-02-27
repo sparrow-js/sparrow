@@ -1,17 +1,8 @@
-chrome.extension = chrome.extension || {
-	sendRequest : function (o, f) {
-		config.mode = '';
-		f({});
-	}
-};
-
-
 
 //chrome.extension.sendRequest({cmd:'getIni'}, (function () {
 setTimeout(function() {
 	
 JH.request({}).create(null, 'getIni', {succeed : function (oResp) {
-
 
 	var _pub_static = function () {var _pri = {}, _pub = {};
 		var _init = function (oIni) {

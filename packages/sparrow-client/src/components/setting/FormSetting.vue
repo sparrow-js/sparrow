@@ -27,6 +27,10 @@
             @scrollCursorIntoView="gutterClick"
           ></codemirror>
         </el-collapse-item>
+        <el-collapse-item title="json-handler" name="3">
+          <json-handler></json-handler>
+        </el-collapse-item>
+        <!--  -->
       </el-collapse>
     </div>
   </div>
@@ -36,12 +40,16 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import { SettingModule } from '@/store/modules/setting';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
+import JsonHandler from '@/components/jsonhandler/index.vue';
 
 @Component({
   name: 'Setting',
+  components: {
+    JsonHandler
+  }
 })
 export default class extends Vue {
-  private activeNames = ['1', '2'];
+  private activeNames = ['1', '2', '3'];
   private setting = {
     dataCode: '',
     inline: false

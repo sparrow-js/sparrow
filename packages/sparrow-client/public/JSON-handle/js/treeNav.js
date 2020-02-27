@@ -118,7 +118,7 @@ JH.mod.add(['JSON'], 'treeNav', function (modName, JH, $$) {
 			"actElm" : function (eBlock) {
 				_pri.actCur($(eBlock));
 				_pro.clickElmCallback(eBlock);
-				_pri.event.fire('clickElm', eBlock);
+				// _pri.event.fire('clickElm', eBlock);
 
 			},
 			"drawElm" : function (oData, sKey, targetBox) {//debugger;
