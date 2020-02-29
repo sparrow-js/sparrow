@@ -27,37 +27,6 @@ JH.request = JH.newFun(function ($) {
 					};
 				};
 
-				switch(sKey) {
-					case 'getJsonString':
-						oRe = buildSend(function (oRequestData, fResponse) {
-							chrome.extension.sendRequest({cmd:'getJson'}, function(response) {
-								var oData = {
-									code : 1,
-									msg : 'ok',
-									data : response
-								};
-								fResponse(oData);
-							});
-						});
-						break;
-					case 'setIni':
-						oRe = buildSend(function (oRequestData, fResponse) {
-							chrome.extension.sendRequest({
-								cmd:'setIni'
-								, oIni : oRequestData
-							}, function(response) {
-								var oData = {
-									code : 1,
-									msg : 'ok',
-									data : response
-								};
-								fResponse(oData);
-							});
-						});
-						break;
-					
-				}
-
 				return oRe;
 
 			}

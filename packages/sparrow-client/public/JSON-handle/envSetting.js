@@ -66,23 +66,6 @@ JH.request = JH.newFun(function (JH) {
 							});
 						});
 						break;
-					case 'getAdData':
-						oRe = buildSend(function (oRequestData, fResponse) {
-							chrome.extension.sendRequest({
-								cmd:'getAdData',
-								data : {
-									url : oRequestData.url
-								}
-							}, function(response) {
-								var oData = {
-									code : 1,
-									msg : 'ok',
-									data : response
-								};
-								fResponse(oData);
-							});
-						});
-						break;
 					case 'setIni':
 						oRe = buildSend(function (oRequestData, fResponse) {
 							chrome.extension.sendRequest({
