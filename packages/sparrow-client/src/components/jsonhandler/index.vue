@@ -70,16 +70,13 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 })
 export default class extends Vue {
 	created() {
+
 	chrome.extension = chrome.extension || {
 		sendRequest : function (o, f) {
 			config.mode = '';
 			f({});
 		}
 	};
-
-
-
-	//chrome.extension.sendRequest({cmd:'getIni'}, (function () {
 	setTimeout(function() {
 		
 	JH.request({}).create(null, 'getIni', {succeed : function (oResp) {
