@@ -11,24 +11,28 @@
           >
           </el-switch>
         </el-collapse-item>
-        <el-collapse-item title="data" name="2">
-          <template slot="title">
+        <el-collapse-item title="数据" name="2">
+          <!-- <template slot="title">
             <span>data</span>
             <span class="update-data"
               @click.stop="updateCodeData"
             >更新</span>
-          </template>
-          <codemirror 
-            ref="codemirror"
-            v-model="setting.dataCode"
-            @cursorActivity="focusCode"
-            @dblclick="dblclickCode"
-            @change="beforeSelectionChange"
-            @scrollCursorIntoView="gutterClick"
-          ></codemirror>
-        </el-collapse-item>
-        <el-collapse-item title="json-handler" name="3">
-          <json-handler></json-handler>
+          </template> -->
+          <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
+            <el-tab-pane label="code" name="code">
+              <codemirror 
+                ref="codemirror"
+                v-model="setting.dataCode"
+                @cursorActivity="focusCode"
+                @dblclick="dblclickCode"
+                @change="beforeSelectionChange"
+                @scrollCursorIntoView="gutterClick"
+              ></codemirror>
+            </el-tab-pane>
+            <el-tab-pane label="json" name="json">
+              <json-handler></json-handler>
+            </el-tab-pane>
+          </el-tabs>
         </el-collapse-item>
         <!--  -->
       </el-collapse>
@@ -54,6 +58,8 @@ export default class extends Vue {
     dataCode: '',
     inline: false
   };
+
+  private activeNameCode = 'code';
 
 
   get showSetting () {
@@ -131,6 +137,8 @@ export default class extends Vue {
   private gutterClick () {
     console.log('gutterClick gutterClick')
   }
+
+  private handleCodeClick () {}
 }
 </script>
 <style lang="scss" scoped>
