@@ -12,14 +12,13 @@
           </el-switch>
         </el-collapse-item>
         <el-collapse-item title="数据" name="2">
-          <!-- <template slot="title">
-            <span>data</span>
-            <span class="update-data"
-              @click.stop="updateCodeData"
-            >更新</span>
-          </template> -->
           <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
             <el-tab-pane label="code" name="code">
+              <div>
+                <span class="update-data"
+                  @click.stop="updateCodeData"
+                >更新</span>
+              </div>
               <codemirror 
                 ref="codemirror"
                 v-model="setting.dataCode"
@@ -30,7 +29,7 @@
               ></codemirror>
             </el-tab-pane>
             <el-tab-pane label="json" name="json">
-              <json-handler></json-handler>
+              <json-handler :json-data="jsonData"></json-handler>
             </el-tab-pane>
           </el-tabs>
         </el-collapse-item>
@@ -59,6 +58,8 @@ export default class extends Vue {
     inline: false
   };
 
+  private jsonData = '"{}"'
+
   private activeNameCode = 'code';
 
 
@@ -73,7 +74,6 @@ export default class extends Vue {
     if (result) {
       this.setting = result.data;
     }
-    console.log(this.setting);
   }
 
   private showSettingHandler () {
@@ -116,29 +116,24 @@ export default class extends Vue {
     }
   }
 
-  private focusCode (data) {
-    // console.log(this.$refs.codemirror)
-    // console.log('******8*****');
-    // // console.log(data);
-    // // console.log(data.doc.getCursor());
-  }
+  private focusCode (data) {}
 
-  private dblclickCode (instance, event) {
-    // console.log(instance)
-    // console.log(event)
-  }
+  private dblclickCode (instance, event) {}
 
   private beforeSelectionChange (doc, selection) {
     console.log('**********************')
-    // console.log(doc.getSelection());
-    // console.log(selection);
   }
 
   private gutterClick () {
     console.log('gutterClick gutterClick')
   }
 
-  private handleCodeClick () {}
+  private handleCodeClick () {
+    if (this.activeNameCode === 'json') {
+      console.log(`function getData () {${this.setting.dataCode} return data;} getData()`);
+      this.jsonData = JSON.stringify(eval(`function getData () {${this.setting.dataCode}; return data;} getData()`))
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

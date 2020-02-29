@@ -62,13 +62,28 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 
 @Component({
   name: 'JsonHandler',
 })
 export default class extends Vue{
+	@Prop({ default: '"{}"' }) private jsonData : string;
+	private JH = null;
+	
+	@Watch('jsonData', { immediate: true })
+  private onjsonDataChange() {
+		this.JH && this.JH.md.jsonH._pri.uiEvtCallback.submitEnterForm(this.jsonData);
+  }
+	
 	created () {
+		
+		window.EventCustomer.addListener('get_jh', (data) => {
+			this.JH = data;
+			this.JH.md.jsonH._pri.uiEvtCallback.submitEnterForm(this.jsonData);
+		})
+
+  /* eslint-disable */
 		chrome.extension = chrome.extension || {
 			sendRequest : function (o, f) {
 				config.mode = '';
@@ -107,7 +122,7 @@ export default class extends Vue{
 					
 					_pri["startJsonH"] = function (sJson) {
 						var oJH = JH.md.jsonH(sJson);
-						console.log(JH.md.jsonH._pri.uiEvtCallback.submitEnterForm(JSON.stringify({id: 1})))
+						window.EventCustomer.emit('get_jh', JH);
 						JH.e('#enterValue').select();
 
 						if(_pri.oIni) {
@@ -148,9 +163,8 @@ export default class extends Vue{
 				return _pub_static(oResp.data);
 
 			}}).send();
+			/* eslint-enable */
 		});
-
-		
 	}
 }
 </script>
