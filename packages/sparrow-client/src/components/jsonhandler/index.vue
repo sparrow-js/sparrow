@@ -83,9 +83,9 @@ export default class extends Vue{
 			this.JH.md.jsonH._pri.uiEvtCallback.submitEnterForm(this.jsonData);
 		});
 
-		window.EventCustomer.addListener('click_json_tree_callback', (data) => {
-			console.log('*********8*******', data);
-		});
+		// window.EventCustomer.addListener('click_json_tree_callback', (data) => {
+		// 	console.log('*********8*******', data);
+		// });
 
   /* eslint-disable */
 		chrome.extension = chrome.extension || {

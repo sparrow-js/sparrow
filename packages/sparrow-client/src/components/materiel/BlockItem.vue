@@ -60,6 +60,12 @@ export default class BlockItem extends Vue {
     return AppModule.insertData;
   }
 
+  created () {
+    window.EventCustomer.addListener('click_json_tree_callback', (data) => {
+      console.log('*********8*******', data);
+		});
+  }
+
   private openComponentDialog () {
     if (this.type === '0') {
       this.dialogVisible = true;
