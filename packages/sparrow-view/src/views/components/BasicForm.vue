@@ -9,7 +9,10 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      id: 1,
+      name: "hello world"
+    };
   }
 };
 </script>

@@ -68,7 +68,7 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
   name: 'JsonHandler',
 })
 export default class extends Vue{
-	@Prop({ default: '"{}"' }) private jsonData : string;
+	@Prop({ default: JSON.stringify({}) }) private jsonData : string;
 	private JH = null;
 	
 	@Watch('jsonData', { immediate: true })
@@ -81,7 +81,11 @@ export default class extends Vue{
 		window.EventCustomer.addListener('get_jh', (data) => {
 			this.JH = data;
 			this.JH.md.jsonH._pri.uiEvtCallback.submitEnterForm(this.jsonData);
-		})
+		});
+
+		window.EventCustomer.addListener('click_json_tree_callback', (data) => {
+			console.log('*********8*******', data);
+		});
 
   /* eslint-disable */
 		chrome.extension = chrome.extension || {
