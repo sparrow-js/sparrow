@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <el-aside width="80px"></el-aside>
+      <el-aside width="200px">
+        <comp-box></comp-box>
+      </el-aside>
       <el-container>
         <el-main>
           <div class="main">
@@ -47,12 +49,14 @@ import Loading  from '@/util/loading';
 import Setting from '@/components/setting/index.vue';
 import { AppModule } from '@/store/modules/app';
 import { SettingModule } from '@/store/modules/setting';
+import CompBox from '@/components/materiel/CompBox.vue'
 @Component({
   components: {
     Logo,
     Dashboard,
     TopToolbar,
     Setting,
+    CompBox
   }
 })
 export default class App extends Vue {

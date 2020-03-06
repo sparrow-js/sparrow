@@ -62,7 +62,8 @@ export default class BlockItem extends Vue {
 
   created () {
     window.EventCustomer.addListener('click_json_tree_callback', (data) => {
-      console.log('*********8*******', data);
+      this.name = data.path.replace('JSON.', '');
+      console.log('*********9*******', data);
 		});
   }
 

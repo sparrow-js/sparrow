@@ -21,11 +21,6 @@
     </div>
     <el-container>
       <el-container>
-
-        <!-- <el-aside width="200px" class="dashboard-side">
-          <sidebar></sidebar>
-        </el-aside> -->
-
         <el-container>
           <el-main>
             <div class="dashboard-blocks">
@@ -42,7 +37,6 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import Sidebar from './Sidebar.vue';
 import BlockBox from './BlockBox.vue';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
@@ -57,15 +51,10 @@ const tabsMap = [
     title: '区块',
     value: '1',
   },
-  {
-    title: '场景',
-    value: '2',
-  },
 ];
 
 @Component({
   components: {
-    Sidebar,
     BlockBox
   }
 })
