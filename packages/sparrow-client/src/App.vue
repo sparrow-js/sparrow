@@ -7,7 +7,6 @@
       <el-container>
         <el-main>
           <div class="main">
-            <logo></logo>
             <top-toolbar></top-toolbar>
             <div class="editor-box">
               <iframe
@@ -123,6 +122,10 @@ export default class App extends Vue {
 <style lang="scss">
   html, body{
     height: 100%;
+  }
+  body{
+    padding: 10px;
+    box-sizing: border-box;
   }
   #app{
     height: 100%;
