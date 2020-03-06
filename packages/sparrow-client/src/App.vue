@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <el-aside width="200px">
+      <el-aside width="200px" style="  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px 0px;">
         <comp-box></comp-box>
       </el-aside>
       <el-container>

@@ -89,7 +89,7 @@ export default class CompBox extends Vue {
 </script>
 <style lang="scss" scoped>
 .comp-box{
-  background: #fff;
+  background: #ffffff;
   padding: 20px 0;
   height: 100%;
 }
