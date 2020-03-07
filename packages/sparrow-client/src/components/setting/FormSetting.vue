@@ -22,10 +22,8 @@
               <codemirror 
                 ref="codemirror"
                 v-model="setting.dataCode"
-                @cursorActivity="focusCode"
-                @dblclick="dblclickCode"
-                @change="beforeSelectionChange"
                 @scrollCursorIntoView="gutterClick"
+                @blur="codemirrorBlur"
               ></codemirror>
             </el-tab-pane>
             <el-tab-pane label="json" name="json">
@@ -116,12 +114,13 @@ export default class extends Vue {
     }
   }
 
-  private focusCode (data) {}
+  private codemirrorBlur () {
+    // try {
+    //   const data = eval(`function getData () {${this.setting.dataCode}; return data;} getData()`);
+    //   this.updateCodeData();
+    // } catch (e) {
 
-  private dblclickCode (instance, event) {}
-
-  private beforeSelectionChange (doc, selection) {
-    console.log('**********************')
+    // }
   }
 
   private gutterClick () {
@@ -130,7 +129,6 @@ export default class extends Vue {
 
   private handleCodeClick () {
     if (this.activeNameCode === 'json') {
-      console.log(`function getData () {${this.setting.dataCode} return data;} getData()`);
       this.jsonData = JSON.stringify(eval(`function getData () {${this.setting.dataCode}; return data;} getData()`))
     }
   }
