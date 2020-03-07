@@ -35,7 +35,7 @@ export default {
     // 插入物料处理
     Event.on('insert_handler', (data) => {
       setTimeout(() => {
-        message.emit('client.dashboard.show', {
+        message.emit(data.emit || 'client.dashboard.show', {
           boxIndex: this.boxIndex,
           data,
         });

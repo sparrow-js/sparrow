@@ -70,15 +70,16 @@ export default class CompBox extends Vue {
     this.dialogVisible = true;
   }
 
-    private async addComponent () {
+  private async addComponent () {
     const params = {
       boxIndex: this.insertData.boxIndex,
       data: {
         boxData: this.insertData.data,
-        key: '',
+        key: this.list[this.isActiveComp].key,
         name: this.form.name,
       }
     };
+
     Loading.open();
     await socket.emit('generator.scene.addComponent', params);
     Loading.close();
@@ -89,7 +90,7 @@ export default class CompBox extends Vue {
 </script>
 <style lang="scss" scoped>
 .comp-box{
-  background: #f2f3f7;
+  background: #ffffff;
   padding: 20px 0;
   height: 80%;
 }

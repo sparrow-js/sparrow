@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <el-aside width="200px" style="  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px 0px;">
+      <el-aside v-if="showComponentBox" width="200px">
         <comp-box></comp-box>
       </el-aside>
+
       <el-container>
         <el-main>
           <div class="main">
@@ -67,6 +68,10 @@ export default class App extends Vue {
     return AppModule.showDashboard;
   }
 
+  get showComponentBox () {
+    return AppModule.showComponentBox;
+  }
+
   get showSetting () {
     console.log(SettingModule.showSetting);
     return SettingModule.showSetting;
@@ -76,11 +81,14 @@ export default class App extends Vue {
   created() {
     window.addEventListener("message", async event => {
       const {data} = event;
+      console.log(data);
       if (!data.handler) return;
       const handlerFirst = data.handler.split('.')[0];
       if (handlerFirst !== 'client') return;
+      console.log('insert-data', data);
+
+      // 触发区块集
       if (data.handler === 'client.dashboard.show') {
-        console.log('insert-data', data);
         AppModule.InsertData(data);
         AppModule.SetDoxIndex(data.boxIndex);
         AppModule.SetShowDashboard(true);
@@ -89,6 +97,17 @@ export default class App extends Vue {
         }
       }
 
+      // 触发组件集
+      if (data.handler === 'client.component.show') {
+        AppModule.InsertData(data);
+        AppModule.SetDoxIndex(data.boxIndex);
+        AppModule.SetShowComponent(true);
+        if (['block'].includes(data.data.type)) {
+          this.dashboardTabIndex = '1';
+        }
+      }
+
+      // 展示设置  
       if (data.handler === 'client.setting.show') {
         const {box, setting} = data;
         AppModule.SetDoxIndex(box.index);
@@ -133,7 +152,8 @@ export default class App extends Vue {
   
   .el-aside {
     border: 1px solid #eaeefb;
-    background-color: #f2f3f7;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px 0px;
   }
   .el-header{
     border-bottom: 1px solid #eaeefb;

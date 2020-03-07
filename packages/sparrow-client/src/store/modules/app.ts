@@ -3,6 +3,7 @@ import store from '@/store'
 
 export interface IAppState {
   showDashboard: boolean,
+  showComponentBox: boolean,
   boxIndex: number,
   insertData: {
     boxIndex: number,
@@ -19,6 +20,7 @@ class App extends VuexModule implements IAppState {
     data: {}
   };
   public dashboardTabIndex = 0;
+  public showComponentBox = false
 
   @Mutation
   private SHOW_DASHBOARD (showDashboard: boolean) {
@@ -35,6 +37,11 @@ class App extends VuexModule implements IAppState {
     this.boxIndex = index;
   }
 
+  @Mutation
+  private SHOW_COMPONENT (showComponentBox: boolean) {
+    this.showComponentBox = showComponentBox;
+  }
+
 
   @Action
   public SetShowDashboard(showDashboard: boolean) {
@@ -49,6 +56,11 @@ class App extends VuexModule implements IAppState {
   @Action
   public SetDoxIndex (index: number) {
     this.SET_BOX_INDEX(index);
+  }
+
+  @Action
+  public SetShowComponent (showComponentBox: boolean) {
+    this.SHOW_COMPONENT(showComponentBox)
   }
 
 }
