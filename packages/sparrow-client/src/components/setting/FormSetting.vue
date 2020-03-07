@@ -18,6 +18,8 @@
                 <span class="update-data"
                   @click.stop="updateCodeData"
                 >更新</span>
+                <span class="update-data"
+                >导入</span>
               </div>
               <codemirror 
                 ref="codemirror"

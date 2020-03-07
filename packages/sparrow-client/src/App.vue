@@ -151,7 +151,7 @@ export default class App extends Vue {
   
   .el-aside {
     background-color: #ffffff;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px 0px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px 0px;
   }
   .el-header{
     border-bottom: 1px solid #eaeefb;
