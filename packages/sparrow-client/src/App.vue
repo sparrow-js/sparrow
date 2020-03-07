@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <el-aside v-if="showComponentBox" width="200px">
-        <comp-box></comp-box>
+      <el-aside width="200px">
+        <comp-box v-if="showComponentBox"></comp-box>
       </el-aside>
 
       <el-container>
@@ -81,7 +81,6 @@ export default class App extends Vue {
   created() {
     window.addEventListener("message", async event => {
       const {data} = event;
-      console.log(data);
       if (!data.handler) return;
       const handlerFirst = data.handler.split('.')[0];
       if (handlerFirst !== 'client') return;
@@ -151,7 +150,6 @@ export default class App extends Vue {
   }
   
   .el-aside {
-    border: 1px solid #eaeefb;
     background-color: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px 0px;
   }

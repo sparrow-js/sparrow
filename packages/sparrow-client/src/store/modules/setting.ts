@@ -41,7 +41,8 @@ class Setting extends VuexModule implements ISettingState {
 
   @Action
   public setSettingComponent(compName: string) {
-    this.SET_STTING_COMPONENT('');
+    // 重置
+    // this.SET_STTING_COMPONENT('');
     setTimeout(() => {
       this.SET_STTING_COMPONENT(compName);
       this.SET_SHOW_SETTING(true);
