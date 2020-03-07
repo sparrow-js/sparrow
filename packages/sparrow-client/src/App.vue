@@ -21,7 +21,7 @@
         </el-main>
       </el-container>
 
-      <el-aside :width="showSetting ? '240px' : '80px'">
+      <el-aside :width="'200px'">
         <setting
           setting-data="settingData"
         ></setting>
@@ -150,7 +150,7 @@ export default class App extends Vue {
   }
   
   .el-aside {
-    background-color: #ffffff;
+    background-color: #fafaff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px 0px;
   }
   .el-header{

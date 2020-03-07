@@ -92,7 +92,6 @@ export default class CompBox extends Vue {
 .comp-box{
   background: #ffffff;
   padding: 20px 0;
-  height: 80%;
 }
 .comp-nav{
   width: 100px;
