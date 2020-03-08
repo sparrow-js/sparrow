@@ -137,7 +137,6 @@ JH.mod.add(['treeNav'], 'jsonH.nav', function (modName, JH, $$) {
 				window.EventCustomer.emit('click_json_tree_callback', {
 					path: oPath.toString(),
 				});
-				console.log('******oPath*****', oPath.toString());
 				$('#showPath').val(oPath);
 				$('#showPath').attr('parentPath', oPath.sParent);
 				

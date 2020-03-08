@@ -63,6 +63,8 @@ export default class App extends Vue {
   private dashboardTabIndex = '0';
   private settingData = null;
   private settingWidth = '80px';
+  private formIndex = 0;
+
 
   get showDashboard () {
     return AppModule.showDashboard;
@@ -73,10 +75,12 @@ export default class App extends Vue {
   }
 
   get showSetting () {
-    console.log(SettingModule.showSetting);
     return SettingModule.showSetting;
   }
 
+  get boxIndex () {
+    return AppModule.boxIndex;
+  }
 
   created() {
     window.addEventListener("message", async event => {
@@ -85,34 +89,35 @@ export default class App extends Vue {
       const handlerFirst = data.handler.split('.')[0];
       if (handlerFirst !== 'client') return;
       console.log('insert-data', data);
+      const currentIndex = this.boxIndex;
 
       // 触发区块集
       if (data.handler === 'client.dashboard.show') {
         AppModule.InsertData(data);
-        AppModule.SetDoxIndex(data.boxIndex);
         AppModule.SetShowDashboard(true);
-        if (['block'].includes(data.data.type)) {
-          this.dashboardTabIndex = '1';
-        }
+      }
+
+      // 展示设置  
+      if (data.handler === 'client.setting.show') {
+        
+        const {box, setting} = data;
+        SettingModule.setSettingData(setting.data);
+        SettingModule.setSettingComponent({
+          compName: 'FormSetting', 
+          forceRefresh: this.formIndex !== box.index ? true : false
+        });
+        this.formIndex = box.index;
       }
 
       // 触发组件集
       if (data.handler === 'client.component.show') {
         AppModule.InsertData(data);
-        AppModule.SetDoxIndex(data.boxIndex);
         AppModule.SetShowComponent(true);
-        if (['block'].includes(data.data.type)) {
-          this.dashboardTabIndex = '1';
-        }
       }
-
-      // 展示设置  
-      if (data.handler === 'client.setting.show') {
-        const {box, setting} = data;
-        AppModule.SetDoxIndex(box.index);
-        SettingModule.setSettingData(setting.data);
-        SettingModule.setSettingComponent('FormSetting');
+      if (data.boxIndex !== undefined) {
+        AppModule.SetDoxIndex(data.boxIndex);
       }
+    
     });
 
     // block 进度

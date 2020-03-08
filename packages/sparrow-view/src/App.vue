@@ -45,6 +45,7 @@ export default {
     Event.on('pivot_setting', (setting) => {
       setTimeout(() => {
         message.emit('client.setting.show', {
+          boxIndex: this.boxIndex,
           box: {
             index: this.boxIndex
           },
