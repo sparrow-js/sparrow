@@ -1,14 +1,6 @@
 <template>
   <div class="dashboard">
     <div class="dashboard-tab">
-      <el-tabs class="tab" v-model="activeName" @tab-click="handleTab">
-        <el-tab-pane 
-          v-for="tabItem in tabsMap" 
-          :key="tabItem.id"
-          :label="tabItem.title"
-          :name="tabItem.id"
-        ></el-tab-pane>
-      </el-tabs>
       <div class="dashboard-tab__operate--right">
         <el-input
           placeholder="请输入内容"
@@ -41,41 +33,21 @@ import BlockBox from './BlockBox.vue';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
 
-const materielData = {};
-const tabsMap = [
-  {
-    title: '组件',
-    value: '0',
-  },
-  {
-    title: '区块',
-    value: '1',
-  },
-];
-
 @Component({
   components: {
     BlockBox
   }
 })
 export default class Dashboard extends Vue {
-  // show
-  @Prop({ default: '0' }) private tabIndex : string;
 
-
-  private activeName = this.tabIndex || '0';
+  private activeName = '0';
   private searchText = '';
-  private tabsMap = tabsMap;
 
   private list = [];
   
   async created() {
-    const result = await socket.emit('generator.data.getComponentList');
-    const {list} = result;
-    materielData[0] = list;
     const blockList = await socket.emit('material.index.getBlocks');
-    materielData[1] = blockList.list;
-    this.list = materielData[this.activeName];
+    this.list = blockList.list;
   }
 
   private handleTab (data) {
@@ -105,11 +77,7 @@ export default class Dashboard extends Vue {
     position: relative;
   }
   &-tab__operate--right{
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-
+    padding: 20px;
   }
   &-search /deep/ .el-input__inner{
     background-color: #23232e;

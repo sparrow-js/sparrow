@@ -4,7 +4,7 @@ import 'codemirror/lib/codemirror.css';
 // language
 import 'codemirror/mode/javascript/javascript.js'
 // theme css
-import 'codemirror/theme/monokai.css'
+import 'codemirror/theme/lucario.css'
 // require active-line.js
 import'codemirror/addon/selection/active-line.js'
 // styleSelectedText
@@ -56,7 +56,7 @@ export default function codeMirrorInstall (Vue: any) {
       keyMap: "sublime",
       matchBrackets: true,
       showCursorWhenSelecting: true,
-      theme: "monokai",
+      theme: "lucario",
       extraKeys: { "Ctrl": "autocomplete" }
     },
   })

@@ -25,21 +25,6 @@
         >{{tagItem}}</span>
       </div>
     </div>
-    <el-dialog
-      title="添加"
-      :visible.sync="dialogVisible"
-      :modal-append-to-body="false"
-      width="300px"
-    >
-      <div class="add-component">
-        <span class="add-component__label">变量名:</span>
-        <el-input v-model="name" placeholder="请输入内容"></el-input>
-      </div>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="addComponent">确 定</el-button>
-      </span>
-    </el-dialog>
   </div>
 </template>
 <script lang="ts">
@@ -53,26 +38,14 @@ export default class BlockItem extends Vue {
   @Prop({ default: () => {} }) private info: any;
   @Prop({ default: () => {} }) private type: string|number;
 
-  private dialogVisible = false;
   private name = '';
 
   get insertData () {
     return AppModule.insertData;
   }
 
-  created () {
-    window.EventCustomer.addListener('click_json_tree_callback', (data) => {
-      this.name = data.path.replace('JSON.', '');
-      console.log('*********9*******', data);
-		});
-  }
-
   private openComponentDialog () {
-    if (this.type === '0') {
-      this.dialogVisible = true;
-    } else if (this.type === '1') {
-      this.addBlock();
-    }
+    this.addBlock();
   }
   
   private async addComponent () {
@@ -87,7 +60,6 @@ export default class BlockItem extends Vue {
     Loading.open();
     await socket.emit('generator.scene.addComponent', params);
     Loading.close();
-    this.dialogVisible = false;
     AppModule.SetShowDashboard(false);
   }
 
