@@ -8,7 +8,8 @@ export default class BaseInput extends Base{
 
   public fragment () {
     return `
-      <el-form-item label="基础文本框" prop="name">
+      <el-form-item label=" " prop="name">
+        <label-box label="基础文本框"></label-box>
         <el-input></el-input>
       </el-form-item>
     `;

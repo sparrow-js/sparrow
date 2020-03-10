@@ -8,12 +8,6 @@
 
     <div class="block-list">
       <box :index="1" class="block-item">
-        <SearchBox />
-      </box>
-    </div>
-
-    <div class="block-list">
-      <box :index="2" class="block-item">
         <paragraph />
       </box>
     </div>
@@ -21,13 +15,11 @@
 </template>
 
 <script>
-import SearchBox from "./components/SearchBox";
 import BasicForm from "./components/BasicForm";
 import generatorMixin from "../mixins/generatorMixin";
 export default {
   components: {
-    BasicForm,
-    SearchBox
+    BasicForm
   },
   mixins: [generatorMixin]
 };

@@ -7,7 +7,8 @@ export default class Textarea extends Base {
 
   public fragment () {
     return `
-      <el-form-item label="活动形式">
+      <el-form-item label=" ">
+        <label-box label="活动形式"></label-box>
         <el-input type="textarea"></el-input>
       </el-form-item>
     `;
