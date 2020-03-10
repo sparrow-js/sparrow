@@ -9,6 +9,7 @@ export default class InputNumber extends Base{
   public fragment () {
     return `
       <el-form-item label="数字文本框" prop="name">
+        <label-box label="数字文本框"></label-box>
         <el-input-number :min="1" :max="10"></el-input-number>
       </el-form-item>
     `;

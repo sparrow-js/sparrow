@@ -8,7 +8,8 @@ export default class CheckboxGroup extends Base {
 
   public fragment () {
     return `
-      <el-form-item label="基础checkbox">
+      <el-form-item label=" ">
+        <label-box label="基础checkbox"></label-box>
         <el-checkbox-group>
           <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
           <el-checkbox label="地推活动" name="type"></el-checkbox>

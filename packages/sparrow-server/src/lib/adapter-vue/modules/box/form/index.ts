@@ -77,8 +77,12 @@ export default class Form implements IBaseBox{
     const { key, boxData, name } = data;
     const { params } = boxData;
     const dynamicObj = require(`../../component/${key}`).default;
+    
+
+    const componentIndex = this.components.length;
     this.components.push(new dynamicObj({
-      'v-model': name
+      'v-model': name,
+      index: componentIndex,
     }));
     this.$blockTemplate('el-form').empty();
     this.components.forEach((component) => {
