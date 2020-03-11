@@ -93,6 +93,7 @@ export default class Form implements IBaseBox{
 
 
   public setting (data: any) {
+    // { index: '0', value: '基础文本框', handler: 'addLabel' }
     const {handler} = data;
     // this.VueGenerator.
     if (handler === 'data') {
@@ -100,8 +101,14 @@ export default class Form implements IBaseBox{
       this.VueGenerator.appendData(this.settingData.dataCode);
     } else if (handler === 'formInline') {
       this.$blockTemplate('el-form').attr(data.key, data.value);
+    } else if (handler === 'addLabel') {
+      this.addlabel(data)
     }
     this.render();
+  }
+
+  private addlabel (params: any) {
+    this.components[params.index].setLabel(params.value);
   }
   
   public getSetting () {

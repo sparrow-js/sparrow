@@ -115,21 +115,23 @@ export default class App extends Vue {
         AppModule.SetShowComponent(true);
       }
 
+      console.log('*****777****', data);
 
       // 插入组件label
       if (data.handler === 'client.component.insertLabel') {
         const params = {
           boxIndex: this.boxIndex,
           data: {
-            ...data.params,
-            method: 'addLabel'
+            ...data.data.params,
+            handler: 'addLabel'
           }
         };
-        
-        
 
+        const result = await socket.emit('generator.scene.setting', params);
+        
+      
         // await socket.emit('client.component.insertLabel', params);
-          console.log(data)
+        console.log(data)
       }
       
       if (data.boxIndex !== undefined) {
