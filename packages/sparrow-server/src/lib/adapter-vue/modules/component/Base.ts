@@ -3,8 +3,11 @@ import * as cheerio from 'cheerio';
 export default class Base {
   public type = 'form';
   public $fragment: any;
+  public componentIndex = -1;
 
-  constructor (attrs: any) {
+  constructor (attrs: any, componentIndex: number) {
+    this.componentIndex = componentIndex;
+    
     this.$fragment = cheerio.load(this.fragment(), {
       xmlMode: true,
       decodeEntities: false,

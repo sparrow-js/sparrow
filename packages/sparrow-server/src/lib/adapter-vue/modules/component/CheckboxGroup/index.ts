@@ -2,14 +2,14 @@ import Base from '../Base';
 
 export default class CheckboxGroup extends Base {
 
-  constructor (attrs: any) {
-    super(attrs)
+  constructor (attrs: any, componentIndex: number) {
+    super(attrs, componentIndex)
   }
 
   public fragment () {
     return `
       <el-form-item label=" ">
-        <label-box label="基础checkbox"></label-box>
+        <label-box label="基础checkbox" :index="${this.componentIndex}"></label-box>
         <el-checkbox-group>
           <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
           <el-checkbox label="地推活动" name="type"></el-checkbox>
