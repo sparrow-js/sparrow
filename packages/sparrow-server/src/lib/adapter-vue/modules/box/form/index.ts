@@ -84,10 +84,7 @@ export default class Form implements IBaseBox{
       'v-model': name,
       index: componentIndex,
     }));
-    this.$blockTemplate('el-form').empty();
-    this.components.forEach((component) => {
-      this.$blockTemplate('el-form').append(component.getFragment().html());
-    });
+    this.renderBox();
     this.render();
   } 
 
@@ -102,7 +99,8 @@ export default class Form implements IBaseBox{
     } else if (handler === 'formInline') {
       this.$blockTemplate('el-form').attr(data.key, data.value);
     } else if (handler === 'addLabel') {
-      this.addlabel(data)
+      this.addlabel(data);
+      this.renderBox();
     }
     this.render();
   }
@@ -115,7 +113,14 @@ export default class Form implements IBaseBox{
     return {
       data: this.settingData
     }
-  } 
+  }
+
+  public renderBox () {
+    this.$blockTemplate('el-form').empty();
+    this.components.forEach((component) => {
+      this.$blockTemplate('el-form').append(component.getFragment().html());
+    });
+  }
 
   public render () {
     const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;

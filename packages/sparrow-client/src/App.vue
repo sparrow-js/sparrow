@@ -115,8 +115,6 @@ export default class App extends Vue {
         AppModule.SetShowComponent(true);
       }
 
-      console.log('*****777****', data);
-
       // 插入组件label
       if (data.handler === 'client.component.insertLabel') {
         const params = {
