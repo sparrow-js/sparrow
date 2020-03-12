@@ -35,6 +35,7 @@ export default class Form implements IBaseBox{
   insertComponents:string[] = [];
   components: any = [];
   $blockTemplate: any;
+  activeIndex: number = -1;
 
   settingData: IFormSetting = {
     dataCode: `var data = {}`,
@@ -82,8 +83,7 @@ export default class Form implements IBaseBox{
     const componentIndex = this.components.length;
     this.components.push(new dynamicObj({
       'v-model': name,
-      index: componentIndex,
-    }));
+    }, componentIndex));
     this.renderBox();
     this.render();
   } 
@@ -117,8 +117,16 @@ export default class Form implements IBaseBox{
 
   public renderBox () {
     this.$blockTemplate('el-form').empty();
-    this.components.forEach((component) => {
-      this.$blockTemplate('el-form').append(component.getFragment().html());
+    this.components.forEach((component, index) => {
+      let active = 'false';
+      if (this.activeIndex === index) {
+        active = 'true';
+      }
+      this.$blockTemplate('el-form').append(
+        `<component-box :is-active="${active}" indexcomp="${index}">
+          ${component.getFragment().html()}
+        </component-box>`
+      );
     });
   }
 
