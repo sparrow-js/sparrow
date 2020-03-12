@@ -1,12 +1,13 @@
 <template>
   <div class="root">
     <box-form>
-      <el-form label-width="100px">
-        <el-form-item label=" " prop="name">
-          <label-box label="基础文本框" v-model="form.name" index="0" />
-          <el-input v-model="form.name" index="0" />
-        </el-form-item>
-      </el-form>
+      <el-form label-width="100px"
+        ><component-box :is-active="false" indexcomp="0">
+          <el-form-item label=" ">
+            <label-box label="基础文本框" indexcomp="0" v-model="id" />
+            <el-input v-model="id" />
+          </el-form-item> </component-box
+      ></el-form>
     </box-form>
   </div>
 </template>
@@ -15,11 +16,7 @@
 export default {
   data() {
     return {
-      form: {
-        id: 2,
-        age: "3",
-        name: 10
-      }
+      id: 1
     };
   }
 };

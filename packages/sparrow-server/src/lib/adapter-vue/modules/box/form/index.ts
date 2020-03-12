@@ -35,6 +35,7 @@ export default class Form implements IBaseBox{
   insertComponents:string[] = [];
   components: any = [];
   $blockTemplate: any;
+  activeIndex: number = -1;
 
   settingData: IFormSetting = {
     dataCode: `var data = {}`,
@@ -82,17 +83,14 @@ export default class Form implements IBaseBox{
     const componentIndex = this.components.length;
     this.components.push(new dynamicObj({
       'v-model': name,
-      index: componentIndex,
-    }));
-    this.$blockTemplate('el-form').empty();
-    this.components.forEach((component) => {
-      this.$blockTemplate('el-form').append(component.getFragment().html());
-    });
+    }, componentIndex));
+    this.renderBox();
     this.render();
   } 
 
 
   public setting (data: any) {
+    // { index: '0', value: '基础文本框', handler: 'addLabel' }
     const {handler} = data;
     // this.VueGenerator.
     if (handler === 'data') {
@@ -100,15 +98,37 @@ export default class Form implements IBaseBox{
       this.VueGenerator.appendData(this.settingData.dataCode);
     } else if (handler === 'formInline') {
       this.$blockTemplate('el-form').attr(data.key, data.value);
+    } else if (handler === 'addLabel') {
+      this.addlabel(data);
+      this.renderBox();
     }
     this.render();
+  }
+
+  private addlabel (params: any) {
+    this.components[params.index].setLabel(params.value);
   }
   
   public getSetting () {
     return {
       data: this.settingData
     }
-  } 
+  }
+
+  public renderBox () {
+    this.$blockTemplate('el-form').empty();
+    this.components.forEach((component, index) => {
+      let active = 'false';
+      if (this.activeIndex === index) {
+        active = 'true';
+      }
+      this.$blockTemplate('el-form').append(
+        `<component-box :is-active="${active}" indexcomp="${index}">
+          ${component.getFragment().html()}
+        </component-box>`
+      );
+    });
+  }
 
   public render () {
     const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;

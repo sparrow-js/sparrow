@@ -89,13 +89,13 @@ export default class App extends Vue {
       const handlerFirst = data.handler.split('.')[0];
       if (handlerFirst !== 'client') return;
       console.log('insert-data', data);
-      const currentIndex = this.boxIndex;
 
       // 触发区块集
       if (data.handler === 'client.dashboard.show') {
         AppModule.InsertData(data);
         AppModule.SetShowDashboard(true);
       }
+      
 
       // 展示设置  
       if (data.handler === 'client.setting.show') {
@@ -114,9 +114,28 @@ export default class App extends Vue {
         AppModule.InsertData(data);
         AppModule.SetShowComponent(true);
       }
+
+      // 插入组件label
+      if (data.handler === 'client.component.insertLabel') {
+        const params = {
+          boxIndex: this.boxIndex,
+          data: {
+            ...data.data.params,
+            handler: 'addLabel'
+          }
+        };
+
+        const result = await socket.emit('generator.scene.setting', params);
+        
+      
+        // await socket.emit('client.component.insertLabel', params);
+        console.log(data)
+      }
+      
       if (data.boxIndex !== undefined) {
         AppModule.SetDoxIndex(data.boxIndex);
       }
+      
     
     });
 

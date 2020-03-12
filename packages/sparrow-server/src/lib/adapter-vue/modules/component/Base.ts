@@ -3,18 +3,26 @@ import * as cheerio from 'cheerio';
 export default class Base {
   public type = 'form';
   public $fragment: any;
+  public componentIndex = -1;
+  public labelValue = '';
+  public attrs = {};
 
-  constructor (attrs: any) {
+  constructor (attrs: any, componentIndex: number) {
+    this.componentIndex = componentIndex;
+    this.attrs = attrs;
+  }
+
+
+  public renderFragment () {
     this.$fragment = cheerio.load(this.fragment(), {
       xmlMode: true,
       decodeEntities: false,
     });
-    if (attrs) {
+    if (this.attrs) {
       Object
-        .keys(attrs)
+        .keys(this.attrs)
         .forEach(item => {
-          this.$fragment('el-form-item').children().attr(item, attrs[item])
-          // this.$fragment.root().children().attr(item, attrs[item]);
+          this.$fragment('el-form-item').children().attr(item, this.attrs[item])
         })
     }
   }
@@ -24,7 +32,12 @@ export default class Base {
   }
 
   public getFragment () {
+    this.renderFragment();
     return this.$fragment;
+  }
+
+  public setLabel(labelValue: string) {
+    this.labelValue = labelValue;
   }
 
   public removeAttr (attr: string) {
