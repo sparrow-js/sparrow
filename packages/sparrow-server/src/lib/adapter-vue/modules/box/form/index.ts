@@ -90,6 +90,9 @@ export default class Form implements IBaseBox{
 
 
   public setting (data: any) {
+    console.log('*********8888*********');
+
+    console.log(data);
     // { index: '0', value: '基础文本框', handler: 'addLabel' }
     const {handler} = data;
     // this.VueGenerator.
@@ -101,8 +104,17 @@ export default class Form implements IBaseBox{
     } else if (handler === 'addLabel') {
       this.addlabel(data);
       this.renderBox();
+    } else {
+      if (this[handler]) {
+        this[handler](data);
+        this.renderBox();
+      }
     }
     this.render();
+  }
+
+  private setActiveIndex (data) {
+    this.activeIndex = parseInt(data.index, 10);
   }
 
   private addlabel (params: any) {

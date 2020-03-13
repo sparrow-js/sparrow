@@ -86,7 +86,8 @@ export default class App extends Vue {
     window.addEventListener("message", async event => {
       const {data} = event;
       if (!data.handler) return;
-      const handlerFirst = data.handler.split('.')[0];
+      const handlerArr = data.handler.split('.')
+      const handlerFirst = handlerArr[0];
       if (handlerFirst === 'client') {
       // 触发区块集
         if (data.handler === 'client.dashboard.show') {
@@ -132,10 +133,15 @@ export default class App extends Vue {
         }
       };
 
-      
+      if (handlerFirst === 'forward') {
+        const handler = handlerArr.slice(1, handlerArr.length).join('.');
 
-      if (handlerFirst === 'generator') {
-        console.log('**************', data);
+         const params = {
+            boxIndex: this.boxIndex,
+            data: data.data.params
+          };
+
+          const result = await socket.emit('generator.scene.setting', params);
       }
       
     
