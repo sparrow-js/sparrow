@@ -1,7 +1,7 @@
 <template>
   <div class="root">
     <box-form>
-      <el-form label-width="100px" :inline="true"
+      <el-form label-width="100px" :inline="false"
         ><component-box :is-active="false" indexcomp="0">
           <el-form-item label=" ">
             <label-box label="基础文本框" indexcomp="0" v-model="name" />
