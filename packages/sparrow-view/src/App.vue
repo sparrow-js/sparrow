@@ -66,3 +66,8 @@ export default {
   }
 }
 </script>
+<style>
+  .el-form--inline .comp-box{
+    display: inline-block;
+  }
+</style>
