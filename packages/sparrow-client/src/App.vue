@@ -87,53 +87,55 @@ export default class App extends Vue {
       const {data} = event;
       if (!data.handler) return;
       const handlerFirst = data.handler.split('.')[0];
-      if (handlerFirst !== 'client') return;
-      console.log('insert-data', data);
-
+      if (handlerFirst === 'client') {
       // 触发区块集
-      if (data.handler === 'client.dashboard.show') {
-        AppModule.InsertData(data);
-        AppModule.SetShowDashboard(true);
-      }
-      
-
-      // 展示设置  
-      if (data.handler === 'client.setting.show') {
+        if (data.handler === 'client.dashboard.show') {
+          AppModule.InsertData(data);
+          AppModule.SetShowDashboard(true);
+        }
         
-        const {box, setting} = data;
-        SettingModule.setSettingData(setting.data);
-        SettingModule.setSettingComponent({
-          compName: 'FormSetting', 
-          forceRefresh: this.formIndex !== box.index ? true : false
-        });
-        this.formIndex = box.index;
-      }
 
-      // 触发组件集
-      if (data.handler === 'client.component.show') {
-        AppModule.InsertData(data);
-        AppModule.SetShowComponent(true);
-      }
+        // 展示设置  
+        if (data.handler === 'client.setting.show') {
+          
+          const {box, setting} = data;
+          SettingModule.setSettingData(setting.data);
+          SettingModule.setSettingComponent({
+            compName: 'FormSetting', 
+            forceRefresh: this.formIndex !== box.index ? true : false
+          });
+          this.formIndex = box.index;
+        }
 
-      // 插入组件label
-      if (data.handler === 'client.component.insertLabel') {
-        const params = {
-          boxIndex: this.boxIndex,
-          data: {
-            ...data.data.params,
-            handler: 'addLabel'
-          }
-        };
+        // 触发组件集
+        if (data.handler === 'client.component.show') {
+          AppModule.InsertData(data);
+          AppModule.SetShowComponent(true);
+        }
 
-        const result = await socket.emit('generator.scene.setting', params);
+        // 插入组件label
+        if (data.handler === 'client.component.insertLabel') {
+          const params = {
+            boxIndex: this.boxIndex,
+            data: {
+              ...data.data.params,
+              handler: 'addLabel'
+            }
+          };
+
+          const result = await socket.emit('generator.scene.setting', params);
+        }
+
         
+        if (data.boxIndex !== undefined) {
+          AppModule.SetDoxIndex(data.boxIndex);
+        }
+      };
+
       
-        // await socket.emit('client.component.insertLabel', params);
-        console.log(data)
-      }
-      
-      if (data.boxIndex !== undefined) {
-        AppModule.SetDoxIndex(data.boxIndex);
+
+      if (handlerFirst === 'generator') {
+        console.log('**************', data);
       }
       
     
