@@ -1,11 +1,17 @@
 import Base from '../Base';
 
-export default class BaseInput extends Base{
+export default class Input extends Base{
   name: string;
+  params: any;
 
-  constructor (attrs: any, componentIndex: number) {
+  constructor (attrs: any, componentIndex: number, params: any) {
     super(attrs, componentIndex);
+    this.params = params;
     this.labelValue = '基础文本框';
+  }
+
+  private init () {
+    
   }
 
   public fragment () {

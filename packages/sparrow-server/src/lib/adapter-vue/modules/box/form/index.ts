@@ -75,7 +75,7 @@ export default class Form implements IBaseBox{
 
   public addComponent (data: any) {
     // { boxData: { type: 'form' }, key: 'BaseInput', name: 'form.id' }
-    const { key, boxData, name } = data;
+    const { key, boxData, name, type } = data;
     const { params } = boxData;
     const dynamicObj = require(`../../component/${key}`).default;
     
@@ -83,7 +83,7 @@ export default class Form implements IBaseBox{
     const componentIndex = this.components.length;
     this.components.push(new dynamicObj({
       'v-model': name,
-    }, componentIndex));
+    }, componentIndex, params));
     this.renderBox();
     this.render();
   } 

@@ -25,7 +25,7 @@ export const componentConf = [
         type: 'textarea',
       },
       {
-        label: '输入建议文本框',
+        label: '输入建议',
         key: 'Autocomplete',
       },
       {
@@ -51,11 +51,11 @@ export const componentConf = [
     label: '单选框',
     children: [
       {
-        label: '基础单选框',
+        label: '基础',
         key: 'Radio',
       },
       {
-        label: '按钮样式单选',
+        label: '按钮样式',
         key: 'RadioButton',
       }
     ]
@@ -65,15 +65,11 @@ export const componentConf = [
     label: '多选框',
     children: [
       {
-        label: '基础多选框',
+        label: '基础',
         key: 'Checkbox',
       },
       {
-        label: '基础多选框',
-        key: 'Checkbox',
-      },
-      {
-        label: '按钮样式多选',
+        label: '按钮样式',
         key: 'CheckboxButton',
       }
     ]
@@ -83,7 +79,7 @@ export const componentConf = [
     label: '选择器',
     children: [
       {
-        label: '基础选择器',
+        label: '基础',
         key: 'Select',
       },
       {
@@ -128,7 +124,7 @@ export const componentConf = [
     label: '开关',
     children: [
       {
-        label: '基础级联',
+        label: '基础开关',
         key: 'Switch',
       }
     ]
@@ -148,11 +144,11 @@ export const componentConf = [
     label: '时间选择器',
     children: [
       {
-        label: '基础时间选择器',
+        label: '基础',
         key: 'TimePicker',
       },
       {
-        label: '任意时间范围',
+        label: '任意',
         key: 'TimePicker',
         type: 'range',
       }
@@ -163,16 +159,16 @@ export const componentConf = [
     label: '日期选择器',
     children: [
       {
-        label: '基础时间选择器',
+        label: '基础',
         key: 'DatePicker',
       },
       {
-        label: '选择日期范围',
+        label: '选择范围',
         key: 'DatePicker',
         type: 'range'
       },
       {
-        label: '选择日期范围',
+        label: '选择范围',
         key: 'DatePicker',
         type: 'range'
       }
@@ -183,11 +179,11 @@ export const componentConf = [
     label: '日期时间选择器',
     children: [
       {
-        label: '日期时间选择器',
+        label: '日期时间',
         key: 'DateTimePicker',
       },
       {
-        label: '日期时间选择器',
+        label: '日期时间',
         key: 'DateTimePicker',
         type: 'range'
       }
@@ -198,11 +194,11 @@ export const componentConf = [
     label: '上传',
     children: [
       {
-        label: '基础上传',
+        label: '基础',
         key: 'Upload',
       },
       {
-        label: '用户头像上传',
+        label: '用户头像',
         key: 'Upload',
         type: 'avatar'
       },
@@ -212,20 +208,10 @@ export const componentConf = [
         type: 'picture-card'
       },
       {
-        label: '照片墙',
-        key: 'Upload',
-        type: 'picture-card'
-      },
-      {
         label: '拖拽上传',
         key: 'Upload',
         type: 'drag'
       },
-      {
-        label: '拖拽上传',
-        key: 'Upload',
-        type: 'drag'
-      }
     ]
   },
 
@@ -233,7 +219,7 @@ export const componentConf = [
     label: '评分',
     children: [
       {
-        label: '基础评分',
+        label: '基础',
         key: 'Rate',
       }
     ]
@@ -243,7 +229,7 @@ export const componentConf = [
     label: '穿梭框',
     children: [
       {
-        label: '基础穿梭框',
+        label: '基础',
         key: 'Transfer',
       }
     ]

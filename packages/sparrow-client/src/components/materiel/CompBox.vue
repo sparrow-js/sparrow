@@ -1,6 +1,6 @@
 <template>
   <div class="comp-box">
-    <div class="comp-nav">
+    <!-- <div class="comp-nav">
       <div class="comp-category">
         <div class="comp-category__header">表单</div>
         <ul class="comp-category__list">
@@ -14,7 +14,29 @@
           </li>
         </ul>
       </div>
+    </div> -->
+
+    <div class="comp-nav">
+      <div class="comp">
+        <div class="comp__title">表单</div>
+        <div class="comp-content" 
+          v-for="(item,index) in formlist" 
+          :key="index"
+        >
+          <h3 class="comp-content__title">{{item.label}}</h3>
+          <div class="comp-content__list">
+            <div class="comp-content__item" 
+              v-for="(comp, compIndex) in item.children" 
+              :key="compIndex"
+              @click="compClick(comp, $event)"
+            >
+              {{comp.label}}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div v-if="dialogVisible" class="dialog" :style="{top: compDialogPosition}">
       <div class="add-component">
         <el-form ref="form" :model="form" label-width="80px">
@@ -48,6 +70,7 @@ export default class CompBox extends Vue {
     name: ''
   };
   private isActiveComp = null;
+  private formlist = [];
 
   get insertData () {
     return AppModule.insertData;
@@ -58,13 +81,18 @@ export default class CompBox extends Vue {
     if (result) {
       this.list = result.list;
     }
+
+    const formlist = await socket.emit('generator.data.getFormList');
+    console.log('********', formlist);
+    this.formlist = formlist;
+
     window.EventCustomer.addListener('click_json_tree_callback', (data) => {
       this.form.name = data.path.replace('JSON.', '');
 		});
   }
 
-  private compClick (index, event) {
-    this.isActiveComp = index;
+  private compClick (comp, event) {
+    this.isActiveComp = comp;
     const {clientY} = event;
     this.compDialogPosition = clientY + 'px';
     this.dialogVisible = true;
@@ -75,10 +103,14 @@ export default class CompBox extends Vue {
       boxIndex: this.insertData.boxIndex,
       data: {
         boxData: this.insertData.data,
-        key: this.list[this.isActiveComp].key,
+        key: this.isActiveComp.key,
         name: this.form.name,
+        params: {
+          type: this.isActiveComp.type
+        },
       }
     };
+    
 
     Loading.open();
     await socket.emit('generator.scene.addComponent', params);
@@ -89,14 +121,56 @@ export default class CompBox extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+.comp{
+  &__title{
+    padding: 5px 0;
+    margin: 0 5px;
+    border-bottom: 1px solid #409EFF;
+    color: #409EFF;
+    font-size: 16px;
+  }
+
+  &-content__title{
+    border-bottom: 1px solid #DCDFE6;
+    padding: 5px 0;
+    margin: 0 10px;
+    color: #303133;
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  &-content__list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 5px;
+  }
+
+  &-content__item{
+    background: #ecf5ff;
+    width: 80px;
+    margin-top: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    color: #606266;
+    cursor: pointer;
+  }
+  &-content__item:hover{
+    color: #409EFF;
+  }
+}
+
+
+
 .comp-box{
   background: #ffffff;
-  padding: 20px 0;
+  padding: 10px 0;
 }
-.comp-nav{
-  width: 100px;
-  border-right: 1px solid #DCDFE6;
-}
+// .comp-nav{
+//   border-right: 1px solid #DCDFE6;
+// }
 .comp-category{
   &__header{
     padding: 5px 0;
@@ -105,7 +179,6 @@ export default class CompBox extends Vue {
     color: #409EFF;
     font-size: 16px;
   }
-  &__list{}
   &__item{
     padding: 6px 10px; 
     font-size: 13px;
@@ -116,6 +189,13 @@ export default class CompBox extends Vue {
     color: #409EFF;
   }
 }
+
+.comp-box{
+  &__header{
+
+  }
+}
+
 
 .dialog{
   position: fixed;
