@@ -1,4 +1,6 @@
 import * as cheerio from 'cheerio';
+const uuid = require('@lukeed/uuid');
+
 
 export default class Base {
   public type = 'form';
@@ -6,10 +8,12 @@ export default class Base {
   public componentIndex = -1;
   public labelValue = '';
   public attrs = {};
+  public uuid = '';
 
   constructor (attrs: any, componentIndex: number) {
     this.componentIndex = componentIndex;
     this.attrs = attrs;
+    this.uuid = uuid().split('-')[0]; 
   }
 
 

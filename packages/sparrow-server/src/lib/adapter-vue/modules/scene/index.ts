@@ -97,7 +97,6 @@ export default class Scene {
 
 
   public addComponent (params) {
-    console.log('**********', params);
     const {boxIndex, data} = params;
     this.boxs[boxIndex].addComponent(data);
     this.renderPage();

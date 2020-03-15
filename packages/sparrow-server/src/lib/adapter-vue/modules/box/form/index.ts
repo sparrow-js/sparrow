@@ -37,6 +37,9 @@ export default class Form implements IBaseBox{
   $blockTemplate: any;
   activeIndex: number = -1;
 
+  data: any = {};
+  methods: any = {};
+
   settingData: IFormSetting = {
     dataCode: `var data = {}`,
     inline: false
@@ -75,10 +78,8 @@ export default class Form implements IBaseBox{
 
   public addComponent (data: any) {
     // { boxData: { type: 'form' }, key: 'BaseInput', name: 'form.id' }
-    const { key, boxData, name, type } = data;
-    const { params } = boxData;
+    const { key, boxData, name, params } = data;
     const dynamicObj = require(`../../component/${key}`).default;
-    
 
     const componentIndex = this.components.length;
     this.components.push(new dynamicObj({
@@ -90,15 +91,13 @@ export default class Form implements IBaseBox{
 
 
   public setting (data: any) {
-    console.log('*********8888*********');
-
-    console.log(data);
     // { index: '0', value: '基础文本框', handler: 'addLabel' }
     const {handler} = data;
     // this.VueGenerator.
     if (handler === 'data') {
       this.settingData.dataCode = data.code;
-      this.VueGenerator.appendData(this.settingData.dataCode);
+      const dataCode = this.VueGenerator.getDataStrAst(this.settingData.dataCode);
+      this.VueGenerator.appendData(dataCode);
     } else if (handler === 'formInline') {
       this.$blockTemplate('el-form').attr(data.key, data.value);
     } else if (handler === 'addLabel') {
@@ -139,6 +138,13 @@ export default class Form implements IBaseBox{
           ${component.getFragment().html()}
         </component-box>`
       );
+        console.log(component.vueParse);
+      if (component.vueParse && component.vueParse.methods) {
+        // appendMethods
+        console.log('**********', component.vueParse.methods)
+        component.vueParse.methods && this.VueGenerator.appendMethods(component.vueParse.methods);
+        component.vueParse.data && this.VueGenerator.appendData(component.vueParse.data);
+      }
     });
   }
 

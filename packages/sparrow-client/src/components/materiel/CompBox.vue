@@ -83,7 +83,6 @@ export default class CompBox extends Vue {
     }
 
     const formlist = await socket.emit('generator.data.getFormList');
-    console.log('********', formlist);
     this.formlist = formlist;
 
     window.EventCustomer.addListener('click_json_tree_callback', (data) => {
