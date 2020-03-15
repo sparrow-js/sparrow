@@ -185,25 +185,24 @@ export const componentConf = [
   {
     label: '上传',
     children: [
-      {
-        label: '基础',
-        key: 'Upload',
-      },
+      // {
+      //   label: '基础',
+      //   key: 'Upload',
+      // },
       {
         label: '用户头像',
-        key: 'Upload',
-        type: 'avatar'
+        key: 'UploadAvatar',
       },
-      {
-        label: '照片墙',
-        key: 'Upload',
-        type: 'picture-card'
-      },
-      {
-        label: '拖拽上传',
-        key: 'Upload',
-        type: 'drag'
-      },
+      // {
+      //   label: '照片墙',
+      //   key: 'Upload',
+      //   type: 'picture-card'
+      // },
+      // {
+      //   label: '拖拽上传',
+      //   key: 'Upload',
+      //   type: 'drag'
+      // },
     ]
   },
 
@@ -216,16 +215,6 @@ export const componentConf = [
       }
     ]
   },
-
-  {
-    label: '穿梭框',
-    children: [
-      {
-        label: '基础',
-        key: 'Transfer',
-      }
-    ]
-  }
 
 ];
 
