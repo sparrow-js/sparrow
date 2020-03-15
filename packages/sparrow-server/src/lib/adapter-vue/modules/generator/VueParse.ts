@@ -4,7 +4,7 @@ import traverse from '@babel/traverse';
 
 export default class VueParse{
   template: string = '';
-  data: any = {};
+  data: any = [];
   methods: any = [];
   uuid: string = '';
   vueStr: string = '';
@@ -33,13 +33,13 @@ export default class VueParse{
     this.scriptAst = parser.parse(this.vueScript, {
       sourceType: 'module',
     });
-    this.data = this.getData();
-    this.methods = this.getMethods();
+    this.data = this.getData() || [];
+    this.methods = this.getMethods() || [];
   }
 
 
   public getData () {
-    let data = {};
+    let data = [];
     traverse(this.scriptAst, {
       ObjectMethod: (path) => {
         const { node } = path;
@@ -56,7 +56,7 @@ export default class VueParse{
   }
 
   public getMethods () {
-    let methods = {};
+    let methods = [];
     traverse(this.scriptAst, {
       ObjectProperty: (path) => {
         const {node} = path;

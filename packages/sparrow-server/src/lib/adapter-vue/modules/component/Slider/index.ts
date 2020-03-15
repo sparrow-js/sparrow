@@ -1,17 +1,17 @@
 import Base from '../Base';
 
-export default class Switch extends Base{
+export default class Slider extends Base{
 
   constructor (attrs: any, componentIndex: number) {
     super(attrs, componentIndex);
-    this.labelValue = '开关';
+    this.labelValue = '滑块';
   }
 
   public fragment () {
     return `
       <el-form-item label=" ">
         <label-box label="${this.labelValue}" indexcomp="${this.componentIndex}"></label-box>
-        <el-switch></el-switch>
+        <el-slider></el-slider>
       </el-form-item>
     `;
   }

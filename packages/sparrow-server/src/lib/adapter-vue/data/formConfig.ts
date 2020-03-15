@@ -28,11 +28,11 @@ export const componentConf = [
         label: '输入建议',
         key: 'Autocomplete',
       },
-      {
-        label: '远程搜索',
-        key: 'Autocomplete',
-        type: 'fetch'
-      }
+      // {
+      //   label: '远程搜索',
+      //   key: 'Autocomplete',
+      //   type: 'fetch'
+      // }
     ]
   },
 
@@ -52,11 +52,12 @@ export const componentConf = [
     children: [
       {
         label: '基础',
-        key: 'Radio',
+        key: 'RadioGroup',
       },
       {
         label: '按钮样式',
-        key: 'RadioButton',
+        key: 'RadioGroup',
+        type: 'button'
       }
     ]
   },
@@ -66,11 +67,12 @@ export const componentConf = [
     children: [
       {
         label: '基础',
-        key: 'Checkbox',
+        key: 'CheckboxGroup',
       },
       {
         label: '按钮样式',
-        key: 'CheckboxButton',
+        key: 'CheckboxGroup',
+        type: 'button'
       }
     ]
   },
@@ -88,7 +90,7 @@ export const componentConf = [
         type: 'clearable'
       },
       {
-        label: '基础多选',
+        label: '多选',
         key: 'Select',
         type: 'multiple'
       },
@@ -96,11 +98,6 @@ export const componentConf = [
         label: '可搜索',
         key: 'Select',
         type: 'filterable'
-      },
-      {
-        label: '远程搜索',
-        key: 'Select',
-        type: 'remote'
       },
       {
         label: '创建条目',
@@ -148,7 +145,7 @@ export const componentConf = [
         key: 'TimePicker',
       },
       {
-        label: '任意',
+        label: '选择范围',
         key: 'TimePicker',
         type: 'range',
       }
@@ -166,11 +163,6 @@ export const componentConf = [
         label: '选择范围',
         key: 'DatePicker',
         type: 'range'
-      },
-      {
-        label: '选择范围',
-        key: 'DatePicker',
-        type: 'range'
       }
     ]
   },
@@ -183,7 +175,7 @@ export const componentConf = [
         key: 'DateTimePicker',
       },
       {
-        label: '日期时间',
+        label: '选择范围',
         key: 'DateTimePicker',
         type: 'range'
       }

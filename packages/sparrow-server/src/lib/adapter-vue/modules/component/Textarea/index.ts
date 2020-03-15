@@ -3,7 +3,7 @@ import Base from '../Base';
 export default class Textarea extends Base {
   constructor (attrs: any, componentIndex: number) {
     super(attrs, componentIndex);
-    this.labelValue = '活动形式';
+    this.labelValue = '多行文本框';
   }
 
   public fragment () {

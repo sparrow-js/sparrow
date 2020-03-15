@@ -1,21 +1,30 @@
 import Base from '../Base';
 
-export default class CheckboxGroup extends Base {
-
-  constructor (attrs: any, componentIndex: number) {
+export default class CheckboxGroup extends Base{
+  params: any;
+  ele: string = 'el-checkbox';
+  constructor (attrs: any, componentIndex: number, params: any) {
     super(attrs, componentIndex);
-    this.labelValue = '基础checkbox';
+    this.params = params;
+    this.labelValue = '多选框';
+    this.init();
+  }
+
+  private init () {
+    const {type} = this.params;
+    if (type === 'button') {
+      this.ele = 'el-checkbox-button';
+    }
   }
 
   public fragment () {
     return `
       <el-form-item label=" ">
-        <label-box label="${this.labelValue}" :index="${this.componentIndex}"></label-box>
+        <label-box label="${this.labelValue}" indexcomp="${this.componentIndex}"></label-box>
         <el-checkbox-group>
-          <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-          <el-checkbox label="地推活动" name="type"></el-checkbox>
-          <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-          <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
+          <${this.ele} :label="1">备选项1</${this.ele}>
+          <${this.ele} :label="2">备选项2</${this.ele}>
+          <${this.ele} :label="3">备选项3</${this.ele}>
         </el-checkbox-group>
       </el-form-item>
     `;

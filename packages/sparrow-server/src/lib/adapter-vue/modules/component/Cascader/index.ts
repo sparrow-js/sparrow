@@ -6,26 +6,15 @@ import * as path from 'path';
 export default class Select extends Base {
   vueParse: any;
   params: any;
-  status: string = '';
 
   constructor (attrs: any, componentIndex: number, params: any) {
     super(attrs, componentIndex);
-    this.labelValue = '特殊资源';
+    this.labelValue = '级联选择器';
     this.params = params;
     this.init();
   }
 
   private init () {
-    const {type} = this.params;
-    if (type === 'clearable') {
-      this.status = 'clearable';
-    } else if (type === 'multiple') {
-      this.status = 'multiple';
-    } else if (type === 'filterable') {
-      this.status = 'filterable';
-    } else if (type === 'allow-create') {
-      this.status = 'allow-create';
-    }
     const fileStr = fsExtra.readFileSync(path.join(__dirname, 'comp.vue'), 'utf8');
     this.vueParse = new VueParse(this.uuid, fileStr);
   }
@@ -34,14 +23,11 @@ export default class Select extends Base {
     return `
       <el-form-item label=" ">
         <label-box label="${this.labelValue}" indexcomp="${this.componentIndex}"></label-box>
-        <el-select placeholder="请选择" ${this.status}>
-          <el-option
-            v-for="item in selectOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
+        <el-cascader
+          v-model="value"
+          :options="cascaderOptions"
+          :props="{ expandTrigger: 'hover' }"
+          @change="handleChange${this.uuid}"></el-cascader>
       </el-form-item>
     `;
   }

@@ -10,7 +10,7 @@ export default class InputNumber extends Base{
   public fragment () {
     return `
       <el-form-item label=" " prop="name">
-        <label-box label="${this.labelValue}" :index="${this.componentIndex}"></label-box>
+        <label-box label="${this.labelValue}" indexcomp="${this.componentIndex}"></label-box>
         <el-input-number :min="1" :max="10"></el-input-number>
       </el-form-item>
     `;

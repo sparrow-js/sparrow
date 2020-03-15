@@ -1,20 +1,5 @@
 <template>
   <div class="comp-box">
-    <!-- <div class="comp-nav">
-      <div class="comp-category">
-        <div class="comp-category__header">表单</div>
-        <ul class="comp-category__list">
-          <li class="comp-category__item"
-            :class="{isActive: index === isActiveComp ? true : false}" 
-            v-for="(item,index) in list"
-            :key="index"
-            @click="compClick(index, $event)"
-          >
-            {{item.title}}
-          </li>
-        </ul>
-      </div>
-    </div> -->
 
     <div class="comp-nav">
       <div class="comp">
@@ -189,11 +174,6 @@ export default class CompBox extends Vue {
   }
 }
 
-.comp-box{
-  &__header{
-
-  }
-}
 
 
 .dialog{

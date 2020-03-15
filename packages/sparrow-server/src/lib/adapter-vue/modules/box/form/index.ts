@@ -141,7 +141,6 @@ export default class Form implements IBaseBox{
         console.log(component.vueParse);
       if (component.vueParse && component.vueParse.methods) {
         // appendMethods
-        console.log('**********', component.vueParse.methods)
         component.vueParse.methods && this.VueGenerator.appendMethods(component.vueParse.methods);
         component.vueParse.data && this.VueGenerator.appendData(component.vueParse.data);
       }

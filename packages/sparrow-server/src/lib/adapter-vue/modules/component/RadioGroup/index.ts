@@ -1,19 +1,30 @@
 import Base from '../Base';
 
-export default class InputNumber extends Base{
-
-  constructor (attrs: any, componentIndex: number) {
+export default class RadioGroup extends Base{
+  params: any;
+  ele: string = 'el-radio';
+  constructor (attrs: any, componentIndex: number, params: any) {
     super(attrs, componentIndex);
-    this.labelValue = '特殊资源';
+    this.params = params;
+    this.labelValue = '单选框';
+    this.init();
+  }
+
+  private init () {
+    const {type} = this.params;
+    if (type === 'button') {
+      this.ele = 'el-radio-button';
+    }
   }
 
   public fragment () {
     return `
       <el-form-item label=" ">
-        <label-box label="${this.labelValue}" :index="${this.componentIndex}"></label-box>
-        <el-radio-group v-model="form.resource">
-          <el-radio label="线上品牌商赞助"></el-radio>
-          <el-radio label="线下场地免费"></el-radio>
+        <label-box label="${this.labelValue}" indexcomp="${this.componentIndex}"></label-box>
+        <el-radio-group>
+          <${this.ele} :label="1">备选项1</${this.ele}>
+          <${this.ele} :label="2">备选项2</${this.ele}>
+          <${this.ele} :label="3">备选项3</${this.ele}>
         </el-radio-group>
       </el-form-item>
     `;
