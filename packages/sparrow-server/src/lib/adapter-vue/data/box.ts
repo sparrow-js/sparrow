@@ -13,16 +13,16 @@ export default {
       icon: 'table'
     },
     {
-      id: 'Alert',
-      value: 'alert',
-      name: '警告',
-      icon: 'alert'
-    },
-    {
       id: 'block',
       value: 'block',
       name: '区块',
       icon: 'braille'
+    },
+    {
+      id: 'Alert',
+      value: 'alert',
+      name: '警告',
+      icon: 'alert'
     },
     // {
     //   id: 'inline',

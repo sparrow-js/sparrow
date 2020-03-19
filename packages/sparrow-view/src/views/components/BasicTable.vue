@@ -32,6 +32,14 @@
           width="180"
           :render-header="renderHeader"
         >
+          <template slot-scope="scope">
+            <el-button
+              @click.native.prevent="deleteRow(scope.$index, tableData)"
+              type="text"
+              size="small">
+              移除
+            </el-button>
+          </template>
         </el-table-column>
       </el-table>
     </table-box>
@@ -43,14 +51,17 @@ export default {
   methods: {
     renderHeader(h, { column, $index }) {
       return <table-header-box label={column.label}></table-header-box>;
+    },
+    deleteRow(index, rows) {
+      rows.splice(index, 1);
     }
   },
 
   data() {
     return {
-      tableData: [{
-        date: '1027-10-11 11:001027-10-11 11:001027-10-11 11:001027-10-11 11:001027-10-11 11:00'
-      }, {}]
+      tableData: [
+        {}
+      ]
     };
   }
 };
