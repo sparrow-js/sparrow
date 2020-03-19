@@ -3,7 +3,7 @@
     <div class="dashboard-tab">
       <div class="dashboard-tab__operate--right">
         <el-input
-          placeholder="请输入内容"
+          placeholder="请输入内容-待实现"
           v-model="searchText"
           class="dashboard-search"
         >
