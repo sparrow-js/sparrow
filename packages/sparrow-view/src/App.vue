@@ -95,4 +95,7 @@ export default {
     height: 178px;
     display: block;
   }
+  .el-table .cell{
+    overflow: initial !important;
+  }
 </style>

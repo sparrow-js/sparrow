@@ -32,6 +32,9 @@ export default class VueParse{
     this.vueScript = this.vueStr.match(/(?<=<script>)[\s\S]*(?=<\/script>)/g)[0];
     this.scriptAst = parser.parse(this.vueScript, {
       sourceType: 'module',
+      plugins: [
+        "jsx",
+      ]
     });
     this.data = this.getData() || [];
     this.methods = this.getMethods() || [];
