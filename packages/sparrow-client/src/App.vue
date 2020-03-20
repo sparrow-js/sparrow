@@ -49,7 +49,7 @@ import Loading  from '@/util/loading';
 import Setting from '@/components/setting/index.vue';
 import { AppModule } from '@/store/modules/app';
 import { SettingModule } from '@/store/modules/setting';
-import CompBox from '@/components/materiel/CompBox.vue'
+import CompBox from '@/components/materiel/CompBox';
 @Component({
   components: {
     Logo,
@@ -88,9 +88,11 @@ export default class App extends Vue {
       if (!data.handler) return;
       const handlerArr = data.handler.split('.')
       const handlerFirst = handlerArr[0];
+      console.log('***********', data);
       if (handlerFirst === 'client') {
       // 触发区块集
         if (data.handler === 'client.dashboard.show') {
+          
           AppModule.InsertData(data);
           AppModule.SetShowDashboard(true);
         }
@@ -110,7 +112,9 @@ export default class App extends Vue {
 
         // 触发组件集
         if (data.handler === 'client.component.show') {
+          const {type} = data.data;
           AppModule.InsertData(data);
+          AppModule.SetComponentIs(type);
           AppModule.SetShowComponent(true);
         }
 

@@ -2,12 +2,18 @@
   <div class="home">
     <div class="block-list">
       <box :index="0" class="block-item">
-        <basicTable />
+        <BasicForm />
       </box>
     </div>
 
     <div class="block-list">
       <box :index="1" class="block-item">
+        <BasicTable />
+      </box>
+    </div>
+
+    <div class="block-list">
+      <box :index="2" class="block-item">
         <paragraph />
       </box>
     </div>
@@ -16,9 +22,11 @@
 
 <script>
 import BasicTable from "./components/BasicTable";
+import BasicForm from "./components/BasicForm";
 import generatorMixin from "../mixins/generatorMixin";
 export default {
   components: {
+    BasicForm,
     BasicTable
   },
   mixins: [generatorMixin]

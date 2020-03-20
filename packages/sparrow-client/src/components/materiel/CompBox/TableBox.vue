@@ -3,9 +3,9 @@
 
     <div class="comp-nav">
       <div class="comp">
-        <div class="comp__title">表单</div>
+        <div class="comp__title">表格</div>
         <div class="comp-content" 
-          v-for="(item,index) in formlist" 
+          v-for="(item,index) in list" 
           :key="index"
         >
           <h3 class="comp-content__title">{{item.label}}</h3>
@@ -21,20 +21,6 @@
         </div>
       </div>
     </div>
-
-    <div v-if="dialogVisible" class="dialog" :style="{top: compDialogPosition}">
-      <div class="add-component">
-        <el-form ref="form" :model="form" label-width="80px">
-          <el-form-item label="变量名:" size="mini">
-            <el-input v-model="form.name" placeholder="请输入内容" size="small"></el-input>
-          </el-form-item>
-          <div class="add-component__operate">
-            <el-button @click="dialogVisible = false" size="mini">取 消</el-button>
-            <el-button type="primary" @click="addComponent" size="mini">确 定</el-button>
-          </div>
-        </el-form>
-      </div>
-    </div>
   </div>
  
 </template>
@@ -48,38 +34,27 @@ import Loading  from '@/util/loading';
 
 @Component({})
 export default class CompBox extends Vue {
-  private list = [];
-  private dialogVisible = false;
+  @Prop({default: () => []}) private list: any;
   private compDialogPosition = '';
-  private form = {
-    name: ''
-  };
   private isActiveComp = null;
-  private formlist = [];
 
   get insertData () {
     return AppModule.insertData;
   }
 
+  get componentIs () {
+    return AppModule.componentIs;
+  }
+  
+
   async created () {
-    const result = await socket.emit('generator.data.getComponentList');
-    if (result) {
-      this.list = result.list;
-    }
-
-    const formlist = await socket.emit('generator.data.getFormList');
-    this.formlist = formlist;
-
-    window.EventCustomer.addListener('click_json_tree_callback', (data) => {
-      this.form.name = data.path.replace('JSON.', '');
-		});
+    const {type} = this.insertData.data;
   }
 
   private compClick (comp, event) {
     this.isActiveComp = comp;
     const {clientY} = event;
-    this.compDialogPosition = clientY + 'px';
-    this.dialogVisible = true;
+    console.log('*******');
   }
 
   private async addComponent () {
@@ -88,7 +63,6 @@ export default class CompBox extends Vue {
       data: {
         boxData: this.insertData.data,
         key: this.isActiveComp.key,
-        name: this.form.name,
         params: {
           type: this.isActiveComp.type
         },
@@ -99,8 +73,6 @@ export default class CompBox extends Vue {
     Loading.open();
     await socket.emit('generator.scene.addComponent', params);
     Loading.close();
-    this.dialogVisible = false;
-    AppModule.SetShowDashboard(false);
   }
 }
 </script>
@@ -153,9 +125,7 @@ export default class CompBox extends Vue {
   padding-top: 10px;
   padding-bottom: 80px;
 }
-// .comp-nav{
-//   border-right: 1px solid #DCDFE6;
-// }
+
 .comp-category{
   &__header{
     padding: 5px 0;
