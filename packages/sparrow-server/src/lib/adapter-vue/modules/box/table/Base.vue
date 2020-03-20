@@ -15,7 +15,11 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      tableData: [
+        {}
+      ]
+    };
   },
   methods: {
     renderHeader (h, { column, $index }) {

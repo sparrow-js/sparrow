@@ -1,45 +1,37 @@
 <template>
   <div class="root">
     <table-box>
-      <el-table border="" style="width: 100%" :data="tableData">
+      <el-table border="" style="width: 100%">
         <el-table-column
           prop="date"
-          label="column0"
+          label="日期"
+          width="180"
           :render-header="renderHeader"
         >
-          <template slot-scope="scope">
-            <table-cell-box />
-          </template>
         </el-table-column>
 
         <el-table-column
           prop="date"
-          label="column1"
+          label="日期"
+          width="180"
           :render-header="renderHeader"
         >
-          <template slot-scope="scope">
-            <table-cell-box />
-          </template>
         </el-table-column>
 
         <el-table-column
           prop="date"
-          label="column2"
+          label="日期"
+          width="180"
           :render-header="renderHeader"
         >
-          <template slot-scope="scope">
-            <table-cell-box />
-          </template>
         </el-table-column>
 
         <el-table-column
           prop="date"
-          label="column3"
+          label="日期"
+          width="180"
           :render-header="renderHeader"
         >
-          <template slot-scope="scope">
-            <table-cell-box />
-          </template>
         </el-table-column>
       </el-table>
     </table-box>
@@ -55,9 +47,7 @@ export default {
   },
 
   data() {
-    return {
-      tableData: [{}]
-    };
+    return {};
   }
 };
 </script>

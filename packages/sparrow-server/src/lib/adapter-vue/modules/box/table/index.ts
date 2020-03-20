@@ -1,6 +1,5 @@
 import IBaseBox from '../IBaseBox';
 import * as boxFragment from '../../fragment/box';
-import * as fragment from './fragment';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import * as cheerio from 'cheerio';
@@ -21,7 +20,8 @@ const templateStr =  `
       <table-box>
         <el-table
           border
-          style="width: 100%">
+          style="width: 100%"
+          :data="tableData">
         </el-table>
       </table-box>
     </div>
@@ -42,6 +42,8 @@ export default class Form implements IBaseBox{
   components: any = [];
   $blockTemplate: any;
   activeIndex: number = -1;
+  col: number = 2;
+  tableHeaderData: any =  [];
 
   data: any = {};
   methods: any = {};
@@ -54,8 +56,15 @@ export default class Form implements IBaseBox{
 
   constructor (data: any) {
     const { boxIndex, params } = data;
-    const {blockName} = params;
+    const {blockName, col} = params;
     this.name = blockName;
+    this.col = col;
+    for (let i = 0; i < this.col; i++) {
+      this.tableHeaderData.push({
+        label: `column${i}`,
+        
+      });
+    }
     this.insertComponents.push(this.name);
     this.$fragment = cheerio.load(boxFragment.box(boxIndex, `<${this.name} />`), {
       xmlMode: true,
@@ -75,8 +84,6 @@ export default class Form implements IBaseBox{
   async init () {
     await mkdirpAsync(Config.componentsDir);
     this.blockPath = path.join(Config.componentsDir, `${this.name}.vue`);
-    console.log('****************')
-
     this.setVueParse('Base');
     this.renderBox();
     this.render();
@@ -90,7 +97,6 @@ export default class Form implements IBaseBox{
   public setVueParse (compName: string) {
     const uuidValue = uuid().split('-')[0]; 
     const fileStr = fsExtra.readFileSync(path.join(__dirname, `${compName}.vue`), 'utf8');
-    console.log('*******11111*****', fileStr); 
     this.vueParseMap[compName] =  new VueParse(uuidValue, fileStr);
   }
   public setting (data: any) {
@@ -115,22 +121,19 @@ export default class Form implements IBaseBox{
   public renderBox () {
     this.$blockTemplate('el-table').empty();
     this.$blockTemplate('el-table').append(this.renderColumn());
-    console.log('*******',this.$blockTemplate.html());
-    // this.VueGenerator.appendData(component.vueParse.data)
-    console.log('****************', this.vueParseMap['Base']);
+    this.VueGenerator.appendData(this.vueParseMap['Base'].data)
 
     this.VueGenerator.appendMethods(this.vueParseMap['Base'].methods);
-    /**
-     * <el-table-column prop="date" label="日期" width="180" :render-header="renderHeader">
-        </el-table-column>
-     */
   }
 
   public renderColumn () {
     let column = ''
-    for (var i = 0; i < 4;i++) {
+    for (var i = 0; i < this.col; i++) {
       column += `
-        <el-table-column prop="date" label="日期" width="180" :render-header="renderHeader">
+        <el-table-column prop="date" label="column${i}" :render-header="renderHeader">
+          <template slot-scope="scope">
+            <table-cell-box></table-cell-box>
+          </template>
         </el-table-column>
       `
     }
