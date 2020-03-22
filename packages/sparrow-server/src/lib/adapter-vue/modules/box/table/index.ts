@@ -39,7 +39,7 @@ export default class Form implements IBaseBox{
   VueGenerator: any;
   blockPath: string;
   insertComponents:string[] = [];
-  components: any = [];
+  components: any = {};
   $blockTemplate: any;
   activeIndex: number = -1;
   col: number = 2;
@@ -61,8 +61,9 @@ export default class Form implements IBaseBox{
     this.col = col;
     for (let i = 0; i < this.col; i++) {
       this.tableHeaderData.push({
+        uuid: uuid().split('-')[0],
         label: `column${i}`,
-        
+        prop: `column${i}`
       });
     }
     this.insertComponents.push(this.name);
@@ -93,6 +94,25 @@ export default class Form implements IBaseBox{
   public getBoxFragment(index: number): any {
     return this.$fragment;
   }
+  /**
+   *  {
+        emit: 'client.component.insertTableComp',
+        params: { uuid: '7f2a32fe' },
+        key: 'Delete',
+        type: 'button'
+      }
+   */
+
+  public addComponent (data: any) {
+    const { key,type, params } = data;
+    const dynamicObj = require(`../../component/Table/${key}`).default;
+    if (!this.components[params.uuid]) {
+      this.components[params.uuid] = [];
+    }
+    this.components[params.uuid].push(new dynamicObj(type))
+    this.renderBox();
+    this.render();
+  } 
 
   public setVueParse (compName: string) {
     const uuidValue = uuid().split('-')[0]; 
@@ -122,20 +142,34 @@ export default class Form implements IBaseBox{
     this.$blockTemplate('el-table').empty();
     this.$blockTemplate('el-table').append(this.renderColumn());
     this.VueGenerator.appendData(this.vueParseMap['Base'].data)
-
-    this.VueGenerator.appendMethods(this.vueParseMap['Base'].methods);
   }
 
   public renderColumn () {
     let column = ''
-    for (var i = 0; i < this.col; i++) {
+    const {tableHeaderData} = this;
+    for (var i = 0; i < tableHeaderData.length; i++) {
+      const uuid = tableHeaderData[i].uuid;
+      let compTag = ''
+      if (this.components[uuid]) {
+        this.components[uuid].forEach(item => {
+          compTag = item.getFragment().html() + compTag;
+          if (item.vueParse && item.vueParse.methods) {
+            this.VueGenerator.appendMethods(item.vueParse.methods);
+          }
+        })
+      }
+
       column += `
-        <el-table-column prop="date" label="column${i}" :render-header="renderHeader">
-          <template slot-scope="scope">
-            <table-cell-box></table-cell-box>
+        <el-table-column prop="${tableHeaderData[i].prop}" label="${tableHeaderData[i].label}">
+          <template slot="header" slot-scope="{row, column, $index}">
+            <table-header-box uuid="${tableHeaderData[i].uuid}" :label="column.label"></table-header-box>
+          </template>
+          <template slot-scope="{row, column, $index}">
+            ${compTag}
+            <table-cell-box uuid="${tableHeaderData[i].uuid}"></table-cell-box>
           </template>
         </el-table-column>
-      `
+      `;
     }
     return column;
   }

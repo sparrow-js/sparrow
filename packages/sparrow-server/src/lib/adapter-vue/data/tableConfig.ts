@@ -90,28 +90,28 @@ export const tableConf = [
     children: [
       {
         label: '删除',
-        key: 'button',
-        type: 'delete'
+        key: 'Delete',
+        type: 'button'
       },
       {
         label: '编辑',
-        key: 'button',
-        type: 'edit'
+        key: 'Edit',
+        type: 'button'
       },
       {
         label: '查看',
-        key: 'button',
-        type: 'see'
+        key: 'See',
+        type: 'button'
       },
       {
         label: '更多',
-        key: 'button',
-        type: 'more'
+        key: 'More',
+        type: 'button'
       },
       {
         label: '其他',
-        key: 'button',
-        type: 'other'
+        key: 'Other',
+        type: 'button'
       }
     ]
   },
@@ -121,23 +121,23 @@ export const tableConf = [
     children: [
       {
         label: '删除',
-        key: 'link',
-        type: 'delete'
+        key: 'Delete',
+        type: 'link'
       },
       {
         label: '编辑',
-        key: 'link',
-        type: 'edit'
+        key: 'Edit',
+        type: 'link'
       },
       {
         label: '更多',
-        key: 'link',
-        type: 'more'
+        key: 'More',
+        type: 'link'
       },
       {
         label: '其他',
-        key: 'link',
-        type: 'other'
+        key: 'Other',
+        type: 'link'
       }
     ]
   },
@@ -147,22 +147,22 @@ export const tableConf = [
     children: [
       {
         label: 'success',
-        key: 'tag',
+        key: 'Tag',
         type: 'success'
       },
       {
         label: 'info',
-        key: 'tag',
+        key: 'Tag',
         type: 'info'
       },
       {
         label: 'warning',
-        key: 'tag',
+        key: 'Tag',
         type: 'warning'
       },
       {
         label: 'danger',
-        key: 'tag',
+        key: 'Tag',
         type: 'danger'
       }
     ]

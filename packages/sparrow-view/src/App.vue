@@ -98,4 +98,7 @@ export default {
   .el-table .cell{
     overflow: initial !important;
   }
+  .el-button--mini{
+    padding: 4px 8px !important;
+  }
 </style>

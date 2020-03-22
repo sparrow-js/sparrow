@@ -64,12 +64,7 @@ export default class VueParse{
       ObjectProperty: (path) => {
         const {node} = path;
         if (node.key.name === 'methods') {
-          path.traverse({
-            ObjectExpression: (pathMethods) => {
-              const {} = pathMethods
-              methods = pathMethods.node.properties;
-            }
-          })
+          methods = node.value.properties;
         }
       }
     });

@@ -88,7 +88,6 @@ export default class App extends Vue {
       if (!data.handler) return;
       const handlerArr = data.handler.split('.')
       const handlerFirst = handlerArr[0];
-      console.log('***********', data);
       if (handlerFirst === 'client') {
       // 触发区块集
         if (data.handler === 'client.dashboard.show') {
@@ -100,13 +99,14 @@ export default class App extends Vue {
 
         // 展示设置  
         if (data.handler === 'client.setting.show') {
-          
           const {box, setting} = data;
           SettingModule.setSettingData(setting.data);
-          SettingModule.setSettingComponent({
-            compName: 'FormSetting', 
-            forceRefresh: this.formIndex !== box.index ? true : false
-          });
+          if (setting.data.handler === 'form') {
+            SettingModule.setSettingComponent({
+              compName: 'FormSetting', 
+              forceRefresh: this.formIndex !== box.index ? true : false
+            });
+          }
           this.formIndex = box.index;
         }
 
@@ -131,6 +131,11 @@ export default class App extends Vue {
           const result = await socket.emit('generator.scene.setting', params);
         }
 
+        if (data.handler === 'client.component.insertTableComp') {
+          AppModule.InsertData(data);
+          // client.component.insertTableComp
+        }
+
         
         if (data.boxIndex !== undefined) {
           AppModule.SetDoxIndex(data.boxIndex);
@@ -148,7 +153,6 @@ export default class App extends Vue {
           const result = await socket.emit('generator.scene.setting', params);
       }
       
-    
     });
 
     // block 进度

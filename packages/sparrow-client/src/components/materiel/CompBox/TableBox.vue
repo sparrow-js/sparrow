@@ -41,34 +41,26 @@ export default class CompBox extends Vue {
   get insertData () {
     return AppModule.insertData;
   }
-
-  get componentIs () {
-    return AppModule.componentIs;
-  }
   
-
-  async created () {
-    const {type} = this.insertData.data;
+  get boxIndex () {
+    return AppModule.boxIndex;
   }
 
   private compClick (comp, event) {
     this.isActiveComp = comp;
     const {clientY} = event;
-    console.log('*******');
+    this.addComponent();
   }
 
   private async addComponent () {
     const params = {
-      boxIndex: this.insertData.boxIndex,
+      boxIndex: this.boxIndex,
       data: {
-        boxData: this.insertData.data,
+        ...this.insertData.data,
         key: this.isActiveComp.key,
-        params: {
-          type: this.isActiveComp.type
-        },
+        type: this.isActiveComp.type
       }
     };
-    
 
     Loading.open();
     await socket.emit('generator.scene.addComponent', params);

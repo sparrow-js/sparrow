@@ -20,11 +20,6 @@ export default {
         {}
       ]
     };
-  },
-  methods: {
-    renderHeader (h, { column, $index }) {
-      return <table-header-box label={column.label}></table-header-box>;
-    }
   }
 };
 </script>
