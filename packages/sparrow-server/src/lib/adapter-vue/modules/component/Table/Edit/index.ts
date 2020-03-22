@@ -3,7 +3,7 @@ import VueParse from '../../../generator/VueParse';
 import * as path from 'path';
 import Base from '../Base';
 
-export default class Delete extends Base{
+export default class Edit extends Base{
   name: string;
   params: any;
   vueParse: any;

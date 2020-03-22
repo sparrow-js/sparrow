@@ -36,11 +36,32 @@
         </span>
       </el-tooltip>
     </div>
+    <div class="toolbar__item success" v-popover:popover>
+      <el-tooltip class="item" effect="dark" content="场景" placement="top">
+        <span>
+          <font-awesome-icon :icon="['fas', 'file']" />
+        </span>
+      </el-tooltip>
+    </div>
+
     <file-export
       :dialog-visible.sync="dialogVisible" 
       :work-folder="workFolder"
       v-if="workFolder"
     ></file-export>
+
+    <el-popover
+      ref="popover"
+      placement="right"
+      title="场景"
+      width="200"
+      trigger="click"
+    >
+      <div>
+        <span class="scene-item">基础表单</span>
+      </div>
+    </el-popover>
+
   </div>
 </template>
 <script lang="ts">
@@ -57,6 +78,7 @@ import FileExport from './FileExport.vue';
 export default class extends Vue {
   private previewStatus = false;
   private dialogVisible = false;
+  private sceneDialogVisible = false;
   private workFolder = null;
   async created() {
     const result = await socket.emit('home.setting.workFolder');
@@ -93,6 +115,10 @@ export default class extends Vue {
   private async openEditorHandler () {
     await socket.emit('generator.toolbar.openCodeEditor');
   }
+
+  private async openSceneHandler () {
+    
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -113,8 +139,26 @@ export default class extends Vue {
         color: #3e71f7;
       }
     }
+    &__item.success{
+      color: #67C23A;
+    }
     .active-preview{
       color: #0247fb;
     }
+  }
+  .scene-item{
+    background-color: #ecf5ff;
+    display: inline-block;
+    height: 32px;
+    padding: 0 10px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #409eff;
+    border: 1px solid #d9ecff;
+    border-radius: 4px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    margin-right: 10px;
+    margin-bottom: 10px;
   }
 </style>

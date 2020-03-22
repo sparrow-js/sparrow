@@ -10,7 +10,8 @@ import {
   faCode,
   faEye,
   faFileExport,
-  faTrashRestoreAlt
+  faTrashRestoreAlt,
+  faFile
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import codeMirrorInstall from './codemirror';
@@ -21,6 +22,7 @@ library.add(faCode);
 library.add(faEye);
 library.add(faFileExport);
 library.add(faTrashRestoreAlt);
+library.add(faFile);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false;
