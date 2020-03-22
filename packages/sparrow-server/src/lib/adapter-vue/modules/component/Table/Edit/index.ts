@@ -14,13 +14,6 @@ export default class Delete extends Base{
     this.type = type;
     this.init();
   }
-  /**
-   *  {
-        label: '删除',
-        key: 'delete',
-        type: 'button'
-      }
-   */
   private init () {
     const fileStr = fsExtra.readFileSync(path.join(__dirname, 'comp.vue'), 'utf8');
     this.vueParse = new VueParse(this.uuid, fileStr);
@@ -29,14 +22,14 @@ export default class Delete extends Base{
   public fragment () {
     if (this.type === 'button') {
       return `
-        <el-button size="mini" type="danger" @click="handleDelete(row,$index)">
-          删除
+        <el-button size="mini" type="danger" @click="handleEdit(row,$index)">
+          编辑
         </el-button>
       `;
     } else if (this.type === 'link') {
       return `
-        <el-link type="danger" @click="handleDelete(row,$index)">
-          删除
+        <el-link type="danger" @click="handleEdit(row,$index)">
+          编辑
         </el-link>
       `;
     }
