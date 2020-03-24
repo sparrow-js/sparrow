@@ -21,6 +21,7 @@ class generator{
     this.scene = new Scene();
     this.toolbar = new Toolbar(this.scene);
     this.toolbar.trash = this.trash.bind(this);
+    this.toolbar.initScene = this.initScene.bind(this);
   }
 
   public async trash () {
@@ -30,6 +31,38 @@ class generator{
     return {
       status: 0
     };
+  }
+
+  public async initScene (scene: string) {
+    const params = {
+      name: 'BaseTable',
+      boxs: [
+        {
+          data: {
+            id: 'form',
+            boxIndex: 0,
+            params: { isForm: false, row: '', col: '', blockName: 'BasicForm' }
+          },
+        },
+        {
+          data: {
+            id: 'table',
+            boxIndex: 1,
+            params: { isForm: false, row: '', col: '4', blockName: 'BasicTable' }
+          }
+        },
+        {
+          data: {
+            id: 'inline',
+            boxIndex: 2,
+            innerHtml: `<pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />`
+          }
+        }
+      ]
+    }
+    await this.trash()
+    this.scene = new Scene(params);
+    this.toolbar.resetScene(this.scene);
   }
 }
 

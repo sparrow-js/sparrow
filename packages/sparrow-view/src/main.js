@@ -6,6 +6,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './styles/base.scss';
 import message from './utils/message';
+import Pagination from '@/components/Pagination';
+
+Vue.component('Pagination', Pagination)
 
 Event.on('pivot_operate', (data) => {
   console.log('pivot_operate', data);

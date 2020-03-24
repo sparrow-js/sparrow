@@ -94,14 +94,6 @@ export default class Form implements IBaseBox{
   public getBoxFragment(index: number): any {
     return this.$fragment;
   }
-  /**
-   *  {
-        emit: 'client.component.insertTableComp',
-        params: { uuid: '7f2a32fe' },
-        key: 'Delete',
-        type: 'button'
-      }
-   */
 
   public addComponent (data: any) {
     const { key,type, params } = data;

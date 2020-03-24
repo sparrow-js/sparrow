@@ -36,7 +36,7 @@
         </span>
       </el-tooltip>
     </div>
-    <div class="toolbar__item success" v-popover:popover>
+    <div class="toolbar__item success" @click="showPopover = true">
       <el-tooltip class="item" effect="dark" content="场景" placement="top">
         <span>
           <font-awesome-icon :icon="['fas', 'file']" />
@@ -52,13 +52,14 @@
 
     <el-popover
       ref="popover"
+      v-model="showPopover"
       placement="right"
       title="场景"
       width="200"
       trigger="click"
     >
       <div>
-        <span class="scene-item">基础表单</span>
+        <span class="scene-item" @click="sceneHandler">基础表单</span>
       </div>
     </el-popover>
 
@@ -80,6 +81,7 @@ export default class extends Vue {
   private dialogVisible = false;
   private sceneDialogVisible = false;
   private workFolder = null;
+  private showPopover = false;
   async created() {
     const result = await socket.emit('home.setting.workFolder');
     this.workFolder = result;
@@ -116,8 +118,13 @@ export default class extends Vue {
     await socket.emit('generator.toolbar.openCodeEditor');
   }
 
-  private async openSceneHandler () {
-    
+  private async sceneHandler () {
+    // this.$refs.popover.hide();
+  
+    await socket.emit('generator.toolbar.initScene', {
+      name: 'BasicTable',
+    });
+    this.showPopover = false;
   }
 }
 </script>

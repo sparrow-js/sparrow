@@ -6,6 +6,10 @@ import * as cheerio from 'cheerio';
 import * as prettier from 'prettier';
 import * as upperCamelCase from 'uppercamelcase';
 import VueGenerator from '../generator';
+import VueParse from '../generator/VueParse';
+const uuid = require('@lukeed/uuid');
+
+
 
 import Box from '../box'
 const cwd = process.cwd();
@@ -22,13 +26,25 @@ export default class Scene {
   $: any;
   boxInstance: any;
   VueGenerator: any;
+  sceneVueParse: any = null;
 
   private blockMap = new Map();
 
-  constructor () {
-    this.boxInstance = new Box;
+  constructor (params: any = {}) {
+    this.boxInstance = new Box();
     this.VueGenerator = new VueGenerator();
     this.init();
+    const {boxs, name} = params;
+    if (name) {
+      const fileStr = fsExtra.readFileSync(path.join(__dirname, name,'index.vue'), 'utf8');
+      this.sceneVueParse = new VueParse(uuid().split('-')[0], fileStr);
+    }
+    if (boxs && boxs.length) {
+      boxs.forEach(item => {
+        this.initBox(item);
+      });
+      this.renderPage();
+    }
   }
 
   private async init () {
@@ -47,25 +63,26 @@ export default class Scene {
     this.renderPage();
   }
 
+  public initBox (data: any) {
+    const curData = data.data;
+    const { boxIndex } = curData;
+    if (this.boxs[boxIndex] === undefined) {
+      this.boxs.push(this.boxInstance.createBox(curData));
+    } else {
+      this.boxs[boxIndex] = this.boxInstance.createBox(curData);
+    }
+  }
+
   public addBox (data: any) {
     const curData = data.data;
     const { boxIndex } = curData;
     if (this.boxs[boxIndex] === undefined) {
       this.boxs.push(this.boxInstance.createBox(curData));
     } else {
-      this.boxs[boxIndex] = this.boxInstance.createBox(data);
+      this.boxs[boxIndex] = this.boxInstance.createBox(curData);
     }
     this.renderPage();
   }
-  /**
-   * 
-   * @param data 
-   * {
-      handler: 'generator.scene.bottomBox',
-      data: { boxIndex: 0 },
-      uniqueId: 'message_5'
-    }
-   */
 
   public bottomBox (params: any) {
     const { data } = params;
@@ -140,7 +157,7 @@ export default class Scene {
     this.$('.home').empty();
     this.scriptData = this.VueGenerator.initScript();
 
-    this.boxs.map(async (item, index) => {
+    this.boxs.map((item, index) => {
       if (renderType === 0) {
         const blockListStr = blockList(index, item.getBoxFragment(index).html());
         this.$('.home').append(blockListStr);
@@ -153,6 +170,14 @@ export default class Scene {
         this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));
       }
     });
+    if (this.sceneVueParse) {
+
+      if (this.sceneVueParse) {
+        // appendMethods
+        this.sceneVueParse.methods && this.VueGenerator.appendMethods(this.sceneVueParse.methods);
+        this.sceneVueParse.data && this.VueGenerator.appendData(this.sceneVueParse.data);
+      }
+    }
     if (renderType === 0) {
       this.$('.home').append(initBlock(this.boxs.length));
     }

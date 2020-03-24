@@ -11,8 +11,6 @@ import VueGenerator from '../../generator';
 import * as prettier from 'prettier';
 import generate from '@babel/generator';
 
-const mkdirpAsync = util.promisify(mkdirp);
-
 const templateStr =  `
   <template>
     <div class="root">
@@ -66,8 +64,8 @@ export default class Form implements IBaseBox{
     this.VueGenerator.appendData();
   }
 
-  async init () {
-    await mkdirpAsync(Config.componentsDir);
+  init () {
+    mkdirp.sync(Config.componentsDir);
     this.blockPath = path.join(Config.componentsDir, `${this.name}.vue`);
     this.render();
   }
