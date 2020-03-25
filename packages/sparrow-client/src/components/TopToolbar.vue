@@ -102,6 +102,7 @@ export default class extends Vue {
       type: 'warning'
     }).then(async () => {
       await socket.emit('generator.toolbar.trash');
+      location.reload();
     }).catch(() => {});
   }
 

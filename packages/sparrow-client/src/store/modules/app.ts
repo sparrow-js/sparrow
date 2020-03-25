@@ -9,6 +9,7 @@ export interface IAppState {
     boxIndex: number,
     data: any,
   },
+  insertPosition: any,
   componentIs: string
 }
 
@@ -23,6 +24,7 @@ class App extends VuexModule implements IAppState {
   public dashboardTabIndex = 0;
   public showComponentBox = false;
   public componentIs = '';
+  public insertPosition = {};
 
   @Mutation
   private SHOW_DASHBOARD (showDashboard: boolean) {
@@ -49,6 +51,11 @@ class App extends VuexModule implements IAppState {
     this.componentIs = componentName;
   }
 
+  @Mutation
+  private INSERT_POSITION (data: any) {
+    this.insertPosition = data;
+  }
+
 
   @Action
   public SetShowDashboard(showDashboard: boolean) {
@@ -73,6 +80,11 @@ class App extends VuexModule implements IAppState {
   @Action
   public SetComponentIs (componentName: string) {
     this.COMPONENT_IS(componentName)
+  }
+
+  @Action
+  public InsertPosition (data: any) {
+    this.INSERT_POSITION(data);
   }
 
 }

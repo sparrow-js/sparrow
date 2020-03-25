@@ -99,11 +99,18 @@ export default class App extends Vue {
 
         // 展示设置  
         if (data.handler === 'client.setting.show') {
+          console.log(data)
           const {box, setting} = data;
           SettingModule.setSettingData(setting.data);
-          if (setting.data.handler === 'form') {
+          const handler = setting.data.handler
+          if (handler === 'form') {
             SettingModule.setSettingComponent({
               compName: 'FormSetting', 
+              forceRefresh: this.formIndex !== box.index ? true : false
+            });
+          } else if (handler === 'table'){
+            SettingModule.setSettingComponent({
+              compName: '', 
               forceRefresh: this.formIndex !== box.index ? true : false
             });
           }
@@ -132,8 +139,7 @@ export default class App extends Vue {
         }
 
         if (data.handler === 'client.component.insertTableComp') {
-          AppModule.InsertData(data);
-          // client.component.insertTableComp
+          AppModule.InsertPosition(data);
         }
 
         

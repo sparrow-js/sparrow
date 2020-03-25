@@ -41,6 +41,9 @@ export default class CompBox extends Vue {
   get insertData () {
     return AppModule.insertData;
   }
+  get insertPosition () {
+    return AppModule.insertPosition;
+  }
   
   get boxIndex () {
     return AppModule.boxIndex;
@@ -56,7 +59,7 @@ export default class CompBox extends Vue {
     const params = {
       boxIndex: this.boxIndex,
       data: {
-        ...this.insertData.data,
+        ...this.insertPosition.data,
         key: this.isActiveComp.key,
         type: this.isActiveComp.type
       }
