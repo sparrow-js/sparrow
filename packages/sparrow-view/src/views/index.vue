@@ -1,19 +1,19 @@
 <template>
   <div class="home">
     <div class="block-list">
-      <box :index="0" class="block-item">
+      <box :index="0" :label="'表单'" class="block-item">
         <BasicForm />
       </box>
     </div>
 
     <div class="block-list">
-      <box :index="1" class="block-item">
+      <box :index="1" :label="'表格'" class="block-item">
         <BasicTable />
       </box>
     </div>
 
     <div class="block-list">
-      <box :index="2" class="block-item">
+      <box :index="2" :label="''" class="block-item">
         <pagination
           v-show="total > 0"
           :total="total"

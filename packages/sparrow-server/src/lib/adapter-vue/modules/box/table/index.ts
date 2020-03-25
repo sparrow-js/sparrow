@@ -67,7 +67,7 @@ export default class Form implements IBaseBox{
       });
     }
     this.insertComponents.push(this.name);
-    this.$fragment = cheerio.load(boxFragment.box(boxIndex, `<${this.name} />`), {
+    this.$fragment = cheerio.load(boxFragment.box(boxIndex, `<${this.name} />`, '表格'), {
       xmlMode: true,
       decodeEntities: false
     });

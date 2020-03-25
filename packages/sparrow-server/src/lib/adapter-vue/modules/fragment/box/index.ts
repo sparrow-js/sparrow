@@ -10,9 +10,9 @@ export function layout (col: number = 3, row: number = 2) {
   `;
 }
 
-export function box (index: number, content: string = '') {
+export function box (index: number, content: string = '', label: string = '') {
   return `
-    <box :index="${index}" class="block-item">
+    <box :index="${index}" :label="'${label}'"  class="block-item">
       ${content}
     </box>
   `;
