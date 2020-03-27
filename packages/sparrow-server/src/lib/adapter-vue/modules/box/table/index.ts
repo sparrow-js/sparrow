@@ -104,7 +104,7 @@ export default class Form implements IBaseBox{
     this.components[params.uuid].push(new dynamicObj(type))
     this.renderBox();
     this.render();
-  } 
+  }
 
   public setVueParse (compName: string) {
     const uuidValue = uuid().split('-')[0]; 

@@ -46,18 +46,24 @@ class generator{
         },
         {
           data: {
-            id: 'table',
+            id: 'customInline',
             boxIndex: 1,
+          }
+        },
+        {
+          data: {
+            id: 'table',
+            boxIndex: 2,
             params: { isForm: false, row: '', col: '4', blockName: 'BasicTable' }
           }
         },
         {
           data: {
             id: 'inline',
-            boxIndex: 2,
+            boxIndex: 3,
             innerHtml: `<pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />`
           }
-        }
+        },
       ]
     }
     await this.trash()

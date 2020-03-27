@@ -4,6 +4,7 @@ import Block from './block';
 import Form from './form';
 import Table from './table';
 import Inline from './Inline';
+import CustomInline from './CustomInline';
 
 export default class Box {
   public createBox (data: any) {
@@ -24,7 +25,10 @@ export default class Box {
         break;
       case 'inline':
           curBox = new Inline(data);
-        break;  
+        break;
+      case 'customInline':
+          curBox = new CustomInline(data);
+        break;
       default:
         break;
     }

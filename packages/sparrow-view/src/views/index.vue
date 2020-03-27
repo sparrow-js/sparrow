@@ -7,13 +7,19 @@
     </div>
 
     <div class="block-list">
-      <box :index="1" :label="'表格'" class="block-item">
+      <box :index="1" :label="'内联'" class="block-item">
+        <custom-inline />
+      </box>
+    </div>
+
+    <div class="block-list">
+      <box :index="2" :label="'表格'" class="block-item">
         <BasicTable />
       </box>
     </div>
 
     <div class="block-list">
-      <box :index="2" :label="''" class="block-item">
+      <box :index="3" :label="''" class="block-item">
         <pagination
           v-show="total > 0"
           :total="total"
@@ -25,7 +31,7 @@
     </div>
 
     <div class="block-list">
-      <box :index="3" class="block-item">
+      <box :index="4" class="block-item">
         <paragraph />
       </box>
     </div>
