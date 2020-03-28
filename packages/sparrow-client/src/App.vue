@@ -99,7 +99,6 @@ export default class App extends Vue {
 
         // 展示设置  
         if (data.handler === 'client.setting.show') {
-          console.log(data)
           const {box, setting} = data;
           SettingModule.setSettingData(setting.data);
           const handler = setting.data.handler

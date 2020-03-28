@@ -10,12 +10,14 @@ import { Component, Vue, Prop, Watch} from 'vue-property-decorator';
 import { AppModule } from '@/store/modules/app';
 import FormBox from './FormBox';
 import TableBox from './TableBox';
+import CustominlineBox from './CustominlineBox';
 import socket from '@/util/socket.js';
 
 @Component({
   components: {
     formBox: FormBox,
-    tableBox: TableBox
+    tableBox: TableBox,
+    custominlineBox: CustominlineBox
   }
 })
 export default class CompBox extends Vue {
@@ -26,18 +28,27 @@ export default class CompBox extends Vue {
   }
 	@Watch('componentIs', { immediate: true })
   private onjsonDataChange() {
-    const {type} = this.insertData.data;
-    this.componentList = this.componentMap[type];
+    const {type, params} = this.insertData.data;
+    if (type !== 'custominline') {
+      this.componentList = this.componentMap[type];
+    } else {
+      this.componentList = this.componentMap[params.compBox]
+    }
   }
 
   get insertData () {
     return AppModule.insertData;
   }
   async created () {
-    const {type} = this.insertData.data;
+    const {type, params} = this.insertData.data;
     const componentMap = await socket.emit('generator.data.getCompList');
     this.componentMap = componentMap;
-    this.componentList = componentMap[type];
+    if (type !== 'custominline') {
+      this.componentList = componentMap[type];
+    } else {
+      this.componentList = componentMap[params.compBox]
+    }
+
   }
 
  

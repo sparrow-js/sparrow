@@ -4,7 +4,7 @@ import * as cheerio from 'cheerio';
 
 export default class CustomInline implements IBaseBox{
   $fragment: any;
-  components: any;
+  components: any = [];
 
   constructor (data: any) {
     const { boxIndex, params } = data;
@@ -17,8 +17,17 @@ export default class CustomInline implements IBaseBox{
   public addComponent (data) {
     const { key, type } = data;
     const dynamicObj = require(`../../component/BasicTable/${key}`).default;
-    this.components.push(new dynamicObj(type))
+    this.components.push(new dynamicObj(type));
+    this.renderTemplate();
   }
+
+  public renderTemplate () {
+    this.$fragment('custom-inline').empty();
+    this.components.forEach(item => {
+      this.$fragment('custom-inline').append(item.fragment())
+    });
+  }
+
 
   public getBoxFragment(index: number): any {
     return this.$fragment;
