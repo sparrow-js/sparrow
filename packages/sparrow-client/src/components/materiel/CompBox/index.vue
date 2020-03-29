@@ -51,8 +51,5 @@ export default class CompBox extends Vue {
 
   }
 
- 
-  
-
 }
 </script>

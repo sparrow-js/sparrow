@@ -21,8 +21,8 @@
         </div>
       </div>
     </div>
+
   </div>
- 
 </template>
 
 <script lang="ts">
@@ -37,6 +37,7 @@ export default class CompBox extends Vue {
   @Prop({default: () => []}) private list: any;
   private compDialogPosition = '';
   private isActiveComp = null;
+
 
   get insertData () {
     return AppModule.insertData;

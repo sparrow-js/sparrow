@@ -157,6 +157,14 @@ export default class App extends Vue {
 
           const result = await socket.emit('generator.scene.setting', params);
       }
+
+
+      if (handlerFirst === 'tablebox') {
+        /**
+         * tablebox.tableheader.show
+         */
+        
+      }
       
     });
 

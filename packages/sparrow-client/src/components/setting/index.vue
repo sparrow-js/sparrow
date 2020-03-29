@@ -14,9 +14,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { SettingModule } from '@/store/modules/setting';
 import { AppModule } from '@/store/modules/app';
-import socket from '@/util/socket.js';
 import FormSetting from './FormSetting.vue';
-
 
 @Component({
   name: 'Setting',
@@ -25,9 +23,6 @@ import FormSetting from './FormSetting.vue';
   },
 })
 export default class extends Vue {
-  private code = `var data = {};`;
-  private activeNames = ['1', '2'];
-  private inline = false;
 
   get showSetting () {
     return SettingModule.showSetting;
@@ -41,26 +36,6 @@ export default class extends Vue {
     SettingModule.setShowSettingHandler(!SettingModule.showSetting);
   }
 
-  private async displayChange () {
-    await socket.emit('generator.scene.setting', {
-      boxIndex: AppModule.boxIndex,
-      data: {
-        handler: 'attr',
-        key: ':inline',
-        value: this.inline,
-      }
-    });
-  }
-
-  private async updateCodeData () {
-    await socket.emit('generator.scene.setting', {
-      boxIndex: AppModule.boxIndex,
-      data: {
-        handler: 'data',
-        code: this.code,
-      }
-    });
-  }
 }
 </script>
 <style lang="scss" scoped>

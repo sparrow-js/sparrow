@@ -28,8 +28,7 @@ const templateStr =  `
   </template>
 `;
 export interface IFormSetting{
-  dataCode: string;
-  inline: boolean;
+  headerData: string;
 }
 
 export default class Table implements IBaseBox{
@@ -50,8 +49,7 @@ export default class Table implements IBaseBox{
   vueParseMap:any = {};
 
   settingData: IFormSetting = {
-    dataCode: `var data = {}`,
-    inline: false
+    headerData: ``,
   }
 
   constructor (data: any) {
@@ -125,6 +123,7 @@ export default class Table implements IBaseBox{
   }
   
   public getSetting () {
+    this.settingData.headerData = JSON.stringify(this.tableHeaderData);
     return {
       data: this.settingData
     }
