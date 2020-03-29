@@ -2,6 +2,7 @@
   <div id="app">
     <el-container class="container">
       <el-aside width="200px">
+        <!-- <json-editor v-model="value"></json-editor> -->
         <comp-box v-if="showComponentBox"></comp-box>
       </el-aside>
 
@@ -50,13 +51,16 @@ import Setting from '@/components/setting/index.vue';
 import { AppModule } from '@/store/modules/app';
 import { SettingModule } from '@/store/modules/setting';
 import CompBox from '@/components/materiel/CompBox';
+import JsonEditor from '@/components/JsonEditor';
+
 @Component({
   components: {
     Logo,
     Dashboard,
     TopToolbar,
     Setting,
-    CompBox
+    CompBox,
+    JsonEditor
   }
 })
 export default class App extends Vue {
@@ -64,7 +68,6 @@ export default class App extends Vue {
   private settingData = null;
   private settingWidth = '80px';
   private formIndex = 0;
-
 
   get showDashboard () {
     return AppModule.showDashboard;

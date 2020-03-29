@@ -8,8 +8,7 @@
 import CodeMirror from 'codemirror'
 import 'codemirror/addon/lint/lint.css'
 import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/rubyblue.css'
-require('script-loader!jsonlint')
+import 'codemirror/theme/lucario.css'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/addon/lint/lint'
 import 'codemirror/addon/lint/json-lint'
@@ -36,7 +35,7 @@ export default {
       lineNumbers: true,
       mode: 'application/json',
       gutters: ['CodeMirror-lint-markers'],
-      theme: 'rubyblue',
+      theme: 'lucario',
       lint: true
     })
 
