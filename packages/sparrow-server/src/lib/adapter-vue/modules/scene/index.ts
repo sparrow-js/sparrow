@@ -156,7 +156,7 @@ export default class Scene {
   public async renderPage (renderType: number = 0) {
     this.$('.home').empty();
     this.scriptData = this.VueGenerator.initScript();
-
+    let methods = [];
     this.boxs.map((item, index) => {
       if (renderType === 0) {
         const blockListStr = blockList(index, item.getBoxFragment(index).html());
@@ -169,14 +169,19 @@ export default class Scene {
       if (item.insertComponents && item.insertComponents.length) {
         this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));
       }
+
+      if (item.type === 'inline' && item.components) {
+        item.components.forEach(comp => {
+          methods = methods.concat(comp.vueParse.methods || []);
+        })
+      }
+
     });
     if (this.sceneVueParse) {
-
-      if (this.sceneVueParse) {
-        // appendMethods
-        this.sceneVueParse.methods && this.VueGenerator.appendMethods(this.sceneVueParse.methods);
-        this.sceneVueParse.data && this.VueGenerator.appendData(this.sceneVueParse.data);
-      }
+      // appendMethods
+      this.sceneVueParse.methods && this.VueGenerator.appendMethods(this.sceneVueParse.methods);
+      this.sceneVueParse.data && this.VueGenerator.appendData(this.sceneVueParse.data);
+      this.VueGenerator.appendMethods(methods);
     }
     if (renderType === 0) {
       this.$('.home').append(initBlock(this.boxs.length));

@@ -14,7 +14,7 @@ export const BasicTableConf = [
       },
       {
         label: '重置',
-        key: 'Reset',
+        key: 'ResetButton',
         type: 'button'
       }
     ]

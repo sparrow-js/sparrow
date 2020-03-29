@@ -22,11 +22,9 @@ export default class Delete extends Base{
 
   public fragment () {    
     return `
-      <router-link :to="'/example/edit'">
-        <el-button type="primary" icon="el-icon-edit">
-          Edit
-        </el-button>
-      </router-link>
+      <el-button class="filter-item" type="primary" @click="handleReset">
+        重置
+      </el-button>
     `;
   }
 }

@@ -9,13 +9,8 @@
     <div class="block-list">
       <box :index="1" :label="'内联'" class="block-item">
         <custom-inline>
-          <el-button
-            class="filter-item"
-            type="primary"
-            icon="el-icon-search"
-            @click="handleFilter"
-          >
-            搜索
+          <el-button class="filter-item" type="primary" @click="handleReset">
+            重置
           </el-button>
         </custom-inline>
       </box>
@@ -85,6 +80,10 @@ export default {
     handleFilter() {
       this.listQuery.page = 1;
       this.getList();
+    },
+
+    handleReset() {
+      // this.form = {};
     }
   },
   components: {

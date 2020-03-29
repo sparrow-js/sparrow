@@ -32,7 +32,7 @@ export interface IFormSetting{
   inline: boolean;
 }
 
-export default class Form implements IBaseBox{
+export default class Table implements IBaseBox{
   $fragment: any;
   template: string;
   name: string;

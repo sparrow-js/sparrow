@@ -5,6 +5,7 @@ import * as cheerio from 'cheerio';
 export default class CustomInline implements IBaseBox{
   $fragment: any;
   components: any = [];
+  type: string = 'inline';
 
   constructor (data: any) {
     const { boxIndex, params } = data;
