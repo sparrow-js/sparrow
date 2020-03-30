@@ -61,7 +61,6 @@ export default class Table implements IBaseBox{
       this.tableHeaderData.push({
         uuid: uuid().split('-')[0],
         label: `column${i}`,
-        prop: `column${i}`
       });
     }
     this.insertComponents.push(this.name);
@@ -116,6 +115,11 @@ export default class Table implements IBaseBox{
       this.renderBox();
     }
     this.render();
+  }
+  
+  private setHeaderData (data) {
+
+    this.tableHeaderData = data.code;
   }
 
   private setActiveIndex (data) {

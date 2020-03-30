@@ -103,11 +103,11 @@ export const tableConf = [
         key: 'See',
         type: 'button'
       },
-      {
-        label: '更多',
-        key: 'More',
-        type: 'button'
-      },
+      // {
+      //   label: '更多',
+      //   key: 'More',
+      //   type: 'button'
+      // },
       {
         label: '其他',
         key: 'Other',
@@ -130,10 +130,15 @@ export const tableConf = [
         type: 'link'
       },
       {
-        label: '更多',
-        key: 'More',
-        type: 'link'
+        label: '查看',
+        key: 'See',
+        type: 'button'
       },
+      // {
+      //   label: '更多',
+      //   key: 'More',
+      //   type: 'link'
+      // },
       {
         label: '其他',
         key: 'Other',

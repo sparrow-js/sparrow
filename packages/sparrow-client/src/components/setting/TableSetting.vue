@@ -2,36 +2,11 @@
   <div class="setting">
     <div v-show="showSetting">
       <el-collapse v-model="activeNames">
-        <el-collapse-item title="模式" name="1">
-          <el-switch
-            v-model="setting.inline"
-            active-text="块"
-            inactive-text="行内"
-            @change="displayChange"
-          >
-          </el-switch>
+        <el-collapse-item title="表头数据" name="1">
+          <json-editor v-model="jsonData"></json-editor>
         </el-collapse-item>
-        <el-collapse-item title="数据" name="2">
-          <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
-            <el-tab-pane label="code" name="code">
-              <div>
-                <span class="update-data"
-                  @click.stop="updateCodeData"
-                >更新</span>
-              </div>
-              <codemirror 
-                ref="codemirror"
-                v-model="setting.dataCode"
-                @blur="codemirrorBlur"
-              ></codemirror>
-            </el-tab-pane>
-            <el-tab-pane label="json" name="json">
-              <json-handler :json-data="jsonData"></json-handler>
-            </el-tab-pane>
-          </el-tabs>
-        </el-collapse-item>
-        <!--  -->
-      </el-collapse>
+      </el-collapse>  
+      test
     </div>
   </div>
 </template>
@@ -41,11 +16,13 @@ import { SettingModule } from '@/store/modules/setting';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
 import JsonHandler from '@/components/jsonhandler/index.vue';
+import JsonEditor from '@/components/JsonEditor';
 
 @Component({
   name: 'Setting',
   components: {
-    JsonHandler
+    JsonHandler,
+    JsonEditor
   }
 })
 export default class extends Vue {
@@ -55,7 +32,7 @@ export default class extends Vue {
     inline: false
   };
 
-  private jsonData = '"{}"'
+  private jsonData:any = [];
 
   private activeNameCode = 'code';
 
@@ -69,57 +46,35 @@ export default class extends Vue {
       boxIndex: AppModule.boxIndex
     });
     if (result) {
-      this.setting = result.data;
+      this.jsonData = JSON.parse(result.data.headerData);
     }
+      
+    window.addEventListener("message", async event => {
+      const {data} = event;
+      if (data.handler === 'client.component.insertTableHeader') {
+        const {params} = data.data;
+        const jsonData = JSON.parse(this.jsonData)
+        // const jsonData = JSON.parse()
+        const index = jsonData.findIndex(item => item.uuid === params.uuid);
+        if (index >= 0) {
+          jsonData[index].label = params.value;
+        }
+        this.jsonData = jsonData;
+        this.updateSetting();
+      }
+    })
   }
 
-  private showSettingHandler () {
-    SettingModule.setShowSettingHandler(!SettingModule.showSetting);
-  }
-
-  private async displayChange () {
-    const result = await socket.emit('generator.scene.setting', {
+  private async updateSetting () {
+     const result =  await socket.emit('generator.scene.setting', {
       boxIndex: AppModule.boxIndex,
       data: {
-        handler: 'formInline',
-        key: ':inline',
-        value: this.setting.inline,
+        handler: 'setHeaderData',
+        code: this.jsonData,
       }
     });
-
-    if (result && result.status === 0) {
-      this.$message({
-        message: '操作成功',
-        type: 'success'
-      });
-    }
   }
 
-  private async updateCodeData () {
-    
-   const result =  await socket.emit('generator.scene.setting', {
-      boxIndex: AppModule.boxIndex,
-      data: {
-        handler: 'data',
-        code: this.setting.dataCode,
-      }
-    });
-
-    if (result && result.status === 0) {
-      this.$message({
-        message: '操作成功',
-        type: 'success'
-      });
-    }
-  }
-
-  private codemirrorBlur () {}
-
-  private handleCodeClick () {
-    if (this.activeNameCode === 'json') {
-      this.jsonData = JSON.stringify(eval(`function getData () {${this.setting.dataCode}; return data;} getData()`))
-    }
-  }
 }
 </script>
 <style lang="scss" scoped>

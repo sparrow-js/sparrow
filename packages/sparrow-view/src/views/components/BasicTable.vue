@@ -2,39 +2,47 @@
   <div class="root">
     <table-box>
       <el-table border="" style="width: 100%" :data="tableData">
-        <el-table-column prop="column0" label="column0">
+        <el-table-column prop="undefined" label="column0">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="6c617a1d" :label="column.label" />
+            <table-header-box uuid="0be67484" :label="column.label" />
           </template>
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="6c617a1d" />
+            <table-cell-box uuid="0be67484" />
           </template>
         </el-table-column>
 
-        <el-table-column prop="column1" label="column1">
+        <el-table-column prop="undefined" label="column1">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="617a1d75" :label="column.label" />
+            <table-header-box uuid="e67484c3" :label="column.label" />
           </template>
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="617a1d75" />
+            <table-cell-box uuid="e67484c3" />
           </template>
         </el-table-column>
 
-        <el-table-column prop="column2" label="column2">
+        <el-table-column prop="undefined" label="column2">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="7a1d7536" :label="column.label" />
+            <table-header-box uuid="7484c3ff" :label="column.label" />
           </template>
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="7a1d7536" />
+            <table-cell-box uuid="7484c3ff" />
           </template>
         </el-table-column>
 
-        <el-table-column prop="column3" label="column3">
+        <el-table-column prop="undefined" label="column3">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="1d75366d" :label="column.label" />
+            <table-header-box uuid="84c3ff62" :label="column.label" />
           </template>
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="1d75366d" />
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelete(row, $index)"
+            >
+              删除
+            </el-button>
+
+            <table-cell-box uuid="84c3ff62" />
           </template>
         </el-table-column>
       </el-table>
@@ -44,6 +52,17 @@
 
 <script>
 export default {
+  methods: {
+    handleDelete(row, index) {
+      this.$notify({
+        title: "Success",
+        message: "Delete Successfully",
+        type: "success",
+        duration: 2000
+      });
+    }
+  },
+
   data() {
     return {
       tableData: [{}]

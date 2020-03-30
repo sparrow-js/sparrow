@@ -15,11 +15,13 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import { SettingModule } from '@/store/modules/setting';
 import { AppModule } from '@/store/modules/app';
 import FormSetting from './FormSetting.vue';
+import TableSetting from './TableSetting.vue'
 
 @Component({
   name: 'Setting',
   components: {
-    FormSetting
+    FormSetting,
+    TableSetting
   },
 })
 export default class extends Vue {

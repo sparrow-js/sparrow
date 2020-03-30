@@ -112,7 +112,7 @@ export default class App extends Vue {
             });
           } else if (handler === 'table'){
             SettingModule.setSettingComponent({
-              compName: '', 
+              compName: 'TableSetting', 
               forceRefresh: this.formIndex !== box.index ? true : false
             });
           }

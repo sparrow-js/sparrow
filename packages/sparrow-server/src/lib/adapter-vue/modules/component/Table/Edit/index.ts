@@ -22,13 +22,13 @@ export default class Edit extends Base{
   public fragment () {
     if (this.type === 'button') {
       return `
-        <el-button size="mini" type="danger" @click="handleEdit(row,$index)">
+        <el-button size="mini" type="success" @click="handleEdit(row,$index)">
           编辑
         </el-button>
       `;
     } else if (this.type === 'link') {
       return `
-        <el-link type="danger" @click="handleEdit(row,$index)">
+        <el-link type="success" @click="handleEdit(row,$index)">
           编辑
         </el-link>
       `;
