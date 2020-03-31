@@ -158,13 +158,9 @@ export default class Scene {
     this.scriptData = this.VueGenerator.initScript();
     let methods = [];
     this.boxs.map((item, index) => {
-      if (renderType === 0) {
-        const blockListStr = blockList(index, item.getBoxFragment(index).html());
-        this.$('.home').append(blockListStr);
-      } else {
-        const blockListStr = blockList(index, item.template);
-        this.$('.home').append(blockListStr);
-      }
+      item.setPreview(renderType);
+      const blockListStr = blockList(index, item.getBoxFragment(index, renderType).html());
+      this.$('.home').append(blockListStr);
 
       if (item.insertComponents && item.insertComponents.length) {
         this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));

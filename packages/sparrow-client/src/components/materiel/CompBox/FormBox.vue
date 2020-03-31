@@ -69,7 +69,7 @@ export default class CompBox extends Vue {
     const {type} = this.insertData.data;
 
     window.EventCustomer.addListener('click_json_tree_callback', (data) => {
-      this.form.name = data.path.replace('JSON.', '');
+      this.form.name = data.path ===  'JSON' ? '' : data.path.replace('JSON.', '');
 		});
   }
 

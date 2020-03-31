@@ -93,6 +93,7 @@ export default class extends Vue {
     await socket.emit('generator.toolbar.previewView', {
       status: this.previewStatus
     });
+    // location.reload();
   }
 
   private trashHandler () {

@@ -60,7 +60,7 @@ export default class Table implements IBaseBox{
     for (let i = 0; i < this.col; i++) {
       this.tableHeaderData.push({
         uuid: uuid().split('-')[0],
-        label: `column${i}`,
+        label: '',
       });
     }
     this.insertComponents.push(this.name);

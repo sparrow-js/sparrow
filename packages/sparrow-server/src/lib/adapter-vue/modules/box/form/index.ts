@@ -37,6 +37,8 @@ export default class Form implements IBaseBox{
 
   data: any = {};
   methods: any = {};
+  type: number = 0; // 0: 编辑 1: 预览
+  boxIndex: number;
 
   settingData: IFormSetting = {
     dataCode: `var data = {}`,
@@ -46,6 +48,7 @@ export default class Form implements IBaseBox{
   constructor (data: any) {
     const { boxIndex, params } = data;
     const {blockName} = params;
+    this.boxIndex = boxIndex;
     this.name = blockName;
     this.insertComponents.push(this.name);
     this.$fragment = cheerio.load(boxFragment.box(boxIndex, `<${this.name} />`, '表单'), {
@@ -70,8 +73,48 @@ export default class Form implements IBaseBox{
     this.render();
   }
 
-  public getBoxFragment(index: number): any {
+  public getBoxFragment(index: number, type: number = 0): any {
     return this.$fragment;
+  }
+
+  public setPreview (type: number = 0) {
+    console.log('*******************', type);
+    if (this.type === type) {
+      return;
+    } else {
+      this.type = type;
+    }
+    if (type === 0) {
+      this.$fragment = cheerio.load(boxFragment.box(this.boxIndex, `<${this.name} />`, '表单'), {
+        xmlMode: true,
+        decodeEntities: false
+      });
+      this.$blockTemplate = cheerio.load(templateStr, {
+        xmlMode: true,
+        decodeEntities: false
+      });
+  
+      this.$blockTemplate('box-form').append(fragment.eform());
+    } else {
+      this.$fragment = cheerio.load(`<${this.name} />`, {
+        xmlMode: true,
+        decodeEntities: false
+      });
+      this.$blockTemplate = cheerio.load(`
+        <template>
+          <div class="root">
+          </div>
+        </template>
+      `, {
+        xmlMode: true,
+        decodeEntities: false
+      });
+  
+      this.$blockTemplate('.root').append(fragment.eform());
+    }
+    this.renderBox();
+    this.render();
+
   }
 
   public addComponent (data: any) {
@@ -91,7 +134,6 @@ export default class Form implements IBaseBox{
   public setting (data: any) {
     // { index: '0', value: '基础文本框', handler: 'addLabel' }
     const {handler} = data;
-    // this.VueGenerator.
     if (handler === 'data') {
       this.settingData.dataCode = data.code;
       const dataCode = this.VueGenerator.getDataStrAst(this.settingData.dataCode);
@@ -131,14 +173,17 @@ export default class Form implements IBaseBox{
       if (this.activeIndex === index) {
         active = 'true';
       }
-      this.$blockTemplate('el-form').append(
-        `<component-box :is-active="${active}" indexcomp="${index}">
-          ${component.getFragment().html()}
-        </component-box>`
-      );
-        console.log(component.vueParse);
+      if (this.type === 0) {
+        this.$blockTemplate('el-form').append(
+          `<component-box :is-active="${active}" indexcomp="${index}">
+            ${component.getFragment(this.type).html()}
+          </component-box>`
+        );
+      } else {
+        this.$blockTemplate('el-form').append(component.getFragment(this.type).html());
+      }
+
       if (component.vueParse && component.vueParse.methods) {
-        // appendMethods
         component.vueParse.methods && this.VueGenerator.appendMethods(component.vueParse.methods);
         component.vueParse.data && this.VueGenerator.appendData(component.vueParse.data);
       }

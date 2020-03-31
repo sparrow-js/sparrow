@@ -6,7 +6,6 @@
           <json-editor v-model="jsonData"></json-editor>
         </el-collapse-item>
       </el-collapse>  
-      test
     </div>
   </div>
 </template>

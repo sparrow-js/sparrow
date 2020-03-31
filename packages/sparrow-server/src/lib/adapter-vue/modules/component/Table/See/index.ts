@@ -16,15 +16,15 @@ export default class Delete extends Base{
   }
   
   private init () {
-    const fileStr = fsExtra.readFileSync(path.join(__dirname, 'comp.vue'), 'utf8');
-    this.vueParse = new VueParse(this.uuid, fileStr);
+    // const fileStr = fsExtra.readFileSync(path.join(__dirname, 'comp.vue'), 'utf8');
+    // this.vueParse = new VueParse(this.uuid, fileStr);
   }
 
   public fragment () {    
     return `
-      <router-link :to="'/example/create'">
-        <el-button type="primary">
-          创建
+      <router-link :to="'/example/edit'">
+        <el-button type="primary" icon="el-icon-edit">
+          查看
         </el-button>
       </router-link>
     `;
