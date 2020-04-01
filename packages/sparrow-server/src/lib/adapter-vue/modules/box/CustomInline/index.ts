@@ -6,9 +6,12 @@ export default class CustomInline implements IBaseBox{
   $fragment: any;
   components: any = [];
   type: string = 'inline';
+  previewType: number = 0;
+  boxIndex: number;
 
   constructor (data: any) {
     const { boxIndex, params } = data;
+    this.boxIndex = boxIndex;
     this.$fragment = cheerio.load(boxFragment.box(boxIndex, `<custom-inline></custom-inline>`, '内联'), {
       xmlMode: true,
       decodeEntities: false
@@ -25,7 +28,11 @@ export default class CustomInline implements IBaseBox{
   public renderTemplate () {
     this.$fragment('custom-inline').empty();
     this.components.forEach(item => {
-      this.$fragment('custom-inline').append(item.fragment())
+      if (this.previewType === 0) {
+        this.$fragment('custom-inline').append(item.fragment())
+      } else {
+        this.$fragment('.custom-inline').append(item.fragment())
+      }
     });
   }
 
@@ -33,4 +40,27 @@ export default class CustomInline implements IBaseBox{
   public getBoxFragment(index: number): any {
     return this.$fragment;
   }
+
+  public setPreview (type: number = 0) {
+    if (this.previewType === type) {
+      return;
+    } else {
+      this.previewType = type;
+    }
+    if (type === 0) {
+      this.$fragment = cheerio.load(boxFragment.box(this.boxIndex, `<custom-inline></custom-inline>`, '内联'), {
+        xmlMode: true,
+        decodeEntities: false
+      });
+      this.renderTemplate();
+    } else {
+      this.$fragment = cheerio.load(`<div class="custom-inline"></div>`, {
+        xmlMode: true,
+        decodeEntities: false
+      });
+      this.renderTemplate();
+    }
+
+  }
+
 }

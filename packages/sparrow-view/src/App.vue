@@ -101,4 +101,7 @@ export default {
   .el-button--mini{
     padding: 4px 8px !important;
   }
+  .block-list{
+    margin-bottom: 10px;
+  }
 </style>
