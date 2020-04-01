@@ -158,7 +158,7 @@ export default class Scene {
     this.scriptData = this.VueGenerator.initScript();
     let methods = [];
     this.boxs.map((item, index) => {
-      item.setPreview(renderType);
+      item.setPreview && item.setPreview(renderType);
       const blockListStr = blockList(index, item.getBoxFragment(index, renderType).html());
       this.$('.home').append(blockListStr);
 
