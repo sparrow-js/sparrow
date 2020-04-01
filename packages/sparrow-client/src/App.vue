@@ -200,6 +200,7 @@ export default class App extends Vue {
   body{
     padding: 10px;
     box-sizing: border-box;
+    background: #fff;
   }
   #app{
     height: 100%;
