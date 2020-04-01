@@ -22,7 +22,7 @@ export default class Delete extends Base{
 
   public fragment () {    
     return `
-      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
+      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter" style="margin-right: 10px;">
         搜索
       </el-button>
     `;

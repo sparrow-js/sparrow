@@ -27,6 +27,9 @@ export default class Scene {
   boxInstance: any;
   VueGenerator: any;
   sceneVueParse: any = null;
+  params: any = {
+    previewViewStatus: 0
+  };
 
   private blockMap = new Map();
 
@@ -153,7 +156,12 @@ export default class Scene {
     }
   }
 
+  public getParams () {
+    return this.params;
+  }
+
   public async renderPage (renderType: number = 0) {
+    this.params.previewViewStatus = renderType;
     this.$('.home').empty();
     this.scriptData = this.VueGenerator.initScript();
     let methods = [];

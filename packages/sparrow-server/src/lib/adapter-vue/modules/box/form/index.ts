@@ -78,7 +78,6 @@ export default class Form implements IBaseBox{
   }
 
   public setPreview (type: number = 0) {
-    console.log('*******************', type);
     if (this.type === type) {
       return;
     } else {

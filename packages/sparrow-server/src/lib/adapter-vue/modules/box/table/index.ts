@@ -47,6 +47,8 @@ export default class Table implements IBaseBox{
   data: any = {};
   methods: any = {};
   vueParseMap:any = {};
+  type: number = 0;
+  boxIndex: number;
 
   settingData: IFormSetting = {
     headerData: ``,
@@ -54,6 +56,7 @@ export default class Table implements IBaseBox{
 
   constructor (data: any) {
     const { boxIndex, params } = data;
+    this.boxIndex = boxIndex;
     const {blockName, col} = params;
     this.name = blockName;
     this.col = col;
@@ -90,6 +93,48 @@ export default class Table implements IBaseBox{
 
   public getBoxFragment(index: number): any {
     return this.$fragment;
+  }
+
+  public setPreview (type: number = 0) {
+    if (this.type === type) {
+      return;
+    } else {
+      this.type = type;
+    }
+    if (type === 0) {
+      this.$fragment = cheerio.load(boxFragment.box(this.boxIndex, `<${this.name} />`, '表格'), {
+        xmlMode: true,
+        decodeEntities: false
+      });
+  
+      this.$blockTemplate = cheerio.load(templateStr, {
+        xmlMode: true,
+        decodeEntities: false
+      });
+  
+    } else {
+      this.$fragment = cheerio.load(`<${this.name} />`, {
+        xmlMode: true,
+        decodeEntities: false
+      });
+      this.$blockTemplate = cheerio.load(`
+        <template>
+          <div class="root">
+            <el-table
+              border
+              style="width: 100%"
+              :data="tableData">
+            </el-table>
+          </div>
+        </template>
+      `, {
+        xmlMode: true,
+        decodeEntities: false
+      });
+    }
+    this.renderBox();
+    this.render();
+
   }
 
   public addComponent (data: any) {
@@ -141,6 +186,7 @@ export default class Table implements IBaseBox{
 
   public renderColumn () {
     let column = ''
+    const {type} = this;
     const {tableHeaderData} = this;
     for (var i = 0; i < tableHeaderData.length; i++) {
       const uuid = tableHeaderData[i].uuid;
@@ -153,18 +199,28 @@ export default class Table implements IBaseBox{
           }
         })
       }
-
-      column += `
+      if (type === 0) {
+        column += `
+          <el-table-column prop="${tableHeaderData[i].prop}" label="${tableHeaderData[i].label}">
+            <template slot="header" slot-scope="{row, column, $index}">
+              <table-header-box uuid="${tableHeaderData[i].uuid}" :label="column.label"></table-header-box>
+            </template>
+            <template slot-scope="{row, column, $index}">
+              ${compTag}
+              <table-cell-box uuid="${tableHeaderData[i].uuid}"></table-cell-box>
+            </template>
+          </el-table-column>
+        `;
+      } else {
+        column += `
         <el-table-column prop="${tableHeaderData[i].prop}" label="${tableHeaderData[i].label}">
-          <template slot="header" slot-scope="{row, column, $index}">
-            <table-header-box uuid="${tableHeaderData[i].uuid}" :label="column.label"></table-header-box>
-          </template>
           <template slot-scope="{row, column, $index}">
             ${compTag}
-            <table-cell-box uuid="${tableHeaderData[i].uuid}"></table-cell-box>
           </template>
         </el-table-column>
       `;
+      }
+    
     }
     return column;
   }

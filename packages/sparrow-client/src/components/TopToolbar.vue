@@ -77,7 +77,7 @@ import FileExport from './FileExport.vue';
   }
 })
 export default class extends Vue {
-  private previewStatus = false;
+  private previewStatus = 0;
   private dialogVisible = false;
   private sceneDialogVisible = false;
   private workFolder = null;
@@ -85,15 +85,21 @@ export default class extends Vue {
   async created() {
     const result = await socket.emit('home.setting.workFolder');
     this.workFolder = result;
+    this.init();
   }
 
   private async previewHandler () {
-    this.previewStatus = !this.previewStatus;
+    this.previewStatus = this.previewStatus === 0 ? 1 : 0;
 
     await socket.emit('generator.toolbar.previewView', {
       status: this.previewStatus
     });
-    // location.reload();
+    location.reload();
+  }
+
+  private async init () {
+    const result =  await socket.emit('generator.scene.getParams');
+    this.previewStatus = result.previewViewStatus;
   }
 
   private trashHandler () {
