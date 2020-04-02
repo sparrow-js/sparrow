@@ -31,6 +31,10 @@ export default {
       this.getSelection();
     });
 
+    document.addEventListener('click', () => {
+      Event.emit('text-selection-hide');
+    });
+
     window.addEventListener('message',(e) => {
       const {data} = e;
       if (data && data.handler === 'document-click') {
