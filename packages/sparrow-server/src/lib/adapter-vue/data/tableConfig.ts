@@ -108,11 +108,11 @@ export const tableConf = [
       //   key: 'More',
       //   type: 'button'
       // },
-      {
-        label: '其他',
-        key: 'Other',
-        type: 'button'
-      }
+      // {
+      //   label: '其他',
+      //   key: 'Other',
+      //   type: 'button'
+      // }
     ]
   },
 
@@ -139,37 +139,11 @@ export const tableConf = [
       //   key: 'More',
       //   type: 'link'
       // },
-      {
-        label: '其他',
-        key: 'Other',
-        type: 'link'
-      }
+      // {
+      //   label: '其他',
+      //   key: 'Other',
+      //   type: 'link'
+      // }
     ]
   },
-
-  {
-    label: '标签',
-    children: [
-      {
-        label: 'success',
-        key: 'Tag',
-        type: 'success'
-      },
-      {
-        label: 'info',
-        key: 'Tag',
-        type: 'info'
-      },
-      {
-        label: 'warning',
-        key: 'Tag',
-        type: 'warning'
-      },
-      {
-        label: 'danger',
-        key: 'Tag',
-        type: 'danger'
-      }
-    ]
-  }
 ];

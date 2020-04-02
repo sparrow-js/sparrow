@@ -6,11 +6,14 @@
       :is-show-toolbar="isShowToolbar" 
       @change="showToolbarChange"
     />
+    <inline-toolbar />
   </div>
 </template>
 <script>
 import message from './utils/message';
-import { Event } from '@sparrow-vue/boxs'
+import { Event } from '@sparrow-vue/boxs';
+import _ from 'lodash';
+
 
 export default {
   data () {
@@ -21,6 +24,13 @@ export default {
     }
   },
   created () {
+    this.getSelection = _.debounce(this.getSelection, 1000, {
+      trailing: true
+    })
+    document.addEventListener("selectionchange", () => {
+      this.getSelection();
+    });
+
     window.addEventListener('message',(e) => {
       const {data} = e;
       if (data && data.handler === 'document-click') {
@@ -62,6 +72,18 @@ export default {
     },
     showToolbarChange (data) {
       this.isShowToolbar = data;
+    },
+    getSelection () {
+      const selection = document.getSelection();
+      const {anchorOffset, focusOffset, anchorNode} = selection;
+      if (anchorNode && anchorNode.wholeText && anchorNode.parentNode.classList.contains('edit-cell')) {
+        const selectedText = anchorNode.wholeText.substring(focusOffset, anchorOffset);
+        if (!selectedText) return;
+        Event.emit('text-selection',{
+          rect: anchorNode.parentNode.getBoundingClientRect(),
+          type: 'edit-cell'
+        });
+      }
     }
   }
 }

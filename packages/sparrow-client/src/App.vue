@@ -86,6 +86,7 @@ export default class App extends Vue {
   }
 
   created() {
+
     window.addEventListener("message", async event => {
       const {data} = event;
       if (!data.handler) return;
@@ -243,5 +244,13 @@ export default class App extends Vue {
     width: 100%;
     height: 100%;
     border: none;
+  }
+  .ali-icon{
+    width: 1.125em;
+    display: inline-block;
+    font-size: inherit;
+    height: 1em;
+    overflow: visible;
+    vertical-align: -0.125em;
   }
 </style>  

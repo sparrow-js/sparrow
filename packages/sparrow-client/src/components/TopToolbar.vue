@@ -27,7 +27,7 @@
         </span>
       </el-tooltip>
     </div>
-    <div class="toolbar__item">
+    <!-- <div class="toolbar__item">
       <el-tooltip class="item" effect="dark" content="源代码" placement="top">
         <span
           @click="openEditorHandler"
@@ -35,7 +35,7 @@
           <font-awesome-icon :icon="['fas', 'code']" />
         </span>
       </el-tooltip>
-    </div>
+    </div> -->
     <div class="toolbar__item success" @click="showPopover = true">
       <el-tooltip class="item" effect="dark" content="场景" placement="top">
         <span>
@@ -175,5 +175,6 @@ export default class extends Vue {
     white-space: nowrap;
     margin-right: 10px;
     margin-bottom: 10px;
+    cursor: pointer;
   }
 </style>
