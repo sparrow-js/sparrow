@@ -37,6 +37,17 @@ export default class CompBox extends Vue {
   @Prop({default: () => []}) private list: any;
   private compDialogPosition = '';
   private isActiveComp = null;
+  
+  created() {
+    window.addEventListener("message", async event => {
+      const {data} = event;
+      if (!data.handler) return;
+      if (data.handler === 'client.component.tableCell') {
+        this.isActiveComp = data.data.params;
+        this.addComponent();
+      }
+    });
+  }
 
 
   get insertData () {
@@ -62,7 +73,8 @@ export default class CompBox extends Vue {
       data: {
         ...this.insertPosition.data,
         key: this.isActiveComp.key,
-        type: this.isActiveComp.type
+        type: this.isActiveComp.type,
+        cellParams: this.isActiveComp.params || {}
       }
     };
 

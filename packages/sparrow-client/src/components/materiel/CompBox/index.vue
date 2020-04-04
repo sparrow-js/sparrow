@@ -48,7 +48,6 @@ export default class CompBox extends Vue {
     } else {
       this.componentList = componentMap[params.compBox]
     }
-
   }
 
 }

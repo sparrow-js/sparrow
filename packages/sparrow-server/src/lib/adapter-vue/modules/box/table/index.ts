@@ -138,12 +138,12 @@ export default class Table implements IBaseBox{
   }
 
   public addComponent (data: any) {
-    const { key,type, params } = data;
+    const { key,type, params, cellParams } = data;
     const dynamicObj = require(`../../component/Table/${key}`).default;
     if (!this.components[params.uuid]) {
       this.components[params.uuid] = [];
     }
-    this.components[params.uuid].push(new dynamicObj(type))
+    this.components[params.uuid].push(new dynamicObj(type, cellParams))
     this.renderBox();
     this.render();
   }

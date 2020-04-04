@@ -24,7 +24,7 @@ export default {
     }
   },
   created () {
-    this.getSelection = _.debounce(this.getSelection, 1000, {
+    this.getSelection = _.debounce(this.getSelection, 500, {
       trailing: true
     })
     document.addEventListener("selectionchange", () => {
@@ -85,7 +85,8 @@ export default {
         if (!selectedText) return;
         Event.emit('text-selection',{
           rect: anchorNode.parentNode.getBoundingClientRect(),
-          type: 'edit-cell'
+          type: 'edit-cell',
+          value: selectedText,
         });
       }
     }

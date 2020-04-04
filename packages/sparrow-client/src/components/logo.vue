@@ -1,9 +1,8 @@
 <template>
-    <div class="logo">
-        <div class="logo-box">
-            <img class="logo-img" src="https://raw.githubusercontent.com/sparrow-js/sparrow/master/docs/images/sparrow.jpeg"/>
-        </div>
+<div class="logo">
+    <div class="logo-box">
     </div>
+</div>
 </template>
 <script>
 export default {
