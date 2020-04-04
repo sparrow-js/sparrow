@@ -151,16 +151,16 @@ export default class App extends Vue {
         }
       };
 
-      if (handlerFirst === 'forward') {
-        const handler = handlerArr.slice(1, handlerArr.length).join('.');
+      // if (handlerFirst === 'forward') {
+      //   const handler = handlerArr.slice(1, handlerArr.length).join('.');
 
-         const params = {
-            boxIndex: this.boxIndex,
-            data: data.data.params
-          };
+      //    const params = {
+      //       boxIndex: this.boxIndex,
+      //       data: data.data.params
+      //     };
 
-          const result = await socket.emit('generator.scene.setting', params);
-      }
+      //     const result = await socket.emit('generator.scene.setting', params);
+      // }
 
 
       if (handlerFirst === 'tablebox') {
