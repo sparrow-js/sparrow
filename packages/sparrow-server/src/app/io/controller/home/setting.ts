@@ -28,10 +28,18 @@ export default (app) => {
 
     public async setWorkFolderBySub({ args }) {
       const { subDirectory } = args;
+      let  workFolder = '';
+      let newWorkFolder = '';
+      let directories = [];
+      try {
+        workFolder = storage.get('workFolder');
+        newWorkFolder = path.join(workFolder, subDirectory);
+        directories = await setWorkFolder(newWorkFolder);
+      } catch (e) {
+        newWorkFolder = '/';
+        directories = await setWorkFolder(newWorkFolder);
+      }
 
-      const workFolder = storage.get('workFolder');
-      const newWorkFolder = path.join(workFolder, subDirectory);
-      const directories = await setWorkFolder(newWorkFolder);
 
       return {
         path: newWorkFolder,

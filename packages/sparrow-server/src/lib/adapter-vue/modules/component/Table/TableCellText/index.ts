@@ -24,19 +24,19 @@ export default class Edit extends Base{
         <el-tag>
           ${this.params.value}
         </el-tag>
-      `
+      `;
     } else if (this.type === 'link'){
       return `
         <el-link type="primary">
           ${this.params.value}
         </el-link>
-      `
+      `;
     } else if (this.type === 'button') {
       return `
         <el-button type="primary" size="mini">
           ${this.params.value}
         </el-button>
-      `
+      `;
     }
 
     return '';
