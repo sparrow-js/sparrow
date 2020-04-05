@@ -163,7 +163,12 @@ export default class Table implements IBaseBox{
   }
   
   private setHeaderData (data) {
-
+    const list = data.code.map(item => {
+      if (!item.uuid) {
+        item.uuid = uuid().split('-')[0];
+      }
+      return item;
+    });
     this.tableHeaderData = data.code;
   }
 
@@ -199,9 +204,12 @@ export default class Table implements IBaseBox{
           }
         })
       }
+
+      const curProp = tableHeaderData[i].prop ? `prop="${tableHeaderData[i].prop}"` : '';
+
       if (type === 0) {
         column += `
-          <el-table-column prop="${tableHeaderData[i].prop}" label="${tableHeaderData[i].label}">
+          <el-table-column ${curProp} label="${tableHeaderData[i].label}">
             <template slot="header" slot-scope="{row, column, $index}">
               <table-header-box uuid="${tableHeaderData[i].uuid}" :label="column.label"></table-header-box>
             </template>
@@ -213,7 +221,7 @@ export default class Table implements IBaseBox{
         `;
       } else {
         column += `
-        <el-table-column prop="${tableHeaderData[i].prop}" label="${tableHeaderData[i].label}">
+        <el-table-column ${curProp}>
           <template slot-scope="{row, column, $index}">
             ${compTag}
           </template>

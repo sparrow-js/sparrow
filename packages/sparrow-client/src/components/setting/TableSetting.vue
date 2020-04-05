@@ -46,12 +46,7 @@ export default class extends Vue {
   }
 
   private async created () {
-    const result = await socket.emit('generator.scene.getSetting', {
-      boxIndex: AppModule.boxIndex
-    });
-    if (result) {
-      this.jsonData = JSON.parse(result.data.headerData);
-    }
+  await this.getSetting();
       
     window.addEventListener("message", async event => {
       const {data} = event;
@@ -69,7 +64,19 @@ export default class extends Vue {
     })
   }
 
+  private async getSetting () {
+    const result = await socket.emit('generator.scene.getSetting', {
+      boxIndex: AppModule.boxIndex
+    });
+    if (result) {
+      this.jsonData = JSON.parse(result.data.headerData);
+    }
+  }
+
   private async updateSetting () {
+      if (typeof this.jsonData === 'string') {
+        this.jsonData = JSON.parse(this.jsonData);
+      } 
      const result =  await socket.emit('generator.scene.setting', {
       boxIndex: AppModule.boxIndex,
       data: {
@@ -77,9 +84,16 @@ export default class extends Vue {
         code: this.jsonData,
       }
     });
+    this.getSetting();
   }
 
-  private async updateCodeData () {}
+  private async updateCodeData () {
+    this.updateSetting();
+    this.$message({
+      message: '操作成功',
+      type: 'success'
+    });
+  }
 
 }
 </script>
