@@ -39,6 +39,7 @@ export default class Form implements IBaseBox{
   methods: any = {};
   type: number = 0; // 0: 编辑 1: 预览
   boxIndex: number;
+  iFormAttrs: any = {};
 
   settingData: IFormSetting = {
     dataCode: `var data = {}`,
@@ -131,14 +132,15 @@ export default class Form implements IBaseBox{
 
 
   public setting (data: any) {
-    // { index: '0', value: '基础文本框', handler: 'addLabel' }
     const {handler} = data;
     if (handler === 'data') {
       this.settingData.dataCode = data.code;
       const dataCode = this.VueGenerator.getDataStrAst(this.settingData.dataCode);
       this.VueGenerator.appendData(dataCode);
     } else if (handler === 'formInline') {
-      this.$blockTemplate('el-form').attr(data.key, data.value);
+      this.iFormAttrs[data.key] = data.value;
+      // this.$blockTemplate('el-form').attr(data.key, data.value);
+      this.renderBox();
     } else if (handler === 'addLabel') {
       this.addlabel(data);
       this.renderBox();
@@ -166,6 +168,9 @@ export default class Form implements IBaseBox{
   }
 
   public renderBox () {
+    for (let key in this.iFormAttrs) {
+      this.$blockTemplate('el-form').attr(key, this.iFormAttrs[key]);
+    }
     this.$blockTemplate('el-form').empty();
     this.components.forEach((component, index) => {
       let active = 'false';

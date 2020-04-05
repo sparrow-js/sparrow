@@ -3,6 +3,11 @@
     <div v-show="showSetting">
       <el-collapse v-model="activeNames">
         <el-collapse-item title="表头数据" name="1">
+          <div>
+            <span class="update-data"
+              @click.stop="updateCodeData"
+            >更新</span>
+          </div>
           <json-editor v-model="jsonData"></json-editor>
         </el-collapse-item>
       </el-collapse>  
@@ -73,6 +78,8 @@ export default class extends Vue {
       }
     });
   }
+
+  private async updateCodeData () {}
 
 }
 </script>

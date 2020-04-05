@@ -1,10 +1,6 @@
 <template>
   <div class="setting">
-    <div 
-      @click="showSettingHandler"
-    >
-      <span class="el-icon-s-fold"></span>
-    </div>
+   
     <div v-if="settingComponent">
       <component  v-bind:is="settingComponent"></component>
     </div>
@@ -44,7 +40,7 @@ export default class extends Vue {
 .setting{
   width: 100%;
   background: #fff;
-  padding: 10px 6px;
+  padding: 0px 6px;
   box-sizing: border-box;
 }
 .update-data{
