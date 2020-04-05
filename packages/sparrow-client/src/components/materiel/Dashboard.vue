@@ -2,13 +2,13 @@
   <div class="dashboard">
     <div class="dashboard-tab">
       <div class="dashboard-tab__operate--right">
-        <el-input
+        <!-- <el-input
           placeholder="请输入内容-待实现"
           v-model="searchText"
           class="dashboard-search"
         >
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
-        </el-input>
+        </el-input> -->
       </div>
     </div>
     <el-container>

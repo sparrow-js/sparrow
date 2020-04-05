@@ -21,9 +21,10 @@ export default class TimePicker extends Base {
     const {type} = this.params;
     if (type === 'range') {
       this.pickerOptions = `
-        :picker-options="{
-          selectableRange: '18:30:00 - 20:30:00'
-        }
+        is-range
+        range-separator="至"
+        start-placeholder="开始时间"
+        end-placeholder="结束时间"
       `;
 
     }
@@ -34,10 +35,10 @@ export default class TimePicker extends Base {
       <el-form-item label=" ">
         <label-box label="${this.labelValue}" :index="${this.componentIndex}"></label-box>
         
-        <el-time-select
+        <el-time-picker
           ${this.pickerOptions}
           placeholder="选择时间">
-        </el-time-select>
+        </el-time-picker>
 
       </el-form-item>
     `;

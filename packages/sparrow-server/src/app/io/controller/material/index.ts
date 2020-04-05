@@ -1,5 +1,5 @@
 import * as rp from 'request-promise-native';
-const blockUrl = 'https://raw.githubusercontent.com/sparrow-js/vue-market/master/blocks/block.json';
+const blockUrl = 'https://gitee.com/sparrow-js/vue-market/raw/master/blocks/block.json';
 
 export default (app) => {
   return class MaterialController extends app.Controller {
