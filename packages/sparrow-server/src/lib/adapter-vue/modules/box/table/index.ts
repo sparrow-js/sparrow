@@ -206,25 +206,36 @@ export default class Table implements IBaseBox{
       }
 
       const curProp = tableHeaderData[i].prop ? `prop="${tableHeaderData[i].prop}"` : '';
-
+      let cellBox = '';
       if (type === 0) {
+        cellBox = !curProp ? `
+          <template slot-scope="{row, column, $index}">
+            ${compTag}
+            <table-cell-box uuid="${tableHeaderData[i].uuid}"></table-cell-box>
+          </template>
+        ` : '';
+
         column += `
-          <el-table-column ${curProp} label="${tableHeaderData[i].label}">
+          <el-table-column 
+            ${curProp} 
+            label="${tableHeaderData[i].label}"
+          >
             <template slot="header" slot-scope="{row, column, $index}">
               <table-header-box uuid="${tableHeaderData[i].uuid}" :label="column.label"></table-header-box>
             </template>
-            <template slot-scope="{row, column, $index}">
-              ${compTag}
-              <table-cell-box uuid="${tableHeaderData[i].uuid}"></table-cell-box>
-            </template>
+            ${cellBox}
           </el-table-column>
         `;
       } else {
-        column += `
-        <el-table-column ${curProp}>
+        cellBox = !curProp ? `
           <template slot-scope="{row, column, $index}">
             ${compTag}
           </template>
+        ` : '';
+
+        column += `
+        <el-table-column ${curProp}>
+          ${cellBox}
         </el-table-column>
       `;
       }
