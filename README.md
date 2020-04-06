@@ -1,4 +1,3 @@
-#### *开发中*...
 # sparrow
 
 ###### 源代码可视化工具，vue版；
@@ -12,7 +11,9 @@
 
 ## 快速使用
 ```bash
-...
+npm install -g sparrow-code
+
+sparrow
 ```
 ---
 
