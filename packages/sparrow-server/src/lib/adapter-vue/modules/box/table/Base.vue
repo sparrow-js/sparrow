@@ -17,6 +17,8 @@ export default {
   data() {
     return {
       tableData: [
+        {},
+        {},
         {}
       ]
     };

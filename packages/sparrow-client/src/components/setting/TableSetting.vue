@@ -8,7 +8,9 @@
               @click.stop="updateCodeData"
             >更新</span>
           </div>
-          <json-editor v-model="jsonData"></json-editor>
+          <div style="height: 300px;overflow: scroll;">
+            <json-editor v-model="jsonData"></json-editor>
+          </div>
         </el-collapse-item>
       </el-collapse>  
     </div>
