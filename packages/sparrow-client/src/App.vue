@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <el-link href="https://element.eleme.io" target="_blank">默认链接</el-link>
     <el-container class="container">
       <el-aside width="200px">
         <!-- <json-editor v-model="value"></json-editor> -->
