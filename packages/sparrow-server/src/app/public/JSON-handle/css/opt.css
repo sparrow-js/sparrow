@@ -1,0 +1,61 @@
+
+.ad-help {
+	position:relative;
+	max-width:705px;
+	margin:20px 0;
+	width: auto;
+}
+.hide {
+	border:none;
+}
+.hide .content,
+.hide #closeAdBtn {
+	display:none;
+}
+#aboutAdBtn {
+	cursor:pointer;
+}
+a {
+	color:#577cff;
+}
+a:hover {
+	text-decoration:none;
+}
+.ad-list ul {
+	padding-left:15px;
+}
+.ad-list ul li{
+	margin:0 0 25px;
+	color:#aaa;
+}
+.ad-list li h4 {
+	margin-bottom:5px;
+}
+.ad-list li h4 span {
+	font-weight:normal;
+}
+.ad-list li h4 .title {
+	text-decoration:none;
+}
+.ad-list li p {
+	margin:5px 0;
+}
+
+#closeAdBtn {
+	position:absolute;
+	width:14px;
+	height:14px;
+	line-height:14px;
+	padding:0;
+	text-align:center;
+	right:4px;
+    top:13px;
+	border:none;
+	background-color:transparent;
+	color:#333;
+	margin:0;
+	cursor:pointer;
+}
+#closeAdBtn:hover {
+	color:#577cff;
+}
