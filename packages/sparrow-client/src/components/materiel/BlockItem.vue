@@ -1,13 +1,15 @@
 <template>
   <div class="block">
     <div class="block__toolbar">
-      <div 
-        class="block__preview" 
-        :style="{ 'background-image': `url(${info.img})`}"
+      <div
+        class="block__preview"
+        :style="{ 'background-image': `url(${info.img})` }"
       ></div>
       <div class="block__operate">
         <div style="margin-bottom: 4px;">
-          <el-button type="primary" size="small" @click="openComponentDialog">添加组件</el-button>
+          <el-button type="primary" size="small" @click="openComponentDialog"
+            >添加组件</el-button
+          >
         </div>
         <div>
           <el-button size="small">预览图片</el-button>
@@ -15,14 +17,15 @@
       </div>
     </div>
     <div class="block-content">
-      <h2 class="block-title">{{info.title}}</h2>
-      <p class="block-des">{{info.description}}</p>
+      <h2 class="block-title">{{ info.title }}</h2>
+      <p class="block-des">{{ info.description }}</p>
       <div class="block-label__box">
-        <span 
-          class="block-label__item" 
+        <span
+          class="block-label__item"
           v-for="(tagItem, index) in info.tags"
           :key="index"
-        >{{tagItem}}</span>
+          >{{ tagItem }}</span
+        >
       </div>
     </div>
   </div>
@@ -31,30 +34,30 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
-import Loading  from '@/util/loading';
+import Loading from '@/util/loading';
 
 @Component({})
 export default class BlockItem extends Vue {
   @Prop({ default: () => {} }) private info: any;
-  @Prop({ default: () => {} }) private type: string|number;
+  @Prop({ default: () => {} }) private type: string | number;
 
   private name = '';
 
-  get insertData () {
+  get insertData() {
     return AppModule.insertData;
   }
 
-  private openComponentDialog () {
+  private openComponentDialog() {
     this.addBlock();
   }
-  
-  private async addComponent () {
+
+  private async addComponent() {
     const params = {
       boxIndex: this.insertData.boxIndex,
       data: {
         boxData: this.insertData.data,
         key: this.info.key,
-        name: this.name,
+        name: this.name
       }
     };
     Loading.open();
@@ -63,7 +66,7 @@ export default class BlockItem extends Vue {
     AppModule.SetShowDashboard(false);
   }
 
-  private async addBlock () {
+  private async addBlock() {
     const params = {
       boxIndex: this.insertData.boxIndex,
       data: {
@@ -80,13 +83,13 @@ export default class BlockItem extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.block{
-  &__toolbar{
+.block {
+  &__toolbar {
     background-color: #30303d;
     height: 150px;
     position: relative;
   }
-  &__preview{
+  &__preview {
     width: 100%;
     height: 100%;
     background-position: top center;
@@ -94,7 +97,7 @@ export default class BlockItem extends Vue {
     background-repeat: no-repeat;
     background-color: #fff;
   }
-  &__operate{
+  &__operate {
     opacity: 0;
     background: rgba(0, 0, 0, 0.65);
     position: absolute;
@@ -107,17 +110,17 @@ export default class BlockItem extends Vue {
     flex-direction: column;
     align-items: center;
   }
-  &__operate:hover{
+  &__operate:hover {
     opacity: 1;
   }
 
-  &-content{
+  &-content {
     background-color: #30303d;
     padding: 10px;
     margin-top: 1px;
     text-align: left;
   }
-  &-title{
+  &-title {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -126,7 +129,7 @@ export default class BlockItem extends Vue {
     color: rgba(255, 255, 255, 0.85);
     font-weight: 500;
   }
-  &-des{
+  &-des {
     margin-top: 4px;
     font-size: 12px;
     color: rgba(255, 255, 255, 0.45);
@@ -135,19 +138,19 @@ export default class BlockItem extends Vue {
     height: 40px;
     margin-bottom: 0;
   }
-  &-label__box{
+  &-label__box {
     margin-top: 5px;
   }
-  &-label__item{
+  &-label__item {
     margin-right: 4px;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.45);
   }
 }
-.add-component{
+.add-component {
   display: flex;
   flex-direction: column;
-  &__label{
+  &__label {
     text-align: left;
     margin-bottom: 3px;
   }

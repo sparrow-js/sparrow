@@ -1,11 +1,7 @@
 <template>
   <div class="blockbox">
     <ul class="blockbox-list">
-      <li 
-        class="blockbox-item"
-        v-for="item in list"
-        :key="item.key"
-      >
+      <li class="blockbox-item" v-for="item in list" :key="item.key">
         <block-item :info="item" :type="type"></block-item>
       </li>
     </ul>
@@ -20,21 +16,21 @@ import BlockItem from './BlockItem.vue';
     BlockItem
   }
 })
-export default class BlockBox extends Vue{
-  @Prop({default: () => []}) private list: any;
-  @Prop() private type: string; 
+export default class BlockBox extends Vue {
+  @Prop({ default: () => [] }) private list: any;
+  @Prop() private type: string;
 }
 </script>
 <style lang="scss" scoped>
-.blockbox{
+.blockbox {
   width: 100%;
   height: 100%;
-  &-list{
+  &-list {
     display: flex;
     flex-wrap: wrap;
     padding: 0;
   }
-  &-item{
+  &-item {
     color: #fff;
     width: 33%;
     flex-shrink: 0;

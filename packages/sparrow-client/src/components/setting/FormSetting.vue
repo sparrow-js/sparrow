@@ -15,13 +15,12 @@
           <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
             <el-tab-pane label="code" name="code">
               <div>
-                <span class="update-data"
-                  @click.stop="updateCodeData"
-                >更新</span>
-                <span class="update-data"
-                >导入</span>
+                <span class="update-data" @click.stop="updateCodeData"
+                  >更新</span
+                >
+                <span class="update-data">导入</span>
               </div>
-              <codemirror 
+              <codemirror
                 ref="codemirror"
                 v-model="setting.dataCode"
                 @scrollCursorIntoView="gutterClick"
@@ -58,16 +57,15 @@ export default class extends Vue {
     inline: false
   };
 
-  private jsonData = '"{}"'
+  private jsonData = '"{}"';
 
   private activeNameCode = 'code';
 
-
-  get showSetting () {
+  get showSetting() {
     return SettingModule.showSetting;
   }
 
-  private async created () {
+  private async created() {
     const result = await socket.emit('generator.scene.getSetting', {
       boxIndex: AppModule.boxIndex
     });
@@ -76,17 +74,17 @@ export default class extends Vue {
     }
   }
 
-  private showSettingHandler () {
+  private showSettingHandler() {
     SettingModule.setShowSettingHandler(!SettingModule.showSetting);
   }
 
-  private async displayChange () {
+  private async displayChange() {
     const result = await socket.emit('generator.scene.setting', {
       boxIndex: AppModule.boxIndex,
       data: {
         handler: 'formInline',
         key: ':inline',
-        value: this.setting.inline,
+        value: this.setting.inline
       }
     });
 
@@ -98,13 +96,12 @@ export default class extends Vue {
     }
   }
 
-  private async updateCodeData () {
-    
-   const result =  await socket.emit('generator.scene.setting', {
+  private async updateCodeData() {
+    const result = await socket.emit('generator.scene.setting', {
       boxIndex: AppModule.boxIndex,
       data: {
         handler: 'data',
-        code: this.setting.dataCode,
+        code: this.setting.dataCode
       }
     });
 
@@ -116,37 +113,40 @@ export default class extends Vue {
     }
   }
 
-  private codemirrorBlur () {
+  private codemirrorBlur() {
     // try {
     //   const data = eval(`function getData () {${this.setting.dataCode}; return data;} getData()`);
     //   this.updateCodeData();
     // } catch (e) {
-
     // }
   }
 
-  private gutterClick () {
-    console.log('gutterClick gutterClick')
+  private gutterClick() {
+    console.log('gutterClick gutterClick');
   }
 
-  private handleCodeClick () {
+  private handleCodeClick() {
     if (this.activeNameCode === 'json') {
-      this.jsonData = JSON.stringify(eval(`function getData () {${this.setting.dataCode}; return data;} getData()`))
+      this.jsonData = JSON.stringify(
+        eval(
+          `function getData () {${this.setting.dataCode}; return data;} getData()`
+        )
+      );
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.setting{
+.setting {
   width: 100%;
   background: #fff;
   padding: 10px 6px;
   box-sizing: border-box;
 }
-.update-data{
+.update-data {
   margin-left: 10px;
   color: #409eff;
-  :hover{
+  :hover {
     color: #66b1ff;
   }
 }

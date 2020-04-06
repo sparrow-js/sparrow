@@ -1,11 +1,16 @@
-import {VuexModule, Module, Mutation, Action, getModule} from 'vuex-module-decorators'
+import {
+  VuexModule,
+  Module,
+  Mutation,
+  Action,
+  getModule
+} from 'vuex-module-decorators';
 import store from '@/store';
 
-
 export interface ISettingState {
-  showSetting: boolean,
-  settingData: any,
-  settingComponent: string,
+  showSetting: boolean;
+  settingData: any;
+  settingComponent: string;
 }
 
 @Module({ dynamic: true, store, name: 'setting' })
@@ -34,19 +39,22 @@ class Setting extends VuexModule implements ISettingState {
     this.SET_SHOW_SETTING(show);
   }
 
-  @Action 
+  @Action
   public setSettingData(data: any) {
     this.SET_SETTING_DATA(data);
   }
 
   @Action
-  public setSettingComponent(payload: {compName: string, forceRefresh: boolean}) {
+  public setSettingComponent(payload: {
+    compName: string;
+    forceRefresh: boolean;
+  }) {
     // 重置
-    console.log(payload.forceRefresh)
+    console.log(payload.forceRefresh);
     if (payload.forceRefresh) {
       this.SET_STTING_COMPONENT('');
     }
-   
+
     setTimeout(() => {
       this.SET_STTING_COMPONENT(payload.compName);
       this.SET_SHOW_SETTING(true);

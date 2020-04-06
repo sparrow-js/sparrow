@@ -47,6 +47,8 @@ export default class Form implements IBaseBox{
     }
   }
 
+  getSetting () {}
+
   setTemplate () {
 
   }

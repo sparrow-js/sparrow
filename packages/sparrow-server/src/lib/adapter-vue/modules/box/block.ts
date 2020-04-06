@@ -127,6 +127,8 @@ export default class Block implements IBaseBox{
     this.$fragment('block').append(`<${this.name}></${this.name}>`);
     this.setTemplate();
   }
+
+  getSetting () {}
   
   setTemplate () {
     this.template = `<${this.name}></${this.name}>`;

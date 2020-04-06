@@ -10,8 +10,8 @@
 
     <div class="toolbar__item toolbar__preview">
       <el-tooltip class="item" effect="dark" content="预览" placement="top">
-        <span 
-          :class="{'active-preview': previewStatus}"
+        <span
+          :class="{ 'active-preview': previewStatus }"
           @click="previewHandler"
         >
           <font-awesome-icon :icon="['fas', 'eye']" />
@@ -20,18 +20,14 @@
     </div>
     <div class="toolbar__item">
       <el-tooltip class="item" effect="dark" content="导出" placement="top">
-        <span
-          @click="fileExportHandler"
-        >
+        <span @click="fileExportHandler">
           <font-awesome-icon :icon="['fas', 'file-export']" />
         </span>
       </el-tooltip>
     </div>
     <div class="toolbar__item">
       <el-tooltip class="item" effect="dark" content="源代码" placement="top">
-        <span
-          @click="openEditorHandler"
-        >
+        <span @click="openEditorHandler">
           <font-awesome-icon :icon="['fas', 'code']" />
         </span>
       </el-tooltip>
@@ -45,7 +41,7 @@
     </div>
 
     <file-export
-      :dialog-visible.sync="dialogVisible" 
+      :dialog-visible.sync="dialogVisible"
       :work-folder="workFolder"
       v-if="workFolder"
     ></file-export>
@@ -62,7 +58,6 @@
         <span class="scene-item" @click="sceneHandler">基础表单</span>
       </div>
     </el-popover>
-
   </div>
 </template>
 <script lang="ts">
@@ -88,7 +83,7 @@ export default class extends Vue {
     this.init();
   }
 
-  private async previewHandler () {
+  private async previewHandler() {
     this.previewStatus = this.previewStatus === 0 ? 1 : 0;
 
     await socket.emit('generator.toolbar.previewView', {
@@ -97,84 +92,86 @@ export default class extends Vue {
     location.reload();
   }
 
-  private async init () {
-    const result =  await socket.emit('generator.scene.getParams');
+  private async init() {
+    const result = await socket.emit('generator.scene.getParams');
     this.previewStatus = result.previewViewStatus;
   }
 
-  private trashHandler () {
+  private trashHandler() {
     this.$confirm('此操作将重置, 是否继续?', '提示', {
       confirmButtonText: '确定',
       cancelButtonText: '取消',
       type: 'warning'
-    }).then(async () => {
-      await socket.emit('generator.toolbar.trash');
-      location.reload();
-    }).catch(() => {});
+    })
+      .then(async () => {
+        await socket.emit('generator.toolbar.trash');
+        location.reload();
+      })
+      .catch(() => {});
   }
 
-  private fileExportHandler () {
+  private fileExportHandler() {
     this.dialogVisible = true;
   }
 
-  private toolbarClick () {
+  private toolbarClick() {
     const viewFrame: any = document.querySelector('#viewContent');
-    viewFrame.contentWindow.postMessage({handler: 'document-click'}, '*');
+    viewFrame.contentWindow.postMessage({ handler: 'document-click' }, '*');
   }
 
-  private async openEditorHandler () {
+  private async openEditorHandler() {
     await socket.emit('generator.toolbar.openCodeEditor');
   }
 
-  private async sceneHandler () {
+  private async sceneHandler() {
     // this.$refs.popover.hide();
-  
+
     await socket.emit('generator.toolbar.initScene', {
-      name: 'BasicTable',
+      name: 'BasicTable'
     });
     this.showPopover = false;
   }
 }
 </script>
 <style lang="scss" scoped>
-  .toolbar{
-    display: flex;
-    flex-direction: row;
-    margin-left: 10px;
-    &__item{
-      height: 32px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 6px;
-      color: #666;
-      font-size: 14px;
-      margin-right: 16px;
-      &:hover{
-        color: #3e71f7;
-      }
-    }
-    &__item.success{
-      color: #67C23A;
-    }
-    .active-preview{
-      color: #0247fb;
-    }
-  }
-  .scene-item{
-    background-color: #ecf5ff;
-    display: inline-block;
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  &__item {
     height: 32px;
-    padding: 0 10px;
-    line-height: 30px;
-    font-size: 12px;
-    color: #409eff;
-    border: 1px solid #d9ecff;
-    border-radius: 4px;
-    box-sizing: border-box;
-    white-space: nowrap;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 6px;
+    color: #666;
+    font-size: 14px;
+    margin-right: 16px;
+    &:hover {
+      color: #3e71f7;
+    }
   }
+  &__item.success {
+    color: #67c23a;
+  }
+  .active-preview {
+    color: #0247fb;
+  }
+}
+.scene-item {
+  background-color: #ecf5ff;
+  display: inline-block;
+  height: 32px;
+  padding: 0 10px;
+  line-height: 30px;
+  font-size: 12px;
+  color: #409eff;
+  border: 1px solid #d9ecff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
 </style>

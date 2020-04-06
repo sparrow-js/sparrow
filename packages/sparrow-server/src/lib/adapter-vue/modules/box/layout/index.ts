@@ -77,4 +77,8 @@ export default class Layout implements IBaseBox{
     }
     this.template = template;
   }
+
+  public getSetting () {
+    return {}
+  }
 }

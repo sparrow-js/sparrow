@@ -62,5 +62,8 @@ export default class CustomInline implements IBaseBox{
     }
 
   }
+  public getSetting () {
+    return {};
+  }
 
 }

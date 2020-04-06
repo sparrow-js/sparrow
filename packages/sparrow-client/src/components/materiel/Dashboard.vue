@@ -39,84 +39,80 @@ import socket from '@/util/socket.js';
   }
 })
 export default class Dashboard extends Vue {
-
   private activeName = '0';
   private searchText = '';
 
   private list = [];
-  
+
   async created() {
     const blockList = await socket.emit('material.index.getBlocks');
     this.list = blockList.list;
   }
 
-  private handleTab (data) {
-    console.log(data);
-  }
+  private handleTab(data) {}
 
-  private handleClose () {
-    AppModule.SetShowDashboard(false)
+  private handleClose() {
+    AppModule.SetShowDashboard(false);
   }
-
 }
 </script>
 <style lang="scss" scoped>
-.dashboard{
-  background:#23232e;
-  &-header{
+.dashboard {
+  background: #23232e;
+  &-header {
     border-bottom: 1px solid #000;
   }
-  &-side{
-    background:#23232e;
+  &-side {
+    background: #23232e;
     border-top: 0px solid #000;
     border-right: 1px solid #000;
     border-left: 0;
     border-bottom: 0;
   }
-  &-tab{
+  &-tab {
     position: relative;
   }
-  &-tab__operate--right{
+  &-tab__operate--right {
     padding: 20px;
   }
-  &-search /deep/ .el-input__inner{
+  &-search /deep/ .el-input__inner {
     background-color: #23232e;
     color: #fff;
   }
-  &-blocks{
+  &-blocks {
     height: 65vh;
   }
-  &-close{
+  &-close {
     position: absolute;
     right: -10px;
     top: -10px;
     font-size: 20px;
-    color: #ccc;    
+    color: #ccc;
   }
-  &-close__icon{
+  &-close__icon {
     background-color: #000;
     border-radius: 100px;
   }
 }
-.tab{
-  & /deep/ .el-tabs__item{
-    color: hsla(0,0%,100%,.65);
+.tab {
+  & /deep/ .el-tabs__item {
+    color: hsla(0, 0%, 100%, 0.65);
     font-size: 16px;
     font-weight: 300;
     height: 60px;
     line-height: 60px;
   }
-  & /deep/ .el-tabs__nav{
+  & /deep/ .el-tabs__nav {
     margin-left: 20px;
   }
-  & /deep/ .el-tabs__header{
+  & /deep/ .el-tabs__header {
     margin: 0;
   }
-  & /deep/ .el-tabs__nav-wrap::after{
+  & /deep/ .el-tabs__nav-wrap::after {
     background-color: #000;
   }
-  & /deep/ .el-tabs__item.is-active{
-    color: #409EFF;
+  & /deep/ .el-tabs__item.is-active {
+    color: #409eff;
   }
 }
 </style>

@@ -23,16 +23,10 @@
       </el-container>
 
       <el-aside :width="'200px'">
-        <setting
-          setting-data="settingData"
-        ></setting>
+        <setting setting-data="settingData"></setting>
       </el-aside>
-
     </el-container>
-    <div 
-      class="dashboard-box"
-      v-if="showDashboard"
-    >
+    <div class="dashboard-box" v-if="showDashboard">
       <dashboard
         @on-selected="selectedHandler(data)"
         :tab-index="dashboardTabIndex"
@@ -41,17 +35,17 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import Logo from '@/components/logo.vue';
 import Dashboard from '@/components/materiel/Dashboard.vue';
 import socket from '@/util/socket.js';
 import TopToolbar from '@/components/TopToolbar.vue';
-import Loading  from '@/util/loading';
+import Loading from '@/util/loading';
 import Setting from '@/components/setting/index.vue';
 import { AppModule } from '@/store/modules/app';
 import { SettingModule } from '@/store/modules/setting';
-import CompBox from '@/components/materiel/CompBox';
-import JsonEditor from '@/components/JsonEditor';
+import CompBox from '@/components/materiel/CompBox/index.vue';
+import JsonEditor from '@/components/JsonEditor/index.vue';
 
 @Component({
   components: {
@@ -69,51 +63,48 @@ export default class App extends Vue {
   private settingWidth = '80px';
   private formIndex = 0;
 
-  get showDashboard () {
+  get showDashboard() {
     return AppModule.showDashboard;
   }
 
-  get showComponentBox () {
+  get showComponentBox() {
     return AppModule.showComponentBox;
   }
 
-  get showSetting () {
+  get showSetting() {
     return SettingModule.showSetting;
   }
 
-  get boxIndex () {
+  get boxIndex() {
     return AppModule.boxIndex;
   }
 
   created() {
-
-    window.addEventListener("message", async event => {
-      const {data} = event;
+    window.addEventListener('message', async event => {
+      const { data } = event;
       if (!data.handler) return;
-      const handlerArr = data.handler.split('.')
+      const handlerArr = data.handler.split('.');
       const handlerFirst = handlerArr[0];
       if (handlerFirst === 'client') {
-      // 触发区块集
+        // 触发区块集
         if (data.handler === 'client.dashboard.show') {
-          
           AppModule.InsertData(data);
           AppModule.SetShowDashboard(true);
         }
-        
 
-        // 展示设置  
+        // 展示设置
         if (data.handler === 'client.setting.show') {
-          const {box, setting} = data;
+          const { box, setting } = data;
           SettingModule.setSettingData(setting.data);
-          const handler = setting.data.handler
+          const handler = setting.data.handler;
           if (handler === 'form') {
             SettingModule.setSettingComponent({
-              compName: 'FormSetting', 
+              compName: 'FormSetting',
               forceRefresh: this.formIndex !== box.index ? true : false
             });
-          } else if (handler === 'table'){
+          } else if (handler === 'table') {
             SettingModule.setSettingComponent({
-              compName: 'TableSetting', 
+              compName: 'TableSetting',
               forceRefresh: this.formIndex !== box.index ? true : false
             });
           }
@@ -122,7 +113,7 @@ export default class App extends Vue {
 
         // 触发组件集
         if (data.handler === 'client.component.show') {
-          const {type} = data.data;
+          const { type } = data.data;
           AppModule.InsertData(data);
           AppModule.SetComponentIs(type);
           AppModule.SetShowComponent(true);
@@ -145,11 +136,10 @@ export default class App extends Vue {
           AppModule.InsertPosition(data);
         }
 
-        
         if (data.boxIndex !== undefined) {
           AppModule.SetDoxIndex(data.boxIndex);
         }
-      };
+      }
 
       // if (handlerFirst === 'forward') {
       //   const handler = handlerArr.slice(1, handlerArr.length).join('.');
@@ -162,95 +152,90 @@ export default class App extends Vue {
       //     const result = await socket.emit('generator.scene.setting', params);
       // }
 
-
       if (handlerFirst === 'tablebox') {
         /**
          * tablebox.tableheader.show
          */
-        
       }
-      
     });
 
     // block 进度
-    socket.on('generator.scene.block.status', (data) => {
+    socket.on('generator.scene.block.status', data => {
       Loading.close();
     });
-    
+
     this.settingData = {};
   }
 
-  mounted () {
+  mounted() {
     const viewContent: any = this.$refs.viewContent;
-    viewContent.addEventListener('click', (e) => {
+    viewContent.addEventListener('click', e => {
       e.stopPropagation();
     });
   }
 
-  private async selectedHandler(data) {
-    console.log(data);
-  }
-
+  private async selectedHandler(data) {}
 }
 </script>
 
 <style lang="scss">
-  html, body{
-    height: 100%;
-  }
-  body{
-    padding: 10px;
-    box-sizing: border-box;
-    background: #fff;
-  }
-  #app{
-    height: 100%;
-  }
-  
-  .el-aside {
-    background-color: #fafaff;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px 0px;
-  }
-  .el-header{
-    border-bottom: 1px solid #eaeefb;
-  }
-  
-  #app .el-main {
-    color: #333;
-    text-align: center;
-    padding-top: 0;
-  }
-  .container{
-    height: 100%;
-  }
-  .main{
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  .editor-box{
-    border-top: 1px solid #eee;
-    flex: 1;
-  }
-  .dashboard-box{
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    width: 60vw;
-    transform: translate(-50%, -50%);
-  }
-  .view-content{
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-  .ali-icon{
-    width: 1.125em;
-    display: inline-block;
-    font-size: inherit;
-    height: 1em;
-    overflow: visible;
-    vertical-align: -0.125em;
-  }
-</style>  
+html,
+body {
+  height: 100%;
+}
+body {
+  padding: 10px;
+  box-sizing: border-box;
+  background: #fff;
+}
+#app {
+  height: 100%;
+}
+
+.el-aside {
+  background-color: #fafaff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px 0px;
+}
+.el-header {
+  border-bottom: 1px solid #eaeefb;
+}
+
+#app .el-main {
+  color: #333;
+  text-align: center;
+  padding-top: 0;
+}
+.container {
+  height: 100%;
+}
+.main {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.editor-box {
+  border-top: 1px solid #eee;
+  flex: 1;
+}
+.dashboard-box {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 60vw;
+  transform: translate(-50%, -50%);
+}
+.view-content {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.ali-icon {
+  width: 1.125em;
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+</style>

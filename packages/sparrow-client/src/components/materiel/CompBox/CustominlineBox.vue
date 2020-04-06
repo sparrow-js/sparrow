@@ -1,61 +1,56 @@
 <template>
   <div class="comp-box">
-
     <div class="comp-nav">
       <div class="comp">
         <div class="comp__title">基础表格</div>
-        <div class="comp-content" 
-          v-for="(item,index) in list" 
-          :key="index"
-        >
-          <h3 class="comp-content__title">{{item.label}}</h3>
+        <div class="comp-content" v-for="(item, index) in list" :key="index">
+          <h3 class="comp-content__title">{{ item.label }}</h3>
           <div class="comp-content__list">
-            <div class="comp-content__item" 
-              v-for="(comp, compIndex) in item.children" 
+            <div
+              class="comp-content__item"
+              v-for="(comp, compIndex) in item.children"
               :key="compIndex"
               @click="compClick(comp, $event)"
             >
-              {{comp.label}}
+              {{ comp.label }}
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
- 
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import socket from '@/util/socket.js';
 import { AppModule } from '@/store/modules/app';
-import Loading  from '@/util/loading';
-
+import Loading from '@/util/loading';
 
 @Component({})
 export default class CompBox extends Vue {
-  @Prop({default: () => []}) private list: any;
+  @Prop({ default: () => [] }) private list: any;
   private compDialogPosition = '';
   private isActiveComp = null;
 
-  get insertData () {
+  get insertData() {
     return AppModule.insertData;
   }
-  get insertPosition () {
+  get insertPosition() {
     return AppModule.insertPosition;
   }
-  
-  get boxIndex () {
+
+  get boxIndex() {
     return AppModule.boxIndex;
   }
 
-  private compClick (comp, event) {
+  private compClick(comp, event) {
     this.isActiveComp = comp;
-    const {clientY} = event;
+    const { clientY } = event;
     this.addComponent();
   }
 
-  private async addComponent () {
+  private async addComponent() {
     const params = {
       boxIndex: this.boxIndex,
       data: {
@@ -72,17 +67,17 @@ export default class CompBox extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.comp{
-  &__title{
+.comp {
+  &__title {
     padding: 5px 0;
     margin: 0 5px;
-    border-bottom: 1px solid #409EFF;
-    color: #409EFF;
+    border-bottom: 1px solid #409eff;
+    color: #409eff;
     font-size: 16px;
   }
 
-  &-content__title{
-    border-bottom: 1px solid #DCDFE6;
+  &-content__title {
+    border-bottom: 1px solid #dcdfe6;
     padding: 5px 0;
     margin: 0 10px;
     color: #303133;
@@ -90,14 +85,14 @@ export default class CompBox extends Vue {
     font-weight: normal;
   }
 
-  &-content__list{
+  &-content__list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     padding-left: 5px;
   }
 
-  &-content__item{
+  &-content__item {
     background: #ecf5ff;
     width: 80px;
     margin-top: 5px;
@@ -108,41 +103,37 @@ export default class CompBox extends Vue {
     color: #606266;
     cursor: pointer;
   }
-  &-content__item:hover{
-    color: #409EFF;
+  &-content__item:hover {
+    color: #409eff;
   }
 }
 
-
-
-.comp-box{
+.comp-box {
   background: #ffffff;
   padding-top: 10px;
   padding-bottom: 80px;
 }
 
-.comp-category{
-  &__header{
+.comp-category {
+  &__header {
     padding: 5px 0;
     margin: 0 5px;
-    border-bottom: 1px solid #409EFF;
-    color: #409EFF;
+    border-bottom: 1px solid #409eff;
+    color: #409eff;
     font-size: 16px;
   }
-  &__item{
-    padding: 6px 10px; 
+  &__item {
+    padding: 6px 10px;
     font-size: 13px;
     color: #606266;
     cursor: pointer;
   }
-  .isActive{
-    color: #409EFF;
+  .isActive {
+    color: #409eff;
   }
 }
 
-
-
-.dialog{
+.dialog {
   position: fixed;
   top: 10px;
   left: 120px;
@@ -151,10 +142,9 @@ export default class CompBox extends Vue {
   border: 1px solid #dcdfe6;
   border-radius: 2px;
 }
-.add-component__operate{
+.add-component__operate {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 </style>

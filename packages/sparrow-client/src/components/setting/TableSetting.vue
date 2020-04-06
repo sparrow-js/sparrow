@@ -4,15 +4,13 @@
       <el-collapse v-model="activeNames">
         <el-collapse-item title="表头数据" name="1">
           <div>
-            <span class="update-data"
-              @click.stop="updateCodeData"
-            >更新</span>
+            <span class="update-data" @click.stop="updateCodeData">更新</span>
           </div>
           <div style="height: 300px;overflow: scroll;">
             <json-editor v-model="jsonData"></json-editor>
           </div>
         </el-collapse-item>
-      </el-collapse>  
+      </el-collapse>
     </div>
   </div>
 </template>
@@ -22,7 +20,7 @@ import { SettingModule } from '@/store/modules/setting';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
 import JsonHandler from '@/components/jsonhandler/index.vue';
-import JsonEditor from '@/components/JsonEditor';
+import JsonEditor from '@/components/JsonEditor/index.vue';
 
 @Component({
   name: 'Setting',
@@ -38,23 +36,22 @@ export default class extends Vue {
     inline: false
   };
 
-  private jsonData:any = [];
+  private jsonData: any = [];
 
   private activeNameCode = 'code';
 
-
-  get showSetting () {
+  get showSetting() {
     return SettingModule.showSetting;
   }
 
-  private async created () {
-  await this.getSetting();
-      
-    window.addEventListener("message", async event => {
-      const {data} = event;
+  private async created() {
+    await this.getSetting();
+
+    window.addEventListener('message', async event => {
+      const { data } = event;
       if (data.handler === 'client.component.insertTableHeader') {
-        const {params} = data.data;
-        const jsonData = JSON.parse(this.jsonData)
+        const { params } = data.data;
+        const jsonData = JSON.parse(this.jsonData);
         // const jsonData = JSON.parse()
         const index = jsonData.findIndex(item => item.uuid === params.uuid);
         if (index >= 0) {
@@ -63,10 +60,10 @@ export default class extends Vue {
         this.jsonData = jsonData;
         this.updateSetting();
       }
-    })
+    });
   }
 
-  private async getSetting () {
+  private async getSetting() {
     const result = await socket.emit('generator.scene.getSetting', {
       boxIndex: AppModule.boxIndex
     });
@@ -75,41 +72,40 @@ export default class extends Vue {
     }
   }
 
-  private async updateSetting () {
-      if (typeof this.jsonData === 'string') {
-        this.jsonData = JSON.parse(this.jsonData);
-      } 
-     const result =  await socket.emit('generator.scene.setting', {
+  private async updateSetting() {
+    if (typeof this.jsonData === 'string') {
+      this.jsonData = JSON.parse(this.jsonData);
+    }
+    const result = await socket.emit('generator.scene.setting', {
       boxIndex: AppModule.boxIndex,
       data: {
         handler: 'setHeaderData',
-        code: this.jsonData,
+        code: this.jsonData
       }
     });
     this.getSetting();
   }
 
-  private async updateCodeData () {
+  private async updateCodeData() {
     this.updateSetting();
     this.$message({
       message: '操作成功',
       type: 'success'
     });
   }
-
 }
 </script>
 <style lang="scss" scoped>
-.setting{
+.setting {
   width: 100%;
   background: #fff;
   padding: 10px 6px;
   box-sizing: border-box;
 }
-.update-data{
+.update-data {
   margin-left: 10px;
   color: #409eff;
-  :hover{
+  :hover {
     color: #66b1ff;
   }
 }
