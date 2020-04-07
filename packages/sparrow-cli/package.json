@@ -6,9 +6,13 @@
   "bin": {
     "sparrow": "bin/sparrow.js"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "node ./bin/sparrow.js"
+  },
   "license": "MIT",
   "dependencies": {
+    "@vue/cli-plugin-babel": "^4.3.0",
+    "@vue/cli-service": "^4.3.0",
     "axios": "^0.18.0",
     "bluebird": "^3.5.5",
     "camelcase": "^5.3.1",
@@ -17,6 +21,7 @@
     "cross-spawn": "^6.0.5",
     "decamelize": "^3.2.0",
     "ejs": "^2.7.1",
+    "execa": "^4.0.0",
     "fs-extra": "^8.0.1",
     "glob": "^7.1.4",
     "ice-npm-utils": "^1.1.3",
@@ -36,6 +41,7 @@
     "uppercamelcase": "^3.0.0",
     "user-home": "^2.0.0",
     "validate-npm-package-name": "^3.0.0",
+    "vue-template-compiler": "^2.6.11",
     "zlib": "^1.0.5"
   },
   "engines": {

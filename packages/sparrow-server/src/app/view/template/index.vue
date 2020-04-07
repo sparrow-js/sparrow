@@ -59,14 +59,6 @@ export default {
       list: null,
       total: 1,
       listLoading: true,
-      listQuery: {
-        page: 1,
-        limit: 20,
-        importance: undefined,
-        title: undefined,
-        type: undefined,
-        sort: '+id'
-      },
       dialogStatus: '',
       rules: {},
       downloadLoading: false

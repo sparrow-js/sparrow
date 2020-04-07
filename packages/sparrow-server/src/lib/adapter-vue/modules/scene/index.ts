@@ -8,6 +8,7 @@ import * as upperCamelCase from 'uppercamelcase';
 import VueGenerator from '../generator';
 import VueParse from '../generator/VueParse';
 const uuid = require('@lukeed/uuid');
+import Config from '../../config';
 
 
 
@@ -39,7 +40,7 @@ export default class Scene {
     this.init();
     const {boxs, name} = params;
     if (name) {
-      const fileStr = fsExtra.readFileSync(path.join(__dirname, name,'index.vue'), 'utf8');
+      const fileStr = fsExtra.readFileSync(path.join(Config.templatePath,'scene', name,'index.vue'), 'utf8');
       this.sceneVueParse = new VueParse(uuid().split('-')[0], fileStr);
     }
     if (boxs && boxs.length) {

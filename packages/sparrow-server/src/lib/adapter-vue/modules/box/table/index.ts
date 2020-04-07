@@ -10,6 +10,7 @@ import VueGenerator from '../../generator';
 import * as prettier from 'prettier';
 import generate from '@babel/generator';
 import VueParse from '../../generator/VueParse';
+
 const uuid = require('@lukeed/uuid');
 
 const mkdirpAsync = util.promisify(mkdirp);
@@ -150,7 +151,7 @@ export default class Table implements IBaseBox{
 
   public setVueParse (compName: string) {
     const uuidValue = uuid().split('-')[0]; 
-    const fileStr = fsExtra.readFileSync(path.join(__dirname, `${compName}.vue`), 'utf8');
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'box/table',`${compName}.vue`), 'utf8');
     this.vueParseMap[compName] =  new VueParse(uuidValue, fileStr);
   }
   public setting (data: any) {
@@ -234,7 +235,10 @@ export default class Table implements IBaseBox{
         ` : '';
 
         column += `
-        <el-table-column ${curProp}>
+        <el-table-column 
+          ${curProp}
+          label="${tableHeaderData[i].label}"
+        >
           ${cellBox}
         </el-table-column>
       `;

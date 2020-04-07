@@ -5,6 +5,24 @@
         <el-collapse-item title="表头数据" name="1">
           <div>
             <span class="update-data" @click.stop="updateCodeData">更新</span>
+            <el-popover
+              placement="bottom"
+              width="200"
+              trigger="click">
+              <div>
+                <el-input 
+                  v-model="urlHeader"
+                  placeholder="输入URL" 
+                  size="mini"
+                ></el-input>
+                <el-button
+                  class="mt6"
+                  type="primary" 
+                  size="mini" 
+                  @click.stop="exportData">确定</el-button>
+              </div>
+              <span class="update-data" slot="reference">导入</span>
+            </el-popover>
           </div>
           <div style="height: 300px;overflow: scroll;">
             <json-editor v-model="jsonData"></json-editor>
@@ -39,6 +57,7 @@ export default class extends Vue {
   private jsonData: any = [];
 
   private activeNameCode = 'code';
+  private urlHeader = '';
 
   get showSetting() {
     return SettingModule.showSetting;
@@ -93,6 +112,10 @@ export default class extends Vue {
       type: 'success'
     });
   }
+
+  private async exportData () {
+    
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -108,5 +131,8 @@ export default class extends Vue {
   :hover {
     color: #66b1ff;
   }
+}
+.mt6{
+  margin-top: 6px;
 }
 </style>

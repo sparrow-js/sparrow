@@ -11,6 +11,8 @@ const open = require('open');
 const spawn = require('cross-spawn');
 const checkVersion = require('../../lib/checkVersion');
 const downloadView = require('./downloadView');
+const parseArgs = require('../../lib/parseArgs');
+const execa = require('execa');
 
 
 
@@ -97,9 +99,30 @@ async function start(options = {}) {
       await downloadServer();
     }
   }
-
+  startSparrowView(options);
   await startSparrowworks(options);
 }
+
+function startSparrowView (options) {
+  let [command, ...args] = parseArgs('vue-cli-service serve --port 9000');
+  const child = execa(command, args, {
+    cwd: VIEW_PATH,
+    stdio: ['inherit', 'pipe', 'pipe'],
+    shell: true
+  });
+
+  child.stdout.on('data', buffer => {
+    console.log(buffer.toString())
+  })
+  child.stderr.on('data', buffer => {
+    console.log(buffer.toString());
+  });
+
+  child.on('error', error => {
+    console.log(error);
+  });
+}
+
 
 // npm run start
 async function startSparrowworks(options) {
@@ -125,7 +148,7 @@ async function startSparrowworks(options) {
   const env = Object.create(process.env);
   env.PORT = opts.port;
 
-  spinner.start();
+  // spinner.start();
   const child = spawn(
     path.join(SERVER_PATH, 'node_modules/.bin/egg-scripts'),
     ['start', '--title=egg-server-Sparrow-server', '--framework=midway-mirror', '--workers=1 --sticky'],
