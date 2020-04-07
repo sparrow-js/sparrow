@@ -2,6 +2,7 @@ import * as fsExtra from 'fs-extra';
 import Base from '../Base';
 import VueParse from '../../generator/VueParse';
 import * as path from 'path';
+import Config from '../../../config';
 
 export default class Autocomplete extends Base{
   name: string;
@@ -20,7 +21,7 @@ export default class Autocomplete extends Base{
       this.attrs['type'] = 'textarea';
       this.attrs['rows'] = 4;
     }
-    const fileStr = fsExtra.readFileSync(path.join(__dirname, 'comp.vue'), 'utf8');
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/Autocomplete',  'comp.vue'), 'utf8');
     this.vueParse = new VueParse(this.uuid, fileStr);
   }
 

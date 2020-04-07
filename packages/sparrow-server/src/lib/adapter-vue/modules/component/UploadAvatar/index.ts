@@ -2,6 +2,7 @@ import * as fsExtra from 'fs-extra';
 import Base from '../Base';
 import VueParse from '../../generator/VueParse';
 import * as path from 'path';
+import Config from '../../../config';
 
 export default class UploadAvatar extends Base{
   name: string;
@@ -15,7 +16,7 @@ export default class UploadAvatar extends Base{
   }
 
   private init () {
-    const fileStr = fsExtra.readFileSync(path.join(__dirname, 'comp.vue'), 'utf8');
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/UploadAvatar', 'comp.vue'), 'utf8');
     this.vueParse = new VueParse(this.uuid, fileStr);
   }
 
