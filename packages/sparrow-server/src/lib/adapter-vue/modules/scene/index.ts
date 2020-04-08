@@ -139,8 +139,8 @@ export default class Scene {
 
   public async setting (params: any) {
     const {boxIndex, data} = params;
-    if (boxIndex >= 0) {
-      this.boxs[boxIndex].setting && this.boxs[boxIndex].setting(data);
+    if (boxIndex >= 0 && this.boxs[boxIndex].setting) {
+      await this.boxs[boxIndex].setting(data);
       return {
         status: 0
       }

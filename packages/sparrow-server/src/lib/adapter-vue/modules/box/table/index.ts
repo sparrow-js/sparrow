@@ -179,7 +179,6 @@ export default class Table implements IBaseBox{
       this.setHeaderData({
         code: result
       })
-      console.log('***********', this.tableHeaderData);
     } catch (error) {
       
     }
@@ -206,7 +205,6 @@ export default class Table implements IBaseBox{
     let column = ''
     const {type} = this;
     const {tableHeaderData} = this;
-    console.log('*****111******', this.tableHeaderData);
 
     for (var i = 0; i < tableHeaderData.length; i++) {
       const uuid = tableHeaderData[i].uuid;

@@ -125,7 +125,7 @@ export default class extends Vue {
           url: this.urlHeader
         }
       });
-      console.log(result);
+      this.getSetting();
     }
   }
 }
