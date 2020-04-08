@@ -2,43 +2,63 @@
   <div class="root">
     <table-box>
       <el-table border="" style="width: 100%" :data="tableData">
-        <el-table-column label="asdasd">
+        <el-table-column label="ID">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="e6634e13" :label="column.label" />
+            <table-header-box uuid="2d04875d" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="e6634e13" />
+            <table-cell-box uuid="2d04875d" />
           </template>
         </el-table-column>
 
-        <el-table-column label="asdasd">
+        <el-table-column label="时间">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="634e1301" :label="column.label" />
+            <table-header-box uuid="04875d21" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="634e1301" />
+            <table-cell-box uuid="04875d21" />
           </template>
         </el-table-column>
 
-        <el-table-column label="asdasd">
+        <el-table-column label="标题">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="4e1301c5" :label="column.label" />
+            <table-header-box uuid="875d2103" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="4e1301c5" />
+            <table-cell-box uuid="875d2103" />
           </template>
         </el-table-column>
 
-        <el-table-column label="asdasd">
+        <el-table-column label="作者">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="1301c523" :label="column.label" />
+            <table-header-box uuid="5d21030e" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="1301c523" />
+            <table-cell-box uuid="5d21030e" />
+          </template>
+        </el-table-column>
+
+        <el-table-column label="状态">
+          <template slot="header" slot-scope="{ row, column, $index }">
+            <table-header-box uuid="21030e26" :label="column.label" />
+          </template>
+
+          <template slot-scope="{ row, column, $index }">
+            <table-cell-box uuid="21030e26" />
+          </template>
+        </el-table-column>
+
+        <el-table-column label="操作">
+          <template slot="header" slot-scope="{ row, column, $index }">
+            <table-header-box uuid="030e26ab" :label="column.label" />
+          </template>
+
+          <template slot-scope="{ row, column, $index }">
+            <table-cell-box uuid="030e26ab" />
           </template>
         </el-table-column>
       </el-table>

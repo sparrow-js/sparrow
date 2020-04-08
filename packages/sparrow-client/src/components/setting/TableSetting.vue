@@ -5,7 +5,9 @@
         <el-collapse-item title="表头数据" name="1">
           <div>
             <span class="update-data" @click.stop="updateCodeData">更新</span>
+            <span class="update-data" @click="showExportPopover = true">导入</span>
             <el-popover
+              v-model="showExportPopover"
               placement="bottom"
               width="200"
               trigger="click">
@@ -21,7 +23,6 @@
                   size="mini" 
                   @click.stop="exportData">确定</el-button>
               </div>
-              <span class="update-data" slot="reference">导入</span>
             </el-popover>
           </div>
           <div style="height: 300px;overflow: scroll;">
@@ -58,6 +59,7 @@ export default class extends Vue {
 
   private activeNameCode = 'code';
   private urlHeader = '';
+  private showExportPopover = false;
 
   get showSetting() {
     return SettingModule.showSetting;
@@ -114,7 +116,17 @@ export default class extends Vue {
   }
 
   private async exportData () {
-    
+    this.showExportPopover = false;
+    if (this.urlHeader) {
+      const result = await socket.emit('generator.scene.setting', {
+        boxIndex: AppModule.boxIndex,
+        data: {
+          handler: 'exportData',
+          url: this.urlHeader
+        }
+      });
+      console.log(result);
+    }
   }
 }
 </script>

@@ -10,7 +10,7 @@ import VueGenerator from '../../generator';
 import * as prettier from 'prettier';
 import generate from '@babel/generator';
 import VueParse from '../../generator/VueParse';
-
+import {request} from '../../../../../util/request'
 const uuid = require('@lukeed/uuid');
 
 const mkdirpAsync = util.promisify(mkdirp);
@@ -154,10 +154,10 @@ export default class Table implements IBaseBox{
     const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'box/table',`${compName}.vue`), 'utf8');
     this.vueParseMap[compName] =  new VueParse(uuidValue, fileStr);
   }
-  public setting (data: any) {
+  public async setting (data: any) {
     const {handler} = data;
     if (this[handler]) {
-      this[handler](data);
+      await this[handler](data);
       this.renderBox();
     }
     this.render();
@@ -170,7 +170,19 @@ export default class Table implements IBaseBox{
       }
       return item;
     });
-    this.tableHeaderData = data.code;
+    this.tableHeaderData = list;
+  }
+
+  private async exportData (data) {
+    try {
+      const result = await request(data.url);
+      this.setHeaderData({
+        code: result
+      })
+      console.log('***********', this.tableHeaderData);
+    } catch (error) {
+      
+    }
   }
 
   private setActiveIndex (data) {
@@ -194,6 +206,8 @@ export default class Table implements IBaseBox{
     let column = ''
     const {type} = this;
     const {tableHeaderData} = this;
+    console.log('*****111******', this.tableHeaderData);
+
     for (var i = 0; i < tableHeaderData.length; i++) {
       const uuid = tableHeaderData[i].uuid;
       let compTag = ''
