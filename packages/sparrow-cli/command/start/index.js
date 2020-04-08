@@ -105,7 +105,7 @@ async function start(options = {}) {
 
 function startSparrowView (options) {
   let [command, ...args] = parseArgs('vue-cli-service serve --port 9000');
-  const child = execa(command, args, {
+  const child = execa(path.join(VIEW_PATH, 'node_modules/@vue/cli-service/bin/vue-cli-service.js'), args, {
     cwd: VIEW_PATH,
     stdio: ['inherit', 'pipe', 'pipe'],
     shell: true
@@ -147,11 +147,15 @@ async function startSparrowworks(options) {
 
   const env = Object.create(process.env);
   env.PORT = opts.port;
+  env.NODE_ENV = 'product';
 
   // spinner.start();
-  const child = spawn(
+  // 
+  let [command, ...args] = parseArgs('egg-scripts start --title=sparrow-server --framework=midway-mirror --workers=1 --sticky');
+
+  const child = execa(
     path.join(SERVER_PATH, 'node_modules/.bin/egg-scripts'),
-    ['start', '--title=egg-server-Sparrow-server', '--framework=midway-mirror', '--workers=1 --sticky'],
+    args,
     {
       stdio: ['pipe'],
       cwd: SERVER_PATH,

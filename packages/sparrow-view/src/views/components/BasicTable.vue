@@ -2,47 +2,43 @@
   <div class="root">
     <table-box>
       <el-table border="" style="width: 100%" :data="tableData">
-        <el-table-column label="">
+        <el-table-column label="asdasd">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="98a9666b" :label="column.label" />
+            <table-header-box uuid="e6634e13" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="98a9666b" />
+            <table-cell-box uuid="e6634e13" />
           </template>
         </el-table-column>
 
-        <el-table-column label="">
+        <el-table-column label="asdasd">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="a9666b75" :label="column.label" />
+            <table-header-box uuid="634e1301" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <el-tag :type="'success'" size="small">
-              easa
-            </el-tag>
-
-            <table-cell-box uuid="a9666b75" />
+            <table-cell-box uuid="634e1301" />
           </template>
         </el-table-column>
 
-        <el-table-column label="">
+        <el-table-column label="asdasd">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="666b7532" :label="column.label" />
+            <table-header-box uuid="4e1301c5" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="666b7532" />
+            <table-cell-box uuid="4e1301c5" />
           </template>
         </el-table-column>
 
-        <el-table-column label="">
+        <el-table-column label="asdasd">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="6b753291" :label="column.label" />
+            <table-header-box uuid="1301c523" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="6b753291" />
+            <table-cell-box uuid="1301c523" />
           </template>
         </el-table-column>
       </el-table>

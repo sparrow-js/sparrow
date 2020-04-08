@@ -180,7 +180,7 @@
     "hostHeaders": "",
     "pkg": {
       "name": "sparrow-server",
-      "version": "0.4.9",
+      "version": "0.4.13",
       "description": "sparrow server",
       "files": [
         "dist/",

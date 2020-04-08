@@ -38,5 +38,4 @@ export default class Toolbar {
   public resetScene (scene: any) {
     this.scene = scene;
   }
-  
 }
