@@ -11,9 +11,11 @@
 
 ## 快速使用
 ```bash
-npm install -g sparrow-code
+# 全局安装
+$ npm install -g sparrow-code
 
-sparrow
+# 运行
+$ sparrow
 ```
 ---
 

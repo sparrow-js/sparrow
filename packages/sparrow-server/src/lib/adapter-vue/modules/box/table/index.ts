@@ -240,7 +240,7 @@ export default class Table implements IBaseBox{
           </el-table-column>
         `;
       } else {
-        cellBox = !curProp ? `
+        cellBox = !curProp && compTag ? `
           <template slot-scope="{row, column, $index}">
             ${compTag}
           </template>

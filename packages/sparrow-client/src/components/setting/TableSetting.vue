@@ -88,7 +88,8 @@ export default class extends Vue {
     const result = await socket.emit('generator.scene.getSetting', {
       boxIndex: AppModule.boxIndex
     });
-    if (result) {
+    if (result && result.data) {
+
       this.jsonData = JSON.parse(result.data.headerData);
     }
   }
