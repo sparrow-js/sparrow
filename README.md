@@ -4,7 +4,7 @@
 > email: sparrowwht7@gmail.com
 ---
 ## 功能预览
-![image](https://raw.githubusercontent.com/sparrow-js/sparrow-static/master/sparrow.gif)
+<img src="https://raw.githubusercontent.com/sparrow-js/sparrow-static/master/sparrow.gif" width = "600" height = "375" div align=right />
 
 ---
 ## 特性
