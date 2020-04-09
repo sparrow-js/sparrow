@@ -41,7 +41,7 @@ class generator{
           data: {
             id: 'form',
             boxIndex: 0,
-            params: { isForm: false, row: '', col: '', blockName: 'BasicForm' }
+            params: { isForm: false, row: '', col: '', blockName: 'Form1' }
           },
         },
         {
@@ -54,7 +54,7 @@ class generator{
           data: {
             id: 'table',
             boxIndex: 2,
-            params: { isForm: false, row: '', col: '4', blockName: 'BasicTable' }
+            params: { isForm: false, row: '', col: '4', blockName: 'Table1' }
           }
         },
         {
