@@ -3,6 +3,10 @@
 ###### 源代码可视化工具，vue版；
 > email: sparrowwht7@gmail.com
 ---
+### 功能预览
+![image](https://gitee.com/sparrow-js/sparrow-static/raw/master/sparrow.gif)
+
+---
 ## 特性
 
 - **低代码开发，** 快速生成原代码。
