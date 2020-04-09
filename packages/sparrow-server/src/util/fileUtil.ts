@@ -4,11 +4,12 @@ import { async } from 'q';
 
 export const getBlockNames = async (blocksDir: string): Promise<string[]> => {
   const fileNames = await fs.readdir(blocksDir);
-  const blockNames = fileNames.filter(fileName => {
-    const filePath = path.join(blocksDir, fileName);
-    return fs.statSync(filePath).isDirectory();
-  });
-  return blockNames;
+  return fileNames;
+  // const blockNames = fileNames.filter(fileName => {
+  //   const filePath = path.join(blocksDir, fileName);
+  //   return fs.statSync(filePath).isDirectory();
+  // });
+  // return blockNames;
 }
 
 export const fetchPackage = async (dir: string) => {
