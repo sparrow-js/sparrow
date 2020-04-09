@@ -3,8 +3,8 @@
 ###### 源代码可视化工具，vue版；
 > email: sparrowwht7@gmail.com
 ---
-### 功能预览
-![image](https://gitee.com/sparrow-js/sparrow-static/raw/master/sparrow.gif)
+## 功能预览
+![image](https://raw.githubusercontent.com/sparrow-js/sparrow-static/master/sparrow.gif)
 
 ---
 ## 特性
