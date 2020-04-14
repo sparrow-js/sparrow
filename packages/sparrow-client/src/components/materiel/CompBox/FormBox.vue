@@ -28,6 +28,7 @@
         <el-form ref="form" :model="form" label-width="80px">
           <el-form-item label="变量名:" size="mini">
             <el-input
+              :disabled="true"
               v-model="form.name"
               placeholder="请输入内容"
               size="small"
@@ -88,6 +89,10 @@ export default class CompBox extends Vue {
   }
 
   private async addComponent() {
+    if (!this.form.name) {
+      this.$message.error('变量名必填');
+      return;
+    }
     const params = {
       boxIndex: this.insertData.boxIndex,
       data: {
@@ -104,6 +109,7 @@ export default class CompBox extends Vue {
     await socket.emit('generator.scene.addComponent', params);
     Loading.close();
     this.dialogVisible = false;
+    this.form.name = '';
     AppModule.SetShowDashboard(false);
   }
 }

@@ -1,39 +1,45 @@
 <template>
   <div class="setting">
     <div v-show="showSetting">
-      <el-collapse v-model="activeNames">
-        <el-collapse-item title="模式" name="1">
-          <el-switch
-            v-model="setting.inline"
-            active-text="块"
-            inactive-text="行内"
-            @change="displayChange"
-          >
-          </el-switch>
-        </el-collapse-item>
-        <el-collapse-item title="数据" name="2">
-          <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
-            <el-tab-pane label="code" name="code">
-              <div>
-                <span class="update-data" @click.stop="updateCodeData"
-                  >更新</span
-                >
-                <span class="update-data">导入</span>
-              </div>
-              <codemirror
-                ref="codemirror"
-                v-model="setting.dataCode"
-                @scrollCursorIntoView="gutterClick"
-                @blur="codemirrorBlur"
-              ></codemirror>
-            </el-tab-pane>
-            <el-tab-pane label="json" name="json">
-              <json-handler :json-data="jsonData"></json-handler>
-            </el-tab-pane>
-          </el-tabs>
-        </el-collapse-item>
-        <!--  -->
-      </el-collapse>
+      <el-tabs v-model="tabActiveName" @tab-click="handleClick">
+        <el-tab-pane label="组件" name="first">组件</el-tab-pane>
+        <el-tab-pane label="表单" name="second">
+          <el-collapse v-model="activeNames">
+            <el-collapse-item title="模式" name="1">
+              <el-switch
+                v-model="setting.inline"
+                active-text="块"
+                inactive-text="行内"
+                @change="displayChange"
+              >
+              </el-switch>
+            </el-collapse-item>
+            <el-collapse-item title="数据" name="2">
+              <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
+                <el-tab-pane label="code" name="code">
+                  <div>
+                    <span class="update-data" @click.stop="updateCodeData"
+                      >更新</span
+                    >
+                    <span class="update-data">导入</span>
+                  </div>
+                  <codemirror
+                    ref="codemirror"
+                    v-model="setting.dataCode"
+                    @scrollCursorIntoView="gutterClick"
+                    @blur="codemirrorBlur"
+                  ></codemirror>
+                </el-tab-pane>
+                <el-tab-pane label="json" name="json">
+                  <json-handler :json-data="jsonData"></json-handler>
+                </el-tab-pane>
+              </el-tabs>
+            </el-collapse-item>
+          </el-collapse>
+
+        </el-tab-pane>
+      </el-tabs>
+     
     </div>
   </div>
 </template>
@@ -56,6 +62,8 @@ export default class extends Vue {
     dataCode: '',
     inline: false
   };
+
+  private tabActiveName = 'first';
 
   private jsonData = '"{}"';
 
@@ -133,6 +141,11 @@ export default class extends Vue {
         )
       );
     }
+  }
+
+
+  private handleClick () {
+
   }
 }
 </script>

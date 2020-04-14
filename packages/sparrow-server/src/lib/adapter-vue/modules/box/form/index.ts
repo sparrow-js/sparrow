@@ -153,6 +153,26 @@ export default class Form implements IBaseBox{
     this.render();
   }
 
+
+  private setRules () {
+    /**
+     * field105: [{
+          required: true,
+          message: '请输入多行文本',
+          trigger: 'blur'
+        }],
+        field106: [{
+          required: true,
+          message: '请输入单行文本',
+          trigger: 'blur'
+        }, {
+          pattern: /asdas/g,
+          message: 'asdasda',
+          trigger: 'blur'
+        }
+     */
+  }
+
   private setActiveIndex (data) {
     this.activeIndex = parseInt(data.index, 10);
   }
@@ -167,6 +187,15 @@ export default class Form implements IBaseBox{
     }
   }
 
+  public getBoxChildConfig (params:  {
+    uuid: string,
+    boxIndex: number
+  }) {
+    const {uuid} = params;
+    const current = this.components.find(item => item.uuid === uuid);
+    return current.getConfig();
+  }
+
   public renderBox () {
     for (let key in this.iFormAttrs) {
       this.$blockTemplate('el-form').attr(key, this.iFormAttrs[key]);
@@ -179,7 +208,7 @@ export default class Form implements IBaseBox{
       }
       if (this.type === 0) {
         this.$blockTemplate('el-form').append(
-          `<component-box :is-active="${active}" indexcomp="${index}">
+          `<component-box :is-active="${active}" indexcomp="${index}" uuid="${component.uuid}">
             ${component.getFragment(this.type).html()}
           </component-box>`
         );

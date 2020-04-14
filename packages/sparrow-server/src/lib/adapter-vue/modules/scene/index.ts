@@ -157,6 +157,13 @@ export default class Scene {
     }
   }
 
+  public getBoxChildConfig (params) {
+    const {boxIndex} = params;
+    if (this.boxs[boxIndex].getBoxChildConfig) {
+      return this.boxs[boxIndex].getBoxChildConfig(params);
+    }
+  }
+
   public getParams () {
     return this.params;
   }

@@ -9,6 +9,7 @@ export default class Base {
   public labelValue = '';
   public attrs = {};
   public uuid = '';
+  public config: any = {};
 
   constructor (attrs: any, componentIndex: number) {
     this.componentIndex = componentIndex;
@@ -46,6 +47,17 @@ export default class Base {
 
   public setLabel(labelValue: string) {
     this.labelValue = labelValue;
+  }
+
+  public getConfig() {
+    return this.config
+  }
+
+  protected setHandler () {}
+
+  public setConfig (config: any) {
+    this.config = config;
+    this.setHandler();
   }
 
   public removeAttr (attr: string) {

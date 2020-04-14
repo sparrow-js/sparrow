@@ -18,21 +18,51 @@ export const componentConf = [
       {
         label: '基础文本框',
         key: 'Input',
+        config: {
+          // 组件自定义配置
+          _custom: {
+            required: true,
+            regList: []
+          },
+          // 组件标签属性
+          _attr: {
+            placeholder: '',
+          },
+          // 插槽属性
+          // __slot__: {}
+        }
       },
       {
         label: '文本域',
         key: 'Input',
         type: 'textarea',
+        config: {
+          // 组件自定义配置
+          _custom: {
+            required: true,
+            regList: []
+          },
+          // 组件标签属性
+          _attr: {
+            placeholder: '',
+          },
+        }
       },
       {
         label: '输入建议',
         key: 'Autocomplete',
+        config: {
+          // 组件自定义配置
+          _custom: {
+            required: true,
+            regList: []
+          },
+          // 组件标签属性
+          _attr: {
+            placeholder: '',
+          },
+        }
       },
-      // {
-      //   label: '远程搜索',
-      //   key: 'Autocomplete',
-      //   type: 'fetch'
-      // }
     ]
   },
 
@@ -217,30 +247,3 @@ export const componentConf = [
   },
 
 ];
-
-/**
- *  {
-    label: '单行文本',
-    tag: 'el-input',
-    tagIcon: 'input',
-    placeholder: '请输入',
-    defaultValue: undefined,
-    span: 24,
-    showLabel: true,
-    labelWidth: null,
-    style: { width: '100%' },
-    clearable: true,
-    prepend: '',
-    append: '',
-    'prefix-icon': '',
-    'suffix-icon': '',
-    maxlength: null,
-    'show-word-limit': false,
-    readonly: false,
-    disabled: false,
-    required: true,
-    regList: [],
-    changeTag: true,
-    document: 'https://element.eleme.cn/#/zh-CN/component/input'
-  },
- */
