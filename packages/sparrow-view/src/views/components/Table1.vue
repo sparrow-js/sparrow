@@ -4,41 +4,41 @@
       <el-table border="" style="width: 100%" :data="tableData">
         <el-table-column label="">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="12e1240d" :label="column.label" />
+            <table-header-box uuid="b0890517" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="12e1240d" />
+            <table-cell-box uuid="b0890517" />
           </template>
         </el-table-column>
 
         <el-table-column label="">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="e1240dd7" :label="column.label" />
+            <table-header-box uuid="890517a2" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="e1240dd7" />
+            <table-cell-box uuid="890517a2" />
           </template>
         </el-table-column>
 
         <el-table-column label="">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="240dd7e3" :label="column.label" />
+            <table-header-box uuid="0517a2d9" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="240dd7e3" />
+            <table-cell-box uuid="0517a2d9" />
           </template>
         </el-table-column>
 
         <el-table-column label="">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="0dd7e3bf" :label="column.label" />
+            <table-header-box uuid="17a2d9b1" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="0dd7e3bf" />
+            <table-cell-box uuid="17a2d9b1" />
           </template>
         </el-table-column>
       </el-table>

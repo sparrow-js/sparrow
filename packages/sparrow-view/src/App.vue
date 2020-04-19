@@ -14,7 +14,6 @@ import message from './utils/message';
 import { Event } from '@sparrow-vue/boxs';
 import _ from 'lodash';
 
-
 export default {
   data () {
     return {

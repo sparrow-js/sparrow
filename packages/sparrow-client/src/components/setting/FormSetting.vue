@@ -2,7 +2,31 @@
   <div class="setting">
     <div v-show="showSetting">
       <el-tabs v-model="tabActiveName" @tab-click="handleClick">
-        <el-tab-pane label="组件" name="first">组件</el-tab-pane>
+        <el-tab-pane label="组件" name="first">
+
+          <el-scrollbar v-if="config && config._custom " class="right-scrollbar">
+            <el-form size="small" label-width="90px">
+   
+              <el-form-item 
+                v-if="config._attr.placeholder!==undefined"
+                label="placeholder"
+              >
+                <el-input v-model="config._attr.placeholder" placeholder="请输入内容"></el-input>
+              </el-form-item>
+              <el-divider content-position="left">校验</el-divider>
+              <div>
+                <el-form-item v-if="config._custom.required!==undefined" label="必填">
+                  <el-switch v-model="config._custom.required"></el-switch>
+                </el-form-item>
+                <rule-list 
+                  v-if="config._custom.regList!==undefined"
+                  :rules.sync="config._custom.regList"
+                ></rule-list>
+              </div>
+            </el-form>
+          </el-scrollbar>
+
+        </el-tab-pane>
         <el-tab-pane label="表单" name="second">
           <el-collapse v-model="activeNames">
             <el-collapse-item title="模式" name="1">
@@ -44,19 +68,23 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import { SettingModule } from '@/store/modules/setting';
 import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
 import JsonHandler from '@/components/jsonhandler/index.vue';
+import RuleList from './RuleList.vue';
 
 @Component({
   name: 'Setting',
   components: {
-    JsonHandler
+    JsonHandler,
+    RuleList
   }
 })
 export default class extends Vue {
+  @Prop({ default: () => null }) private config: any;
+
   private activeNames = ['1', '2', '3'];
   private setting = {
     dataCode: '',
@@ -68,6 +96,11 @@ export default class extends Vue {
   private jsonData = '"{}"';
 
   private activeNameCode = 'code';
+
+  @Watch('config', { immediate: false })
+  private onConfigChange() {
+    console.log('config', this.config);
+  }
 
   get showSetting() {
     return SettingModule.showSetting;
@@ -146,6 +179,10 @@ export default class extends Vue {
 
   private handleClick () {
 
+  }
+
+  private syncConfig () {
+    
   }
 }
 </script>

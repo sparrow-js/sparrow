@@ -1,7 +1,7 @@
 <template>
   <div class="setting">
     <div v-if="settingComponent">
-      <component v-bind:is="settingComponent"></component>
+      <component v-bind:is="settingComponent" :config="config"></component>
     </div>
   </div>
 </template>
@@ -11,6 +11,7 @@ import { SettingModule } from '@/store/modules/setting';
 import { AppModule } from '@/store/modules/app';
 import FormSetting from './FormSetting.vue';
 import TableSetting from './TableSetting.vue';
+import socket from '@/util/socket.js';
 
 @Component({
   name: 'Setting',
@@ -20,8 +21,25 @@ import TableSetting from './TableSetting.vue';
   }
 })
 export default class extends Vue {
+  private config = {};
+
   get showSetting() {
     return SettingModule.showSetting;
+  }
+  
+  private async created() {
+    window.addEventListener('message', async event => {
+      const { data } = event;
+      if (!data.handler) return;
+      if(data.handler === 'client.component.getConfig') {
+        const {params} = data.data;
+        const res = await socket.emit('generator.scene.getBoxChildConfig', {
+          boxIndex: AppModule.boxIndex,
+          uuid: params.uuid
+        });
+        this.config = res;
+      }
+    })
   }
 
   get settingComponent() {

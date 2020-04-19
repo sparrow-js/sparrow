@@ -22,7 +22,7 @@
         </el-main>
       </el-container>
 
-      <el-aside :width="'200px'">
+      <el-aside :width="'260px'">
         <setting setting-data="settingData"></setting>
       </el-aside>
     </el-container>
@@ -83,7 +83,6 @@ export default class App extends Vue {
     window.addEventListener('message', async event => {
       const { data } = event;
       if (!data.handler) return;
-      console.log('*******', data.handler);
       const handlerArr = data.handler.split('.');
       const handlerFirst = handlerArr[0];
       if (handlerFirst === 'client') {
@@ -142,23 +141,7 @@ export default class App extends Vue {
         }
       }
 
-      if (handlerFirst === 'forward') {
-        const handler = handlerArr.slice(1, handlerArr.length).join('.');
-
-         const params = {
-            boxIndex: this.boxIndex,
-            data: data.data.params
-          };
-          console.log('********', params)
-
-          // const result = await socket.emit('generator.scene.setting', params);
-      }
-
-      if (handlerFirst === 'tablebox') {
-        /**
-         * tablebox.tableheader.show
-         */
-      }
+      
     });
 
     // block 进度
