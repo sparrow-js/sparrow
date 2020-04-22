@@ -153,6 +153,12 @@ export default class Form implements IBaseBox{
     this.render();
   }
 
+  private settingConfig (data) {
+    const {uuid, config} = data;
+    const current = this.components.find(item => item.uuid === uuid);
+    current.setConfig(config);
+  }
+
 
   private setRules () {
     /**

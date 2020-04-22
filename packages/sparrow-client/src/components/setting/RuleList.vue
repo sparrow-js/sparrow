@@ -8,7 +8,7 @@
           <el-form-item 
             label="正则"
           >
-            <el-input v-model="item.message" placeholder="输入内容"></el-input>
+            <el-input v-model="item.rule" placeholder="输入内容"></el-input>
           </el-form-item>
            <el-form-item 
             label="错误提示"

@@ -6,6 +6,13 @@
 
           <el-scrollbar v-if="config && config._custom " class="right-scrollbar">
             <el-form size="small" label-width="90px">
+              <el-form-item 
+                v-if="config._attr['v-model']!==undefined"
+                label="v-model"
+              >
+                <el-input v-model="config._attr['v-model']" :disabled="true"></el-input>
+              </el-form-item>
+
    
               <el-form-item 
                 v-if="config._attr.placeholder!==undefined"
@@ -48,10 +55,10 @@
                     <span class="update-data">导入</span>
                   </div>
                   <codemirror
+                    v-if="tabActiveName === 'second'"
                     ref="codemirror"
                     v-model="setting.dataCode"
                     @scrollCursorIntoView="gutterClick"
-                    @blur="codemirrorBlur"
                   ></codemirror>
                 </el-tab-pane>
                 <el-tab-pane label="json" name="json">
@@ -84,6 +91,7 @@ import RuleList from './RuleList.vue';
 })
 export default class extends Vue {
   @Prop({ default: () => null }) private config: any;
+  @Prop({default: ''}) private uuid: string;
 
   private activeNames = ['1', '2', '3'];
   private setting = {
@@ -97,9 +105,9 @@ export default class extends Vue {
 
   private activeNameCode = 'code';
 
-  @Watch('config', { immediate: false })
+  @Watch('config', { immediate: true, deep: true})
   private onConfigChange() {
-    console.log('config', this.config);
+    this.syncConfig();
   }
 
   get showSetting() {
@@ -154,14 +162,6 @@ export default class extends Vue {
     }
   }
 
-  private codemirrorBlur() {
-    // try {
-    //   const data = eval(`function getData () {${this.setting.dataCode}; return data;} getData()`);
-    //   this.updateCodeData();
-    // } catch (e) {
-    // }
-  }
-
   private gutterClick() {
     console.log('gutterClick gutterClick');
   }
@@ -181,8 +181,16 @@ export default class extends Vue {
 
   }
 
-  private syncConfig () {
-    
+  private async syncConfig () {
+    if (!this.uuid) return;
+     const result = await socket.emit('generator.scene.setting', {
+      boxIndex: AppModule.boxIndex,
+      data: {
+        handler: 'settingConfig',
+        uuid: this.uuid,
+        config: this.config
+      }
+    });
   }
 }
 </script>

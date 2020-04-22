@@ -13,7 +13,7 @@
   export default {
     data() {
       return {
-        selectOptions: [
+        selectOptions_unique: [
           {
             value: '选项1',
             label: '黄金糕'

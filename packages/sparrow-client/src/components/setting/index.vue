@@ -1,7 +1,11 @@
 <template>
   <div class="setting">
     <div v-if="settingComponent">
-      <component v-bind:is="settingComponent" :config="config"></component>
+      <component 
+        v-bind:is="settingComponent"
+        :config="config"
+        :uuid="uuid"
+      ></component>
     </div>
   </div>
 </template>
@@ -21,7 +25,8 @@ import socket from '@/util/socket.js';
   }
 })
 export default class extends Vue {
-  private config = {};
+  private config = null;
+  private uuid = '';
 
   get showSetting() {
     return SettingModule.showSetting;
@@ -33,6 +38,7 @@ export default class extends Vue {
       if (!data.handler) return;
       if(data.handler === 'client.component.getConfig') {
         const {params} = data.data;
+        this.uuid = params.uuid;
         const res = await socket.emit('generator.scene.getBoxChildConfig', {
           boxIndex: AppModule.boxIndex,
           uuid: params.uuid

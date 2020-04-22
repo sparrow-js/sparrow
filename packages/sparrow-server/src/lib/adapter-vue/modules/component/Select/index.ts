@@ -13,6 +13,20 @@ export default class Select extends Base {
     super(attrs, componentIndex);
     this.labelValue = '特殊资源';
     this.params = params;
+    this.config = {
+      // 组件自定义配置
+      _custom: {
+        required: false,
+        regList: []
+      },
+      // 组件标签属性
+      _attr: {
+        placeholder: '',
+        'v-model': attrs['v-model'] || ''
+      },
+      // 插槽属性
+      // __slot__: {}
+    };
     this.init();
   }
 
@@ -29,6 +43,8 @@ export default class Select extends Base {
     }
     const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/Select', 'comp.vue'), 'utf8');
     this.vueParse = new VueParse(this.uuid, fileStr);
+    
+    console.log('*****1111*******', this.vueParse);
   }
 
   public fragment () {
