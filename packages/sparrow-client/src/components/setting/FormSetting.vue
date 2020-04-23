@@ -30,6 +30,16 @@
                   :rules.sync="config._custom.regList"
                 ></rule-list>
               </div>
+              <el-divider content-position="left">options</el-divider>
+              <el-form-item 
+                v-if="config.__slot.data!==undefined"
+                label=""
+                label-width="0"
+              >
+                  <codemirror
+                    v-model="config.__slot.data"
+                  ></codemirror>
+              </el-form-item>
             </el-form>
           </el-scrollbar>
 

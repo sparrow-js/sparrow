@@ -1,6 +1,7 @@
 import * as cheerio from 'cheerio';
 import * as parser from '@babel/parser';
 import traverse from '@babel/traverse';
+import generate from '@babel/generator';
 
 export default class VueParse{
   template: string = '';
@@ -56,6 +57,51 @@ export default class VueParse{
       }
     });
     return data;
+  }
+
+  public setData (data: string) {
+    const dataAst = parser.parse(data, {
+      sourceType: 'module',
+      plugins: [
+        "jsx",
+      ]
+    });
+
+    traverse(dataAst, {
+      ObjectExpression: (path) => {
+        if (path.parent.type === 'VariableDeclarator') {
+          const {node} = path;
+          this.data = node.properties;
+        }
+      }
+    });
+    
+
+  }
+  
+  public getFormatData () {
+    const dataAst = parser.parse(`var data = {
+      id: []
+    }`, {
+      sourceType: 'module',
+      plugins: [
+        "jsx",
+      ]
+    });
+    traverse(dataAst, {
+      ObjectExpression: (path) => {
+        if (path.parent.type === 'VariableDeclarator') {
+          const {node} = path;
+          node.properties = this.data;
+        }
+      }
+    })
+
+    return generate(dataAst).code;
+
+    // ObjectExpression
+
+    // generate().code
   }
 
   public getMethods () {

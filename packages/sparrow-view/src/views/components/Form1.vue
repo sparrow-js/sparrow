@@ -2,17 +2,12 @@
   <div class="root">
     <box-form>
       <el-form label-width="100px"
-        ><component-box :is-active="false" indexcomp="0" uuid="6bc734bb">
+        ><component-box :is-active="false" indexcomp="0" uuid="67cb7472">
           <el-form-item label=" ">
-            <label-box label="name:" indexcomp="0" />
-            <el-input placeholder="" v-model="form.name" />
-          </el-form-item> </component-box
-        ><component-box :is-active="false" indexcomp="1" uuid="c734bbbd">
-          <el-form-item label=" ">
-            <label-box label="特殊资源" indexcomp="1" />
-            <el-select placeholder="请选择">
+            <label-box label="特殊资源" indexcomp="0" />
+            <el-select placeholder="" v-model="form.name">
               <el-option
-                v-for="item in selectOptions"
+                v-for="item in selectOptions67cb7472"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
@@ -32,10 +27,9 @@ export default {
   data() {
     return {
       form: {
-        name: "",
-        age: ""
+        name: ""
       },
-      selectOptionsc734bbbd: [
+      selectOptions67cb7472: [
         {
           value: "选项1",
           label: "黄金糕"

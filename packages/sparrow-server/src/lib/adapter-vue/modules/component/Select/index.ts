@@ -13,6 +13,7 @@ export default class Select extends Base {
     super(attrs, componentIndex);
     this.labelValue = '特殊资源';
     this.params = params;
+    this.init();
     this.config = {
       // 组件自定义配置
       _custom: {
@@ -25,9 +26,11 @@ export default class Select extends Base {
         'v-model': attrs['v-model'] || ''
       },
       // 插槽属性
-      // __slot__: {}
+      __slot: {
+        data: this.vueParse.getFormatData()
+      }
     };
-    this.init();
+    this.setHandler();
   }
 
   private init () {
@@ -42,18 +45,17 @@ export default class Select extends Base {
       this.status = 'allow-create';
     }
     const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/Select', 'comp.vue'), 'utf8');
-    this.vueParse = new VueParse(this.uuid, fileStr);
-    
-    console.log('*****1111*******', this.vueParse);
+    this.vueParse = new VueParse(this.uuid, fileStr); 
+    this.vueParse.getFormatData();
   }
 
   public fragment () {
     return `
       <el-form-item label=" ">
         <label-box label="${this.labelValue}" indexcomp="${this.componentIndex}"></label-box>
-        <el-select placeholder="请选择" ${this.status}>
+        <el-select ${this.status} ${this._attrStr}>
           <el-option
-            v-for="item in selectOptions"
+            v-for="item in selectOptions${this.uuid}"
             :key="item.value"
             :label="item.label"
             :value="item.value">
@@ -61,5 +63,34 @@ export default class Select extends Base {
         </el-select>
       </el-form-item>
     `;
+  }
+  protected setHandler () {
+    const {config} = this;
+    this.setAttrsToStr();
+
+    if (config._custom) {
+      const formItem = [];
+      const rules = [];
+
+      const required = `{ required: true, message: '必填', trigger: 'blur' }`;
+      if (config._custom.required === true) {
+        rules.push(required);
+      }
+
+      if (config._custom.regList && config._custom.regList.length > 0) {
+        config._custom.regList.forEach(item => {
+          if (item.rule && item.message) {
+            const customRule = `{ pattern: ${item.rule}, message: '${item.message}', trigger: 'blur' }`;
+            rules.push(customRule)
+          }
+        });
+      }
+
+      if (rules.length > 0) {
+        formItem.push(`:rules="[${rules.join(',')}]"`)
+      }
+
+      this._formItemStr = formItem.join(' ');
+    }
   }
 }
