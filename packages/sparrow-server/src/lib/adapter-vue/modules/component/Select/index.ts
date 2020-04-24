@@ -22,7 +22,7 @@ export default class Select extends Base {
       },
       // 组件标签属性
       _attr: {
-        placeholder: '',
+        placeholder: '请输入',
         'v-model': attrs['v-model'] || ''
       },
       // 插槽属性
@@ -44,16 +44,20 @@ export default class Select extends Base {
     } else if (type === 'allow-create') {
       this.status = 'allow-create';
     }
+
     const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/Select', 'comp.vue'), 'utf8');
     this.vueParse = new VueParse(this.uuid, fileStr); 
-    this.vueParse.getFormatData();
   }
 
   public fragment () {
     return `
-      <el-form-item label=" ">
+      <el-form-item label=" "
+        ${this._formItemStr}
+      >
         <label-box label="${this.labelValue}" indexcomp="${this.componentIndex}"></label-box>
-        <el-select ${this.status} ${this._attrStr}>
+        <el-select 
+          ${this.status} 
+          ${this._attrStr}>
           <el-option
             v-for="item in selectOptions${this.uuid}"
             :key="item.value"
@@ -72,7 +76,7 @@ export default class Select extends Base {
       const formItem = [];
       const rules = [];
 
-      const required = `{ required: true, message: '必填', trigger: 'blur' }`;
+      const required = `{ required: true, message: '必填', trigger: 'change' }`;
       if (config._custom.required === true) {
         rules.push(required);
       }
@@ -80,7 +84,7 @@ export default class Select extends Base {
       if (config._custom.regList && config._custom.regList.length > 0) {
         config._custom.regList.forEach(item => {
           if (item.rule && item.message) {
-            const customRule = `{ pattern: ${item.rule}, message: '${item.message}', trigger: 'blur' }`;
+            const customRule = `{ pattern: ${item.rule}, message: '${item.message}', trigger: 'change' }`;
             rules.push(customRule)
           }
         });

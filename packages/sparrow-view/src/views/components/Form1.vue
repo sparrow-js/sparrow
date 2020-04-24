@@ -2,12 +2,12 @@
   <div class="root">
     <box-form>
       <el-form label-width="100px"
-        ><component-box :is-active="false" indexcomp="0" uuid="67cb7472">
+        ><component-box :is-active="false" indexcomp="0" uuid="30b9adcb">
           <el-form-item label=" ">
             <label-box label="特殊资源" indexcomp="0" />
-            <el-select placeholder="" v-model="form.name">
+            <el-select clearable="" placeholder="" v-model="form.name">
               <el-option
-                v-for="item in selectOptions67cb7472"
+                v-for="item in selectOptions30b9adcb"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
@@ -29,7 +29,7 @@ export default {
       form: {
         name: ""
       },
-      selectOptions67cb7472: [
+      selectOptions30b9adcb: [
         {
           value: "选项1",
           label: "黄金糕"

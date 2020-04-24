@@ -12,6 +12,19 @@ export default class UploadAvatar extends Base{
     super(attrs, componentIndex);
     this.params = params;
     this.labelValue = '上传头像';
+    this.config = {
+      // 组件自定义配置
+      _custom: {
+        required: false,
+        regList: []
+      },
+      // 组件标签属性
+      _attr: {
+        action: '',
+        ':show-file-list': false,
+        'v-model': attrs['v-model'] || ''
+      },
+    };
     this.init();
   }
 

@@ -2,12 +2,7 @@ import Base from '../Base';
 
 export default class TimePicker extends Base {
   params: any;
-  ele: string = `
-    <el-date-picker
-      type="date"
-      placeholder="选择日期">
-    </el-date-picker>
-  `;
+  ele: string = '';
 
   constructor (attrs: any, componentIndex: number, params: any) {
     super(attrs, componentIndex);
@@ -25,6 +20,13 @@ export default class TimePicker extends Base {
           range-separator="至"
           start-placeholder="开始日期"
           end-placeholder="结束日期">
+        </el-date-picker>
+      `;
+    } else {
+      this.ele =`
+        <el-date-picker
+          type="date"
+          placeholder="选择日期">
         </el-date-picker>
       `;
     }

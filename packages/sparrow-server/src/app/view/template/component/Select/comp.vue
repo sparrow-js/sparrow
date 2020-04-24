@@ -1,7 +1,7 @@
 <template>
-  <el-select v-model="value" placeholder="请选择">
+  <el-select placeholder="请选择">
     <el-option
-      v-for="item in selectOptions"
+      v-for="item in selectOptions_unique"
       :key="item.value"
       :label="item.label"
       :value="item.value">
@@ -16,15 +16,15 @@
         selectOptions_unique: [
           {
             value: '选项1',
-            label: '黄金糕'
+            label: '选项1'
           },
           {
             value: '选项2',
-            label: '双皮奶'
+            label: '选项2'
           },
           {
             value: '选项3',
-            label: '蚵仔煎'
+            label: '选项3'
           }
         ],
       }
