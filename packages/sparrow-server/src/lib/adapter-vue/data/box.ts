@@ -18,12 +18,12 @@ export default {
       name: '区块',
       icon: 'braille'
     },
-    {
-      id: 'Alert',
-      value: 'alert',
-      name: '警告',
-      icon: 'alert'
-    },
+    // {
+    //   id: 'Alert',
+    //   value: 'alert',
+    //   name: '警告',
+    //   icon: 'alert'
+    // },
     // {
     //   id: 'inline',
     //   value: 'inline',

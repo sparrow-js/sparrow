@@ -118,6 +118,8 @@ export default class extends Vue {
 
   private activeNameCode = 'code';
 
+
+
   @Watch('config', { immediate: true, deep: true})
   private onConfigChange() {
     this.syncConfig();
@@ -133,6 +135,9 @@ export default class extends Vue {
     });
     if (result) {
       this.setting = result.data;
+    }
+    if(!this.uuid) {
+      this.tabActiveName = 'second';
     }
   }
 
