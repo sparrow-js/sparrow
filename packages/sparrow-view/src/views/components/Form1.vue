@@ -2,16 +2,20 @@
   <div class="root">
     <box-form>
       <el-form label-width="100px"
-        ><component-box :is-active="false" indexcomp="0" uuid="1713973b">
+        ><component-box :is-active="false" indexcomp="0" uuid="d537cd06">
           <el-form-item label=" ">
-            <label-box label="多选框" indexcomp="0" />
-            <el-checkbox-group v-model="form.like">
-              <el-checkbox
-                v-for="item in checkboxOptions1713973b"
-                :key="item.value"
-                :label="item.label"
-              />
-            </el-checkbox-group>
+            <label-box label="上传头像" indexcomp="0" />
+
+            <el-upload
+              class="avatar-uploader"
+              action="https://jsonplaceholder.typicode.com/posts/"
+              :show-file-list="false"
+              :on-success="handleAvatarSuccessd537cd06"
+              :before-upload="beforeAvatarUploadd537cd06"
+            >
+              <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+              <i v-else="" class="el-icon-plus avatar-uploader-icon" />
+            </el-upload>
           </el-form-item> </component-box
       ></el-form>
     </box-form>
@@ -20,31 +24,33 @@
 
 <script>
 export default {
-  methods: {},
+  methods: {
+    handleAvatarSuccessd537cd06(res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw);
+    },
+
+    beforeAvatarUploadd537cd06(file) {
+      const isJPG = file.type === "image/jpeg";
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPG) {
+        this.$message.error("上传头像图片只能是 JPG 格式!");
+      }
+
+      if (!isLt2M) {
+        this.$message.error("上传头像图片大小不能超过 2MB!");
+      }
+
+      return isJPG && isLt2M;
+    }
+  },
 
   data() {
     return {
       form: {
-        like: []
+        name: ""
       },
-      checkboxOptions1713973b: [
-        {
-          value: "复选框1",
-          label: "复选框1"
-        },
-        {
-          value: "复选框2",
-          label: "复选框2"
-        },
-        {
-          value: "复选框3",
-          label: "复选框3"
-        },
-        {
-          value: "复选框13",
-          label: "复选框13"
-        }
-      ]
+      imageUrl: ""
     };
   }
 };

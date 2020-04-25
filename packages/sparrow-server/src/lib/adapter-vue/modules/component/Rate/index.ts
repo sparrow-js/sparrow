@@ -18,6 +18,7 @@ export default class Rate extends Base{
         'v-model': attrs['v-model'] || ''
       },
     };
+    this.setHandler();
   }
 
   public fragment () {
