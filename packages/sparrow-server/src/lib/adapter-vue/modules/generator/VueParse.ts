@@ -75,7 +75,6 @@ export default class VueParse{
         }
       }
     });
-    
 
   }
   

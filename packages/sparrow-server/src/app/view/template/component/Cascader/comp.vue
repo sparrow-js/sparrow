@@ -3,8 +3,7 @@
     <div class="block">
       <span class="demonstration">hover 触发子菜单</span>
       <el-cascader
-        v-model="value"
-        :options="options"
+        :options="cascaderOptions_unique"
         :props="{ expandTrigger: 'hover' }"
         @change="handleChange_unique"></el-cascader>
     </div>
@@ -15,8 +14,7 @@
   export default {
     data() {
       return {
-        value: [],
-        cascaderOptions: [{
+        cascaderOptions_unique: [{
           value: 'zhinan',
           label: '指南',
           children: [{

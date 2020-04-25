@@ -12,7 +12,21 @@ export default class Autocomplete extends Base{
     super(attrs, componentIndex);
     this.params = params;
     this.labelValue = '文本框';
+
     this.init();
+    this.config = {
+      // 组件自定义配置
+      _custom: {
+        required: false,
+        regList: []
+      },
+      // 组件标签属性
+      _attr: {
+        placeholder: '请输入',
+        'v-model': attrs['v-model'] || ''
+      },
+    };
+    this.setHandler();
   }
 
   private init () {
@@ -63,6 +77,7 @@ export default class Autocomplete extends Base{
       if (rules.length > 0) {
         formItem.push(`:rules="[${rules.join(',')}]"`)
       }
+      
 
       this._formItemStr = formItem.join(' ');
     }

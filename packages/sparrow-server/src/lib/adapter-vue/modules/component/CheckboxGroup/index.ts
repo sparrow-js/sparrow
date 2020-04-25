@@ -12,6 +12,7 @@ export default class CheckboxGroup extends Base{
     super(attrs, componentIndex);
     this.params = params;
     this.labelValue = '多选框';
+    this.init();
     this.config = {
       // 组件自定义配置
       _custom: {
@@ -23,11 +24,12 @@ export default class CheckboxGroup extends Base{
         'v-model': attrs['v-model'] || ''
       },
       // 插槽属性
-      __slot: {
+      _slot: {
         data: this.vueParse.getFormatData()
       }
     };
-    this.init();
+
+    this.setHandler();
   }
 
   private init () {
@@ -37,7 +39,7 @@ export default class CheckboxGroup extends Base{
     } else {
       this.ele = 'el-checkbox';
     }
-    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/Select', 'comp.vue'), 'utf8');
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/CheckboxGroup', 'comp.vue'), 'utf8');
     this.vueParse = new VueParse(this.uuid, fileStr); 
   }
 
@@ -85,6 +87,13 @@ export default class CheckboxGroup extends Base{
 
       if (rules.length > 0) {
         formItem.push(`:rules="[${rules.join(',')}]"`)
+      }
+
+      if (config._slot) {
+        const {data} = config._slot;
+        if (data) {
+          this.vueParse.setData(data);
+        }
       }
 
       this._formItemStr = formItem.join(' ');

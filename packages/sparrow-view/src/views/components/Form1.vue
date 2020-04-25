@@ -2,18 +2,16 @@
   <div class="root">
     <box-form>
       <el-form label-width="100px"
-        ><component-box :is-active="false" indexcomp="0" uuid="30b9adcb">
+        ><component-box :is-active="false" indexcomp="0" uuid="1713973b">
           <el-form-item label=" ">
-            <label-box label="特殊资源" indexcomp="0" />
-            <el-select clearable="" placeholder="" v-model="form.name">
-              <el-option
-                v-for="item in selectOptions30b9adcb"
+            <label-box label="多选框" indexcomp="0" />
+            <el-checkbox-group v-model="form.like">
+              <el-checkbox
+                v-for="item in checkboxOptions1713973b"
                 :key="item.value"
                 :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
+              />
+            </el-checkbox-group>
           </el-form-item> </component-box
       ></el-form>
     </box-form>
@@ -27,20 +25,24 @@ export default {
   data() {
     return {
       form: {
-        name: ""
+        like: []
       },
-      selectOptions30b9adcb: [
+      checkboxOptions1713973b: [
         {
-          value: "选项1",
-          label: "黄金糕"
+          value: "复选框1",
+          label: "复选框1"
         },
         {
-          value: "选项2",
-          label: "双皮奶"
+          value: "复选框2",
+          label: "复选框2"
         },
         {
-          value: "选项3",
-          label: "蚵仔煎"
+          value: "复选框3",
+          label: "复选框3"
+        },
+        {
+          value: "复选框13",
+          label: "复选框13"
         }
       ]
     };

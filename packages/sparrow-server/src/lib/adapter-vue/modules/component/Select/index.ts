@@ -26,7 +26,7 @@ export default class Select extends Base {
         'v-model': attrs['v-model'] || ''
       },
       // 插槽属性
-      __slot: {
+      _slot: {
         data: this.vueParse.getFormatData()
       }
     };
@@ -95,6 +95,14 @@ export default class Select extends Base {
       }
 
       this._formItemStr = formItem.join(' ');
+    }
+
+
+    if (config._slot) {
+      const {data} = config._slot;
+      if (data) {
+        this.vueParse.setData(data);
+      }
     }
   }
 }
