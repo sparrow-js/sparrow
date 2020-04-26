@@ -73,6 +73,7 @@ async function start(options = {}) {
     ]);
     if (answers.download) {
       await downloadServer();
+      startSparrowView(options);
       await startSparrowworks(options);
     } else {
       console.error(err);
@@ -100,6 +101,7 @@ async function start(options = {}) {
     }
   }
   startSparrowView(options);
+
   await startSparrowworks(options);
 }
 

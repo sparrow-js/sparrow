@@ -168,6 +168,10 @@ export default class Scene {
     return this.params;
   }
 
+  public getSceneTree () {
+    
+  }
+
   public async renderPage (renderType: number = 0) {
     this.params.previewViewStatus = renderType;
     this.$('.home').empty();
