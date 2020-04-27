@@ -5,7 +5,7 @@ import Base from '../Base';
 import Config from '../../../../config';
 
 export default class Delete extends Base{
-  name: string;
+  name: string = 'Delete';
   params: any;
   vueParse: any;
   uuid: string;

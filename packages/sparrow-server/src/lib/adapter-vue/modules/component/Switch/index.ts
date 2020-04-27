@@ -1,7 +1,7 @@
 import Base from '../Base';
 
 export default class Switch extends Base{
-
+  name: string = 'Switch';
   constructor (attrs: any, componentIndex: number) {
     super(attrs, componentIndex);
     this.labelValue = '开关';

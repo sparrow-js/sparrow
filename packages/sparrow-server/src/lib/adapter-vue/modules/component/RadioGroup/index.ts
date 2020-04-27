@@ -5,6 +5,7 @@ import * as path from 'path';
 import Config from '../../../config';
 
 export default class RadioGroup extends Base{
+  name: string = 'RadioGroup';
   params: any;
   vueParse: any;
   ele: string = '';

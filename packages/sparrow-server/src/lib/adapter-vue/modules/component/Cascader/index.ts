@@ -4,7 +4,8 @@ import VueParse from '../../generator/VueParse';
 import * as path from 'path';
 import Config from '../../../config';
 
-export default class Select extends Base {
+export default class Cascader extends Base {
+  name: string = 'Cascader';
   vueParse: any;
   params: any;
 

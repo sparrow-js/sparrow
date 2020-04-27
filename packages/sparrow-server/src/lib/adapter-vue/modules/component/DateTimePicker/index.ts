@@ -1,6 +1,7 @@
 import Base from '../Base';
 
 export default class DateTimePicker extends Base {
+  name: string = 'DateTimePicker';
   params: any;
   ele: string = '';
 

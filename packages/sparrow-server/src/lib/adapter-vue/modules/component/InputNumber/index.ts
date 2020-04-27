@@ -1,6 +1,7 @@
 import Base from '../Base';
 
 export default class InputNumber extends Base{
+  name: string = 'InputNumber';
 
   constructor (attrs: any, componentIndex: number) {
     super(attrs, componentIndex);

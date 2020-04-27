@@ -3,8 +3,8 @@ import VueParse from '../../../generator/VueParse';
 import * as path from 'path';
 import Base from '../Base';
 
-export default class Edit extends Base{
-  name: string;
+export default class TableCellText extends Base{
+  name: string = 'TableCellText';
   params: any;
   vueParse: any;
   uuid: string;

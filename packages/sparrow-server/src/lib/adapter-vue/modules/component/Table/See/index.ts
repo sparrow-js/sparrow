@@ -4,7 +4,7 @@ import * as path from 'path';
 import Base from '../Base';
 
 export default class Delete extends Base{
-  name: string;
+  name: string = 'Delete';
   params: any;
   vueParse: any;
   uuid: string;

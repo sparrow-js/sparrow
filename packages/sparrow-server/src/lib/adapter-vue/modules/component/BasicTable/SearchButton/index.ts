@@ -5,8 +5,8 @@ import Base from '../Base';
 import Config from '../../../../config';
 
 
-export default class Delete extends Base{
-  name: string;
+export default class SearchButton extends Base{
+  name: string = 'SearchButton';
   params: any;
   vueParse: any;
   uuid: string;

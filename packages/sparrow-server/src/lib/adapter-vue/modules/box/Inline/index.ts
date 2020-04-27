@@ -1,19 +1,22 @@
 import IBaseBox from '../IBaseBox';
 import * as boxFragment from '../../fragment/box';
 import * as cheerio from 'cheerio';
+import Base from '../Base';
 
 export interface IFormSetting{
   dataCode: string;
   inline: boolean;
 }
 
-export default class Form implements IBaseBox{
+export default class Inline  extends Base implements IBaseBox{
+  name: string = 'Inline';
   $fragment: any;
   type:number = 0;
   boxIndex: number;
   innerHtml: string;
 
   constructor (data: any) {
+    super();
     const { boxIndex, innerHtml } = data;
     this.boxIndex = boxIndex;
     this.innerHtml = innerHtml;

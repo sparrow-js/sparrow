@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <el-aside width="200px">
+      <el-aside width="260px">
         <!-- <json-editor v-model="value"></json-editor> -->
-        <comp-box v-if="showComponentBox"></comp-box>
+        <comp-box></comp-box>
       </el-aside>
 
       <el-container>

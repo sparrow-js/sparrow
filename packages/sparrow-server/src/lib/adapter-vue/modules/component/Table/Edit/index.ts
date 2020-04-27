@@ -5,7 +5,7 @@ import Base from '../Base';
 import Config from '../../../../config';
 
 export default class Edit extends Base{
-  name: string;
+  name: string = 'Edit';
   params: any;
   vueParse: any;
   uuid: string;

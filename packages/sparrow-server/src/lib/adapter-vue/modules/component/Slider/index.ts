@@ -1,7 +1,7 @@
 import Base from '../Base';
 
 export default class Slider extends Base{
-
+  name: string = 'Slider';
   constructor (attrs: any, componentIndex: number) {
     super(attrs, componentIndex);
     this.labelValue = '滑块';

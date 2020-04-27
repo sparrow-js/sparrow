@@ -14,6 +14,7 @@ import {request} from '../../../../../util/request'
 const uuid = require('@lukeed/uuid');
 
 const mkdirpAsync = util.promisify(mkdirp);
+import Base from '../Base';
 
 const templateStr =  `
   <template>
@@ -32,7 +33,7 @@ export interface IFormSetting{
   headerData: string;
 }
 
-export default class Table implements IBaseBox{
+export default class Table extends Base implements IBaseBox{
   $fragment: any;
   template: string;
   name: string;
@@ -56,6 +57,7 @@ export default class Table implements IBaseBox{
   }
 
   constructor (data: any) {
+    super();
     const { boxIndex, params } = data;
     this.boxIndex = boxIndex;
     const {blockName, col} = params;

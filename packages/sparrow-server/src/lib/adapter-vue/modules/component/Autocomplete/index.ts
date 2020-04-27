@@ -5,7 +5,7 @@ import * as path from 'path';
 import Config from '../../../config';
 
 export default class Autocomplete extends Base{
-  name: string;
+  name: string = 'Autocomplete';
   params: any;
   vueParse: any;
   constructor (attrs: any, componentIndex: number, params: any) {

@@ -1,6 +1,7 @@
 import Base from '../Base';
 
 export default class Textarea extends Base {
+  name: string = 'Textarea';
   constructor (attrs: any, componentIndex: number) {
     super(attrs, componentIndex);
     this.labelValue = '多行文本框';

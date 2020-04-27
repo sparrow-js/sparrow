@@ -1,6 +1,7 @@
 import Base from '../Base';
 
 export default class TimePicker extends Base {
+  name: string = 'TimePicker';
   params: any;
   pickerOptions: string = '';
 

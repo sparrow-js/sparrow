@@ -4,7 +4,7 @@ import * as path from 'path';
 import Base from '../Base';
 import Config from '../../../../config';
 
-export default class Delete extends Base{
+export default class CreateButton extends Base{
   name: string;
   params: any;
   vueParse: any;

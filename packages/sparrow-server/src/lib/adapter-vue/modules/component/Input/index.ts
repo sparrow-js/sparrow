@@ -1,7 +1,7 @@
 import Base from '../Base';
 
 export default class Input extends Base{
-  name: string;
+  name: string = 'Input';
   params: any;
 
 

@@ -5,7 +5,7 @@ import * as path from 'path';
 import Config from '../../../config';
 
 export default class UploadAvatar extends Base{
-  name: string;
+  name: string = 'UploadAvatar';
   params: any;
   vueParse: any;
   constructor (attrs: any, componentIndex: number, params: any) {

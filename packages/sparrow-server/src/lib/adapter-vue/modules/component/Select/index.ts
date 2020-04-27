@@ -5,6 +5,7 @@ import * as path from 'path';
 import Config from '../../../config';
 
 export default class Select extends Base {
+  name: string = 'Select';
   vueParse: any;
   params: any;
   status: string = '';

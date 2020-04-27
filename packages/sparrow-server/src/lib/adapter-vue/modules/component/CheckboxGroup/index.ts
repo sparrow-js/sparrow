@@ -5,6 +5,7 @@ import * as path from 'path';
 import Config from '../../../config';
 
 export default class CheckboxGroup extends Base{
+  name: string = 'CheckboxGroup';
   vueParse: any;
   params: any;
   ele: string = '';

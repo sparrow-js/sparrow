@@ -1,8 +1,10 @@
 import IBaseBox from '../IBaseBox';
 import * as boxFragment from '../../fragment/box';
 import * as cheerio from 'cheerio';
+import Base from '../Base';
 
-export default class CustomInline implements IBaseBox{
+export default class CustomInline extends Base implements IBaseBox{
+  name: string = 'CustomInline';
   $fragment: any;
   components: any = [];
   type: string = 'inline';
@@ -10,6 +12,7 @@ export default class CustomInline implements IBaseBox{
   boxIndex: number;
 
   constructor (data: any) {
+    super()
     const { boxIndex, params } = data;
     this.boxIndex = boxIndex;
     this.$fragment = cheerio.load(boxFragment.box(boxIndex, `<custom-inline></custom-inline>`, '内联'), {

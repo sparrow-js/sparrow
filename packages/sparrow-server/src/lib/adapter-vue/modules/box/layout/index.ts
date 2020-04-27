@@ -2,14 +2,17 @@ import IBaseBox from '../IBaseBox';
 import * as cheerio from 'cheerio';
 import * as boxFragment from '../../fragment/box';
 import * as fragment from './fragment';
+import Base from '../Base';
 
-export default class Layout implements IBaseBox{
+
+export default class Layout extends Base implements IBaseBox{
   $fragment: any;
   components: any = {};
   template: string;
   params: any;
 
   constructor (data: any) {
+    super();
     const { boxIndex, params } = data;
     this.params = params;
     this.$fragment = cheerio.load(boxFragment.box(boxIndex), {

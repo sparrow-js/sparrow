@@ -31,6 +31,7 @@ export default class Scene {
   params: any = {
     previewViewStatus: 0
   };
+  tree: any;
 
   private blockMap = new Map();
 
@@ -168,8 +169,54 @@ export default class Scene {
     return this.params;
   }
 
-  public getSceneTree () {
-    
+  public getSceneTree (node) {
+    this.tree = {
+      label: 'page',
+      children: []
+    };
+
+    this.boxs.forEach(item => {
+      this.tree.children.push(this.getTree(item));
+    });
+
+    return this.tree;
+  }
+
+  private getTree (node) {
+    if (!node) return null;
+    const tree = {
+      label: '',
+      id: '',
+      children: []
+    };
+    if (node.name) {
+      tree.label = node.name;
+    }
+    if (node.uuid) {
+      tree.id = node.uuid
+    }
+
+    if (node.components) {
+      if (Array.isArray(node.components)) {
+        node.components.forEach(node => {
+          tree.children.push(this.getTree(node));
+        })
+      } else {
+        Object
+          .keys(node.components)
+          .forEach(key => {
+            tree.children.push(this.getTree({
+              name: key,
+              id: key,
+              components: node.components[key]
+            }));
+          });
+      }
+    } else {
+      this.getTree(null);
+    }
+
+    return tree;
   }
 
   public async renderPage (renderType: number = 0) {

@@ -10,6 +10,8 @@ import Config from '../../../config';
 import VueGenerator from '../../generator';
 import * as prettier from 'prettier';
 import generate from '@babel/generator';
+import Base from '../Base';
+
 
 const templateStr =  `
   <template>
@@ -24,7 +26,7 @@ export interface IFormSetting{
   inline: boolean;
 }
 
-export default class Form implements IBaseBox{
+export default class Form extends Base implements IBaseBox{
   $fragment: any;
   template: string;
   name: string;
@@ -47,6 +49,7 @@ export default class Form implements IBaseBox{
   }
 
   constructor (data: any) {
+    super();
     const { boxIndex, params } = data;
     const {blockName} = params;
     this.boxIndex = boxIndex;
@@ -157,26 +160,6 @@ export default class Form implements IBaseBox{
     const {uuid, config} = data;
     const current = this.components.find(item => item.uuid === uuid);
     current.setConfig(config);
-  }
-
-
-  private setRules () {
-    /**
-     * field105: [{
-          required: true,
-          message: '请输入多行文本',
-          trigger: 'blur'
-        }],
-        field106: [{
-          required: true,
-          message: '请输入单行文本',
-          trigger: 'blur'
-        }, {
-          pattern: /asdas/g,
-          message: 'asdasda',
-          trigger: 'blur'
-        }
-     */
   }
 
   private setActiveIndex (data) {

@@ -1,7 +1,7 @@
 import Base from '../Base';
 
 export default class Rate extends Base{
-  name: string;
+  name: string = 'Rate';
   params: any;
 
   constructor (attrs: any, componentIndex: number, params: any) {
