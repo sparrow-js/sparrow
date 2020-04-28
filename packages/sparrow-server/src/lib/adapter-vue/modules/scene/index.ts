@@ -10,8 +10,6 @@ import VueParse from '../generator/VueParse';
 const uuid = require('@lukeed/uuid');
 import Config from '../../config';
 
-
-
 import Box from '../box'
 const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')

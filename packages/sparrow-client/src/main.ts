@@ -6,23 +6,25 @@ import Element from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import { receiveMessage } from './util/messageBridge';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import './assets/icon/iconfont.css';
 import {
   faCode,
   faEye,
   faFileExport,
   faTrashRestoreAlt,
-  faFile
+  faFile,
+  faTree
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import codeMirrorInstall from './codemirror';
 codeMirrorInstall(Vue);
-// trash-restore-alt
 
 library.add(faCode);
 library.add(faEye);
 library.add(faFileExport);
 library.add(faTrashRestoreAlt);
 library.add(faFile);
+library.add(faTree);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;

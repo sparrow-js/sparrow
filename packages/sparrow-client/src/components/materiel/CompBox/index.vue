@@ -1,20 +1,54 @@
 <template>
   <div class="component-box">
     <div class="tabs">
-      <div @click="tabChange(0)" class="tabs-item">
-        组件树
+      <div 
+        @click="tabChange(2)" 
+        class="tabs-item"
+        :class="{'active': activeIndex === 2}">
+        <i class="iconfont icon-suohuicaidan-"></i>
       </div>
-      <div @click="tabChange(1)" class="tabs-item">
-        组件库
+      <div 
+        @click="tabChange(0)" 
+        class="tabs-item"
+        :class="{'active': activeIndex === 0}"
+      >
+        <i class="iconfont icon-tree-table"></i>
+      </div>
+      <div 
+        @click="tabChange(1)" 
+        class="tabs-item"
+        :class="{'active': activeIndex === 1}"
+      >
+        <i class="iconfont icon-zujian"></i>
       </div>
     </div>
-    <div v-show="activeIndex === 0">
-      <el-tree :data="tree" default-expand-all @node-click="handleNodeClick"></el-tree>
-    </div>
+    <div class="tabs-body" v-show="[0, 1].includes(activeIndex)">
+      <div v-show="activeIndex === 0">
+        <el-tree 
+          :data="tree"
+          :node-key="'id'"
+          :current-node-key="currentNodeKey"
+          :highlight-current="true"
+          default-expand-all 
+          @node-click="handleNodeClick"
+          ref="componentTree"
+        >
 
-    <div v-show="activeIndex === 1">
-      <component v-if="componentIs" :list="componentList" :is="componentIs"></component>
+          <span class="custom-tree-node" slot-scope="{ node, data }">
+            <span>{{ node.label }}</span>
+            <span v-if="selectedNode.id && selectedNode.id === data.id">
+              <i class="iconfont icon-delete1"></i>
+            </span>
+          </span>
+
+        </el-tree>
+      </div>
+
+      <div v-show="activeIndex === 1">
+        <component v-if="componentIs" :list="componentList" :is="componentIs"></component>
+      </div>
     </div>
+   
   </div>
 </template>
 
@@ -36,8 +70,10 @@ import socket from '@/util/socket.js';
 export default class CompBox extends Vue {
   private componentList = [];
   private componentMap = {};
-  private activeIndex = 1;
+  private activeIndex = 2;
   private tree = [];
+  private selectedNode = {};
+  private currentNodeKey = '';
 
   get componentIs() {
     if (AppModule.componentIs) {
@@ -69,6 +105,14 @@ export default class CompBox extends Vue {
     } else {
       this.componentList = componentMap[params.compBox];
     }
+
+    setTimeout(() => {
+      const componentTree:any = this.$refs.componentTree
+      componentTree.setCurrentKey('4fd43951')
+      this.selectedNode = {
+        id: '4fd43951'
+      }
+    }, 5000)
   }
 
   private async getSceneTree () {
@@ -82,20 +126,50 @@ export default class CompBox extends Vue {
     console.log('*****');
   }
 
-  private handleNodeClick () {}
+  private handleNodeClick (node) {
+    this.selectedNode = node;
+    console.log(node);
+  }
 }
 </script>
 <style lang="scss" scoped>
 .component-box{
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 .tabs{
   margin-right: 5px;
   flex-shrink: 0;
   color: #909399;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
 }
 .tabs-item{
-  padding: 5px;
+  padding: 10px;
+  .iconfont{
+    font-size: 20px;
+  }
+}
+.active.tabs-item{
+  background-color: #f0f9eb;
+}
+.active .iconfont{
+    color: #67C23A
+  }
+.tabs-body{
+  height: 100%;
+  overflow: scroll;
+  width: 100%;
+  width: 200px;
+  border-right: 1px solid #DCDFE6;
+}
+.icon-add{
+  color: #409EFF;
+  margin-left: 10px;
+}
+.icon-delete1{
+  color: #F56C6C;
+  margin-left: 10px;
 }
 </style>

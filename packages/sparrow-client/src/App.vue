@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <el-aside width="260px">
+      <div>
         <!-- <json-editor v-model="value"></json-editor> -->
         <comp-box></comp-box>
-      </el-aside>
+      </div>
 
       <el-container>
         <el-main>
