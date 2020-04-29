@@ -37,7 +37,10 @@
           <span class="custom-tree-node" slot-scope="{ node, data }">
             <span>{{ node.label }}</span>
             <span v-if="selectedNode.id && selectedNode.id === data.id">
-              <i class="iconfont icon-delete1"></i>
+              <i 
+                class="iconfont icon-delete1"
+                @click="deleteComponent(data.id)"
+              ></i>
             </span>
           </span>
 
@@ -93,9 +96,22 @@ export default class CompBox extends Vue {
     }
   }
 
+  @Watch('uuid', {immediate: true })
+  private uuidChange () {
+    const componentTree:any = this.$refs.componentTree
+    componentTree && componentTree.setCurrentKey(this.uuid);
+    this.selectedNode = {
+      id: this.uuid
+    }
+  }
+
   get insertData() {
     return AppModule.insertData;
   }
+  get uuid () {
+    return AppModule.uuid;
+  }
+
   async created() {
     const { type, params } = this.insertData.data;
     const componentMap = await socket.emit('generator.data.getCompList');
@@ -105,14 +121,6 @@ export default class CompBox extends Vue {
     } else {
       this.componentList = componentMap[params.compBox];
     }
-
-    setTimeout(() => {
-      const componentTree:any = this.$refs.componentTree
-      componentTree.setCurrentKey('4fd43951')
-      this.selectedNode = {
-        id: '4fd43951'
-      }
-    }, 5000)
   }
 
   private async getSceneTree () {
@@ -123,12 +131,18 @@ export default class CompBox extends Vue {
   private tabChange (index) {
     this.activeIndex = index;
     this.getSceneTree();
-    console.log('*****');
   }
 
   private handleNodeClick (node) {
     this.selectedNode = node;
+    AppModule.setUuid(node.id);
     console.log(node);
+  }
+
+  private async deleteComponent (id) {
+     await socket.emit('generator.scene.deleteComponent', {
+      id,
+    });
   }
 }
 </script>

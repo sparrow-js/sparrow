@@ -2,7 +2,6 @@
   <div id="app">
     <el-container class="container">
       <div>
-        <!-- <json-editor v-model="value"></json-editor> -->
         <comp-box></comp-box>
       </div>
 

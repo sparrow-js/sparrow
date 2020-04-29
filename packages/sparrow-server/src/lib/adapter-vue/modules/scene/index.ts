@@ -217,6 +217,54 @@ export default class Scene {
     return tree;
   }
 
+  private deleteNode (node, id, flag = 0) {
+    if (!node || !node.uuid) {
+      return;
+    }
+    flag = 0;
+    if (node.components) {
+      if (Array.isArray(node.components)) {
+        node.components.forEach(node, index => {
+          if (node.uuid === id) {
+            index = index;
+            node.components.splice(index, 1);
+            flag = 1;            
+          }
+          if (flag === 0) {
+            this.deleteNode(node, id, flag);
+          } 
+        });
+      } else {
+        let index = null;
+        Object
+          .keys(node.components)
+          .forEach(key => {
+            node.components[key] && node.components[key].forEach(item => {
+              if (node.uuid === id) {
+                index = index
+                flag = 1;
+                node.components[key].splice(index, 1);
+              }
+              if (flag === 0) {
+                this.deleteNode(node, id, flag);
+              } 
+            });
+          });
+      }
+    } else {
+      this.deleteNode(null, '');
+    }
+  };
+  
+  public deleteComponent (params: {id: string}) {
+    const {id} = params;
+    this.deleteNode({
+      uuid: 'page',
+      components: this.boxs
+    }, id);
+    this.renderPage();
+  }
+
   public async renderPage (renderType: number = 0) {
     this.params.previewViewStatus = renderType;
     this.$('.home').empty();

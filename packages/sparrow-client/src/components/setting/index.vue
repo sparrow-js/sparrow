@@ -44,6 +44,7 @@ export default class extends Vue {
           uuid: params.uuid
         });
         this.config = res;
+        AppModule.setUuid(this.uuid);
       }
     })
   }
