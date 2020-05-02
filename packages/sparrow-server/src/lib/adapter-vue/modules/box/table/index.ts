@@ -16,7 +16,6 @@ import * as _ from 'lodash';
 
 const mkdirpAsync = util.promisify(mkdirp);
 import Base from '../Base';
-import { observable, observe } from '@nx-js/observer-util';
 
 const templateStr =  `
   <template>
@@ -42,7 +41,6 @@ export default class Table extends Base implements IBaseBox{
   VueGenerator: any;
   blockPath: string;
   insertComponents:string[] = [];
-  components: any = {};
   $blockTemplate: any;
   activeIndex: number = -1;
   col: number = 2;
@@ -82,16 +80,11 @@ export default class Table extends Base implements IBaseBox{
       decodeEntities: false
     });
 
-    this.renderTable = _.throttle(this.renderTable, 10);
+    this.resetRender = _.throttle(this.resetRender, 10);
     this.VueGenerator = new VueGenerator('block');
     this.init();
     this.VueGenerator.appendData();
-    this.components = observable(this.components);
-    
-    observe(() => {
-      console.log('**************')
-      this.renderTable();
-    });
+    this.observeComp();
 
   }
 
@@ -150,7 +143,7 @@ export default class Table extends Base implements IBaseBox{
 
   }
 
-  public renderTable () {
+  public resetRender () {
     this.renderBox();
     this.render();
   }
@@ -162,9 +155,6 @@ export default class Table extends Base implements IBaseBox{
       this.components[params.uuid] = [];
     }
     this.components[params.uuid].push(new dynamicObj(type, cellParams))
-    
-    // this.renderBox();
-    // this.render();
   }
 
   public setVueParse (compName: string) {

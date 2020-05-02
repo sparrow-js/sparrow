@@ -143,6 +143,7 @@ export default class CompBox extends Vue {
      await socket.emit('generator.scene.deleteComponent', {
       id,
     });
+    this.getSceneTree();
   }
 }
 </script>

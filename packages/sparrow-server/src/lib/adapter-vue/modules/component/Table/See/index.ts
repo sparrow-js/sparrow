@@ -4,7 +4,7 @@ import * as path from 'path';
 import Base from '../Base';
 
 export default class Delete extends Base{
-  name: string = 'Delete';
+  name: string = 'See';
   params: any;
   vueParse: any;
   uuid: string;
@@ -15,18 +15,27 @@ export default class Delete extends Base{
     this.init();
   }
   
-  private init () {
-    // const fileStr = fsExtra.readFileSync(path.join(__dirname, 'comp.vue'), 'utf8');
-    // this.vueParse = new VueParse(this.uuid, fileStr);
-  }
+  private init () {}
 
-  public fragment () {    
-    return `
-      <router-link :to="'/example/edit'">
-        <el-button type="primary" size="mini">
-          查看
-        </el-button>
-      </router-link>
-    `;
+  public fragment () {
+    if (this.type === 'button') {
+      return `
+        <router-link :to="'/example/edit'">
+          <el-button type="primary" size="mini">
+            查看
+          </el-button>
+        </router-link>
+      `;
+    } else if (this.type === 'link') {
+      return `
+        <router-link :to="'/example/edit'">
+          <el-link type="primary" size="mini">
+            查看
+          </el-link>
+        </router-link>
+      `;
+
+    }
+    return '';
   }
 }

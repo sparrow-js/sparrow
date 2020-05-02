@@ -11,6 +11,7 @@ import VueGenerator from '../../generator';
 import * as prettier from 'prettier';
 import generate from '@babel/generator';
 import Base from '../Base';
+import * as _ from 'lodash';
 
 
 const templateStr =  `
@@ -65,10 +66,14 @@ export default class Form extends Base implements IBaseBox{
       decodeEntities: false
     });
 
+    this.resetRender = _.throttle(this.resetRender, 10);
+    this.renderBox = _.throttle(this.renderBox, 10);
+
     this.$blockTemplate('box-form').append(fragment.eform());
     this.VueGenerator = new VueGenerator('block');
     this.init();
     this.VueGenerator.appendData();
+    this.observeComp();
   }
 
   init () {
@@ -121,7 +126,6 @@ export default class Form extends Base implements IBaseBox{
   }
 
   public addComponent (data: any) {
-    // { boxData: { type: 'form' }, key: 'BaseInput', name: 'form.id' }
     const { key, boxData, name, params } = data;
     const dynamicObj = require(`../../component/${key}`).default;
 
@@ -129,9 +133,12 @@ export default class Form extends Base implements IBaseBox{
     this.components.push(new dynamicObj({
       'v-model': name,
     }, componentIndex, params));
+  }
+
+  public resetRender () {
     this.renderBox();
     this.render();
-  } 
+  }
 
 
   public setting (data: any) {
@@ -142,7 +149,6 @@ export default class Form extends Base implements IBaseBox{
       this.VueGenerator.appendData(dataCode);
     } else if (handler === 'formInline') {
       this.iFormAttrs[data.key] = data.value;
-      // this.$blockTemplate('el-form').attr(data.key, data.value);
       this.renderBox();
     } else if (handler === 'addLabel') {
       this.addlabel(data);
@@ -186,10 +192,11 @@ export default class Form extends Base implements IBaseBox{
   }
 
   public renderBox () {
+    this.$blockTemplate('el-form').empty();
     for (let key in this.iFormAttrs) {
       this.$blockTemplate('el-form').attr(key, this.iFormAttrs[key]);
     }
-    this.$blockTemplate('el-form').empty();
+
     this.components.forEach((component, index) => {
       let active = 'false';
       if (this.activeIndex === index) {
@@ -210,6 +217,7 @@ export default class Form extends Base implements IBaseBox{
         component.vueParse.data && this.VueGenerator.appendData(component.vueParse.data);
       }
     });
+
   }
 
   public render () {

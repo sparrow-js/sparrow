@@ -4,41 +4,41 @@
       <el-table border="" style="width: 100%" :data="tableData">
         <el-table-column label="">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="63756785" :label="column.label" />
+            <table-header-box uuid="aa56f784" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="63756785" />
+            <table-cell-box uuid="aa56f784" />
           </template>
         </el-table-column>
 
         <el-table-column label="">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="7567856a" :label="column.label" />
+            <table-header-box uuid="56f7847b" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="7567856a" />
+            <table-cell-box uuid="56f7847b" />
           </template>
         </el-table-column>
 
         <el-table-column label="">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="67856a20" :label="column.label" />
+            <table-header-box uuid="f7847b3b" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="67856a20" />
+            <table-cell-box uuid="f7847b3b" />
           </template>
         </el-table-column>
 
         <el-table-column label="">
           <template slot="header" slot-scope="{ row, column, $index }">
-            <table-header-box uuid="856a2042" :label="column.label" />
+            <table-header-box uuid="847b3bad" :label="column.label" />
           </template>
 
           <template slot-scope="{ row, column, $index }">
-            <table-cell-box uuid="856a2042" />
+            <table-cell-box uuid="847b3bad" />
           </template>
         </el-table-column>
       </el-table>
@@ -48,17 +48,6 @@
 
 <script>
 export default {
-  methods: {
-    handleDelete(row, index) {
-      this.$notify({
-        title: "Success",
-        message: "Delete Successfully",
-        type: "success",
-        duration: 2000
-      });
-    }
-  },
-
   data() {
     return {
       tableData: [{}, {}, {}]

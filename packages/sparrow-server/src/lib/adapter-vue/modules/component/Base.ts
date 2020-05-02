@@ -30,6 +30,7 @@ export default class Base {
 
   public getFragment (type: number) {
     this.renderFragment();
+
     if (type === 1) {
       this.$fragment('label-box').remove();
       this.$fragment('el-form-item').attr('label', this.labelValue);
