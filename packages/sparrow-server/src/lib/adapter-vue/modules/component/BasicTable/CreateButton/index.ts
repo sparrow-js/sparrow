@@ -5,7 +5,7 @@ import Base from '../Base';
 import Config from '../../../../config';
 
 export default class CreateButton extends Base{
-  name: string;
+  name: string = 'CreateButton';
   params: any;
   vueParse: any;
   uuid: string;

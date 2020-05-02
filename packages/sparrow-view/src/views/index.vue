@@ -8,7 +8,17 @@
 
     <div class="block-list">
       <box :index="1" :label="'内联'" class="block-item">
-        <custom-inline />
+        <custom-inline>
+          <el-button
+            class="filter-item"
+            type="primary"
+            icon="el-icon-search"
+            @click="handleFilter"
+            style="margin-right: 10px;"
+          >
+            搜索
+          </el-button>
+        </custom-inline>
       </box>
     </div>
 

@@ -1,5 +1,5 @@
 
-import LayoutBox from './layout';
+// import LayoutBox from './layout';
 import Block from './block';
 import Form from './form';
 import Table from './table';
@@ -14,9 +14,9 @@ export default class Box {
       case 'block':
         curBox = new Block(data);
         break;
-      case 'layout':
-        curBox = new LayoutBox(data);
-        break;
+      // case 'layout':
+      //   curBox = new LayoutBox(data);
+      //   break;
       case 'form':
         curBox = new Form(data);
         break;

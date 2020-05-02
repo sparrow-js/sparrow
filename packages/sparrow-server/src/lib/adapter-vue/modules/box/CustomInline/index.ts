@@ -19,12 +19,17 @@ export default class CustomInline extends Base implements IBaseBox{
       xmlMode: true,
       decodeEntities: false
     });
+
+    this.observeComp();
   }
 
   public addComponent (data) {
     const { key, type } = data;
     const dynamicObj = require(`../../component/BasicTable/${key}`).default;
     this.components.push(new dynamicObj(type));
+  }
+
+  public resetRender () {
     this.renderTemplate();
   }
 
