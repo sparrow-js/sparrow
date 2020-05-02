@@ -12,9 +12,11 @@ import generate from '@babel/generator';
 import VueParse from '../../generator/VueParse';
 import {request} from '../../../../../util/request'
 const uuid = require('@lukeed/uuid');
+import * as _ from 'lodash';
 
 const mkdirpAsync = util.promisify(mkdirp);
 import Base from '../Base';
+import { observable, observe } from '@nx-js/observer-util';
 
 const templateStr =  `
   <template>
@@ -80,9 +82,17 @@ export default class Table extends Base implements IBaseBox{
       decodeEntities: false
     });
 
+    this.renderTable = _.throttle(this.renderTable, 10);
     this.VueGenerator = new VueGenerator('block');
     this.init();
     this.VueGenerator.appendData();
+    this.components = observable(this.components);
+    
+    observe(() => {
+      console.log('**************')
+      this.renderTable();
+    });
+
   }
 
   async init () {
@@ -140,15 +150,21 @@ export default class Table extends Base implements IBaseBox{
 
   }
 
-  public addComponent (data: any) {
+  public renderTable () {
+    this.renderBox();
+    this.render();
+  }
+
+  public addComponent (data?: any) {
     const { key,type, params, cellParams } = data;
     const dynamicObj = require(`../../component/Table/${key}`).default;
     if (!this.components[params.uuid]) {
       this.components[params.uuid] = [];
     }
     this.components[params.uuid].push(new dynamicObj(type, cellParams))
-    this.renderBox();
-    this.render();
+    
+    // this.renderBox();
+    // this.render();
   }
 
   public setVueParse (compName: string) {
@@ -200,7 +216,7 @@ export default class Table extends Base implements IBaseBox{
   public renderBox () {
     this.$blockTemplate('el-table').empty();
     this.$blockTemplate('el-table').append(this.renderColumn());
-    this.VueGenerator.appendData(this.vueParseMap['Base'].data)
+    this.vueParseMap['Base'] && this.VueGenerator.appendData(this.vueParseMap['Base'].data)
   }
 
   public renderColumn () {
@@ -212,6 +228,10 @@ export default class Table extends Base implements IBaseBox{
       const uuid = tableHeaderData[i].uuid;
       let compTag = ''
       if (this.components[uuid]) {
+        const comp = this.components[uuid];
+        for(let i = 0; i < comp.length; i++) {
+
+        }
         this.components[uuid].forEach(item => {
           compTag = item.getFragment().html() + compTag;
           if (item.vueParse && item.vueParse.methods) {

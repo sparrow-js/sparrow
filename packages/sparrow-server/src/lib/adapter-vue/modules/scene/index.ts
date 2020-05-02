@@ -223,15 +223,16 @@ export default class Scene {
     }
     flag = 0;
     if (node.components) {
+
       if (Array.isArray(node.components)) {
-        node.components.forEach(node, index => {
-          if (node.uuid === id) {
+        node.components.forEach((item, index) => {
+          if (item.uuid === id) {
             index = index;
             node.components.splice(index, 1);
             flag = 1;            
           }
           if (flag === 0) {
-            this.deleteNode(node, id, flag);
+            this.deleteNode(item, id, flag);
           } 
         });
       } else {
@@ -240,13 +241,13 @@ export default class Scene {
           .keys(node.components)
           .forEach(key => {
             node.components[key] && node.components[key].forEach(item => {
-              if (node.uuid === id) {
+              if (item.uuid === id) {
                 index = index
                 flag = 1;
                 node.components[key].splice(index, 1);
               }
               if (flag === 0) {
-                this.deleteNode(node, id, flag);
+                this.deleteNode(item, id, flag);
               } 
             });
           });

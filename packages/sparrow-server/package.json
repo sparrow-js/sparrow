@@ -13,6 +13,7 @@
     "@babel/traverse": "^7.4.5",
     "@babel/types": "^7.8.3",
     "@lukeed/uuid": "^1.0.1",
+    "@nx-js/observer-util": "^4.2.2",
     "ali-oss": "^6.1.1",
     "array-move": "^2.1.0",
     "camelcase": "^5.3.1",
