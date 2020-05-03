@@ -81,6 +81,7 @@ export default class Table extends Base implements IBaseBox{
     });
 
     this.resetRender = _.throttle(this.resetRender, 10);
+    this.renderBox = _.throttle(this.renderBox, 10);
     this.VueGenerator = new VueGenerator('block');
     this.init();
     this.VueGenerator.appendData();
