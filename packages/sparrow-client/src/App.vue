@@ -20,10 +20,9 @@
           </div>
         </el-main>
       </el-container>
-
-      <el-aside :width="'260px'">
+      <div>
         <setting setting-data="settingData"></setting>
-      </el-aside>
+      </div>
     </el-container>
     <div class="dashboard-box" v-if="showDashboard">
       <dashboard

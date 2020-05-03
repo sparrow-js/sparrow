@@ -1,6 +1,7 @@
 <template>
   <div class="setting">
-    <div v-if="settingComponent">
+
+    <div class="setting-comp" v-if="settingComponent">
       <component 
         v-bind:is="settingComponent"
         :config="config"
@@ -71,5 +72,8 @@ export default class extends Vue {
   :hover {
     color: #66b1ff;
   }
+}
+.setting-comp{
+  min-width: 260px;
 }
 </style>
