@@ -9,7 +9,6 @@ export default class DatePicker extends Base {
     super(attrs, componentIndex);
     this.labelValue = '日期选择器';
     this.params = params;
-    this.init();
 
     this.config = {
       // 组件自定义配置
@@ -25,6 +24,7 @@ export default class DatePicker extends Base {
       _slot: {}
     };
     this.setHandler();
+    this.init();
   }
 
   private init () {

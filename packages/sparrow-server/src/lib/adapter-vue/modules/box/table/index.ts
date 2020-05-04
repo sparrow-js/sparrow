@@ -86,7 +86,6 @@ export default class Table extends Base implements IBaseBox{
     this.init();
     this.VueGenerator.appendData();
     this.observeComp();
-
   }
 
   async init () {

@@ -74,6 +74,6 @@ export default class extends Vue {
   }
 }
 .setting-comp{
-  min-width: 260px;
+  width: 260px;
 }
 </style>

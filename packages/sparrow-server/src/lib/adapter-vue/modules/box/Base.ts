@@ -14,8 +14,12 @@ export default class Base {
   observeComp () {
     this.components = observable(this.components);
     observe(() => {
-      if (!_.isEmpty(this.components)) {
+      if (Array.isArray(this.components)) {
         this.resetRender();
+      } else {
+        if (!_.isEmpty(this.components)) {
+          this.resetRender();
+        }
       }
     });
   }

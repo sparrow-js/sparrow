@@ -39,7 +39,7 @@
         handleEdit(row, index) {
           this.$notify({
             title: 'Success',
-            message: 'Delete Successfully',
+            message: 'edit Successfully',
             type: 'success',
             duration: 2000
           })
