@@ -50,7 +50,7 @@ export default class TimePicker extends Base {
       <el-form-item label=" "
         ${this._formItemStr}
       >
-        <label-box label="${this.labelValue}" :index="${this.componentIndex}"></label-box>
+        <label-box label="${this.labelValue}" :indexcomp="${this.componentIndex}"></label-box>
         
         <el-time-picker
           ${this._attrStr}
