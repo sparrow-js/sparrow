@@ -128,7 +128,6 @@ export default class Form extends Base implements IBaseBox{
   public addComponent (data: any) {
     const { key, boxData, name, params } = data;
     const dynamicObj = require(`../../component/${key}`).default;
-
     const componentIndex = this.components.length;
     this.components.push(new dynamicObj({
       'v-model': name,
@@ -149,17 +148,17 @@ export default class Form extends Base implements IBaseBox{
       this.VueGenerator.appendData(dataCode);
     } else if (handler === 'formInline') {
       this.iFormAttrs[data.key] = data.value;
-      this.renderBox();
+      // this.renderBox();
     } else if (handler === 'addLabel') {
       this.addlabel(data);
-      this.renderBox();
+      // this.renderBox();
     } else {
       if (this[handler]) {
         this[handler](data);
-        this.renderBox();
+        // this.renderBox();
       }
     }
-    this.render();
+    // this.render();
   }
 
   private settingConfig (data) {
