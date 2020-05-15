@@ -240,7 +240,7 @@ export default class Scene {
         Object
           .keys(node.components)
           .forEach(key => {
-            node.components[key] && node.components[key].forEach(item => {
+            node.components[key] && node.components[key].forEach((item, index) => {
               if (item.uuid === id) {
                 index = index
                 flag = 1;

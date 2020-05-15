@@ -36,7 +36,7 @@ export const tableConf = [
       {
         label: '查看',
         key: 'See',
-        type: 'button'
+        type: 'link'
       },
     ]
   },
