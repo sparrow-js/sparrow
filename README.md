@@ -3,15 +3,11 @@
 ###### 源代码可视化工具，vue版；
 > email: sparrowwht7@gmail.com
 ---
-## 功能预览
-<!-- <img src="https://raw.githubusercontent.com/sparrow-js/sparrow-static/master/sparrow.gif" width = "600" height = "375" div /> -->
-
----
 ## 特性
 
 - **低代码开发，** 快速生成原代码。
 - **可视化开发，** 通过GUI生成页面。
-- **物料市场，** 代码资源共享，包含组件、区块、动态容器、场景。
+- **资产市场，** 代码资源共享，包含组件、区块、搭建编辑容器。
 
 ## 快速使用
 ```bash

@@ -13,11 +13,12 @@ import * as rimraf from 'rimraf';
 import * as util from 'util';
 import * as fileUtil from '../../../../util/fileUtil';
 import {install as installDependency} from '../dependency';
+import Base from './Base';
 
 
 const rimrafAsync = util.promisify(rimraf);
 
-export default class Block implements IBaseBox{
+export default class Block extends Base implements IBaseBox{
   $fragment: any;
   type: string = 'block';
   name: string;
@@ -25,6 +26,7 @@ export default class Block implements IBaseBox{
   public insertComponents: string[] = [];
 
   constructor (data: any) {
+    super();
     const { boxIndex, params } = data;
     this.$fragment = cheerio.load(boxFragment.box(boxIndex), {
       xmlMode: true,

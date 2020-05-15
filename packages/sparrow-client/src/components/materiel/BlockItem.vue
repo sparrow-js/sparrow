@@ -12,7 +12,7 @@
           >
         </div>
         <div>
-          <el-button size="small">预览图片</el-button>
+          <!-- <el-button size="small">预览图片</el-button> -->
         </div>
       </div>
     </div>
