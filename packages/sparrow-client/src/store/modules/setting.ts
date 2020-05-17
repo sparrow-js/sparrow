@@ -11,6 +11,7 @@ export interface ISettingState {
   showSetting: boolean;
   settingData: any;
   settingComponent: string;
+  showCodeDraw: boolean;
 }
 
 @Module({ dynamic: true, store, name: 'setting' })
@@ -18,6 +19,7 @@ class Setting extends VuexModule implements ISettingState {
   public showSetting = false;
   public settingData = {};
   public settingComponent = '';
+  public showCodeDraw = false;
 
   @Mutation
   private SET_SHOW_SETTING(show: boolean) {
@@ -32,6 +34,11 @@ class Setting extends VuexModule implements ISettingState {
   @Mutation
   private SET_STTING_COMPONENT(compName: string) {
     this.settingComponent = compName;
+  }
+
+  @Mutation
+  private SET_SHOW_CODE_DRAW(showCodeDraw: boolean) {
+    this.showCodeDraw = showCodeDraw;
   }
 
   @Action
@@ -59,6 +66,11 @@ class Setting extends VuexModule implements ISettingState {
       this.SET_STTING_COMPONENT(payload.compName);
       this.SET_SHOW_SETTING(true);
     }, 100);
+  }
+
+  @Action
+  private setShowCodeBraw (showCodeDraw: boolean) {
+    this.SET_SHOW_CODE_DRAW(showCodeDraw);
   }
 }
 

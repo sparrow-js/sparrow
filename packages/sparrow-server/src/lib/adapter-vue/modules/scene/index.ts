@@ -202,9 +202,9 @@ export default class Scene {
       } else {
         Object
           .keys(node.components)
-          .forEach(key => {
+          .forEach((key, index) => {
             tree.children.push(this.getTree({
-              name: key,
+              name: 'column',
               id: key,
               components: node.components[key]
             }));

@@ -8,6 +8,8 @@
         :uuid="uuid"
       ></component>
     </div>
+   
+
   </div>
 </template>
 <script lang="ts">
@@ -28,9 +30,21 @@ import socket from '@/util/socket.js';
 export default class extends Vue {
   private config = null;
   private uuid = '';
+  private innerDrawer = false;
+  private dataCode = `var data = {}`
 
   get showSetting() {
     return SettingModule.showSetting;
+  }
+
+ 
+
+  get showCodeDraw() {
+    return SettingModule.showCodeDraw;
+  }
+
+  set showCodeDraw (value) {
+    SettingModule.setShowCodeBraw(value);
   }
   
   private async created() {
@@ -59,7 +73,7 @@ export default class extends Vue {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .setting {
   width: 100%;
   background: #fff;
@@ -76,4 +90,5 @@ export default class extends Vue {
 .setting-comp{
   width: 260px;
 }
+
 </style>

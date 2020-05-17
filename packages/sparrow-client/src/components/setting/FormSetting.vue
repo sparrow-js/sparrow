@@ -32,6 +32,9 @@
               </div>
               <div v-if="config._slot">
                 <el-divider content-position="left">options</el-divider>
+                <div>
+                  <i class="iconfont icon-iconfront-" @click="expansionHandler('formItem')"></i>
+                </div>
                 <el-form-item 
                   v-if="config._slot.data!==undefined"
                   label=""
@@ -61,17 +64,16 @@
             <el-collapse-item title="数据" name="2">
               <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
                 <el-tab-pane label="code" name="code">
-                  <div>
+                  <div class="codemirror-operate">
                     <span class="update-data" @click.stop="updateCodeData"
                       >更新</span
                     >
-                    <!-- <span class="update-data">导入</span> -->
+                    <i class="iconfont icon-iconfront-" @click="expansionHandler('form')"></i>
                   </div>
                   <codemirror
                     v-if="tabActiveName === 'second'"
                     ref="codemirror"
                     v-model="setting.dataCode"
-                    @scrollCursorIntoView="gutterClick"
                   ></codemirror>
                 </el-tab-pane>
                 <el-tab-pane label="json" name="json">
@@ -83,7 +85,30 @@
 
         </el-tab-pane>
       </el-tabs>
-     
+    </div>
+    <div class="drawer">
+      <el-drawer
+        title=""
+        :visible.sync="showCodeDraw"
+        :append-to-body="true"
+        :modal="false"
+        custom-class="drawer-st"
+        >
+        <!-- <div slot="title">
+          <el-button size="mini" type="primary" @click="sureCodeHandler">确定</el-button>
+        </div> -->
+        <div>
+          <codemirror
+            v-if="codeEditType === 'form'"
+            v-model="setting.dataCode"
+          ></codemirror>
+
+          <codemirror
+            v-if="codeEditType === 'formItem'"
+            v-model="config._slot.data"
+          ></codemirror>
+        </div>
+      </el-drawer>
     </div>
   </div>
 </template>
@@ -118,6 +143,10 @@ export default class extends Vue {
 
   private activeNameCode = 'code';
 
+  private tempCode = '';
+  private showCodeDraw = false;
+
+  private codeEditType = '';
 
 
   @Watch('config', { immediate: true, deep: true})
@@ -180,9 +209,6 @@ export default class extends Vue {
     }
   }
 
-  private gutterClick() {
-    console.log('gutterClick gutterClick');
-  }
 
   private handleCodeClick() {
     if (this.activeNameCode === 'json') {
@@ -210,8 +236,24 @@ export default class extends Vue {
       }
     });
   }
+
+  private expansionHandler (codeEditType) {
+    this.showCodeDraw = true;
+    this.codeEditType = codeEditType;
+  }
+
+  private sureCodeHandler () {
+    this.showCodeDraw = false;
+    this.setting.dataCode = this.tempCode;
+  }
 }
 </script>
+<style lang="scss">
+.drawer-st{
+  right: 290px !important;
+  width: 500px !important;
+}
+</style>
 <style lang="scss" scoped>
 .setting {
   width: 100%;
@@ -225,5 +267,10 @@ export default class extends Vue {
   :hover {
     color: #66b1ff;
   }
+}
+.codemirror-operate{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
