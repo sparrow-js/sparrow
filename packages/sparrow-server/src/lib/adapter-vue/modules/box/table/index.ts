@@ -218,12 +218,11 @@ export default class Table extends Base implements IBaseBox{
       const uuid = tableHeaderData[i].uuid;
       let compTag = ''
       if (this.components[uuid]) {
-        const comp = this.components[uuid];
-        for(let i = 0; i < comp.length; i++) {
-
-        }
         this.components[uuid].forEach(item => {
-          compTag = item.getFragment().html() + compTag;
+          compTag = `
+          <component-box uuid="${item.uuid}" :is-inline="true">
+            ${item.getFragment().html()}
+          </component-box>` + compTag;
           if (item.vueParse && item.vueParse.methods) {
             this.VueGenerator.appendMethods(item.vueParse.methods);
           }

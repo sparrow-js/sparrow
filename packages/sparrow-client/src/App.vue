@@ -14,7 +14,7 @@
                 id="viewContent"
                 ref="viewContent"
                 class="view-content"
-                src="http://localhost:9000/"
+                src="http://127.0.0.1:9000/"
               />
             </div>
           </div>
