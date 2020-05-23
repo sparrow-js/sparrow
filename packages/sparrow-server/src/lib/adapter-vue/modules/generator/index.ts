@@ -54,6 +54,7 @@ export default class VueGenerator {
     return this.pageAST;
   }
 
+
   public appendComponent (componentName: string) {
     traverse(this.pageAST, {
       Program: ({ node }) => {
@@ -81,40 +82,83 @@ export default class VueGenerator {
     });
   }
 
-  public appendData (code?: string) {
+  public getDataStrAst (code: string) {
     let dataCodeNode: any;
     if (code) {
       const codeAst = this.getAstByCode(code);
       traverse(codeAst, {
         ObjectExpression: (path) => {
           if (path.parent.type === 'VariableDeclarator') {
-            dataCodeNode = path.node;
+            dataCodeNode = path.node.properties;
           }
         }
       })
     }
+    return dataCodeNode;
+  };
 
+  private initVueProps (propName: string) {
     traverse(this.pageAST, {
       ObjectExpression: (path) => {
         if (path.parent.type === 'ExportDefaultDeclaration') {
           const {node} = path;
-          let dataNode = node.properties.find(item => item.key.name === 'data');
+          let dataNode = node.properties.find(item => item.key.name === propName);
           if (!dataNode) {
-            dataNode = this.getScriptValue('data');
+            dataNode = this.getScriptValue(propName);
             node.properties.unshift(dataNode);
           }
         }
       },
+    })
+  }
+
+  public appendData (codeProps?: any) {
+    this.initVueProps('data');
+
+    traverse(this.pageAST, {
       ObjectMethod: (path) => {
         const { node } = path;
         if (node.key && node.key.name === 'data') {
           path.traverse({
             ReturnStatement: (pathData) => {
-              if (dataCodeNode) {
-                pathData.node.argument = dataCodeNode;
+              if (codeProps) {
+                const currentProperties = pathData.node.argument.properties;
+                codeProps.forEach((curData) => {
+                  const findIndex = currentProperties.findIndex(item => item.key.name ===curData.key.name);
+                  if (findIndex === -1) {
+                    currentProperties.push(curData);
+                  } else {
+                    currentProperties[findIndex] = curData;
+                  }
+                })
+                pathData.node.argument.properties = currentProperties;
               }
             } 
           })
+        }
+      }
+    });
+
+  }
+
+  public appendMethods (methodsProps: any) {
+    this.initVueProps('methods');
+    traverse(this.pageAST, {
+      ObjectProperty: (path) => {
+        const { node } = path;
+        if (node.key && node.key.name === 'methods') {
+
+          const currentProperties = node.value.properties;
+          methodsProps.forEach((curData) => {
+            const findIndex = currentProperties.findIndex(item => item.key.name ===curData.key.name);
+            if (findIndex === -1) {
+              currentProperties.push(curData);
+            } else {
+              currentProperties[findIndex] = curData;
+            }
+          })
+
+          node.value.properties = currentProperties;
         }
       }
     })

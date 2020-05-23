@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <el-aside width="200px">
-        <comp-box v-if="showComponentBox"></comp-box>
-      </el-aside>
+      <div>
+        <comp-box></comp-box>
+      </div>
 
       <el-container>
         <el-main>
@@ -14,24 +14,17 @@
                 id="viewContent"
                 ref="viewContent"
                 class="view-content"
-                src="http://localhost:9000/"
+                src="http://127.0.0.1:9000/"
               />
             </div>
           </div>
         </el-main>
       </el-container>
-
-      <el-aside :width="'200px'">
-        <setting
-          setting-data="settingData"
-        ></setting>
-      </el-aside>
-
+      <div>
+        <setting setting-data="settingData"></setting>
+      </div>
     </el-container>
-    <div 
-      class="dashboard-box"
-      v-if="showDashboard"
-    >
+    <div class="dashboard-box" v-if="showDashboard">
       <dashboard
         @on-selected="selectedHandler(data)"
         :tab-index="dashboardTabIndex"
@@ -40,23 +33,26 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import Logo from '@/components/logo.vue';
 import Dashboard from '@/components/materiel/Dashboard.vue';
 import socket from '@/util/socket.js';
 import TopToolbar from '@/components/TopToolbar.vue';
-import Loading  from '@/util/loading';
+import Loading from '@/util/loading';
 import Setting from '@/components/setting/index.vue';
 import { AppModule } from '@/store/modules/app';
 import { SettingModule } from '@/store/modules/setting';
-import CompBox from '@/components/materiel/CompBox.vue'
+import CompBox from '@/components/materiel/CompBox/index.vue';
+import JsonEditor from '@/components/JsonEditor/index.vue';
+
 @Component({
   components: {
     Logo,
     Dashboard,
     TopToolbar,
     Setting,
-    CompBox
+    CompBox,
+    JsonEditor
   }
 })
 export default class App extends Vue {
@@ -65,150 +61,169 @@ export default class App extends Vue {
   private settingWidth = '80px';
   private formIndex = 0;
 
-
-  get showDashboard () {
+  get showDashboard() {
     return AppModule.showDashboard;
   }
 
-  get showComponentBox () {
+  get showComponentBox() {
     return AppModule.showComponentBox;
   }
 
-  get showSetting () {
+  get showSetting() {
     return SettingModule.showSetting;
   }
 
-  get boxIndex () {
+  get boxIndex() {
     return AppModule.boxIndex;
   }
 
   created() {
-    window.addEventListener("message", async event => {
-      const {data} = event;
+    window.addEventListener('message', async event => {
+      const { data } = event;
       if (!data.handler) return;
-      const handlerFirst = data.handler.split('.')[0];
-      if (handlerFirst !== 'client') return;
-      console.log('insert-data', data);
+      const handlerArr = data.handler.split('.');
+      const handlerFirst = handlerArr[0];
+      if (handlerFirst === 'client') {
+        // 触发区块集
+        if (data.handler === 'client.dashboard.show') {
+          AppModule.InsertData(data);
+          AppModule.SetShowDashboard(true);
+        }
 
-      // 触发区块集
-      if (data.handler === 'client.dashboard.show') {
-        AppModule.InsertData(data);
-        AppModule.SetShowDashboard(true);
-      }
-      
-
-      // 展示设置  
-      if (data.handler === 'client.setting.show') {
-        
-        const {box, setting} = data;
-        SettingModule.setSettingData(setting.data);
-        SettingModule.setSettingComponent({
-          compName: 'FormSetting', 
-          forceRefresh: this.formIndex !== box.index ? true : false
-        });
-        this.formIndex = box.index;
-      }
-
-      // 触发组件集
-      if (data.handler === 'client.component.show') {
-        AppModule.InsertData(data);
-        AppModule.SetShowComponent(true);
-      }
-
-      // 插入组件label
-      if (data.handler === 'client.component.insertLabel') {
-        const params = {
-          boxIndex: this.boxIndex,
-          data: {
-            ...data.data.params,
-            handler: 'addLabel'
+        // 展示设置
+        if (data.handler === 'client.setting.show') {
+          const { box, setting } = data;
+          SettingModule.setSettingData(setting.data);
+          const handler = setting.data.handler;
+          if (handler === 'form') {
+            SettingModule.setSettingComponent({
+              compName: 'FormSetting',
+              forceRefresh: this.formIndex !== box.index ? true : false
+            });
+          } else if (handler === 'table') {
+            SettingModule.setSettingComponent({
+              compName: 'TableSetting',
+              forceRefresh: this.formIndex !== box.index ? true : false
+            });
           }
-        };
+          this.formIndex = box.index;
+        }
 
-        const result = await socket.emit('generator.scene.setting', params);
-        
-      
-        // await socket.emit('client.component.insertLabel', params);
-        console.log(data)
+        // 触发组件集
+        if (data.handler === 'client.component.show') {
+          const { type } = data.data;
+          AppModule.InsertData(data);
+          AppModule.SetComponentIs(type);
+          AppModule.SetShowComponent(true);
+        }
+
+        // 插入组件label
+        if (data.handler === 'client.component.insertLabel') {
+          const params = {
+            boxIndex: this.boxIndex,
+            data: {
+              ...data.data.params,
+              handler: 'addLabel'
+            }
+          };
+
+          const result = await socket.emit('generator.scene.setting', params);
+        }
+
+        if (data.handler === 'client.component.insertFormComp') {
+          AppModule.InsertData(data);
+          console.log('*******1********', data);
+        }
+
+        if (data.handler === 'client.component.insertTableComp') {
+          AppModule.InsertPosition(data);
+        }
+
+        if (data.boxIndex !== undefined) {
+          AppModule.SetDoxIndex(data.boxIndex);
+        }
       }
+
       
-      if (data.boxIndex !== undefined) {
-        AppModule.SetDoxIndex(data.boxIndex);
-      }
-      
-    
     });
 
     // block 进度
-    socket.on('generator.scene.block.status', (data) => {
+    socket.on('generator.scene.block.status', data => {
       Loading.close();
     });
-    
+
     this.settingData = {};
   }
 
-  mounted () {
+  mounted() {
     const viewContent: any = this.$refs.viewContent;
-    viewContent.addEventListener('click', (e) => {
+    viewContent.addEventListener('click', e => {
       e.stopPropagation();
     });
   }
 
-  private async selectedHandler(data) {
-    console.log(data);
-  }
-
+  private async selectedHandler(data) {}
 }
 </script>
 
 <style lang="scss">
-  html, body{
-    height: 100%;
-  }
-  body{
-    padding: 10px;
-    box-sizing: border-box;
-  }
-  #app{
-    height: 100%;
-  }
-  
-  .el-aside {
-    background-color: #fafaff;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px 0px;
-  }
-  .el-header{
-    border-bottom: 1px solid #eaeefb;
-  }
-  
-  #app .el-main {
-    color: #333;
-    text-align: center;
-    padding-top: 0;
-  }
-  .container{
-    height: 100%;
-  }
-  .main{
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  .editor-box{
-    border-top: 1px solid #eee;
-    flex: 1;
-  }
-  .dashboard-box{
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    width: 60vw;
-    transform: translate(-50%, -50%);
-  }
-  .view-content{
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-</style>  
+html,
+body {
+  height: 100%;
+}
+body {
+  padding: 10px;
+  box-sizing: border-box;
+  background: #fff;
+}
+#app {
+  height: 100%;
+}
+
+.el-aside {
+  background-color: #fafaff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px 0px;
+}
+.el-header {
+  border-bottom: 1px solid #eaeefb;
+}
+
+#app .el-main {
+  color: #333;
+  text-align: center;
+  padding-top: 0;
+}
+.container {
+  height: 100%;
+}
+.main {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.editor-box {
+  border-top: 1px solid #eee;
+  flex: 1;
+}
+.dashboard-box {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 60vw;
+  transform: translate(-50%, -50%);
+}
+.view-content {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.ali-icon {
+  width: 1.125em;
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+</style>

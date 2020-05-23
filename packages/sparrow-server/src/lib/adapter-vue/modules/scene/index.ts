@@ -6,6 +6,9 @@ import * as cheerio from 'cheerio';
 import * as prettier from 'prettier';
 import * as upperCamelCase from 'uppercamelcase';
 import VueGenerator from '../generator';
+import VueParse from '../generator/VueParse';
+const uuid = require('@lukeed/uuid');
+import Config from '../../config';
 
 import Box from '../box'
 const cwd = process.cwd();
@@ -22,13 +25,29 @@ export default class Scene {
   $: any;
   boxInstance: any;
   VueGenerator: any;
+  sceneVueParse: any = null;
+  params: any = {
+    previewViewStatus: 0
+  };
+  tree: any;
 
   private blockMap = new Map();
 
-  constructor () {
-    this.boxInstance = new Box;
+  constructor (params: any = {}) {
+    this.boxInstance = new Box();
     this.VueGenerator = new VueGenerator();
     this.init();
+    const {boxs, name} = params;
+    if (name) {
+      const fileStr = fsExtra.readFileSync(path.join(Config.templatePath,'scene', name,'index.vue'), 'utf8');
+      this.sceneVueParse = new VueParse(uuid().split('-')[0], fileStr);
+    }
+    if (boxs && boxs.length) {
+      boxs.forEach(item => {
+        this.initBox(item);
+      });
+      this.renderPage();
+    }
   }
 
   private async init () {
@@ -47,25 +66,26 @@ export default class Scene {
     this.renderPage();
   }
 
+  public initBox (data: any) {
+    const curData = data.data;
+    const { boxIndex } = curData;
+    if (this.boxs[boxIndex] === undefined) {
+      this.boxs.push(this.boxInstance.createBox(curData));
+    } else {
+      this.boxs[boxIndex] = this.boxInstance.createBox(curData);
+    }
+  }
+
   public addBox (data: any) {
     const curData = data.data;
     const { boxIndex } = curData;
     if (this.boxs[boxIndex] === undefined) {
       this.boxs.push(this.boxInstance.createBox(curData));
     } else {
-      this.boxs[boxIndex] = this.boxInstance.createBox(data);
+      this.boxs[boxIndex] = this.boxInstance.createBox(curData);
     }
     this.renderPage();
   }
-  /**
-   * 
-   * @param data 
-   * {
-      handler: 'generator.scene.bottomBox',
-      data: { boxIndex: 0 },
-      uniqueId: 'message_5'
-    }
-   */
 
   public bottomBox (params: any) {
     const { data } = params;
@@ -118,8 +138,8 @@ export default class Scene {
 
   public async setting (params: any) {
     const {boxIndex, data} = params;
-    if (boxIndex >= 0) {
-      this.boxs[boxIndex].setting(data);
+    if (boxIndex >= 0 && this.boxs[boxIndex].setting) {
+      await this.boxs[boxIndex].setting(data);
       return {
         status: 0
       }
@@ -136,23 +156,143 @@ export default class Scene {
     }
   }
 
+  public getBoxChildConfig (params) {
+    const {boxIndex} = params;
+    if (this.boxs[boxIndex].getBoxChildConfig) {
+      return this.boxs[boxIndex].getBoxChildConfig(params);
+    }
+  }
+
+  public getParams () {
+    return this.params;
+  }
+
+  public getSceneTree (node) {
+    this.tree = {
+      label: 'page',
+      children: []
+    };
+
+    this.boxs.forEach(item => {
+      this.tree.children.push(this.getTree(item));
+    });
+
+    return this.tree;
+  }
+
+  private getTree (node) {
+    if (!node) return null;
+    const tree = {
+      label: '',
+      id: '',
+      children: []
+    };
+    if (node.name) {
+      tree.label = node.name;
+    }
+    if (node.uuid) {
+      tree.id = node.uuid
+    }
+
+    if (node.components) {
+      if (Array.isArray(node.components)) {
+        node.components.forEach(node => {
+          tree.children.push(this.getTree(node));
+        })
+      } else {
+        Object
+          .keys(node.components)
+          .forEach((key, index) => {
+            tree.children.push(this.getTree({
+              name: 'column',
+              id: key,
+              components: node.components[key]
+            }));
+          });
+      }
+    } else {
+      this.getTree(null);
+    }
+
+    return tree;
+  }
+
+  private deleteNode (node, id, flag = 0) {
+    if (!node || !node.uuid) {
+      return;
+    }
+    flag = 0;
+    if (node.components) {
+
+      if (Array.isArray(node.components)) {
+        node.components.forEach((item, index) => {
+          if (item.uuid === id) {
+            index = index;
+            node.components.splice(index, 1);
+            flag = 1;      
+          }
+          if (flag === 0) {
+            this.deleteNode(item, id, flag);
+          } 
+        });
+      } else {
+        let index = null;
+        Object
+          .keys(node.components)
+          .forEach(key => {
+            node.components[key] && node.components[key].forEach((item, index) => {
+              if (item.uuid === id) {
+                index = index
+                flag = 1;
+                node.components[key].splice(index, 1);
+              }
+              if (flag === 0) {
+                this.deleteNode(item, id, flag);
+              } 
+            });
+          });
+      }
+    } else {
+      this.deleteNode(null, '');
+    }
+  };
+  
+  public deleteComponent (params: {id: string}) {
+    const {id} = params;
+    this.deleteNode({
+      uuid: 'page',
+      components: this.boxs
+    }, id);
+    this.renderPage();
+  }
+
   public async renderPage (renderType: number = 0) {
+    this.params.previewViewStatus = renderType;
     this.$('.home').empty();
     this.scriptData = this.VueGenerator.initScript();
-
-    this.boxs.map(async (item, index) => {
-      if (renderType === 0) {
-        const blockListStr = blockList(index, item.getBoxFragment(index).html());
-        this.$('.home').append(blockListStr);
-      } else {
-        const blockListStr = blockList(index, item.template);
-        this.$('.home').append(blockListStr);
-      }
+    let methods = [];
+    this.boxs.map((item, index) => {
+      item.setPreview && item.setPreview(renderType);
+      const blockListStr = blockList(index, item.getBoxFragment(index, renderType).html());
+      this.$('.home').append(blockListStr);
 
       if (item.insertComponents && item.insertComponents.length) {
         this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));
       }
+
+      if (item.type === 'inline' && item.components) {
+        item.components.forEach(comp => {
+          methods = methods.concat(comp.vueParse.methods || []);
+        })
+      }
+
     });
+    if (this.sceneVueParse) {
+      // appendMethods
+      this.sceneVueParse.methods && this.VueGenerator.appendMethods(this.sceneVueParse.methods);
+      this.sceneVueParse.data && this.VueGenerator.appendData(this.sceneVueParse.data);
+      this.VueGenerator.appendMethods(methods);
+    }
     if (renderType === 0) {
       this.$('.home').append(initBlock(this.boxs.length));
     }

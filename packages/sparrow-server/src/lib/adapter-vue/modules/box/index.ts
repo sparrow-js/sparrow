@@ -1,7 +1,10 @@
 
-import LayoutBox from './layout';
+// import LayoutBox from './layout';
 import Block from './block';
 import Form from './form';
+import Table from './table';
+import Inline from './Inline';
+import CustomInline from './CustomInline';
 
 export default class Box {
   public createBox (data: any) {
@@ -11,11 +14,21 @@ export default class Box {
       case 'block':
         curBox = new Block(data);
         break;
-      case 'layout':
-        curBox = new LayoutBox(data);
-        break;
+      // case 'layout':
+      //   curBox = new LayoutBox(data);
+      //   break;
       case 'form':
         curBox = new Form(data);
+        break;
+      case 'table':
+          curBox = new Table(data);
+        break;
+      case 'inline':
+          curBox = new Inline(data);
+        break;
+      case 'customInline':
+          curBox = new CustomInline(data);
+        break;
       default:
         break;
     }

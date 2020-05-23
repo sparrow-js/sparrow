@@ -1,0 +1,94 @@
+import Base from '../Base';
+import * as fsExtra from 'fs-extra';
+import VueParse from '../../generator/VueParse';
+import * as path from 'path';
+import Config from '../../../config';
+
+export default class Cascader extends Base {
+  name: string = 'Cascader';
+  vueParse: any;
+  params: any;
+
+  constructor (attrs: any, componentIndex: number, params: any) {
+    super(attrs, componentIndex);
+    this.labelValue = '级联选择器';
+    this.params = params;
+    this.init();
+    this.config = {
+      // 组件自定义配置
+      _custom: {
+        required: false,
+        regList: [],
+      },
+      // 组件标签属性
+      _attr: {
+        placeholder: '请输入',
+        'v-model': attrs['v-model'] || ''
+      },
+      // 插槽属性
+      _slot: {
+        data: this.vueParse.getFormatData()
+      }
+    };
+    this.setHandler();
+  }
+
+  private init () {
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/Cascader', 'comp.vue'), 'utf8');
+    this.vueParse = new VueParse(this.uuid, fileStr);
+  }
+
+  public fragment () {
+    return `
+      <el-form-item label=" ">
+        <label-box 
+          label="${this.labelValue}" 
+          indexcomp="${this.componentIndex}" 
+          uuid="${this.uuid}">
+        </label-box>
+        <el-cascader
+          ${this._attrStr}
+          :options="cascaderOptions${this.uuid}"
+          :props="{ expandTrigger: 'hover' }"
+          @change="handleChange${this.uuid}"></el-cascader>
+      </el-form-item>
+    `;
+  }
+
+  protected setHandler () {
+    const {config} = this;
+    this.setAttrsToStr();
+
+    if (config._custom) {
+      const formItem = [];
+      const rules = [];
+
+      const required = `{ required: true, message: '必填', trigger: 'change' }`;
+      if (config._custom.required === true) {
+        rules.push(required);
+      }
+
+      if (config._custom.regList && config._custom.regList.length > 0) {
+        config._custom.regList.forEach(item => {
+          if (item.rule && item.message) {
+            const customRule = `{ pattern: ${item.rule}, message: '${item.message}', trigger: 'change' }`;
+            rules.push(customRule)
+          }
+        });
+      }
+
+      if (rules.length > 0) {
+        formItem.push(`:rules="[${rules.join(',')}]"`)
+      }
+
+      this._formItemStr = formItem.join(' ');
+    }
+
+    if (config._slot) {
+      const {data} = config._slot;
+      if (data) {
+        this.vueParse.setData(data);
+      }
+    }
+  }
+}

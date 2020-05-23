@@ -1,0 +1,29 @@
+{
+  "name": "sparrow",
+  "version": "0.1.0",
+  "description": "low-code vue GUI  ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sparrow-js/sparrow.git"
+  },
+  "keywords": [
+    "low-code",
+    "vue",
+    "GUI"
+  ],
+  "author": "sparrowwht7@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sparrow-js/sparrow/issues"
+  },
+  "homepage": "https://github.com/sparrow-js/sparrow#readme",
+  "devDependencies": {
+    "vuepress": "^1.4.1"
+  }
+}

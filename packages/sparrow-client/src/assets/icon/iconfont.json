@@ -1,0 +1,51 @@
+{
+  "id": "1788335",
+  "name": "sparrow",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "8081392",
+      "name": "扩大",
+      "font_class": "iconfront-",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "11487973",
+      "name": "add",
+      "font_class": "add",
+      "unicode": "e742",
+      "unicode_decimal": 59202
+    },
+    {
+      "icon_id": "11741024",
+      "name": "delete",
+      "font_class": "delete1",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "2237855",
+      "name": "缩回菜单-01",
+      "font_class": "suohuicaidan-",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "6246309",
+      "name": "组件",
+      "font_class": "zujian",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "10166362",
+      "name": "tree-table",
+      "font_class": "tree-table",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    }
+  ]
+}

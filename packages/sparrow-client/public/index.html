@@ -19,10 +19,16 @@
 		<script type="text/javascript" src="<%= BASE_URL %>JSON-handle/js/jsonH.js"></script>
 		<script type="text/javascript" src="<%= BASE_URL %>JSON-handle/envSetting.js"></script>
 		<script type="text/javascript" src="<%= BASE_URL %>JSON-handle/js/jsonlint.js"></script>
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <!-- <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
+    <script>
+      try {
+        window.socketUrl = "<%= NODE_ENV %>" !== 'development' ? "{{socketUrl}}" : '';
+      } catch (e) {}
+    </script>
     <title>sparrow-ui</title>
   </head>
   <body>
+    <div></div>
     <noscript>
       <strong>We're sorry but sparrow-ui doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>

@@ -1,5 +1,7 @@
 import box from './box';
-import component from './component';
+import {componentConf} from './formConfig';
+import {tableConf} from './tableConfig';
+import {BasicTableConf} from './BasicTable';
 
 export default class Data {
   
@@ -7,7 +9,11 @@ export default class Data {
     return box;
   }
 
-  public getComponentList () {
-    return component;
+  public getCompList () {
+    return {
+      form: componentConf,
+      table: tableConf,
+      BasicTable: BasicTableConf,
+    };
   }
 }

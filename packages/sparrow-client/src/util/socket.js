@@ -2,7 +2,6 @@ import io from 'socket.io-client';
 import loading from './loading';
 import { Notification } from 'element-ui';
 
-
 const socket = io(window.socketUrl || '//127.0.0.1:7001/', {
   reconnectionAttempts: 3,
   transports: ['websocket']
