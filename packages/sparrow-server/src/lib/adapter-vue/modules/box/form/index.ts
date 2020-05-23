@@ -138,27 +138,14 @@ export default class Form extends Base implements IBaseBox{
     
     let currentComp = this.findComponent(boxData.params ? boxData.params.uuid : '', this.components);
     if (currentComp) {
-      console.log('*******8*****');
+      if (currentComp.name === 'ArrayListBox') {
+        compParams['v-model'] = `item.${compParams['v-model']}`
+      }
       currentComp.components.push(new dynamicObj(compParams, componentIndex, params))
     } else {
-      console.log('*******9*****');
       this.components.push(new dynamicObj(compParams, componentIndex, params))
     }
   }
-
-  // private findBox (uuid, components) {
-  //   if (!uuid) {
-  //     return components;
-  //   }
-  //   let currentComp = null;
-  //   components.forEach(item => {
-  //     if (item.type === 'box' && item.uuid === uuid) {
-  //       currentComp = item.components;
-  //     }
-  //   });
-
-  //   return currentComp;
-  // }
 
   private findComponent (uuid, components) {
     let tempComp = null;
@@ -252,28 +239,33 @@ export default class Form extends Base implements IBaseBox{
     }
 
     
-    this.renderBoxRecursion(this.components, '');
+    this.renderBoxRecursion(this.components, 0);
   }
 
-  public renderBoxRecursion (components: any, flag: string) {
+  public renderBoxRecursion (components: any, flag: number) {
     if (Array.isArray(components)) {
       components.forEach((component, index) => {
-        if (flag === '') {
+        if (flag === 0) {
           if (this.type === 0) {
-            const componentBox = component.type === 'box' 
+            const componentBox = 
+              component.type === 'box' 
               ? component.getFragment(this.type).html() 
               : `<component-box indexcomp="${index}" uuid="${component.uuid}">
-              ${component.getFragment(this.type).html()}
-            </component-box>`;
+                  ${component.getFragment(this.type).html()}
+                </component-box>`;
+
             this.$blockTemplate('el-form').append(
               componentBox
             );
           } else {
             this.$blockTemplate('el-form').append(component.getFragment(this.type).html());
           }
+          if (component.type === 'box') {
+            this.renderBoxRecursion(component.components, 1);
+          }
         }
       
-        if (component.vueParse && component.vueParse.methods) {
+        if (component.vueParse) {
           component.vueParse.methods && this.VueGenerator.appendMethods(component.vueParse.methods);
           component.vueParse.data && this.VueGenerator.appendData(component.vueParse.data);
         }

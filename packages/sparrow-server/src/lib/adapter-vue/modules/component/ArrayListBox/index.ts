@@ -9,10 +9,15 @@ export default class ArrayListBox{
   type: string  = 'box';
   config: any = {};
   _attrStr: string = '';
-  constructor () {
+  constructor (attrs: any) {
+    console.log('********123123******');
+
     this.uuid = uuid().split('-')[0];
     this.config = {
-      _attr: {},
+      _attr: {
+        ':list': attrs['v-model'],
+        ':default': 'var data = {}'
+      },
     };
   }
   
@@ -26,7 +31,7 @@ export default class ArrayListBox{
 
     let CardBox = `
       <div style="margin-top: 20px;">
-        <array-list-box>
+        <array-list-box ${this._attrStr}>
           <template v-slot:item="{ item }">
             ${LogicBox}
           </template>
@@ -43,8 +48,9 @@ export default class ArrayListBox{
 
   }
 
-  public setConfig () {
-
+  public setConfig (config: any) {
+    this.config = config;
+    this.setAttrsToStr();
   };
 
   public setAttrsToStr () {
@@ -52,7 +58,15 @@ export default class ArrayListBox{
     if (config._attr) {
       const formField = [];
       Object.keys(config._attr).forEach(key => {
-        formField.push(`${key}="${config._attr[key]}"`);
+        if (key === ':default') {
+          const defaultValue = /\{[\s\S]*\}/g.exec(config._attr[key]);
+          if (defaultValue) {
+            formField.push(`${key}="${defaultValue}"`);
+          }
+        } else {
+          formField.push(`${key}="${config._attr[key]}"`);
+        }
+        
       });
       this._attrStr = formField.join(' ');
     }
@@ -62,15 +76,6 @@ export default class ArrayListBox{
     this.renderFragment();
     this.renderBox(type);
     return this.$fragment;
-  }
-
-  public addComponent (data: any) {
-    const { key, name, params } = data;
-    const dynamicObj = require(`../../component/${key}`).default;
-    const componentIndex = this.components.length;
-    this.components.push(new dynamicObj({
-      'v-model': name,
-    }, componentIndex, params));
   }
 
   private renderBox (type) {

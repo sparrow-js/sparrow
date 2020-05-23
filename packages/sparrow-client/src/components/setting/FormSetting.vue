@@ -12,6 +12,32 @@
               >
                 <el-input v-model="config._attr['v-model']" :disabled="true"></el-input>
               </el-form-item>
+  
+
+              <el-form-item 
+                v-if="config._attr[':list']!==undefined"
+                label=":list"
+              >
+                <el-input v-model="config._attr[':list']" :disabled="true"></el-input>
+              </el-form-item>
+
+
+              <el-tabs
+                v-if="config._attr[':default']!==undefined"
+                v-model="activeItemCode" @tab-click="handleCodeItemClick">
+                <el-tab-pane label="code" name="code">
+                  <div class="codemirror-operate">
+                    <i class="iconfont icon-iconfront-" @click="expansionHandler('form')"></i>
+                  </div>
+                  <codemirror
+                    ref="codemirror"
+                    v-model="config._attr[':default']"
+                  ></codemirror>
+                </el-tab-pane>
+                <el-tab-pane label="json" name="json">
+                  <json-handler :json-data="jsonItemData"></json-handler>
+                </el-tab-pane>
+              </el-tabs>
 
    
               <el-form-item 
@@ -149,8 +175,10 @@ export default class extends Vue {
   private tabActiveName = 'first';
 
   private jsonData = '"{}"';
+  private jsonItemData = '"{}"';
 
   private activeNameCode = 'code';
+  private activeItemCode = 'code';
 
   private tempCode = '';
   private showCodeDraw = false;
@@ -224,6 +252,16 @@ export default class extends Vue {
       this.jsonData = JSON.stringify(
         eval(
           `function getData () {${this.setting.dataCode}; return data;} getData()`
+        )
+      );
+    }
+  }
+
+  private handleCodeItemClick() {
+    if (this.activeItemCode === 'json') {
+      this.jsonItemData = JSON.stringify(
+        eval(
+          `function getData () {${this.config._attr[':default']}; return data;} getData()`
         )
       );
     }
