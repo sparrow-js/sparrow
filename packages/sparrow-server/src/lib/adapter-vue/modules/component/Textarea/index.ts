@@ -30,6 +30,7 @@ export default class Textarea extends Base {
         <label-box 
           label="${this.labelValue}" 
           :index="${this.componentIndex}"
+          uuid="${this.uuid}"
         ></label-box>
         <el-input
           ${this._attrStr}

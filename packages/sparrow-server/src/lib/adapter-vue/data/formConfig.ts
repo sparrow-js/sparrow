@@ -245,5 +245,29 @@ export const componentConf = [
       }
     ]
   },
-
+  {
+    label: '容器',
+    children: [
+      {
+        label: '联动容器',
+        key: 'LogicBox',
+        type: 'box'
+      },
+      {
+        label: '自增容器',
+        key: 'ArrayListBox',
+        type: 'box'
+      },
+      {
+        label: '卡片容器',
+        key: 'CardBox',
+        type: 'box'
+      },
+      {
+        label: 'tabs容器',
+        key: 'TabsBox',
+        type: 'box'
+      }
+    ]
+  }
 ];

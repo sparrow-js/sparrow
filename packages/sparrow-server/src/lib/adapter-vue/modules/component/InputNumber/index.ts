@@ -30,6 +30,7 @@ export default class InputNumber extends Base{
         <label-box 
           label="${this.labelValue}"
           indexcomp="${this.componentIndex}"
+          uuid="${this.uuid}"
         ></label-box>
         <el-input-number ${this._attrStr} :min="1" :max="10"></el-input-number>
       </el-form-item>

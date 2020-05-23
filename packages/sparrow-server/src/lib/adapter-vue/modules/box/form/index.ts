@@ -49,6 +49,8 @@ export default class Form extends Base implements IBaseBox{
     inline: false
   }
 
+  currentComp: any = null;
+
   constructor (data: any) {
     super();
     const { boxIndex, params } = data;
@@ -129,10 +131,62 @@ export default class Form extends Base implements IBaseBox{
     const { key, boxData, name, params } = data;
     const dynamicObj = require(`../../component/${key}`).default;
     const componentIndex = this.components.length;
-    this.components.push(new dynamicObj({
-      'v-model': name,
-    }, componentIndex, params));
+    const compParams = {};
+    if (name) {
+      compParams['v-model'] = name;
+    }
+    
+    let currentComp = this.findComponent(boxData.params ? boxData.params.uuid : '', this.components);
+    if (currentComp) {
+      console.log('*******8*****');
+      currentComp.components.push(new dynamicObj(compParams, componentIndex, params))
+    } else {
+      console.log('*******9*****');
+      this.components.push(new dynamicObj(compParams, componentIndex, params))
+    }
   }
+
+  // private findBox (uuid, components) {
+  //   if (!uuid) {
+  //     return components;
+  //   }
+  //   let currentComp = null;
+  //   components.forEach(item => {
+  //     if (item.type === 'box' && item.uuid === uuid) {
+  //       currentComp = item.components;
+  //     }
+  //   });
+
+  //   return currentComp;
+  // }
+
+  private findComponent (uuid, components) {
+    let tempComp = null;
+
+    const fn = function (uuid, components) {
+      if (tempComp === null) {
+        if (Array.isArray(components)) {
+          components.forEach(item => {
+            if (item.uuid === uuid) {
+              tempComp = item;
+            }
+  
+            if (item.components && tempComp === null) {
+              fn(uuid, item.components)
+            }
+          });
+        } else {
+          if(components.uuid === uuid) {
+            tempComp = components;
+          }
+        }
+      }
+    }
+
+    fn(uuid, components);
+    return tempComp;
+  }
+
 
   public resetRender () {
     this.renderBox();
@@ -148,23 +202,19 @@ export default class Form extends Base implements IBaseBox{
       this.VueGenerator.appendData(dataCode);
     } else if (handler === 'formInline') {
       this.iFormAttrs[data.key] = data.value;
-      // this.renderBox();
     } else if (handler === 'addLabel') {
       this.addlabel(data);
-      // this.renderBox();
     } else {
       if (this[handler]) {
         this[handler](data);
-        // this.renderBox();
       }
     }
-    // this.render();
   }
 
   private settingConfig (data) {
     const {uuid, config} = data;
-    const current = this.components.find(item => item.uuid === uuid);
-    current.setConfig(config);
+    const current = this.findComponent(uuid, this.components);
+    current && current.setConfig(config);
   }
 
   private setActiveIndex (data) {
@@ -172,7 +222,8 @@ export default class Form extends Base implements IBaseBox{
   }
 
   private addlabel (params: any) {
-    this.components[params.index].setLabel(params.value);
+    const currentComp = this.findComponent(params.uuid, this.components);
+    currentComp && currentComp.setLabel(params.value);
   }
   
   public getSetting () {
@@ -186,8 +237,12 @@ export default class Form extends Base implements IBaseBox{
     boxIndex: number
   }) {
     const {uuid} = params;
-    const current = this.components.find(item => item.uuid === uuid);
-    return current.getConfig();
+    const current = this.findComponent(uuid, this.components);
+    if (current &&current.getConfig) {
+      return current.getConfig();
+    } else {
+      return {};
+    } 
   }
 
   public renderBox () {
@@ -196,27 +251,35 @@ export default class Form extends Base implements IBaseBox{
       this.$blockTemplate('el-form').attr(key, this.iFormAttrs[key]);
     }
 
-    this.components.forEach((component, index) => {
-      let active = 'false';
-      if (this.activeIndex === index) {
-        active = 'true';
-      }
-      if (this.type === 0) {
-        this.$blockTemplate('el-form').append(
-          `<component-box :is-active="${active}" indexcomp="${index}" uuid="${component.uuid}">
-            ${component.getFragment(this.type).html()}
-          </component-box>`
-        );
-      } else {
-        this.$blockTemplate('el-form').append(component.getFragment(this.type).html());
-      }
+    
+    this.renderBoxRecursion(this.components, '');
+  }
 
-      if (component.vueParse && component.vueParse.methods) {
-        component.vueParse.methods && this.VueGenerator.appendMethods(component.vueParse.methods);
-        component.vueParse.data && this.VueGenerator.appendData(component.vueParse.data);
-      }
-    });
-
+  public renderBoxRecursion (components: any, flag: string) {
+    if (Array.isArray(components)) {
+      components.forEach((component, index) => {
+        if (flag === '') {
+          if (this.type === 0) {
+            const componentBox = component.type === 'box' 
+              ? component.getFragment(this.type).html() 
+              : `<component-box indexcomp="${index}" uuid="${component.uuid}">
+              ${component.getFragment(this.type).html()}
+            </component-box>`;
+            this.$blockTemplate('el-form').append(
+              componentBox
+            );
+          } else {
+            this.$blockTemplate('el-form').append(component.getFragment(this.type).html());
+          }
+        }
+      
+        if (component.vueParse && component.vueParse.methods) {
+          component.vueParse.methods && this.VueGenerator.appendMethods(component.vueParse.methods);
+          component.vueParse.data && this.VueGenerator.appendData(component.vueParse.data);
+        }
+      });
+    }
+   
   }
 
   public render () {

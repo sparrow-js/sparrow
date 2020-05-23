@@ -55,7 +55,11 @@ export default class DateTimePicker extends Base {
         label=" "
         ${this._formItemStr}
       >
-        <label-box label="${this.labelValue}" :indexcomp="${this.componentIndex}"></label-box>
+        <label-box 
+          label="${this.labelValue}" 
+          :indexcomp="${this.componentIndex}"
+          uuid="${this.uuid}"
+        ></label-box>
         ${this.ele}
       </el-form-item>
     `;

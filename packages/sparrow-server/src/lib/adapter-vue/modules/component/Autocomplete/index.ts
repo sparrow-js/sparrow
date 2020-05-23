@@ -41,6 +41,7 @@ export default class Autocomplete extends Base{
       >
         <label-box 
           label="${this.labelValue}"
+          uuid="${this.uuid}"
           indexcomp="${this.componentIndex}"
         ></label-box>
         <el-autocomplete

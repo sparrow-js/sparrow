@@ -55,7 +55,11 @@ export default class Select extends Base {
       <el-form-item label=" "
         ${this._formItemStr}
       >
-        <label-box label="${this.labelValue}" indexcomp="${this.componentIndex}"></label-box>
+        <label-box 
+          label="${this.labelValue}" 
+          indexcomp="${this.componentIndex}"
+          uuid="${this.uuid}"
+        ></label-box>
         <el-select 
           ${this.status} 
           ${this._attrStr}>

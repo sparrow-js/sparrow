@@ -41,7 +41,11 @@ export default class Cascader extends Base {
   public fragment () {
     return `
       <el-form-item label=" ">
-        <label-box label="${this.labelValue}" indexcomp="${this.componentIndex}"></label-box>
+        <label-box 
+          label="${this.labelValue}" 
+          indexcomp="${this.componentIndex}" 
+          uuid="${this.uuid}">
+        </label-box>
         <el-cascader
           ${this._attrStr}
           :options="cascaderOptions${this.uuid}"

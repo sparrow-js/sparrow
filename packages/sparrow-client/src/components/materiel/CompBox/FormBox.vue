@@ -85,11 +85,20 @@ export default class CompBox extends Vue {
     this.isActiveComp = comp;
     const { clientY } = event;
     this.compDialogPosition = clientY + 'px';
-    this.dialogVisible = true;
+    if (comp.type === 'box') {
+      if (comp.key === 'ArrayListBox') {
+        this.dialogVisible = true;
+      } else {
+        this.addComponent(1);
+      }
+    } else {
+      this.dialogVisible = true;
+    }
+    
   }
 
-  private async addComponent() {
-    if (!this.form.name) {
+  private async addComponent(type = 0) {
+    if (!this.form.name && type === 0) {
       this.$message.error('变量名必填');
       return;
     }

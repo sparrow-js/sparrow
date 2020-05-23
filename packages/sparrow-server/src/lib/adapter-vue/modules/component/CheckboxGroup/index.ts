@@ -49,7 +49,11 @@ export default class CheckboxGroup extends Base{
       <el-form-item label=" "
         ${this._formItemStr}
       >
-        <label-box label="${this.labelValue}" indexcomp="${this.componentIndex}"></label-box>
+        <label-box 
+          label="${this.labelValue}" 
+          indexcomp="${this.componentIndex}" 
+          uuid="${this.uuid}"
+        ></label-box>
         <el-checkbox-group
           ${this._attrStr}
         >

@@ -30,6 +30,7 @@ export default class Rate extends Base{
         <label-box 
           label="${this.labelValue}" 
           indexcomp="${this.componentIndex}"
+          uuid="${this.uuid}"
         ></label-box>
         <el-rate ${this._attrStr}></el-rate>
       </el-form-item>

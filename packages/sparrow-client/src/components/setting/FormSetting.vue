@@ -4,7 +4,7 @@
       <el-tabs v-model="tabActiveName" @tab-click="handleClick">
         <el-tab-pane label="组件" name="first">
 
-          <el-scrollbar v-if="config && config._custom " class="right-scrollbar">
+          <el-scrollbar v-if="config" class="right-scrollbar">
             <el-form size="small" label-width="90px">
               <el-form-item 
                 v-if="config._attr['v-model']!==undefined"
@@ -20,8 +20,17 @@
               >
                 <el-input v-model="config._attr.placeholder" placeholder="请输入内容"></el-input>
               </el-form-item>
-              <el-divider content-position="left">校验</el-divider>
-              <div>
+
+              <el-form-item 
+                v-if="config._attr['v-if']!==undefined"
+                label="v-if"
+              >
+                <el-input v-model="config._attr['v-if']" placeholder="请输入内容"></el-input>
+              </el-form-item>
+
+
+              <div v-if="config._custom">
+                <el-divider content-position="left">校验</el-divider>
                 <el-form-item v-if="config._custom.required!==undefined" label="必填">
                   <el-switch v-model="config._custom.required"></el-switch>
                 </el-form-item>

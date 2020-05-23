@@ -30,6 +30,7 @@ export default class Slider extends Base{
         <label-box 
           label="${this.labelValue}"
           indexcomp="${this.componentIndex}"
+          uuid="${this.uuid}"
         ></label-box>
         <el-slider
           ${this._attrStr}

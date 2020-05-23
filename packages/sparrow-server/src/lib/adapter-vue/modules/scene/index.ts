@@ -229,7 +229,7 @@ export default class Scene {
           if (item.uuid === id) {
             index = index;
             node.components.splice(index, 1);
-            flag = 1;            
+            flag = 1;      
           }
           if (flag === 0) {
             this.deleteNode(item, id, flag);

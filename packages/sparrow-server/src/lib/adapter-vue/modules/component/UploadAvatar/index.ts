@@ -36,7 +36,11 @@ export default class UploadAvatar extends Base{
   public fragment () {
     return `
       <el-form-item label=" ">
-        <label-box label="${this.labelValue}" indexcomp="${this.componentIndex}"></label-box>
+        <label-box 
+          label="${this.labelValue}" 
+          indexcomp="${this.componentIndex}"
+          uuid="${this.uuid}"
+        ></label-box>
        
         <el-upload
           class="avatar-uploader"
