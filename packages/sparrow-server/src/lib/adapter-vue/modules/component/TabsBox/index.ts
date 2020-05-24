@@ -1,5 +1,6 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
+import BasicBox from '../BasicBox';
 
 export default class TabsBox{
   public uuid = '';
@@ -9,30 +10,85 @@ export default class TabsBox{
   type: string  = 'box';
   config: any = {};
   _attrStr: string = '';
+
   constructor () {
     this.uuid = uuid().split('-')[0];
     this.config = {
-      _attr: {},
+      _attr: {
+        ':active-name': ''
+      },
+      _slot: {
+        data: `
+        [
+          {
+            label: '用户管理',
+            value: 'first'
+          },
+          {
+            label: '配置管理',
+            value: 'second'
+          },
+          {
+            label: '角色管理',
+            value: 'third'
+          },
+          {
+            label: '定时任务补偿',
+            value: 'fourth'
+          },
+        ]
+        `
+      } 
     };
+
+    const tabsData = this.getTabsData();
+
+    if (tabsData && Array.isArray(tabsData)) {
+      tabsData.forEach(tabItem => {
+        const curBasicBox = new BasicBox('TabsItem', tabItem.value);
+        this.components.push(curBasicBox);
+      });
+    }
+  }
+
+
+  private getTabsData () {
+    try {
+      return new Function(`var data = ${this.config._slot.data}; return data;`)();
+    } catch (e) {
+      return null;
+    }
   }
   
 
-  public renderFragment () {
+  public renderFragment (type: number) {
+    let tabsItemArr = [];
+
+    if (this.components && Array.isArray(this.components)) {
+      this.components.forEach(tabItem => {
+        tabsItemArr.push(`
+          <div slot="tab_${tabItem.unique}">
+            ${tabItem.getFragment().html()}
+          </div>
+        `);
+      });
+    }
 
     let LogicBox = `
       <logic-box  
-        :uuid="'${this.uuid}'" 
+        :uuid="'${this.uuid}'"
       ></logic-box>
     `;
 
     let TabsBox = `
       <div style="margin-top: 20px;">
-        <el-tabs type="border-card">
-          <el-tab-pane label="用户管理">${LogicBox}</el-tab-pane>
-          <el-tab-pane label="配置管理">${LogicBox}</el-tab-pane>
-          <el-tab-pane label="角色管理">${LogicBox}</el-tab-pane>
-          <el-tab-pane label="定时任务补偿">${LogicBox}</el-tab-pane>
-        </el-tabs>
+        <tabs-box 
+          :list="${this.config._slot.data}"
+          :active-name="'first'"
+        >
+          ${tabsItemArr.join('')}
+        </tabs-box>
+        
       </div>
     `;
 
@@ -43,8 +99,9 @@ export default class TabsBox{
 
   }
 
-  public setConfig () {
-
+  public setConfig (config: any) {
+    this.config = config;
+    this.setAttrsToStr();
   };
 
   public setAttrsToStr () {
@@ -59,18 +116,9 @@ export default class TabsBox{
   }
   
   public getFragment (type: number) {
-    this.renderFragment();
-    this.renderBox(type);
+    this.renderFragment(type);
+    // this.renderBox(type);
     return this.$fragment;
-  }
-
-  public addComponent (data: any) {
-    const { key, name, params } = data;
-    const dynamicObj = require(`../../component/${key}`).default;
-    const componentIndex = this.components.length;
-    this.components.push(new dynamicObj({
-      'v-model': name,
-    }, componentIndex, params));
   }
 
   private renderBox (type) {

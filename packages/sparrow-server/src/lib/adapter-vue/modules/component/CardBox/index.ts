@@ -49,6 +49,16 @@ export default class CardBox{
 
   };
 
+  public addComponent (data: any) {
+    const { key, name, params } = data;
+    const dynamicObj = require(`../../component/${key}`).default;
+    const componentIndex = this.components.length;
+    this.components.push(new dynamicObj({
+      'v-model': name,
+    }, componentIndex, params));
+  }
+
+
   public setAttrsToStr () {
     const {config} = this;
     if (config._attr) {
@@ -64,15 +74,6 @@ export default class CardBox{
     this.renderFragment();
     this.renderBox(type);
     return this.$fragment;
-  }
-
-  public addComponent (data: any) {
-    const { key, name, params } = data;
-    const dynamicObj = require(`../../component/${key}`).default;
-    const componentIndex = this.components.length;
-    this.components.push(new dynamicObj({
-      'v-model': name,
-    }, componentIndex, params));
   }
 
   private renderBox (type) {

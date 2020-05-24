@@ -1,21 +1,18 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
 
-export default class LogicBox{
+export default class BasicBox{
   public uuid = '';
   $fragment = null;
   public components = [];
-  name: string = 'LogicBox';
+  name: string = 'BasicBox';
   type: string  = 'box';
-  config: any = {};
   _attrStr: string = '';
-  constructor () {
+  unique: string | number = '';
+  constructor (name: string, unique: string | number) {
+    this.name = name;
+    this.unique = unique;
     this.uuid = uuid().split('-')[0];
-    this.config = {
-      _attr: {
-        'v-if': '',
-      },
-    };
   }
   
 
@@ -24,7 +21,6 @@ export default class LogicBox{
       <div style="margin-top: 20px;">
         <logic-box  
           :uuid="'${this.uuid}'" 
-          ${this._attrStr}
         ></logic-box>
       </div>
     `;
@@ -36,21 +32,9 @@ export default class LogicBox{
 
   }
 
-  public setConfig (config: any) {
-    this.config = config;
-    this.setAttrsToStr();
-  };
+  public setConfig (config: any) {};
 
-  public setAttrsToStr () {
-    const {config} = this;
-    if (config._attr) {
-      const formField = [];
-      Object.keys(config._attr).forEach(key => {
-        formField.push(`${key}="${config._attr[key]}"`);
-      });
-      this._attrStr = formField.join(' ');
-    }
-  }
+
   
   public getFragment (type: number) {
     this.renderFragment();
@@ -73,7 +57,7 @@ export default class LogicBox{
   }
 
   public getConfig() {
-    return this.config
+    return null
   }
 
 }

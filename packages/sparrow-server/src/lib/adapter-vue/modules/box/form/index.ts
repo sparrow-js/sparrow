@@ -141,8 +141,11 @@ export default class Form extends Base implements IBaseBox{
       if (currentComp.name === 'ArrayListBox') {
         compParams['v-model'] = `item.${compParams['v-model']}`
       }
+      console.log('*****6666*****');
       currentComp.components.push(new dynamicObj(compParams, componentIndex, params))
     } else {
+      console.log('****555******');
+
       this.components.push(new dynamicObj(compParams, componentIndex, params))
     }
   }
@@ -187,6 +190,7 @@ export default class Form extends Base implements IBaseBox{
       this.settingData.dataCode = data.code;
       const dataCode = this.VueGenerator.getDataStrAst(this.settingData.dataCode);
       this.VueGenerator.appendData(dataCode);
+      this.render();
     } else if (handler === 'formInline') {
       this.iFormAttrs[data.key] = data.value;
     } else if (handler === 'addLabel') {

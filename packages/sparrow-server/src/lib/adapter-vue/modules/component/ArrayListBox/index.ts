@@ -10,7 +10,6 @@ export default class ArrayListBox{
   config: any = {};
   _attrStr: string = '';
   constructor (attrs: any) {
-    console.log('********123123******');
 
     this.uuid = uuid().split('-')[0];
     this.config = {
