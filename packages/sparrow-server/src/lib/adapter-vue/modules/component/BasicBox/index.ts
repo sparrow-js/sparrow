@@ -19,7 +19,8 @@ export default class BasicBox{
     let LogicBox = `
       <div style="margin-top: 20px;">
         <logic-box  
-          :uuid="'${this.uuid}'" 
+          :uuid="'${this.uuid}'"
+          :label="'${this.name}'"
         ></logic-box>
       </div>
     `;

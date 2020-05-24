@@ -24,6 +24,7 @@ export default class LogicBox{
       <div style="margin-bottom: 20px;">
         <logic-box  
           :uuid="'${this.uuid}'" 
+          :label="'logic'"
           ${this._attrStr}
         ></logic-box>
       </div>

@@ -45,7 +45,7 @@ export default class TabsBox{
 
     if (tabsData && Array.isArray(tabsData)) {
       tabsData.forEach(tabItem => {
-        const curBasicBox = new BasicBox('TabsItem', tabItem.value);
+        const curBasicBox = new BasicBox('tab_item', tabItem.value);
         this.components.push(curBasicBox);
       });
     }
@@ -85,12 +85,6 @@ export default class TabsBox{
       });
     }
 
-    let LogicBox = `
-      <logic-box  
-        :uuid="'${this.uuid}'"
-      ></logic-box>
-    `;
-
     let TabsBox = `
       <div style="margin-bottom: 20px;">
         <tabs-box 
@@ -100,7 +94,6 @@ export default class TabsBox{
         >
           ${tabsItemArr.join('')}
         </tabs-box>
-        
       </div>
     `;
 

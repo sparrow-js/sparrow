@@ -25,6 +25,7 @@ export default class ArrayListBox{
     let LogicBox = `
       <logic-box  
         :uuid="'${this.uuid}'" 
+        :label="'array_list'"
       ></logic-box>
     `;
 

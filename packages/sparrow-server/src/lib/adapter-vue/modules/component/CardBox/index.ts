@@ -21,6 +21,7 @@ export default class CardBox{
     let LogicBox = `
       <logic-box  
         :uuid="'${this.uuid}'" 
+        :label="'card'"
       ></logic-box>
     `;
 
