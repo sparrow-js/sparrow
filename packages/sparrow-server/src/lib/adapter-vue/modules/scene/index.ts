@@ -149,6 +149,41 @@ export default class Scene {
     }
   }
 
+  public async settingConfig (params: any) {
+    const {data} = params;
+    const currentComp = this.findComponent(data.uuid, this.boxs);
+    if (currentComp) {
+      currentComp.settingConfig(data);
+    }
+  }
+
+  private findComponent (uuid, components) {
+    let tempComp = null;
+
+    const fn = function (uuid, components) {
+      if (tempComp === null) {
+        if (Array.isArray(components)) {
+          components.forEach(item => {
+            if (item.uuid === uuid) {
+              tempComp = item;
+            }
+  
+            if (item.components && tempComp === null) {
+              fn(uuid, item.components)
+            }
+          });
+        } else {
+          if(components.uuid === uuid) {
+            tempComp = components;
+          }
+        }
+      }
+    }
+
+    fn(uuid, components);
+    return tempComp;
+  }
+
   public getSetting (params) {
     const { boxIndex } = params;
     if (boxIndex >= 0) {

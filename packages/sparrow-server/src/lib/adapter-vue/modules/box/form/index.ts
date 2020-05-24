@@ -141,10 +141,8 @@ export default class Form extends Base implements IBaseBox{
       if (currentComp.name === 'ArrayListBox') {
         compParams['v-model'] = `item.${compParams['v-model']}`
       }
-      console.log('*****6666*****');
       currentComp.components.push(new dynamicObj(compParams, componentIndex, params))
     } else {
-      console.log('****555******');
 
       this.components.push(new dynamicObj(compParams, componentIndex, params))
     }
@@ -200,6 +198,7 @@ export default class Form extends Base implements IBaseBox{
         this[handler](data);
       }
     }
+    // this.resetRender();
   }
 
   private settingConfig (data) {

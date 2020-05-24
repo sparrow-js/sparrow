@@ -15,7 +15,7 @@ export default class TabsBox{
     this.uuid = uuid().split('-')[0];
     this.config = {
       _attr: {
-        ':active-name': ''
+        ':active-name': 'first'
       },
       _slot: {
         data: `
@@ -51,6 +51,18 @@ export default class TabsBox{
     }
   }
 
+  public settingConfig (data: any) {
+   
+    const {handler, params} = data;
+    try {
+      if (handler === 'setActive') {
+        this.config._attr[':active-name'] = params.activeName;
+      }
+    } catch (e) {}
+   
+  }
+
+
 
   private getTabsData () {
     try {
@@ -63,7 +75,6 @@ export default class TabsBox{
 
   public renderFragment (type: number) {
     let tabsItemArr = [];
-
     if (this.components && Array.isArray(this.components)) {
       this.components.forEach(tabItem => {
         tabsItemArr.push(`
@@ -84,7 +95,8 @@ export default class TabsBox{
       <div style="margin-top: 20px;">
         <tabs-box 
           :list="${this.config._slot.data}"
-          :active-name="'first'"
+          :uuid="'${this.uuid}'"
+          :active-name="'${this.config._attr[':active-name']}'"
         >
           ${tabsItemArr.join('')}
         </tabs-box>

@@ -14,7 +14,6 @@ export default class Base {
   observeComp () {
     this.components = observable(this.components);
     observe(() => {
-      console.log('****785634*****')
       if (Array.isArray(this.components)) {
         this.resetRender();
       } else {

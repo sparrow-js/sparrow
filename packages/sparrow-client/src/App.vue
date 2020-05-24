@@ -132,7 +132,6 @@ export default class App extends Vue {
 
         if (data.handler === 'client.component.insertFormComp') {
           AppModule.InsertData(data);
-          console.log('*******1********', data);
         }
 
         if (data.handler === 'client.component.insertTableComp') {
