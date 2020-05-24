@@ -2,7 +2,7 @@
   <div class="home">
     <div class="block-list">
       <box :index="0" :label="'表单'" class="block-item">
-        <BasicForm />
+        <Basic />
       </box>
     </div>
 
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import BasicForm from "./components/BasicForm";
+import Basic from "./components/Basic";
 import generatorMixin from "../mixins/generatorMixin";
 export default {
   components: {
-    BasicForm
+    Basic
   },
   mixins: [generatorMixin]
 };

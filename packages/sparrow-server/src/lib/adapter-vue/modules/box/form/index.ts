@@ -263,9 +263,9 @@ export default class Form extends Base implements IBaseBox{
           } else {
             this.$blockTemplate('el-form').append(component.getFragment(this.type).html());
           }
-          if (component.type === 'box') {
-            this.renderBoxRecursion(component.components, 1);
-          }
+        }
+        if (component.type === 'box') {
+          this.renderBoxRecursion(component.components, 1);
         }
       
         if (component.vueParse) {
