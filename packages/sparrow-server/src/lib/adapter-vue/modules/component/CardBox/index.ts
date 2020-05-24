@@ -9,6 +9,7 @@ export default class CardBox{
   type: string  = 'box';
   config: any = {};
   _attrStr: string = '';
+  labelValue: string = '卡片名称';
   constructor () {
     this.uuid = uuid().split('-')[0];
     this.config = {
@@ -29,7 +30,11 @@ export default class CardBox{
       <div style="margin-bottom: 20px;">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span>卡片名称</span>
+            <label-box 
+              label="${this.labelValue}"
+              uuid="${this.uuid}"
+              :clear-class="true"
+            ></label-box>
           </div>
           <div>
             ${LogicBox}
@@ -44,6 +49,10 @@ export default class CardBox{
       decodeEntities: false,
     });
 
+  }
+
+  setLabel (labelValue: string) {
+    this.labelValue = labelValue;
   }
 
   public setConfig () {
