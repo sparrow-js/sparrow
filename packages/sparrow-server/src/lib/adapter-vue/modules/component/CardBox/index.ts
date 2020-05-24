@@ -25,7 +25,7 @@ export default class CardBox{
     `;
 
     let CardBox = `
-      <div style="margin-top: 20px;">
+      <div style="margin-bottom: 20px;">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span>卡片名称</span>

@@ -29,7 +29,7 @@ export default class ArrayListBox{
     `;
 
     let CardBox = `
-      <div style="margin-top: 20px;">
+      <div style="margin-bottom: 20px;">
         <array-list-box ${this._attrStr}>
           <template v-slot:item="{ item }">
             ${LogicBox}

@@ -7,7 +7,6 @@ export default class BasicBox{
   public components = [];
   name: string = 'BasicBox';
   type: string  = 'box';
-  _attrStr: string = '';
   unique: string | number = '';
   constructor (name: string, unique: string | number) {
     this.name = name;

@@ -273,7 +273,7 @@ export default class extends Vue {
   }
 
   private async syncConfig () {
-    if (!this.uuid) return;
+    if (!this.uuid || !this.config) return;
      const result = await socket.emit('generator.scene.setting', {
       boxIndex: AppModule.boxIndex,
       data: {

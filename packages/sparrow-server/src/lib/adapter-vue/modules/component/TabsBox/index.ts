@@ -79,7 +79,7 @@ export default class TabsBox{
       this.components.forEach(tabItem => {
         tabsItemArr.push(`
           <div slot="tab_${tabItem.unique}">
-            ${tabItem.getFragment().html()}
+            ${tabItem.getFragment(type).html()}
           </div>
         `);
       });
@@ -92,7 +92,7 @@ export default class TabsBox{
     `;
 
     let TabsBox = `
-      <div style="margin-top: 20px;">
+      <div style="margin-bottom: 20px;">
         <tabs-box 
           :list="${this.config._slot.data}"
           :uuid="'${this.uuid}'"

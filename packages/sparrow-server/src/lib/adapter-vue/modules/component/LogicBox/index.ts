@@ -21,7 +21,7 @@ export default class LogicBox{
 
   public renderFragment () {
     let LogicBox = `
-      <div style="margin-top: 20px;">
+      <div style="margin-bottom: 20px;">
         <logic-box  
           :uuid="'${this.uuid}'" 
           ${this._attrStr}
