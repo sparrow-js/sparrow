@@ -64,9 +64,9 @@ export default class TabsBox{
 
 
 
-  private getTabsData () {
+  private getTabsData (config: any = null) {
     try {
-      return new Function(`var data = ${this.config._slot.data}; return data;`)();
+      return new Function(`var data = ${config ? config : this.config._slot.data}; return data;`)();
     } catch (e) {
       return null;
     }
@@ -101,13 +101,40 @@ export default class TabsBox{
       xmlMode: true,
       decodeEntities: false,
     });
-
   }
 
   public setConfig (config: any) {
+    const hasNewComp = this.resetComponents(config);
+    if (hasNewComp === false) return;
     this.config = config;
     this.setAttrsToStr();
   };
+
+  private resetComponents (config: any) {
+    const newData = this.getTabsData(config._slot.data);
+    const oldData = this.getTabsData();
+    if (newData && Array.isArray(newData)) {
+      oldData.forEach(item => {
+        const index = newData.findIndex(cur => cur.value === item.value);
+        if (index < 0) {
+         const compIndex = this.components.findIndex(cur => cur.unique === item.value);
+         this.components.splice(compIndex, 1);
+        }
+      });
+
+      newData.forEach(item => {
+        const index = oldData.findIndex(cur => cur.value === item.value);
+        if (index < 0) {
+          const curBasicBox = new BasicBox('tab_item', item.value);
+          this.components.push(curBasicBox);
+        }
+      });
+      return true;
+    } else {
+      return false;
+    }
+
+  } 
 
   public setAttrsToStr () {
     const {config} = this;

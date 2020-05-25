@@ -29,19 +29,17 @@ export default class ArrayListBox{
       ></logic-box>
     `;
 
-    let CardBox = `
+    let arrayListBox = `
       <div style="margin-bottom: 20px;">
         <array-list-box ${this._attrStr}>
           <template v-slot:item="{ item }">
             ${LogicBox}
           </template>
-          
         </array-list-box>
       </div>
-
     `;
 
-    this.$fragment = cheerio.load(CardBox, {
+    this.$fragment = cheerio.load(arrayListBox, {
       xmlMode: true,
       decodeEntities: false,
     });
