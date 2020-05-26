@@ -240,8 +240,6 @@ export default class Form extends Base implements IBaseBox{
     for (let key in this.iFormAttrs) {
       this.$blockTemplate('el-form').attr(key, this.iFormAttrs[key]);
     }
-
-    
     this.renderBoxRecursion(this.components, 0);
   }
 
@@ -266,6 +264,12 @@ export default class Form extends Base implements IBaseBox{
         }
         if (component.type === 'box') {
           this.renderBoxRecursion(component.components, 1);
+        }
+
+        if (component.insertComponents) {
+          component.insertComponents.forEach(item => {
+            this.VueGenerator.appendComponent(item, true);
+          })
         }
       
         if (component.vueParse) {

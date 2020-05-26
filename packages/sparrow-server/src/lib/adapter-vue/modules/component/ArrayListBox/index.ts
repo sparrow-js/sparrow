@@ -1,5 +1,9 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
+import * as fsExtra from 'fs-extra';
+import Config from '../../../config';
+import * as path from 'path';
+
 
 export default class ArrayListBox{
   public uuid = '';
@@ -9,6 +13,8 @@ export default class ArrayListBox{
   type: string  = 'box';
   config: any = {};
   _attrStr: string = '';
+  insertComponents: any = ['ArrayList'];
+
   constructor (attrs: any) {
 
     this.uuid = uuid().split('-')[0];
@@ -18,6 +24,9 @@ export default class ArrayListBox{
         ':default': 'var data = {}'
       },
     };
+    const componentsDir = Config.componentsDir; 
+    const compDir = path.join(componentsDir, 'ArrayList')
+    fsExtra.copySync(path.join(Config.serverBusinessPath, 'ArrayList'), compDir)
   }
   
 
@@ -31,11 +40,11 @@ export default class ArrayListBox{
 
     let arrayListBox = `
       <div style="margin-bottom: 20px;">
-        <array-list-box ${this._attrStr}>
+        <array-list ${this._attrStr}>
           <template v-slot:item="{ item }">
             ${LogicBox}
           </template>
-        </array-list-box>
+        </array-list>
       </div>
     `;
 
