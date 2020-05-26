@@ -32,7 +32,7 @@
         </span>
       </el-tooltip>
     </div>
-    <div class="toolbar__item success" @click="showPopover = true">
+    <div class="toolbar__item success" @click="showPopover = !showPopover">
       <el-tooltip class="item" effect="dark" content="场景" placement="top">
         <span>
           <font-awesome-icon :icon="['fas', 'file']" />
