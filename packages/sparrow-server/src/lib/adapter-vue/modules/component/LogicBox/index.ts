@@ -19,9 +19,9 @@ export default class LogicBox{
   }
   
 
-  public renderFragment () {
+  public renderFragment (type: number) {
     let LogicBox = `
-      <div style="margin-bottom: 20px;">
+      <div class="logic-box" style="margin-bottom: 20px;">
         <logic-box  
           :uuid="'${this.uuid}'" 
           :label="'logic'"
@@ -29,6 +29,13 @@ export default class LogicBox{
         ></logic-box>
       </div>
     `;
+
+    if (type === 1) {
+      LogicBox = `
+        <div class="logic-box" style="margin-bottom: 20px;">
+        </div>
+      `
+    }
 
     this.$fragment = cheerio.load(LogicBox, {
       xmlMode: true,
@@ -54,7 +61,7 @@ export default class LogicBox{
   }
   
   public getFragment (type: number) {
-    this.renderFragment();
+    this.renderFragment(type);
     this.renderBox(type);
     return this.$fragment;
   }
@@ -68,7 +75,7 @@ export default class LogicBox{
           </component-box>`
         );
       } else {
-        this.$fragment('logic-box').append(component.getFragment(type).html());
+        this.$fragment('.logic-box').append(component.getFragment(type).html());
       }
     });
   }

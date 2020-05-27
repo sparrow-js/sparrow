@@ -18,7 +18,7 @@ export default class CardBox{
   }
   
 
-  public renderFragment () {
+  public renderFragment (type: number) {
     let LogicBox = `
       <logic-box  
         :uuid="'${this.uuid}'" 
@@ -26,17 +26,28 @@ export default class CardBox{
       ></logic-box>
     `;
 
+    let labelBox = `
+      <label-box 
+        label="${this.labelValue}"
+        uuid="${this.uuid}"
+        :clear-class="true"
+      ></label-box>
+    `
+
+    if (type === 1) {
+      LogicBox = '';
+      labelBox = `
+        <span>${this.labelValue}</span>
+      `
+    }
+
     let CardBox = `
       <div style="margin-bottom: 20px;">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <label-box 
-              label="${this.labelValue}"
-              uuid="${this.uuid}"
-              :clear-class="true"
-            ></label-box>
+            ${labelBox}
           </div>
-          <div>
+          <div class="card-content">
             ${LogicBox}
           </div>
         </el-card>
@@ -81,7 +92,7 @@ export default class CardBox{
   }
   
   public getFragment (type: number) {
-    this.renderFragment();
+    this.renderFragment(type);
     this.renderBox(type);
     return this.$fragment;
   }
@@ -95,7 +106,7 @@ export default class CardBox{
           </component-box>`
         );
       } else {
-        this.$fragment('logic-box').append(component.getFragment(type).html());
+        this.$fragment('.card-content').append(component.getFragment(type).html());
       }
     });
   }
