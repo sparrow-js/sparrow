@@ -30,13 +30,17 @@ export default class ArrayListBox{
   }
   
 
-  public renderFragment () {
+  public renderFragment (type: number) {
     let LogicBox = `
       <logic-box  
         :uuid="'${this.uuid}'" 
         :label="'array_list'"
       ></logic-box>
     `;
+
+    if (type === 1) {
+      LogicBox = '';
+    }
 
     let arrayListBox = `
       <div style="margin-bottom: 20px;">
@@ -80,7 +84,7 @@ export default class ArrayListBox{
   }
   
   public getFragment (type: number) {
-    this.renderFragment();
+    this.renderFragment(type);
     this.renderBox(type);
     return this.$fragment;
   }
@@ -94,7 +98,7 @@ export default class ArrayListBox{
           </component-box>`
         );
       } else {
-        this.$fragment('logic-box').append(component.getFragment(type).html());
+        this.$fragment('template').append(component.getFragment(type).html());
       }
     });
   }
