@@ -122,8 +122,8 @@ export default class Form extends Base implements IBaseBox{
   
       this.$blockTemplate('.root').append(fragment.eform());
     }
-    this.renderBox();
-    this.render();
+    // this.renderBox();
+    // this.render();
 
   }
 

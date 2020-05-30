@@ -328,8 +328,9 @@ export default class Scene {
       this.sceneVueParse.data && this.VueGenerator.appendData(this.sceneVueParse.data);
       this.VueGenerator.appendMethods(methods);
     }
+    this.$('.home').append(initBlock(this.boxs.length));
+
     if (renderType === 0) {
-      this.$('.home').append(initBlock(this.boxs.length));
     }
     this.writeTemplate();
   }
