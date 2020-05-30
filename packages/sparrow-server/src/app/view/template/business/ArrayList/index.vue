@@ -6,7 +6,7 @@
         <span>{{index + 1}}</span>
         <div contenteditable="true" class="array-item__label"></div>
       </div>
-      <div>
+      <div class="array-item__operate">
         <i class="el-icon-delete" @click="deleteItem(index)"></i>
         <i class="el-icon-arrow-down" @click="moveItem('down', index)"></i>
         <i class="el-icon-arrow-up" @click="moveItem('up', index)"></i>
@@ -90,6 +90,11 @@ export default {
   }
   &__label{
     width: 200px;
+  }
+  &__operate{
+    i{
+      margin-left: 10px;
+    }
   }
 }
 </style>
