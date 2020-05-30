@@ -180,7 +180,6 @@ export default class Form extends Base implements IBaseBox{
 
 
   public resetRender () {
-    console.log('*****18******')
     this.renderBox();
     this.render();
   }
