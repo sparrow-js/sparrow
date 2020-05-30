@@ -122,9 +122,12 @@ export default class Form extends Base implements IBaseBox{
   
       this.$blockTemplate('.root').append(fragment.eform());
     }
-    // this.renderBox();
-    // this.render();
 
+    this.resetRender()
+
+    setTimeout(() => {
+      this.observeComp();
+    }, 500)
   }
 
   public addComponent (data: any) {
@@ -177,6 +180,7 @@ export default class Form extends Base implements IBaseBox{
 
 
   public resetRender () {
+    console.log('*****18******')
     this.renderBox();
     this.render();
   }
