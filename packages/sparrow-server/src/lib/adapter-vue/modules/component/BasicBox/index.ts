@@ -15,7 +15,7 @@ export default class BasicBox{
   }
   
 
-  public renderFragment () {
+  public renderFragment (type: number) {
     let LogicBox = `
       <div style="margin-top: 20px;">
         <logic-box  
@@ -24,6 +24,13 @@ export default class BasicBox{
         ></logic-box>
       </div>
     `;
+    if (type === 1) {
+      LogicBox = `
+      <div style="margin-top: 20px;">
+        <div class="comp-box"></div>
+      </div>
+      `
+    }
 
     this.$fragment = cheerio.load(LogicBox, {
       xmlMode: true,
@@ -37,7 +44,7 @@ export default class BasicBox{
 
   
   public getFragment (type: number) {
-    this.renderFragment();
+    this.renderFragment(type);
     this.renderBox(type);
     return this.$fragment;
   }
@@ -51,7 +58,7 @@ export default class BasicBox{
           </component-box>`
         );
       } else {
-        this.$fragment('logic-box').append(component.getFragment(type).html());
+        this.$fragment('.comp-box').append(component.getFragment(type).html());
       }
     });
   }

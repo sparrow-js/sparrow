@@ -1,6 +1,10 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
 import BasicBox from '../BasicBox';
+import VueParse from '../../generator/VueParse';
+import * as fsExtra from 'fs-extra';
+import * as path from 'path';
+import Config from '../../../config';
 
 export default class TabsBox{
   public uuid = '';
@@ -10,6 +14,7 @@ export default class TabsBox{
   type: string  = 'box';
   config: any = {};
   _attrStr: string = '';
+  vueParse: any;
 
   constructor () {
     this.uuid = uuid().split('-')[0];
@@ -49,6 +54,9 @@ export default class TabsBox{
         this.components.push(curBasicBox);
       });
     }
+
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/TabsBox', 'comp.vue'), 'utf8');
+    this.vueParse = new VueParse(this.uuid, fileStr); 
   }
 
   public settingConfig (data: any) {
@@ -74,28 +82,61 @@ export default class TabsBox{
   
 
   public renderFragment (type: number) {
-    let tabsItemArr = [];
-    if (this.components && Array.isArray(this.components)) {
-      this.components.forEach(tabItem => {
-        tabsItemArr.push(`
-          <div slot="tab_${tabItem.unique}">
-            ${tabItem.getFragment(type).html()}
-          </div>
-        `);
-      });
-    }
+    let TabsBox = '';
+    if (type === 0) {
+      let tabsItemArr = [];
+      if (this.components && Array.isArray(this.components)) {
+        this.components.forEach(tabItem => {
+          tabsItemArr.push(`
+            <div slot="tab_${tabItem.unique}">
+              ${tabItem.getFragment(type).html()}
+            </div>
+          `);
+        });
+      }
+  
+      TabsBox = `
+        <div style="margin-bottom: 20px;">
+          <tabs-box 
+            :list="${this.config._slot.data}"
+            :uuid="'${this.uuid}'"
+            :active-name="'${this.config._attr[':active-name']}'"
+          >
+            ${tabsItemArr.join('')}
+          </tabs-box>
+        </div>
+      `;
+    } else {
+      let tabsItemArr = [];
+      if (this.components && Array.isArray(this.components)) {
+       const tabsData = this.getTabsData();
+        this.components.forEach(tabItem => {
+          const current = tabsData.find(item => item.value === tabItem.unique);
+          if (current) {
+            tabsItemArr.push(`
+            <el-tab-pane
+              label="${current.label}" 
+              name="${tabItem.unique}"
+            >
+              <div>
+                ${tabItem.getFragment(type).html()}
+              </div>
+            </el-tab-pane>
+  
+            `);
+          }
+        });
+      }
 
-    let TabsBox = `
-      <div style="margin-bottom: 20px;">
-        <tabs-box 
-          :list="${this.config._slot.data}"
-          :uuid="'${this.uuid}'"
-          :active-name="'${this.config._attr[':active-name']}'"
-        >
-          ${tabsItemArr.join('')}
-        </tabs-box>
-      </div>
-    `;
+      TabsBox = `
+        <div style="margin-bottom: 20px;">
+          <el-tabs v-model="activeName" @tab-click="handleClick">
+            ${tabsItemArr.join('')}
+          </el-tabs>
+        </div>
+      ` 
+    }
+    
 
     this.$fragment = cheerio.load(TabsBox, {
       xmlMode: true,
@@ -153,19 +194,19 @@ export default class TabsBox{
     return this.$fragment;
   }
 
-  private renderBox (type) {
-    this.components.forEach((component, index) => {
-      if (type === 0) {
-        this.$fragment('logic-box').append(
-          `<component-box indexcomp="${index}" uuid="${component.uuid}">
-            ${component.getFragment(type).html()}
-          </component-box>`
-        );
-      } else {
-        this.$fragment('logic-box').append(component.getFragment(type).html());
-      }
-    });
-  }
+  // private renderBox (type) {
+  //   this.components.forEach((component, index) => {
+  //     if (type === 0) {
+  //       this.$fragment('logic-box').append(
+  //         `<component-box indexcomp="${index}" uuid="${component.uuid}">
+  //           ${component.getFragment(type).html()}
+  //         </component-box>`
+  //       );
+  //     } else {
+  //       this.$fragment('logic-box').append(component.getFragment(type).html());
+  //     }
+  //   });
+  // }
 
   public getConfig() {
     return this.config

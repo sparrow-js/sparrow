@@ -10,26 +10,7 @@
 export default {
   data () {
     return {
-      activeName: 'second',
-
-      tabsOptions_unique: [
-        {
-          value: 'first',
-          label: '用户管理'
-        },
-        {
-          value: 'second',
-          label: '配置管理'
-        },
-        {
-          value: 'third',
-          label: '角色管理'
-        },
-        {
-          value: 'fourth',
-          label: '定时任务补偿'
-        }
-      ]
+      activeName: 'first',
     }
   },
   methods: {
