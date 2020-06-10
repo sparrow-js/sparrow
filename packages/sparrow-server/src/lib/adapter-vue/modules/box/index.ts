@@ -1,11 +1,11 @@
 
 // import LayoutBox from './layout';
 import Block from './block';
-import Form from './form';
-import Table from './table';
+import Form from './Form';
+import Table from './Table';
 import Inline from './Inline';
 import CustomInline from './CustomInline';
-
+import PageHeader from './PageHeader'
 export default class Box {
   public createBox (data: any) {
     let curBox: any;
@@ -28,6 +28,9 @@ export default class Box {
         break;
       case 'customInline':
           curBox = new CustomInline(data);
+        break;
+      case 'pageHeader': 
+        curBox = new PageHeader(data);
         break;
       default:
         break;

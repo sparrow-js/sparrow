@@ -103,7 +103,8 @@ export default class CompBox extends Vue {
       return;
     }
     const params = {
-      boxIndex: this.insertData.boxIndex,
+      boxIndex: AppModule.boxIndex,
+      boxUuid: AppModule.boxUuid,
       data: {
         boxData: this.insertData.data,
         key: this.isActiveComp.key,

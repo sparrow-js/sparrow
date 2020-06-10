@@ -1,6 +1,6 @@
 {
   "name": "sparrow-view",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "scripts": {
     "serve": "vue-cli-service serve --port 9000",
     "build": "vue-cli-service build"
@@ -19,7 +19,7 @@
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-router": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
-    "node-sass": "^4.13.0",
+    "sass": "^1.26.7",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
   },

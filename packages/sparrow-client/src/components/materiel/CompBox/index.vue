@@ -61,13 +61,15 @@ import { AppModule } from '@/store/modules/app';
 import FormBox from './FormBox';
 import TableBox from './TableBox';
 import CustominlineBox from './CustominlineBox';
+import ContainerBox from './ContainerBox';
 import socket from '@/util/socket.js';
 
 @Component({
   components: {
     formBox: FormBox,
     tableBox: TableBox,
-    custominlineBox: CustominlineBox
+    custominlineBox: CustominlineBox,
+    ContainerBox: ContainerBox
   }
 })
 export default class CompBox extends Vue {

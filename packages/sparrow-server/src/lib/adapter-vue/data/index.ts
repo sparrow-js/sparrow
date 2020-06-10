@@ -14,6 +14,7 @@ export default class Data {
       form: componentConf,
       table: tableConf,
       BasicTable: BasicTableConf,
+      Container: box
     };
   }
 }

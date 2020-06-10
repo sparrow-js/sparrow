@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fsExtra from 'fs-extra';
 import generate from '@babel/generator';
-import {initBlock, blockList, paragraph} from '../fragment/scene';
+import {initBlock, blockList} from '../fragment/scene';
 import * as cheerio from 'cheerio';
 import * as prettier from 'prettier';
 import * as upperCamelCase from 'uppercamelcase';
@@ -9,8 +9,8 @@ import VueGenerator from '../generator';
 import VueParse from '../generator/VueParse';
 const uuid = require('@lukeed/uuid');
 import Config from '../../config';
+import Box from '../box/Box';
 
-import Box from '../box'
 const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
 
@@ -34,20 +34,20 @@ export default class Scene {
   private blockMap = new Map();
 
   constructor (params: any = {}) {
-    this.boxInstance = new Box();
     this.VueGenerator = new VueGenerator();
     this.init();
+
     const {boxs, name} = params;
     if (name) {
       const fileStr = fsExtra.readFileSync(path.join(Config.templatePath,'scene', name,'index.vue'), 'utf8');
       this.sceneVueParse = new VueParse(uuid().split('-')[0], fileStr);
     }
-    if (boxs && boxs.length) {
-      boxs.forEach(item => {
-        this.initBox(item);
-      });
-      this.renderPage();
-    }
+    // if (boxs && boxs.length) {
+    //   boxs.forEach(item => {
+    //     this.initBox(item);
+    //   });
+    //   this.renderPage();
+    // }
   }
 
   private async init () {
@@ -62,30 +62,101 @@ export default class Scene {
       decodeEntities: false
     });
     this.scriptData = this.VueGenerator.initScript();
-
+    this.boxs.push(new Box());
     this.renderPage();
   }
 
   public initBox (data: any) {
     const curData = data.data;
     const { boxIndex } = curData;
+    const dynamicObj = require(`../box/${curData.id}`).default;
     if (this.boxs[boxIndex] === undefined) {
-      this.boxs.push(this.boxInstance.createBox(curData));
+      this.boxs.push(new dynamicObj(curData));
     } else {
-      this.boxs[boxIndex] = this.boxInstance.createBox(curData);
+      this.boxs[boxIndex] = new dynamicObj(curData);
     }
   }
 
   public addBox (data: any) {
     const curData = data.data;
-    const { boxIndex } = curData;
-    if (this.boxs[boxIndex] === undefined) {
-      this.boxs.push(this.boxInstance.createBox(curData));
+    const {boxUuid} = data
+    const {boxIndex} = curData;
+    if (boxUuid) {
+
+      const currBox = this.findBox(boxUuid, this.boxs);
+
+      currBox.addBox(curData);
+      const curBoxParent = this.findBoxParent(boxUuid, this.boxs)
+      curBoxParent.push(new Box());
+      this.renderPage();
     } else {
-      this.boxs[boxIndex] = this.boxInstance.createBox(curData);
+      const dynamicObj = require(`../box/${curData.id}`).default;
+
+      if (this.boxs[boxIndex] === undefined) {
+        this.boxs.push(new dynamicObj(curData));
+      } else {
+        this.boxs[boxIndex] = new dynamicObj(curData);
+      }
+      const curBoxParent = this.findBoxParent(boxUuid, this.boxs)
+      curBoxParent.push(new Box());
+      this.renderPage();
     }
-    this.renderPage();
   }
+
+  public findBox (uuid: string, boxs: any) {
+    let tempBox = null;
+
+    const fn = function (uuid, boxs) {
+      if (tempBox === null) {
+        if (Array.isArray(boxs)) {
+          boxs.forEach(item => {
+            if (item.uuid === uuid) {
+              tempBox = item;
+            }
+
+            if (item.name === 'box' && item.components[0] && item.components[0].boxs && tempBox === null) {
+              fn(uuid, item.components[0].boxs)
+            }
+          });
+        } else {
+          if(boxs.uuid === uuid) {
+            tempBox = boxs;
+          }
+        }
+      }
+    }
+
+    fn(uuid, boxs);
+    return tempBox;
+  }
+
+  public findBoxParent (uuid: string, boxs: any) {
+    let tempBox = null;
+
+    const fn = function (uuid, boxs) {
+      if (tempBox === null) {
+        if (Array.isArray(boxs)) {
+          boxs.forEach(item => {
+            if (item.uuid === uuid) {
+              tempBox = boxs;
+            }
+
+            if (item.name === 'box' && item.components[0] && item.components[0].boxs && tempBox === null) {
+              fn(uuid, item.components[0].boxs)
+            }
+          });
+        } else {
+          if(boxs.uuid === uuid) {
+            tempBox = boxs;
+          }
+        }
+      }
+    }
+
+    fn(uuid, boxs);
+    return tempBox;
+  }
+
 
   public bottomBox (params: any) {
     const { data } = params;
@@ -117,18 +188,29 @@ export default class Scene {
 
 
   public addComponent (params) {
-    const {boxIndex, data} = params;
-    this.boxs[boxIndex].addComponent(data);
-    this.renderPage();
+    const {boxIndex, data, boxUuid} = params;
+    const currBox = this.findBox(boxUuid, this.boxs);
+    if (currBox) {
+      currBox.components[0].addComponent(data);
+      this.renderPage();
+    }
     return {
       status: 0
     };
   }
 
   public async addBlock (params, ctx) {
-    const {boxIndex, data} = params;
-    await this.boxs[boxIndex].addBlock(data);
-    this.renderPage();
+    const {boxIndex, data, boxUuid} = params;
+    if (boxUuid) {
+      const currBox = this.findBox(boxUuid, this.boxs);
+      // console.log('*******88****', currBox);
+      await currBox.components[0].addBlock(data);
+      this.renderPage();
+    } else {
+      await this.boxs[boxIndex].addBlock(data);
+      this.renderPage();
+    }
+
     const { socket } = ctx;
     socket.emit('generator.scene.block.status', {status: 0, data: {
       status: 2,
@@ -136,14 +218,18 @@ export default class Scene {
     }});
   }
 
+
   public async setting (params: any) {
-    const {boxIndex, data} = params;
-    if (boxIndex >= 0 && this.boxs[boxIndex].setting) {
-      await this.boxs[boxIndex].setting(data);
+
+    const {boxIndex, data, boxUuid} = params;
+    const curBox = this.findBox(boxUuid, this.boxs);
+    if (curBox && curBox.components[0]) {
+      await curBox.components[0].setting(data);
       return {
         status: 0
       }
     }
+
     return {
       status: 1
     }
@@ -185,16 +271,19 @@ export default class Scene {
   }
 
   public getSetting (params) {
-    const { boxIndex } = params;
-    if (boxIndex >= 0) {
-      return this.boxs[boxIndex].getSetting();
+    const { boxIndex, boxUuid } = params;
+    
+    const curBox = this.findBox(boxUuid, this.boxs);
+    if (curBox && curBox.components[0]) {
+      return curBox.components[0].getSetting()
     }
   }
 
   public getBoxChildConfig (params) {
-    const {boxIndex} = params;
-    if (this.boxs[boxIndex].getBoxChildConfig) {
-      return this.boxs[boxIndex].getBoxChildConfig(params);
+    const {boxIndex, boxUuid} = params;
+    const curBox = this.findBox(boxUuid, this.boxs);
+    if (curBox && curBox.components[0] && curBox.components[0].getBoxChildConfig) {
+      return curBox.components[0].getBoxChildConfig(params);
     }
   }
 
@@ -229,22 +318,32 @@ export default class Scene {
       tree.id = node.uuid
     }
 
-    if (node.components) {
-      if (Array.isArray(node.components)) {
-        node.components.forEach(node => {
+
+    if (node.components || node.boxs) {
+      if (node.components) {
+        if (Array.isArray(node.components)) {
+          node.components.forEach(node => {
+            tree.children.push(this.getTree(node));
+          })
+        } else {
+          Object
+            .keys(node.components)
+            .forEach((key, index) => {
+              tree.children.push(this.getTree({
+                name: 'column',
+                id: key,
+                components: node.components[key]
+              }));
+            });
+        }
+      } 
+      if(node.boxs) {
+        // 容器树
+        node.boxs.forEach(node => {
           tree.children.push(this.getTree(node));
-        })
-      } else {
-        Object
-          .keys(node.components)
-          .forEach((key, index) => {
-            tree.children.push(this.getTree({
-              name: 'column',
-              id: key,
-              components: node.components[key]
-            }));
-          });
+        });
       }
+      
     } else {
       this.getTree(null);
     }
@@ -257,35 +356,50 @@ export default class Scene {
       return;
     }
     flag = 0;
-    if (node.components) {
+    if (node.components || node.boxs) {
 
-      if (Array.isArray(node.components)) {
-        node.components.forEach((item, index) => {
+      if (node.components) {
+
+        if (Array.isArray(node.components)) {
+          node.components.forEach((item, index) => {
+            if (item.uuid === id) {
+              index = index;
+              node.components.splice(index, 1);
+              flag = 1;      
+            }
+            if (flag === 0) {
+              this.deleteNode(item, id, flag);
+            } 
+          });
+        } else {
+          let index = null;
+          Object
+            .keys(node.components)
+            .forEach(key => {
+              node.components[key] && node.components[key].forEach((item, index) => {
+                if (item.uuid === id) {
+                  index = index
+                  flag = 1;
+                  node.components[key].splice(index, 1);
+                }
+                if (flag === 0) {
+                  this.deleteNode(item, id, flag);
+                } 
+              });
+            });
+        }
+        
+      } else {
+        node.boxs.forEach((item, index) => {
           if (item.uuid === id) {
             index = index;
-            node.components.splice(index, 1);
-            flag = 1;      
+            node.boxs.splice(index, 1);
+            flag = 1; 
           }
           if (flag === 0) {
             this.deleteNode(item, id, flag);
           } 
         });
-      } else {
-        let index = null;
-        Object
-          .keys(node.components)
-          .forEach(key => {
-            node.components[key] && node.components[key].forEach((item, index) => {
-              if (item.uuid === id) {
-                index = index
-                flag = 1;
-                node.components[key].splice(index, 1);
-              }
-              if (flag === 0) {
-                this.deleteNode(item, id, flag);
-              } 
-            });
-          });
       }
     } else {
       this.deleteNode(null, '');
@@ -306,29 +420,47 @@ export default class Scene {
     this.$('.home').empty();
     this.scriptData = this.VueGenerator.initScript();
     let methods = [];
-    this.boxs.map((item, index) => {
-      item.setPreview && item.setPreview(renderType);
-      const blockListStr = blockList(index, item.getBoxFragment(index, renderType).html());
-      this.$('.home').append(blockListStr);
+    const fn = (boxs, flag = 0) => {
+      boxs.map((item, index) => {
+        if (flag === 0) {
+          item.setPreview && item.setPreview(renderType);
+          const blockListStr = blockList(index, item.getFragment(index, renderType).html());
+          this.$('.home').append(blockListStr);
+        }
 
-      if (item.insertComponents && item.insertComponents.length) {
-        this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));
-      }
+        item = item.components[0] || {};
+  
+        if (item.insertComponents && item.insertComponents.length) {
+          this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));
+        }
+  
+        if (item.type === 'inline') {
+          if (item.components) {
+            item.components.forEach(comp => {
+              methods = methods.concat(comp.vueParse.methods || []);
+            });
+          }
+          if (item.boxs && item.boxs.length > 0) {
+            fn(item.boxs, 1)
+          }
+        }
+  
+        if (item.vueParse) {
+          item.vueParse.methods && this.VueGenerator.appendMethods(item.vueParse.methods);
+          item.vueParse.data && this.VueGenerator.appendData(item.vueParse.data);
+        }
+  
+      });
+    }
 
-      if (item.type === 'inline' && item.components) {
-        item.components.forEach(comp => {
-          methods = methods.concat(comp.vueParse.methods || []);
-        })
-      }
-
-    });
+    fn(this.boxs);
+    
     if (this.sceneVueParse) {
-      // appendMethods
       this.sceneVueParse.methods && this.VueGenerator.appendMethods(this.sceneVueParse.methods);
       this.sceneVueParse.data && this.VueGenerator.appendData(this.sceneVueParse.data);
       this.VueGenerator.appendMethods(methods);
     }
-    this.$('.home').append(initBlock(this.boxs.length));
+    // this.$('.home').append(initBlock(this.boxs.length));
     this.writeTemplate();
   }
 

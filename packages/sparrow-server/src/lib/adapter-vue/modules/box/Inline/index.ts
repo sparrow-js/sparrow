@@ -27,7 +27,7 @@ export default class Inline  extends Base implements IBaseBox{
     });
   }
 
-  public getBoxFragment(index: number): any {
+  public getFragment(index: number): any {
     return this.$fragment;
   }
 

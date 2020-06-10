@@ -86,7 +86,8 @@ export default class extends Vue {
 
   private async getSetting() {
     const result = await socket.emit('generator.scene.getSetting', {
-      boxIndex: AppModule.boxIndex
+      boxIndex: AppModule.boxIndex,
+      boxUuid: AppModule.boxUuid,
     });
     if (result && result.data) {
 
@@ -100,6 +101,7 @@ export default class extends Vue {
     }
     const result = await socket.emit('generator.scene.setting', {
       boxIndex: AppModule.boxIndex,
+      boxUuid: AppModule.boxUuid,
       data: {
         handler: 'setHeaderData',
         code: this.jsonData
@@ -121,6 +123,7 @@ export default class extends Vue {
     if (this.urlHeader) {
       const result = await socket.emit('generator.scene.setting', {
         boxIndex: AppModule.boxIndex,
+        boxUuid: AppModule.boxUuid,
         data: {
           handler: 'exportData',
           url: this.urlHeader

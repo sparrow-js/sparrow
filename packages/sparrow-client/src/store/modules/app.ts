@@ -11,6 +11,7 @@ export interface IAppState {
   showDashboard: boolean;
   showComponentBox: boolean;
   boxIndex: number;
+  boxUuid: string;
   insertData: {
     boxIndex: number;
     data: any;
@@ -33,6 +34,7 @@ class App extends VuexModule implements IAppState {
   public componentIs = '';
   public insertPosition = {};
   public uuid = '';
+  public boxUuid = '';
 
   @Mutation
   private SHOW_DASHBOARD(showDashboard: boolean) {
@@ -69,6 +71,11 @@ class App extends VuexModule implements IAppState {
     this.uuid = id;
   }
 
+  @Mutation
+  private SET_BOXUUID(id: string) {
+    this.boxUuid = id;
+  }
+
   @Action
   public SetShowDashboard(showDashboard: boolean) {
     this.SHOW_DASHBOARD(showDashboard);
@@ -102,6 +109,11 @@ class App extends VuexModule implements IAppState {
   @Action
   private setUuid (id: string) {
     this.SET_UUID(id);
+  }
+
+  @Action
+  private setBoxUuid (id: string) {
+    this.SET_BOXUUID(id);
   }
 }
 export const AppModule = getModule(App);

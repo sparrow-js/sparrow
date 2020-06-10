@@ -19,6 +19,7 @@ export default {
     return {
       toolbarList: [],
       boxIndex: null,
+      uuid: '',
       isShowToolbar: false
     }
   },
@@ -43,13 +44,19 @@ export default {
     this.getToolbarList();
     Event.on('block-selected', (data) => {
       this.boxIndex = data.index;
+      this.uuid = data.uuid;
     });
 
     // 插入物料处理
     Event.on('insert_handler', (data) => {
       setTimeout(() => {
+        const {params} = data;
+        if (params && params.uuid) {
+          this.uuid = params.uuid;
+        }
         message.emit(data.emit || 'client.dashboard.show', {
           boxIndex: this.boxIndex,
+          uuid: this.uuid,
           data,
         });
       }, 300);
@@ -59,6 +66,7 @@ export default {
       setTimeout(() => {
         message.emit('client.setting.show', {
           boxIndex: this.boxIndex,
+          uuid: this.uuid,
           box: {
             index: this.boxIndex
           },

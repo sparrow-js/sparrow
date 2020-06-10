@@ -1,23 +1,35 @@
 export default {
   list: [
     {
-      id: 'form',
-      value: 'form',
-      name: '表单',
+      id: 'Form',
+      key: 'Form',
+      label: '表单',
       icon: ''
     },
     {
-      id: 'table',
-      value: 'table',
-      name: '表格',
+      id: 'Table',
+      key: 'Table',
+      label: '表格',
       icon: 'table'
     },
     {
-      id: 'block',
-      value: 'block',
-      name: '区块',
+      id: 'Block',
+      key: 'Block',
+      label: '区块',
       icon: 'braille'
     },
+    {
+      id: 'PageHeader',
+      key: 'PageHeader',
+      label: '页头',
+      icon: ''
+    },
+    {
+      id: 'Dialog',
+      key: 'Dialog',
+      label: '弹窗',
+      icon: ''
+    }
     // {
     //   id: 'Alert',
     //   value: 'alert',

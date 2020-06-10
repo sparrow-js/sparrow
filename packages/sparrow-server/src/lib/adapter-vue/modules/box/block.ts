@@ -28,15 +28,14 @@ export default class Block extends Base implements IBaseBox{
   constructor (data: any) {
     super();
     const { boxIndex, params } = data;
-    this.$fragment = cheerio.load(boxFragment.box(boxIndex), {
+    this.$fragment = cheerio.load('<div class="box"></div>', {
       xmlMode: true,
       decodeEntities: false
     });
-    this.$fragment('box').append(boxFragment.block());
+    this.$fragment('.box').append(boxFragment.block());
   }
 
-  public getBoxFragment(index: number): any {
-    this.$fragment('box').attr(':index', index);
+  public getFragment(index: number): any {
     return this.$fragment;
   }
 

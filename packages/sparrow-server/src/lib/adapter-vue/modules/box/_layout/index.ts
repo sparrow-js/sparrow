@@ -40,7 +40,7 @@ export default class Layout extends Base implements IBaseBox{
     this.render();
   } 
 
-  public getBoxFragment(index: number): any {
+  public getFragment(index: number): any {
     this.$fragment('box').attr(':index', index);
     return this.$fragment;
   }

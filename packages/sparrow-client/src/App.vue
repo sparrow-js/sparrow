@@ -77,6 +77,10 @@ export default class App extends Vue {
     return AppModule.boxIndex;
   }
 
+  get boxUuid() {
+    return AppModule.boxUuid;
+  }
+
   created() {
     window.addEventListener('message', async event => {
       const { data } = event;
@@ -112,6 +116,7 @@ export default class App extends Vue {
         // 触发组件集
         if (data.handler === 'client.component.show') {
           const { type } = data.data;
+          AppModule.setBoxUuid(data.uuid);
           AppModule.InsertData(data);
           AppModule.SetComponentIs(type);
           AppModule.SetShowComponent(true);
@@ -121,6 +126,7 @@ export default class App extends Vue {
         if (data.handler === 'client.component.insertLabel') {
           const params = {
             boxIndex: this.boxIndex,
+            boxUuid: this.boxUuid,
             data: {
               ...data.data.params,
               handler: 'addLabel'
@@ -138,9 +144,18 @@ export default class App extends Vue {
           AppModule.InsertPosition(data);
         }
 
+
         if (data.boxIndex !== undefined) {
           AppModule.SetDoxIndex(data.boxIndex);
         }
+
+        if (data.uuid !== undefined) {
+          AppModule.setBoxUuid(data.uuid);
+        }
+
+        
+
+
       }
 
       

@@ -22,6 +22,7 @@ const templateStr =  `
   </template>
 `;
 
+
 export interface IFormSetting{
   dataCode: string;
   inline: boolean;
@@ -58,7 +59,13 @@ export default class Form extends Base implements IBaseBox{
     this.boxIndex = boxIndex;
     this.name = blockName;
     this.insertComponents.push(this.name);
-    this.$fragment = cheerio.load(boxFragment.box(boxIndex, `<${this.name} />`, '表单'), {
+    
+
+    this.$fragment = cheerio.load(` 
+    <div class="box">
+      <${this.name} />
+    </div>
+  `, {
       xmlMode: true,
       decodeEntities: false
     });
@@ -84,7 +91,7 @@ export default class Form extends Base implements IBaseBox{
     this.render();
   }
 
-  public getBoxFragment(index: number, type: number = 0): any {
+  public getFragment(index: number, type: number = 0): any {
     return this.$fragment;
   }
 
@@ -95,10 +102,6 @@ export default class Form extends Base implements IBaseBox{
       this.type = type;
     }
     if (type === 0) {
-      this.$fragment = cheerio.load(boxFragment.box(this.boxIndex, `<${this.name} />`, '表单'), {
-        xmlMode: true,
-        decodeEntities: false
-      });
       this.$blockTemplate = cheerio.load(templateStr, {
         xmlMode: true,
         decodeEntities: false

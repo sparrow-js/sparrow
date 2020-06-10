@@ -70,7 +70,10 @@ export default class Table extends Base implements IBaseBox{
       });
     }
     this.insertComponents.push(this.name);
-    this.$fragment = cheerio.load(boxFragment.box(boxIndex, `<${this.name} />`, '表格'), {
+    this.$fragment = cheerio.load(
+      `<div class="box">
+        <${this.name} />
+      </div>`, {
       xmlMode: true,
       decodeEntities: false
     });
@@ -97,7 +100,7 @@ export default class Table extends Base implements IBaseBox{
   }
   
 
-  public getBoxFragment(index: number): any {
+  public getFragment(index: number): any {
     return this.$fragment;
   }
 
