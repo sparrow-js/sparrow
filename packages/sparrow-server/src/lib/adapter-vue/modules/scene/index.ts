@@ -280,8 +280,9 @@ export default class Scene {
   }
 
   public getBoxChildConfig (params) {
-    const {boxIndex, boxUuid} = params;
+    const {boxUuid} = params;
     const curBox = this.findBox(boxUuid, this.boxs);
+    console.log('***********', curBox);
     if (curBox && curBox.components[0] && curBox.components[0].getBoxChildConfig) {
       return curBox.components[0].getBoxChildConfig(params);
     }

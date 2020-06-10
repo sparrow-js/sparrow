@@ -51,9 +51,9 @@ export default {
     Event.on('insert_handler', (data) => {
       setTimeout(() => {
         const {params} = data;
-        if (params && params.uuid) {
-          this.uuid = params.uuid;
-        }
+        // if (params && params.uuid) {
+        //   this.uuid = params.uuid;
+        // }
         message.emit(data.emit || 'client.dashboard.show', {
           boxIndex: this.boxIndex,
           uuid: this.uuid,

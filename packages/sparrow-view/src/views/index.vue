@@ -2,9 +2,9 @@
   <div class="home">
     <div class="block-list">
       <div class="block-list">
-        <box :uuid="'e9287a7e'" class="block-item">
+        <box :uuid="'2a19d058'" class="block-item">
           <div class="box">
-            <Basic />
+            <BasicForm />
           </div>
         </box>
       </div>
@@ -12,23 +12,31 @@
 
     <div class="block-list">
       <div class="block-list">
-        <box :uuid="'446987f6'" class="block-item">
+        <box :uuid="'d058107e'" class="block-item">
           <div>
             <el-button
               type="primary"
               size="small"
-              @click="dialogVisibleHandler6987f6e8"
+              @click="dialogVisibleHandler7ec6756e"
               >弹窗</el-button
             >
             <div class="comp-box">
               <el-dialog title="收货地址" :visible.sync="dialogVisible">
                 <div class="dialog-home">
                   <div class="block-list">
-                    <box :uuid="'87f6e844'" class="block-item">
+                    <box :uuid="'c6756eb4'" class="block-item">
+                      <div class="box">
+                        <Basic />
+                      </div>
+                    </box>
+                  </div>
+
+                  <div class="block-list">
+                    <box :uuid="'b4834863'" class="block-item">
                       <paragraph
                         :type="'Container'"
                         :emit="'client.component.show'"
-                        :params="{ uuid: '87f6e844' }"
+                        :params="{ uuid: 'b4834863' }"
                       />
                     </box>
                   </div>
@@ -42,11 +50,11 @@
 
     <div class="block-list">
       <div class="block-list">
-        <box :uuid="'f6e84485'" class="block-item">
+        <box :uuid="'756eb483'" class="block-item">
           <paragraph
             :type="'Container'"
             :emit="'client.component.show'"
-            :params="{ uuid: 'f6e84485' }"
+            :params="{ uuid: '756eb483' }"
           />
         </box>
       </div>
@@ -56,6 +64,7 @@
 
 <script>
 import Basic from "./components/Basic";
+import BasicForm from "./components/BasicForm";
 import generatorMixin from "../mixins/generatorMixin";
 export default {
   data() {
@@ -65,11 +74,12 @@ export default {
   },
 
   methods: {
-    dialogVisibleHandler6987f6e8() {
+    dialogVisibleHandler7ec6756e() {
       this.dialogVisible = !this.dialogVisible;
     }
   },
   components: {
+    BasicForm,
     Basic
   },
   mixins: [generatorMixin]

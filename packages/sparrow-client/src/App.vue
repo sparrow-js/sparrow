@@ -102,12 +102,12 @@ export default class App extends Vue {
           if (handler === 'form') {
             SettingModule.setSettingComponent({
               compName: 'FormSetting',
-              forceRefresh: this.formIndex !== box.index ? true : false
+              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
             });
           } else if (handler === 'table') {
             SettingModule.setSettingComponent({
               compName: 'TableSetting',
-              forceRefresh: this.formIndex !== box.index ? true : false
+              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
             });
           }
           this.formIndex = box.index;
@@ -152,9 +152,6 @@ export default class App extends Vue {
         if (data.uuid !== undefined) {
           AppModule.setBoxUuid(data.uuid);
         }
-
-        
-
 
       }
 
