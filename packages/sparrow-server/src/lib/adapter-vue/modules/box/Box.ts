@@ -11,7 +11,7 @@ export default class Box{
     this.uuid = uuid().split('-')[0]; 
   }
   
-  addBox (data: any) {
+  addComponent (data: any) {
     const curData = data;
     const dynamicObj = require(`./${curData.id}`).default;
     this.components.push(new dynamicObj(curData));

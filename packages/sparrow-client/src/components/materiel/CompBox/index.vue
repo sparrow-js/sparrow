@@ -23,28 +23,31 @@
       </div>
     </div>
     <div class="tabs-body" v-show="[0, 1].includes(activeIndex)">
-      <div v-show="activeIndex === 0">
-        <el-tree 
-          :data="tree"
-          :node-key="'id'"
-          :current-node-key="currentNodeKey"
-          :highlight-current="true"
-          default-expand-all 
-          @node-click="handleNodeClick"
-          ref="componentTree"
-        >
+      <div class="tree" v-show="activeIndex === 0">
+        <!-- <el-scrollbar style="height:100%"> -->
+          <el-tree 
+            :data="tree"
+            :node-key="'id'"
+            :current-node-key="currentNodeKey"
+            :highlight-current="true"
+            default-expand-all 
+            @node-click="handleNodeClick"
+            ref="componentTree"
+          >
 
-          <span class="custom-tree-node" slot-scope="{ node, data }">
-            <span>{{ node.label }}</span>
-            <span v-if="selectedNode.id && selectedNode.id === data.id">
-              <i 
-                class="iconfont icon-delete1"
-                @click="deleteComponent(data.id)"
-              ></i>
+            <span class="custom-tree-node" slot-scope="{ node, data }">
+              <span>{{ node.label }}</span>
+              <span v-if="selectedNode.id && selectedNode.id === data.id">
+                <i 
+                  class="iconfont icon-delete1"
+                  @click="deleteComponent(data.id)"
+                ></i>
+              </span>
             </span>
-          </span>
 
-        </el-tree>
+          </el-tree>
+        <!-- </el-scrollbar> -->
+       
       </div>
 
       <div v-show="activeIndex === 1">
@@ -188,5 +191,18 @@ export default class CompBox extends Vue {
 .icon-delete1{
   color: #F56C6C;
   margin-left: 10px;
+}
+
+.tree {  
+  overflow-y: auto;  
+  overflow-x: scroll;  
+  /* width: 80px; */  
+  height: 500px;  
+  background-color: #ffffff;  
+}  
+.el-tree {  
+  min-width: 100%;  
+  font-size: 14px;  
+  display: inline-block !important;  
 }
 </style>

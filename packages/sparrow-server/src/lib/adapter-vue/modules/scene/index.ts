@@ -15,8 +15,7 @@ const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
 
 export default class Scene {
-  boxs: any = [];
-  blocks: any;
+  components: any = [];
   methods: any;
   mixins: any;
   templateFilePath: string;
@@ -30,8 +29,6 @@ export default class Scene {
     previewViewStatus: 0
   };
   tree: any;
-
-  private blockMap = new Map();
 
   constructor (params: any = {}) {
     this.VueGenerator = new VueGenerator();
@@ -62,47 +59,21 @@ export default class Scene {
       decodeEntities: false
     });
     this.scriptData = this.VueGenerator.initScript();
-    this.boxs.push(new Box());
+    this.components.push(new Box());
     this.renderPage();
   }
 
-  public initBox (data: any) {
-    const curData = data.data;
-    const { boxIndex } = curData;
-    const dynamicObj = require(`../box/${curData.id}`).default;
-    if (this.boxs[boxIndex] === undefined) {
-      this.boxs.push(new dynamicObj(curData));
-    } else {
-      this.boxs[boxIndex] = new dynamicObj(curData);
-    }
-  }
-
-  public addBox (data: any) {
-    const curData = data.data;
-    const {boxUuid} = data
-    const {boxIndex} = curData;
-    if (boxUuid) {
-
-      const currBox = this.findBox(boxUuid, this.boxs);
-
-      currBox.addBox(curData);
-      const curBoxParent = this.findBoxParent(boxUuid, this.boxs)
-      curBoxParent.push(new Box());
-      this.renderPage();
-    } else {
-      const dynamicObj = require(`../box/${curData.id}`).default;
-
-      if (this.boxs[boxIndex] === undefined) {
-        this.boxs.push(new dynamicObj(curData));
-      } else {
-        this.boxs[boxIndex] = new dynamicObj(curData);
-      }
-      const curBoxParent = this.findBoxParent(boxUuid, this.boxs)
-      curBoxParent.push(new Box());
-      this.renderPage();
-    }
-  }
-
+  // public initBox (data: any) {
+  //   const curData = data.data;
+  //   const { boxIndex } = curData;
+  //   const dynamicObj = require(`../box/${curData.id}`).default;
+  //   if (this.components[boxIndex] === undefined) {
+  //     this.components.push(new dynamicObj(curData));
+  //   } else {
+  //     this.components[boxIndex] = new dynamicObj(curData);
+  //   }
+  // }
+  
   public findBox (uuid: string, boxs: any) {
     let tempBox = null;
 
@@ -114,8 +85,8 @@ export default class Scene {
               tempBox = item;
             }
 
-            if (item.name === 'box' && item.components[0] && item.components[0].boxs && tempBox === null) {
-              fn(uuid, item.components[0].boxs)
+            if (item.name === 'box' && item.components[0] && item.components[0].components && tempBox === null) {
+              fn(uuid, item.components[0].components)
             }
           });
         } else {
@@ -141,8 +112,8 @@ export default class Scene {
               tempBox = boxs;
             }
 
-            if (item.name === 'box' && item.components[0] && item.components[0].boxs && tempBox === null) {
-              fn(uuid, item.components[0].boxs)
+            if (item.name === 'box' && item.components[0] && item.components[0].components && tempBox === null) {
+              fn(uuid, item.components[0].components)
             }
           });
         } else {
@@ -158,56 +129,59 @@ export default class Scene {
   }
 
 
-  public bottomBox (params: any) {
-    const { data } = params;
-    const boxIndex = data.boxIndex;
-    if (this.boxs.length > boxIndex + 1) {
-      const temp = this.boxs[boxIndex];
-      this.boxs[boxIndex] = this.boxs[boxIndex + 1];
-      this.boxs[boxIndex + 1] = temp;
+  // public bottomBox (params: any) {
+  //   const { data } = params;
+  //   const boxIndex = data.boxIndex;
+  //   if (this.components.length > boxIndex + 1) {
+  //     const temp = this.components[boxIndex];
+  //     this.components[boxIndex] = this.components[boxIndex + 1];
+  //     this.components[boxIndex + 1] = temp;
+  //     this.renderPage();
+  //   }
+  // }
+
+  // public removeBox (params: any) {
+  //   const { data } = params;
+  //   this.components.splice(data.boxIndex, 1);
+  //   this.renderPage();
+  // }
+
+  // public async topBox (params: any) {
+  //   const { data } = params;
+  //   const boxIndex = data.boxIndex;
+  //   if (boxIndex > 0) {
+  //     const temp = this.components[boxIndex];
+  //     this.components[boxIndex] = this.components[boxIndex - 1];
+  //     this.components[boxIndex - 1] = temp;
+  //     this.renderPage();
+  //   }
+  // }
+
+  public addBox (params: any) {
+    const {boxUuid, data} = params;
+    if (boxUuid) {
+      const currBox = this.findBox(boxUuid, this.components);
+      currBox.addComponent(data);
+      const curBoxParent = this.findBoxParent(boxUuid, this.components)
+      curBoxParent.push(new Box());
       this.renderPage();
     }
   }
-
-  public removeBox (params: any) {
-    const { data } = params;
-    this.boxs.splice(data.boxIndex, 1);
-    this.renderPage();
-  }
-
-  public async topBox (params: any) {
-    const { data } = params;
-    const boxIndex = data.boxIndex;
-    if (boxIndex > 0) {
-      const temp = this.boxs[boxIndex];
-      this.boxs[boxIndex] = this.boxs[boxIndex - 1];
-      this.boxs[boxIndex - 1] = temp;
-      this.renderPage();
-    }
-  }
-
 
   public addComponent (params) {
-    const {boxIndex, data, boxUuid} = params;
-    const currBox = this.findBox(boxUuid, this.boxs);
+    const { data, boxUuid} = params;
+    const currBox = this.findBox(boxUuid, this.components);
     if (currBox) {
       currBox.components[0].addComponent(data);
       this.renderPage();
     }
-    return {
-      status: 0
-    };
   }
 
   public async addBlock (params, ctx) {
-    const {boxIndex, data, boxUuid} = params;
+    const {data, boxUuid} = params;
     if (boxUuid) {
-      const currBox = this.findBox(boxUuid, this.boxs);
-      // console.log('*******88****', currBox);
+      const currBox = this.findBox(boxUuid, this.components);
       await currBox.components[0].addBlock(data);
-      this.renderPage();
-    } else {
-      await this.boxs[boxIndex].addBlock(data);
       this.renderPage();
     }
 
@@ -221,8 +195,8 @@ export default class Scene {
 
   public async setting (params: any) {
 
-    const {boxIndex, data, boxUuid} = params;
-    const curBox = this.findBox(boxUuid, this.boxs);
+    const { data, boxUuid} = params;
+    const curBox = this.findBox(boxUuid, this.components);
     if (curBox && curBox.components[0]) {
       await curBox.components[0].setting(data);
       return {
@@ -237,7 +211,7 @@ export default class Scene {
 
   public async settingConfig (params: any) {
     const {data} = params;
-    const currentComp = this.findComponent(data.uuid, this.boxs);
+    const currentComp = this.findComponent(data.uuid, this.components);
     if (currentComp) {
       currentComp.settingConfig(data);
     }
@@ -271,9 +245,9 @@ export default class Scene {
   }
 
   public getSetting (params) {
-    const { boxIndex, boxUuid } = params;
+    const { boxUuid } = params;
     
-    const curBox = this.findBox(boxUuid, this.boxs);
+    const curBox = this.findBox(boxUuid, this.components);
     if (curBox && curBox.components[0]) {
       return curBox.components[0].getSetting()
     }
@@ -281,8 +255,7 @@ export default class Scene {
 
   public getBoxChildConfig (params) {
     const {boxUuid} = params;
-    const curBox = this.findBox(boxUuid, this.boxs);
-    console.log('***********', curBox);
+    const curBox = this.findBox(boxUuid, this.components);
     if (curBox && curBox.components[0] && curBox.components[0].getBoxChildConfig) {
       return curBox.components[0].getBoxChildConfig(params);
     }
@@ -298,7 +271,7 @@ export default class Scene {
       children: []
     };
 
-    this.boxs.forEach(item => {
+    this.components.forEach(item => {
       this.tree.children.push(this.getTree(item));
     });
 
@@ -411,7 +384,7 @@ export default class Scene {
     const {id} = params;
     this.deleteNode({
       uuid: 'page',
-      components: this.boxs
+      components: this.components
     }, id);
     this.renderPage();
   }
@@ -423,6 +396,7 @@ export default class Scene {
     let methods = [];
     const fn = (boxs, flag = 0) => {
       boxs.map((item, index) => {
+        if (item.name !== 'box') return;
         if (flag === 0) {
           item.setPreview && item.setPreview(renderType);
           const blockListStr = blockList(index, item.getFragment(index, renderType).html());
@@ -438,11 +412,13 @@ export default class Scene {
         if (item.type === 'inline') {
           if (item.components) {
             item.components.forEach(comp => {
-              methods = methods.concat(comp.vueParse.methods || []);
+              if (comp.vueParse) {
+                methods = methods.concat(comp.vueParse.methods || []);
+              }
             });
           }
-          if (item.boxs && item.boxs.length > 0) {
-            fn(item.boxs, 1)
+          if (item.components && item.components.length > 0) {
+            fn(item.components, 1)
           }
         }
   
@@ -454,14 +430,13 @@ export default class Scene {
       });
     }
 
-    fn(this.boxs);
+    fn(this.components);
     
     if (this.sceneVueParse) {
       this.sceneVueParse.methods && this.VueGenerator.appendMethods(this.sceneVueParse.methods);
       this.sceneVueParse.data && this.VueGenerator.appendData(this.sceneVueParse.data);
       this.VueGenerator.appendMethods(methods);
     }
-    // this.$('.home').append(initBlock(this.boxs.length));
     this.writeTemplate();
   }
 

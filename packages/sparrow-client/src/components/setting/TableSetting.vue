@@ -71,6 +71,7 @@ export default class extends Vue {
     window.addEventListener('message', async event => {
       const { data } = event;
       if (data.handler === 'client.component.insertTableHeader') {
+        console.log('********',data);
         const { params } = data.data;
         const jsonData = JSON.parse(this.jsonData);
         // const jsonData = JSON.parse()

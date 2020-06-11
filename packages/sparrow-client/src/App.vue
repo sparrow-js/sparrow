@@ -148,10 +148,13 @@ export default class App extends Vue {
         if (data.boxIndex !== undefined) {
           AppModule.SetDoxIndex(data.boxIndex);
         }
+        // 延迟同步uuid
+        setTimeout(() => {
+          if (data.uuid !== undefined) {
+            AppModule.setBoxUuid(data.uuid);
+          }
 
-        if (data.uuid !== undefined) {
-          AppModule.setBoxUuid(data.uuid);
-        }
+        }, 200)
 
       }
 

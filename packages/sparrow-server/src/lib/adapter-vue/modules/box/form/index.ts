@@ -38,7 +38,7 @@ export default class Form extends Base implements IBaseBox{
   components: any = [];
   $blockTemplate: any;
   activeIndex: number = -1;
-
+  
   data: any = {};
   methods: any = {};
   type: number = 0; // 0: 编辑 1: 预览

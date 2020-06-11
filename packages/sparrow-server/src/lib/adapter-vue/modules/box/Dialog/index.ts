@@ -14,7 +14,6 @@ export default class DialogBox{
   type: string = 'inline';
   unique: string | number = '';
   vueParse: any;
-  boxs: any = [];
 
   constructor (name: string, unique: string | number) {
     this.unique = unique;
@@ -31,7 +30,7 @@ export default class DialogBox{
       <div>
         <el-button type="primary" size="small" @click="dialogVisibleHandler${this.uuid}">弹窗</el-button>
         <div class="comp-box">
-          <el-dialog title="收货地址" :visible.sync="dialogVisible">
+          <el-dialog width="70%" title="收货地址" :visible.sync="dialogVisible">
             <div class="dialog-home"></div>
           </el-dialog>
         </div>
@@ -45,12 +44,12 @@ export default class DialogBox{
   }
 
   addBox () {
-    this.boxs.push(new Box());
+    this.components.push(new Box());
   }
 
   renderTemplate () {
     this.$fragment('.dialog-home').empty();
-    this.boxs.forEach(item => {
+    this.components.forEach(item => {
       this.$fragment('.dialog-home').append(item.getFragment().html())
     });
   }
