@@ -13,6 +13,7 @@ export default class DialogBox{
   name: string = 'DialogBox';
   type: string = 'inline';
   unique: string | number = '';
+  insertFileType: string = 'inline';
   vueParse: any;
 
   constructor (name: string, unique: string | number) {
@@ -59,6 +60,10 @@ export default class DialogBox{
   public getFragment () {
     this.renderTemplate();
     return this.$fragment;
+  }
+
+  getSetting () {
+    return {};
   }
 
   public  (type: number) {

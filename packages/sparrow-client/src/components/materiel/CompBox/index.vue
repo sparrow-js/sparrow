@@ -139,6 +139,11 @@ export default class CompBox extends Vue {
   }
 
   private handleNodeClick (node) {
+    const viewContent:any = document.querySelector('#viewContent');
+    viewContent.contentWindow.postMessage({
+      handler: 'view.component.selected',
+      uuid: ''
+    }, '*');
     this.selectedNode = node;
     AppModule.setUuid(node.id);
     console.log(node);

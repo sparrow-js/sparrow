@@ -2,19 +2,34 @@
   <div class="root">
     <box-form>
       <el-form label-width="100px"
-        ><component-box indexcomp="0" uuid="887340ea">
+        ><component-box indexcomp="0" uuid="d4029907">
           <el-form-item label=" ">
-            <label-box label="文本框" indexcomp="0" uuid="887340ea" />
+            <label-box label="文本框" indexcomp="0" uuid="d4029907" />
             <el-input placeholder="" v-model="form.name" />
           </el-form-item> </component-box
-        ><component-box indexcomp="1" uuid="7340eae5">
+        ><component-box indexcomp="1" uuid="0299076f">
           <el-form-item label=" ">
-            <label-box label="文本框" uuid="7340eae5" indexcomp="1" />
+            <label-box label="文本框" indexcomp="1" uuid="0299076f" />
+            <el-input placeholder="" v-model="form.name" />
+          </el-form-item> </component-box
+        ><component-box indexcomp="2" uuid="99076f89">
+          <el-form-item label=" ">
+            <label-box label="文本框" uuid="99076f89" indexcomp="2" />
             <el-autocomplete
-              :fetch-suggestions="querySearch7340eae5"
-              @select="handleSelect7340eae5"
+              :fetch-suggestions="querySearch99076f89"
+              @select="handleSelect99076f89"
               placeholder="请输入"
+              v-model="form.name"
+            />
+          </el-form-item> </component-box
+        ><component-box indexcomp="3" uuid="076f8935">
+          <el-form-item label=" ">
+            <label-box label="文本框" indexcomp="3" uuid="076f8935" />
+            <el-input
+              placeholder=""
               v-model="form.id"
+              type="textarea"
+              rows="4"
             />
           </el-form-item> </component-box
       ></el-form>
@@ -25,7 +40,7 @@
 <script>
 export default {
   methods: {
-    querySearch7340eae5(queryString, cb) {
+    querySearch99076f89(queryString, cb) {
       var restaurants = this.restaurants;
       var results = queryString
         ? restaurants.filter(this.createFilter(queryString))
@@ -43,7 +58,7 @@ export default {
       };
     },
 
-    handleSelect7340eae5(item) {
+    handleSelect99076f89(item) {
       console.log(item);
     }
   },

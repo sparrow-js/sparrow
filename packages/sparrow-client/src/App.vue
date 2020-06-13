@@ -85,6 +85,7 @@ export default class App extends Vue {
     window.addEventListener('message', async event => {
       const { data } = event;
       if (!data.handler) return;
+      console.log(data);
       const handlerArr = data.handler.split('.');
       const handlerFirst = handlerArr[0];
       if (handlerFirst === 'client') {

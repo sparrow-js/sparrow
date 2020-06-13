@@ -13,6 +13,8 @@ import VueParse from '../../generator/VueParse';
 import {request} from '../../../../../util/request'
 const uuid = require('@lukeed/uuid');
 import * as _ from 'lodash';
+import * as upperCamelCase from 'uppercamelcase';
+import Box from '../Box';
 
 const mkdirpAsync = util.promisify(mkdirp);
 import Base from '../Base';
@@ -27,6 +29,7 @@ const templateStr =  `
           :data="tableData">
         </el-table>
       </table-box>
+      <div class="other"></div>
     </div>
   </template>
 `;
@@ -51,6 +54,7 @@ export default class Table extends Base implements IBaseBox{
   vueParseMap:any = {};
   type: number = 0;
   boxIndex: number;
+  boxStrs: string = '';
 
   settingData: IFormSetting = {
     headerData: ``,
@@ -134,6 +138,7 @@ export default class Table extends Base implements IBaseBox{
               style="width: 100%"
               :data="tableData">
             </el-table>
+            <div class="other"></div>
           </div>
         </template>
       `, {
@@ -153,11 +158,19 @@ export default class Table extends Base implements IBaseBox{
 
   public addComponent (data?: any) {
     const { key,type, params, cellParams } = data;
-    const dynamicObj = require(`../../component/Table/${key}`).default;
+    let dynamicObj = null;
     if (!this.components[params.uuid]) {
       this.components[params.uuid] = [];
     }
-    this.components[params.uuid].push(new dynamicObj(type, cellParams))
+    if(type === 'box') {
+      const box = new Box();
+      box.addComponent(data)
+      this.components[params.uuid].push(box);
+    } else {
+      dynamicObj = require(`../../component/Table/${key}`).default;
+      
+      this.components[params.uuid].push(new dynamicObj(type, cellParams))
+    }
   }
 
   public setVueParse (compName: string) {
@@ -208,7 +221,9 @@ export default class Table extends Base implements IBaseBox{
 
   public renderBox () {
     this.$blockTemplate('el-table').empty();
+    this.$blockTemplate('.other').empty();
     this.$blockTemplate('el-table').append(this.renderColumn());
+    this.$blockTemplate('.other').append(this.boxStrs);
     this.vueParseMap['Base'] && this.VueGenerator.appendData(this.vueParseMap['Base'].data)
   }
 
@@ -216,23 +231,38 @@ export default class Table extends Base implements IBaseBox{
     let column = ''
     const {type} = this;
     const {tableHeaderData} = this;
+    this.boxStrs = '';
+
+    const fn = (components) => {
+      components.forEach(item => {
+        if (item.vueParse && item.insertFileType === 'inline') {
+          item.vueParse.methods && this.VueGenerator.appendMethods(item.vueParse.methods);
+          item.vueParse.data && this.VueGenerator.appendData(item.vueParse.data);
+        }
+        if (item.insertComponents && item.insertComponents.length) {
+          this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]), true);
+        }
+        if (item.components && item.components.length > 0) {
+          fn(item.components)
+        }
+      })
+    }
 
     for (var i = 0; i < tableHeaderData.length; i++) {
       const uuid = tableHeaderData[i].uuid;
       let compTag = '';
-      /**
-       * <component-box uuid="${item.uuid}" :is-inline="true">
-            ${item.getFragment().html()}
-          </component-box>
-       */
       if (this.components[uuid]) {
         this.components[uuid].forEach(item => {
-          compTag = `${item.getFragment().html()}`   + compTag;
-          if (item.vueParse && item.vueParse.methods) {
-            this.VueGenerator.appendMethods(item.vueParse.methods);
+          if (item.name === 'box') {
+            this.boxStrs = this.boxStrs + item.getFragment().html();
+          } else {
+            compTag = `${item.getFragment().html()}`   + compTag;
           }
         })
+        fn(this.components[uuid]);
       }
+
+
 
       const curProp = tableHeaderData[i].prop ? `prop="${tableHeaderData[i].prop}"` : '';
       let cellBox = '';
@@ -279,9 +309,10 @@ export default class Table extends Base implements IBaseBox{
 
   public render () {
     const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
-    const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
 
+    const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
     fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
+
   }
 
   setTemplate () {

@@ -71,9 +71,8 @@ export default class extends Vue {
     window.addEventListener('message', async event => {
       const { data } = event;
       if (data.handler === 'client.component.insertTableHeader') {
-        console.log('********',data);
         const { params } = data.data;
-        const jsonData = JSON.parse(this.jsonData);
+        const jsonData = typeof this.jsonData === 'string' ? JSON.parse(this.jsonData) : {};
         // const jsonData = JSON.parse()
         const index = jsonData.findIndex(item => item.uuid === params.uuid);
         if (index >= 0) {
@@ -91,8 +90,9 @@ export default class extends Vue {
       boxUuid: AppModule.boxUuid,
     });
     if (result && result.data) {
-
-      this.jsonData = JSON.parse(result.data.headerData);
+      try {
+        this.jsonData = JSON.parse(result.data.headerData);
+      } catch (e) {}
     }
   }
 

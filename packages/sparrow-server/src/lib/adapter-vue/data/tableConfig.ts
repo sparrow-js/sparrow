@@ -40,4 +40,16 @@ export const tableConf = [
       },
     ]
   },
+
+  {
+    label: '弹窗',
+    children: [
+      {
+        label: '弹窗',
+        key: 'Dialog',
+        id: 'Dialog',
+        type: 'box'
+      }
+    ]
+  },
 ];

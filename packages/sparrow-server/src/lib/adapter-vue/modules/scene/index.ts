@@ -85,15 +85,31 @@ export default class Scene {
               tempBox = item;
             }
 
-            if (item.name === 'box' && item.components[0] && item.components[0].components && tempBox === null) {
+            if (
+              item.name === 'box' 
+              && item.components[0] 
+              && item.components[0].components
+            ) {
               fn(uuid, item.components[0].components)
             }
           });
         } else {
-          if(boxs.uuid === uuid) {
-            tempBox = boxs;
-          }
+          Object
+          .keys(boxs)
+          .forEach(key => {
+            if (Array.isArray(boxs[key])) {
+              fn(uuid, boxs[key]);
+            }
+          })
         }
+
+        /**
+         *  else if (boxs.uuid) {
+              if(boxs.uuid === uuid) {
+                tempBox = boxs;
+              }
+            }
+         */
       }
     }
 
@@ -117,9 +133,13 @@ export default class Scene {
             }
           });
         } else {
-          if(boxs.uuid === uuid) {
-            tempBox = boxs;
-          }
+          Object
+          .keys(boxs)
+          .forEach(key => {
+            if (Array.isArray(boxs[key])) {
+              fn(uuid, boxs[key]);
+            }
+          })
         }
       }
     }

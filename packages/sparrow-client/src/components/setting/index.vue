@@ -1,6 +1,6 @@
 <template>
   <div class="setting">
-
+    <div>配置</div>
     <div class="setting-comp" v-if="settingComponent">
       <component 
         v-bind:is="settingComponent"
@@ -8,8 +8,6 @@
         :uuid="uuid"
       ></component>
     </div>
-   
-
   </div>
 </template>
 <script lang="ts">
@@ -76,10 +74,10 @@ export default class extends Vue {
 </script>
 <style lang="scss">
 .setting {
-  width: 100%;
   background: #fff;
   padding: 0px 6px;
   box-sizing: border-box;
+  width: 260px;
 }
 .update-data {
   margin-left: 10px;

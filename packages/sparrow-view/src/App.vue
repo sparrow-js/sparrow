@@ -5,8 +5,8 @@
       :list="toolbarList" 
       :is-show-toolbar="isShowToolbar" 
       @change="showToolbarChange"
-    />
-    <inline-toolbar /> -->
+    /> -->
+    <inline-toolbar />
   </div>
 </template>
 <script>

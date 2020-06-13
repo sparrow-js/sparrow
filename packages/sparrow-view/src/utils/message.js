@@ -8,7 +8,13 @@ window.addEventListener('message', (event) => {
   if (data && data.uniqueId && messageMap.has(data.uniqueId)) {
     const curMessage = messageMap.get(data.uniqueId);
     curMessage.resolve(data);
+  } 
+
+  if(data.handler === 'view.component.selected') {
+    
   }
+
+  console.log(data);
 }, false)
 
 message.emit = (handler, data = {}) => {

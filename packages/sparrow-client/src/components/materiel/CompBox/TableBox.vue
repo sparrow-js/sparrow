@@ -69,6 +69,7 @@ export default class CompBox extends Vue {
         ...this.insertPosition.data,
         key: this.isActiveComp.key,
         type: this.isActiveComp.type,
+        id: this.isActiveComp.id,
         cellParams: this.isActiveComp.params || {}
       }
     };

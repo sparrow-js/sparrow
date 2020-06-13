@@ -290,7 +290,9 @@ export default class Form extends Base implements IBaseBox{
   public render () {
     const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
-    fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
+    setTimeout(() => {
+      fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
+    }, 20)
   }
 
   setTemplate () {
