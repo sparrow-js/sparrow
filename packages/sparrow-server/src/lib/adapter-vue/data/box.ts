@@ -1,6 +1,12 @@
 export default {
   list: [
     {
+      id: 'PageHeader',
+      key: 'PageHeader',
+      label: '页头',
+      icon: ''
+    },
+    {
       id: 'Form',
       key: 'Form',
       label: '表单',
@@ -17,12 +23,6 @@ export default {
       key: 'Block',
       label: '区块',
       icon: 'braille'
-    },
-    {
-      id: 'PageHeader',
-      key: 'PageHeader',
-      label: '页头',
-      icon: ''
     },
     {
       id: 'Dialog',

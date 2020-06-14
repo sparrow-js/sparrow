@@ -7,6 +7,7 @@ export default class Box{
   public $fragment: any;
   name: string = 'box';
   label: string = '';
+  type: number = 0;
 
   constructor () {
     this.uuid = uuid().split('-')[0]; 
@@ -21,42 +22,49 @@ export default class Box{
   }
 
   renderTemplate () {
+    let content = '';
     if (!this.components[0]) {
-      this.$fragment = cheerio.load(`
-        <div class="block-list">
-          <box 
-            :uuid="'${this.uuid}'" 
-            class="block-item"
-            
-          >
-            <paragraph 
-              :type="'Container'" 
-              :emit="'client.component.show'"
-              :params="{uuid: '${this.uuid}'}"></paragraph>
-          </box>
-        </div>
-      `, {
-        xmlMode: true,
-        decodeEntities: false
-      });
+      content = `
+        <paragraph 
+          :type="'Container'" 
+          :emit="'client.component.show'"
+          :params="{uuid: '${this.uuid}'}"></paragraph>
+      `
     } else {
-      this.$fragment =  cheerio.load(`
-        <div class="block-list">
-            <box 
-              :uuid="'${this.uuid}'" 
-              class="block-item" 
-              :label="'${this.label}'"
-            >
-              ${this.components[0].getFragment().html()}
-            </box>  
-        </div>
-      `, {
-        xmlMode: true,
-        decodeEntities: false
-      });
+      content = this.components[0].getFragment().html()
     }
+
+    let box = '';
+    if (this.type === 0) {
+      box = `
+        <box 
+          :uuid="'${this.uuid}'" 
+          class="block-item" 
+          :label="'${this.label}'"
+        >
+          ${content}
+        </box>
+      `
+    } else {
+      box = content
+    }
+    this.$fragment =  cheerio.load(`
+      <div class="block-list">
+        ${box}
+      </div>
+    `, {
+      xmlMode: true,
+      decodeEntities: false
+    });
   }
 
+  setPreview (type: number = 0) {
+    this.type = type;
+    if (this.components[0] && this.components[0].setPreview) {
+      this.components[0].setPreview(type);
+    }
+  }
+  
   getFragment () {
     this.renderTemplate();
     return this.$fragment;

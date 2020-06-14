@@ -16,18 +16,22 @@ export default class PageHeader extends Base implements IBaseBox{
     super()
     const { boxIndex, params } = data;
     this.boxIndex = boxIndex;
-    this.$fragment = cheerio.load(boxFragment.box(boxIndex, `
-      <el-page-header content="">
-        <label-box 
-          slot="content"
-          label="${this.labelValue}"
-          :clear-class="true"
-          uuid="${this.uuid}"
-        ></label-box>
-      </el-page-header>`, ''), {
-      xmlMode: true,
-      decodeEntities: false
-    });
+    this.$fragment = cheerio.load(
+      `
+        <div class="box">
+          <el-page-header content="">
+            <label-box 
+              slot="content"
+              label="${this.labelValue}"
+              :clear-class="true"
+              uuid="${this.uuid}"
+            ></label-box>
+          </el-page-header>
+        </div>
+      `, {
+        xmlMode: true,
+        decodeEntities: false
+      });
   }
 
   public setLabel(labelValue: string) {
