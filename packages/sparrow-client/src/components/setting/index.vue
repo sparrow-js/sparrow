@@ -1,6 +1,6 @@
 <template>
   <div class="setting">
-    <div>配置</div>
+    <div class="setting__title">配置</div>
     <div class="setting-comp" v-if="settingComponent">
       <component 
         v-bind:is="settingComponent"
@@ -78,6 +78,13 @@ export default class extends Vue {
   padding: 0px 6px;
   box-sizing: border-box;
   width: 260px;
+   &__title {
+    padding: 5px 0;
+    margin: 0 5px;
+    border-bottom: 1px solid #409eff;
+    color: #409eff;
+    font-size: 16px;
+  }
 }
 .update-data {
   margin-left: 10px;

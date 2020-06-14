@@ -2,11 +2,11 @@
   <div class="home">
     <div class="block-list">
       <div class="block-list">
-        <box :uuid="'caf50932'" class="block-item">
+        <box :uuid="'c7a833ec'" class="block-item">
           <paragraph
             :type="'Container'"
             :emit="'client.component.show'"
-            :params="{ uuid: 'caf50932' }"
+            :params="{ uuid: 'c7a833ec' }"
           />
         </box>
       </div>

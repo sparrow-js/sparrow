@@ -6,6 +6,7 @@ export default class Box{
   public components:any = [];
   public $fragment: any;
   name: string = 'box';
+  label: string = '';
 
   constructor () {
     this.uuid = uuid().split('-')[0]; 
@@ -13,6 +14,7 @@ export default class Box{
   
   addComponent (data: any) {
     const curData = data;
+    this.label = curData.key;
     const dynamicObj = require(`./${curData.id}`).default;
     this.components.push(new dynamicObj(curData));
     this.renderTemplate();
@@ -22,7 +24,11 @@ export default class Box{
     if (!this.components[0]) {
       this.$fragment = cheerio.load(`
         <div class="block-list">
-          <box :uuid="'${this.uuid}'" class="block-item">
+          <box 
+            :uuid="'${this.uuid}'" 
+            class="block-item"
+            
+          >
             <paragraph 
               :type="'Container'" 
               :emit="'client.component.show'"
@@ -36,7 +42,11 @@ export default class Box{
     } else {
       this.$fragment =  cheerio.load(`
         <div class="block-list">
-            <box :uuid="'${this.uuid}'" class="block-item">
+            <box 
+              :uuid="'${this.uuid}'" 
+              class="block-item" 
+              :label="'${this.label}'"
+            >
               ${this.components[0].getFragment().html()}
             </box>  
         </div>
