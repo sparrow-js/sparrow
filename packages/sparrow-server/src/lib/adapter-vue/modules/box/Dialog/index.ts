@@ -12,12 +12,12 @@ export default class DialogBox{
   public components = [];
   name: string = 'DialogBox';
   type: string = 'inline';
-  unique: string | number = '';
   insertFileType: string = 'inline';
   vueParse: any;
+  displayMode: string;
 
-  constructor (name: string, unique: string | number) {
-    this.unique = unique;
+  constructor (data: any) {
+    this.displayMode = data.displayMode || 'btn';
     this.uuid = uuid().split('-')[0];
     this.renderFragment(0);
     this.addBox();
@@ -26,10 +26,15 @@ export default class DialogBox{
   }
 
   public renderFragment (type: number) {
+    let btn = '';
+    if (this.displayMode === 'btn') {
+      btn = `<el-button type="primary" size="small" @click="dialogVisibleHandler${this.uuid}">弹窗</el-button>`
+    }
+
     
     const DialogBox = `
       <div>
-        <el-button type="primary" size="small" @click="dialogVisibleHandler${this.uuid}">弹窗</el-button>
+        ${btn}
         <div class="comp-box">
           <el-dialog width="70%" title="收货地址" :visible.sync="dialogVisible">
             <div class="dialog-home"></div>
@@ -60,6 +65,14 @@ export default class DialogBox{
   public getFragment () {
     this.renderTemplate();
     return this.$fragment;
+  }
+
+  public getFragmentOther () {
+    return cheerio.load(
+      `<el-button type="primary" size="small" @click="dialogVisibleHandler${this.uuid}">弹窗</el-button>`, {
+      xmlMode: true,
+      decodeEntities: false,
+    });
   }
 
   getSetting () {

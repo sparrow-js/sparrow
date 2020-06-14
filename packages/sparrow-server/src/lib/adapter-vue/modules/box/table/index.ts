@@ -164,7 +164,8 @@ export default class Table extends Base implements IBaseBox{
     }
     if(type === 'box') {
       const box = new Box();
-      box.addComponent(data)
+      data.displayMode = 'table';
+      box.addComponent(data);
       this.components[params.uuid].push(box);
     } else {
       dynamicObj = require(`../../component/Table/${key}`).default;
@@ -255,6 +256,10 @@ export default class Table extends Base implements IBaseBox{
         this.components[uuid].forEach(item => {
           if (item.name === 'box') {
             this.boxStrs = this.boxStrs + item.getFragment().html();
+            const fragmentOther = item.getFragmentOther();
+            if (fragmentOther) {
+              compTag = fragmentOther.html() + compTag;
+            }
           } else {
             compTag = `${item.getFragment().html()}`   + compTag;
           }

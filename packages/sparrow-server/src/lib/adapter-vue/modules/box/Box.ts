@@ -51,4 +51,11 @@ export default class Box{
     this.renderTemplate();
     return this.$fragment;
   }
+
+  getFragmentOther () {
+    if (this.components[0]) {
+      return this.components[0].getFragmentOther(); 
+    }
+    return null;
+  }
 }
