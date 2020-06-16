@@ -30,7 +30,6 @@ export default class DialogBox{
     if (this.displayMode === 'btn') {
       btn = `<el-button type="primary" size="small" @click="dialogVisibleHandler${this.uuid}">弹窗</el-button>`
     }
-
     
     const DialogBox = `
       <div>
@@ -52,7 +51,7 @@ export default class DialogBox{
   addBox () {
     this.components.push(new Box());
   }
-
+  
   renderTemplate () {
     this.$fragment('.dialog-home').empty();
     this.components.forEach(item => {

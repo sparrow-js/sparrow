@@ -10,7 +10,7 @@ import VueParse from '../generator/VueParse';
 const uuid = require('@lukeed/uuid');
 import Config from '../../config';
 import Box from '../box/Box';
-
+import storage from '../../../storage';
 const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
 
@@ -32,19 +32,28 @@ export default class Scene {
 
   constructor (params: any = {}) {
     this.VueGenerator = new VueGenerator();
+    const {boxs, name} = params;
+    storage.set('preview_view_status', 0);
+
     this.init();
 
-    const {boxs, name} = params;
     if (name) {
       const fileStr = fsExtra.readFileSync(path.join(Config.templatePath,'scene', name,'index.vue'), 'utf8');
       this.sceneVueParse = new VueParse(uuid().split('-')[0], fileStr);
     }
-    // if (boxs && boxs.length) {
-    //   boxs.forEach(item => {
-    //     this.initBox(item);
-    //   });
-    //   this.renderPage();
-    // }
+    if (boxs && boxs.length) {
+      this.jsonToObj(boxs)
+    }
+    this.components.push(new Box());
+    this.renderPage();
+  }
+
+  private jsonToObj (boxs: any) {
+    boxs.forEach(item => {
+      const box = new Box();
+      box.addComponent(item.data)
+      this.components.push(box);
+    });
   }
 
   private async init () {
@@ -59,20 +68,36 @@ export default class Scene {
       decodeEntities: false
     });
     this.scriptData = this.VueGenerator.initScript();
-    this.components.push(new Box());
-    this.renderPage();
   }
 
-  // public initBox (data: any) {
-  //   const curData = data.data;
-  //   const { boxIndex } = curData;
-  //   const dynamicObj = require(`../box/${curData.id}`).default;
-  //   if (this.components[boxIndex] === undefined) {
-  //     this.components.push(new dynamicObj(curData));
-  //   } else {
-  //     this.components[boxIndex] = new dynamicObj(curData);
-  //   }
-  // }
+  loopThroughBox (boxs: any,) {
+    const fn = function (boxs) {
+      if (Array.isArray(boxs)) {
+        boxs.forEach(item => {
+          if (item.name === 'box') {
+            item.setPreview && item.setPreview();
+          }
+          if (
+            item.name === 'box' 
+            && item.components[0] 
+            && item.components[0].components
+          ) {
+            fn(item.components[0].components)
+          }
+        });
+      } else {
+        Object
+        .keys(boxs)
+        .forEach(key => {
+          if (Array.isArray(boxs[key])) {
+            fn(boxs[key]);
+          }
+        })
+      }
+    }
+
+    fn(boxs);
+  }
   
   public findBox (uuid: string, boxs: any) {
     let tempBox = null;
@@ -409,21 +434,20 @@ export default class Scene {
     this.renderPage();
   }
 
-  public async renderPage (renderType: number = 0) {
-    this.params.previewViewStatus = renderType;
+  public async renderPage () {
+    this.params.previewViewStatus = storage.get('preview_view_status');
     this.$('.home').empty();
     this.scriptData = this.VueGenerator.initScript();
     let methods = [];
+    this.loopThroughBox(this.components);
     const fn = (boxs, flag = 0) => {
       boxs.map((item, index) => {
-        if (item.name !== 'box') return;
         if (flag === 0) {
-          item.setPreview && item.setPreview(renderType);
-          const blockListStr = blockList(index, item.getFragment(index, renderType).html());
+          const blockListStr = blockList(index, item.getFragment(index).html());
           this.$('.home').append(blockListStr);
         }
 
-        item = item.components[0] || {};
+        item = item.components && item.components[0] || {};
   
         if (item.insertComponents && item.insertComponents.length) {
           this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));
@@ -438,7 +462,7 @@ export default class Scene {
             });
           }
           if (item.components && item.components.length > 0) {
-            fn(item.components, 1)
+            fn(item.components, 1);
           }
         }
   

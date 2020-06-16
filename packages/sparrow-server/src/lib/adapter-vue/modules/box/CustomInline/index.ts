@@ -11,11 +11,14 @@ export default class CustomInline extends Base implements IBaseBox{
   previewType: number = 0;
   boxIndex: number;
 
-  constructor (data: any) {
-    super()
+  constructor (data: any, storage: any) {
+    super(storage)
     const { boxIndex, params } = data;
     this.boxIndex = boxIndex;
-    this.$fragment = cheerio.load(boxFragment.box(boxIndex, `<custom-inline></custom-inline>`, '内联'), {
+    this.$fragment = cheerio.load(
+      `<div class="box">
+        <custom-inline></custom-inline>
+      </div>`, {
       xmlMode: true,
       decodeEntities: false
     });
@@ -49,14 +52,18 @@ export default class CustomInline extends Base implements IBaseBox{
     return this.$fragment;
   }
 
-  public setPreview (type: number = 0) {
+  public setPreview () {
+    const type = this.storage.get('preview_view_status') || 0;
     if (this.previewType === type) {
       return;
     } else {
       this.previewType = type;
     }
     if (type === 0) {
-      this.$fragment = cheerio.load(boxFragment.box(this.boxIndex, `<custom-inline></custom-inline>`, '内联'), {
+      this.$fragment = cheerio.load( `
+      <div class="box">
+        <custom-inline></custom-inline>
+      </div>`, {
         xmlMode: true,
         decodeEntities: false
       });

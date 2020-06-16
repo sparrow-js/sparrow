@@ -52,14 +52,13 @@ export default class Form extends Base implements IBaseBox{
 
   currentComp: any = null;
 
-  constructor (data: any) {
-    super();
+  constructor (data: any, storage: any) {
+    super(storage);
     const { boxIndex, params } = data;
     const {blockName} = params;
     this.boxIndex = boxIndex;
     this.name = blockName;
     this.insertComponents.push(this.name);
-    
 
     this.$fragment = cheerio.load(` 
     <div class="box">
@@ -95,7 +94,8 @@ export default class Form extends Base implements IBaseBox{
     return this.$fragment;
   }
 
-  public setPreview (type: number = 0) {
+  public setPreview () {
+    const type = this.storage.get('preview_view_status') || 0;
     if (this.type === type) {
       return;
     } else {
@@ -197,6 +197,8 @@ export default class Form extends Base implements IBaseBox{
       this.render();
     } else if (handler === 'formInline') {
       this.iFormAttrs[data.key] = data.value;
+      this.resetRender();
+      this.observeComp();
     } else if (handler === 'addLabel') {
       this.addlabel(data);
     } else {
@@ -205,6 +207,13 @@ export default class Form extends Base implements IBaseBox{
       }
     }
     // this.resetRender();
+  }
+
+
+  private resetInitScript () {
+    this.VueGenerator.initScript();
+    const dataCode = this.VueGenerator.getDataStrAst(this.settingData.dataCode);
+    this.VueGenerator.appendData(dataCode);
   }
 
   private settingConfig (data) {
@@ -243,6 +252,7 @@ export default class Form extends Base implements IBaseBox{
 
   public renderBox () {
     this.$blockTemplate('el-form').empty();
+    this.resetInitScript();
     for (let key in this.iFormAttrs) {
       this.$blockTemplate('el-form').attr(key, this.iFormAttrs[key]);
     }

@@ -4,6 +4,7 @@ import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import * as launchEditor from 'launch-code-editor';
 import Config from '../../config'
+import storage from '../../../storage';
 
 const mkdirpAsync = util.promisify(mkdirp);
 
@@ -15,7 +16,8 @@ export default class Toolbar {
   }
 
   public async previewView (data: any) {
-    await this.scene.renderPage(+data.status);
+    storage.set('preview_view_status', +data.status);
+    await this.scene.renderPage();
   }
 
   public async exportFile (data: any) {

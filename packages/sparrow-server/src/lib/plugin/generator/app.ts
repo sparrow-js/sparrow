@@ -11,13 +11,13 @@ class generator{
   scene: any;
   data: any;
   toolbar: any;
-
-
+  
   constructor () {
     this.data = new Data();
   }
 
   public ready() {
+
     this.scene = new Scene();
     this.toolbar = new Toolbar(this.scene);
     this.toolbar.trash = this.trash.bind(this);
@@ -40,6 +40,7 @@ class generator{
         {
           data: {
             id: 'form',
+            key: 'form',
             boxIndex: 0,
             params: { isForm: false, row: '', col: '', blockName: 'Form1' }
           },
@@ -47,12 +48,14 @@ class generator{
         {
           data: {
             id: 'customInline',
+            key: 'customInline',
             boxIndex: 1,
           }
         },
         {
           data: {
             id: 'table',
+            key: 'table',
             boxIndex: 2,
             params: { isForm: false, row: '', col: '4', blockName: 'Table1' }
           }
@@ -60,6 +63,7 @@ class generator{
         {
           data: {
             id: 'inline',
+            key: 'inline',
             boxIndex: 3,
             innerHtml: `<pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />`
           }

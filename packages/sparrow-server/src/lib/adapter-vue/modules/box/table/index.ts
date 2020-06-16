@@ -60,8 +60,8 @@ export default class Table extends Base implements IBaseBox{
     headerData: ``,
   }
 
-  constructor (data: any) {
-    super();
+  constructor (data: any, storage: any) {
+    super(storage);
     const { boxIndex, params } = data;
     this.boxIndex = boxIndex;
     const {blockName, col} = params;
@@ -108,14 +108,18 @@ export default class Table extends Base implements IBaseBox{
     return this.$fragment;
   }
 
-  public setPreview (type: number = 0) {
+  public setPreview () {
+    const type = this.storage.get('preview_view_status') || 0;
     if (this.type === type) {
       return;
     } else {
       this.type = type;
     }
     if (type === 0) {
-      this.$fragment = cheerio.load(boxFragment.box(this.boxIndex, `<${this.name} />`, '表格'), {
+      this.$fragment = cheerio.load(`
+        <div class="box">
+          <${this.name} />
+        </div>`, {
         xmlMode: true,
         decodeEntities: false
       });
@@ -146,8 +150,7 @@ export default class Table extends Base implements IBaseBox{
         decodeEntities: false
       });
     }
-    this.renderBox();
-    this.render();
+    this.resetRender()
 
   }
 
@@ -230,7 +233,8 @@ export default class Table extends Base implements IBaseBox{
 
   public renderColumn () {
     let column = ''
-    const {type} = this;
+    const type = this.storage.get('preview_view_status') || 0;
+
     const {tableHeaderData} = this;
     this.boxStrs = '';
 
@@ -316,6 +320,7 @@ export default class Table extends Base implements IBaseBox{
     const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
 
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
+
     fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
 
   }

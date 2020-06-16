@@ -5,7 +5,10 @@ import * as _ from 'lodash';
 export default class Base {
   public uuid = '';
   components: any = {};
-  constructor () {
+  storage: any = {};
+  constructor (storage) {
+    this.storage = storage;
+
     this.uuid = uuid().split('-')[0]; 
   }
 

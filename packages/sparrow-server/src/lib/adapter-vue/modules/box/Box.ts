@@ -1,5 +1,6 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
+import storage from '../../../storage';
 
 export default class Box{
   public uuid = '';
@@ -17,11 +18,12 @@ export default class Box{
     const curData = data;
     this.label = curData.key;
     const dynamicObj = require(`./${curData.id}`).default;
-    this.components.push(new dynamicObj(curData));
+    this.components.push(new dynamicObj(curData, storage));
     this.renderTemplate();
   }
 
   renderTemplate () {
+    this.type = storage.get('preview_view_status') || 0;
     let content = '';
     if (!this.components[0]) {
       content = `
@@ -58,10 +60,9 @@ export default class Box{
     });
   }
 
-  setPreview (type: number = 0) {
-    this.type = type;
+  setPreview () {
     if (this.components[0] && this.components[0].setPreview) {
-      this.components[0].setPreview(type);
+      this.components[0].setPreview();
     }
   }
   
