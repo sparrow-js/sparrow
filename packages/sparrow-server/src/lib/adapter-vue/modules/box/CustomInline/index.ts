@@ -10,14 +10,17 @@ export default class CustomInline extends Base implements IBaseBox{
   type: string = 'inline';
   previewType: number = 0;
   boxIndex: number;
+  params: any = {};
 
   constructor (data: any, storage: any) {
-    super(storage)
+    super(storage);
+
     const { boxIndex, params } = data;
+    this.params = params;
     this.boxIndex = boxIndex;
     this.$fragment = cheerio.load(
       `<div class="box">
-        <custom-inline></custom-inline>
+        <custom-inline :comp-box="'${this.params.compBox}'"></custom-inline>
       </div>`, {
       xmlMode: true,
       decodeEntities: false
@@ -28,7 +31,7 @@ export default class CustomInline extends Base implements IBaseBox{
 
   public addComponent (data) {
     const { key, type } = data;
-    const dynamicObj = require(`../../component/BasicTable/${key}`).default;
+    const dynamicObj = require(`../../component/${this.params.compBox}/${key}`).default;
     this.components.push(new dynamicObj(type));
   }
 
@@ -62,7 +65,7 @@ export default class CustomInline extends Base implements IBaseBox{
     if (type === 0) {
       this.$fragment = cheerio.load( `
       <div class="box">
-        <custom-inline></custom-inline>
+        <custom-inline :comp-box="'${this.params.compBox}'"></custom-inline>
       </div>`, {
         xmlMode: true,
         decodeEntities: false

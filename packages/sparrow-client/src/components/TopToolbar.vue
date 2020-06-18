@@ -54,9 +54,8 @@
       width="200"
       trigger="click"
     >
-      <div>
-        <span class="scene-item" @click="sceneHandler">基础表单</span>
-      </div>
+      <span class="scene-item" @click="sceneHandler('BaseForm')">基础表单</span>
+      <span class="scene-item" @click="sceneHandler('BaseTable')">基础表格</span>
     </el-popover>
   </div>
 </template>
@@ -123,11 +122,11 @@ export default class extends Vue {
     await socket.emit('generator.toolbar.openCodeEditor');
   }
 
-  private async sceneHandler() {
+  private async sceneHandler(name) {
     // this.$refs.popover.hide();
 
     await socket.emit('generator.toolbar.initScene', {
-      name: 'BasicTable'
+      name,
     });
     this.showPopover = false;
   }

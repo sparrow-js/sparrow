@@ -11,6 +11,7 @@ export default class Base {
   public config: any = {};
   public _attrStr: string = '';
   public _formItemStr: string = '';
+  public insertFileType = 'inline';
 
   constructor (attrs: any, componentIndex: number) {
     this.componentIndex = componentIndex;

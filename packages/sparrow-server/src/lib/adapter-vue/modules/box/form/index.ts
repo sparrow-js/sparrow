@@ -38,6 +38,7 @@ export default class Form extends Base implements IBaseBox{
   components: any = [];
   $blockTemplate: any;
   activeIndex: number = -1;
+  insertFileType: string = 'block';
   
   data: any = {};
   methods: any = {};

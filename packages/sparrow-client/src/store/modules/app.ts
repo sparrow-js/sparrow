@@ -107,12 +107,12 @@ class App extends VuexModule implements IAppState {
   }
 
   @Action
-  private setUuid (id: string) {
+  public setUuid (id: string) {
     this.SET_UUID(id);
   }
 
   @Action
-  private setBoxUuid (id: string) {
+  public setBoxUuid (id: string) {
     this.SET_BOXUUID(id);
   }
 }

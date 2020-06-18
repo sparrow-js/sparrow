@@ -4,6 +4,7 @@ import Toolbar from '../../adapter-vue/modules/toolbar';
 import * as rimraf from 'rimraf';
 import * as util from 'util';
 import Config from '../../adapter-vue/config';
+import SceneData from '../../adapter-vue/data/SceneData'
 
 const rimrafAsync = util.promisify(rimraf);
 
@@ -33,43 +34,9 @@ class generator{
     };
   }
 
-  public async initScene (scene: string) {
-    const params = {
-      name: 'BaseTable',
-      boxs: [
-        {
-          data: {
-            id: 'form',
-            key: 'form',
-            boxIndex: 0,
-            params: { isForm: false, row: '', col: '', blockName: 'Form1' }
-          },
-        },
-        {
-          data: {
-            id: 'customInline',
-            key: 'customInline',
-            boxIndex: 1,
-          }
-        },
-        {
-          data: {
-            id: 'table',
-            key: 'table',
-            boxIndex: 2,
-            params: { isForm: false, row: '', col: '4', blockName: 'Table1' }
-          }
-        },
-        {
-          data: {
-            id: 'inline',
-            key: 'inline',
-            boxIndex: 3,
-            innerHtml: `<pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />`
-          }
-        },
-      ]
-    }
+  public async initScene (scene: any) {
+    const params = SceneData[scene.name] || null;
+    console.log('********',params)
     await this.trash()
     this.scene = new Scene(params);
     this.toolbar.resetScene(this.scene);

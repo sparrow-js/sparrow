@@ -247,7 +247,7 @@ export default class Table extends Base implements IBaseBox{
         if (item.insertComponents && item.insertComponents.length) {
           this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]), true);
         }
-        if (item.components && item.components.length > 0) {
+        if (item.insertFileType !== 'block' && item.components && item.components.length > 0) {
           fn(item.components)
         }
       })
