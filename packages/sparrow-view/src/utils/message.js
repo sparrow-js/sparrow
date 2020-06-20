@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { Event } from '@sparrow-vue/boxs';
 
 const message = {};
 const messageMap = new Map();
@@ -11,10 +12,12 @@ window.addEventListener('message', (event) => {
   } 
 
   if(data.handler === 'view.component.selected') {
-    
+    Event.emit('component-active-change', {
+      uuid: data.uuid
+    })
+    console.log('******',data);
   }
 
-  console.log(data);
 }, false)
 
 message.emit = (handler, data = {}) => {

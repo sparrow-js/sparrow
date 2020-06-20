@@ -110,6 +110,11 @@ export default class App extends Vue {
               compName: 'TableSetting',
               forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
             });
+          } else if (handler === 'tabs') {
+            SettingModule.setSettingComponent({
+              compName: 'TabsSetting',
+              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
+            });
           }
           this.formIndex = box.index;
         }
@@ -121,6 +126,7 @@ export default class App extends Vue {
           AppModule.InsertData(data);
           AppModule.SetComponentIs(type);
           AppModule.SetShowComponent(true);
+          AppModule.setActiveTreeIndex(1)
         }
 
         // 插入组件label

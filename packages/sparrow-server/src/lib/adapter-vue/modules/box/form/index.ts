@@ -13,7 +13,6 @@ import generate from '@babel/generator';
 import Base from '../Base';
 import * as _ from 'lodash';
 
-
 const templateStr =  `
   <template>
     <div class="root">

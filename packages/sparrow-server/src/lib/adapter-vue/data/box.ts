@@ -29,7 +29,14 @@ export default {
       key: 'Dialog',
       label: '弹窗',
       icon: ''
+    },
+    {
+      id: 'Tabs',
+      key: 'Tabs',
+      label: '标签页',
+      icon: ''
     }
+    
     // {
     //   id: 'Alert',
     //   value: 'alert',

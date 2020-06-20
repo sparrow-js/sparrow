@@ -8,6 +8,7 @@
         :uuid="uuid"
       ></component>
     </div>
+    <div v-else class="no-data">暂无</div>
   </div>
 </template>
 <script lang="ts">
@@ -16,13 +17,15 @@ import { SettingModule } from '@/store/modules/setting';
 import { AppModule } from '@/store/modules/app';
 import FormSetting from './FormSetting.vue';
 import TableSetting from './TableSetting.vue';
+import TabsSetting from './TabsSetting.vue';
 import socket from '@/util/socket.js';
 
 @Component({
   name: 'Setting',
   components: {
     FormSetting,
-    TableSetting
+    TableSetting,
+    TabsSetting
   }
 })
 export default class extends Vue {
@@ -95,6 +98,10 @@ export default class extends Vue {
 }
 .setting-comp{
   width: 260px;
+}
+.no-data{
+  padding: 10px;
+  color: #909399;
 }
 
 </style>

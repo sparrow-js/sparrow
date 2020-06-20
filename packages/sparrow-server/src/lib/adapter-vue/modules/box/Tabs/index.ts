@@ -1,22 +1,27 @@
 const uuid = require('@lukeed/uuid');
+import IBaseBox from '../IBaseBox';
 import * as cheerio from 'cheerio';
-import BasicBox from '../BasicBox';
+import BasicBox from '../../component/BasicBox';
 import VueParse from '../../generator/VueParse';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import Config from '../../../config';
+import Base from '../Base';
+import Box from '../Box';
 
-export default class TabsBox{
+export default class Tabs extends Base implements IBaseBox{
   public uuid = '';
   $fragment = null;
   public components = [];
   name: string = 'TabsBox';
-  type: string  = 'box';
+  type: string = 'inline';
+  insertFileType: string = 'inline';
   config: any = {};
   _attrStr: string = '';
   vueParse: any;
 
-  constructor () {
+  constructor (data: any, storage: any) {
+    super(storage);
     this.uuid = uuid().split('-')[0];
     this.config = {
       _attr: {
@@ -50,7 +55,8 @@ export default class TabsBox{
 
     if (tabsData && Array.isArray(tabsData)) {
       tabsData.forEach(tabItem => {
-        const curBasicBox = new BasicBox('tab_item', tabItem.value);
+        const curBasicBox = new Box();
+        curBasicBox.unique = tabItem.value;
         this.components.push(curBasicBox);
       });
     }
@@ -81,8 +87,9 @@ export default class TabsBox{
   }
   
 
-  public renderFragment (type: number) {
+  public renderFragment () {
     let TabsBox = '';
+    const type = this.storage.get('preview_view_status') || 0;
     if (type === 0) {
       let tabsItemArr = [];
       if (this.components && Array.isArray(this.components)) {
@@ -97,10 +104,11 @@ export default class TabsBox{
   
       TabsBox = `
         <div style="margin-bottom: 20px;">
-          <tabs-box 
+          <tabs-box
+            :status="'box'"
             :list="${this.config._slot.data}"
             :uuid="'${this.uuid}'"
-            :active-name="'${this.config._attr[':active-name']}'"
+            :active-name="'first'"
           >
             ${tabsItemArr.join('')}
           </tabs-box>
@@ -188,8 +196,8 @@ export default class TabsBox{
     }
   }
   
-  public getFragment (type: number) {
-    this.renderFragment(type);
+  public getFragment () {
+    this.renderFragment();
     return this.$fragment;
   }
 
@@ -197,4 +205,7 @@ export default class TabsBox{
     return this.config
   }
 
+  getSetting () {
+    return this.config;
+  }
 }

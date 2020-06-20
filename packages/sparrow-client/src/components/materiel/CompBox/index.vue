@@ -4,26 +4,26 @@
       <div 
         @click="tabChange(2)" 
         class="tabs-item"
-        :class="{'active': activeIndex === 2}">
+        :class="{'active': activeTreeIndex === 2}">
         <i class="iconfont icon-suohuicaidan-"></i>
       </div>
       <div 
         @click="tabChange(0)" 
         class="tabs-item"
-        :class="{'active': activeIndex === 0}"
+        :class="{'active': activeTreeIndex === 0}"
       >
         <i class="iconfont icon-tree-table"></i>
       </div>
       <div 
         @click="tabChange(1)" 
         class="tabs-item"
-        :class="{'active': activeIndex === 1}"
+        :class="{'active': activeTreeIndex === 1}"
       >
         <i class="iconfont icon-zujian"></i>
       </div>
     </div>
-    <div class="tabs-body" v-show="[0, 1].includes(activeIndex)">
-      <div class="tree" v-show="activeIndex === 0">
+    <div class="tabs-body" v-show="[0, 1].includes(activeTreeIndex)">
+      <div class="tree" v-show="activeTreeIndex === 0">
         <!-- <el-scrollbar style="height:100%"> -->
           <el-tree 
             :data="tree"
@@ -50,7 +50,7 @@
        
       </div>
 
-      <div v-show="activeIndex === 1">
+      <div v-show="activeTreeIndex === 1">
         <component v-if="componentIs" :list="componentList" :is="componentIs"></component>
       </div>
     </div>
@@ -65,6 +65,7 @@ import FormBox from './FormBox';
 import TableBox from './TableBox';
 import CustominlineBox from './CustominlineBox';
 import ContainerBox from './ContainerBox';
+import EmptyBox from './EmptyBox';
 import socket from '@/util/socket.js';
 
 @Component({
@@ -72,7 +73,8 @@ import socket from '@/util/socket.js';
     formBox: FormBox,
     tableBox: TableBox,
     custominlineBox: CustominlineBox,
-    ContainerBox: ContainerBox
+    ContainerBox: ContainerBox,
+    EmptyBox
   }
 })
 export default class CompBox extends Vue {
@@ -91,6 +93,11 @@ export default class CompBox extends Vue {
     }
     
   }
+
+  get activeTreeIndex () {
+    return AppModule.activeTreeIndex;
+  }
+
   @Watch('componentIs', { immediate: true })
   private onjsonDataChange() {
     const { type, params } = this.insertData.data;
@@ -134,7 +141,7 @@ export default class CompBox extends Vue {
   }
 
   private tabChange (index) {
-    this.activeIndex = index;
+    AppModule.setActiveTreeIndex(index)
     this.getSceneTree();
   }
 
@@ -142,11 +149,10 @@ export default class CompBox extends Vue {
     const viewContent:any = document.querySelector('#viewContent');
     viewContent.contentWindow.postMessage({
       handler: 'view.component.selected',
-      uuid: ''
+      uuid: node.id
     }, '*');
     this.selectedNode = node;
     AppModule.setUuid(node.id);
-    console.log(node);
   }
 
   private async deleteComponent (id) {

@@ -9,6 +9,7 @@ export default class Box{
   name: string = 'box';
   label: string = '';
   type: number = 0;
+  unique: string | number;
 
   constructor () {
     this.uuid = uuid().split('-')[0]; 
