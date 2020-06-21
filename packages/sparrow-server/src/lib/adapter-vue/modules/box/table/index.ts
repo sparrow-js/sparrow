@@ -320,9 +320,7 @@ export default class Table extends Base implements IBaseBox{
     const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
 
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
-
-    fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
-
+    fsExtra.writeFileSync(this.blockPath, formatTemp, 'utf8');
   }
 
   setTemplate () {
