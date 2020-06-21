@@ -65,19 +65,6 @@ export default class Tabs extends Base implements IBaseBox{
     this.vueParse = new VueParse(this.uuid, fileStr); 
   }
 
-  public settingConfig (data: any) {
-   
-    const {handler, params} = data;
-    try {
-      if (handler === 'setActive') {
-        this.config._attr[':active-name'] = params.activeName;
-      }
-    } catch (e) {}
-   
-  }
-
-
-
   private getTabsData (config: any = null) {
     try {
       return new Function(`var data = ${config ? config : this.config._slot.data}; return data;`)();
@@ -88,6 +75,7 @@ export default class Tabs extends Base implements IBaseBox{
   
 
   public renderFragment () {
+    console.log('******9**8*****');
     let TabsBox = '';
     const type = this.storage.get('preview_view_status') || 0;
     if (type === 0) {
@@ -150,6 +138,15 @@ export default class Tabs extends Base implements IBaseBox{
       xmlMode: true,
       decodeEntities: false,
     });
+  }
+
+  public setting (data: any) {
+    console.log('******67890*****');
+    const {config} = data;
+    const hasNewComp = this.resetComponents(config);
+    if (hasNewComp === false) return;
+    this.config = config;
+    this.setAttrsToStr();
   }
 
   public setConfig (config: any) {

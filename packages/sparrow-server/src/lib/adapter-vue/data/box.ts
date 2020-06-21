@@ -35,6 +35,12 @@ export default {
       key: 'Tabs',
       label: '标签页',
       icon: ''
+    },
+    {
+      id: 'Card',
+      key: 'Card',
+      label: '卡片',
+      icon: ''
     }
     
     // {

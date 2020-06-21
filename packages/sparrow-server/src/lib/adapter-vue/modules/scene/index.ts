@@ -244,6 +244,7 @@ export default class Scene {
     const curBox = this.findBox(boxUuid, this.components);
     if (curBox && curBox.components[0]) {
       await curBox.components[0].setting(data);
+      this.renderPage();
       return {
         status: 0
       }

@@ -2,31 +2,17 @@
   <div class="setting">
     <div v-show="showSetting">
       <el-collapse v-model="activeNames">
-        <el-collapse-item title="表头数据" name="1">
+        <el-collapse-item title="标签数据" name="1">
           <div>
             <span class="update-data" @click.stop="updateCodeData">更新</span>
             <span class="update-data" @click="showExportPopover = true">导入</span>
-            <el-popover
-              v-model="showExportPopover"
-              placement="bottom"
-              width="200"
-              trigger="click">
-              <div>
-                <el-input 
-                  v-model="urlHeader"
-                  placeholder="输入URL" 
-                  size="mini"
-                ></el-input>
-                <el-button
-                  class="mt6"
-                  type="primary" 
-                  size="mini" 
-                  @click.stop="exportData">确定</el-button>
-              </div>
-            </el-popover>
           </div>
           <div style="height: 300px;overflow: scroll;">
-            <json-editor v-model="jsonData"></json-editor>
+            <div v-if="config._slot">
+              <codemirror
+                v-model="config._slot.data"
+              ></codemirror>
+            </div>
           </div>
         </el-collapse-item>
       </el-collapse>
@@ -55,7 +41,7 @@ export default class extends Vue {
     inline: false
   };
 
-  private jsonData: any = [];
+  private config: any = {};
 
   private activeNameCode = 'code';
   private urlHeader = '';
@@ -67,21 +53,6 @@ export default class extends Vue {
 
   private async created() {
     await this.getSetting();
-
-    window.addEventListener('message', async event => {
-      const { data } = event;
-      if (data.handler === 'client.component.insertTableHeader') {
-        const { params } = data.data;
-        const jsonData = typeof this.jsonData === 'string' ? JSON.parse(this.jsonData) : {};
-        // const jsonData = JSON.parse()
-        const index = jsonData.findIndex(item => item.uuid === params.uuid);
-        if (index >= 0) {
-          jsonData[index].label = params.value;
-        }
-        this.jsonData = jsonData;
-        this.updateSetting();
-      }
-    });
   }
 
   private async getSetting() {
@@ -89,23 +60,18 @@ export default class extends Vue {
       boxIndex: AppModule.boxIndex,
       boxUuid: AppModule.boxUuid,
     });
-    if (result && result.data) {
-      try {
-        this.jsonData = JSON.parse(result.data.headerData);
-      } catch (e) {}
+    if (result && result._slot) {
+      this.config = result;
     }
   }
 
   private async updateSetting() {
-    if (typeof this.jsonData === 'string') {
-      this.jsonData = JSON.parse(this.jsonData);
-    }
     const result = await socket.emit('generator.scene.setting', {
       boxIndex: AppModule.boxIndex,
       boxUuid: AppModule.boxUuid,
       data: {
-        handler: 'setHeaderData',
-        code: this.jsonData
+        handler: 'settingConfig',
+        config: this.config
       }
     });
     this.getSetting();
@@ -119,20 +85,6 @@ export default class extends Vue {
     });
   }
 
-  private async exportData () {
-    this.showExportPopover = false;
-    if (this.urlHeader) {
-      const result = await socket.emit('generator.scene.setting', {
-        boxIndex: AppModule.boxIndex,
-        boxUuid: AppModule.boxUuid,
-        data: {
-          handler: 'exportData',
-          url: this.urlHeader
-        }
-      });
-      this.getSetting();
-    }
-  }
 }
 </script>
 <style lang="scss" scoped>

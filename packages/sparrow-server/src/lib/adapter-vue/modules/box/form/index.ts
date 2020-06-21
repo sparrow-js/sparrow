@@ -265,9 +265,11 @@ export default class Form extends Base implements IBaseBox{
         if (flag === 0) {
           if (this.type === 0) {
             const componentBox = 
-              component.type === 'box' 
-              ? component.getFragment(this.type).html() 
-              : `<component-box indexcomp="${index}" uuid="${component.uuid}">
+              // component.type === 
+              // 'box' 
+              // ? component.getFragment(this.type).html() 
+              // : 
+              `<component-box indexcomp="${index}" uuid="${component.uuid}">
                   ${component.getFragment(this.type).html()}
                 </component-box>`;
 

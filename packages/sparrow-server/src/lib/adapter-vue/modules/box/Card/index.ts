@@ -1,16 +1,22 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
+import IBaseBox from '../IBaseBox';
 
-export default class CardBox{
+import Base from '../Base';
+import Box from '../Box';
+
+export default class Card  extends Base implements IBaseBox{
   public uuid = '';
   $fragment = null;
   public components = [];
   name: string = 'CardBox';
-  type: string  = 'box';
+  type: string = 'inline';
+  insertFileType: string = 'inline';
   config: any = {};
   _attrStr: string = '';
   labelValue: string = '卡片名称';
-  constructor () {
+  constructor (data: any, storage: any) {
+    super(storage);
     this.uuid = uuid().split('-')[0];
     this.config = {
       _attr: {},
@@ -18,16 +24,16 @@ export default class CardBox{
         hasHeader: true,
       },
     };
+    this.addBox();
+  }
+
+  addBox () {
+    this.components.push(new Box());
   }
   
 
   public renderFragment (type: number) {
-    let LogicBox = `
-      <logic-box  
-        :uuid="'${this.uuid}'" 
-        :label="'card'"
-      ></logic-box>
-    `;
+    let LogicBox = this.components[0].getFragment().html();
 
     let labelBox = `
       <label-box 
@@ -38,7 +44,6 @@ export default class CardBox{
     `
 
     if (type === 1) {
-      LogicBox = '';
       labelBox = `
         <span>${this.labelValue}</span>
       `
@@ -76,54 +81,24 @@ export default class CardBox{
   setLabel (labelValue: string) {
     this.labelValue = labelValue;
   }
+  
 
   public setConfig (config: any) {
     this.config = config;
   };
-
-  public addComponent (data: any) {
-    const { key, name, params } = data;
-    const dynamicObj = require(`../../component/${key}`).default;
-    const componentIndex = this.components.length;
-    this.components.push(new dynamicObj({
-      'v-model': name,
-    }, componentIndex, params));
-  }
-
-
-  public setAttrsToStr () {
-    const {config} = this;
-    if (config._attr) {
-      const formField = [];
-      Object.keys(config._attr).forEach(key => {
-        formField.push(`${key}="${config._attr[key]}"`);
-      });
-      this._attrStr = formField.join(' ');
-    }
-  }
   
   public getFragment (type: number) {
     this.renderFragment(type);
-    this.renderBox(type);
     return this.$fragment;
   }
 
-  private renderBox (type) {
-    this.components.forEach((component, index) => {
-      if (type === 0) {
-        this.$fragment('logic-box').append(
-          `<component-box indexcomp="${index}" uuid="${component.uuid}">
-            ${component.getFragment(type).html()}
-          </component-box>`
-        );
-      } else {
-        this.$fragment('.card-content').append(component.getFragment(type).html());
-      }
-    });
-  }
 
   public getConfig() {
     return this.config
+  }
+
+  getSetting () {
+    return this.config;
   }
 
 }

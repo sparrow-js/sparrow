@@ -53,18 +53,27 @@
               >
                 <el-input v-model="config._attr['v-if']" placeholder="请输入内容"></el-input>
               </el-form-item>
-
-
-              <div v-if="config._custom">
-                <el-divider content-position="left">校验</el-divider>
-                <el-form-item v-if="config._custom.required!==undefined" label="必填">
-                  <el-switch v-model="config._custom.required"></el-switch>
+              
+              <div  v-if="config._custom">
+                <el-form-item v-if="config._custom.hasHeader!==undefined" label="卡片头">
+                  <el-switch v-model="config._custom.hasHeader"></el-switch>
                 </el-form-item>
-                <rule-list 
-                  v-if="config._custom.regList!==undefined"
-                  :rules.sync="config._custom.regList"
-                ></rule-list>
+
+
+                <div v-if="config._custom.required">
+                  <el-divider content-position="left">校验</el-divider>
+                  <el-form-item v-if="config._custom.required!==undefined" label="必填">
+                    <el-switch v-model="config._custom.required"></el-switch>
+                  </el-form-item>
+                  <rule-list 
+                    v-if="config._custom.regList!==undefined"
+                    :rules.sync="config._custom.regList"
+                  ></rule-list>
+                </div>
+
               </div>
+            
+
               <div v-if="config._slot">
                 <el-divider content-position="left">options</el-divider>
                 <div>
