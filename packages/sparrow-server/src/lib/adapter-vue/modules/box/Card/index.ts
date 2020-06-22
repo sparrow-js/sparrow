@@ -61,15 +61,29 @@ export default class Card  extends Base implements IBaseBox{
     
     let CardBox = `
       <div style="margin-bottom: 20px;">
-        <el-card class="box-card">
-          ${headerBox}
-          <div class="card-content">
-            ${LogicBox}
-          </div>
-        </el-card>
+        <config-box>
+          <el-card class="box-card">
+            ${headerBox}
+            <div class="card-content">
+              ${LogicBox}
+            </div>
+          </el-card>
+        </config-box>
       </div>
-
     `;
+
+    if (type === 1) {
+      CardBox = `
+        <div style="margin-bottom: 20px;">
+          <el-card class="box-card">
+            ${headerBox}
+            <div class="card-content">
+              ${LogicBox}
+            </div>
+          </el-card>
+        </div>
+      `;
+    }
 
     this.$fragment = cheerio.load(CardBox, {
       xmlMode: true,
@@ -100,5 +114,7 @@ export default class Card  extends Base implements IBaseBox{
   getSetting () {
     return this.config;
   }
+
+  setting () {}
 
 }

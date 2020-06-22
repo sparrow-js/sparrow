@@ -258,7 +258,7 @@ export default class Scene {
   public async settingConfig (params: any) {
     const {data} = params;
     const currentComp = this.findComponent(data.uuid, this.components);
-    if (currentComp) {
+    if (currentComp && currentComp.settingConfig) {
       currentComp.settingConfig(data);
     }
   }

@@ -1,14 +1,16 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <div>
-        <comp-box></comp-box>
-      </div>
+      <el-header height="45px">
+        <top-toolbar></top-toolbar>
+      </el-header>
 
       <el-container>
+        <div>
+          <comp-box></comp-box>
+        </div>
         <el-main>
           <div class="main">
-            <top-toolbar></top-toolbar>
             <div class="editor-box">
               <iframe
                 id="viewContent"
@@ -19,10 +21,10 @@
             </div>
           </div>
         </el-main>
+        <div>
+          <setting setting-data="settingData"></setting>
+        </div>
       </el-container>
-      <div>
-        <setting setting-data="settingData"></setting>
-      </div>
     </el-container>
     <div class="dashboard-box" v-if="showDashboard">
       <dashboard
@@ -164,8 +166,6 @@ export default class App extends Vue {
         }, 200)
 
       }
-
-      
     });
 
     // block 进度
@@ -193,7 +193,7 @@ body {
   height: 100%;
 }
 body {
-  padding: 10px;
+  padding: 0;
   box-sizing: border-box;
   background: #fff;
 }

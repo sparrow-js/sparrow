@@ -38,7 +38,7 @@
             <el-button @click="dialogVisible = false" size="mini"
               >取 消</el-button
             >
-            <el-button type="primary" @click="addComponent" size="mini"
+            <el-button type="primary" @click="addComponent(0)" size="mini"
               >确 定</el-button
             >
           </div>
@@ -94,10 +94,9 @@ export default class CompBox extends Vue {
     } else {
       this.dialogVisible = true;
     }
-    
   }
 
-  private async addComponent(type = 0) {
+  private async addComponent(type) {
     if (!this.form.name && type === 0) {
       this.$message.error('变量名必填');
       return;

@@ -29,24 +29,24 @@ export default class Tabs extends Base implements IBaseBox{
       },
       _slot: {
         data: `
-        [
-          {
-            label: '用户管理',
-            value: 'first'
-          },
-          {
-            label: '配置管理',
-            value: 'second'
-          },
-          {
-            label: '角色管理',
-            value: 'third'
-          },
-          {
-            label: '定时任务补偿',
-            value: 'fourth'
-          },
-        ]
+[
+  {
+    label: '用户管理',
+    value: 'first'
+  },
+  {
+    label: '配置管理',
+    value: 'second'
+  },
+  {
+    label: '角色管理',
+    value: 'third'
+  },
+  {
+    label: '定时任务补偿',
+    value: 'fourth'
+  },
+]
         `
       } 
     };
@@ -75,7 +75,6 @@ export default class Tabs extends Base implements IBaseBox{
   
 
   public renderFragment () {
-    console.log('******9**8*****');
     let TabsBox = '';
     const type = this.storage.get('preview_view_status') || 0;
     if (type === 0) {
@@ -141,7 +140,6 @@ export default class Tabs extends Base implements IBaseBox{
   }
 
   public setting (data: any) {
-    console.log('******67890*****');
     const {config} = data;
     const hasNewComp = this.resetComponents(config);
     if (hasNewComp === false) return;
@@ -171,7 +169,8 @@ export default class Tabs extends Base implements IBaseBox{
       newData.forEach(item => {
         const index = oldData.findIndex(cur => cur.value === item.value);
         if (index < 0) {
-          const curBasicBox = new BasicBox('tab_item', item.value);
+          const curBasicBox = new Box();
+          curBasicBox.unique = item.value;
           this.components.push(curBasicBox);
         }
       });
