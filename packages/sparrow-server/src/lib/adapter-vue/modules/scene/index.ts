@@ -29,8 +29,10 @@ export default class Scene {
     previewViewStatus: 0
   };
   tree: any;
+  uuid: string = '';
 
   constructor (params: any = {}) {
+    this.uuid = uuid().split('-')[0];
     this.VueGenerator = new VueGenerator();
     const {boxs, name} = params;
     storage.set('preview_view_status', 0);
@@ -176,41 +178,25 @@ export default class Scene {
 
   changePosition (params) {
 
-    const { uuid, order} = params;
+    const { uuid, order, label} = params;
+    if (label === 'page') {
+      const components = order.reduce((total, key)=> {
+        total.push(this.components.find(comp => comp.uuid === key));
+        return total;
+      }, []);
+      this.components = components;
+    }
     const currBox = this.findBox(uuid, this.components);
-    if (currBox) {
+    if (currBox && currBox.components[0].changePosition) {
       currBox.components[0].changePosition(order);
       this.renderPage();
+    } else {
+      return {
+        status: 1,
+        message: '暂不支持拖拽'
+      }
     }
   }
-
-  // public bottomBox (params: any) {
-  //   const { data } = params;
-  //   const boxIndex = data.boxIndex;
-  //   if (this.components.length > boxIndex + 1) {
-  //     const temp = this.components[boxIndex];
-  //     this.components[boxIndex] = this.components[boxIndex + 1];
-  //     this.components[boxIndex + 1] = temp;
-  //     this.renderPage();
-  //   }
-  // }
-
-  // public removeBox (params: any) {
-  //   const { data } = params;
-  //   this.components.splice(data.boxIndex, 1);
-  //   this.renderPage();
-  // }
-
-  // public async topBox (params: any) {
-  //   const { data } = params;
-  //   const boxIndex = data.boxIndex;
-  //   if (boxIndex > 0) {
-  //     const temp = this.components[boxIndex];
-  //     this.components[boxIndex] = this.components[boxIndex - 1];
-  //     this.components[boxIndex - 1] = temp;
-  //     this.renderPage();
-  //   }
-  // }
 
   public addBox (params: any) {
     const {boxUuid, data} = params;
@@ -324,6 +310,7 @@ export default class Scene {
   public getSceneTree (node) {
     this.tree = {
       label: 'page',
+      id: this.uuid,
       children: []
     };
 

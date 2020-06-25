@@ -174,17 +174,18 @@ export default class CompBox extends Vue {
   }
 
   async handleDrop (dragNode, dropNode) {
-    const {key, childNodes} = dropNode.parent;
+    const {childNodes} = dropNode.parent;
     const order = childNodes.reduce((total, item)  => {total.push(item.key); return total;}, []);
-    let node = dropNode;
-    while (node.label !== 'box' && node) {
+    let node = dropNode.parent;
+    while (node && (!(node.label == 'box' || node.label == 'page'))) {
       node = node.parent;
     }
-
-    await socket.emit('generator.scene.changePosition', {
+    const res = await socket.emit('generator.scene.changePosition', {
       uuid: node.key,
+      label: node.label,
       order
     });
+    console.log(res);
   }
 
 }

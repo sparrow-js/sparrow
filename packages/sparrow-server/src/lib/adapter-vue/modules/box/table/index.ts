@@ -55,6 +55,7 @@ export default class Table extends Base implements IBaseBox{
   type: number = 0;
   boxIndex: number;
   boxStrs: string = '';
+  renderStep: boolean = true;
 
   settingData: IFormSetting = {
     headerData: ``,
@@ -96,7 +97,7 @@ export default class Table extends Base implements IBaseBox{
   }
 
   async init () {
-    await mkdirpAsync(Config.componentsDir);
+    mkdirp.sync(Config.componentsDir);
     this.blockPath = path.join(Config.componentsDir, `${this.name}.vue`);
     this.setVueParse('Base');
     this.renderBox();
@@ -177,6 +178,34 @@ export default class Table extends Base implements IBaseBox{
     }
   }
 
+
+  public changePosition (order: any) {
+    let uuid = this.findComponents(order[0]);
+
+    const components = order.reduce((total, key)=> {
+      total.push(this.components[uuid].find(comp => comp.uuid === key));
+      return total;
+    }, []);
+
+    this.components[uuid] = components;
+
+    this.resetRender();
+    this.observeComp();
+  }
+
+  public findComponents (uuid: string) {
+    let temp = null;
+    Object
+    .keys(this.components)
+    .forEach(key => {
+      const comp = this.components[key].find(item => item.uuid === uuid);
+      if (comp) {
+        temp = key;
+      }
+    });
+    return temp;
+  }
+
   public setVueParse (compName: string) {
     const uuidValue = uuid().split('-')[0]; 
     const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'box/table',`${compName}.vue`), 'utf8');
@@ -224,6 +253,7 @@ export default class Table extends Base implements IBaseBox{
   }
 
   public renderBox () {
+    this.renderStep = !this.renderStep;
     this.$blockTemplate('el-table').empty();
     this.$blockTemplate('.other').empty();
     this.$blockTemplate('el-table').append(this.renderColumn());
@@ -255,17 +285,17 @@ export default class Table extends Base implements IBaseBox{
 
     for (var i = 0; i < tableHeaderData.length; i++) {
       const uuid = tableHeaderData[i].uuid;
-      let compTag = '';
+      let compTag = this.renderStep ? '<div />' : '';
       if (this.components[uuid]) {
         this.components[uuid].forEach(item => {
           if (item.name === 'box') {
             this.boxStrs = this.boxStrs + item.getFragment().html();
             const fragmentOther = item.getFragmentOther();
             if (fragmentOther) {
-              compTag = fragmentOther.html() + compTag;
+              compTag = compTag +  fragmentOther.html();
             }
           } else {
-            compTag = `${item.getFragment().html()}`   + compTag;
+            compTag = compTag + `${item.getFragment().html()}`;
           }
         })
         fn(this.components[uuid]);
@@ -278,6 +308,7 @@ export default class Table extends Base implements IBaseBox{
       if (type === 0) {
         cellBox = !curProp ? `
           <template slot-scope="{row, column, $index}">
+            
             ${compTag}
             <table-cell-box uuid="${tableHeaderData[i].uuid}"></table-cell-box>
           </template>
