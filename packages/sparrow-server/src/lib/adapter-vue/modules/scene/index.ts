@@ -188,8 +188,9 @@ export default class Scene {
     }
     const currBox = this.findBox(uuid, this.components);
     if (currBox && currBox.components[0].changePosition) {
-      currBox.components[0].changePosition(order);
+      const res = currBox.components[0].changePosition(order);
       this.renderPage();
+      return res;
     } else {
       return {
         status: 1,

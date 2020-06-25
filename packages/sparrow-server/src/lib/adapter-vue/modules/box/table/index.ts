@@ -181,6 +181,13 @@ export default class Table extends Base implements IBaseBox{
 
   public changePosition (order: any) {
     let uuid = this.findComponents(order[0]);
+    console.log('***********', uuid);
+    if (!uuid) {
+      return {
+        status: 1,
+        message: '暂不支持拖拽'
+      }
+    }
 
     const components = order.reduce((total, key)=> {
       total.push(this.components[uuid].find(comp => comp.uuid === key));

@@ -185,7 +185,9 @@ export default class CompBox extends Vue {
       label: node.label,
       order
     });
-    console.log(res);
+    if (res && res.status === 1) {
+      this.$message.error(res.message);
+    }
   }
 
 }
