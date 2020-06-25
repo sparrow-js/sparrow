@@ -1,6 +1,5 @@
 <template>
   <div class="setting">
-    <div class="setting__title">配置</div>
     <div class="setting-comp" v-if="settingComponent">
       <component 
         v-bind:is="settingComponent"
@@ -18,6 +17,7 @@ import { AppModule } from '@/store/modules/app';
 import FormSetting from './FormSetting.vue';
 import TableSetting from './TableSetting.vue';
 import TabsSetting from './TabsSetting.vue';
+import CommonSetting from './CommonSetting.vue'
 import socket from '@/util/socket.js';
 
 @Component({
@@ -25,7 +25,8 @@ import socket from '@/util/socket.js';
   components: {
     FormSetting,
     TableSetting,
-    TabsSetting
+    TabsSetting,
+    CommonSetting
   }
 })
 export default class extends Vue {
@@ -78,7 +79,6 @@ export default class extends Vue {
 <style lang="scss">
 .setting {
   background: #fff;
-  padding: 0px 6px;
   box-sizing: border-box;
   width: 260px;
    &__title {

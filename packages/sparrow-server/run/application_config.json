@@ -234,7 +234,7 @@
     "hostHeaders": "",
     "pkg": {
       "name": "sparrow-server",
-      "version": "0.5.3",
+      "version": "0.5.7",
       "description": "sparrow server",
       "files": [
         "dist/",

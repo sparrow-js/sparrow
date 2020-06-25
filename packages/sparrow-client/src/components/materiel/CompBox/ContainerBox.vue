@@ -24,7 +24,7 @@
                 ></el-input>
                 <el-button size="mini" type="primary" round @click="sureHandler(item)">确定</el-button>
               </div>
-              <span slot="reference">{{item.label}}</span>
+              <span class="comp-content__label" slot="reference">{{item.label}}</span>
             </el-popover>
 
             <el-popover
@@ -42,10 +42,13 @@
                 <el-input  class="box-layout-input" v-model="form.col" size="mini" placeholder="col"></el-input>
                 <el-button size="mini" type="primary" round @click="sureHandler(item)">确定</el-button>
               </div>
-              <span slot="reference">{{item.label}}</span>
+              <span
+                class="comp-content__label"
+                slot="reference">{{item.label}}</span>
             </el-popover>
 
             <span
+              class="comp-content__label"
               @click="compClick(item, $event)"
               v-if="!['Form', 'Layout', 'Table'].includes(item.id)">{{item.label}}</span>
           

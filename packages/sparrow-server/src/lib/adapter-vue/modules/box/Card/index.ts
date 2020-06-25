@@ -19,7 +19,9 @@ export default class Card  extends Base implements IBaseBox{
     super(storage);
     this.uuid = uuid().split('-')[0];
     this.config = {
-      _attr: {},
+      _attr: {
+        label: '卡片名称'
+      },
       _custom: {
         hasHeader: true,
       },
@@ -32,21 +34,18 @@ export default class Card  extends Base implements IBaseBox{
   }
   
 
-  public renderFragment (type: number) {
+  public renderFragment () {
+    const {_attr} = this.config;
     let LogicBox = this.components[0].getFragment().html();
-
+    const type = this.storage.get('preview_view_status') || 0;
     let labelBox = `
-      <label-box 
-        label="${this.labelValue}"
-        uuid="${this.uuid}"
-        :clear-class="true"
-      ></label-box>
-    `
+      <span>${_attr['label']}</span>
+    `;
 
     if (type === 1) {
       labelBox = `
-        <span>${this.labelValue}</span>
-      `
+        <span>${_attr['label']}</span>
+      `;
     }
 
     let headerBox = '';
@@ -101,8 +100,8 @@ export default class Card  extends Base implements IBaseBox{
     this.config = config;
   };
   
-  public getFragment (type: number) {
-    this.renderFragment(type);
+  public getFragment () {
+    this.renderFragment();
     return this.$fragment;
   }
 
@@ -115,6 +114,9 @@ export default class Card  extends Base implements IBaseBox{
     return this.config;
   }
 
-  setting () {}
+  setting (data: any) {
+    const {config} = data;
+    this.config = config;
+  }
 
 }

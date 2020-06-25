@@ -141,6 +141,7 @@ export default class Scene {
     fn(uuid, boxs);
     return tempBox;
   }
+  
 
   public findBoxParent (uuid: string, boxs: any) {
     let tempBox = null;
@@ -173,6 +174,15 @@ export default class Scene {
     return tempBox;
   }
 
+  changePosition (params) {
+
+    const { uuid, order} = params;
+    const currBox = this.findBox(uuid, this.components);
+    if (currBox) {
+      currBox.components[0].changePosition(order);
+      this.renderPage();
+    }
+  }
 
   // public bottomBox (params: any) {
   //   const { data } = params;

@@ -250,6 +250,37 @@ export default class Form extends Base implements IBaseBox{
     } 
   }
 
+  public changePosition (order: any) {
+    let obj = this.findComponents(order[0]);
+    const components = order.reduce((total, key)=> {
+      total.push(obj.components.find(comp => comp.uuid === key));
+      return total;
+    }, []);
+    obj.components = components;
+
+    this.resetRender();
+    this.observeComp();
+  }
+
+  findComponents (uuid: string) {
+    let tempComps = null;
+    const fn = (components, obj) => {
+      if (tempComps) return;
+      components.forEach(comp => {
+        if (comp.uuid === uuid) {
+          tempComps = obj;
+          return;
+        }
+        if (comp.components) {
+          fn(comp.components, comp);
+        }
+
+      })
+    }
+    fn(this.components, this);
+    return tempComps;
+  }
+
   public renderBox () {
     this.$blockTemplate('el-form').empty();
     this.resetInitScript();

@@ -5,7 +5,7 @@
         <top-toolbar></top-toolbar>
       </el-header>
 
-      <el-container>
+      <el-container style="height: 100%;">
         <div>
           <comp-box></comp-box>
         </div>
@@ -46,7 +46,6 @@ import { AppModule } from '@/store/modules/app';
 import { SettingModule } from '@/store/modules/setting';
 import CompBox from '@/components/materiel/CompBox/index.vue';
 import JsonEditor from '@/components/JsonEditor/index.vue';
-
 @Component({
   components: {
     Logo,
@@ -54,7 +53,7 @@ import JsonEditor from '@/components/JsonEditor/index.vue';
     TopToolbar,
     Setting,
     CompBox,
-    JsonEditor
+    JsonEditor,
   }
 })
 export default class App extends Vue {
@@ -117,7 +116,12 @@ export default class App extends Vue {
               compName: 'TabsSetting',
               forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
             });
-          }
+          } else if (handler === 'common') {
+            SettingModule.setSettingComponent({
+              compName: 'CommonSetting',
+              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
+            });
+          } 
           this.formIndex = box.index;
         }
 
@@ -246,5 +250,8 @@ body {
   height: 1em;
   overflow: visible;
   vertical-align: -0.125em;
+}
+.is-drop-inner>.el-tree-node__content .custom-tree-node{
+  background: #409EFF;
 }
 </style>

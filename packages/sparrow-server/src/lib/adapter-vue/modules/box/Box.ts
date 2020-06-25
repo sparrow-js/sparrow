@@ -52,7 +52,7 @@ export default class Box{
       box = content
     }
     this.$fragment =  cheerio.load(`
-      <div class="block-list">
+      <div class="block-list test">
         ${box}
       </div>
     `, {

@@ -27,10 +27,13 @@
         <!-- <el-scrollbar style="height:100%"> -->
           <el-tree 
             :data="tree"
-            :node-key="'id'"
+            node-key="id"
             :current-node-key="currentNodeKey"
             :highlight-current="true"
-            default-expand-all 
+            default-expand-all
+            draggable
+            :allow-drop="allowDrop"
+            @node-drop="handleDrop"
             @node-click="handleNodeClick"
             ref="componentTree"
           >
@@ -74,7 +77,7 @@ import socket from '@/util/socket.js';
     tableBox: TableBox,
     custominlineBox: CustominlineBox,
     ContainerBox: ContainerBox,
-    EmptyBox
+    EmptyBox,
   }
 })
 export default class CompBox extends Vue {
@@ -156,11 +159,34 @@ export default class CompBox extends Vue {
   }
 
   private async deleteComponent (id) {
-     await socket.emit('generator.scene.deleteComponent', {
+    await socket.emit('generator.scene.deleteComponent', {
       id,
     });
     this.getSceneTree();
   }
+
+  allowDrop(draggingNode, dropNode, type) {
+    if(draggingNode.parent.key === dropNode.parent.key && type !== 'inner') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  async handleDrop (dragNode, dropNode) {
+    const {key, childNodes} = dropNode.parent;
+    const order = childNodes.reduce((total, item)  => {total.push(item.key); return total;}, []);
+    let node = dropNode;
+    while (node.label !== 'box' && node) {
+      node = node.parent;
+    }
+
+    await socket.emit('generator.scene.changePosition', {
+      uuid: node.key,
+      order
+    });
+  }
+
 }
 </script>
 <style lang="scss" scoped>

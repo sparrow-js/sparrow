@@ -1,60 +1,67 @@
 <template>
   <div class="root">
-    <box-form>
-      <el-form label-width="100px"
-        ><component-box indexcomp="0" uuid="35547a57">
-          <el-form-item label=" ">
-            <label-box label="文本框" indexcomp="0" uuid="35547a57" />
-            <el-input placeholder="" v-model="form.name" />
-          </el-form-item> </component-box
-        ><component-box indexcomp="1" uuid="547a578c">
-          <el-form-item label=" ">
-            <label-box label="文本框" uuid="547a578c" indexcomp="1" />
-            <el-autocomplete
-              :fetch-suggestions="querySearch547a578c"
-              @select="handleSelect547a578c"
-              placeholder="请输请输"
-              v-model="form.region"
-            />
-          </el-form-item> </component-box
-        ><component-box indexcomp="2" uuid="7a578ce9">
-          <el-form-item label=" ">
-            <label-box label="单选框" indexcomp="2" uuid="7a578ce9" />
-            <el-radio-group v-model="form.date1">
-              <el-radio
-                v-for="item in radionboxOptions7a578ce9"
-                :key="item.value"
-                :label="item.label"
+    <el-form label-width="100px">
+      <el-form-item label="开关">
+        <el-switch placeholder="请输入" v-model="form.delivery" />
+      </el-form-item>
+
+      <el-form-item label="日期选择器">
+        <el-date-picker v-model="form.date1" type="date" placeholder="选择日期">
+        </el-date-picker>
+      </el-form-item>
+
+      <el-form-item label="文本框">
+        <el-input placeholder="" v-model="form.name" />
+      </el-form-item>
+
+      <el-form-item label="时间选择器">
+        <el-date-picker
+          v-model="form.date2"
+          type="datetime"
+          placeholder="选择日期时间"
+        >
+        </el-date-picker>
+      </el-form-item>
+
+      <div style="margin-bottom: 20px;">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>卡片名称</span>
+          </div>
+
+          <div class="card-content">
+            <el-form-item label="文本框">
+              <el-input placeholder="" v-model="form.date1" />
+            </el-form-item>
+
+            <el-form-item label="文本框">
+              <el-input
+                placeholder=""
+                v-model="form.desc"
+                type="textarea"
+                rows="4"
               />
-            </el-radio-group>
-          </el-form-item> </component-box
-        ><component-box indexcomp="3" uuid="578ce93c">
-          <el-form-item label=" ">
-            <label-box label="特殊资源" indexcomp="3" uuid="578ce93c" />
-            <el-select placeholder="请输入" v-model="form.date2">
-              <el-option
-                v-for="item in selectOptions578ce93c"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </el-form-item> </component-box
-        ><component-box indexcomp="4" uuid="8ce93ccb">
-          <el-form-item label=" ">
-            <label-box label="开关" indexcomp="4" uuid="8ce93ccb" />
-            <el-switch placeholder="请输入" v-model="form.delivery" />
-          </el-form-item> </component-box
-      ></el-form>
-    </box-form>
+            </el-form-item>
+
+            <el-form-item label="文本框">
+              <el-autocomplete
+                :fetch-suggestions="querySearch15c8402f"
+                @select="handleSelect15c8402f"
+                placeholder="请输入"
+                v-model="form.resource"
+              />
+            </el-form-item>
+          </div>
+        </el-card>
+      </div>
+    </el-form>
   </div>
 </template>
 
 <script>
 export default {
   methods: {
-    querySearch547a578c(queryString, cb) {
+    querySearch15c8402f(queryString, cb) {
       var restaurants = this.restaurants;
       var results = queryString
         ? restaurants.filter(this.createFilter(queryString))
@@ -72,7 +79,7 @@ export default {
       };
     },
 
-    handleSelect547a578c(item) {
+    handleSelect15c8402f(item) {
       console.log(item);
     }
   },
@@ -103,35 +110,7 @@ export default {
           address: "上海市普陀区真北路988号创邑金沙谷6号楼113"
         }
       ],
-      state1: "",
-      radionboxOptions7a578ce9: [
-        {
-          value: "单选框1",
-          label: "单选框1"
-        },
-        {
-          value: "单选框2",
-          label: "单选框2"
-        },
-        {
-          value: "单选框3",
-          label: "单选框3"
-        }
-      ],
-      selectOptions578ce93c: [
-        {
-          value: "选项1",
-          label: "选项1"
-        },
-        {
-          value: "选项2",
-          label: "选项2"
-        },
-        {
-          value: "选项3",
-          label: "选项3"
-        }
-      ]
+      state1: ""
     };
   }
 };
