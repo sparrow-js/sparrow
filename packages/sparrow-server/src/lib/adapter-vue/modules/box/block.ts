@@ -95,15 +95,7 @@ export default class Block extends Base implements IBaseBox{
   public async addBlock (data: any) {
     const {key, originData} = data;
     const {componentsDir} = Config;
-    await new Promise((resolve,reject) => {
-      mkdirp(componentsDir, (err) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
-        }
-      })
-    });
+    mkdirp.sync(componentsDir);
     let blockName = upperCamelCase(key);
     const blockNames = await fileUtil.getBlockNames(componentsDir);
     const hasBlocks = blockNames.filter(item => {

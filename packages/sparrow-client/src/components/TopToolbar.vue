@@ -88,7 +88,11 @@ export default class extends Vue {
   async created() {
     const result = await socket.emit('home.setting.workFolder');
     this.workFolder = result;
+  
     this.init();
+    socket.on('generator.toolbar.openCodeEditor.result', data => {
+      this.$message.error('打开编辑器失败，请将编辑器注册到终端命令行中');
+    });
   }
 
   private async previewHandler() {

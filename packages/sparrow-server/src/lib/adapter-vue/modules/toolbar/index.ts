@@ -6,7 +6,6 @@ import * as launchEditor from 'launch-code-editor';
 import Config from '../../config'
 import storage from '../../../storage';
 
-const mkdirpAsync = util.promisify(mkdirp);
 
 export default class Toolbar {
   scene: any;
@@ -23,7 +22,7 @@ export default class Toolbar {
   public async exportFile (data: any) {
     const { directory } = data;
     await this.previewView({status: 1});
-    await mkdirpAsync(directory);
+    mkdirp.sync(directory)
     await fsExtra.copy(path.join(Config.viewBasePath, 'src/views'), directory);
     return {
       status: 0
@@ -33,8 +32,10 @@ export default class Toolbar {
   public openCodeEditor (data: any, ctx: any) {
     const { socket } = ctx;
     launchEditor(Config.viewBasePath, 'code', (fileName, errorMsg) => {
+      
+      console.log('******8')  
       socket.emit('generator.toolbar.openCodeEditor.result', errorMsg);
-  });
+    });
   }
 
   public resetScene (scene: any) {

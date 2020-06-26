@@ -185,6 +185,8 @@ export default class Scene {
         return total;
       }, []);
       this.components = components;
+      this.renderPage();
+      return {};
     }
     const currBox = this.findBox(uuid, this.components);
     if (currBox && currBox.components[0].changePosition) {

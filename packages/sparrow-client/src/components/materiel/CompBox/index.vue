@@ -237,7 +237,6 @@ export default class CompBox extends Vue {
   overflow-y: auto;  
   overflow-x: scroll;  
   /* width: 80px; */  
-  height: 500px;  
   background-color: #ffffff;  
 }  
 .el-tree {  

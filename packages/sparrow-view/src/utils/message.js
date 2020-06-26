@@ -15,7 +15,6 @@ window.addEventListener('message', (event) => {
     Event.emit('component-active-change', {
       uuid: data.uuid
     })
-    console.log('******',data);
   }
 
 }, false)
