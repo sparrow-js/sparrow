@@ -35,7 +35,7 @@
 
     <div class="toolbar__item">
       <el-tooltip class="item" effect="dark" content="保存" placement="top">
-        <span>
+        <span  @click="getSerializeTree">
           <font-awesome-icon :icon="['fas', 'file']" />
         </span>
       </el-tooltip>
@@ -129,6 +129,10 @@ export default class extends Vue {
   private toolbarClick() {
     const viewFrame: any = document.querySelector('#viewContent');
     viewFrame.contentWindow.postMessage({ handler: 'document-click' }, '*');
+  }
+
+  private async getSerializeTree () {
+    await socket.emit('generator.scene.getSerializeTree');
   }
 
   private async openEditorHandler() {

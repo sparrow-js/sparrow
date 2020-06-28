@@ -6,23 +6,21 @@ import Config from '../../../config';
 
 export default class UploadAvatar extends Base{
   name: string = 'UploadAvatar';
-  params: any;
   vueParse: any;
-  constructor (attrs: any, componentIndex: number, params: any) {
-    super(attrs, componentIndex);
-    this.params = params;
-    this.labelValue = '上传头像';
+  constructor (params: any) {
+    super();
     this.config = {
       // 组件自定义配置
       _custom: {
         required: false,
-        regList: []
+        regList: [],
+        label: '上传头像',
       },
       // 组件标签属性
       _attr: {
         action: '',
         ':show-file-list': false,
-        'v-model': attrs['v-model'] || ''
+        'v-model': params['v-model'] || ''
       },
     };
     this.init();
@@ -37,8 +35,7 @@ export default class UploadAvatar extends Base{
     return `
       <el-form-item label=" ">
         <label-box 
-          label="${this.labelValue}" 
-          indexcomp="${this.componentIndex}"
+          label="${this.config._custom.label}"
           uuid="${this.uuid}"
         ></label-box>
        

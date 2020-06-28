@@ -320,9 +320,72 @@ export default class Scene {
     this.components.forEach(item => {
       this.tree.children.push(this.getTree(item));
     });
-
     return this.tree;
   }
+
+  getSerializeTree () {
+    let tree = {
+      label: 'page',
+      children: []
+    }
+
+    this.components.forEach(item => {
+      tree.children.push(this.getSaveTree(item));
+    });
+    console.log(JSON.stringify(tree, null ,2));
+  }
+
+  private getSaveTree (node) {
+    if (!node) return null;
+    const tree:any = {
+      id: '',
+      config: null,
+      children: []
+    };
+    if (node.name) {
+      tree.id = node.name;
+    }
+
+    if (node.fileName) {
+      tree.fileName = node.fileName;
+    }
+
+    if (node.config) {
+      tree.config = node.config;
+    }
+
+    if (node.components || node.boxs) {
+      if (node.components) {
+        if (Array.isArray(node.components)) {
+          node.components.forEach(node => {
+            tree.children.push(this.getSaveTree(node));
+          })
+        } else {
+          Object
+            .keys(node.components)
+            .forEach((key, index) => {
+              tree.children.push(this.getSaveTree({
+                name: 'column',
+                id: key,
+                components: node.components[key]
+              }));
+            });
+        }
+      } 
+      if(node.boxs) {
+        // 容器树
+        node.boxs.forEach(node => {
+          tree.children.push(this.getSaveTree(node));
+        });
+      }
+      
+    } else {
+      this.getSaveTree(null);
+    }
+
+    return tree;
+  }
+
 
   private getTree (node) {
     if (!node) return null;

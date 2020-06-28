@@ -3,19 +3,19 @@ import Base from '../Base';
 export default class InputNumber extends Base{
   name: string = 'InputNumber';
 
-  constructor (attrs: any, componentIndex: number) {
-    super(attrs, componentIndex);
-    this.labelValue = '数字文本框';
+  constructor (params: any) {
+    super();
     this.config = {
       // 组件自定义配置
       _custom: {
         required: false,
-        regList: []
+        regList: [],
+        label: '数字文本框',
       },
       // 组件标签属性
       _attr: {
         placeholder: '',
-        'v-model': attrs['v-model'] || ''
+        'v-model': params['v-model'] || ''
       },
       // 插槽属性
       // __slot__: {}
@@ -28,8 +28,7 @@ export default class InputNumber extends Base{
         ${this._formItemStr}
       >
         <label-box 
-          label="${this.labelValue}"
-          indexcomp="${this.componentIndex}"
+          label="${this.config._custom.label}" 
           uuid="${this.uuid}"
         ></label-box>
         <el-input-number ${this._attrStr} :min="1" :max="10"></el-input-number>

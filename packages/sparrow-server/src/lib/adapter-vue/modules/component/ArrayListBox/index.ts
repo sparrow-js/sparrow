@@ -15,12 +15,12 @@ export default class ArrayListBox{
   _attrStr: string = '';
   insertComponents: any = ['ArrayList'];
 
-  constructor (attrs: any) {
+  constructor (params: any) {
 
     this.uuid = uuid().split('-')[0];
     this.config = {
       _attr: {
-        ':list': attrs['v-model'],
+        ':list': params['v-model'],
         ':default': 'var data = {}'
       },
     };

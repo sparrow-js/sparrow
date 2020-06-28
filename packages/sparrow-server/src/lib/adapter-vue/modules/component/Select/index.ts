@@ -10,21 +10,21 @@ export default class Select extends Base {
   params: any;
   status: string = '';
 
-  constructor (attrs: any, componentIndex: number, params: any) {
-    super(attrs, componentIndex);
-    this.labelValue = '特殊资源';
+  constructor (params: any) {
+    super();
     this.params = params;
     this.init();
     this.config = {
       // 组件自定义配置
       _custom: {
         required: false,
-        regList: []
+        regList: [],
+        label: '特殊资源',
       },
       // 组件标签属性
       _attr: {
         placeholder: '请输入',
-        'v-model': attrs['v-model'] || ''
+        'v-model': params['v-model'] || ''
       },
       // 插槽属性
       _slot: {
@@ -56,8 +56,7 @@ export default class Select extends Base {
         ${this._formItemStr}
       >
         <label-box 
-          label="${this.labelValue}" 
-          indexcomp="${this.componentIndex}"
+          label="${this.config._custom.label}"
           uuid="${this.uuid}"
         ></label-box>
         <el-select 

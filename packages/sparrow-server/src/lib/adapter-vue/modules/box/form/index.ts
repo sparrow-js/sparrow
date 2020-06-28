@@ -30,7 +30,8 @@ export interface IFormSetting{
 export default class Form extends Base implements IBaseBox{
   $fragment: any;
   template: string;
-  name: string;
+  name: string = 'Form';
+  fileName: string = '';
   VueGenerator: any;
   blockPath: string;
   insertComponents:string[] = [];
@@ -57,12 +58,12 @@ export default class Form extends Base implements IBaseBox{
     const { boxIndex, params } = data;
     const {blockName} = params;
     this.boxIndex = boxIndex;
-    this.name = blockName;
-    this.insertComponents.push(this.name);
+    this.fileName = blockName;
+    this.insertComponents.push(this.fileName);
 
     this.$fragment = cheerio.load(` 
     <div class="box">
-      <${this.name} />
+      <${this.fileName} />
     </div>
   `, {
       xmlMode: true,
@@ -86,7 +87,7 @@ export default class Form extends Base implements IBaseBox{
 
   init () {
     mkdirp.sync(Config.componentsDir);
-    this.blockPath = path.join(Config.componentsDir, `${this.name}.vue`);
+    this.blockPath = path.join(Config.componentsDir, `${this.fileName}.vue`);
     this.render();
   }
 
@@ -109,7 +110,7 @@ export default class Form extends Base implements IBaseBox{
   
       this.$blockTemplate('box-form').append(fragment.eform());
     } else {
-      this.$fragment = cheerio.load(`<${this.name} />`, {
+      this.$fragment = cheerio.load(`<${this.fileName} />`, {
         xmlMode: true,
         decodeEntities: false
       });
@@ -134,23 +135,24 @@ export default class Form extends Base implements IBaseBox{
   }
 
   public addComponent (data: any) {
-    const { key, boxData, name, params } = data;
+    let { key, boxData, name, params } = data;
     const dynamicObj = require(`../../component/${key}`).default;
-    const componentIndex = this.components.length;
     const compParams = {};
     if (name) {
+      params['v-model'] = name;
       compParams['v-model'] = name;
     }
     
     let currentComp = this.findComponent(boxData.params ? boxData.params.uuid : '', this.components);
     if (currentComp) {
       if (currentComp.name === 'ArrayListBox') {
+        params['v-model'] = `item.${compParams['v-model']}`;
         compParams['v-model'] = `item.${compParams['v-model']}`
       }
-      currentComp.components.push(new dynamicObj(compParams, componentIndex, params))
+      currentComp.components.push(new dynamicObj(params))
     } else {
 
-      this.components.push(new dynamicObj(compParams, componentIndex, params))
+      this.components.push(new dynamicObj(compParams, params))
     }
   }
 

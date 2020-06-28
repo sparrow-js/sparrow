@@ -33,7 +33,6 @@ export default class Toolbar {
     const { socket } = ctx;
     launchEditor(Config.viewBasePath, 'code', (fileName, errorMsg) => {
       
-      console.log('******8')  
       socket.emit('generator.toolbar.openCodeEditor.result', errorMsg);
     });
   }

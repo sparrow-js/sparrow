@@ -40,7 +40,8 @@ export interface IFormSetting{
 export default class Table extends Base implements IBaseBox{
   $fragment: any;
   template: string;
-  name: string;
+  name: string = 'Table';
+  fileName: string;
   VueGenerator: any;
   blockPath: string;
   insertComponents:string[] = [];
@@ -66,7 +67,7 @@ export default class Table extends Base implements IBaseBox{
     const { boxIndex, params } = data;
     this.boxIndex = boxIndex;
     const {blockName, col} = params;
-    this.name = blockName;
+    this.fileName = blockName;
     this.col = col;
     for (let i = 0; i < this.col; i++) {
       this.tableHeaderData.push({
@@ -74,10 +75,10 @@ export default class Table extends Base implements IBaseBox{
         label: '',
       });
     }
-    this.insertComponents.push(this.name);
+    this.insertComponents.push(this.fileName);
     this.$fragment = cheerio.load(
       `<div class="box">
-        <${this.name} />
+        <${this.fileName} />
       </div>`, {
       xmlMode: true,
       decodeEntities: false
@@ -98,7 +99,7 @@ export default class Table extends Base implements IBaseBox{
 
   async init () {
     mkdirp.sync(Config.componentsDir);
-    this.blockPath = path.join(Config.componentsDir, `${this.name}.vue`);
+    this.blockPath = path.join(Config.componentsDir, `${this.fileName}.vue`);
     this.setVueParse('Base');
     this.renderBox();
     this.render();
@@ -119,7 +120,7 @@ export default class Table extends Base implements IBaseBox{
     if (type === 0) {
       this.$fragment = cheerio.load(`
         <div class="box">
-          <${this.name} />
+          <${this.fileName} />
         </div>`, {
         xmlMode: true,
         decodeEntities: false
@@ -131,7 +132,7 @@ export default class Table extends Base implements IBaseBox{
       });
   
     } else {
-      this.$fragment = cheerio.load(`<${this.name} />`, {
+      this.$fragment = cheerio.load(`<${this.fileName} />`, {
         xmlMode: true,
         decodeEntities: false
       });
@@ -181,7 +182,6 @@ export default class Table extends Base implements IBaseBox{
 
   public changePosition (order: any) {
     let uuid = this.findComponents(order[0]);
-    console.log('***********', uuid);
     if (!uuid) {
       return {
         status: 1,

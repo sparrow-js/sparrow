@@ -9,20 +9,20 @@ export default class CheckboxGroup extends Base{
   vueParse: any;
   params: any;
   ele: string = '';
-  constructor (attrs: any, componentIndex: number, params: any) {
-    super(attrs, componentIndex);
+  constructor (params: any) {
+    super();
     this.params = params;
-    this.labelValue = '多选框';
     this.init();
     this.config = {
       // 组件自定义配置
       _custom: {
         required: false,
-        regList: []
+        regList: [],
+        label: '多选框',
       },
       // 组件标签属性
       _attr: {
-        'v-model': attrs['v-model'] || ''
+        'v-model': params['v-model'] || ''
       },
       // 插槽属性
       _slot: {
@@ -50,8 +50,7 @@ export default class CheckboxGroup extends Base{
         ${this._formItemStr}
       >
         <label-box 
-          label="${this.labelValue}" 
-          indexcomp="${this.componentIndex}" 
+          label="${this.config._custom.label}"
           uuid="${this.uuid}"
         ></label-box>
         <el-checkbox-group

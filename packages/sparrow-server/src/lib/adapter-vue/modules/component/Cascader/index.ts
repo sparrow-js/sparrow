@@ -9,9 +9,8 @@ export default class Cascader extends Base {
   vueParse: any;
   params: any;
 
-  constructor (attrs: any, componentIndex: number, params: any) {
-    super(attrs, componentIndex);
-    this.labelValue = '级联选择器';
+  constructor (params: any) {
+    super();
     this.params = params;
     this.init();
     this.config = {
@@ -19,11 +18,12 @@ export default class Cascader extends Base {
       _custom: {
         required: false,
         regList: [],
+        label: '级联选择器',
       },
       // 组件标签属性
       _attr: {
         placeholder: '请输入',
-        'v-model': attrs['v-model'] || ''
+        'v-model': params['v-model'] || ''
       },
       // 插槽属性
       _slot: {
@@ -42,8 +42,7 @@ export default class Cascader extends Base {
     return `
       <el-form-item label=" ">
         <label-box 
-          label="${this.labelValue}" 
-          indexcomp="${this.componentIndex}" 
+          label="${this.config._custom.label}"
           uuid="${this.uuid}">
         </label-box>
         <el-cascader

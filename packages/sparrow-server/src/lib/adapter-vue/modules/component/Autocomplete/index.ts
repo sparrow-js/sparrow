@@ -6,11 +6,9 @@ import Config from '../../../config';
 
 export default class Autocomplete extends Base{
   name: string = 'Autocomplete';
-  params: any;
   vueParse: any;
-  constructor (attrs: any, componentIndex: number, params: any) {
-    super(attrs, componentIndex);
-    this.params = params;
+  constructor (params: any) {
+    super();
     this.labelValue = '文本框';
 
     this.init();
@@ -18,12 +16,13 @@ export default class Autocomplete extends Base{
       // 组件自定义配置
       _custom: {
         required: false,
-        regList: []
+        regList: [],
+        label: '文本框',
       },
       // 组件标签属性
       _attr: {
         placeholder: '请输入',
-        'v-model': attrs['v-model'] || ''
+        'v-model': params['v-model'] || ''
       },
     };
     this.setHandler();
@@ -40,9 +39,8 @@ export default class Autocomplete extends Base{
         ${this._formItemStr}
       >
         <label-box 
-          label="${this.labelValue}"
+          label="${this.config._custom.label}"
           uuid="${this.uuid}"
-          indexcomp="${this.componentIndex}"
         ></label-box>
         <el-autocomplete
           :fetch-suggestions="querySearch${this.uuid}"

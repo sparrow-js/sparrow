@@ -5,7 +5,6 @@ export default {
       data: {
         id: 'form',
         key: 'form',
-        boxIndex: 0,
         params: { isForm: false, row: '', col: '', blockName: 'Form1' }
       },
     },
@@ -16,7 +15,6 @@ export default {
         params: {
           compBox: 'BaseForm'
         },
-        boxIndex: 1,
       }
     }
   ]
