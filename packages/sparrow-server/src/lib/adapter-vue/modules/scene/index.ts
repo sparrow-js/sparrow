@@ -32,6 +32,7 @@ export default class Scene {
   uuid: string = '';
 
   constructor (params: any = {}) {
+    console.log(JSON.stringify(params, null, 2));
     this.uuid = uuid().split('-')[0];
     this.VueGenerator = new VueGenerator();
     const {boxs, name} = params;

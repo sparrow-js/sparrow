@@ -135,7 +135,8 @@ export default class Form extends Base implements IBaseBox{
   }
 
   public addComponent (data: any) {
-    let { key, boxData, name, params } = data;
+    let { key, uuid, name, params } = data;
+    console.log('*********', uuid);
     const dynamicObj = require(`../../component/${key}`).default;
     const compParams = {};
     if (name) {
@@ -143,7 +144,7 @@ export default class Form extends Base implements IBaseBox{
       compParams['v-model'] = name;
     }
     
-    let currentComp = this.findComponent(boxData.params ? boxData.params.uuid : '', this.components);
+    let currentComp = this.findComponent(uuid, this.components);
     if (currentComp) {
       if (currentComp.name === 'ArrayListBox') {
         params['v-model'] = `item.${compParams['v-model']}`;
@@ -151,8 +152,7 @@ export default class Form extends Base implements IBaseBox{
       }
       currentComp.components.push(new dynamicObj(params))
     } else {
-
-      this.components.push(new dynamicObj(compParams, params))
+      this.components.push(new dynamicObj(params))
     }
   }
 

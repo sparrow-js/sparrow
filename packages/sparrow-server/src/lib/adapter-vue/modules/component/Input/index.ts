@@ -2,12 +2,9 @@ import Base from '../Base';
 
 export default class Input extends Base{
   name: string = 'Input';
-  params: any;
-
 
   constructor (params: any) {
     super();
-    this.params = params;
     this.config = {
       // 组件自定义配置
       _custom: {

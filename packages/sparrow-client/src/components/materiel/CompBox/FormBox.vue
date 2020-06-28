@@ -53,6 +53,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import socket from '@/util/socket.js';
 import { AppModule } from '@/store/modules/app';
 import Loading from '@/util/loading';
+import _ from 'lodash';
 
 @Component({})
 export default class CompBox extends Vue {
@@ -102,10 +103,9 @@ export default class CompBox extends Vue {
       return;
     }
     const params = {
-      boxIndex: AppModule.boxIndex,
       boxUuid: AppModule.boxUuid,
       data: {
-        boxData: this.insertData.data,
+        uuid: _.get(this.insertData, 'data.params.uuid') || '',
         key: this.isActiveComp.key,
         name: this.form.name,
         params: {

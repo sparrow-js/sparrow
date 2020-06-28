@@ -65,6 +65,7 @@
     >
       <span class="scene-item" @click="sceneHandler('BaseForm')">基础表单</span>
       <span class="scene-item" @click="sceneHandler('BaseTable')">基础表格</span>
+      <span class="scene-item" @click="sceneHandler('BaseTest')">test</span>
     </el-popover>
   </div>
 </template>
