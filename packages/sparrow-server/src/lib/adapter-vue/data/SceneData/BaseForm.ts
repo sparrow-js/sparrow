@@ -5,7 +5,6 @@ export default {
       data: {
         id: 'form',
         key: 'form',
-        params: { isForm: false, row: '', col: '', blockName: 'Form1' }
       },
     },
     {

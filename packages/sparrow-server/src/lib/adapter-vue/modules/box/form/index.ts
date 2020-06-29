@@ -136,24 +136,24 @@ export default class Form extends Base implements IBaseBox{
 
   public addComponent (data: any) {
     let { key, uuid, name, params } = data;
-    console.log('*********', uuid);
     const dynamicObj = require(`../../component/${key}`).default;
-    const compParams = {};
     if (name) {
       params['v-model'] = name;
-      compParams['v-model'] = name;
     }
     
     let currentComp = this.findComponent(uuid, this.components);
     if (currentComp) {
       if (currentComp.name === 'ArrayListBox') {
-        params['v-model'] = `item.${compParams['v-model']}`;
-        compParams['v-model'] = `item.${compParams['v-model']}`
+        params['v-model'] = `item.${params['v-model']}`;
       }
       currentComp.components.push(new dynamicObj(params))
     } else {
       this.components.push(new dynamicObj(params))
     }
+  }
+
+  public initComponent () {
+    
   }
 
   private findComponent (uuid, components) {

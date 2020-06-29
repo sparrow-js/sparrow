@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fsExtra from 'fs-extra';
 import generate from '@babel/generator';
-import {initBlock, blockList} from '../fragment/scene';
+import {blockList} from '../fragment/scene';
 import * as cheerio from 'cheerio';
 import * as prettier from 'prettier';
 import * as upperCamelCase from 'uppercamelcase';
@@ -11,6 +11,9 @@ const uuid = require('@lukeed/uuid');
 import Config from '../../config';
 import Box from '../box/Box';
 import storage from '../../../storage';
+
+import BaseTest from '../../data/SceneData/BaseTest';
+
 const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
 
@@ -56,6 +59,22 @@ export default class Scene {
       const box = new Box();
       box.addComponent(item.data)
       this.components.push(box);
+    });
+  }
+
+
+  private jsonToScene () {
+    const data = BaseTest;
+    const {children} = data;
+    children.forEach(item => {
+      const box = new Box();
+      const comp = box.addComponent(item);
+      if (item.children) {
+        item.children.forEach(item => {
+          comp.addComponent(item);
+        });
+      }
+
     });
   }
 

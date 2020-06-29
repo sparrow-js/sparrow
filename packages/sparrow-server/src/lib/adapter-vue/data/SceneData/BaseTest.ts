@@ -1,5 +1,6 @@
 export default {
   "label": "page",
+  "id": "page",
   "children": [
     {
       "id": "box",

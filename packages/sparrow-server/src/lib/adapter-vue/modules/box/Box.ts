@@ -17,10 +17,12 @@ export default class Box{
   
   addComponent (data: any) {
     const curData = data;
-    this.label = curData.key;
+    this.label = curData.key || curData.id;
     const dynamicObj = require(`./${curData.id}`).default;
-    this.components.push(new dynamicObj(curData, storage));
+    const obj = new dynamicObj(curData, storage)
+    this.components.push();
     this.renderTemplate();
+    return obj;
   }
 
   renderTemplate () {

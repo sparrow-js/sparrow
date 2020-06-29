@@ -33,13 +33,13 @@
       </el-tooltip>
     </div>
 
-    <div class="toolbar__item">
+    <!-- <div class="toolbar__item">
       <el-tooltip class="item" effect="dark" content="保存" placement="top">
         <span  @click="getSerializeTree">
           <font-awesome-icon :icon="['fas', 'file']" />
         </span>
       </el-tooltip>
-    </div>
+    </div> -->
 
     <div class="toolbar__item success" @click="showPopover = !showPopover">
       <el-tooltip class="item" effect="dark" content="场景" placement="top">
@@ -65,7 +65,7 @@
     >
       <span class="scene-item" @click="sceneHandler('BaseForm')">基础表单</span>
       <span class="scene-item" @click="sceneHandler('BaseTable')">基础表格</span>
-      <span class="scene-item" @click="sceneHandler('BaseTest')">test</span>
+      <!-- <span class="scene-item" @click="sceneHandler('BaseTest')">test</span> -->
     </el-popover>
   </div>
 </template>
@@ -92,7 +92,7 @@ export default class extends Vue {
   
     this.init();
     socket.on('generator.toolbar.openCodeEditor.result', data => {
-      this.$message.error('打开编辑器失败，请将编辑器注册到终端命令行中');
+      this.$message.error('打开编辑器失败，请先手动启动编辑器，或者将编辑器注册到终端命令行中');
     });
   }
 

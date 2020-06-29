@@ -27,20 +27,21 @@ async function startView(options = {}) {
   try {
     packageConfig = require(pkgPath);
   } catch (err) {
-    const answers = await inquirer.prompt([
-      {
-        type: 'confirm',
-        message: `${pkgPath} 不存在，请重新下载 sparrow-server！`,
-        name: 'download',
-        default: true,
-      },
-    ]);
-    if (answers.download) {
-      await downloadView();
-    } else {
-      console.error(err);
-      process.exit(1);
-    }
+    await downloadView();
+    // const answers = await inquirer.prompt([
+    //   {
+    //     type: 'confirm',
+    //     message: `${pkgPath} 不存在，请重新下载 sparrow-server！`,
+    //     name: 'download',
+    //     default: true,
+    //   },
+    // ]);
+    // if (answers.download) {
+    //   await downloadView();
+    // } else {
+    //   console.error(err);
+    //   process.exit(1);
+    // }
     return;
   }
 
@@ -63,22 +64,23 @@ async function start(options = {}) {
     // eslint-disable-next-line
     packageConfig = require(pkgPath);
   } catch(err) {
-    const answers = await inquirer.prompt([
-      {
-        type: 'confirm',
-        message: `${pkgPath} 不存在，请重新下载 sparrow-server！`,
-        name: 'download',
-        default: true,
-      },
-    ]);
-    if (answers.download) {
-      await downloadServer();
-      startSparrowView(options);
-      await startSparrowworks(options);
-    } else {
-      console.error(err);
-      process.exit(1);
-    }
+    await downloadServer();
+    startSparrowView(options);
+    await startSparrowworks(options);
+    // const answers = await inquirer.prompt([
+    //   {
+    //     type: 'confirm',
+    //     message: `${pkgPath} 不存在，请重新下载 sparrow-server！`,
+    //     name: 'download',
+    //     default: true,
+    //   },
+    // ]);
+    // if (answers.download) {
+      
+    // } else {
+    //   console.error(err);
+    //   process.exit(1);
+    // }
     return;
   }
 
