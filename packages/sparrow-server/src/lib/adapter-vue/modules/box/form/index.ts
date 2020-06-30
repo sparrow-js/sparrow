@@ -43,21 +43,25 @@ export default class Form extends Base implements IBaseBox{
   data: any = {};
   methods: any = {};
   type: number = 0; // 0: 编辑 1: 预览
-  boxIndex: number;
   iFormAttrs: any = {};
 
-  settingData: IFormSetting = {
+  config: IFormSetting = {
     dataCode: `var data = {}`,
     inline: false
   }
+
+  params: any = null;
 
   currentComp: any = null;
 
   constructor (data: any, storage: any) {
     super(storage);
-    const { boxIndex, params } = data;
+    const { params, config } = data;
+    this.params = params;
+    if (config) {
+      this.config = config;
+    }
     const {blockName} = params;
-    this.boxIndex = boxIndex;
     this.fileName = blockName;
     this.insertComponents.push(this.fileName);
 
@@ -134,22 +138,31 @@ export default class Form extends Base implements IBaseBox{
     }, 500)
   }
 
-  public addComponent (data: any) {
-    let { key, uuid, name, params } = data;
-    const dynamicObj = require(`../../component/${key}`).default;
-    if (name) {
-      params['v-model'] = name;
-    }
-    
-    let currentComp = this.findComponent(uuid, this.components);
-    if (currentComp) {
-      if (currentComp.name === 'ArrayListBox') {
-        params['v-model'] = `item.${params['v-model']}`;
+  public addComponent (data: any, type: string = 'manual') {
+    if (type === 'manual') {
+      let { id, uuid, name, params } = data;
+      const dynamicObj = require(`../../component/${id}`).default;
+      if (name) {
+        params['v-model'] = name;
       }
-      currentComp.components.push(new dynamicObj(params))
+      
+      let currentComp = this.findComponent(uuid, this.components);
+      if (currentComp) {
+        if (currentComp.name === 'ArrayListBox') {
+          params['v-model'] = `item.${params['v-model']}`;
+        }
+        currentComp.components.push(new dynamicObj(params))
+      } else {
+        this.components.push(new dynamicObj(params))
+      }
     } else {
-      this.components.push(new dynamicObj(params))
+      let { id, config } = data;
+      config.initType = type;
+      const dynamicObj = require(`../../component/${id}`).default;
+
+      this.components.push(new dynamicObj(config))
     }
+  
   }
 
   public initComponent () {
@@ -193,8 +206,8 @@ export default class Form extends Base implements IBaseBox{
   public setting (data: any) {
     const {handler} = data;
     if (handler === 'data') {
-      this.settingData.dataCode = data.code;
-      const dataCode = this.VueGenerator.getDataStrAst(this.settingData.dataCode);
+      this.config.dataCode = data.code;
+      const dataCode = this.VueGenerator.getDataStrAst(this.config.dataCode);
       this.VueGenerator.appendData(dataCode);
       this.render();
     } else if (handler === 'formInline') {
@@ -214,7 +227,7 @@ export default class Form extends Base implements IBaseBox{
 
   private resetInitScript () {
     this.VueGenerator.initScript();
-    const dataCode = this.VueGenerator.getDataStrAst(this.settingData.dataCode);
+    const dataCode = this.VueGenerator.getDataStrAst(this.config.dataCode);
     this.VueGenerator.appendData(dataCode);
   }
 
@@ -235,13 +248,12 @@ export default class Form extends Base implements IBaseBox{
   
   public getSetting () {
     return {
-      data: this.settingData
+      data: this.config
     }
   }
 
   public getBoxChildConfig (params:  {
     uuid: string,
-    boxIndex: number
   }) {
     const {uuid} = params;
     const current = this.findComponent(uuid, this.components);

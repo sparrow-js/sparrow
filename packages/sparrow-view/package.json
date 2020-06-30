@@ -10,6 +10,7 @@
     "@vue-materials/basic-container": "^1.0.0",
     "core-js": "^3.4.3",
     "element-ui": "^2.13.0",
+    "html2canvas": "^1.0.0-rc.5",
     "lodash": "^4.17.15",
     "normalize.css": "^8.0.1",
     "vue": "^2.6.10",

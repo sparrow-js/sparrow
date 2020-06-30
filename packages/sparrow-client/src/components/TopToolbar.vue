@@ -33,13 +33,13 @@
       </el-tooltip>
     </div>
 
-    <!-- <div class="toolbar__item">
+    <div class="toolbar__item">
       <el-tooltip class="item" effect="dark" content="保存" placement="top">
-        <span  @click="getSerializeTree">
-          <font-awesome-icon :icon="['fas', 'file']" />
+        <span  @click="saveScene">
+          <font-awesome-icon :icon="['fas', 'file-archive']" />
         </span>
       </el-tooltip>
-    </div> -->
+    </div>
 
     <div class="toolbar__item success" @click="showPopover = !showPopover">
       <el-tooltip class="item" effect="dark" content="场景" placement="top">
@@ -65,8 +65,22 @@
     >
       <span class="scene-item" @click="sceneHandler('BaseForm')">基础表单</span>
       <span class="scene-item" @click="sceneHandler('BaseTable')">基础表格</span>
-      <!-- <span class="scene-item" @click="sceneHandler('BaseTest')">test</span> -->
+      <span class="scene-item" @click="sceneHandler('BaseTest')">test</span>
     </el-popover>
+
+
+    <el-dialog title="创建模块" width="400px" :visible.sync="dialogFormVisible">
+      <el-form :model="form" label-width="80px">
+        <el-form-item label="模块名称">
+          <el-input v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button size="mini" @click="dialogFormVisible = false">取 消</el-button>
+        <el-button size="mini" type="primary" @click="dialogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 <script lang="ts">
@@ -86,6 +100,11 @@ export default class extends Vue {
   private sceneDialogVisible = false;
   private workFolder = null;
   private showPopover = false;
+  private dialogFormVisible = false;
+  private form = {
+    name: ''
+  };
+
   async created() {
     const result = await socket.emit('home.setting.workFolder');
     this.workFolder = result;
@@ -132,8 +151,24 @@ export default class extends Vue {
     viewFrame.contentWindow.postMessage({ handler: 'document-click' }, '*');
   }
 
+  private async saveScene () {
+    this.dialogFormVisible = true;
+  }
+
   private async getSerializeTree () {
-    await socket.emit('generator.scene.getSerializeTree');
+    const viewFrame: any = document.querySelector('#viewContent');
+    viewFrame.contentWindow.postMessage({ handler: 'html-2-canvas' }, '*');
+// html-2-canvas
+    // domtoimage.toPng(node)
+    // .then(function (dataUrl) {
+    //     var img = new Image();
+    //     img.src = dataUrl;
+    //     document.body.appendChild(img);
+    // })
+    // .catch(function (error) {
+    //     console.error('oops, something went wrong!', error);
+    // });
+    // await socket.emit('generator.scene.getSerializeTree');
   }
 
   private async openEditorHandler() {

@@ -5,22 +5,27 @@ export default class Input extends Base{
 
   constructor (params: any) {
     super();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: [],
-        label: '文本框',
-        type: params.type
-      },
-      // 组件标签属性
-      _attr: {
-        placeholder: '',
-        'v-model': params['v-model'] || ''
-      },
-      // 插槽属性
-      // __slot__: {}
-    };
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '文本框',
+          type: params.type
+        },
+        // 组件标签属性
+        _attr: {
+          placeholder: '',
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        // __slot__: {}
+      };
+    }
+    
     this.init();
     this.setHandler();
   }

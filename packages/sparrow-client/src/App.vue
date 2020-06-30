@@ -16,7 +16,7 @@
                 id="viewContent"
                 ref="viewContent"
                 class="view-content"
-                src="http://127.0.0.1:9000/"
+                src="http://localhost:9000/"
               />
             </div>
           </div>
@@ -90,6 +90,11 @@ export default class App extends Vue {
       const handlerArr = data.handler.split('.');
       const handlerFirst = handlerArr[0];
       if (handlerFirst === 'client') {
+
+        if (data.handler === 'client.screen.capture') {
+          
+        }
+
         // 触发区块集
         if (data.handler === 'client.dashboard.show') {
           AppModule.InsertData(data);

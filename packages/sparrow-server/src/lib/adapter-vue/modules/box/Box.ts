@@ -20,7 +20,7 @@ export default class Box{
     this.label = curData.key || curData.id;
     const dynamicObj = require(`./${curData.id}`).default;
     const obj = new dynamicObj(curData, storage)
-    this.components.push();
+    this.components.push(obj);
     this.renderTemplate();
     return obj;
   }

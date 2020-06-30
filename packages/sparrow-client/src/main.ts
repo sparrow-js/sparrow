@@ -13,7 +13,8 @@ import {
   faFileExport,
   faTrashRestoreAlt,
   faFile,
-  faTree
+  faTree,
+  faFileArchive
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import codeMirrorInstall from './codemirror';
@@ -25,6 +26,7 @@ library.add(faFileExport);
 library.add(faTrashRestoreAlt);
 library.add(faFile);
 library.add(faTree);
+library.add(faFileArchive);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
@@ -35,3 +37,4 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app');
+document.domain = 'localhost';

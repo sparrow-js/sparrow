@@ -1,6 +1,5 @@
 export default {
   "label": "page",
-  "id": "page",
   "children": [
     {
       "id": "box",
@@ -8,74 +7,42 @@ export default {
       "children": [
         {
           "id": "Form",
-          "config": null,
+          "config": {
+            "dataCode": "var data = {\n\tform: {\n          name: '',\n          region: '',\n          date1: '',\n          date2: '',\n          delivery: false,\n          type: [],\n          resource: '',\n          desc: ''\n        }\n}",
+            "inline": false
+          },
           "children": [
             {
               "id": "Input",
               "config": {
                 "_custom": {
                   "required": false,
-                  "regList": []
+                  "regList": [],
+                  "label": "文本框"
                 },
                 "_attr": {
                   "placeholder": "",
                   "v-model": "form.name"
                 }
               },
-              "children": []
-            },
-            {
-              "id": "DatePicker",
-              "config": {
-                "_custom": {
-                  "required": false,
-                  "regList": []
-                },
-                "_attr": {
-                  "v-model": "form.date1"
-                },
-                "_slot": {}
-              },
-              "children": []
-            },
-            {
-              "id": "DateTimePicker",
-              "config": {
-                "_custom": {
-                  "required": false,
-                  "regList": []
-                },
-                "_attr": {
-                  "v-model": "form.date2"
-                },
-                "_slot": {}
-              },
-              "children": []
-            },
-            {
-              "id": "Switch",
-              "config": {
-                "_custom": {
-                  "required": false,
-                  "regList": []
-                },
-                "_attr": {
-                  "placeholder": "请输入",
-                  "v-model": "form.delivery"
-                },
-                "_slot": {}
-              },
-              "children": []
+              "children": [],
+              "params": null
             }
           ],
-          "fileName": "Form5"
+          "params": {
+            "blockName": "Form2",
+            "col": ""
+          },
+          "fileName": "Form2"
         }
-      ]
+      ],
+      "params": null
     },
     {
       "id": "box",
       "config": null,
-      "children": []
+      "children": [],
+      "params": null
     }
   ]
 }

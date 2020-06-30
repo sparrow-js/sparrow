@@ -106,7 +106,7 @@ export default class CompBox extends Vue {
       boxUuid: AppModule.boxUuid,
       data: {
         uuid: _.get(this.insertData, 'data.params.uuid') || '',
-        key: this.isActiveComp.key,
+        id: this.isActiveComp.key,
         name: this.form.name,
         params: {
           type: this.isActiveComp.type

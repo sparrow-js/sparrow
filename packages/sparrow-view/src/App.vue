@@ -13,6 +13,7 @@
 import message from './utils/message';
 import { Event } from '@sparrow-vue/boxs';
 import _ from 'lodash';
+import html2canvas from 'html2canvas';
 
 export default {
   data () {
@@ -39,6 +40,17 @@ export default {
       const {data} = e;
       if (data && data.handler === 'document-click') {
         this.isShowToolbar = false;
+      }
+
+      if (data && data.handler === 'html-2-canvas') {
+        var node = document.querySelector('#app');
+
+        html2canvas(node).then(function(canvas) {
+           message.emit('client.screen.capture', {
+            url: canvas.toDataURL()
+          });
+          document.body.appendChild(canvas);
+        });
       }
     },false);
     this.getToolbarList();

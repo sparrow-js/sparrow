@@ -35,10 +35,10 @@ export default class Scene {
   uuid: string = '';
 
   constructor (params: any = {}) {
-    console.log(JSON.stringify(params, null, 2));
+    console.log(params);
     this.uuid = uuid().split('-')[0];
     this.VueGenerator = new VueGenerator();
-    const {boxs, name} = params;
+    const {name} = params;
     storage.set('preview_view_status', 0);
 
     this.init();
@@ -47,35 +47,38 @@ export default class Scene {
       const fileStr = fsExtra.readFileSync(path.join(Config.templatePath,'scene', name,'index.vue'), 'utf8');
       this.sceneVueParse = new VueParse(uuid().split('-')[0], fileStr);
     }
-    if (boxs && boxs.length) {
-      this.jsonToObj(boxs)
+
+    if (params.label === 'page') {
+      this.jsonToScene(params);
     }
+
+    
     this.components.push(new Box());
     this.renderPage();
   }
 
-  private jsonToObj (boxs: any) {
-    boxs.forEach(item => {
-      const box = new Box();
-      box.addComponent(item.data)
-      this.components.push(box);
-    });
-  }
-
-
-  private jsonToScene () {
-    const data = BaseTest;
-    const {children} = data;
-    children.forEach(item => {
-      const box = new Box();
-      const comp = box.addComponent(item);
-      if (item.children) {
-        item.children.forEach(item => {
-          comp.addComponent(item);
-        });
-      }
-
-    });
+  private jsonToScene (data: any) {
+    const fn = (data, obj) => {
+      const {children} = data;
+      children.forEach(item => {
+        if (item.id === 'box') {
+          const box = new Box();
+          const curComp = item.children[0];
+          if (curComp) {
+            const comp = box.addComponent(curComp);
+            if (curComp.children) {
+              fn(curComp, comp);
+            }
+          }
+          obj.components.push(box);
+        } else {
+          obj.addComponent(item, 'auto');
+        }
+  
+      });
+    }
+    fn(data, this)
+   
   }
 
   private async init () {
@@ -360,7 +363,8 @@ export default class Scene {
     const tree:any = {
       id: '',
       config: null,
-      children: []
+      children: [],
+      params: null,
     };
     if (node.name) {
       tree.id = node.name;
@@ -372,6 +376,9 @@ export default class Scene {
 
     if (node.config) {
       tree.config = node.config;
+    }
+    if (node.params) {
+      tree.params = node.params;
     }
 
     if (node.components || node.boxs) {
@@ -532,7 +539,7 @@ export default class Scene {
         }
 
         item = item.components && item.components[0] || {};
-  
+
         if (item.insertComponents && item.insertComponents.length) {
           this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));
         }

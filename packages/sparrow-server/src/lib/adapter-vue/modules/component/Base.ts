@@ -32,7 +32,7 @@ export default class Base {
 
     if (type === 1) {
       this.$fragment('label-box').remove();
-      this.$fragment('el-form-item').attr('label', this.config._attr.label);
+      this.$fragment('el-form-item').attr('label', this.config._custom.label);
     }
     return this.$fragment;
   }

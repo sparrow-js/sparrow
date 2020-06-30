@@ -83,10 +83,6 @@ export default class CompBox extends Vue {
     return AppModule.insertPosition;
   }
 
-  get boxIndex() {
-    return AppModule.boxIndex;
-  }
-
   get boxUuid () {
     return AppModule.boxUuid;
   }
@@ -94,7 +90,6 @@ export default class CompBox extends Vue {
   private compClick(comp, event) {
     this.isActiveComp = comp;
     const params = {
-      boxIndex: this.boxIndex,
       boxUuid: this.boxUuid,
       data: {
         key: this.isActiveComp.key,
@@ -108,7 +103,6 @@ export default class CompBox extends Vue {
     this.isActiveComp = comp;
 
     const params = {
-      boxIndex: this.boxIndex,
       boxUuid: this.boxUuid,
       data: {
         key: this.isActiveComp.key,
