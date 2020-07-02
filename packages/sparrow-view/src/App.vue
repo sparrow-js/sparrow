@@ -49,7 +49,6 @@ export default {
            message.emit('client.screen.capture', {
             url: canvas.toDataURL()
           });
-          document.body.appendChild(canvas);
         });
       }
     },false);

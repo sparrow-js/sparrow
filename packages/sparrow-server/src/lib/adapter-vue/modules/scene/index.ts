@@ -11,8 +11,10 @@ const uuid = require('@lukeed/uuid');
 import Config from '../../config';
 import Box from '../box/Box';
 import storage from '../../../storage';
+import lowdb from '../../../lowdb';
 
 import BaseTest from '../../data/SceneData/BaseTest';
+import { darkblue } from 'color-name';
 
 const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
@@ -36,6 +38,7 @@ export default class Scene {
 
   constructor (params: any = {}) {
     console.log(params);
+
     this.uuid = uuid().split('-')[0];
     this.VueGenerator = new VueGenerator();
     const {name} = params;
@@ -346,6 +349,21 @@ export default class Scene {
     return this.tree;
   }
 
+  saveScene (data: any) {
+    data.config = this.getSerializeTree();
+    lowdb.get('scenes')
+    .push(data)
+    .write();
+  }
+  getScene () {
+    const scenes = lowdb.get('scenes')
+      .value();
+      return {
+        list: scenes
+      }
+      // console.log('*****8****', scenes)
+  }
+
   getSerializeTree () {
     let tree = {
       label: 'page',
@@ -355,7 +373,7 @@ export default class Scene {
     this.components.forEach(item => {
       tree.children.push(this.getSaveTree(item));
     });
-    console.log(JSON.stringify(tree, null ,2));
+    return tree;
   }
 
   private getSaveTree (node) {

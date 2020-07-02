@@ -21,8 +21,15 @@
       >
         <i class="iconfont icon-zujian"></i>
       </div>
+      <div 
+        @click="tabChange(3)" 
+        class="tabs-item"
+        :class="{'active': activeTreeIndex === 3}"
+      >
+        <i class="iconfont icon-zujian"></i>
+      </div>
     </div>
-    <div class="tabs-body" v-show="[0, 1].includes(activeTreeIndex)">
+    <div class="tabs-body" v-show="[0, 1, 3].includes(activeTreeIndex)">
       <div class="tree" v-show="activeTreeIndex === 0">
         <!-- <el-scrollbar style="height:100%"> -->
           <el-tree 
@@ -56,6 +63,19 @@
       <div v-show="activeTreeIndex === 1">
         <component v-if="componentIs" :list="componentList" :is="componentIs"></component>
       </div>
+
+      <div v-show="activeTreeIndex === 3">
+        <div class="scene-list">
+          <div class="scene-item" v-for="item in sceneList" :key="item.name">
+            <el-card>
+              <img :src="item.url" width="200"/>
+            </el-card>
+            <div class="scene-item__name">
+              <span class="scene-item__title">{{item.name}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
    
   </div>
@@ -87,6 +107,7 @@ export default class CompBox extends Vue {
   private tree = [];
   private selectedNode = {};
   private currentNodeKey = '';
+  private sceneList = [];
 
   get componentIs() {
     if (AppModule.componentIs) {
@@ -136,6 +157,10 @@ export default class CompBox extends Vue {
     } else {
       this.componentList = componentMap[params.compBox];
     }
+
+    const res = await socket.emit('generator.scene.getScene');
+    this.sceneList = res.list;
+    console.log('******',res);
   }
 
   private async getSceneTree () {
@@ -243,5 +268,23 @@ export default class CompBox extends Vue {
   min-width: 100%;  
   font-size: 14px;  
   display: inline-block !important;  
+}
+.scene-list{
+  padding: 5px;
+}
+.scene-item__name{
+  position: absolute;
+  bottom: 0;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #00000095;
+}
+.scene-item{
+  position: relative;
+  text-align: center;
+}
+.scene-item__title{
+  color: #fff;
 }
 </style>

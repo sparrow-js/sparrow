@@ -71,13 +71,16 @@
 
     <el-dialog title="创建模块" width="400px" :visible.sync="dialogFormVisible">
       <el-form :model="form" label-width="80px">
-        <el-form-item label="模块名称">
+        <el-form-item label="模块名称" required>
           <el-input v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="预览图">
+          <img :src="form.url" width="280"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button size="mini" @click="dialogFormVisible = false">取 消</el-button>
-        <el-button size="mini" type="primary" @click="dialogFormVisible = false">确 定</el-button>
+        <el-button size="mini" type="primary" @click="sureSaveScene">确 定</el-button>
       </div>
     </el-dialog>
 
@@ -101,8 +104,10 @@ export default class extends Vue {
   private workFolder = null;
   private showPopover = false;
   private dialogFormVisible = false;
+  private tempSceneUrl = '';
   private form = {
-    name: ''
+    name: '',
+    url: ''
   };
 
   async created() {
@@ -113,6 +118,13 @@ export default class extends Vue {
     socket.on('generator.toolbar.openCodeEditor.result', data => {
       this.$message.error('打开编辑器失败，请先手动启动编辑器，或者将编辑器注册到终端命令行中');
     });
+    window.addEventListener('message', async event => {
+      const { data } = event;
+      if (!data.handler) return;
+      if (data.handler === 'client.screen.capture') {
+        this.form.url = data.url;
+      }
+    })   
   }
 
   private async previewHandler() {
@@ -153,6 +165,15 @@ export default class extends Vue {
 
   private async saveScene () {
     this.dialogFormVisible = true;
+    const viewFrame: any = document.querySelector('#viewContent');
+    viewFrame.contentWindow.postMessage({ handler: 'html-2-canvas' }, '*');
+  }
+
+  private async sureSaveScene () {
+
+    await socket.emit('generator.scene.saveScene', this.form);
+    this.dialogFormVisible = false;
+    
   }
 
   private async getSerializeTree () {
