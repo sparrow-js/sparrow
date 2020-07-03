@@ -9,20 +9,25 @@ export default class UploadAvatar extends Base{
   vueParse: any;
   constructor (params: any) {
     super();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: [],
-        label: '上传头像',
-      },
-      // 组件标签属性
-      _attr: {
-        action: '',
-        ':show-file-list': false,
-        'v-model': params['v-model'] || ''
-      },
-    };
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '上传头像',
+        },
+        // 组件标签属性
+        _attr: {
+          action: '',
+          ':show-file-list': false,
+          'v-model': params['v-model'] || ''
+        },
+      };
+    }
+ 
     this.init();
   }
 

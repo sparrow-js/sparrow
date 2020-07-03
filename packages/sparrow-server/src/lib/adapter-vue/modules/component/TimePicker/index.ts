@@ -6,22 +6,27 @@ export default class TimePicker extends Base {
 
   constructor (params: any) {
     super();
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          label: '时间选择器',
+          regList: [],
+          type: params.type
+        },
+        // 组件标签属性
+        _attr: {
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {}
+      };
+    }
     this.init();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        label: '时间选择器',
-        regList: [],
-        type: params.type
-      },
-      // 组件标签属性
-      _attr: {
-        'v-model': params['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {}
-    };
+  
   }
 
   private init () {

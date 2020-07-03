@@ -15,6 +15,7 @@ import lowdb from '../../../lowdb';
 
 import BaseTest from '../../data/SceneData/BaseTest';
 import { darkblue } from 'color-name';
+import { param } from 'midway-web';
 
 const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
@@ -37,8 +38,6 @@ export default class Scene {
   uuid: string = '';
 
   constructor (params: any = {}) {
-    console.log(params);
-
     this.uuid = uuid().split('-')[0];
     this.VueGenerator = new VueGenerator();
     const {name} = params;
@@ -75,7 +74,10 @@ export default class Scene {
           }
           obj.components.push(box);
         } else {
-          obj.addComponent(item, 'auto');
+          const curComp = obj.addComponent(item, 'auto');
+          if (item.children && item.children.length) {
+            fn(item,  curComp)
+          }
         }
   
       });
@@ -350,6 +352,7 @@ export default class Scene {
   }
 
   saveScene (data: any) {
+    data.id = uuid();
     data.config = this.getSerializeTree();
     lowdb.get('scenes')
     .push(data)
@@ -361,7 +364,11 @@ export default class Scene {
       return {
         list: scenes
       }
-      // console.log('*****8****', scenes)
+  }
+
+  useScene (params) {
+    const scene = lowdb.get('scenes')
+    .find({ id: params.id }).value()
   }
 
   getSerializeTree () {

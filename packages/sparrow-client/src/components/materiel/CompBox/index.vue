@@ -26,7 +26,7 @@
         class="tabs-item"
         :class="{'active': activeTreeIndex === 3}"
       >
-        <i class="iconfont icon-zujian"></i>
+        <i class="iconfont icon-changjing"></i>
       </div>
     </div>
     <div class="tabs-body" v-show="[0, 1, 3].includes(activeTreeIndex)">
@@ -67,12 +67,28 @@
       <div v-show="activeTreeIndex === 3">
         <div class="scene-list">
           <div class="scene-item" v-for="item in sceneList" :key="item.name">
-            <el-card>
-              <img :src="item.url" width="200"/>
-            </el-card>
-            <div class="scene-item__name">
-              <span class="scene-item__title">{{item.name}}</span>
+            <div>
+              <el-card>
+                <div
+                  :style="{ 'background-image': `url(${item.url})` }"
+                  class="scene__preview"></div>
+                <!-- <img :src="item.url" width="200"/> -->
+              </el-card>
+              <div class="scene-item__name">
+                <span class="scene-item__title">{{item.name}}</span>
+              </div>
             </div>
+            <div class="scene__operate">
+              <div style="margin-bottom: 4px;">
+                <el-button type="primary" size="small" @click="useScene(item.id)"
+                  >使用</el-button
+                >
+              </div>
+              <div>
+                <!-- <el-button size="small">预览图片</el-button> -->
+              </div>
+            </div>
+        
           </div>
         </div>
       </div>
@@ -160,7 +176,6 @@ export default class CompBox extends Vue {
 
     const res = await socket.emit('generator.scene.getScene');
     this.sceneList = res.list;
-    console.log('******',res);
   }
 
   private async getSceneTree () {
@@ -196,6 +211,13 @@ export default class CompBox extends Vue {
     } else {
       return false;
     }
+  }
+
+  async useScene (id) {
+    const res = await socket.emit('generator.toolbar.useScene', {
+      id,
+    });
+    // console.log(id);
   }
 
   async handleDrop (dragNode, dropNode) {
@@ -283,8 +305,34 @@ export default class CompBox extends Vue {
 .scene-item{
   position: relative;
   text-align: center;
+  margin-bottom: 10px;
+  
 }
 .scene-item__title{
   color: #fff;
+}
+.scene__operate{
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.65);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.scene__operate:hover {
+  opacity: 1;
+}
+.scene__preview{
+  width: 200px;
+  height: 120px;
+  background-position: top center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-color: #fff;
 }
 </style>

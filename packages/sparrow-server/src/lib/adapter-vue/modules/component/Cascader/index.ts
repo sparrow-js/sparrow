@@ -7,29 +7,32 @@ import Config from '../../../config';
 export default class Cascader extends Base {
   name: string = 'Cascader';
   vueParse: any;
-  params: any;
 
   constructor (params: any) {
     super();
-    this.params = params;
     this.init();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: [],
-        label: '级联选择器',
-      },
-      // 组件标签属性
-      _attr: {
-        placeholder: '请输入',
-        'v-model': params['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {
-        data: this.vueParse.getFormatData()
-      }
-    };
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '级联选择器',
+        },
+        // 组件标签属性
+        _attr: {
+          placeholder: '请输入',
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {
+          data: this.vueParse.getFormatData()
+        }
+      };
+    }
+
     this.setHandler();
   }
 

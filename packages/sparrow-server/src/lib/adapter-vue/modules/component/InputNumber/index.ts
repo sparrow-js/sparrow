@@ -5,21 +5,25 @@ export default class InputNumber extends Base{
 
   constructor (params: any) {
     super();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: [],
-        label: '数字文本框',
-      },
-      // 组件标签属性
-      _attr: {
-        placeholder: '',
-        'v-model': params['v-model'] || ''
-      },
-      // 插槽属性
-      // __slot__: {}
-    };
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '数字文本框',
+        },
+        // 组件标签属性
+        _attr: {
+          placeholder: '',
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        // __slot__: {}
+      };
+    }
   }
 
   public fragment () {

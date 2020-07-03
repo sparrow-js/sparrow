@@ -50,6 +50,8 @@ export default class Form extends Base implements IBaseBox{
     inline: false
   }
 
+  autoAddComponentType: boolean = false;
+
   params: any = null;
 
   currentComp: any = null;
@@ -79,15 +81,15 @@ export default class Form extends Base implements IBaseBox{
       decodeEntities: false
     });
 
-    this.resetRender = _.throttle(this.resetRender, 10);
+    this.resetRender = _.throttle(this.resetRender, 50);
     this.renderBox = _.throttle(this.renderBox, 10);
-
     this.$blockTemplate('box-form').append(fragment.eform());
     this.VueGenerator = new VueGenerator('block');
     this.init();
     this.VueGenerator.appendData();
     this.observeComp();
   }
+
 
   init () {
     mkdirp.sync(Config.componentsDir);
@@ -144,8 +146,7 @@ export default class Form extends Base implements IBaseBox{
       const dynamicObj = require(`../../component/${id}`).default;
       if (name) {
         params['v-model'] = name;
-      }
-      
+      }      
       let currentComp = this.findComponent(uuid, this.components);
       if (currentComp) {
         if (currentComp.name === 'ArrayListBox') {
@@ -155,18 +156,24 @@ export default class Form extends Base implements IBaseBox{
       } else {
         this.components.push(new dynamicObj(params))
       }
+      if (this.autoAddComponentType) {
+        this.autoAddComponentType = false;
+        this.observeComp();
+      }
     } else {
       let { id, config } = data;
       config.initType = type;
       const dynamicObj = require(`../../component/${id}`).default;
-
-      this.components.push(new dynamicObj(config))
+      const instance = new dynamicObj(config)
+      this.components.push(instance);
+      this.autoAddComponentType = true;
+      if (instance.type === 'box') {
+        return instance;
+      } else {
+        return null;
+      }
     }
   
-  }
-
-  public initComponent () {
-    
   }
 
   private findComponent (uuid, components) {
@@ -347,9 +354,10 @@ export default class Form extends Base implements IBaseBox{
   public render () {
     const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
+
     setTimeout(() => {
       fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
-    }, 20)
+    }, 100)
   }
 
   setTemplate () {

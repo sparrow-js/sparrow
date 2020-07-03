@@ -7,28 +7,32 @@ export default class DatePicker extends Base {
 
   constructor (params: any) {
     super();
-    this.params = params;
-
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: [],
-        label: '日期选择器',
-      },
-      // 组件标签属性
-      _attr: {
-        'v-model': params['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {}
-    };
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '日期选择器',
+          type: params.type
+        },
+        // 组件标签属性
+        _attr: {
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {}
+      };
+    }
+    
     this.setHandler();
     this.init();
   }
 
   private init () {
-    const {type} = this.params;
+    const {type} = this.config._custom;
     if (type === 'range') {
       this.ele = `
         <el-date-picker

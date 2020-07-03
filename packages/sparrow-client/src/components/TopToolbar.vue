@@ -32,12 +32,12 @@
         </span>
       </el-tooltip>
     </div>
-
+    
+  <!-- <i  @click="saveScene" class="iconfont icon-baocu"> -->
+        <!-- </i> -->
     <div class="toolbar__item">
       <el-tooltip class="item" effect="dark" content="保存" placement="top">
-        <span  @click="saveScene">
-          <font-awesome-icon :icon="['fas', 'file-archive']" />
-        </span>
+        <i class="iconfont icon-baocun"  @click="saveScene"></i>
       </el-tooltip>
     </div>
 

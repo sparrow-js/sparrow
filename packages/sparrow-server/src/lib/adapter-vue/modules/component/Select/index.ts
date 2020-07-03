@@ -7,35 +7,38 @@ import Config from '../../../config';
 export default class Select extends Base {
   name: string = 'Select';
   vueParse: any;
-  params: any;
   status: string = '';
 
   constructor (params: any) {
     super();
-    this.params = params;
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '特殊资源',
+        },
+        // 组件标签属性
+        _attr: {
+          placeholder: '请输入',
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {
+          data: this.vueParse.getFormatData()
+        }
+      };
+    }
     this.init();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: [],
-        label: '特殊资源',
-      },
-      // 组件标签属性
-      _attr: {
-        placeholder: '请输入',
-        'v-model': params['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {
-        data: this.vueParse.getFormatData()
-      }
-    };
+
     this.setHandler();
   }
 
   private init () {
-    const {type} = this.params;
+    const {type} = this.config._custom;
     if (type === 'clearable') {
       this.status = 'clearable';
     } else if (type === 'multiple') {

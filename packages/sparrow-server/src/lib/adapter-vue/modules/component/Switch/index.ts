@@ -4,21 +4,26 @@ export default class Switch extends Base{
   name: string = 'Switch';
   constructor (params: any) {
     super();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: [],
-        label: '开关',
-      },
-      // 组件标签属性
-      _attr: {
-        placeholder: '请输入',
-        'v-model': params['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {}
-    };
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '开关',
+        },
+        // 组件标签属性
+        _attr: {
+          placeholder: '请输入',
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {}
+      };
+    }
+  
     this.setHandler();
   }
 

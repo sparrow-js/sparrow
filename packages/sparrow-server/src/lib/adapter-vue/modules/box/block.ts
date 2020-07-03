@@ -21,13 +21,13 @@ const rimrafAsync = util.promisify(rimraf);
 export default class Block extends Base implements IBaseBox{
   $fragment: any;
   type: string = 'block';
-  name: string;
+  name: string = 'Block';
   template: string;
   public insertComponents: string[] = [];
 
   constructor (data: any, storage: any) {
     super(storage);
-    const { boxIndex, params } = data;
+    const { params } = data;
     this.$fragment = cheerio.load('<div class="box"></div>', {
       xmlMode: true,
       decodeEntities: false

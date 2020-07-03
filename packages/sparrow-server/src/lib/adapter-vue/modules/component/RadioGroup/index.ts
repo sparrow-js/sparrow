@@ -6,35 +6,38 @@ import Config from '../../../config';
 
 export default class RadioGroup extends Base{
   name: string = 'RadioGroup';
-  params: any;
   vueParse: any;
   ele: string = '';
   constructor (params: any) {
     super();
-    this.params = params;
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '单选框',
+          type: params.type
+        },
+        // 组件标签属性
+        _attr: {
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {
+          data: this.vueParse.getFormatData()
+        }
+      };
+    }
     this.init();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: [],
-        label: '单选框',
-      },
-      // 组件标签属性
-      _attr: {
-        'v-model': params['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {
-        data: this.vueParse.getFormatData()
-      }
-    };
 
     this.setHandler();
   }
 
   private init () {
-    const {type} = this.params;
+    const {type} = this.config._custom;
     if (type === 'button') {
       this.ele = 'el-radio-button';
     } else {

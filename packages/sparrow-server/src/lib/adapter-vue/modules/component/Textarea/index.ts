@@ -4,21 +4,26 @@ export default class Textarea extends Base {
   name: string = 'Textarea';
   constructor (params: any) {
     super();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: [],
-        label: '多行文本框',
-      },
-      // 组件标签属性
-      _attr: {
-        placeholder: '',
-        'v-model': params['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {}
-    };
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '多行文本框',
+        },
+        // 组件标签属性
+        _attr: {
+          placeholder: '',
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {}
+      };
+    }
+   
     this.setHandler();
   }
 

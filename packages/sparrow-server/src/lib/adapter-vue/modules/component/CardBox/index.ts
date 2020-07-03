@@ -10,14 +10,18 @@ export default class CardBox{
   config: any = {};
   _attrStr: string = '';
   labelValue: string = '卡片名称';
-  constructor () {
+  constructor (params: any) {
     this.uuid = uuid().split('-')[0];
-    this.config = {
-      _attr: {},
-      _custom: {
-        hasHeader: true,
-      },
-    };
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        _attr: {},
+        _custom: {
+          hasHeader: true,
+        },
+      };
+    }
   }
   
 
@@ -81,13 +85,28 @@ export default class CardBox{
     this.config = config;
   };
 
-  public addComponent (data: any) {
-    const { key, name, params } = data;
-    const dynamicObj = require(`../../component/${key}`).default;
-    const componentIndex = this.components.length;
-    this.components.push(new dynamicObj({
-      'v-model': name,
-    }, componentIndex, params));
+  public addComponent (data: any, type: string = 'manual') {
+    if (type === 'manual') {
+      const { id, name, params } = data;
+      const dynamicObj = require(`../../component/${id}`).default;
+      if (name) {
+        params['v-model'] = name;
+      }  
+      this.components.push(new dynamicObj(params));
+    } else {
+      console.log('***222****');
+      let { id, config } = data;
+      config.initType = type;
+      const dynamicObj = require(`../../component/${id}`).default;
+      const instance = new dynamicObj(config)
+      this.components.push(instance);
+      if (instance.type === 'box') {
+        return instance;
+      } else {
+        return null;
+      }
+    }
+ 
   }
 
 

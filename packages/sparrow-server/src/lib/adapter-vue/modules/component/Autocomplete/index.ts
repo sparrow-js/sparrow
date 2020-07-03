@@ -9,22 +9,27 @@ export default class Autocomplete extends Base{
   vueParse: any;
   constructor (params: any) {
     super();
-    this.labelValue = '文本框';
+
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '文本框',
+        },
+        // 组件标签属性
+        _attr: {
+          placeholder: '请输入',
+          'v-model': params['v-model'] || ''
+        },
+      };
+    }
 
     this.init();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: [],
-        label: '文本框',
-      },
-      // 组件标签属性
-      _attr: {
-        placeholder: '请输入',
-        'v-model': params['v-model'] || ''
-      },
-    };
+   
     this.setHandler();
   }
 
