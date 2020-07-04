@@ -206,7 +206,6 @@ export default class extends Vue {
 
   private async created() {
     const result = await socket.emit('generator.scene.getSetting', {
-      boxIndex: AppModule.boxIndex,
       boxUuid: AppModule.boxUuid,
     });
     if (result) {
@@ -223,7 +222,6 @@ export default class extends Vue {
 
   private async displayChange() {
     const result = await socket.emit('generator.scene.setting', {
-      boxIndex: AppModule.boxIndex,
       boxUuid: AppModule.boxUuid,
       data: {
         handler: 'formInline',
@@ -242,7 +240,6 @@ export default class extends Vue {
 
   private async updateCodeData() {
     const result = await socket.emit('generator.scene.setting', {
-      boxIndex: AppModule.boxIndex,
       boxUuid: AppModule.boxUuid,
       data: {
         handler: 'data',
@@ -287,7 +284,6 @@ export default class extends Vue {
   private async syncConfig () {
     if (!this.uuid || !this.config) return;
      const result = await socket.emit('generator.scene.setting', {
-      boxIndex: AppModule.boxIndex,
       boxUuid: AppModule.boxUuid,
       data: {
         handler: 'settingConfig',

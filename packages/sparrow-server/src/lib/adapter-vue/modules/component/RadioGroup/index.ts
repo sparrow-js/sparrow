@@ -10,6 +10,7 @@ export default class RadioGroup extends Base{
   ele: string = '';
   constructor (params: any) {
     super();
+    this.initVueParse();
     if (params.initType === 'auto') {
       this.config = params;
     } else {
@@ -36,6 +37,11 @@ export default class RadioGroup extends Base{
     this.setHandler();
   }
 
+  private initVueParse () {
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/RadioGroup', 'comp.vue'), 'utf8');
+    this.vueParse = new VueParse(this.uuid, fileStr); 
+  }
+
   private init () {
     const {type} = this.config._custom;
     if (type === 'button') {
@@ -43,9 +49,8 @@ export default class RadioGroup extends Base{
     } else {
       this.ele = 'el-radio';
     }
-    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/RadioGroup', 'comp.vue'), 'utf8');
-    this.vueParse = new VueParse(this.uuid, fileStr); 
   }
+
 
   public fragment () {
     return `

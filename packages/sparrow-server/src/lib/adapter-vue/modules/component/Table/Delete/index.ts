@@ -10,9 +10,9 @@ export default class Delete extends Base{
   vueParse: any;
   uuid: string;
   type: string;
-  constructor (type: string) {
+  constructor (params: any = {}) {
     super()
-    this.type = type;
+    this.type = params.type;
     this.init();
   }
   

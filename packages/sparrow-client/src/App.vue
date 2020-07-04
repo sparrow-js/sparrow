@@ -91,10 +91,6 @@ export default class App extends Vue {
       const handlerFirst = handlerArr[0];
       if (handlerFirst === 'client') {
 
-        if (data.handler === 'client.screen.capture') {
-          
-        }
-
         // 触发区块集
         if (data.handler === 'client.dashboard.show') {
           AppModule.InsertData(data);
@@ -127,7 +123,6 @@ export default class App extends Vue {
               forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
             });
           } 
-          this.formIndex = box.index;
         }
 
         // 触发组件集

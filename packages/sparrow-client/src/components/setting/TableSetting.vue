@@ -1,35 +1,14 @@
 <template>
   <div class="setting">
     <div v-show="showSetting">
-      <el-collapse v-model="activeNames">
-        <el-collapse-item title="表头数据" name="1">
-          <div>
-            <span class="update-data" @click.stop="updateCodeData">更新</span>
-            <span class="update-data" @click="showExportPopover = true">导入</span>
-            <el-popover
-              v-model="showExportPopover"
-              placement="bottom"
-              width="200"
-              trigger="click">
-              <div>
-                <el-input 
-                  v-model="urlHeader"
-                  placeholder="输入URL" 
-                  size="mini"
-                ></el-input>
-                <el-button
-                  class="mt6"
-                  type="primary" 
-                  size="mini" 
-                  @click.stop="exportData">确定</el-button>
-              </div>
-            </el-popover>
-          </div>
-          <div style="height: 300px;overflow: scroll;">
-            <json-editor v-model="jsonData"></json-editor>
-          </div>
-        </el-collapse-item>
-      </el-collapse>
+      <el-form size="small" label-width="90px">
+        <el-form-item 
+          v-if="config._custom['label']!==undefined"
+          label="label"
+        >
+          <el-input v-model="config._custom['label']"></el-input>
+        </el-form-item>
+      </el-form>
     </div>
   </div>
 </template>
@@ -49,13 +28,11 @@ import JsonEditor from '@/components/JsonEditor/index.vue';
   }
 })
 export default class extends Vue {
-  private activeNames = ['1', '2', '3'];
-  private setting = {
-    dataCode: '',
-    inline: false
-  };
+  @Prop({ default: () => null }) private config: any;
+  @Prop({default: ''}) private uuid: string;
 
-  private jsonData: any = [];
+  private activeNames = ['1', '2', '3'];
+
 
   private activeNameCode = 'code';
   private urlHeader = '';
@@ -72,13 +49,7 @@ export default class extends Vue {
       const { data } = event;
       if (data.handler === 'client.component.insertTableHeader') {
         const { params } = data.data;
-        const jsonData = typeof this.jsonData === 'string' ? JSON.parse(this.jsonData) : {};
-        // const jsonData = JSON.parse()
-        const index = jsonData.findIndex(item => item.uuid === params.uuid);
-        if (index >= 0) {
-          jsonData[index].label = params.value;
-        }
-        this.jsonData = jsonData;
+        this.config._custom['label'] = params.value;
         this.updateSetting();
       }
     });
@@ -86,53 +57,21 @@ export default class extends Vue {
 
   private async getSetting() {
     const result = await socket.emit('generator.scene.getSetting', {
-      boxIndex: AppModule.boxIndex,
       boxUuid: AppModule.boxUuid,
     });
-    if (result && result.data) {
-      try {
-        this.jsonData = JSON.parse(result.data.headerData);
-      } catch (e) {}
-    }
   }
 
   private async updateSetting() {
-    if (typeof this.jsonData === 'string') {
-      this.jsonData = JSON.parse(this.jsonData);
-    }
     const result = await socket.emit('generator.scene.setting', {
-      boxIndex: AppModule.boxIndex,
       boxUuid: AppModule.boxUuid,
       data: {
-        handler: 'setHeaderData',
-        code: this.jsonData
+        handler: 'settingConfig',
+        uuid: this.uuid,
+        config: this.config
       }
     });
-    this.getSetting();
   }
 
-  private async updateCodeData() {
-    this.updateSetting();
-    this.$message({
-      message: '操作成功',
-      type: 'success'
-    });
-  }
-
-  private async exportData () {
-    this.showExportPopover = false;
-    if (this.urlHeader) {
-      const result = await socket.emit('generator.scene.setting', {
-        boxIndex: AppModule.boxIndex,
-        boxUuid: AppModule.boxUuid,
-        data: {
-          handler: 'exportData',
-          url: this.urlHeader
-        }
-      });
-      this.getSetting();
-    }
-  }
 }
 </script>
 <style lang="scss" scoped>

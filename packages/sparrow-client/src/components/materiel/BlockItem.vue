@@ -57,7 +57,6 @@ export default class BlockItem extends Vue {
 
   private async addComponent() {
     const params = {
-      boxIndex: AppModule.boxIndex,
       boxUuid: AppModule.boxUuid,
       data: {
         boxData: this.insertData.data,
@@ -73,7 +72,6 @@ export default class BlockItem extends Vue {
 
   private async addBlock() {
     const params = {
-      boxIndex: this.insertData.boxIndex,
       boxUuid: this.boxUuid,
       data: {
         boxData: this.insertData.data,

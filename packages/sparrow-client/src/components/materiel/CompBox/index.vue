@@ -72,7 +72,6 @@
                 <div
                   :style="{ 'background-image': `url(${item.url})` }"
                   class="scene__preview"></div>
-                <!-- <img :src="item.url" width="200"/> -->
               </el-card>
               <div class="scene-item__name">
                 <span class="scene-item__title">{{item.name}}</span>
@@ -80,12 +79,14 @@
             </div>
             <div class="scene__operate">
               <div style="margin-bottom: 4px;">
-                <el-button type="primary" size="small" @click="useScene(item.id)"
+                <el-button type="primary" size="mini" @click="useScene(item.id)"
                   >使用</el-button
+                >
+                <el-button type="danger" size="mini" @click="deleteScene(item.id)"
+                  >删除</el-button
                 >
               </div>
               <div>
-                <!-- <el-button size="small">预览图片</el-button> -->
               </div>
             </div>
         
@@ -174,6 +175,11 @@ export default class CompBox extends Vue {
       this.componentList = componentMap[params.compBox];
     }
 
+    this.getScene()
+
+  }
+
+  async getScene () {
     const res = await socket.emit('generator.scene.getScene');
     this.sceneList = res.list;
   }
@@ -217,7 +223,13 @@ export default class CompBox extends Vue {
     const res = await socket.emit('generator.toolbar.useScene', {
       id,
     });
-    // console.log(id);
+  }
+
+  async deleteScene (id) {
+    const res = await socket.emit('generator.toolbar.deleteScene', {
+      id,
+    });
+    this.getScene()
   }
 
   async handleDrop (dragNode, dropNode) {

@@ -228,7 +228,6 @@ export default class Form extends Base implements IBaseBox{
         this[handler](data);
       }
     }
-    // this.resetRender();
   }
 
 

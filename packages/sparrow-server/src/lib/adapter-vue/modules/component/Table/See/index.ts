@@ -1,6 +1,3 @@
-import * as fsExtra from 'fs-extra';
-import VueParse from '../../../generator/VueParse';
-import * as path from 'path';
 import Base from '../Base';
 
 export default class Delete extends Base{
@@ -9,9 +6,9 @@ export default class Delete extends Base{
   vueParse: any;
   uuid: string;
   type: string;
-  constructor (type: string) {
+  constructor (params: any = {}) {
     super()
-    this.type = type;
+    this.type = params.type;
     this.init();
   }
   

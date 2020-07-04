@@ -5,6 +5,7 @@ import * as path from 'path';
 import * as launchEditor from 'launch-code-editor';
 import Config from '../../config'
 import storage from '../../../storage';
+import lowdb from '../../../lowdb';
 
 
 export default class Toolbar {
@@ -35,6 +36,12 @@ export default class Toolbar {
       
       socket.emit('generator.toolbar.openCodeEditor.result', errorMsg);
     });
+  }
+
+  public async deleteScene (params) {
+    lowdb.get('scenes')
+    .remove({ id: params.id })
+    .write();
   }
 
   public resetScene (scene: any) {

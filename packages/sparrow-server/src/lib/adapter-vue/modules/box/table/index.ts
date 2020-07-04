@@ -1,5 +1,4 @@
 import IBaseBox from '../IBaseBox';
-import * as boxFragment from '../../fragment/box';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import * as cheerio from 'cheerio';
@@ -16,8 +15,9 @@ import * as _ from 'lodash';
 import * as upperCamelCase from 'uppercamelcase';
 import Box from '../Box';
 
-const mkdirpAsync = util.promisify(mkdirp);
 import Base from '../Base';
+import Column from './column';
+
 
 const templateStr =  `
   <template>
@@ -48,15 +48,15 @@ export default class Table extends Base implements IBaseBox{
   $blockTemplate: any;
   activeIndex: number = -1;
   col: number = 2;
-  tableHeaderData: any =  [];
 
   data: any = {};
   methods: any = {};
   vueParseMap:any = {};
   type: number = 0;
-  boxIndex: number;
   boxStrs: string = '';
   renderStep: boolean = true;
+  params: any = null;
+  components: any = [];
 
   settingData: IFormSetting = {
     headerData: ``,
@@ -64,16 +64,13 @@ export default class Table extends Base implements IBaseBox{
 
   constructor (data: any, storage: any) {
     super(storage);
-    const { boxIndex, params } = data;
-    this.boxIndex = boxIndex;
+    const { params } = data;
+    this.params = params;
     const {blockName, col} = params;
     this.fileName = blockName;
     this.col = col;
     for (let i = 0; i < this.col; i++) {
-      this.tableHeaderData.push({
-        uuid: uuid().split('-')[0],
-        label: '',
-      });
+      this.components.push(new Column());
     }
     this.insertComponents.push(this.fileName);
     this.$fragment = cheerio.load(
@@ -162,26 +159,21 @@ export default class Table extends Base implements IBaseBox{
   }
 
   public addComponent (data?: any) {
-    const { key,type, params, cellParams } = data;
-    let dynamicObj = null;
-    if (!this.components[params.uuid]) {
-      this.components[params.uuid] = [];
-    }
-    if(type === 'box') {
-      const box = new Box();
-      data.displayMode = 'table';
-      box.addComponent(data);
-      this.components[params.uuid].push(box);
-    } else {
-      dynamicObj = require(`../../component/Table/${key}`).default;
-      
-      this.components[params.uuid].push(new dynamicObj(type, cellParams))
-    }
+
+    const {key, params, type} = data;
+    this.components.forEach(item => {
+      if (item.uuid === params.uuid) {
+        item.addComponent({
+          id: key,
+          type
+        });
+      }
+    });
   }
 
 
   public changePosition (order: any) {
-    let uuid = this.findComponents(order[0]);
+    let uuid = ''
     if (!uuid) {
       return {
         status: 1,
@@ -200,18 +192,6 @@ export default class Table extends Base implements IBaseBox{
     this.observeComp();
   }
 
-  public findComponents (uuid: string) {
-    let temp = null;
-    Object
-    .keys(this.components)
-    .forEach(key => {
-      const comp = this.components[key].find(item => item.uuid === uuid);
-      if (comp) {
-        temp = key;
-      }
-    });
-    return temp;
-  }
 
   public setVueParse (compName: string) {
     const uuidValue = uuid().split('-')[0]; 
@@ -219,12 +199,9 @@ export default class Table extends Base implements IBaseBox{
     this.vueParseMap[compName] =  new VueParse(uuidValue, fileStr);
   }
   public async setting (data: any) {
-    const {handler} = data;
-    if (this[handler]) {
-      await this[handler](data);
-      this.renderBox();
-    }
-    this.render();
+    const {uuid, config} = data;
+    const comp = this.findComponents(uuid);
+    comp && comp.setConfig(config);
   }
   
   private setHeaderData (data) {
@@ -234,7 +211,6 @@ export default class Table extends Base implements IBaseBox{
       }
       return item;
     });
-    this.tableHeaderData = list;
   }
 
   private async exportData (data) {
@@ -253,27 +229,52 @@ export default class Table extends Base implements IBaseBox{
   }
   
   public getSetting () {
-    this.settingData.headerData = JSON.stringify(this.tableHeaderData);
     return {
-      data: this.settingData
+      data: []
     }
+  }
+
+  findComponents (uuid: string) {
+    let comp = null;
+    this.components.forEach(item => {
+      if (item.uuid === uuid) {
+        comp = item;
+      }
+    });
+    return comp;
+  }
+
+  getBoxChildConfig(params: any) {
+    const {uuid} = params;
+    const comp = this.findComponents(uuid);
+    if (comp) {
+      return comp.getConfig();
+    } else {
+      return null;
+    }
+    
   }
 
   public renderBox () {
     this.renderStep = !this.renderStep;
     this.$blockTemplate('el-table').empty();
     this.$blockTemplate('.other').empty();
+
     this.$blockTemplate('el-table').append(this.renderColumn());
     this.$blockTemplate('.other').append(this.boxStrs);
     this.vueParseMap['Base'] && this.VueGenerator.appendData(this.vueParseMap['Base'].data)
   }
 
   public renderColumn () {
-    let column = ''
-    const type = this.storage.get('preview_view_status') || 0;
-
-    const {tableHeaderData} = this;
+    let column = '';
     this.boxStrs = '';
+    this.components.forEach(item => {
+      if (item.boxStrs) {
+        this.boxStrs = this.boxStrs + item.boxStrs;
+      }
+      column = column + item.getFragment().html();
+    })
+
 
     const fn = (components) => {
       components.forEach(item => {
@@ -289,6 +290,15 @@ export default class Table extends Base implements IBaseBox{
         }
       })
     }
+
+    fn(this.components);
+
+    
+    /*
+    const type = this.storage.get('preview_view_status') || 0;
+
+    const {tableHeaderData} = this;
+    this.boxStrs = '';
 
     for (var i = 0; i < tableHeaderData.length; i++) {
       const uuid = tableHeaderData[i].uuid;
@@ -350,6 +360,7 @@ export default class Table extends Base implements IBaseBox{
       }
     
     }
+    */
     return column;
   }
   

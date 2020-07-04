@@ -94,7 +94,6 @@ export default class CardBox{
       }  
       this.components.push(new dynamicObj(params));
     } else {
-      console.log('***222****');
       let { id, config } = data;
       config.initType = type;
       const dynamicObj = require(`../../component/${id}`).default;

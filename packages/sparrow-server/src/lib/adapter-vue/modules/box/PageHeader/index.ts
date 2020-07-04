@@ -9,13 +9,11 @@ export default class PageHeader extends Base implements IBaseBox{
   components: any = [];
   type: string = 'inline';
   previewType: number = 0;
-  boxIndex: number;
   labelValue: string = '详情页面';
 
   constructor (data: any, storage: any) {
     super(storage)
-    const { boxIndex, params } = data;
-    this.boxIndex = boxIndex;
+    const { params } = data;
     this.$fragment = cheerio.load(
       `
         <div class="box">

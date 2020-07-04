@@ -16,35 +16,40 @@ export default class TabsBox{
   _attrStr: string = '';
   vueParse: any;
 
-  constructor () {
+  constructor (params: any = {}) {
     this.uuid = uuid().split('-')[0];
-    this.config = {
-      _attr: {
-        ':active-name': 'first'
-      },
-      _slot: {
-        data: `
-        [
-          {
-            label: '用户管理',
-            value: 'first'
-          },
-          {
-            label: '配置管理',
-            value: 'second'
-          },
-          {
-            label: '角色管理',
-            value: 'third'
-          },
-          {
-            label: '定时任务补偿',
-            value: 'fourth'
-          },
-        ]
-        `
-      } 
-    };
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        _attr: {
+          ':active-name': 'first'
+        },
+        _slot: {
+          data: `
+          [
+            {
+              label: '用户管理',
+              value: 'first'
+            },
+            {
+              label: '配置管理',
+              value: 'second'
+            },
+            {
+              label: '角色管理',
+              value: 'third'
+            },
+            {
+              label: '定时任务补偿',
+              value: 'fourth'
+            },
+          ]
+          `
+        } 
+      };
+    }
+   
 
     const tabsData = this.getTabsData();
 

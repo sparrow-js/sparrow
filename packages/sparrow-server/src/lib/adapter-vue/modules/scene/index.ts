@@ -13,10 +13,6 @@ import Box from '../box/Box';
 import storage from '../../../storage';
 import lowdb from '../../../lowdb';
 
-import BaseTest from '../../data/SceneData/BaseTest';
-import { darkblue } from 'color-name';
-import { param } from 'midway-web';
-
 const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
 
@@ -115,93 +111,35 @@ export default class Scene {
             fn(item.components[0].components)
           }
         });
-      } else {
-        Object
-        .keys(boxs)
-        .forEach(key => {
-          if (Array.isArray(boxs[key])) {
-            fn(boxs[key]);
-          }
-        })
       }
     }
 
     fn(boxs);
   }
   
-  public findBox (uuid: string, boxs: any) {
-    let tempBox = null;
 
-    const fn = function (uuid, boxs) {
-      if (tempBox === null) {
-        if (Array.isArray(boxs)) {
-          boxs.forEach(item => {
+  public findBoxParent (uuid: string, components: any) {
+
+    let tempComp = null;
+
+    const fn = function (uuid, components) {
+      if (tempComp === null) {
+        if (Array.isArray(components)) {
+          components.forEach(item => {
             if (item.uuid === uuid) {
-              tempBox = item;
+              tempComp = components;
             }
-
-            if (
-              item.name === 'box' 
-              && item.components[0] 
-              && item.components[0].components
-            ) {
-              fn(uuid, item.components[0].components)
-            }
-          });
-        } else {
-          Object
-          .keys(boxs)
-          .forEach(key => {
-            if (Array.isArray(boxs[key])) {
-              fn(uuid, boxs[key]);
-            }
-          })
-        }
-
-        /**
-         *  else if (boxs.uuid) {
-              if(boxs.uuid === uuid) {
-                tempBox = boxs;
-              }
-            }
-         */
-      }
-    }
-
-    fn(uuid, boxs);
-    return tempBox;
-  }
   
-
-  public findBoxParent (uuid: string, boxs: any) {
-    let tempBox = null;
-
-    const fn = function (uuid, boxs) {
-      if (tempBox === null) {
-        if (Array.isArray(boxs)) {
-          boxs.forEach(item => {
-            if (item.uuid === uuid) {
-              tempBox = boxs;
-            }
-
-            if (item.name === 'box' && item.components[0] && item.components[0].components && tempBox === null) {
-              fn(uuid, item.components[0].components)
+            if (item.components && tempComp === null) {
+              fn(uuid, item.components)
             }
           });
-        } else {
-          Object
-          .keys(boxs)
-          .forEach(key => {
-            if (Array.isArray(boxs[key])) {
-              fn(uuid, boxs[key]);
-            }
-          })
         }
       }
     }
 
-    fn(uuid, boxs);
-    return tempBox;
+    fn(uuid, components);
+    return tempComp;
   }
 
   changePosition (params) {
@@ -216,7 +154,7 @@ export default class Scene {
       this.renderPage();
       return {};
     }
-    const currBox = this.findBox(uuid, this.components);
+    const currBox = this.findComponent(uuid, this.components);
     if (currBox && currBox.components[0].changePosition) {
       const res = currBox.components[0].changePosition(order);
       this.renderPage();
@@ -232,7 +170,7 @@ export default class Scene {
   public addBox (params: any) {
     const {boxUuid, data} = params;
     if (boxUuid) {
-      const currBox = this.findBox(boxUuid, this.components);
+      const currBox = this.findComponent(boxUuid, this.components);
       currBox.addComponent(data);
       const curBoxParent = this.findBoxParent(boxUuid, this.components)
       curBoxParent.push(new Box());
@@ -242,7 +180,7 @@ export default class Scene {
 
   public addComponent (params) {
     const { data, boxUuid} = params;
-    const currBox = this.findBox(boxUuid, this.components);
+    const currBox = this.findComponent(boxUuid, this.components);
     if (currBox) {
       currBox.components[0].addComponent(data);
       this.renderPage();
@@ -252,7 +190,7 @@ export default class Scene {
   public async addBlock (params, ctx) {
     const {data, boxUuid} = params;
     if (boxUuid) {
-      const currBox = this.findBox(boxUuid, this.components);
+      const currBox = this.findComponent(boxUuid, this.components);
       await currBox.components[0].addBlock(data);
       this.renderPage();
     }
@@ -268,7 +206,7 @@ export default class Scene {
   public async setting (params: any) {
 
     const { data, boxUuid} = params;
-    const curBox = this.findBox(boxUuid, this.components);
+    const curBox = this.findComponent(boxUuid, this.components);
     if (curBox && curBox.components[0]) {
       await curBox.components[0].setting(data);
       this.renderPage();
@@ -305,10 +243,6 @@ export default class Scene {
               fn(uuid, item.components)
             }
           });
-        } else {
-          if(components.uuid === uuid) {
-            tempComp = components;
-          }
         }
       }
     }
@@ -320,7 +254,7 @@ export default class Scene {
   public getSetting (params) {
     const { boxUuid } = params;
     
-    const curBox = this.findBox(boxUuid, this.components);
+    const curBox = this.findComponent(boxUuid, this.components);
     if (curBox && curBox.components[0]) {
       return curBox.components[0].getSetting()
     }
@@ -328,7 +262,7 @@ export default class Scene {
 
   public getBoxChildConfig (params) {
     const {boxUuid} = params;
-    const curBox = this.findBox(boxUuid, this.components);
+    const curBox = this.findComponent(boxUuid, this.components);
     if (curBox && curBox.components[0] && curBox.components[0].getBoxChildConfig) {
       return curBox.components[0].getBoxChildConfig(params);
     }
@@ -412,16 +346,6 @@ export default class Scene {
           node.components.forEach(node => {
             tree.children.push(this.getSaveTree(node));
           })
-        } else {
-          Object
-            .keys(node.components)
-            .forEach((key, index) => {
-              tree.children.push(this.getSaveTree({
-                name: 'column',
-                id: key,
-                components: node.components[key]
-              }));
-            });
         }
       } 
       if(node.boxs) {
@@ -460,16 +384,6 @@ export default class Scene {
           node.components.forEach(node => {
             tree.children.push(this.getTree(node));
           })
-        } else {
-          Object
-            .keys(node.components)
-            .forEach((key, index) => {
-              tree.children.push(this.getTree({
-                name: 'column',
-                id: key,
-                components: node.components[key]
-              }));
-            });
         }
       } 
       if(node.boxs) {
@@ -506,22 +420,6 @@ export default class Scene {
               this.deleteNode(item, id, flag);
             } 
           });
-        } else {
-          let index = null;
-          Object
-            .keys(node.components)
-            .forEach(key => {
-              node.components[key] && node.components[key].forEach((item, index) => {
-                if (item.uuid === id) {
-                  index = index
-                  flag = 1;
-                  node.components[key].splice(index, 1);
-                }
-                if (flag === 0) {
-                  this.deleteNode(item, id, flag);
-                } 
-              });
-            });
         }
         
       } else {

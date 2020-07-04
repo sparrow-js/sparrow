@@ -16,14 +16,18 @@ export default class ArrayListBox{
   insertComponents: any = ['ArrayList'];
 
   constructor (params: any) {
-
     this.uuid = uuid().split('-')[0];
-    this.config = {
-      _attr: {
-        ':list': params['v-model'],
-        ':default': 'var data = {}'
-      },
-    };
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        _attr: {
+          ':list': params['v-model'],
+          ':default': 'var data = {}'
+        },
+      };
+    }
+
     const componentsDir = Config.componentsDir; 
     const compDir = path.join(componentsDir, 'ArrayList')
     fsExtra.copySync(path.join(Config.serverBusinessPath, 'ArrayList'), compDir)

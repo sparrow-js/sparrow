@@ -28,7 +28,7 @@ export default class DialogBox{
   public renderFragment (type: number) {
     let btn = '';
     if (this.displayMode === 'btn') {
-      btn = `<el-button type="primary" size="small" @click="dialogVisibleHandler${this.uuid}">弹窗</el-button>`
+      btn = `<el-button type="primary" size="mini" @click="dialogVisibleHandler${this.uuid}">弹窗</el-button>`
     }
     
     const DialogBox = `

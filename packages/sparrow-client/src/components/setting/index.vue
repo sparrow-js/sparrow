@@ -57,7 +57,6 @@ export default class extends Vue {
         const {params} = data.data;
         this.uuid = params.uuid;
         const res = await socket.emit('generator.scene.getBoxChildConfig', {
-          boxIndex: AppModule.boxIndex,
           boxUuid: AppModule.boxUuid,
           uuid: params.uuid
         });

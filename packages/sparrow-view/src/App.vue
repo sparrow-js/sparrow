@@ -19,7 +19,6 @@ export default {
   data () {
     return {
       toolbarList: [],
-      boxIndex: null,
       uuid: '',
       isShowToolbar: false
     }
@@ -54,7 +53,6 @@ export default {
     },false);
     this.getToolbarList();
     Event.on('block-selected', (data) => {
-      this.boxIndex = data.index;
       this.uuid = data.uuid;
     });
 
@@ -66,7 +64,6 @@ export default {
         //   this.uuid = params.uuid;
         // }
         message.emit(data.emit || 'client.dashboard.show', {
-          boxIndex: this.boxIndex,
           uuid: this.uuid,
           data,
         });
@@ -76,11 +73,7 @@ export default {
     Event.on('pivot_setting', (setting) => {
       setTimeout(() => {
         message.emit('client.setting.show', {
-          boxIndex: this.boxIndex,
           uuid: this.uuid,
-          box: {
-            index: this.boxIndex
-          },
           setting
         });
       }, 300);
