@@ -14,8 +14,10 @@ export default class Column{
   config: any = null;
   insertFileType: string = 'inline';
   boxStrs: string = '';
+  storage: any = {};
 
-  constructor () {
+  constructor (storage: any) {
+    this.storage = storage;
     this.uuid = uuid().split('-')[0]; 
     this.config = {
       // 组件自定义配置
@@ -44,86 +46,6 @@ export default class Column{
 
   renderTemplate () {
     this.type = storage.get('preview_view_status') || 0;
-     // const type = this.storage.get('preview_view_status') || 0;
-
-    // const {tableHeaderData} = this;
-    // this.boxStrs = '';
-
-    // const fn = (components) => {
-    //   components.forEach(item => {
-    //     if (item.vueParse && item.insertFileType === 'inline') {
-    //       item.vueParse.methods && this.VueGenerator.appendMethods(item.vueParse.methods);
-    //       item.vueParse.data && this.VueGenerator.appendData(item.vueParse.data);
-    //     }
-    //     if (item.insertComponents && item.insertComponents.length) {
-    //       this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]), true);
-    //     }
-    //     if (item.insertFileType !== 'block' && item.components && item.components.length > 0) {
-    //       fn(item.components)
-    //     }
-    //   })
-    // }
-
-    // for (var i = 0; i < tableHeaderData.length; i++) {
-    //   const uuid = tableHeaderData[i].uuid;
-    //   let compTag = this.renderStep ? '<div />' : '';
-    //   if (this.components[uuid]) {
-    //     this.components[uuid].forEach(item => {
-    //       if (item.name === 'box') {
-    //         this.boxStrs = this.boxStrs + item.getFragment().html();
-    //         const fragmentOther = item.getFragmentOther();
-    //         if (fragmentOther) {
-    //           compTag = compTag +  fragmentOther.html();
-    //         }
-    //       } else {
-    //         compTag = compTag + `${item.getFragment().html()}`;
-    //       }
-    //     })
-    //     fn(this.components[uuid]);
-    //   }
-
-
-
-    //   const curProp = tableHeaderData[i].prop ? `prop="${tableHeaderData[i].prop}"` : '';
-    //   let cellBox = '';
-    //   if (type === 0) {
-    //     cellBox = !curProp ? `
-    //       <template slot-scope="{row, column, $index}">
-            
-    //         ${compTag}
-    //         <table-cell-box uuid="${tableHeaderData[i].uuid}"></table-cell-box>
-    //       </template>
-    //     ` : '';
-
-    //     column += `
-    //       <el-table-column 
-    //         ${curProp} 
-    //         label="${tableHeaderData[i].label}"
-    //       >
-    //         <template slot="header" slot-scope="{row, column, $index}">
-    //           <table-header-box uuid="${tableHeaderData[i].uuid}" :label="column.label"></table-header-box>
-    //         </template>
-    //         ${cellBox}
-    //       </el-table-column>
-    //     `;
-    //   } else {
-    //     cellBox = !curProp && compTag ? `
-    //       <template slot-scope="{row, column, $index}">
-    //         ${compTag}
-    //       </template>
-    //     ` : '';
-
-    //     column += `
-    //     <el-table-column 
-    //       ${curProp}
-    //       label="${tableHeaderData[i].label}"
-    //     >
-    //       ${cellBox}
-    //     </el-table-column>
-    //   `;
-    //   }
-    
-    // }
     let compTag = '';
     this.boxStrs = '';
     this.components.forEach(item => {
@@ -135,28 +57,46 @@ export default class Column{
           compTag = compTag +  fragmentOther.html();
         }
       } else {
-        compTag = compTag + item.getFragment().html();
+        compTag = compTag + item.getFragment(this.type).html();
 
       }
+
     });
 
-     const cellbox =  `
+    let column = '';
+    if (this.type === 0) {
+      const cellbox =  `
       <template slot-scope="{row, column, $index}">
         ${compTag}
         <table-cell-box uuid="${this.uuid}"></table-cell-box>
       </template>
       `
-
-    this.$fragment =  cheerio.load(`
-      <el-table-column
-        label="${this.config._custom.label}"
-      >
-        <template slot="header" slot-scope="{row, column, $index}">
-          <table-header-box uuid="${this.uuid}" :label="column.label"></table-header-box>
-        </template>
-        ${cellbox}
-      </el-table-column>  
-    `, {
+      column = `
+        <el-table-column
+          label="${this.config._custom.label}"
+        >
+          <template slot="header" slot-scope="{row, column, $index}">
+            <table-header-box uuid="${this.uuid}" :label="column.label"></table-header-box>
+          </template>
+          ${cellbox}
+        </el-table-column>  
+      `
+    } else {
+      const cellbox =  `
+      <template slot-scope="{row, column, $index}">
+        ${compTag}
+      </template>
+      `
+      column = `
+        <el-table-column
+          label="${this.config._custom.label}"
+        >
+          ${cellbox}
+        </el-table-column>  
+      `
+    }
+   
+    this.$fragment =  cheerio.load(column, {
       xmlMode: true,
       decodeEntities: false
     });

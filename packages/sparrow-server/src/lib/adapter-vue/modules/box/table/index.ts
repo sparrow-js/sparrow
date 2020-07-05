@@ -57,6 +57,7 @@ export default class Table extends Base implements IBaseBox{
   renderStep: boolean = true;
   params: any = null;
   components: any = [];
+  storage: any = {};
 
   settingData: IFormSetting = {
     headerData: ``,
@@ -64,13 +65,14 @@ export default class Table extends Base implements IBaseBox{
 
   constructor (data: any, storage: any) {
     super(storage);
+    this.storage = storage;
     const { params } = data;
     this.params = params;
     const {blockName, col} = params;
     this.fileName = blockName;
     this.col = col;
     for (let i = 0; i < this.col; i++) {
-      this.components.push(new Column());
+      this.components.push(new Column(this.storage));
     }
     this.insertComponents.push(this.fileName);
     this.$fragment = cheerio.load(
@@ -262,6 +264,7 @@ export default class Table extends Base implements IBaseBox{
 
     this.$blockTemplate('el-table').append(this.renderColumn());
     this.$blockTemplate('.other').append(this.boxStrs);
+
     this.vueParseMap['Base'] && this.VueGenerator.appendData(this.vueParseMap['Base'].data)
   }
 
@@ -269,10 +272,10 @@ export default class Table extends Base implements IBaseBox{
     let column = '';
     this.boxStrs = '';
     this.components.forEach(item => {
+      column = column + item.getFragment().html();
       if (item.boxStrs) {
         this.boxStrs = this.boxStrs + item.boxStrs;
       }
-      column = column + item.getFragment().html();
     })
 
 
@@ -367,7 +370,6 @@ export default class Table extends Base implements IBaseBox{
 
   public render () {
     const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
-
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
     fsExtra.writeFileSync(this.blockPath, formatTemp, 'utf8');
   }

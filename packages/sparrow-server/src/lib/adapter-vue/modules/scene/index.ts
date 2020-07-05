@@ -103,12 +103,8 @@ export default class Scene {
           if (item.name === 'box') {
             item.setPreview && item.setPreview();
           }
-          if (
-            item.name === 'box' 
-            && item.components[0] 
-            && item.components[0].components
-          ) {
-            fn(item.components[0].components)
+          if (item.components) {
+            fn(item.components)
           }
         });
       }

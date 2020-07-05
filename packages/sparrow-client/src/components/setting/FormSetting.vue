@@ -95,7 +95,7 @@
 
         </el-tab-pane>
         <el-tab-pane label="表单" name="second">
-          <el-collapse v-model="activeNames">
+          <el-collapse v-if="setting" v-model="activeNames">
             <el-collapse-item title="模式" name="1">
               <el-switch
                 v-model="setting.inline"

@@ -1,7 +1,7 @@
 <template>
   <div class="setting">
     <div v-show="showSetting">
-      <el-form size="small" label-width="90px">
+      <el-form v-if="config" size="small" label-width="90px">
         <el-form-item 
           v-if="config._custom['label']!==undefined"
           label="label"
@@ -59,6 +59,10 @@ export default class extends Vue {
     const result = await socket.emit('generator.scene.getSetting', {
       boxUuid: AppModule.boxUuid,
     });
+  }
+
+  private beforeDestroy () {
+    this.$root.$emit('setting-before-destroy');
   }
 
   private async updateSetting() {

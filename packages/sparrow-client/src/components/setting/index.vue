@@ -63,7 +63,10 @@ export default class extends Vue {
         this.config = res;
         AppModule.setUuid(this.uuid);
       }
-    })
+    });
+    this.$root.$on('setting-before-destroy', () => {
+      this.config = null;
+    });
   }
 
   get settingComponent() {

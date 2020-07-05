@@ -54,7 +54,7 @@ export default class Box{
       box = content
     }
     this.$fragment =  cheerio.load(`
-      <div class="block-list test">
+      <div class="block-list">
         ${box}
       </div>
     `, {
@@ -64,6 +64,7 @@ export default class Box{
   }
 
   setPreview () {
+    // this.renderTemplate();
     if (this.components[0] && this.components[0].setPreview) {
       this.components[0].setPreview();
     }
