@@ -11,6 +11,7 @@ export default class Select extends Base {
 
   constructor (params: any) {
     super();
+    this.initVueParse();
     if (params.initType === 'auto') {
       this.config = params;
     } else {
@@ -37,6 +38,11 @@ export default class Select extends Base {
     this.setHandler();
   }
 
+  private initVueParse () {
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/Select', 'comp.vue'), 'utf8');
+    this.vueParse = new VueParse(this.uuid, fileStr); 
+  }
+
   private init () {
     const {type} = this.config._custom;
     if (type === 'clearable') {
@@ -49,8 +55,6 @@ export default class Select extends Base {
       this.status = 'allow-create';
     }
 
-    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/Select', 'comp.vue'), 'utf8');
-    this.vueParse = new VueParse(this.uuid, fileStr); 
   }
 
   public fragment () {

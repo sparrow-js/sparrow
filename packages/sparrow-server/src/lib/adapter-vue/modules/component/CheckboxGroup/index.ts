@@ -12,7 +12,7 @@ export default class CheckboxGroup extends Base{
   constructor (params: any) {
     super();
     this.params = params;
-    this.init();
+    this.initVueParse();
     this.config = {
       // 组件自定义配置
       _custom: {
@@ -29,10 +29,14 @@ export default class CheckboxGroup extends Base{
         data: this.vueParse.getFormatData()
       }
     };
-
+    this.init();
     this.setHandler();
   }
 
+  private initVueParse () {
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/CheckboxGroup', 'comp.vue'), 'utf8');
+    this.vueParse = new VueParse(this.uuid, fileStr); 
+  }
   private init () {
     const {type} = this.params;
     if (type === 'button') {
@@ -40,8 +44,7 @@ export default class CheckboxGroup extends Base{
     } else {
       this.ele = 'el-checkbox';
     }
-    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/CheckboxGroup', 'comp.vue'), 'utf8');
-    this.vueParse = new VueParse(this.uuid, fileStr); 
+
   }
 
   public fragment () {
