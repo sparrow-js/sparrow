@@ -12,6 +12,8 @@ export default class RadioGroup extends Base{
     super();
     this.initVueParse();
     if (params.initType === 'auto') {
+      const oldRadionboxOptions = params._slot.data.match(/radionboxOptions[a-z0-9]+/)[0];
+      params._slot.data = params._slot.data.replace(oldRadionboxOptions, `radionboxOptions${this.uuid}`)
       this.config = params;
     } else {
       this.config = {

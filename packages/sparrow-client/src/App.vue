@@ -177,6 +177,14 @@ export default class App extends Vue {
       Loading.close();
     });
 
+    socket.on('generator.force.refresh',data => {
+      const viewContent:any = document.querySelector('#viewContent')
+      setTimeout(() => {
+        viewContent.contentWindow.location.reload(true)
+      }, 1000)
+    })
+    
+
     this.settingData = {};
   }
 

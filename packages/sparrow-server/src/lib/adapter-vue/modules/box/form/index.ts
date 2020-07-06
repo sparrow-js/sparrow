@@ -1,5 +1,4 @@
 import IBaseBox from '../IBaseBox';
-import * as boxFragment from '../../fragment/box';
 import * as fragment from './fragment';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
@@ -12,10 +11,12 @@ import * as prettier from 'prettier';
 import generate from '@babel/generator';
 import Base from '../Base';
 import * as _ from 'lodash';
+const uuid = require('@lukeed/uuid');
+
 
 const templateStr =  `
   <template>
-    <div class="root">
+    <div class="root" >
       <box-form></box-form>
     </div>
   </template>
@@ -44,6 +45,7 @@ export default class Form extends Base implements IBaseBox{
   methods: any = {};
   type: number = 0; // 0: 编辑 1: 预览
   iFormAttrs: any = {};
+  formatTemp: string = '';
 
   config: IFormSetting = {
     dataCode: `var data = {}`,
@@ -81,8 +83,8 @@ export default class Form extends Base implements IBaseBox{
       decodeEntities: false
     });
 
-    this.resetRender = _.throttle(this.resetRender, 50);
-    this.renderBox = _.throttle(this.renderBox, 10);
+    this.resetRender = _.throttle(this.resetRender, 100);
+    // this.renderBox = _.throttle(this.renderBox, 10);
     this.$blockTemplate('box-form').append(fragment.eform());
     this.VueGenerator = new VueGenerator('block');
     this.init();
@@ -94,8 +96,8 @@ export default class Form extends Base implements IBaseBox{
   init () {
     mkdirp.sync(Config.componentsDir);
     this.blockPath = path.join(Config.componentsDir, `${this.fileName}.vue`);
-    this.render();
   }
+  
 
   public getFragment(index: number, type: number = 0): any {
     return this.$fragment;
@@ -103,11 +105,7 @@ export default class Form extends Base implements IBaseBox{
 
   public setPreview () {
     const type = this.storage.get('preview_view_status') || 0;
-    if (this.type === type) {
-      return;
-    } else {
-      this.type = type;
-    }
+    this.type = type;
     if (type === 0) {
       this.$blockTemplate = cheerio.load(templateStr, {
         xmlMode: true,
@@ -132,12 +130,8 @@ export default class Form extends Base implements IBaseBox{
   
       this.$blockTemplate('.root').append(fragment.eform());
     }
-
     this.resetRender()
-
-    setTimeout(() => {
-      this.observeComp();
-    }, 500)
+    // this.observeComp();
   }
 
   public addComponent (data: any, type: string = 'manual') {
@@ -253,6 +247,8 @@ export default class Form extends Base implements IBaseBox{
   }
   
   public getSetting () {
+    this.resetRender();
+    this.observeComp();
     return {
       data: this.config
     }
@@ -277,9 +273,6 @@ export default class Form extends Base implements IBaseBox{
       return total;
     }, []);
     obj.components = components;
-
-    this.resetRender();
-    this.observeComp();
   }
 
   findComponents (uuid: string) {
@@ -302,6 +295,7 @@ export default class Form extends Base implements IBaseBox{
   }
 
   public renderBox () {
+
     this.$blockTemplate('el-form').empty();
     this.resetInitScript();
     for (let key in this.iFormAttrs) {
@@ -316,7 +310,7 @@ export default class Form extends Base implements IBaseBox{
         if (flag === 0) {
           if (this.type === 0) {
             const componentBox = 
-              `<component-box indexcomp="${index}" uuid="${component.uuid}">
+              `<component-box uuid="${component.uuid}">
                   ${component.getFragment(this.type).html()}
                 </component-box>`;
 
@@ -349,10 +343,11 @@ export default class Form extends Base implements IBaseBox{
   public render () {
     const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
-
-    setTimeout(() => {
-      fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
-    }, 100)
+    if (formatTemp === this.formatTemp) {
+      return;
+    }
+    this.formatTemp = formatTemp;
+    fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
   }
 
   setTemplate () {

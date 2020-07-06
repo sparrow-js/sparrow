@@ -3,7 +3,9 @@
     <div v-show="showSetting">
       <el-tabs v-model="tabActiveName" @tab-click="handleClick">
         <el-tab-pane label="组件" name="first">
-
+          <div>
+            <span class="update-data" @click.stop="syncConfig">更新</span>
+          </div>
           <el-scrollbar v-if="config" class="right-scrollbar">
             <el-form size="small" label-width="90px">
               <el-form-item 
@@ -195,10 +197,12 @@ export default class extends Vue {
   private codeEditType = '';
 
 
-  @Watch('config', { immediate: true, deep: true})
-  private onConfigChange() {
-    this.syncConfig();
-  }
+  // @Watch('config', { immediate: true, deep: true})
+  // private onConfigChange() {
+  //   this.syncConfig();
+  // }
+
+
 
   get showSetting() {
     return SettingModule.showSetting;

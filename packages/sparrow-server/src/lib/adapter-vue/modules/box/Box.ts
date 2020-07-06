@@ -10,8 +10,12 @@ export default class Box{
   label: string = '';
   type: number = 0;
   unique: string | number;
+  toggle: boolean = false;
+  enableToggle: boolean = true;
 
-  constructor () {
+
+  constructor (enableToggle: boolean = true) {
+    this.enableToggle = enableToggle;
     this.uuid = uuid().split('-')[0]; 
   }
   
@@ -22,6 +26,7 @@ export default class Box{
     const obj = new dynamicObj(curData, storage)
     this.components.push(obj);
     this.renderTemplate();
+    // force refresh
     return obj;
   }
 
@@ -36,10 +41,20 @@ export default class Box{
           :params="{uuid: '${this.uuid}'}"></paragraph>
       `
     } else {
-      content = this.components[0].getFragment().html()
+      content = this.components[0].getFragment() && this.components[0].getFragment().html()
     }
 
+
+    let toggleView = '';
+
+
+    if (this.toggle === true && this.enableToggle === true) {
+      // toggleView = '<div></div>';
+    }
+    this.toggle = !this.toggle;
+
     let box = '';
+    
     if (this.type === 0) {
       box = `
         <box 
@@ -47,6 +62,7 @@ export default class Box{
           class="block-item" 
           :label="'${this.label}'"
         >
+          ${toggleView}
           ${content}
         </box>
       `

@@ -49,7 +49,7 @@ export default class DialogBox{
   }
 
   addBox () {
-    this.components.push(new Box());
+    this.components.push(new Box(false));
   }
   
   renderTemplate () {

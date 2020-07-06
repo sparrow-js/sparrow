@@ -9,7 +9,7 @@ export default class Card  extends Base implements IBaseBox{
   public uuid = '';
   $fragment = null;
   public components = [];
-  name: string = 'CardBox';
+  name: string = 'Card';
   type: string = 'inline';
   insertFileType: string = 'inline';
   config: any = {};
@@ -18,25 +18,35 @@ export default class Card  extends Base implements IBaseBox{
   constructor (data: any, storage: any) {
     super(storage);
     this.uuid = uuid().split('-')[0];
-    this.config = {
-      _attr: {
-        label: '卡片名称'
-      },
-      _custom: {
-        hasHeader: true,
-      },
-    };
-    this.addBox();
+    const { config } = data;
+    if (config) {
+      this.config = config
+    } else {
+      this.config = {
+        _attr: {
+          label: '卡片名称'
+        },
+        _custom: {
+          hasHeader: true,
+        },
+      };
+      this.addComponent();
+    }
+  
   }
 
-  addBox () {
-    this.components.push(new Box());
+  addComponent () {
+    const curBox = new Box()
+    this.components.push(curBox);
+    return curBox;
   }
   
 
   public renderFragment () {
+    if (!this.components[0]) return;
     const {_attr} = this.config;
     let LogicBox = this.components[0].getFragment().html();
+
     const type = this.storage.get('preview_view_status') || 0;
     let labelBox = `
       <span>${_attr['label']}</span>

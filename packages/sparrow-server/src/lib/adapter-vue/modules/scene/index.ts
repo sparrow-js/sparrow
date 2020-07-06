@@ -32,6 +32,7 @@ export default class Scene {
   };
   tree: any;
   uuid: string = '';
+  formatTemp: string = '';
 
   constructor (params: any = {}) {
     this.uuid = uuid().split('-')[0];
@@ -163,7 +164,7 @@ export default class Scene {
     }
   }
 
-  public addBox (params: any) {
+  public addBox (params: any, ctx) {
     const {boxUuid, data} = params;
     if (boxUuid) {
       const currBox = this.findComponent(boxUuid, this.components);
@@ -171,6 +172,10 @@ export default class Scene {
       const curBoxParent = this.findBoxParent(boxUuid, this.components)
       curBoxParent.push(new Box());
       this.renderPage();
+      
+      const { socket } = ctx;
+      socket.emit('generator.force.refresh', {status: 0});
+
     }
   }
 
@@ -497,6 +502,10 @@ export default class Scene {
   private writeTemplate () {
     const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script>`;
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
-    fsExtra.writeFile(viewPath, formatTemp, 'utf8');
+    if (formatTemp === this.formatTemp) {
+      return;
+    }
+    this.formatTemp = formatTemp;
+    fsExtra.writeFileSync(viewPath, formatTemp, 'utf8');
   }
 }
