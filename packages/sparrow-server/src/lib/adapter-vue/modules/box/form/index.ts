@@ -84,12 +84,11 @@ export default class Form extends Base implements IBaseBox{
     });
 
     this.resetRender = _.throttle(this.resetRender, 100);
-    // this.renderBox = _.throttle(this.renderBox, 10);
     this.$blockTemplate('box-form').append(fragment.eform());
     this.VueGenerator = new VueGenerator('block');
     this.init();
     this.VueGenerator.appendData();
-    this.observeComp();
+
   }
 
 
@@ -104,7 +103,12 @@ export default class Form extends Base implements IBaseBox{
   }
 
   public setPreview () {
+
     const type = this.storage.get('preview_view_status') || 0;
+    if (this.type === type) {
+      this.resetRender();
+      return;
+    }
     this.type = type;
     if (type === 0) {
       this.$blockTemplate = cheerio.load(templateStr, {
@@ -131,7 +135,6 @@ export default class Form extends Base implements IBaseBox{
       this.$blockTemplate('.root').append(fragment.eform());
     }
     this.resetRender()
-    // this.observeComp();
   }
 
   public addComponent (data: any, type: string = 'manual') {
@@ -152,7 +155,6 @@ export default class Form extends Base implements IBaseBox{
       }
       if (this.autoAddComponentType) {
         this.autoAddComponentType = false;
-        this.observeComp();
       }
     } else {
       let { id, config } = data;
@@ -214,7 +216,6 @@ export default class Form extends Base implements IBaseBox{
     } else if (handler === 'formInline') {
       this.iFormAttrs[data.key] = data.value;
       this.resetRender();
-      this.observeComp();
     } else if (handler === 'addLabel') {
       this.addlabel(data);
     } else {
@@ -248,7 +249,6 @@ export default class Form extends Base implements IBaseBox{
   
   public getSetting () {
     this.resetRender();
-    this.observeComp();
     return {
       data: this.config
     }

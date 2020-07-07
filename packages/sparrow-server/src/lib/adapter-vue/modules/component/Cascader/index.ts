@@ -12,6 +12,8 @@ export default class Cascader extends Base {
     super();
     this.init();
     if (params.initType === 'auto') {
+      const oldOptions = params._slot.data.match(/cascaderOptions[a-z0-9]+/)[0];
+      params._slot.data = params._slot.data.replace(oldOptions, `cascaderOptions${this.uuid}`)
       this.config = params;
     } else {
       this.config = {

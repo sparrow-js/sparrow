@@ -38,8 +38,8 @@ class generator{
 
   public async initScene (scene: any) {
     const params = SceneData[scene.name] || null;
-    await this.trash()
-    this.scene = new Scene(params);
+    await this.trash();
+    this.scene = new Scene(params.config);
     this.toolbar.resetScene(this.scene);
   }
 

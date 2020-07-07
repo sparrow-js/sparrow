@@ -70,10 +70,8 @@ export default class Table extends Base implements IBaseBox{
     this.params = params;
     const {blockName, col} = params;
     this.fileName = blockName;
-    this.col = col;
-    for (let i = 0; i < this.col; i++) {
-      this.components.push(new Column(this.storage));
-    }
+  
+
     this.insertComponents.push(this.fileName);
     this.$fragment = cheerio.load(
       `<div class="box">
@@ -88,20 +86,22 @@ export default class Table extends Base implements IBaseBox{
       decodeEntities: false
     });
 
-    this.resetRender = _.throttle(this.resetRender, 10);
-    this.renderBox = _.throttle(this.renderBox, 10);
+    this.resetRender = _.throttle(this.resetRender, 100);
     this.VueGenerator = new VueGenerator('block');
     this.init();
     this.VueGenerator.appendData();
-    this.observeComp();
+    if (!data.children) {
+      this.col = col;
+      for (let i = 0; i < this.col; i++) {
+        this.components.push(new Column({},this.storage));
+      }
+    }
   }
 
   async init () {
     mkdirp.sync(Config.componentsDir);
     this.blockPath = path.join(Config.componentsDir, `${this.fileName}.vue`);
     this.setVueParse('Base');
-    this.renderBox();
-    this.render();
   }
   
 
@@ -112,10 +112,11 @@ export default class Table extends Base implements IBaseBox{
   public setPreview () {
     const type = this.storage.get('preview_view_status') || 0;
     if (this.type === type) {
+      this.resetRender();
       return;
-    } else {
-      this.type = type;
     }
+    
+    this.type = type;
     if (type === 0) {
       this.$fragment = cheerio.load(`
         <div class="box">
@@ -160,17 +161,23 @@ export default class Table extends Base implements IBaseBox{
     this.render();
   }
 
-  public addComponent (data?: any) {
-
-    const {key, params, type} = data;
-    this.components.forEach(item => {
-      if (item.uuid === params.uuid) {
-        item.addComponent({
-          id: key,
-          type
-        });
-      }
-    });
+  public addComponent (data?: any, insterType: string = 'manual') {
+    if (insterType === 'auto') {
+      const column = new Column(data, this.storage);
+      this.components.push(column);
+      return column;
+    } else {
+      const {id, params, type} = data;
+      this.components.forEach(item => {
+        if (item.uuid === params.uuid) {
+          item.addComponent({
+            id: id,
+            type,
+            params
+          });
+        }
+      });
+    }
   }
 
 
@@ -191,7 +198,6 @@ export default class Table extends Base implements IBaseBox{
     this.components[uuid] = components;
 
     this.resetRender();
-    this.observeComp();
   }
 
 
@@ -371,7 +377,7 @@ export default class Table extends Base implements IBaseBox{
   public render () {
     const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
-    fsExtra.writeFileSync(this.blockPath, formatTemp, 'utf8');
+    fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
   }
 
   setTemplate () {

@@ -11,24 +11,32 @@ export default class CheckboxGroup extends Base{
   ele: string = '';
   constructor (params: any) {
     super();
-    this.params = params;
     this.initVueParse();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: [],
-        label: '多选框',
-      },
-      // 组件标签属性
-      _attr: {
-        'v-model': params['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {
-        data: this.vueParse.getFormatData()
-      }
-    };
+    this.params = params;
+    if (params.initType === 'auto') {
+      const oldcheckboxOptions = params._slot.data.match(/checkboxOptions[a-z0-9]+/)[0];
+      params._slot.data = params._slot.data.replace(oldcheckboxOptions, `checkboxOptions${this.uuid}`)
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '多选框',
+          type: params.type
+        },
+        // 组件标签属性
+        _attr: {
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {
+          data: this.vueParse.getFormatData()
+        }
+      };
+    }
+
     this.init();
     this.setHandler();
   }
@@ -38,7 +46,7 @@ export default class CheckboxGroup extends Base{
     this.vueParse = new VueParse(this.uuid, fileStr); 
   }
   private init () {
-    const {type} = this.params;
+    const {type} = this.config._custom;
     if (type === 'button') {
       this.ele = 'el-checkbox-button';
     } else {

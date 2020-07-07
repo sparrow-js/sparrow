@@ -1,20 +1,47 @@
 export default {
-  name: 'BaseForm',
-  boxs: [
-    {
-      data: {
-        id: 'form',
-        key: 'form',
+  "name": "BaseForm",
+  "id": "",
+  "config": {
+    "label": "page",
+    "children": [
+      {
+        "id": "box",
+        "config": null,
+        "children": [
+          {
+            "id": "Form",
+            "config": {
+              "dataCode": "var data = {}",
+              "inline": false
+            },
+            "children": [],
+            "params": {
+              "blockName": "FormBasic",
+            },
+            "fileName": "FormBasic"
+          }
+        ],
+        "params": null
       },
-    },
-    {
-      data: {
-        id: 'customInline',
-        key: 'customInline',
-        params: {
-          compBox: 'BaseForm'
-        },
+      {
+        "id": "box",
+        "config": null,
+        "children": [
+          {
+            "id": "CustomInline",
+            "config": null,
+            "params": {
+              "compBox": "BaseForm"
+            },
+            "children": [],
+            "fileName": "CustomInline"
+          }
+        ],
+        "params": null
       }
-    }
-  ]
+    ]
+  }
 };
+
+
+

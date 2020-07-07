@@ -4,12 +4,12 @@ export const BaseFormConf = [
     children: [
       {
         label: '保存',
-        key: 'SaveButton',
+        id: 'SaveButton',
         type: 'button'
       },
       {
         label: '重置',
-        key: 'ResetButton',
+        id: 'ResetButton',
         type: 'button'
       }
     ]

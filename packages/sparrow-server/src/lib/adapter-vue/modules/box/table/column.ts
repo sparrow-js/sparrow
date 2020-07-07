@@ -16,15 +16,20 @@ export default class Column{
   boxStrs: string = '';
   storage: any = {};
 
-  constructor (storage: any) {
+  constructor (data: any, storage: any) {
     this.storage = storage;
     this.uuid = uuid().split('-')[0]; 
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        label: '',
-      },
-    };
+    if (data.config) {
+      this.config = data.config;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          label: '',
+        },
+      };
+    }
+
   }
   
   addComponent (data: any) {
@@ -58,7 +63,6 @@ export default class Column{
         }
       } else {
         compTag = compTag + item.getFragment(this.type).html();
-
       }
 
     });

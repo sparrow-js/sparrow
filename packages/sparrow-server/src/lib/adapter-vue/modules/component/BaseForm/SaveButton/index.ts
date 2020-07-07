@@ -4,8 +4,8 @@ import * as path from 'path';
 import Base from '../Base';
 import Config from '../../../../config';
 
-export default class ResetButton extends Base{
-  name: string = 'ResetButton';
+export default class SaveButton extends Base{
+  name: string = 'SaveButton';
   params: any;
   vueParse: any;
   uuid: string;

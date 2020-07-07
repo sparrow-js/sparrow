@@ -20,6 +20,7 @@ export default class Base {
     if (this.observe) {
       unobserve(this.observe);
     }
+
     this.components = observable(this.components);
     this.observe = observe(() => {
       if (Array.isArray(this.components)) {

@@ -65,7 +65,6 @@
     >
       <span class="scene-item" @click="sceneHandler('BaseForm')">基础表单</span>
       <span class="scene-item" @click="sceneHandler('BaseTable')">基础表格</span>
-      <span class="scene-item" @click="sceneHandler('BaseTest')">test</span>
     </el-popover>
 
 
@@ -179,17 +178,6 @@ export default class extends Vue {
   private async getSerializeTree () {
     const viewFrame: any = document.querySelector('#viewContent');
     viewFrame.contentWindow.postMessage({ handler: 'html-2-canvas' }, '*');
-// html-2-canvas
-    // domtoimage.toPng(node)
-    // .then(function (dataUrl) {
-    //     var img = new Image();
-    //     img.src = dataUrl;
-    //     document.body.appendChild(img);
-    // })
-    // .catch(function (error) {
-    //     console.error('oops, something went wrong!', error);
-    // });
-    // await socket.emit('generator.scene.getSerializeTree');
   }
 
   private async openEditorHandler() {
@@ -197,35 +185,10 @@ export default class extends Vue {
   }
 
   private async sceneHandler(name) {
-    // this.$refs.popover.hide();
-
     await socket.emit('generator.toolbar.initScene', {
       name,
     });
     this.showPopover = false;
-  }
-
-  handleDragStart(node, ev) {
-    console.log('drag start', node);
-  }
-
-  handleDragEnter(draggingNode, dropNode, ev) {
-    console.log('tree drag enter: ', dropNode.label);
-  }
-  handleDragLeave(draggingNode, dropNode, ev) {
-    console.log('tree drag leave: ', dropNode.label);
-  }
-
-  handleDragOver(draggingNode, dropNode, ev) {
-    console.log('tree drag over: ', dropNode.label);
-  }
-
-  handleDragEnd(draggingNode, dropNode, dropType, ev) {
-    console.log('tree drag end: ', dropNode && dropNode.label, dropType);
-  }
-
-  handleDrop(draggingNode, dropNode, dropType, ev) {
-    console.log('tree drop: ', dropNode.label, dropType);
   }
 
   allowDrop(draggingNode, dropNode, type) {
