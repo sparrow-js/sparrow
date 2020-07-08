@@ -1,12 +1,12 @@
 {
   "name": "sparrow-view",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "scripts": {
     "serve": "vue-cli-service serve --port 9000",
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@sparrow-vue/boxs": "^1.0.8",
+    "@sparrow-vue/boxs": "^1.0.9",
     "@vue-materials/basic-container": "^1.0.0",
     "core-js": "^3.4.3",
     "element-ui": "^2.13.0",
