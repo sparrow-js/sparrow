@@ -1,35 +1,116 @@
 export default {
-  name: 'BaseTable',
-  boxs: [
-    {
-      data: {
-        id: 'form',
-        key: 'form',
-        params: { isForm: false, row: '', col: '', blockName: 'Form1' }
+  "name": "BaseTable",
+  "id": "",
+  "config": {
+    "label": "page",
+    "initScene": "BaseTable",
+    "children": [
+      {
+        "id": "box",
+        "config": null,
+        "children": [
+          {
+            "id": "Form",
+            "config": {
+              "dataCode": "var data = {}",
+              "inline": false
+            },
+            "children": [],
+            "params": {
+              "blockName": "FormBase",
+            },
+            "fileName": "FormBase"
+          }
+        ],
+        "params": null
       },
-    },
-    {
-      data: {
-        id: 'customInline',
-        key: 'customInline',
-        params: {
-          compBox: 'BasicTable'
-        },
+      {
+        "id": "box",
+        "config": null,
+        "children": [
+          {
+            "id": "CustomInline",
+            "config": null,
+            "params": {
+              "compBox": "BasicTable"
+            },
+            "children": [],
+            "fileName": "CustomInline"
+          }
+        ],
+        "params": null
+      },
+      {
+        "id": "box",
+        "config": null,
+        "children": [
+          {
+            "id": "Table",
+            "config": null,
+            "children": [
+              {
+                "id": "column",
+                "config": {
+                  "_custom": {
+                    "label": ""
+                  }
+                },
+                "children": [],
+                "params": null
+              },
+              {
+                "id": "column",
+                "config": {
+                  "_custom": {
+                    "label": ""
+                  }
+                },
+                "children": [],
+                "params": null
+              },
+              {
+                "id": "column",
+                "config": {
+                  "_custom": {
+                    "label": ""
+                  }
+                },
+                "children": [],
+                "params": null
+              },
+              {
+                "id": "column",
+                "config": {
+                  "_custom": {
+                    "label": ""
+                  }
+                },
+                "children": [],
+                "params": null
+              },
+              {
+                "id": "column",
+                "config": {
+                  "_custom": {
+                    "label": ""
+                  }
+                },
+                "children": [],
+                "params": null
+              }
+            ],
+            "params": {
+              "blockName": "TableBase",
+              "col": "5"
+            },
+            "fileName": "TableBase"
+          }
+        ],
+        "params": null
       }
-    },
-    {
-      data: {
-        id: 'table',
-        key: 'table',
-        params: { isForm: false, row: '', col: '4', blockName: 'Table1' }
-      }
-    },
-    {
-      data: {
-        id: 'inline',
-        key: 'inline',
-        innerHtml: `<pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />`
-      }
-    },
-  ]
+    ]
+  }
 };
+
+
+

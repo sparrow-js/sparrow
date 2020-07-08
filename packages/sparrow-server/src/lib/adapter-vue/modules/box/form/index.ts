@@ -66,17 +66,17 @@ export default class Form extends Base implements IBaseBox{
       this.config = config;
     }
     const {blockName} = params;
-    this.fileName = blockName;
+    this.fileName = blockName.charAt(0).toUpperCase() + blockName.slice(1)
     this.insertComponents.push(this.fileName);
 
     this.$fragment = cheerio.load(` 
-    <div class="box">
-      <${this.fileName} />
-    </div>
-  `, {
-      xmlMode: true,
-      decodeEntities: false
-    });
+      <div class="box">
+        <${this.fileName} />
+      </div>
+    `, {
+        xmlMode: true,
+        decodeEntities: false
+      });
 
     this.$blockTemplate = cheerio.load(templateStr, {
       xmlMode: true,

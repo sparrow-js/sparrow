@@ -12,6 +12,7 @@ import Config from '../../config';
 import Box from '../box/Box';
 import storage from '../../../storage';
 import lowdb from '../../../lowdb';
+import * as _ from 'lodash'
 
 const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
@@ -37,13 +38,12 @@ export default class Scene {
   constructor (params: any = {}) {
     this.uuid = uuid().split('-')[0];
     this.VueGenerator = new VueGenerator();
-    const {name} = params;
+    const {initScene} = params;
     storage.set('preview_view_status', 0);
 
     this.init();
-
-    if (name) {
-      const fileStr = fsExtra.readFileSync(path.join(Config.templatePath,'scene', name,'index.vue'), 'utf8');
+    if (initScene) {
+      const fileStr = fsExtra.readFileSync(path.join(Config.templatePath,'scene', initScene,'index.vue'), 'utf8');
       this.sceneVueParse = new VueParse(uuid().split('-')[0], fileStr);
     }
 
@@ -51,7 +51,6 @@ export default class Scene {
       this.jsonToScene(params);
     }
 
-    
     this.components.push(new Box());
     this.renderPage();
   }
@@ -297,7 +296,7 @@ export default class Scene {
     const scenes = lowdb.get('scenes')
       .value();
       return {
-        list: scenes
+        list: _.clone(scenes).reverse()
       }
   }
 

@@ -1,30 +1,31 @@
 <template>
   <div class="component-box">
     <div class="tabs">
-      <div 
-        @click="tabChange(2)" 
+      <div
+        @click="tabChange(2)"
         class="tabs-item"
-        :class="{'active': activeTreeIndex === 2}">
+        :class="{ active: activeTreeIndex === 2 }"
+      >
         <i class="iconfont icon-suohuicaidan-"></i>
       </div>
-      <div 
-        @click="tabChange(0)" 
+      <div
+        @click="tabChange(0)"
         class="tabs-item"
-        :class="{'active': activeTreeIndex === 0}"
+        :class="{ active: activeTreeIndex === 0 }"
       >
         <i class="iconfont icon-tree-table"></i>
       </div>
-      <div 
-        @click="tabChange(1)" 
+      <div
+        @click="tabChange(1)"
         class="tabs-item"
-        :class="{'active': activeTreeIndex === 1}"
+        :class="{ active: activeTreeIndex === 1 }"
       >
         <i class="iconfont icon-zujian"></i>
       </div>
-      <div 
-        @click="tabChange(3)" 
+      <div
+        @click="tabChange(3)"
         class="tabs-item"
-        :class="{'active': activeTreeIndex === 3}"
+        :class="{ active: activeTreeIndex === 3 }"
       >
         <i class="iconfont icon-changjing"></i>
       </div>
@@ -32,36 +33,37 @@
     <div class="tabs-body" v-show="[0, 1, 3].includes(activeTreeIndex)">
       <div class="tree" v-show="activeTreeIndex === 0">
         <!-- <el-scrollbar style="height:100%"> -->
-          <el-tree 
-            :data="tree"
-            node-key="id"
-            :current-node-key="currentNodeKey"
-            :highlight-current="true"
-            default-expand-all
-            draggable
-            :allow-drop="allowDrop"
-            @node-drop="handleDrop"
-            @node-click="handleNodeClick"
-            ref="componentTree"
-          >
-
-            <span class="custom-tree-node" slot-scope="{ node, data }">
-              <span>{{ node.label }}</span>
-              <span v-if="selectedNode.id && selectedNode.id === data.id">
-                <i 
-                  class="iconfont icon-delete1"
-                  @click="deleteComponent(data.id)"
-                ></i>
-              </span>
+        <el-tree
+          :data="tree"
+          node-key="id"
+          :current-node-key="currentNodeKey"
+          :highlight-current="true"
+          default-expand-all
+          draggable
+          :allow-drop="allowDrop"
+          @node-drop="handleDrop"
+          @node-click="handleNodeClick"
+          ref="componentTree"
+        >
+          <span class="custom-tree-node" slot-scope="{ node, data }">
+            <span>{{ node.label }}</span>
+            <span v-if="selectedNode.id && selectedNode.id === data.id">
+              <i
+                class="iconfont icon-delete1"
+                @click="deleteComponent(data.id)"
+              ></i>
             </span>
-
-          </el-tree>
+          </span>
+        </el-tree>
         <!-- </el-scrollbar> -->
-       
       </div>
 
       <div v-show="activeTreeIndex === 1">
-        <component v-if="componentIs" :list="componentList" :is="componentIs"></component>
+        <component
+          v-if="componentIs"
+          :list="componentList"
+          :is="componentIs"
+        ></component>
       </div>
 
       <div v-show="activeTreeIndex === 3">
@@ -71,30 +73,36 @@
               <el-card>
                 <div
                   :style="{ 'background-image': `url(${item.url})` }"
-                  class="scene__preview"></div>
+                  class="scene__preview"
+                ></div>
               </el-card>
               <div class="scene-item__name">
-                <span class="scene-item__title">{{item.name}}</span>
+                <span class="scene-item__title">{{ item.name }}</span>
               </div>
             </div>
             <div class="scene__operate">
               <div style="margin-bottom: 4px;">
-                <el-button type="primary" size="mini" @click="useScene(item.id)"
+                <el-button
+                  type="primary"
+                  style="margin-right: 10px"
+                  size="mini"
+                  @click="useScene(item.id)"
                   >使用</el-button
                 >
-                <el-button type="danger" size="mini" @click="deleteScene(item.id)"
-                  >删除</el-button
+                <el-popconfirm
+                  title="确定删除吗？"
+                  @onConfirm="deleteScene(item.id)"
                 >
-              </div>
-              <div>
+                  <el-button slot="reference" type="danger" size="mini"
+                    >删除</el-button
+                  >
+                </el-popconfirm>
               </div>
             </div>
-        
           </div>
         </div>
       </div>
     </div>
-   
   </div>
 </template>
 
@@ -114,7 +122,7 @@ import socket from '@/util/socket.js';
     tableBox: TableBox,
     custominlineBox: CustominlineBox,
     ContainerBox: ContainerBox,
-    EmptyBox,
+    EmptyBox
   }
 })
 export default class CompBox extends Vue {
@@ -132,10 +140,9 @@ export default class CompBox extends Vue {
     } else {
       return '';
     }
-    
   }
 
-  get activeTreeIndex () {
+  get activeTreeIndex() {
     return AppModule.activeTreeIndex;
   }
 
@@ -149,19 +156,19 @@ export default class CompBox extends Vue {
     }
   }
 
-  @Watch('uuid', {immediate: true })
-  private uuidChange () {
-    const componentTree:any = this.$refs.componentTree
+  @Watch('uuid', { immediate: true })
+  private uuidChange() {
+    const componentTree: any = this.$refs.componentTree;
     componentTree && componentTree.setCurrentKey(this.uuid);
     this.selectedNode = {
       id: this.uuid
-    }
+    };
   }
 
   get insertData() {
     return AppModule.insertData;
   }
-  get uuid () {
+  get uuid() {
     return AppModule.uuid;
   }
 
@@ -175,68 +182,74 @@ export default class CompBox extends Vue {
       this.componentList = componentMap[params.compBox];
     }
 
-    this.getScene()
-
+    this.getScene();
   }
 
-  async getScene () {
+  async getScene() {
     const res = await socket.emit('generator.scene.getScene');
     this.sceneList = res.list;
   }
 
-  private async getSceneTree () {
+  private async getSceneTree() {
     const tree = await socket.emit('generator.scene.getSceneTree');
     this.tree = [tree];
   }
 
-  private tabChange (index) {
-    AppModule.setActiveTreeIndex(index)
+  private tabChange(index) {
+    AppModule.setActiveTreeIndex(index);
     this.getSceneTree();
+    this.getScene();
   }
 
-  private handleNodeClick (node) {
-    const viewContent:any = document.querySelector('#viewContent');
-    viewContent.contentWindow.postMessage({
-      handler: 'view.component.selected',
-      uuid: node.id
-    }, '*');
+  private handleNodeClick(node) {
+    const viewContent: any = document.querySelector('#viewContent');
+    viewContent.contentWindow.postMessage(
+      {
+        handler: 'view.component.selected',
+        uuid: node.id
+      },
+      '*'
+    );
     this.selectedNode = node;
     AppModule.setUuid(node.id);
   }
 
-  private async deleteComponent (id) {
+  private async deleteComponent(id) {
     await socket.emit('generator.scene.deleteComponent', {
-      id,
+      id
     });
     this.getSceneTree();
   }
 
   allowDrop(draggingNode, dropNode, type) {
-    if(draggingNode.parent.key === dropNode.parent.key && type !== 'inner') {
+    if (draggingNode.parent.key === dropNode.parent.key && type !== 'inner') {
       return true;
     } else {
       return false;
     }
   }
 
-  async useScene (id) {
+  async useScene(id) {
     const res = await socket.emit('generator.toolbar.useScene', {
-      id,
+      id
     });
   }
 
-  async deleteScene (id) {
+  async deleteScene(id) {
     const res = await socket.emit('generator.toolbar.deleteScene', {
-      id,
+      id
     });
-    this.getScene()
+    this.getScene();
   }
 
-  async handleDrop (dragNode, dropNode) {
-    const {childNodes} = dropNode.parent;
-    const order = childNodes.reduce((total, item)  => {total.push(item.key); return total;}, []);
+  async handleDrop(dragNode, dropNode) {
+    const { childNodes } = dropNode.parent;
+    const order = childNodes.reduce((total, item) => {
+      total.push(item.key);
+      return total;
+    }, []);
     let node = dropNode.parent;
-    while (node && (!(node.label == 'box' || node.label == 'page'))) {
+    while (node && !(node.label == 'box' || node.label == 'page')) {
       node = node.parent;
     }
     const res = await socket.emit('generator.scene.changePosition', {
@@ -248,65 +261,63 @@ export default class CompBox extends Vue {
       this.$message.error(res.message);
     }
   }
-
 }
 </script>
 <style lang="scss" scoped>
-.component-box{
+.component-box {
   display: flex;
   flex-direction: row;
   height: 100%;
 }
-.tabs{
+.tabs {
   margin-right: 5px;
   flex-shrink: 0;
   color: #909399;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   padding-top: 20px;
 }
-.tabs-item{
+.tabs-item {
   padding: 10px;
-  .iconfont{
+  .iconfont {
     font-size: 20px;
   }
 }
-.active.tabs-item{
+.active.tabs-item {
   background-color: #f0f9eb;
 }
-.active .iconfont{
-    color: #67C23A
-  }
-.tabs-body{
+.active .iconfont {
+  color: #67c23a;
+}
+.tabs-body {
   height: 100%;
   overflow: scroll;
   width: 100%;
   width: 200px;
-  border-right: 1px solid #DCDFE6;
+  border-right: 1px solid #dcdfe6;
 }
-.icon-add{
-  color: #409EFF;
+.icon-add {
+  color: #409eff;
   margin-left: 10px;
 }
-.icon-delete1{
-  color: #F56C6C;
+.icon-delete1 {
+  color: #f56c6c;
   margin-left: 10px;
 }
 
-.tree {  
-  overflow-y: auto;  
-  overflow-x: scroll;  
-  /* width: 80px; */  
-  background-color: #ffffff;  
-}  
-.el-tree {  
-  min-width: 100%;  
-  font-size: 14px;  
-  display: inline-block !important;  
+.tree {
+  overflow-y: auto;
+  overflow-x: scroll;
+  background-color: #ffffff;
 }
-.scene-list{
+.el-tree {
+  min-width: 100%;
+  font-size: 14px;
+  display: inline-block !important;
+}
+.scene-list {
   padding: 5px;
 }
-.scene-item__name{
+.scene-item__name {
   position: absolute;
   bottom: 0;
   padding: 5px;
@@ -314,16 +325,15 @@ export default class CompBox extends Vue {
   box-sizing: border-box;
   background-color: #00000095;
 }
-.scene-item{
+.scene-item {
   position: relative;
   text-align: center;
   margin-bottom: 10px;
-  
 }
-.scene-item__title{
+.scene-item__title {
   color: #fff;
 }
-.scene__operate{
+.scene__operate {
   opacity: 0;
   background: rgba(0, 0, 0, 0.65);
   position: absolute;
@@ -339,7 +349,7 @@ export default class CompBox extends Vue {
 .scene__operate:hover {
   opacity: 1;
 }
-.scene__preview{
+.scene__preview {
   width: 200px;
   height: 120px;
   background-position: top center;

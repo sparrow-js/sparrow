@@ -69,8 +69,7 @@ export default class Table extends Base implements IBaseBox{
     const { params } = data;
     this.params = params;
     const {blockName, col} = params;
-    this.fileName = blockName;
-  
+    this.fileName = blockName.charAt(0).toUpperCase() + blockName.slice(1);
 
     this.insertComponents.push(this.fileName);
     this.$fragment = cheerio.load(

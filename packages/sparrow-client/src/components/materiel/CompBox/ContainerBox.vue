@@ -9,51 +9,72 @@
             v-for="(item, index) in list.list"
             :key="index"
           >
-
             <el-popover
               v-if="item.id === 'Form'"
               placement="right"
               trigger="hover"
-              width="170">
+              width="170"
+            >
               <div class="box-form">
-                <el-input 
-                  class="box-form-input"  
-                  v-model="form.blockName" 
-                  size="mini" 
+                <el-input
+                  class="box-form-input"
+                  v-model="form.blockName"
+                  size="mini"
                   placeholder="名称"
                 ></el-input>
-                <el-button size="mini" type="primary" round @click="sureHandler(item)">确定</el-button>
+                <el-button
+                  size="mini"
+                  type="primary"
+                  round
+                  @click="sureHandler(item)"
+                  >确定</el-button
+                >
               </div>
-              <span class="comp-content__label" slot="reference">{{item.label}}</span>
+              <span class="comp-content__label" slot="reference">{{
+                item.label
+              }}</span>
             </el-popover>
 
             <el-popover
               v-if="item.id === 'Table'"
               placement="bottom"
               trigger="hover"
-              width="230">
+              width="230"
+            >
               <div class="box-form">
-                <el-input 
-                  class="box-form-input"  
-                  v-model="form.blockName" 
-                  size="mini" 
+                <el-input
+                  class="box-form-input"
+                  v-model="form.blockName"
+                  size="mini"
                   placeholder="名称"
                 ></el-input>
-                <el-input  class="box-layout-input" v-model="form.col" size="mini" placeholder="col"></el-input>
-                <el-button size="mini" type="primary" round @click="sureHandler(item)">确定</el-button>
+                <el-input
+                  class="box-layout-input"
+                  v-model="form.col"
+                  size="mini"
+                  placeholder="col"
+                ></el-input>
+                <el-button
+                  size="mini"
+                  type="primary"
+                  round
+                  @click="sureHandler(item)"
+                  >确定</el-button
+                >
               </div>
-              <span
-                class="comp-content__label"
-                slot="reference">{{item.label}}</span>
+              <span class="comp-content__label" slot="reference">{{
+                item.label
+              }}</span>
             </el-popover>
 
             <span
               class="comp-content__label"
               @click="compClick(item, $event)"
-              v-if="!['Form', 'Layout', 'Table'].includes(item.id)">{{item.label}}</span>
-          
+              v-if="!['Form', 'Layout', 'Table'].includes(item.id)"
+              >{{ item.label }}</span
+            >
           </div>
-        </div>  
+        </div>
       </div>
     </div>
   </div>
@@ -75,7 +96,6 @@ export default class CompBox extends Vue {
     col: ''
   };
 
-
   get insertData() {
     return AppModule.insertData;
   }
@@ -83,7 +103,7 @@ export default class CompBox extends Vue {
     return AppModule.insertPosition;
   }
 
-  get boxUuid () {
+  get boxUuid() {
     return AppModule.boxUuid;
   }
 
@@ -93,13 +113,13 @@ export default class CompBox extends Vue {
       boxUuid: this.boxUuid,
       data: {
         key: this.isActiveComp.key,
-        id: this.isActiveComp.id,
+        id: this.isActiveComp.id
       }
     };
     this.addComponent(params);
   }
 
-  private async sureHandler (comp) {
+  private async sureHandler(comp) {
     this.isActiveComp = comp;
 
     const params = {
@@ -111,8 +131,7 @@ export default class CompBox extends Vue {
       }
     };
 
-
-    this.addComponent(params)
+    this.addComponent(params);
   }
 
   private async addComponent(params) {
@@ -142,18 +161,13 @@ export default class CompBox extends Vue {
   }
 
   &-content__list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     padding-left: 5px;
   }
 
   &-content__item {
     background: #ecf5ff;
-    width: 80px;
     margin-top: 5px;
     margin-right: 5px;
-    padding: 5px;
     text-align: center;
     font-size: 12px;
     color: #606266;
@@ -161,6 +175,12 @@ export default class CompBox extends Vue {
   }
   &-content__item:hover {
     color: #409eff;
+  }
+  &-content__label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
   }
 }
 
@@ -203,11 +223,11 @@ export default class CompBox extends Vue {
   justify-content: center;
   align-items: center;
 }
-.box-layout-input{
+.box-layout-input {
   width: 40px;
   margin-right: 10px;
 }
-.box-form-input{
+.box-form-input {
   width: 100px;
   margin-right: 10px;
 }

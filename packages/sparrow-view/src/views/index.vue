@@ -1,15 +1,13 @@
 <template>
   <div class="home">
     <div class="block-list">
-      <div class="block-list">
-        <box :uuid="'42a432fe'" class="block-item" :label="''">
-          <paragraph
-            :type="'Container'"
-            :emit="'client.component.show'"
-            :params="{ uuid: '42a432fe' }"
-          />
-        </box>
-      </div>
+      <box :uuid="'f22c2a13'" class="block-item" :label="''">
+        <paragraph
+          :type="'Container'"
+          :emit="'client.component.show'"
+          :params="{ uuid: 'f22c2a13' }"
+        />
+      </box>
     </div>
   </div>
 </template>

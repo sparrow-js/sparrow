@@ -3,6 +3,7 @@ export default {
   "id": "",
   "config": {
     "label": "page",
+    "initScene": "BaseForm",
     "children": [
       {
         "id": "box",
