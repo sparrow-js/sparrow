@@ -1,8 +1,8 @@
 # sparrow
 
 #### 场景化低代码（LowCode）搭建工作台；
-sparrow的核心目标仅有一条“提生研发效率”，目前提供基于vue、element-ui组件库中后台项目的实践，新功能持续增加中；
-> email: sparrowwht7@gmail.com
+sparrow的核心目标仅有一条“提生研发效率”，目前提供基于vue、element-ui组件库中后台项目的实践，新功能持续新增中；
+>技术交流 email: sparrowwht7@gmail.com
 ---
 ## 特性
 
@@ -23,4 +23,3 @@ $ sparrow
 
 ## License
 [MIT](http://opensource.org/licenses/MIT)
-
