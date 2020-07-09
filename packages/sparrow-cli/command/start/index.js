@@ -21,6 +21,7 @@ const SERVER_PATH = path.join(SPARROW_PATH, 'sparrow-server');
 const VIEW_PATH = path.join(SPARROW_PATH, 'sparrow-view');
 
 
+let mode = false;
 async function startView(options = {}) {
   const pkgPath = path.join(VIEW_PATH, 'package.json');
   let packageConfig;
@@ -56,6 +57,7 @@ async function startView(options = {}) {
 }
 
 async function start(options = {}) {
+  mode = options.mode;
   await startView();
   const pkgPath = path.join(SERVER_PATH, 'package.json');
   let packageConfig;
@@ -175,7 +177,9 @@ async function startSparrowworks(options) {
       console.log();
       console.log(`👉  Ready on ${chalk.yellow(url)}`);
       console.log();
-      open(url);
+      if (!mode) {
+        open(url);
+      }
       started = true;
     } else if (started) {
       console.log(data.toString());
