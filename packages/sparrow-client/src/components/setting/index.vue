@@ -82,7 +82,7 @@ export default class extends Vue {
 .setting {
   background: #fff;
   box-sizing: border-box;
-  width: 260px;
+  width: 200px;
    &__title {
     padding: 5px 0;
     margin: 0 5px;
@@ -99,7 +99,7 @@ export default class extends Vue {
   }
 }
 .setting-comp{
-  width: 260px;
+  width: 200px;
 }
 .no-data{
   padding: 10px;
