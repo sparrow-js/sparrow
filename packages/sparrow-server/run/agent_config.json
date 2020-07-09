@@ -20,8 +20,7 @@
         "headerName": "x-csrf-token",
         "bodyName": "_csrf",
         "queryName": "_csrf",
-        "refererWhiteList": [],
-        "ignore": "<Function ignore>"
+        "refererWhiteList": []
       },
       "xframe": {
         "enable": true,
@@ -178,10 +177,6 @@
         }
       }
     },
-    "cors": {
-      "origin": "*",
-      "allowMethods": "GET,PUT,POST,DELETE"
-    },
     "env": "local",
     "name": "sparrow-server",
     "keys": "<String len: 33>",
@@ -194,7 +189,7 @@
     "hostHeaders": "",
     "pkg": {
       "name": "sparrow-server",
-      "version": "0.6.0",
+      "version": "0.7.1",
       "description": "sparrow server",
       "files": [
         "dist/",
@@ -632,17 +627,6 @@
       "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/plugin.ts",
       "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-socket.io",
       "version": "4.1.6"
-    },
-    "cors": {
-      "enable": true,
-      "package": "egg-cors",
-      "name": "cors",
-      "dependencies": [],
-      "optionalDependencies": [],
-      "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/plugin.ts",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-cors",
-      "version": "2.2.3"
     },
     "generator": {
       "enable": true,

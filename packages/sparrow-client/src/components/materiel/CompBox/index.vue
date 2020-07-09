@@ -87,14 +87,16 @@
                   style="margin-right: 10px"
                   size="mini"
                   @click="useScene(item.id)"
-                  >使用</el-button
+                  >
+                  <i class="iconfont icon-shiyongxuzhi" />
+                  <span>使用</span></el-button
                 >
                 <el-popconfirm
                   title="确定删除吗？"
                   @onConfirm="deleteScene(item.id)"
                 >
                   <el-button slot="reference" type="danger" size="mini"
-                    >删除</el-button
+                    ><i class="iconfont icon-delete1" /><span>删除</span></el-button
                   >
                 </el-popconfirm>
               </div>
@@ -356,5 +358,12 @@ export default class CompBox extends Vue {
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-color: #fff;
+}
+.iconfont{
+  font-size: 12px;
+  margin-right: 5px;
+}
+.icon-delete1{
+  color: #fff;
 }
 </style>
