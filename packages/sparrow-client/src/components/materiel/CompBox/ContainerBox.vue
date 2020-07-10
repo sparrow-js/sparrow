@@ -166,8 +166,8 @@ export default class CompBox extends Vue {
 
   &-content__item {
     background: #ecf5ff;
-    margin-top: 5px;
-    margin-right: 5px;
+    margin-top: 10px;
+    margin-right: 10px;
     text-align: center;
     font-size: 12px;
     color: #606266;
@@ -181,6 +181,8 @@ export default class CompBox extends Vue {
     width: 100%;
     height: 100%;
     padding: 10px 0;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    border-radius: 3px;
   }
 }
 

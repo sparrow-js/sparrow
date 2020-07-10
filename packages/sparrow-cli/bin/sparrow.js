@@ -2,6 +2,7 @@
 const chalk = require('chalk');
 const program = require('commander');
 const packageConfig = require('../package');
+const projectPath = process.cwd()
 
 program.version(packageConfig.version).usage('<command> [options]');
 
@@ -26,7 +27,8 @@ program
     try {
       // eslint-disable-next-line global-require
       await require('../command/start')({
-        mode: cmd.mode
+        mode: cmd.mode,
+        projectPath,
       });
     }  catch (err) {
       log.error('iceworks start error', err.message);

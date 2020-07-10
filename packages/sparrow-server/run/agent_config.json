@@ -20,10 +20,11 @@
         "headerName": "x-csrf-token",
         "bodyName": "_csrf",
         "queryName": "_csrf",
-        "refererWhiteList": []
+        "refererWhiteList": [],
+        "ignore": "<Function ignore>"
       },
       "xframe": {
-        "enable": true,
+        "enable": false,
         "value": "SAMEORIGIN"
       },
       "hsts": {
@@ -177,6 +178,10 @@
         }
       }
     },
+    "cors": {
+      "origin": "*",
+      "allowMethods": "GET,PUT,POST,DELETE"
+    },
     "env": "local",
     "name": "sparrow-server",
     "keys": "<String len: 33>",
@@ -189,7 +194,7 @@
     "hostHeaders": "",
     "pkg": {
       "name": "sparrow-server",
-      "version": "0.7.1",
+      "version": "0.7.5",
       "description": "sparrow server",
       "files": [
         "dist/",
@@ -203,6 +208,7 @@
         "@babel/types": "^7.8.3",
         "@lukeed/uuid": "^1.0.1",
         "@nx-js/observer-util": "^4.2.2",
+        "@sparrow-vue/develop-ui": "^0.1.1",
         "ali-oss": "^6.1.1",
         "array-move": "^2.1.0",
         "camelcase": "^5.3.1",
@@ -599,7 +605,7 @@
       "env": [],
       "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/midway-web/config/plugin.js",
       "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/midway-schedule",
-      "version": "1.15.1"
+      "version": "1.18.0"
     },
     "nunjucks": {
       "enable": true,
@@ -627,6 +633,17 @@
       "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/plugin.ts",
       "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-socket.io",
       "version": "4.1.6"
+    },
+    "cors": {
+      "enable": true,
+      "package": "egg-cors",
+      "name": "cors",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/plugin.ts",
+      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-cors",
+      "version": "2.2.3"
     },
     "generator": {
       "enable": true,

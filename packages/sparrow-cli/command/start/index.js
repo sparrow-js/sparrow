@@ -14,13 +14,12 @@ const downloadView = require('./downloadView');
 const parseArgs = require('../../lib/parseArgs');
 const execa = require('execa');
 
-
-
 const SPARROW_PATH = path.join(userHome, '.sparrow');
 const SERVER_PATH = path.join(SPARROW_PATH, 'sparrow-server');
+// const SERVER_PATH = path.join(__dirname, '../../../', 'sparrow-server');
 const VIEW_PATH = path.join(SPARROW_PATH, 'sparrow-view');
 
-
+let commonOptions = {};
 let mode = false;
 async function startView(options = {}) {
   const pkgPath = path.join(VIEW_PATH, 'package.json');
@@ -57,6 +56,7 @@ async function startView(options = {}) {
 }
 
 async function start(options = {}) {
+  commonOptions = options;
   mode = options.mode;
   await startView();
   const pkgPath = path.join(SERVER_PATH, 'package.json');
@@ -157,7 +157,7 @@ async function startSparrowworks(options) {
 
   // spinner.start();
   // 
-  let [command, ...args] = parseArgs('egg-scripts start --title=sparrow-server --framework=midway-mirror --workers=1 --sticky');
+  let [command, ...args] = parseArgs(`egg-scripts start --title=sparrow-server --framework=midway-mirror --workers=1 --sticky ${commonOptions.projectPath ? '--project=' + commonOptions.projectPath : ''}`);
 
   const child = execa(
     path.join(SERVER_PATH, 'node_modules/.bin/egg-scripts'),

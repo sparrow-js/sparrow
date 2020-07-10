@@ -9,6 +9,15 @@
           <el-input v-model="config._custom['label']"></el-input>
         </el-form-item>
       </el-form>
+      <!-- <div class="column-list" v-if="config.columns">
+        <div class="column-item" v-for="item in config.columns" :key="item.uuid">
+          <span>column1</span>
+          <div class="column-item__operate">
+            <i class="el-icon-remove column-item__operate-icon" @click="deleteColumn(item.uuid)"></i>
+            <i class="el-icon-circle-plus column-item__operate-icon"></i>
+          </div>
+        </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -28,6 +37,7 @@ import JsonEditor from '@/components/JsonEditor/index.vue';
   }
 })
 export default class extends Vue {
+
   @Prop({ default: () => null }) private config: any;
   @Prop({default: ''}) private uuid: string;
 
@@ -95,4 +105,29 @@ export default class extends Vue {
 .mt6{
   margin-top: 6px;
 }
+// .column-list{
+//   display: flex;
+//   flex-wrap: wrap;
+// }
+// .column-item{
+//   width: 160px;
+//   padding: 6px;
+//   display: flex;
+//   border: 1px solid #DCDFE6;
+//   margin-bottom: 5px;
+//   justify-content: space-around;
+//   font-size: 16px;
+//   color: #909399;
+//   border-radius: 3px;
+//   &__operate-icon{
+//     margin-left: 5px;
+//   }
+//   &__operate-icon:hover{
+//     color: #F56C6C;
+//   }
+//   &__operate{
+//     color: #909399;
+//     cursor: pointer;
+//   }
+// }
 </style>

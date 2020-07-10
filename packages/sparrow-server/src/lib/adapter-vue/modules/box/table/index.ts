@@ -167,36 +167,47 @@ export default class Table extends Base implements IBaseBox{
       return column;
     } else {
       const {id, params, type} = data;
-      this.components.forEach(item => {
-        if (item.uuid === params.uuid) {
-          item.addComponent({
-            id: id,
-            type,
-            params
-          });
+      if (type === 'column') {
+        const columnIndex = this.components.findIndex(item => item.uuid === id);
+        if (columnIndex >= 0) {
+          this.components.splice(columnIndex + 1, 0, new Column({},this.storage));
         }
-      });
+      } else {
+        this.components.forEach(item => {
+          if (item.uuid === params.uuid) {
+            item.addComponent({
+              id: id,
+              type,
+              params
+            });
+          }
+        });
+      }
     }
   }
 
 
   public changePosition (order: any) {
-    let uuid = ''
-    if (!uuid) {
-      return {
-        status: 1,
-        message: '暂不支持拖拽'
-      }
+    return {
+      status: 1,
+      message: '暂不支持拖拽'
     }
+    // let uuid = ''
+    // if (!uuid) {
+    //   return {
+    //     status: 1,
+    //     message: '暂不支持拖拽'
+    //   }
+    // }
 
-    const components = order.reduce((total, key)=> {
-      total.push(this.components[uuid].find(comp => comp.uuid === key));
-      return total;
-    }, []);
+    // const components = order.reduce((total, key)=> {
+    //   total.push(this.components[uuid].find(comp => comp.uuid === key));
+    //   return total;
+    // }, []);
 
-    this.components[uuid] = components;
+    // this.components[uuid] = components;
 
-    this.resetRender();
+    // this.resetRender();
   }
 
 
@@ -259,7 +270,6 @@ export default class Table extends Base implements IBaseBox{
     } else {
       return null;
     }
-    
   }
 
   public renderBox () {
@@ -282,7 +292,6 @@ export default class Table extends Base implements IBaseBox{
         this.boxStrs = this.boxStrs + item.boxStrs;
       }
     })
-
 
     const fn = (components) => {
       components.forEach(item => {

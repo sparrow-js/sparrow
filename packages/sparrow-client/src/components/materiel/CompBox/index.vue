@@ -47,12 +47,21 @@
         >
           <span class="custom-tree-node" slot-scope="{ node, data }">
             <span>{{ node.label }}</span>
-            <span v-if="selectedNode.id && selectedNode.id === data.id">
-              <i
-                class="iconfont icon-delete1"
-                @click="deleteComponent(data.id)"
-              ></i>
-            </span>
+            <div class="tree-tool" v-if="selectedNode.id && selectedNode.id === data.id">
+              <span>
+                <i
+                  class="iconfont icon-delete1 icon-delete-comp"
+                  @click="deleteComponent(data.id)"
+                ></i>
+              </span>
+               <span class="icon-plus" v-if="data.label === 'column'">
+                  <i
+                    class="el-icon-circle-plus"
+                    @click="addTableColumn(data.id, node)"
+                  ></i>
+                </span>
+            </div>
+      
           </span>
         </el-tree>
         <!-- </el-scrollbar> -->
@@ -96,7 +105,7 @@
                   @onConfirm="deleteScene(item.id)"
                 >
                   <el-button slot="reference" type="danger" size="mini"
-                    ><i class="iconfont icon-delete1" /><span>删除</span></el-button
+                    ><i class="iconfont icon-delete1 icon-delete-tree" /><span>删除</span></el-button
                   >
                 </el-popconfirm>
               </div>
@@ -244,6 +253,23 @@ export default class CompBox extends Vue {
     this.getScene();
   }
 
+  async addTableColumn(id, selectedNode) {
+    let node = selectedNode.parent;
+    while (node && !(node.label == 'box' || node.label == 'page')) {
+      node = node.parent;
+    }
+    const params = {
+      boxUuid: node.key,
+      data: {
+        id: id,
+        type: 'column'
+      }
+    };
+
+    await socket.emit('generator.scene.addComponent', params);
+    this.getSceneTree();
+  }
+
   async handleDrop(dragNode, dropNode) {
     const { childNodes } = dropNode.parent;
     const order = childNodes.reduce((total, item) => {
@@ -301,9 +327,10 @@ export default class CompBox extends Vue {
   color: #409eff;
   margin-left: 10px;
 }
-.icon-delete1 {
+.icon-delete-comp {
   color: #f56c6c;
   margin-left: 10px;
+  font-size: 16px !important;
 }
 
 .tree {
@@ -363,7 +390,14 @@ export default class CompBox extends Vue {
   font-size: 12px;
   margin-right: 5px;
 }
-.icon-delete1{
+.icon-delete-tree{
   color: #fff;
+}
+.tree-tool{
+  display: inline-block;
+}
+.icon-plus{
+  padding: 0 6px;
+  color: #909399;
 }
 </style>
