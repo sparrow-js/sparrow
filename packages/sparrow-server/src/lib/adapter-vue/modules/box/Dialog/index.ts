@@ -6,11 +6,11 @@ import * as path from 'path';
 import Config from '../../../config';
 import Box from '../Box';
 
-export default class DialogBox{
+export default class Dialog{
   public uuid = '';
   $fragment = null;
   public components = [];
-  name: string = 'DialogBox';
+  name: string = 'Dialog';
   type: string = 'inline';
   insertFileType: string = 'inline';
   vueParse: any;

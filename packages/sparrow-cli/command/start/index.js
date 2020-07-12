@@ -178,7 +178,7 @@ async function startSparrowworks(options) {
       console.log(`👉  Ready on ${chalk.yellow(url)}`);
       console.log();
       if (!mode) {
-        open(url);
+        open('http://localhost:8000/');
       }
       started = true;
     } else if (started) {
