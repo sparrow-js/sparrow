@@ -49,9 +49,10 @@ export default class Scene {
 
     if (params.label === 'page') {
       this.jsonToScene(params);
+    } else {
+      this.components.push(new Box());
     }
 
-    this.components.push(new Box());
     this.renderPage();
   }
 
@@ -60,15 +61,27 @@ export default class Scene {
       const {children} = data;
       children.forEach(item => {
         if (item.id === 'box') {
-          const box = new Box();
-          const curComp = item.children[0];
-          if (curComp) {
-            const comp = box.addComponent(curComp);
-            if (curComp.children) {
-              fn(curComp, comp);
+          if (obj.addCustomComp) { // 处理特定场景下box追加
+            const box = obj.addCustomComp(item);
+            const curComp = item.children[0];
+            if (curComp) {
+              const comp = box.addComponent(curComp);
+              if (curComp.children) {
+                fn(curComp, comp);
+              }
             }
+          } else {
+            const box = new Box();
+            const curComp = item.children[0];
+            if (curComp) {
+              const comp = box.addComponent(curComp);
+              if (curComp.children) {
+                fn(curComp, comp);
+              }
+            }
+            obj.components.push(box);
           }
-          obj.components.push(box);
+      
         } else {
           const curComp = obj.addComponent(item, 'auto');
           if (item.children && item.children.length) {

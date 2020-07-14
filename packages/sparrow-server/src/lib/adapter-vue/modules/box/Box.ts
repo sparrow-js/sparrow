@@ -11,12 +11,11 @@ export default class Box{
   type: number = 0;
   unique: string | number;
   toggle: boolean = false;
-  enableToggle: boolean = true;
+  config: any = {};
 
-
-  constructor (enableToggle: boolean = true) {
-    this.enableToggle = enableToggle;
+  constructor (config: any = {}) {
     this.uuid = uuid().split('-')[0]; 
+    this.config = config
   }
   
   addComponent (data: any) {
@@ -46,12 +45,6 @@ export default class Box{
 
 
     let toggleView = '';
-
-
-    if (this.toggle === true && this.enableToggle === true) {
-      // toggleView = '<div></div>';
-    }
-    this.toggle = !this.toggle;
 
     let box = '';
     

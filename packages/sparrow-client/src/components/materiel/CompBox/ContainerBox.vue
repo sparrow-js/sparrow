@@ -114,6 +114,9 @@ export default class CompBox extends Vue {
       data: {
         key: this.isActiveComp.key,
         id: this.isActiveComp.id
+      },
+      params: {
+        ...this.isActiveComp.params
       }
     };
     this.addComponent(params);
@@ -127,7 +130,10 @@ export default class CompBox extends Vue {
       data: {
         key: this.isActiveComp.key,
         id: this.isActiveComp.id,
-        params: this.form
+        params: {
+          ...this.form,
+          ...this.isActiveComp.params
+        }
       }
     };
 

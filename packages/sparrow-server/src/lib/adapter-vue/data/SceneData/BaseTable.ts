@@ -107,7 +107,19 @@ export default {
           }
         ],
         "params": null
-      }
+      },
+      {
+        "id": "box",
+        "config": null,
+        "children": [
+          {
+            "id": "Pagination",
+            "config": null,
+            "children": [],
+          }
+        ],
+        "params": null
+      },
     ]
   }
 };

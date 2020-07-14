@@ -98,10 +98,10 @@ export default class CompBox extends Vue {
   }
 
   private async addComponent(type) {
-    if (!this.form.name && type === 0) {
-      this.$message.error('变量名必填');
-      return;
-    }
+    // if (!this.form.name && type === 0) {
+    //   this.$message.error('变量名必填');
+    //   return;
+    // }
     const params = {
       boxUuid: AppModule.boxUuid,
       data: {

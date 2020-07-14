@@ -57,6 +57,9 @@ export default class Base {
     if (config._attr) {
       const formField = [];
       Object.keys(config._attr).forEach(key => {
+        if (key === 'v-model' && !config._attr[key]) {
+          return;
+        }
         formField.push(`${key}="${config._attr[key]}"`);
       });
       this._attrStr = formField.join(' ');

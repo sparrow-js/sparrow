@@ -21,10 +21,12 @@ export default class Toolbar {
   }
 
   public async exportFile (data: any) {
-    const { directory } = data;
+    const { directory, folderName } = data;
     await this.previewView({status: 1});
-    mkdirp.sync(directory)
-    await fsExtra.copy(path.join(Config.viewBasePath, 'src/views'), directory);
+    const exportPath = path.join(directory, folderName || '')
+    mkdirp.sync(exportPath);
+
+    await fsExtra.copy(path.join(Config.viewBasePath, 'src/views'), exportPath);
     return {
       status: 0
     };

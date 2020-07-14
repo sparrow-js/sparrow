@@ -1,7 +1,6 @@
 const uuid = require('@lukeed/uuid');
 import IBaseBox from '../IBaseBox';
 import * as cheerio from 'cheerio';
-import BasicBox from '../../component/BasicBox';
 import VueParse from '../../generator/VueParse';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
@@ -9,72 +8,24 @@ import Config from '../../../config';
 import Base from '../Base';
 import Box from '../Box';
 
-export default class Tabs extends Base implements IBaseBox{
+export default class TabPane extends Base implements IBaseBox{
   public uuid = '';
   $fragment = null;
   public components = [];
-  name: string = 'Tabs';
+  name: string = 'TabPane';
   type: string = 'inline';
   insertFileType: string = 'inline';
   config: any = {};
   _attrStr: string = '';
   vueParse: any;
 
-  constructor (data: any, storage: any) {
+  constructor (storage: any) {
     super(storage);
     this.uuid = uuid().split('-')[0];
-    const { params, config } = data;
-    if (config) {
-      this.config = config;
-    } else {
-      this.config = {
-        _attr: {
-          ':active-name': 'first'
-        },
-        _slot: {
-          data: `
-[
-  {
-    label: '用户管理',
-    value: 'first'
-  },
-  {
-    label: '配置管理',
-    value: 'second'
-  },
-  {
-    label: '角色管理',
-    value: 'third'
-  },
-  {
-    label: '定时任务补偿',
-    value: 'fourth'
-  },
-]
-          `
-        } 
-      };
-      
-      const tabsData = this.getTabsData();
-
-      if (tabsData && Array.isArray(tabsData)) {
-        tabsData.forEach(tabItem => {
-          const curBasicBox = new Box();
-          curBasicBox.config.unique = tabItem.value;
-          this.components.push(curBasicBox);
-        });
-      }
-    }
-  
-
-
-
-    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/TabsBox', 'comp.vue'), 'utf8');
-    this.vueParse = new VueParse(this.uuid, fileStr); 
   }
 
   
-  addCustomComp (data: any) {
+  addComponent (data: any) {
     const curBox = new Box(data.config);
     this.components.push(curBox);
     return curBox;

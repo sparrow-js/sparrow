@@ -7,7 +7,6 @@ export default class TableCellText extends Base{
   uuid: string;
   constructor (data?: any) {
     super();
-    console.log('**********', data)
     this.params = data.type ? data : data.params;
   }
 

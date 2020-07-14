@@ -41,7 +41,16 @@ export default {
       key: 'Card',
       label: '卡片',
       icon: ''
-    }
+    },
+    // {
+    //   id: 'CustomInline',
+    //   label: '按钮',
+    //   key: 'buttonBox',
+    //   params: {
+    //     compBox: 'buttonBox'
+    //   }
+    // }
+
     
     // {
     //   id: 'Alert',

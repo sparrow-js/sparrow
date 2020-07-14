@@ -8,7 +8,7 @@
     <div class="path-box">
       <span class="path-up el-icon-top" @click="upDirHandler"></span>
       <el-input
-        placeholder="请选择日期"
+        placeholder="请选择目录"
         size="small"
         v-model="pathName"
         :disabled="pathInputDisable"
@@ -18,6 +18,10 @@
           slot="suffix"
           class="el-input__icon el-icon-edit"
         ></i>
+      </el-input>
+    </div>
+    <div class="folder-box">
+      <el-input placeholder="新建文件夹" size="small" v-model="folderName">
       </el-input>
     </div>
     <ul class="dir-list">
@@ -57,6 +61,8 @@ export default class extends Vue {
     directories: []
   };
 
+  private folderName = '';
+
   created() {
     this.folderInfo = this.workFolder;
     this.pathName = this.folderInfo.path;
@@ -94,7 +100,8 @@ export default class extends Vue {
 
   private async exportHandler() {
     await socket.emit('generator.toolbar.exportFile', {
-      directory: this.pathName
+      directory: this.pathName,
+      folderName: this.folderName
     });
     this.fileVisible = false;
   }
@@ -113,6 +120,11 @@ export default class extends Vue {
     font-weight: bold;
     margin-right: 5px;
   }
+}
+.folder-box{
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
 }
 .dir-list {
   list-style: none;
