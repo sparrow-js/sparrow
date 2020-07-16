@@ -62,7 +62,7 @@
                 </el-form-item>
 
 
-                <div v-if="config._custom.required">
+                <div v-if="config._custom.required !== undefined">
                   <el-divider content-position="left">校验</el-divider>
                   <el-form-item v-if="config._custom.required!==undefined" label="必填">
                     <el-switch v-model="config._custom.required"></el-switch>
