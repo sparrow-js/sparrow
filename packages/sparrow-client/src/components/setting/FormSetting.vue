@@ -1,7 +1,6 @@
 <template>
   <div class="setting">
-    <div v-show="showSetting">
-      <el-tabs v-model="tabActiveName" @tab-click="handleClick">
+      <el-tabs style="width: 100%;" v-model="tabActiveName" @tab-click="handleClick">
         <el-tab-pane label="组件" name="first">
           <div>
             <span class="update-data" @click.stop="syncConfig">更新</span>
@@ -131,7 +130,6 @@
 
         </el-tab-pane>
       </el-tabs>
-    </div>
     <div class="drawer">
       <el-drawer
         title=""
@@ -281,9 +279,7 @@ export default class extends Vue {
   }
 
 
-  private handleClick () {
-
-  }
+  private handleClick () {}
 
   private async syncConfig () {
     if (!this.uuid || !this.config) return;

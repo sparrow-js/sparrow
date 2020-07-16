@@ -1,13 +1,17 @@
 <template>
   <div class="setting">
-    <div class="setting-comp" v-if="settingComponent">
-      <component 
-        v-bind:is="settingComponent"
-        :config="config"
-        :uuid="uuid"
-      ></component>
+
+    <div class="tabs-body">
+      <div class="setting-comp" v-if="settingComponent">
+        <component 
+          v-bind:is="settingComponent"
+          :config="config"
+          :uuid="uuid"
+        ></component>
+      </div>
+      <div v-else class="no-data">暂无配置</div>
     </div>
-    <div v-else class="no-data">暂无</div>
+    
   </div>
 </template>
 <script lang="ts">
@@ -34,12 +38,11 @@ export default class extends Vue {
   private uuid = '';
   private innerDrawer = false;
   private dataCode = `var data = {}`
+  private activeTreeIndex = 0;
 
   get showSetting() {
     return SettingModule.showSetting;
   }
-
- 
 
   get showCodeDraw() {
     return SettingModule.showCodeDraw;
@@ -76,13 +79,17 @@ export default class extends Vue {
   private showSettingHandler() {
     SettingModule.setShowSettingHandler(!SettingModule.showSetting);
   }
+
 }
 </script>
 <style lang="scss">
 .setting {
   background: #fff;
   box-sizing: border-box;
-  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 100%;
    &__title {
     padding: 5px 0;
     margin: 0 5px;
@@ -106,4 +113,28 @@ export default class extends Vue {
   color: #909399;
 }
 
+.tabs {
+  margin-right: 5px;
+  flex-shrink: 0;
+  color: #909399;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+}
+
+.tabs-item {
+  padding: 10px;
+  .iconfont {
+    font-size: 20px;
+  }
+}
+.active.tabs-item {
+  background-color: #f0f9eb;
+}
+.active .iconfont {
+  color: #67c23a;
+}
+.tabs-body{
+  flex: 1;
+  width: 200px;
+}
 </style>
