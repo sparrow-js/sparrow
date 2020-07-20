@@ -1,9 +1,6 @@
 <template>
   <div class="setting">
-    <div>
-      <Toolbox />
-    </div>
-    <!-- <div class="tabs-body">
+    <div class="tabs-body">
       <div class="setting-comp" v-if="settingComponent">
         <component 
           v-bind:is="settingComponent"
@@ -12,7 +9,7 @@
         ></component>
       </div>
       <div v-else class="no-data">暂无配置</div>
-    </div> -->
+    </div>
   </div>
 </template>
 <script lang="ts">

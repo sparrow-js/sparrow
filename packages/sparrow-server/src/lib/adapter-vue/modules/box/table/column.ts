@@ -9,12 +9,12 @@ export default class Column{
   public components:any = [];
   public $fragment: any;
   name: string = 'column';
-  type: number = 0;
+  previewType: number = 0;
   unique: string | number;
   config: any = null;
-  insertFileType: string = 'inline';
   boxStrs: string = '';
   storage: any = {};
+  type: string = 'inline';
 
   constructor (data: any, storage: any) {
     this.storage = storage;
@@ -33,8 +33,9 @@ export default class Column{
   }
   
   addComponent (data: any) {
-    const {type} = data;
-    if(type === 'box') {
+    console.log('******9******');
+    const {params} = data;
+    if(params.type === 'box') {
       const box = new Box();
       data.displayMode = 'table';
       box.addComponent(data);
@@ -50,7 +51,7 @@ export default class Column{
   }
 
   renderTemplate () {
-    this.type = storage.get('preview_view_status') || 0;
+    this.previewType = storage.get('preview_view_status') || 0;
     let compTag = '';
     this.boxStrs = '';
     this.components.forEach(item => {
@@ -62,13 +63,13 @@ export default class Column{
           compTag = compTag +  fragmentOther.html();
         }
       } else {
-        compTag = compTag + item.getFragment(this.type).html();
+        compTag = compTag + item.getFragment(this.previewType).html();
       }
 
     });
 
     let column = '';
-    if (this.type === 0) {
+    if (this.previewType === 0) {
       const cellbox =  `
       <template slot-scope="{row, column, $index}">
         ${compTag}

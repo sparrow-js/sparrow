@@ -13,8 +13,6 @@ export default class CustomInline extends Base implements IBaseBox{
 
   constructor (data: any, storage: any) {
     super(storage);
-
-
     const {params } = data;
     this.params = params;
     this.$fragment = cheerio.load(

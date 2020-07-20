@@ -11,7 +11,10 @@ export default (app: Application) => {
     ['material.index.getBlocks', material.index.getBlocks],
 
     ['home.setting.workFolder', home.setting.getWorkFolder],
-    ['home.setting.setWorkFolderBySub', home.setting.setWorkFolderBySub]
+    ['home.setting.setWorkFolderBySub', home.setting.setWorkFolderBySub],
+
+    ['home.index.init', home.index.init]
+
   ];
 
   routers.forEach(([eventName, handle]) => {

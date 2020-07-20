@@ -6,7 +6,8 @@ export default class CardBox{
   $fragment = null;
   public components = [];
   name: string = 'CardBox';
-  type: string  = 'box';
+  storeType: string  = 'box';
+  type: string = 'inline';
   config: any = {};
   _attrStr: string = '';
   labelValue: string = '卡片名称';
@@ -99,7 +100,7 @@ export default class CardBox{
       const dynamicObj = require(`../../component/${id}`).default;
       const instance = new dynamicObj(config)
       this.components.push(instance);
-      if (instance.type === 'box') {
+      if (instance.storeType === 'box') {
         return instance;
       } else {
         return null;

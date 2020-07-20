@@ -33,17 +33,18 @@ export default class Form extends Base implements IBaseBox{
   template: string;
   name: string = 'Form';
   fileName: string = '';
-  VueGenerator: any;
+  // VueGenerator: any;
   blockPath: string;
   insertComponents:string[] = [];
   components: any = [];
   $blockTemplate: any;
   activeIndex: number = -1;
   insertFileType: string = 'block';
+  type:string = 'inline';
   
   data: any = {};
   methods: any = {};
-  type: number = 0; // 0: 编辑 1: 预览
+  previewType: number = 0; // 0: 编辑 1: 预览
   iFormAttrs: any = {};
   formatTemp: string = '';
 
@@ -51,8 +52,6 @@ export default class Form extends Base implements IBaseBox{
     dataCode: `var data = {}`,
     inline: false
   }
-
-  autoAddComponentType: boolean = false;
 
   params: any = null;
 
@@ -65,29 +64,28 @@ export default class Form extends Base implements IBaseBox{
     if (config) {
       this.config = config;
     }
-    const {blockName} = params;
-    this.fileName = blockName.charAt(0).toUpperCase() + blockName.slice(1)
-    this.insertComponents.push(this.fileName);
+    // this.fileName = blockName.charAt(0).toUpperCase() + blockName.slice(1)
+    // this.insertComponents.push(this.fileName);
 
     this.$fragment = cheerio.load(` 
       <div class="box">
-        <${this.fileName} />
+        ${templateStr}
       </div>
     `, {
         xmlMode: true,
         decodeEntities: false
       });
 
-    this.$blockTemplate = cheerio.load(templateStr, {
-      xmlMode: true,
-      decodeEntities: false
-    });
+    // this.$blockTemplate = cheerio.load(templateStr, {
+    //   xmlMode: true,
+    //   decodeEntities: false
+    // });
 
     this.resetRender = _.throttle(this.resetRender, 100);
-    this.$blockTemplate('box-form').append(fragment.eform());
-    this.VueGenerator = new VueGenerator('block');
+    this.$fragment('box-form').append(fragment.eform());
+    // this.VueGenerator = new VueGenerator('block');
     this.init();
-    this.VueGenerator.appendData();
+    // this.VueGenerator.appendData();
 
   }
 
@@ -98,48 +96,69 @@ export default class Form extends Base implements IBaseBox{
   }
   
 
-  public getFragment(index: number, type: number = 0): any {
+  public getFragment(index: number): any {
     return this.$fragment;
   }
 
   public setPreview () {
 
     const type = this.storage.get('preview_view_status') || 0;
-    if (this.type === type) {
+    if (this.previewType === type) {
       this.resetRender();
       return;
     }
-    this.type = type;
+    this.previewType = type;
     if (type === 0) {
-      this.$blockTemplate = cheerio.load(templateStr, {
-        xmlMode: true,
-        decodeEntities: false
-      });
-  
-      this.$blockTemplate('box-form').append(fragment.eform());
-    } else {
-      this.$fragment = cheerio.load(`<${this.fileName} />`, {
-        xmlMode: true,
-        decodeEntities: false
-      });
-      this.$blockTemplate = cheerio.load(`
-        <template>
-          <div class="root">
-          </div>
-        </template>
+
+      this.$fragment = cheerio.load(` 
+        <div class="box">
+          ${templateStr}
+        </div>
       `, {
         xmlMode: true,
         decodeEntities: false
       });
+
+      // this.$blockTemplate = cheerio.load(templateStr, {
+      //   xmlMode: true,
+      //   decodeEntities: false
+      // });
   
-      this.$blockTemplate('.root').append(fragment.eform());
+      this.$fragment('box-form').append(fragment.eform());
+    } else {
+
+      this.$fragment = cheerio.load(` 
+        <div class="box">
+          <div class="root">
+          </div>
+        </div>
+      `, {
+        xmlMode: true,
+        decodeEntities: false
+      });
+
+      // this.$fragment = cheerio.load(`<${this.fileName} />`, {
+      //   xmlMode: true,
+      //   decodeEntities: false
+      // });
+      // this.$blockTemplate = cheerio.load(`
+      //   <template>
+      //     <div class="root">
+      //     </div>
+      //   </template>
+      // `, {
+      //   xmlMode: true,
+      //   decodeEntities: false
+      // });
+  
+      this.$fragment('.root').append(fragment.eform());
     }
     this.resetRender()
   }
 
   public addComponent (data: any, type: string = 'manual') {
     if (type === 'manual') {
-      let { id, uuid, name, params } = data;
+      let { id, uuid, name, params = {} } = data;
       const dynamicObj = require(`../../component/${id}`).default;
       if (name) {
         params['v-model'] = name;
@@ -153,17 +172,13 @@ export default class Form extends Base implements IBaseBox{
       } else {
         this.components.push(new dynamicObj(params))
       }
-      if (this.autoAddComponentType) {
-        this.autoAddComponentType = false;
-      }
     } else {
       let { id, config } = data;
       config.initType = type;
       const dynamicObj = require(`../../component/${id}`).default;
       const instance = new dynamicObj(config)
       this.components.push(instance);
-      this.autoAddComponentType = true;
-      if (instance.type === 'box') {
+      if (instance.storeType === 'box') {
         return instance;
       } else {
         return null;
@@ -210,8 +225,8 @@ export default class Form extends Base implements IBaseBox{
     const {handler} = data;
     if (handler === 'data') {
       this.config.dataCode = data.code;
-      const dataCode = this.VueGenerator.getDataStrAst(this.config.dataCode);
-      this.VueGenerator.appendData(dataCode);
+      // const dataCode = this.VueGenerator.getDataStrAst(this.config.dataCode);
+      // this.VueGenerator.appendData(dataCode);
       this.render();
     } else if (handler === 'formInline') {
       this.iFormAttrs[data.key] = data.value;
@@ -226,11 +241,11 @@ export default class Form extends Base implements IBaseBox{
   }
 
 
-  private resetInitScript () {
-    this.VueGenerator.initScript();
-    const dataCode = this.VueGenerator.getDataStrAst(this.config.dataCode);
-    this.VueGenerator.appendData(dataCode);
-  }
+  // private resetInitScript () {
+  //   this.VueGenerator.initScript();
+  //   const dataCode = this.VueGenerator.getDataStrAst(this.config.dataCode);
+  //   this.VueGenerator.appendData(dataCode);
+  // }
 
   private settingConfig (data) {
     const {uuid, config} = data;
@@ -296,10 +311,10 @@ export default class Form extends Base implements IBaseBox{
 
   public renderBox () {
 
-    this.$blockTemplate('el-form').empty();
-    this.resetInitScript();
+    this.$fragment('el-form').empty();
+    // this.resetInitScript();
     for (let key in this.iFormAttrs) {
-      this.$blockTemplate('el-form').attr(key, this.iFormAttrs[key]);
+      this.$fragment('el-form').attr(key, this.iFormAttrs[key]);
     }
     this.renderBoxRecursion(this.components, 0);
   }
@@ -308,46 +323,46 @@ export default class Form extends Base implements IBaseBox{
     if (Array.isArray(components)) {
       components.forEach((component, index) => {
         if (flag === 0) {
-          if (this.type === 0) {
+          if (this.previewType === 0) {
             const componentBox = 
               `<component-box uuid="${component.uuid}">
-                  ${component.getFragment(this.type).html()}
+                  ${component.getFragment(this.previewType).html()}
                 </component-box>`;
 
-            this.$blockTemplate('el-form').append(
+              this.$fragment('el-form').append(
               componentBox
             );
           } else {
-            this.$blockTemplate('el-form').append(component.getFragment(this.type).html());
+            this.$fragment('el-form').append(component.getFragment(this.previewType).html());
           }
         }
         if (component.type === 'box') {
           this.renderBoxRecursion(component.components, 1);
         }
 
-        if (component.insertComponents) {
-          component.insertComponents.forEach(item => {
-            this.VueGenerator.appendComponent(item, true);
-          })
-        }
+        // if (component.insertComponents) {
+        //   component.insertComponents.forEach(item => {
+        //     this.VueGenerator.appendComponent(item, true);
+        //   })
+        // }
       
-        if (component.vueParse) {
-          component.vueParse.methods && this.VueGenerator.appendMethods(component.vueParse.methods);
-          component.vueParse.data && this.VueGenerator.appendData(component.vueParse.data);
-        }
+        // if (component.vueParse) {
+        //   component.vueParse.methods && this.VueGenerator.appendMethods(component.vueParse.methods);
+        //   component.vueParse.data && this.VueGenerator.appendData(component.vueParse.data);
+        // }
       });
     }
    
   }
 
   public render () {
-    const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
-    const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
-    if (formatTemp === this.formatTemp) {
-      return;
-    }
-    this.formatTemp = formatTemp;
-    fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
+    // const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
+    // const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
+    // if (formatTemp === this.formatTemp) {
+    //   return;
+    // }
+    // this.formatTemp = formatTemp;
+    // fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
   }
 
   setTemplate () {

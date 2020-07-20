@@ -17,7 +17,7 @@ export default class Delete extends Base{
       this.config = params.config;
     } else {
       this.config = {
-        type: params.type
+        type: params.params.type
       }
     }
 

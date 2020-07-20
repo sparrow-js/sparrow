@@ -15,13 +15,13 @@
       >
         <i class="iconfont icon-tree-table"></i>
       </div>
-      <div
+      <!-- <div
         @click="tabChange(1)"
         class="tabs-item"
         :class="{ active: activeTreeIndex === 1 }"
       >
         <i class="iconfont icon-zujian"></i>
-      </div>
+      </div> -->
       <div
         @click="tabChange(3)"
         class="tabs-item"
@@ -30,7 +30,7 @@
         <i class="iconfont icon-changjing"></i>
       </div>
     </div>
-    <div class="tabs-body" v-show="[0, 1, 3].includes(activeTreeIndex)">
+    <div class="tabs-body" v-show="[0, 3].includes(activeTreeIndex)">
       <div class="tree" v-show="activeTreeIndex === 0">
         <!-- <el-scrollbar style="height:100%"> -->
         <el-tree
@@ -66,14 +66,14 @@
         </el-tree>
         <!-- </el-scrollbar> -->
       </div>
-
+<!-- 
       <div v-show="activeTreeIndex === 1">
         <component
           v-if="componentIs"
           :list="componentList"
           :is="componentIs"
         ></component>
-      </div>
+      </div> -->
 
       <div v-show="activeTreeIndex === 3">
         <div class="scene-list">
@@ -314,7 +314,7 @@ export default class CompBox extends Vue {
   background-color: #f0f9eb;
 }
 .active .iconfont {
-  color: #67c23a;
+  color: #409EFF;
 }
 .tabs-body {
   height: 100%;

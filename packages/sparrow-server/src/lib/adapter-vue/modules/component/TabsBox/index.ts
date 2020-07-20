@@ -11,7 +11,8 @@ export default class TabsBox{
   $fragment = null;
   public components = [];
   name: string = 'TabsBox';
-  type: string  = 'box';
+  storeType: string  = 'box';
+  type: string = 'inline';
   config: any = {};
   _attrStr: string = '';
   vueParse: any;

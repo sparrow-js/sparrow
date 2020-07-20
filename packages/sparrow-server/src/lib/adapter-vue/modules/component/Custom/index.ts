@@ -5,36 +5,24 @@ export default class LogicBox{
   public uuid = '';
   $fragment = null;
   public components = [];
-  name: string = 'LogicBox';
-  storeType: string  = 'box';
-  type: string = 'inline';
+  name: string = 'CustomBox';
+  type: string  = 'box';
   config: any = {};
-  _attrStr: string = '';
   constructor () {
     this.uuid = uuid().split('-')[0];
-    this.config = {
-      _attr: {
-        'v-if': '',
-      },
-    };
+    this.config = {};
   }
   
-
   public renderFragment (type: number) {
     let LogicBox = `
-      <div class="logic-box" style="margin-bottom: 20px;">
-        <logic-box  
-          :uuid="'${this.uuid}'" 
-          :label="'logic'"
-          ${this._attrStr}
-        ></logic-box>
+      <div class="custom" style="margin-bottom: 20px;">
+        <custom-inline :comp-box="'BaseForm'"></custom-inline>
       </div>
     `;
 
     if (type === 1) {
       LogicBox = `
-        <div class="logic-box" style="margin-bottom: 20px;">
-        </div>
+        <div class="custom" style="margin-bottom: 20px;"></div>
       `
     }
 
@@ -47,19 +35,8 @@ export default class LogicBox{
 
   public setConfig (config: any) {
     this.config = config;
-    this.setAttrsToStr();
   };
 
-  public setAttrsToStr () {
-    const {config} = this;
-    if (config._attr) {
-      const formField = [];
-      Object.keys(config._attr).forEach(key => {
-        formField.push(`${key}="${config._attr[key]}"`);
-      });
-      this._attrStr = formField.join(' ');
-    }
-  }
   
   public getFragment (type: number) {
     this.renderFragment(type);
@@ -70,13 +47,13 @@ export default class LogicBox{
   private renderBox (type) {
     this.components.forEach((component, index) => {
       if (type === 0) {
-        this.$fragment('logic-box').append(
+        this.$fragment('.custom').append(
           `<component-box indexcomp="${index}" uuid="${component.uuid}">
             ${component.getFragment(type).html()}
           </component-box>`
         );
       } else {
-        this.$fragment('.logic-box').append(component.getFragment(type).html());
+        this.$fragment('.custom').append(component.getFragment(type).html());
       }
     });
   }

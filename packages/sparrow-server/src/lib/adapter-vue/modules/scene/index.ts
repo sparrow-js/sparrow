@@ -49,8 +49,6 @@ export default class Scene {
 
     if (params.label === 'page') {
       this.jsonToScene(params);
-    } else {
-      this.components.push(new Box());
     }
 
     this.renderPage();
@@ -178,17 +176,24 @@ export default class Scene {
 
   public addBox (params: any, ctx) {
     const {boxUuid, data} = params;
-    if (boxUuid) {
-      const currBox = this.findComponent(boxUuid, this.components);
-      currBox.addComponent(data);
-      const curBoxParent = this.findBoxParent(boxUuid, this.components)
-      curBoxParent.push(new Box());
-      this.renderPage();
+    const box = new Box();
+    box.addComponent(params);
+    this.components.push(box);
+    this.renderPage();
       
-      const { socket } = ctx;
-      socket.emit('generator.force.refresh', {status: 0});
+    // const { socket } = ctx;
+    // socket.emit('generator.force.refresh', {status: 0});
 
-    }
+    // if (boxUuid) {
+    //   const currBox = this.findComponent(boxUuid, this.components);
+    //   currBox.addComponent(data);
+    //   const curBoxParent = this.findBoxParent(boxUuid, this.components)
+    //   curBoxParent.push(new Box());
+    //   this.renderPage();
+      
+    //   const { socket } = ctx;
+    //   socket.emit('generator.force.refresh', {status: 0});
+    // }
   }
 
   public addComponent (params) {
@@ -201,12 +206,20 @@ export default class Scene {
   }
 
   public async addBlock (params, ctx) {
-    const {data, boxUuid} = params;
-    if (boxUuid) {
-      const currBox = this.findComponent(boxUuid, this.components);
-      await currBox.components[0].addBlock(data);
-      this.renderPage();
-    }
+    const box = new Box();
+    box.addComponent({
+      id: 'Block'
+    });
+    this.components.push(box);
+    await box.components[0].addBlock(params);
+    this.renderPage();
+
+    // const {data, boxUuid} = params;
+    // if (boxUuid) {
+    //   const currBox = this.findComponent(boxUuid, this.components);
+    //   await currBox.components[0].addBlock(data);
+    //   this.renderPage();
+    // }
 
     const { socket } = ctx;
     socket.emit('generator.scene.block.status', {status: 0, data: {
@@ -466,6 +479,7 @@ export default class Scene {
     this.$('.home').empty();
     this.scriptData = this.VueGenerator.initScript();
     let methods = [];
+    let vueData = [];
     this.loopThroughBox(this.components);
     const fn = (boxs, flag = 0) => {
       boxs.map((item, index) => {
@@ -485,6 +499,7 @@ export default class Scene {
             item.components.forEach(comp => {
               if (comp.vueParse) {
                 methods = methods.concat(comp.vueParse.methods || []);
+                vueData = vueData.concat(comp.vueParse.data || [])
               }
             });
           }
@@ -506,8 +521,10 @@ export default class Scene {
     if (this.sceneVueParse) {
       this.sceneVueParse.methods && this.VueGenerator.appendMethods(this.sceneVueParse.methods);
       this.sceneVueParse.data && this.VueGenerator.appendData(this.sceneVueParse.data);
-      this.VueGenerator.appendMethods(methods);
     }
+    this.VueGenerator.appendMethods(methods);
+    this.VueGenerator.appendData(vueData);
+
     this.writeTemplate();
   }
 

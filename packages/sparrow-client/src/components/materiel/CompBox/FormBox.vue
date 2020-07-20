@@ -97,7 +97,7 @@ export default class CompBox extends Vue {
     }
   }
 
-  private async addComponent(type) {
+  private async addComponent() {
     // if (!this.form.name && type === 0) {
     //   this.$message.error('变量名必填');
     //   return;

@@ -224,7 +224,7 @@ export default class extends Vue {
     }
   }
   &__item.success {
-    color: #67c23a;
+    color: #409EFF;
   }
   .active-preview {
     color: #0247fb;

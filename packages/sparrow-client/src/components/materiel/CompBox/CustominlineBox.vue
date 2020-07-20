@@ -2,7 +2,7 @@
   <div class="comp-box">
     <div class="comp-nav">
       <div class="comp">
-        <div class="comp__title">基础表格</div>
+        <!-- <div class="comp__title">基础表格</div> -->
         <div class="comp-content" v-for="(item, index) in list" :key="index">
           <h3 class="comp-content__title">{{ item.label }}</h3>
           <div class="comp-content__list">

@@ -8,6 +8,7 @@ const db = new Lowdb(new FileSync('lowdb.json'))
 // Seed an empty DB
 db.defaults({
   scenes: [],
+  components: {},
   tasks: [],
   config: {}
 }).write()

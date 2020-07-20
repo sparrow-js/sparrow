@@ -5,7 +5,7 @@
         <top-toolbar></top-toolbar>
       </el-header>
 
-      <el-container style="height: 100%;">
+      <el-container style="height: calc(100% - 45px);">
         <div>
           <comp-box></comp-box>
         </div>
@@ -82,7 +82,9 @@ export default class App extends Vue {
     return AppModule.boxUuid;
   }
 
-  created() {
+  async created() {
+    await socket.emit('home.index.init');
+
     window.addEventListener('message', async event => {
       const { data } = event;
       if (!data.handler) return;
@@ -129,7 +131,7 @@ export default class App extends Vue {
         if (data.handler === 'client.component.show') {
           const { type } = data.data;
           AppModule.setBoxUuid(data.uuid);
-          AppModule.InsertData(data);
+          // AppModule.InsertData(data);
           AppModule.SetComponentIs(type);
           AppModule.SetShowComponent(true);
           AppModule.setActiveTreeIndex(1)
@@ -150,11 +152,13 @@ export default class App extends Vue {
         }
 
         if (data.handler === 'client.component.insertFormComp') {
-          AppModule.InsertData(data);
+          console.log('***********', data);
+         AppModule.InsertData(data);
         }
 
         if (data.handler === 'client.component.insertTableComp') {
-          AppModule.InsertPosition(data);
+          console.log('asdjasdas', data);
+          AppModule.InsertData(data);
         }
 
 

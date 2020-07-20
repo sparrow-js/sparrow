@@ -1,6 +1,6 @@
 export const BaseFormConf = [
   {
-    label: 'BasicForm',
+    label: 'BaseForm',
     children: [
       {
         label: '保存',
