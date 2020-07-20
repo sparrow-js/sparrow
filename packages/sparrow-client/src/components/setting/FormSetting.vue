@@ -1,9 +1,10 @@
 <template>
   <div class="setting">
-    <div v-show="showSetting">
-      <el-tabs v-model="tabActiveName" @tab-click="handleClick">
+      <el-tabs style="width: 100%;" v-model="tabActiveName" @tab-click="handleClick">
         <el-tab-pane label="组件" name="first">
-
+          <div>
+            <span class="update-data" @click.stop="syncConfig">更新</span>
+          </div>
           <el-scrollbar v-if="config" class="right-scrollbar">
             <el-form size="small" label-width="90px">
               <el-form-item 
@@ -12,6 +13,32 @@
               >
                 <el-input v-model="config._attr['v-model']" :disabled="true"></el-input>
               </el-form-item>
+  
+
+              <el-form-item 
+                v-if="config._attr[':list']!==undefined"
+                label=":list"
+              >
+                <el-input v-model="config._attr[':list']" :disabled="true"></el-input>
+              </el-form-item>
+
+
+              <el-tabs
+                v-if="config._attr[':default']!==undefined"
+                v-model="activeItemCode" @tab-click="handleCodeItemClick">
+                <el-tab-pane label="code" name="code">
+                  <div class="codemirror-operate">
+                    <i class="iconfont icon-iconfront-" @click="expansionHandler('form')"></i>
+                  </div>
+                  <codemirror
+                    ref="codemirror"
+                    v-model="config._attr[':default']"
+                  ></codemirror>
+                </el-tab-pane>
+                <el-tab-pane label="json" name="json">
+                  <json-handler :json-data="jsonItemData"></json-handler>
+                </el-tab-pane>
+              </el-tabs>
 
    
               <el-form-item 
@@ -27,18 +54,27 @@
               >
                 <el-input v-model="config._attr['v-if']" placeholder="请输入内容"></el-input>
               </el-form-item>
-
-
-              <div v-if="config._custom">
-                <el-divider content-position="left">校验</el-divider>
-                <el-form-item v-if="config._custom.required!==undefined" label="必填">
-                  <el-switch v-model="config._custom.required"></el-switch>
+              
+              <div  v-if="config._custom">
+                <el-form-item v-if="config._custom.hasHeader!==undefined" label="卡片头">
+                  <el-switch v-model="config._custom.hasHeader"></el-switch>
                 </el-form-item>
-                <rule-list 
-                  v-if="config._custom.regList!==undefined"
-                  :rules.sync="config._custom.regList"
-                ></rule-list>
+
+
+                <div v-if="config._custom.required !== undefined">
+                  <el-divider content-position="left">校验</el-divider>
+                  <el-form-item v-if="config._custom.required!==undefined" label="必填">
+                    <el-switch v-model="config._custom.required"></el-switch>
+                  </el-form-item>
+                  <rule-list 
+                    v-if="config._custom.regList!==undefined"
+                    :rules.sync="config._custom.regList"
+                  ></rule-list>
+                </div>
+
               </div>
+            
+
               <div v-if="config._slot">
                 <el-divider content-position="left">options</el-divider>
                 <div>
@@ -60,7 +96,7 @@
 
         </el-tab-pane>
         <el-tab-pane label="表单" name="second">
-          <el-collapse v-model="activeNames">
+          <el-collapse v-if="setting" v-model="activeNames">
             <el-collapse-item title="模式" name="1">
               <el-switch
                 v-model="setting.inline"
@@ -94,7 +130,6 @@
 
         </el-tab-pane>
       </el-tabs>
-    </div>
     <div class="drawer">
       <el-drawer
         title=""
@@ -149,8 +184,10 @@ export default class extends Vue {
   private tabActiveName = 'first';
 
   private jsonData = '"{}"';
+  private jsonItemData = '"{}"';
 
   private activeNameCode = 'code';
+  private activeItemCode = 'code';
 
   private tempCode = '';
   private showCodeDraw = false;
@@ -158,10 +195,12 @@ export default class extends Vue {
   private codeEditType = '';
 
 
-  @Watch('config', { immediate: true, deep: true})
-  private onConfigChange() {
-    this.syncConfig();
-  }
+  // @Watch('config', { immediate: true, deep: true})
+  // private onConfigChange() {
+  //   this.syncConfig();
+  // }
+
+
 
   get showSetting() {
     return SettingModule.showSetting;
@@ -169,7 +208,7 @@ export default class extends Vue {
 
   private async created() {
     const result = await socket.emit('generator.scene.getSetting', {
-      boxIndex: AppModule.boxIndex
+      boxUuid: AppModule.boxUuid,
     });
     if (result) {
       this.setting = result.data;
@@ -185,7 +224,7 @@ export default class extends Vue {
 
   private async displayChange() {
     const result = await socket.emit('generator.scene.setting', {
-      boxIndex: AppModule.boxIndex,
+      boxUuid: AppModule.boxUuid,
       data: {
         handler: 'formInline',
         key: ':inline',
@@ -203,7 +242,7 @@ export default class extends Vue {
 
   private async updateCodeData() {
     const result = await socket.emit('generator.scene.setting', {
-      boxIndex: AppModule.boxIndex,
+      boxUuid: AppModule.boxUuid,
       data: {
         handler: 'data',
         code: this.setting.dataCode
@@ -229,15 +268,23 @@ export default class extends Vue {
     }
   }
 
-
-  private handleClick () {
-
+  private handleCodeItemClick() {
+    if (this.activeItemCode === 'json') {
+      this.jsonItemData = JSON.stringify(
+        eval(
+          `function getData () {${this.config._attr[':default']}; return data;} getData()`
+        )
+      );
+    }
   }
 
+
+  private handleClick () {}
+
   private async syncConfig () {
-    if (!this.uuid) return;
+    if (!this.uuid || !this.config) return;
      const result = await socket.emit('generator.scene.setting', {
-      boxIndex: AppModule.boxIndex,
+      boxUuid: AppModule.boxUuid,
       data: {
         handler: 'settingConfig',
         uuid: this.uuid,

@@ -1,5 +1,9 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
+import * as fsExtra from 'fs-extra';
+import Config from '../../../config';
+import * as path from 'path';
+
 
 export default class ArrayListBox{
   public uuid = '';
@@ -9,42 +13,59 @@ export default class ArrayListBox{
   type: string  = 'box';
   config: any = {};
   _attrStr: string = '';
-  constructor () {
+  insertComponents: any = ['ArrayList'];
+
+  constructor (params: any) {
     this.uuid = uuid().split('-')[0];
-    this.config = {
-      _attr: {},
-    };
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        _attr: {
+          ':list': params['v-model'],
+          ':default': 'var data = {}'
+        },
+      };
+    }
+
+    const componentsDir = Config.componentsDir; 
+    const compDir = path.join(componentsDir, 'ArrayList')
+    fsExtra.copySync(path.join(Config.serverBusinessPath, 'ArrayList'), compDir)
   }
   
 
-  public renderFragment () {
+  public renderFragment (type: number) {
     let LogicBox = `
       <logic-box  
         :uuid="'${this.uuid}'" 
+        :label="'array_list'"
       ></logic-box>
     `;
 
-    let CardBox = `
-      <div style="margin-top: 20px;">
-        <array-list-box>
+    if (type === 1) {
+      LogicBox = '';
+    }
+
+    let arrayListBox = `
+      <div style="margin-bottom: 20px;">
+        <array-list ${this._attrStr}>
           <template v-slot:item="{ item }">
             ${LogicBox}
           </template>
-          
-        </array-list-box>
+        </array-list>
       </div>
-
     `;
 
-    this.$fragment = cheerio.load(CardBox, {
+    this.$fragment = cheerio.load(arrayListBox, {
       xmlMode: true,
       decodeEntities: false,
     });
 
   }
 
-  public setConfig () {
-
+  public setConfig (config: any) {
+    this.config = config;
+    this.setAttrsToStr();
   };
 
   public setAttrsToStr () {
@@ -52,25 +73,24 @@ export default class ArrayListBox{
     if (config._attr) {
       const formField = [];
       Object.keys(config._attr).forEach(key => {
-        formField.push(`${key}="${config._attr[key]}"`);
+        if (key === ':default') {
+          const defaultValue = /\{[\s\S]*\}/g.exec(config._attr[key]);
+          if (defaultValue) {
+            formField.push(`${key}="${defaultValue}"`);
+          }
+        } else {
+          formField.push(`${key}="${config._attr[key]}"`);
+        }
+        
       });
       this._attrStr = formField.join(' ');
     }
   }
   
   public getFragment (type: number) {
-    this.renderFragment();
+    this.renderFragment(type);
     this.renderBox(type);
     return this.$fragment;
-  }
-
-  public addComponent (data: any) {
-    const { key, name, params } = data;
-    const dynamicObj = require(`../../component/${key}`).default;
-    const componentIndex = this.components.length;
-    this.components.push(new dynamicObj({
-      'v-model': name,
-    }, componentIndex, params));
   }
 
   private renderBox (type) {
@@ -82,7 +102,7 @@ export default class ArrayListBox{
           </component-box>`
         );
       } else {
-        this.$fragment('logic-box').append(component.getFragment(type).html());
+        this.$fragment('template').append(component.getFragment(type).html());
       }
     });
   }

@@ -6,7 +6,8 @@ export default class LogicBox{
   $fragment = null;
   public components = [];
   name: string = 'LogicBox';
-  type: string  = 'box';
+  storeType: string  = 'box';
+  type: string = 'inline';
   config: any = {};
   _attrStr: string = '';
   constructor () {
@@ -19,13 +20,23 @@ export default class LogicBox{
   }
   
 
-  public renderFragment () {
+  public renderFragment (type: number) {
     let LogicBox = `
-      <logic-box  
-        :uuid="'${this.uuid}'" 
-        ${this._attrStr}
-      ></logic-box>
+      <div class="logic-box" style="margin-bottom: 20px;">
+        <logic-box  
+          :uuid="'${this.uuid}'" 
+          :label="'logic'"
+          ${this._attrStr}
+        ></logic-box>
+      </div>
     `;
+
+    if (type === 1) {
+      LogicBox = `
+        <div class="logic-box" style="margin-bottom: 20px;">
+        </div>
+      `
+    }
 
     this.$fragment = cheerio.load(LogicBox, {
       xmlMode: true,
@@ -34,8 +45,9 @@ export default class LogicBox{
 
   }
 
-  public setConfig () {
-
+  public setConfig (config: any) {
+    this.config = config;
+    this.setAttrsToStr();
   };
 
   public setAttrsToStr () {
@@ -50,18 +62,9 @@ export default class LogicBox{
   }
   
   public getFragment (type: number) {
-    this.renderFragment();
+    this.renderFragment(type);
     this.renderBox(type);
     return this.$fragment;
-  }
-
-  public addComponent (data: any) {
-    const { key, name, params } = data;
-    const dynamicObj = require(`../../component/${key}`).default;
-    const componentIndex = this.components.length;
-    this.components.push(new dynamicObj({
-      'v-model': name,
-    }, componentIndex, params));
   }
 
   private renderBox (type) {
@@ -73,7 +76,7 @@ export default class LogicBox{
           </component-box>`
         );
       } else {
-        this.$fragment('logic-box').append(component.getFragment(type).html());
+        this.$fragment('.logic-box').append(component.getFragment(type).html());
       }
     });
   }

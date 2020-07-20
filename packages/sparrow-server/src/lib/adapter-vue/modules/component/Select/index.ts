@@ -7,35 +7,46 @@ import Config from '../../../config';
 export default class Select extends Base {
   name: string = 'Select';
   vueParse: any;
-  params: any;
   status: string = '';
 
-  constructor (attrs: any, componentIndex: number, params: any) {
-    super(attrs, componentIndex);
-    this.labelValue = '特殊资源';
-    this.params = params;
+  constructor (params: any) {
+    super();
+    this.initVueParse();
+    if (params.initType === 'auto') {
+      const oldOptions = params._slot.data.match(/selectOptions[a-z0-9]+/)[0];
+      params._slot.data = params._slot.data.replace(oldOptions, `selectOptions${this.uuid}`)
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '特殊资源',
+        },
+        // 组件标签属性
+        _attr: {
+          placeholder: '请输入',
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {
+          data: this.vueParse.getFormatData()
+        }
+      };
+    }
     this.init();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: []
-      },
-      // 组件标签属性
-      _attr: {
-        placeholder: '请输入',
-        'v-model': attrs['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {
-        data: this.vueParse.getFormatData()
-      }
-    };
+
     this.setHandler();
   }
 
+  private initVueParse () {
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/Select', 'comp.vue'), 'utf8');
+    this.vueParse = new VueParse(this.uuid, fileStr); 
+  }
+
   private init () {
-    const {type} = this.params;
+    const {type} = this.config._custom;
     if (type === 'clearable') {
       this.status = 'clearable';
     } else if (type === 'multiple') {
@@ -46,8 +57,6 @@ export default class Select extends Base {
       this.status = 'allow-create';
     }
 
-    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/Select', 'comp.vue'), 'utf8');
-    this.vueParse = new VueParse(this.uuid, fileStr); 
   }
 
   public fragment () {
@@ -56,8 +65,7 @@ export default class Select extends Base {
         ${this._formItemStr}
       >
         <label-box 
-          label="${this.labelValue}" 
-          indexcomp="${this.componentIndex}"
+          label="${this.config._custom.label}"
           uuid="${this.uuid}"
         ></label-box>
         <el-select 

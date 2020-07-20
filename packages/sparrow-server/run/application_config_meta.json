@@ -24,6 +24,10 @@
     "allowMethods": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/config.default.ts"
   },
   "security": {
+    "xframe": {
+      "enable": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/config.default.ts",
+      "value": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
+    },
     "csrf": {
       "headerName": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/config.default.ts",
       "ignore": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/config.default.ts",
@@ -40,10 +44,6 @@
     "domainWhiteList": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
     "protocolWhiteList": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
     "defaultMiddleware": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
-    "xframe": {
-      "enable": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
-      "value": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js"
-    },
     "hsts": {
       "enable": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.local.js",
       "maxAge": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-security/config/config.default.js",
@@ -190,6 +190,7 @@
       "@babel/types": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "@lukeed/uuid": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "@nx-js/observer-util": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
+      "@sparrow-vue/develop-ui": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "ali-oss": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "array-move": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",
       "camelcase": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/config.default.js",

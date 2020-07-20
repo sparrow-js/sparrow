@@ -11,8 +11,8 @@ export default class Layout extends Base implements IBaseBox{
   template: string;
   params: any;
 
-  constructor (data: any) {
-    super();
+  constructor (data: any, storage: any) {
+    super(storage);
     const { boxIndex, params } = data;
     this.params = params;
     this.$fragment = cheerio.load(boxFragment.box(boxIndex), {
@@ -40,7 +40,7 @@ export default class Layout extends Base implements IBaseBox{
     this.render();
   } 
 
-  public getBoxFragment(index: number): any {
+  public getFragment(index: number): any {
     this.$fragment('box').attr(':index', index);
     return this.$fragment;
   }

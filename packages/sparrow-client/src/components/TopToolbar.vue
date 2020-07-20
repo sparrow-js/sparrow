@@ -32,7 +32,16 @@
         </span>
       </el-tooltip>
     </div>
-    <div class="toolbar__item success" @click="showPopover = true">
+    
+  <!-- <i  @click="saveScene" class="iconfont icon-baocu"> -->
+        <!-- </i> -->
+    <div class="toolbar__item">
+      <el-tooltip class="item" effect="dark" content="保存" placement="top">
+        <i class="iconfont icon-baocun"  @click="saveScene"></i>
+      </el-tooltip>
+    </div>
+
+    <div class="toolbar__item success" @click="showPopover = !showPopover">
       <el-tooltip class="item" effect="dark" content="场景" placement="top">
         <span>
           <font-awesome-icon :icon="['fas', 'file']" />
@@ -54,10 +63,26 @@
       width="200"
       trigger="click"
     >
-      <div>
-        <span class="scene-item" @click="sceneHandler">基础表单</span>
-      </div>
+      <span class="scene-item" @click="sceneHandler('BaseForm')">基础表单</span>
+      <span class="scene-item" @click="sceneHandler('BaseTable')">基础表格</span>
     </el-popover>
+
+
+    <el-dialog title="创建模块" width="400px" :visible.sync="dialogFormVisible">
+      <el-form :model="form" label-width="80px">
+        <el-form-item label="模块名称" required>
+          <el-input v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="预览图">
+          <img :src="form.url" width="280"/>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button size="mini" @click="dialogFormVisible = false">取 消</el-button>
+        <el-button size="mini" type="primary" @click="sureSaveScene">确 定</el-button>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 <script lang="ts">
@@ -77,10 +102,28 @@ export default class extends Vue {
   private sceneDialogVisible = false;
   private workFolder = null;
   private showPopover = false;
+  private dialogFormVisible = false;
+  private tempSceneUrl = '';
+  private form = {
+    name: '',
+    url: ''
+  };
+
   async created() {
     const result = await socket.emit('home.setting.workFolder');
     this.workFolder = result;
+  
     this.init();
+    socket.on('generator.toolbar.openCodeEditor.result', data => {
+      this.$message.error('打开编辑器失败，请先手动启动编辑器，或者将编辑器注册到终端命令行中');
+    });
+    window.addEventListener('message', async event => {
+      const { data } = event;
+      if (!data.handler) return;
+      if (data.handler === 'client.screen.capture') {
+        this.form.url = data.url;
+      }
+    })   
   }
 
   private async previewHandler() {
@@ -119,18 +162,47 @@ export default class extends Vue {
     viewFrame.contentWindow.postMessage({ handler: 'document-click' }, '*');
   }
 
+  private async saveScene () {
+    this.dialogFormVisible = true;
+    const viewFrame: any = document.querySelector('#viewContent');
+    viewFrame.contentWindow.postMessage({ handler: 'html-2-canvas' }, '*');
+  }
+
+  private async sureSaveScene () {
+
+    await socket.emit('generator.scene.saveScene', this.form);
+    this.dialogFormVisible = false;
+    
+  }
+
+  private async getSerializeTree () {
+    const viewFrame: any = document.querySelector('#viewContent');
+    viewFrame.contentWindow.postMessage({ handler: 'html-2-canvas' }, '*');
+  }
+
   private async openEditorHandler() {
     await socket.emit('generator.toolbar.openCodeEditor');
   }
 
-  private async sceneHandler() {
-    // this.$refs.popover.hide();
-
+  private async sceneHandler(name) {
     await socket.emit('generator.toolbar.initScene', {
-      name: 'BasicTable'
+      name,
     });
     this.showPopover = false;
   }
+
+  allowDrop(draggingNode, dropNode, type) {
+    if (dropNode.data.label === '二级 3-1') {
+      return type !== 'inner';
+    } else {
+      return true;
+    }
+  }
+  
+  allowDrag(draggingNode) {
+    return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
+  }
+
 }
 </script>
 <style lang="scss" scoped>
@@ -152,7 +224,7 @@ export default class extends Vue {
     }
   }
   &__item.success {
-    color: #67c23a;
+    color: #409EFF;
   }
   .active-preview {
     color: #0247fb;

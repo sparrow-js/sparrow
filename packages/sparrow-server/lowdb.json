@@ -1,0 +1,32 @@
+{
+  "scenes": [],
+  "tasks": [],
+  "config": {},
+  "components": {
+    "version": "0.0.2",
+    "list": [
+      {
+        "id": "1a571901-6ff1-4632-bf07-d3d2bf03d1bb",
+        "key": "SaveButton",
+        "label": "保存",
+        "path": "../../component/BaseForm/SaveButton",
+        "des": "表单保存按钮",
+        "keywords": "表单保存, 按钮, 表单",
+        "ascription": [
+          "BaseForm"
+        ]
+      },
+      {
+        "id": "5719016f-f106-427f-87d3-d2bf03d1bbee",
+        "key": "ResetButton",
+        "label": "重置",
+        "path": "../../component/BaseForm/ResetButton",
+        "des": "表单保存按钮",
+        "keywords": "表单保存, 按钮, 表单",
+        "ascription": [
+          "BaseForm"
+        ]
+      }
+    ]
+  }
+}

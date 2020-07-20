@@ -9,9 +9,7 @@ export function initBlock (index: number) {
 
 export function blockList (index: number, content: string) {
   return `
-    <div class="block-list">
       ${content}
-    </div>
   `;
 }
 

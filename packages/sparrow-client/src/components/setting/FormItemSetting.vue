@@ -17,19 +17,6 @@
           <el-input v-model="fieldConfig._attr.placeholder" placeholder="请输入内容"></el-input>
         </el-form-item>
       </el-form>
-        <!-- config: {
-          // 组件自定义配置
-          _custom: {
-            required: true,
-            regList: []
-          },
-          // 组件标签属性
-          _attr: {
-            placeholder: '',
-          },
-          // 插槽属性
-          // __slot__: {}
-        } -->
 
     </el-scrollbar>
       

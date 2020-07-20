@@ -6,31 +6,64 @@ export default class CardBox{
   $fragment = null;
   public components = [];
   name: string = 'CardBox';
-  type: string  = 'box';
+  storeType: string  = 'box';
+  type: string = 'inline';
   config: any = {};
   _attrStr: string = '';
-  constructor () {
+  labelValue: string = '卡片名称';
+  constructor (params: any) {
     this.uuid = uuid().split('-')[0];
-    this.config = {
-      _attr: {},
-    };
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        _attr: {},
+        _custom: {
+          hasHeader: true,
+        },
+      };
+    }
   }
   
 
-  public renderFragment () {
+  public renderFragment (type: number) {
     let LogicBox = `
       <logic-box  
         :uuid="'${this.uuid}'" 
+        :label="'card'"
       ></logic-box>
     `;
 
+    let labelBox = `
+      <label-box 
+        label="${this.labelValue}"
+        uuid="${this.uuid}"
+        :clear-class="true"
+      ></label-box>
+    `
+
+    if (type === 1) {
+      LogicBox = '';
+      labelBox = `
+        <span>${this.labelValue}</span>
+      `
+    }
+
+    let headerBox = '';
+
+    if (this.config._custom.hasHeader === true) {
+      headerBox = `
+        <div slot="header" class="clearfix">
+          ${labelBox}
+        </div>
+      `;
+    }
+    
     let CardBox = `
-      <div style="margin-top: 20px;">
+      <div style="margin-bottom: 20px;">
         <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>卡片名称</span>
-          </div>
-          <div>
+          ${headerBox}
+          <div class="card-content">
             ${LogicBox}
           </div>
         </el-card>
@@ -45,9 +78,37 @@ export default class CardBox{
 
   }
 
-  public setConfig () {
+  setLabel (labelValue: string) {
+    this.labelValue = labelValue;
+  }
 
+  public setConfig (config: any) {
+    this.config = config;
   };
+
+  public addComponent (data: any, type: string = 'manual') {
+    if (type === 'manual') {
+      const { id, name, params } = data;
+      const dynamicObj = require(`../../component/${id}`).default;
+      if (name) {
+        params['v-model'] = name;
+      }  
+      this.components.push(new dynamicObj(params));
+    } else {
+      let { id, config } = data;
+      config.initType = type;
+      const dynamicObj = require(`../../component/${id}`).default;
+      const instance = new dynamicObj(config)
+      this.components.push(instance);
+      if (instance.storeType === 'box') {
+        return instance;
+      } else {
+        return null;
+      }
+    }
+ 
+  }
+
 
   public setAttrsToStr () {
     const {config} = this;
@@ -61,18 +122,9 @@ export default class CardBox{
   }
   
   public getFragment (type: number) {
-    this.renderFragment();
+    this.renderFragment(type);
     this.renderBox(type);
     return this.$fragment;
-  }
-
-  public addComponent (data: any) {
-    const { key, name, params } = data;
-    const dynamicObj = require(`../../component/${key}`).default;
-    const componentIndex = this.components.length;
-    this.components.push(new dynamicObj({
-      'v-model': name,
-    }, componentIndex, params));
   }
 
   private renderBox (type) {
@@ -84,7 +136,7 @@ export default class CardBox{
           </component-box>`
         );
       } else {
-        this.$fragment('logic-box').append(component.getFragment(type).html());
+        this.$fragment('.card-content').append(component.getFragment(type).html());
       }
     });
   }

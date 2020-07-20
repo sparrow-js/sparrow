@@ -6,43 +6,53 @@ import Config from '../../../config';
 
 export default class RadioGroup extends Base{
   name: string = 'RadioGroup';
-  params: any;
   vueParse: any;
   ele: string = '';
-  constructor (attrs: any, componentIndex: number, params: any) {
-    super(attrs, componentIndex);
-    this.params = params;
-    this.labelValue = '单选框';
+  constructor (params: any) {
+    super();
+    this.initVueParse();
+    if (params.initType === 'auto') {
+      const oldRadionboxOptions = params._slot.data.match(/radionboxOptions[a-z0-9]+/)[0];
+      params._slot.data = params._slot.data.replace(oldRadionboxOptions, `radionboxOptions${this.uuid}`)
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '单选框',
+          type: params.type
+        },
+        // 组件标签属性
+        _attr: {
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {
+          data: this.vueParse.getFormatData()
+        }
+      };
+    }
     this.init();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: []
-      },
-      // 组件标签属性
-      _attr: {
-        'v-model': attrs['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {
-        data: this.vueParse.getFormatData()
-      }
-    };
 
     this.setHandler();
   }
 
+  private initVueParse () {
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/RadioGroup', 'comp.vue'), 'utf8');
+    this.vueParse = new VueParse(this.uuid, fileStr); 
+  }
+
   private init () {
-    const {type} = this.params;
+    const {type} = this.config._custom;
     if (type === 'button') {
       this.ele = 'el-radio-button';
     } else {
       this.ele = 'el-radio';
     }
-    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/RadioGroup', 'comp.vue'), 'utf8');
-    this.vueParse = new VueParse(this.uuid, fileStr); 
   }
+
 
   public fragment () {
     return `
@@ -50,8 +60,7 @@ export default class RadioGroup extends Base{
         ${this._formItemStr}
       >
         <label-box 
-          label="${this.labelValue}" 
-          indexcomp="${this.componentIndex}"
+          label="${this.config._custom.label}" 
           uuid="${this.uuid}"
         ></label-box>
         <el-radio-group

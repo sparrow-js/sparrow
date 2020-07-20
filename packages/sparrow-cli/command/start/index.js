@@ -14,33 +14,34 @@ const downloadView = require('./downloadView');
 const parseArgs = require('../../lib/parseArgs');
 const execa = require('execa');
 
-
-
 const SPARROW_PATH = path.join(userHome, '.sparrow');
 const SERVER_PATH = path.join(SPARROW_PATH, 'sparrow-server');
+// const SERVER_PATH = path.join(__dirname, '../../../', 'sparrow-server');
 const VIEW_PATH = path.join(SPARROW_PATH, 'sparrow-view');
 
-
+let commonOptions = {};
+let mode = false;
 async function startView(options = {}) {
   const pkgPath = path.join(VIEW_PATH, 'package.json');
   let packageConfig;
   try {
     packageConfig = require(pkgPath);
   } catch (err) {
-    const answers = await inquirer.prompt([
-      {
-        type: 'confirm',
-        message: `${pkgPath} 不存在，请重新下载 sparrow-server！`,
-        name: 'download',
-        default: true,
-      },
-    ]);
-    if (answers.download) {
-      await downloadView();
-    } else {
-      console.error(err);
-      process.exit(1);
-    }
+    await downloadView();
+    // const answers = await inquirer.prompt([
+    //   {
+    //     type: 'confirm',
+    //     message: `${pkgPath} 不存在，请重新下载 sparrow-server！`,
+    //     name: 'download',
+    //     default: true,
+    //   },
+    // ]);
+    // if (answers.download) {
+    //   await downloadView();
+    // } else {
+    //   console.error(err);
+    //   process.exit(1);
+    // }
     return;
   }
 
@@ -55,6 +56,8 @@ async function startView(options = {}) {
 }
 
 async function start(options = {}) {
+  commonOptions = options;
+  mode = options.mode;
   await startView();
   const pkgPath = path.join(SERVER_PATH, 'package.json');
   let packageConfig;
@@ -63,22 +66,23 @@ async function start(options = {}) {
     // eslint-disable-next-line
     packageConfig = require(pkgPath);
   } catch(err) {
-    const answers = await inquirer.prompt([
-      {
-        type: 'confirm',
-        message: `${pkgPath} 不存在，请重新下载 sparrow-server！`,
-        name: 'download',
-        default: true,
-      },
-    ]);
-    if (answers.download) {
-      await downloadServer();
-      startSparrowView(options);
-      await startSparrowworks(options);
-    } else {
-      console.error(err);
-      process.exit(1);
-    }
+    await downloadServer();
+    startSparrowView(options);
+    await startSparrowworks(options);
+    // const answers = await inquirer.prompt([
+    //   {
+    //     type: 'confirm',
+    //     message: `${pkgPath} 不存在，请重新下载 sparrow-server！`,
+    //     name: 'download',
+    //     default: true,
+    //   },
+    // ]);
+    // if (answers.download) {
+      
+    // } else {
+    //   console.error(err);
+    //   process.exit(1);
+    // }
     return;
   }
 
@@ -153,7 +157,7 @@ async function startSparrowworks(options) {
 
   // spinner.start();
   // 
-  let [command, ...args] = parseArgs('egg-scripts start --title=sparrow-server --framework=midway-mirror --workers=1 --sticky');
+  let [command, ...args] = parseArgs(`egg-scripts start --title=sparrow-server --framework=midway-mirror --workers=1 --sticky ${commonOptions.projectPath ? '--project=' + commonOptions.projectPath : ''}`);
 
   const child = execa(
     path.join(SERVER_PATH, 'node_modules/.bin/egg-scripts'),
@@ -173,7 +177,9 @@ async function startSparrowworks(options) {
       console.log();
       console.log(`👉  Ready on ${chalk.yellow(url)}`);
       console.log();
-      open(url);
+      if (!mode) {
+        open('http://localhost:8000/');
+      }
       started = true;
     } else if (started) {
       console.log(data.toString());

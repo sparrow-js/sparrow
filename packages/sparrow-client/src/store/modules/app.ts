@@ -11,6 +11,7 @@ export interface IAppState {
   showDashboard: boolean;
   showComponentBox: boolean;
   boxIndex: number;
+  boxUuid: string;
   insertData: {
     boxIndex: number;
     data: any;
@@ -18,6 +19,7 @@ export interface IAppState {
   insertPosition: any;
   componentIs: string;
   uuid: string;
+  activeTreeIndex: number
 }
 
 @Module({ dynamic: true, store, name: 'app' })
@@ -33,6 +35,8 @@ class App extends VuexModule implements IAppState {
   public componentIs = '';
   public insertPosition = {};
   public uuid = '';
+  public boxUuid = '';
+  public activeTreeIndex = 2;
 
   @Mutation
   private SHOW_DASHBOARD(showDashboard: boolean) {
@@ -69,6 +73,17 @@ class App extends VuexModule implements IAppState {
     this.uuid = id;
   }
 
+  @Mutation
+  private SET_BOXUUID(id: string) {
+    this.boxUuid = id;
+  }
+
+  @Mutation
+  private SET_ACTIVE_TREE_INDEX (activeIndex: number) {
+    this.activeTreeIndex = activeIndex;
+  }
+
+
   @Action
   public SetShowDashboard(showDashboard: boolean) {
     this.SHOW_DASHBOARD(showDashboard);
@@ -100,8 +115,19 @@ class App extends VuexModule implements IAppState {
   }
 
   @Action
-  private setUuid (id: string) {
+  public setUuid (id: string) {
     this.SET_UUID(id);
   }
+
+  @Action
+  public setBoxUuid (id: string) {
+    this.SET_BOXUUID(id);
+  }
+
+  @Action
+  public setActiveTreeIndex (activeIndex: number) {
+    this.SET_ACTIVE_TREE_INDEX(activeIndex);
+  }
+
 }
 export const AppModule = getModule(App);

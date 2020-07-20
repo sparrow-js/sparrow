@@ -1,19 +1,28 @@
 const uuid = require('@lukeed/uuid');
-import { observable, observe } from '@nx-js/observer-util';
+import { observable, observe, unobserve } from '@nx-js/observer-util';
 import * as _ from 'lodash';
 
 export default class Base {
   public uuid = '';
   components: any = {};
-  constructor () {
+  storage: any = {};
+  observe: any = null;
+
+  constructor (storage) {
+    this.storage = storage;
+
     this.uuid = uuid().split('-')[0]; 
   }
 
   resetRender () {}
   
   observeComp () {
+    if (this.observe) {
+      unobserve(this.observe);
+    }
+
     this.components = observable(this.components);
-    observe(() => {
+    this.observe = observe(() => {
       if (Array.isArray(this.components)) {
         this.resetRender();
       } else {

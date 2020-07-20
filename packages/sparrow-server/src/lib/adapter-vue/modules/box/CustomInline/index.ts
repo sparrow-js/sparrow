@@ -9,13 +9,16 @@ export default class CustomInline extends Base implements IBaseBox{
   components: any = [];
   type: string = 'inline';
   previewType: number = 0;
-  boxIndex: number;
+  params: any = {};
 
-  constructor (data: any) {
-    super()
-    const { boxIndex, params } = data;
-    this.boxIndex = boxIndex;
-    this.$fragment = cheerio.load(boxFragment.box(boxIndex, `<custom-inline></custom-inline>`, '内联'), {
+  constructor (data: any, storage: any) {
+    super(storage);
+    const {params } = data;
+    this.params = params;
+    this.$fragment = cheerio.load(
+      `<div class="box">
+        <custom-inline :comp-box="'${this.params.compBox}'"></custom-inline>
+      </div>`, {
       xmlMode: true,
       decodeEntities: false
     });
@@ -24,8 +27,9 @@ export default class CustomInline extends Base implements IBaseBox{
   }
 
   public addComponent (data) {
-    const { key, type } = data;
-    const dynamicObj = require(`../../component/BasicTable/${key}`).default;
+    console.log(data);
+    const { id, type } = data;
+    const dynamicObj = require(`../../component/${this.params.compBox}/${id}`).default;
     this.components.push(new dynamicObj(type));
   }
 
@@ -45,18 +49,22 @@ export default class CustomInline extends Base implements IBaseBox{
   }
 
 
-  public getBoxFragment(index: number): any {
+  public getFragment(index: number): any {
     return this.$fragment;
   }
 
-  public setPreview (type: number = 0) {
+  public setPreview () {
+    const type = this.storage.get('preview_view_status') || 0;
     if (this.previewType === type) {
       return;
     } else {
       this.previewType = type;
     }
     if (type === 0) {
-      this.$fragment = cheerio.load(boxFragment.box(this.boxIndex, `<custom-inline></custom-inline>`, '内联'), {
+      this.$fragment = cheerio.load( `
+      <div class="box">
+        <custom-inline :comp-box="'${this.params.compBox}'"></custom-inline>
+      </div>`, {
         xmlMode: true,
         decodeEntities: false
       });

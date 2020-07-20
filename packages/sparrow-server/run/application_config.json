@@ -31,9 +31,8 @@
         "matching": "<Function pathMatch>"
       },
       "xframe": {
-        "enable": true,
-        "value": "SAMEORIGIN",
-        "matching": "<Function anonymous>"
+        "enable": false,
+        "value": "SAMEORIGIN"
       },
       "hsts": {
         "enable": false,
@@ -234,7 +233,7 @@
     "hostHeaders": "",
     "pkg": {
       "name": "sparrow-server",
-      "version": "0.4.23",
+      "version": "0.7.7",
       "description": "sparrow server",
       "files": [
         "dist/",
@@ -248,6 +247,7 @@
         "@babel/types": "^7.8.3",
         "@lukeed/uuid": "^1.0.1",
         "@nx-js/observer-util": "^4.2.2",
+        "@sparrow-vue/develop-ui": "^0.1.1",
         "ali-oss": "^6.1.1",
         "array-move": "^2.1.0",
         "camelcase": "^5.3.1",
@@ -662,7 +662,7 @@
       "env": [],
       "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/midway-web/config/plugin.js",
       "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/midway-schedule",
-      "version": "1.15.1"
+      "version": "1.18.0"
     },
     "nunjucks": {
       "enable": true,

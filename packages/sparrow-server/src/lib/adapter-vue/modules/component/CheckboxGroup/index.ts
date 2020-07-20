@@ -9,39 +9,50 @@ export default class CheckboxGroup extends Base{
   vueParse: any;
   params: any;
   ele: string = '';
-  constructor (attrs: any, componentIndex: number, params: any) {
-    super(attrs, componentIndex);
+  constructor (params: any) {
+    super();
+    this.initVueParse();
     this.params = params;
-    this.labelValue = '多选框';
-    this.init();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: []
-      },
-      // 组件标签属性
-      _attr: {
-        'v-model': attrs['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {
-        data: this.vueParse.getFormatData()
-      }
-    };
+    if (params.initType === 'auto') {
+      const oldcheckboxOptions = params._slot.data.match(/checkboxOptions[a-z0-9]+/)[0];
+      params._slot.data = params._slot.data.replace(oldcheckboxOptions, `checkboxOptions${this.uuid}`)
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '多选框',
+          type: params.type
+        },
+        // 组件标签属性
+        _attr: {
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {
+          data: this.vueParse.getFormatData()
+        }
+      };
+    }
 
+    this.init();
     this.setHandler();
   }
 
+  private initVueParse () {
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/CheckboxGroup', 'comp.vue'), 'utf8');
+    this.vueParse = new VueParse(this.uuid, fileStr); 
+  }
   private init () {
-    const {type} = this.params;
+    const {type} = this.config._custom;
     if (type === 'button') {
       this.ele = 'el-checkbox-button';
     } else {
       this.ele = 'el-checkbox';
     }
-    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/CheckboxGroup', 'comp.vue'), 'utf8');
-    this.vueParse = new VueParse(this.uuid, fileStr); 
+
   }
 
   public fragment () {
@@ -50,8 +61,7 @@ export default class CheckboxGroup extends Base{
         ${this._formItemStr}
       >
         <label-box 
-          label="${this.labelValue}" 
-          indexcomp="${this.componentIndex}" 
+          label="${this.config._custom.label}"
           uuid="${this.uuid}"
         ></label-box>
         <el-checkbox-group

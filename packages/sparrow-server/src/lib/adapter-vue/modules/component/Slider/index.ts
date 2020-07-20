@@ -2,23 +2,28 @@ import Base from '../Base';
 
 export default class Slider extends Base{
   name: string = 'Slider';
-  constructor (attrs: any, componentIndex: number) {
-    super(attrs, componentIndex);
-    this.labelValue = '滑块';
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: []
-      },
-      // 组件标签属性
-      _attr: {
-        placeholder: '请输入',
-        'v-model': attrs['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {}
-    };
+  constructor (params: any) {
+    super();
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '滑块',
+        },
+        // 组件标签属性
+        _attr: {
+          placeholder: '请输入',
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {}
+      };
+    }
+   
     this.setHandler();
   }
 
@@ -28,8 +33,7 @@ export default class Slider extends Base{
         ${this._formItemStr}
       >
         <label-box 
-          label="${this.labelValue}"
-          indexcomp="${this.componentIndex}"
+          label="${this.config._custom.label}"
           uuid="${this.uuid}"
         ></label-box>
         <el-slider

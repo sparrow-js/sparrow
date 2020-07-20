@@ -5,8 +5,8 @@ import Base from '../Base';
 export default class Placeholder extends Base {
   public type = 'form';
 
-  constructor (attrs: any, componentIndex: number) {
-    super(attrs, componentIndex)
+  constructor (params: any) {
+    super()
   }
 
   public fragment () {

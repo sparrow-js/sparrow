@@ -1,43 +1,58 @@
 export const tableConf = [
   {
-    label: '按钮',
-    children: [
-      {
-        label: '删除',
-        key: 'Delete',
-        type: 'button'
-      },
-      {
-        label: '编辑',
-        key: 'Edit',
-        type: 'button'
-      },
-      {
-        label: '查看',
-        key: 'See',
-        type: 'button'
-      },
-    ]
+    label: '删除按钮',
+    key: 'Delete',
+    params: {
+      type: 'button'
+    }
+    
+  },
+  {
+    label: '编辑按钮',
+    key: 'Edit',
+    params: {
+      type: 'button'
+    },
+    
+  },
+  {
+    label: '查看按钮',
+    key: 'See',
+    params: {
+      type: 'button'
+    },
+    
   },
 
   {
-    label: '文字连接',
-    children: [
-      {
-        label: '删除',
-        key: 'Delete',
-        type: 'link'
-      },
-      {
-        label: '编辑',
-        key: 'Edit',
-        type: 'link'
-      },
-      {
-        label: '查看',
-        key: 'See',
-        type: 'link'
-      },
-    ]
+    label: '删除链接',
+    key: 'Delete',
+    params: {
+      type: 'link'
+    },
+    
+  },
+  {
+    label: '编辑链接',
+    key: 'Edit',
+    params: {
+      type: 'link'
+    },
+  },
+  {
+    label: '查看链接',
+    key: 'See',
+    params: {
+      type: 'link'
+    },
+  },
+
+  {
+    label: '弹窗',
+    key: 'Dialog',
+    id: 'Dialog',
+    params: {
+      type: 'box'
+    },
   },
 ];

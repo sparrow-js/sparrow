@@ -9,6 +9,8 @@ export default class VueGenerator {
   pageAST: any;
   type: string;
 
+  importComps: any = [];
+
   constructor (type?: string) {
     this.type = type;
     this.initScript();
@@ -38,11 +40,16 @@ export default class VueGenerator {
     });
   }
 
-  public importStr (componentName: string) {
-    return `import ${componentName} from './components/${componentName}'`;
+  public importStr (componentName: string, importComp: boolean) {
+    let importText = `import ${componentName} from './components/${componentName}'`;
+    if (importComp === true) {
+      importText = `import ${componentName} from '../components/${componentName}'`
+    } 
+    return importText;
   }
 
   public initScript () {
+    this.importComps = [];
     let scriptStr = fragment.scriptViewStr;
     if (this.type === 'block') {
       scriptStr = fragment.scriptBlockStr;
@@ -55,11 +62,16 @@ export default class VueGenerator {
   }
 
 
-  public appendComponent (componentName: string) {
+  public appendComponent (componentName: string, importComp: boolean = false) {
+    if (this.importComps.includes(componentName)) {
+      return;
+    }
+    this.importComps.push(componentName);
+
     traverse(this.pageAST, {
       Program: ({ node }) => {
         // import components
-        traverse(this.getAstByCode(this.importStr(componentName)), {
+        traverse(this.getAstByCode(this.importStr(componentName, importComp)), {
           Program: (path) => {
             node.body.unshift(path.node.body[0]);
           }

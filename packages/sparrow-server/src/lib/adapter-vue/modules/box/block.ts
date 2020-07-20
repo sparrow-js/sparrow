@@ -21,22 +21,21 @@ const rimrafAsync = util.promisify(rimraf);
 export default class Block extends Base implements IBaseBox{
   $fragment: any;
   type: string = 'block';
-  name: string;
+  name: string = 'Block';
   template: string;
   public insertComponents: string[] = [];
 
-  constructor (data: any) {
-    super();
-    const { boxIndex, params } = data;
-    this.$fragment = cheerio.load(boxFragment.box(boxIndex), {
+  constructor (data: any, storage: any) {
+    super(storage);
+    const { params } = data;
+    this.$fragment = cheerio.load('<div class="box"></div>', {
       xmlMode: true,
       decodeEntities: false
     });
-    this.$fragment('box').append(boxFragment.block());
+    this.$fragment('.box').append(boxFragment.block());
   }
 
-  public getBoxFragment(index: number): any {
-    this.$fragment('box').attr(':index', index);
+  public getFragment(index: number): any {
     return this.$fragment;
   }
 
@@ -94,18 +93,10 @@ export default class Block extends Base implements IBaseBox{
   
 
   public async addBlock (data: any) {
-    const {key, originData} = data;
+    const {id, originData} = data;
     const {componentsDir} = Config;
-    await new Promise((resolve,reject) => {
-      mkdirp(componentsDir, (err) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
-        }
-      })
-    });
-    let blockName = upperCamelCase(key);
+    mkdirp.sync(componentsDir);
+    let blockName = upperCamelCase(id);
     const blockNames = await fileUtil.getBlockNames(componentsDir);
     const hasBlocks = blockNames.filter(item => {
       return (new RegExp(blockName)).test(item);

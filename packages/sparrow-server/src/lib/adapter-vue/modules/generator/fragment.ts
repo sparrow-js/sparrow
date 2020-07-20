@@ -1,8 +1,5 @@
 const scriptViewStr = `
-  import generatorMixin from '../mixins/generatorMixin';
-  export default {
-    mixins: [generatorMixin]
-  };
+  export default {};
 `;
 
 const scriptBlockStr = `

@@ -15,8 +15,8 @@ export default class Inline  extends Base implements IBaseBox{
   boxIndex: number;
   innerHtml: string;
 
-  constructor (data: any) {
-    super();
+  constructor (data: any, storage: any) {
+    super(storage);
     const { boxIndex, innerHtml } = data;
     this.boxIndex = boxIndex;
     this.innerHtml = innerHtml;
@@ -27,18 +27,24 @@ export default class Inline  extends Base implements IBaseBox{
     });
   }
 
-  public getBoxFragment(index: number): any {
+  public getFragment(index: number): any {
     return this.$fragment;
   }
 
-  public setPreview (type: number = 0) {
+  public setPreview () {
+    const type = this.storage.get('preview_view_status') || 0;
     if (this.type === type) {
       return;
     } else {
       this.type = type;
     }
     if (type === 0) {
-      this.$fragment = cheerio.load(boxFragment.box(this.boxIndex, this.innerHtml), {
+      this.$fragment = cheerio.load(
+        `
+        <div class="box">
+          ${this.innerHtml}
+        </div>
+        `, {
         xmlMode: true,
         decodeEntities: false
       });

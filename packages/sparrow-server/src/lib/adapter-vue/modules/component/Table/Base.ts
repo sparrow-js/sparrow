@@ -6,6 +6,8 @@ export default class Base {
   public type = 'table';
   public $fragment: any;
   public uuid = '';
+  public insertFileType = 'inline';
+
 
   constructor () {
     this.uuid = uuid().split('-')[0]; 

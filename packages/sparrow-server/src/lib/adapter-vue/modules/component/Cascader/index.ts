@@ -7,29 +7,34 @@ import Config from '../../../config';
 export default class Cascader extends Base {
   name: string = 'Cascader';
   vueParse: any;
-  params: any;
 
-  constructor (attrs: any, componentIndex: number, params: any) {
-    super(attrs, componentIndex);
-    this.labelValue = '级联选择器';
-    this.params = params;
+  constructor (params: any) {
+    super();
     this.init();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: [],
-      },
-      // 组件标签属性
-      _attr: {
-        placeholder: '请输入',
-        'v-model': attrs['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {
-        data: this.vueParse.getFormatData()
-      }
-    };
+    if (params.initType === 'auto') {
+      const oldOptions = params._slot.data.match(/cascaderOptions[a-z0-9]+/)[0];
+      params._slot.data = params._slot.data.replace(oldOptions, `cascaderOptions${this.uuid}`)
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '级联选择器',
+        },
+        // 组件标签属性
+        _attr: {
+          placeholder: '请输入',
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {
+          data: this.vueParse.getFormatData()
+        }
+      };
+    }
+
     this.setHandler();
   }
 
@@ -42,8 +47,7 @@ export default class Cascader extends Base {
     return `
       <el-form-item label=" ">
         <label-box 
-          label="${this.labelValue}" 
-          indexcomp="${this.componentIndex}" 
+          label="${this.config._custom.label}"
           uuid="${this.uuid}">
         </label-box>
         <el-cascader

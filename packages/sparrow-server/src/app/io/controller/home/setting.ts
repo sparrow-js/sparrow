@@ -1,21 +1,28 @@
 import * as path from 'path';
 import scanDirectory from '../../../../lib/scanDirectory';
 import storage from '../../../../lib/storage';
+import getArgs from '../../../../util/getArgs';
 
 export default (app) => {
   const {Controller} = app;
-  async function setWorkFolder(newWorkFolder: string) {
+  async function setWorkFolder(newWorkFolder: string, workFolderKey: string = 'workFolder') {
     const directories = await scanDirectory(newWorkFolder);
-    storage.set('workFolder', newWorkFolder);
+    storage.set(workFolderKey, newWorkFolder);
     return directories;
   }
   return class HomeController extends Controller {
     private workFolder = '/';
 
+    private projectPath = getArgs('project');
+
     public async getWorkFolder() {
-      const workFolder = storage.get('workFolder');
+      let workFolder = '';
+      if (this.projectPath) {
+        workFolder = storage.get(`workFolder-${this.projectPath}`) || this.projectPath;
+      } else {
+        workFolder = storage.get('workFolder');
+      }
       let directories = [];
-      
       try {
         directories = await scanDirectory(workFolder);
       } catch (error) {}
@@ -31,13 +38,19 @@ export default (app) => {
       let  workFolder = '';
       let newWorkFolder = '';
       let directories = [];
+      let workFolderKey = 'workFolder';
       try {
-        workFolder = storage.get('workFolder');
+        if (this.projectPath) {
+          workFolder = storage.get(`workFolder-${this.projectPath}`) || this.projectPath;
+          workFolderKey = `workFolder-${this.projectPath}`;
+        } else {
+          workFolder = storage.get('workFolder');
+        }
         newWorkFolder = path.join(workFolder, subDirectory);
-        directories = await setWorkFolder(newWorkFolder);
+        directories = await setWorkFolder(newWorkFolder, workFolderKey);
       } catch (e) {
         newWorkFolder = '/';
-        directories = await setWorkFolder(newWorkFolder);
+        directories = await setWorkFolder(newWorkFolder, workFolderKey);
       }
 
 
@@ -49,8 +62,11 @@ export default (app) => {
 
     public async setWorkFolder({ args }) {
       const { path } = args;
-
-      const directories = await setWorkFolder(path);
+      let workFolderKey = 'workFolder';
+      if (this.projectPath) {
+        workFolderKey = `workFolder-${this.projectPath}`;
+      }
+      const directories = await setWorkFolder(path, workFolderKey);
 
       return {
         path,

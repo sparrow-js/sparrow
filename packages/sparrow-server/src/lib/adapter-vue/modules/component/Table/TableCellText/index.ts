@@ -1,6 +1,3 @@
-import * as fsExtra from 'fs-extra';
-import VueParse from '../../../generator/VueParse';
-import * as path from 'path';
 import Base from '../Base';
 
 export default class TableCellText extends Base{
@@ -8,43 +5,40 @@ export default class TableCellText extends Base{
   params: any;
   vueParse: any;
   uuid: string;
-  type: string;
-  constructor (type: string, params?: any) {
-    super()
-    this.type = type;
-    this.params = params;
-    this.init();
+  constructor (data?: any) {
+    super();
+    this.params = data.type ? data : data.params;
   }
-  private init () {}
 
   public fragment () {
     let tag = '';
-    const {tagType} = this.params;
-    const type = tagType ? `:type="'${tagType}'"` : ''
-    if (this.type === 'tag') {
+    const {params, type} = this.params
+    const {tagType} = this.params.params;
+    const typeInfo = tagType ? `:type="'${tagType}'"` : ''
+    if (type === 'tag') {
       return `
         <el-tag
-          ${type}
+          ${typeInfo}
           size="small"
         >
-          ${this.params.value}
+          ${params.value}
         </el-tag>
       `;
-    } else if (this.type === 'link'){
+    } else if (type === 'link'){
       return `
         <el-link
-          ${type}
+          ${typeInfo}
         >
-          ${this.params.value}
+          ${params.value}
         </el-link>
       `;
-    } else if (this.type === 'button') {
+    } else if (type === 'button') {
       return `
         <el-button 
-          ${type}
+          ${typeInfo}
           size="mini"
         >
-          ${this.params.value}
+          ${params.value}
         </el-button>
       `;
     }

@@ -1,11 +1,11 @@
 <template>
   <div id="app"> 
     <router-view/>
-    <toolbar 
+    <!-- <toolbar 
       :list="toolbarList" 
       :is-show-toolbar="isShowToolbar" 
       @change="showToolbarChange"
-    />
+    /> -->
     <inline-toolbar />
   </div>
 </template>
@@ -13,12 +13,13 @@
 import message from './utils/message';
 import { Event } from '@sparrow-vue/boxs';
 import _ from 'lodash';
+import html2canvas from 'html2canvas';
 
 export default {
   data () {
     return {
       toolbarList: [],
-      boxIndex: null,
+      uuid: '',
       isShowToolbar: false
     }
   },
@@ -39,17 +40,31 @@ export default {
       if (data && data.handler === 'document-click') {
         this.isShowToolbar = false;
       }
+
+      if (data && data.handler === 'html-2-canvas') {
+        var node = document.querySelector('#app');
+
+        html2canvas(node).then(function(canvas) {
+           message.emit('client.screen.capture', {
+            url: canvas.toDataURL()
+          });
+        });
+      }
     },false);
     this.getToolbarList();
     Event.on('block-selected', (data) => {
-      this.boxIndex = data.index;
+      this.uuid = data.uuid;
     });
 
     // 插入物料处理
     Event.on('insert_handler', (data) => {
       setTimeout(() => {
+        const {params} = data;
+        // if (params && params.uuid) {
+        //   this.uuid = params.uuid;
+        // }
         message.emit(data.emit || 'client.dashboard.show', {
-          boxIndex: this.boxIndex,
+          uuid: this.uuid,
           data,
         });
       }, 300);
@@ -58,10 +73,7 @@ export default {
     Event.on('pivot_setting', (setting) => {
       setTimeout(() => {
         message.emit('client.setting.show', {
-          boxIndex: this.boxIndex,
-          box: {
-            index: this.boxIndex
-          },
+          uuid: this.uuid,
           setting
         });
       }, 300);

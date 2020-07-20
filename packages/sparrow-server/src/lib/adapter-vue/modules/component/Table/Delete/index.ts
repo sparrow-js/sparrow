@@ -9,10 +9,18 @@ export default class Delete extends Base{
   params: any;
   vueParse: any;
   uuid: string;
-  type: string;
-  constructor (type: string) {
-    super()
-    this.type = type;
+  config: any;
+  constructor (params: any = {}) {
+    super();
+
+    if (params.config) {
+      this.config = params.config;
+    } else {
+      this.config = {
+        type: params.params.type
+      }
+    }
+
     this.init();
   }
   
@@ -22,13 +30,13 @@ export default class Delete extends Base{
   }
 
   public fragment () {
-    if (this.type === 'button') {
+    if (this.config.type === 'button') {
       return `
         <el-button size="mini" type="danger" @click="handleDelete(row,$index)">
           删除
         </el-button>
       `;
-    } else if (this.type === 'link') {
+    } else if (this.config.type === 'link') {
       return `
         <el-link type="danger" @click="handleDelete(row,$index)">
           删除

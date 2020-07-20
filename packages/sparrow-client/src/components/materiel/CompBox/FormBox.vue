@@ -38,7 +38,7 @@
             <el-button @click="dialogVisible = false" size="mini"
               >取 消</el-button
             >
-            <el-button type="primary" @click="addComponent" size="mini"
+            <el-button type="primary" @click="addComponent(0)" size="mini"
               >确 定</el-button
             >
           </div>
@@ -53,6 +53,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import socket from '@/util/socket.js';
 import { AppModule } from '@/store/modules/app';
 import Loading from '@/util/loading';
+import _ from 'lodash';
 
 @Component({})
 export default class CompBox extends Vue {
@@ -94,19 +95,18 @@ export default class CompBox extends Vue {
     } else {
       this.dialogVisible = true;
     }
-    
   }
 
-  private async addComponent(type = 0) {
-    if (!this.form.name && type === 0) {
-      this.$message.error('变量名必填');
-      return;
-    }
+  private async addComponent() {
+    // if (!this.form.name && type === 0) {
+    //   this.$message.error('变量名必填');
+    //   return;
+    // }
     const params = {
-      boxIndex: this.insertData.boxIndex,
+      boxUuid: AppModule.boxUuid,
       data: {
-        boxData: this.insertData.data,
-        key: this.isActiveComp.key,
+        uuid: _.get(this.insertData, 'data.params.uuid') || '',
+        id: this.isActiveComp.key,
         name: this.form.name,
         params: {
           type: this.isActiveComp.type

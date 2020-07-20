@@ -47,13 +47,17 @@ export default class BlockItem extends Vue {
     return AppModule.insertData;
   }
 
+  get boxUuid () {
+    return AppModule.boxUuid;
+  }
+
   private openComponentDialog() {
     this.addBlock();
   }
 
   private async addComponent() {
     const params = {
-      boxIndex: this.insertData.boxIndex,
+      boxUuid: AppModule.boxUuid,
       data: {
         boxData: this.insertData.data,
         key: this.info.key,
@@ -68,7 +72,7 @@ export default class BlockItem extends Vue {
 
   private async addBlock() {
     const params = {
-      boxIndex: this.insertData.boxIndex,
+      boxUuid: this.boxUuid,
       data: {
         boxData: this.insertData.data,
         key: this.info.key,

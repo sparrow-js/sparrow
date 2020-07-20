@@ -1,28 +1,30 @@
 <template>
   <div id="app">
     <el-container class="container">
-      <div>
-        <comp-box></comp-box>
-      </div>
+      <el-header height="45px">
+        <top-toolbar></top-toolbar>
+      </el-header>
 
-      <el-container>
+      <el-container style="height: calc(100% - 45px);">
+        <div>
+          <comp-box></comp-box>
+        </div>
         <el-main>
           <div class="main">
-            <top-toolbar></top-toolbar>
             <div class="editor-box">
               <iframe
                 id="viewContent"
                 ref="viewContent"
                 class="view-content"
-                src="http://127.0.0.1:9000/"
+                src="http://localhost:9000/"
               />
             </div>
           </div>
         </el-main>
+        <div>
+          <setting setting-data="settingData"></setting>
+        </div>
       </el-container>
-      <div>
-        <setting setting-data="settingData"></setting>
-      </div>
     </el-container>
     <div class="dashboard-box" v-if="showDashboard">
       <dashboard
@@ -44,7 +46,6 @@ import { AppModule } from '@/store/modules/app';
 import { SettingModule } from '@/store/modules/setting';
 import CompBox from '@/components/materiel/CompBox/index.vue';
 import JsonEditor from '@/components/JsonEditor/index.vue';
-
 @Component({
   components: {
     Logo,
@@ -52,7 +53,7 @@ import JsonEditor from '@/components/JsonEditor/index.vue';
     TopToolbar,
     Setting,
     CompBox,
-    JsonEditor
+    JsonEditor,
   }
 })
 export default class App extends Vue {
@@ -77,13 +78,21 @@ export default class App extends Vue {
     return AppModule.boxIndex;
   }
 
-  created() {
+  get boxUuid() {
+    return AppModule.boxUuid;
+  }
+
+  async created() {
+    await socket.emit('home.index.init');
+
     window.addEventListener('message', async event => {
       const { data } = event;
       if (!data.handler) return;
+      console.log(data);
       const handlerArr = data.handler.split('.');
       const handlerFirst = handlerArr[0];
       if (handlerFirst === 'client') {
+
         // 触发区块集
         if (data.handler === 'client.dashboard.show') {
           AppModule.InsertData(data);
@@ -98,29 +107,41 @@ export default class App extends Vue {
           if (handler === 'form') {
             SettingModule.setSettingComponent({
               compName: 'FormSetting',
-              forceRefresh: this.formIndex !== box.index ? true : false
+              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
             });
           } else if (handler === 'table') {
             SettingModule.setSettingComponent({
               compName: 'TableSetting',
-              forceRefresh: this.formIndex !== box.index ? true : false
+              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
             });
-          }
-          this.formIndex = box.index;
+          } else if (handler === 'tabs') {
+            SettingModule.setSettingComponent({
+              compName: 'TabsSetting',
+              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
+            });
+          } else if (handler === 'common') {
+            SettingModule.setSettingComponent({
+              compName: 'CommonSetting',
+              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
+            });
+          } 
         }
 
         // 触发组件集
         if (data.handler === 'client.component.show') {
           const { type } = data.data;
-          AppModule.InsertData(data);
+          AppModule.setBoxUuid(data.uuid);
+          // AppModule.InsertData(data);
           AppModule.SetComponentIs(type);
           AppModule.SetShowComponent(true);
+          AppModule.setActiveTreeIndex(1)
         }
 
         // 插入组件label
         if (data.handler === 'client.component.insertLabel') {
           const params = {
             boxIndex: this.boxIndex,
+            boxUuid: this.boxUuid,
             data: {
               ...data.data.params,
               handler: 'addLabel'
@@ -131,26 +152,42 @@ export default class App extends Vue {
         }
 
         if (data.handler === 'client.component.insertFormComp') {
-          AppModule.InsertData(data);
-          console.log('*******1********', data);
+          console.log('***********', data);
+         AppModule.InsertData(data);
         }
 
         if (data.handler === 'client.component.insertTableComp') {
-          AppModule.InsertPosition(data);
+          console.log('asdjasdas', data);
+          AppModule.InsertData(data);
         }
+
 
         if (data.boxIndex !== undefined) {
           AppModule.SetDoxIndex(data.boxIndex);
         }
-      }
+        // 延迟同步uuid
+        setTimeout(() => {
+          if (data.uuid !== undefined) {
+            AppModule.setBoxUuid(data.uuid);
+          }
 
-      
+        }, 200)
+
+      }
     });
 
     // block 进度
     socket.on('generator.scene.block.status', data => {
       Loading.close();
     });
+
+    socket.on('generator.force.refresh',data => {
+      const viewContent:any = document.querySelector('#viewContent')
+      setTimeout(() => {
+        viewContent.contentWindow.location.reload(true)
+      }, 1000)
+    })
+    
 
     this.settingData = {};
   }
@@ -172,7 +209,7 @@ body {
   height: 100%;
 }
 body {
-  padding: 10px;
+  padding: 0;
   box-sizing: border-box;
   background: #fff;
 }
@@ -225,5 +262,8 @@ body {
   height: 1em;
   overflow: visible;
   vertical-align: -0.125em;
+}
+.is-drop-inner>.el-tree-node__content .custom-tree-node{
+  background: #409EFF;
 }
 </style>

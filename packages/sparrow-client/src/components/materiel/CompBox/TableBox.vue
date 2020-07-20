@@ -51,10 +51,6 @@ export default class CompBox extends Vue {
     return AppModule.insertPosition;
   }
 
-  get boxIndex() {
-    return AppModule.boxIndex;
-  }
-
   private compClick(comp, event) {
     this.isActiveComp = comp;
     const { clientY } = event;
@@ -63,12 +59,14 @@ export default class CompBox extends Vue {
 
   private async addComponent() {
     const params = {
-      boxIndex: this.boxIndex,
+      boxUuid: AppModule.boxUuid,
       data: {
-        ...this.insertPosition.data,
-        key: this.isActiveComp.key,
         type: this.isActiveComp.type,
-        cellParams: this.isActiveComp.params || {}
+        id: this.isActiveComp.key,
+        params: {
+          ...this.isActiveComp.params,
+          ...this.insertPosition.data.params
+        }
       }
     };
 

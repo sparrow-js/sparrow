@@ -18,8 +18,6 @@ export default {
     return {
       tableData: [
         {},
-        {},
-        {}
       ]
     };
   }

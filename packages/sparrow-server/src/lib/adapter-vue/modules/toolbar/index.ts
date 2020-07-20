@@ -4,8 +4,9 @@ import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import * as launchEditor from 'launch-code-editor';
 import Config from '../../config'
+import storage from '../../../storage';
+import lowdb from '../../../lowdb';
 
-const mkdirpAsync = util.promisify(mkdirp);
 
 export default class Toolbar {
   scene: any;
@@ -15,14 +16,17 @@ export default class Toolbar {
   }
 
   public async previewView (data: any) {
-    await this.scene.renderPage(+data.status);
+    storage.set('preview_view_status', +data.status);
+    await this.scene.renderPage();
   }
 
   public async exportFile (data: any) {
-    const { directory } = data;
+    const { directory, folderName } = data;
     await this.previewView({status: 1});
-    await mkdirpAsync(directory);
-    await fsExtra.copy(path.join(Config.viewBasePath, 'src/views'), directory);
+    const exportPath = path.join(directory, folderName || '')
+    mkdirp.sync(exportPath);
+
+    await fsExtra.copy(path.join(Config.viewBasePath, 'src/views'), exportPath);
     return {
       status: 0
     };
@@ -31,8 +35,15 @@ export default class Toolbar {
   public openCodeEditor (data: any, ctx: any) {
     const { socket } = ctx;
     launchEditor(Config.viewBasePath, 'code', (fileName, errorMsg) => {
+      
       socket.emit('generator.toolbar.openCodeEditor.result', errorMsg);
-  });
+    });
+  }
+
+  public async deleteScene (params) {
+    lowdb.get('scenes')
+    .remove({ id: params.id })
+    .write();
   }
 
   public resetScene (scene: any) {

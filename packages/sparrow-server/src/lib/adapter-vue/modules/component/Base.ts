@@ -5,15 +5,14 @@ const uuid = require('@lukeed/uuid');
 export default class Base {
   public type = 'form';
   public $fragment: any;
-  public componentIndex = -1;
   public labelValue = '';
   public uuid = '';
   public config: any = {};
   public _attrStr: string = '';
   public _formItemStr: string = '';
+  public insertFileType = 'inline';
 
-  constructor (attrs: any, componentIndex: number) {
-    this.componentIndex = componentIndex;
+  constructor () {
     this.uuid = uuid().split('-')[0]; 
   }
 
@@ -33,13 +32,13 @@ export default class Base {
 
     if (type === 1) {
       this.$fragment('label-box').remove();
-      this.$fragment('el-form-item').attr('label', this.labelValue);
+      this.$fragment('el-form-item').attr('label', this.config._custom.label);
     }
     return this.$fragment;
   }
 
   public setLabel(labelValue: string) {
-    this.labelValue = labelValue;
+    this.config._custom.label = labelValue
   }
 
   public getConfig() {
@@ -58,6 +57,9 @@ export default class Base {
     if (config._attr) {
       const formField = [];
       Object.keys(config._attr).forEach(key => {
+        if (key === 'v-model' && !config._attr[key]) {
+          return;
+        }
         formField.push(`${key}="${config._attr[key]}"`);
       });
       this._attrStr = formField.join(' ');

@@ -2,33 +2,36 @@ import Base from '../Base';
 
 export default class Input extends Base{
   name: string = 'Input';
-  params: any;
 
-
-  constructor (attrs: any, componentIndex: number, params: any) {
-    super(attrs, componentIndex);
-    this.params = params;
-    this.labelValue = '文本框';
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: []
-      },
-      // 组件标签属性
-      _attr: {
-        placeholder: '',
-        'v-model': attrs['v-model'] || ''
-      },
-      // 插槽属性
-      // __slot__: {}
-    };
+  constructor (params: any) {
+    super();
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          regList: [],
+          label: '文本框',
+          type: params.type
+        },
+        // 组件标签属性
+        _attr: {
+          placeholder: '',
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        // __slot__: {}
+      };
+    }
+    
     this.init();
     this.setHandler();
   }
 
   private init () {
-    const {type} = this.params;
+    const {type} = this.config._custom;
     if (type === 'textarea') {
       this.config._attr['type'] = 'textarea';
       this.config._attr['rows'] = 4;
@@ -41,8 +44,7 @@ export default class Input extends Base{
         ${this._formItemStr}
       >
         <label-box 
-          label="${this.labelValue}" 
-          indexcomp="${this.componentIndex}"
+          label="${this.config._custom.label}" 
           uuid="${this.uuid}"
         ></label-box>
         <el-input ${this._attrStr}></el-input>

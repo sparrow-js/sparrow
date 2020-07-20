@@ -10,10 +10,8 @@ export default class SearchButton extends Base{
   params: any;
   vueParse: any;
   uuid: string;
-  type: string;
-  constructor (type: string) {
+  constructor () {
     super()
-    this.type = type;
     this.init();
   }
   

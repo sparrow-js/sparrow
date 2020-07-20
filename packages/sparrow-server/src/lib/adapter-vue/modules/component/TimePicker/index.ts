@@ -2,31 +2,35 @@ import Base from '../Base';
 
 export default class TimePicker extends Base {
   name: string = 'TimePicker';
-  params: any;
   pickerOptions: string = '';
 
-  constructor (attrs: any, componentIndex: number, params: any) {
-    super(attrs, componentIndex);
-    this.labelValue = '时间选择器';
-    this.params = params;
+  constructor (params: any) {
+    super();
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = {
+        // 组件自定义配置
+        _custom: {
+          required: false,
+          label: '时间选择器',
+          regList: [],
+          type: params.type
+        },
+        // 组件标签属性
+        _attr: {
+          'v-model': params['v-model'] || ''
+        },
+        // 插槽属性
+        _slot: {}
+      };
+    }
     this.init();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        regList: []
-      },
-      // 组件标签属性
-      _attr: {
-        'v-model': attrs['v-model'] || ''
-      },
-      // 插槽属性
-      _slot: {}
-    };
+  
   }
 
   private init () {
-    const {type} = this.params;
+    const {type} = this.config._custom;
     if (type === 'range') {
       this.pickerOptions = `
         is-range
@@ -51,8 +55,7 @@ export default class TimePicker extends Base {
         ${this._formItemStr}
       >
         <label-box 
-          label="${this.labelValue}" 
-          :indexcomp="${this.componentIndex}"
+          label="${this.config._custom.label}"
           uuid="${this.uuid}"
         ></label-box>
         

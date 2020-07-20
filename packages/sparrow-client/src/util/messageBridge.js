@@ -9,7 +9,6 @@ export function receiveMessage() {
       if (data && data.handler) {
         const handlerFirst = data.handler.split('.')[0];
         if (handlerFirst !== 'generator') return;
-        console.log('emit-data', data);
         const result = await socket.emit(data.handler, data);
         if (!viewFrame) {
           viewFrame = document.querySelector('#viewContent');

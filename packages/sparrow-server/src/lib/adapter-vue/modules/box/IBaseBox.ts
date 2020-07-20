@@ -1,4 +1,4 @@
 export default interface IBaseBox {
-  getBoxFragment(index: number): any,
+  getFragment(index: number): any,
   getSetting(): any
 }
