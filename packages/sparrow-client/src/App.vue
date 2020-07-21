@@ -93,40 +93,6 @@ export default class App extends Vue {
       const handlerFirst = handlerArr[0];
       if (handlerFirst === 'client') {
 
-        // 触发区块集
-        if (data.handler === 'client.dashboard.show') {
-          AppModule.InsertData(data);
-          AppModule.SetShowDashboard(true);
-        }
-
-        // 展示设置
-        if (data.handler === 'client.setting.show') {
-          const { box, setting } = data;
-          SettingModule.setSettingData(setting.data);
-          const handler = setting.data.handler;
-          if (handler === 'form') {
-            SettingModule.setSettingComponent({
-              compName: 'FormSetting',
-              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
-            });
-          } else if (handler === 'table') {
-            SettingModule.setSettingComponent({
-              compName: 'TableSetting',
-              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
-            });
-          } else if (handler === 'tabs') {
-            SettingModule.setSettingComponent({
-              compName: 'TabsSetting',
-              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
-            });
-          } else if (handler === 'common') {
-            SettingModule.setSettingComponent({
-              compName: 'CommonSetting',
-              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
-            });
-          } 
-        }
-
         // 触发组件集
         if (data.handler === 'client.component.show') {
           const { type } = data.data;
@@ -134,7 +100,6 @@ export default class App extends Vue {
           // AppModule.InsertData(data);
           AppModule.SetComponentIs(type);
           AppModule.SetShowComponent(true);
-          AppModule.setActiveTreeIndex(1)
         }
 
         // 插入组件label
@@ -157,14 +122,9 @@ export default class App extends Vue {
         }
 
         if (data.handler === 'client.component.insertTableComp') {
-          console.log('asdjasdas', data);
           AppModule.InsertData(data);
         }
-
-
-        if (data.boxIndex !== undefined) {
-          AppModule.SetDoxIndex(data.boxIndex);
-        }
+        
         // 延迟同步uuid
         setTimeout(() => {
           if (data.uuid !== undefined) {

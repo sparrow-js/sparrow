@@ -111,7 +111,7 @@ export default class Scene {
     const fn = function (boxs) {
       if (Array.isArray(boxs)) {
         boxs.forEach(item => {
-          if (item.name === 'box') {
+          if (item.widgetType === 'box') {
             item.setPreview && item.setPreview();
           }
           if (item.components) {
@@ -175,10 +175,20 @@ export default class Scene {
   }
 
   public addBox (params: any, ctx) {
-    const {boxUuid, data} = params;
-    const box = new Box();
-    box.addComponent(params);
-    this.components.push(box);
+    const {boxUuid, id} = params;
+    if (boxUuid) {
+      const currBox = this.findComponent(boxUuid, this.components);
+      const box = new Box();
+      box.addComponent(params);
+      currBox[0].components.push(box);
+      // currBox.components.push(new dynamicObj(params, storage));
+    } else {
+      // const box = new Box();
+      // box.addComponent(params);
+      const dynamicObj = require(`../box/${id}`).default;
+      this.components.push(new dynamicObj(params, storage));
+    }
+
     this.renderPage();
       
     // const { socket } = ctx;
@@ -200,7 +210,7 @@ export default class Scene {
     const { data, boxUuid} = params;
     const currBox = this.findComponent(boxUuid, this.components);
     if (currBox) {
-      currBox.components[0].addComponent(data);
+      currBox.addComponent(data);
       this.renderPage();
     }
   }
@@ -282,7 +292,7 @@ export default class Scene {
     
     const curBox = this.findComponent(boxUuid, this.components);
     if (curBox && curBox.components[0]) {
-      return curBox.components[0].getSetting()
+      return curBox.getSetting()
     }
   }
 
@@ -487,25 +497,21 @@ export default class Scene {
           const blockListStr = blockList(index, item.getFragment(index).html());
           this.$('.home').append(blockListStr);
         }
-
-        item = item.components && item.components[0] || {};
-
+        
         if (item.insertComponents && item.insertComponents.length) {
           this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));
         }
   
-        if (item.type === 'inline') {
-          if (item.components) {
-            item.components.forEach(comp => {
-              if (comp.vueParse) {
-                methods = methods.concat(comp.vueParse.methods || []);
-                vueData = vueData.concat(comp.vueParse.data || [])
-              }
-            });
-          }
-          if (item.components && item.components.length > 0) {
-            fn(item.components, 1);
-          }
+        if (item.components) {
+          item.components.forEach(comp => {
+            if (comp.vueParse) {
+              methods = methods.concat(comp.vueParse.methods || []);
+              vueData = vueData.concat(comp.vueParse.data || [])
+            }
+          });
+        }
+        if (item.components && item.components.length > 0) {
+          fn(item.components, 1);
         }
   
         if (item.vueParse) {

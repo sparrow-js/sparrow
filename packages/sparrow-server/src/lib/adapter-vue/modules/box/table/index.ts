@@ -46,7 +46,6 @@ export default class Table extends Base implements IBaseBox{
   blockPath: string;
   insertComponents:string[] = [];
   $blockTemplate: any;
-  activeIndex: number = -1;
   col: number = 2;
 
   data: any = {};
@@ -210,10 +209,6 @@ export default class Table extends Base implements IBaseBox{
     } catch (error) {
       
     }
-  }
-
-  private setActiveIndex (data) {
-    this.activeIndex = parseInt(data.index, 10);
   }
   
   public getSetting () {

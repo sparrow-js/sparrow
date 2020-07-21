@@ -47,12 +47,12 @@ export const tableConf = [
     },
   },
 
-  {
-    label: '弹窗',
-    key: 'Dialog',
-    id: 'Dialog',
-    params: {
-      type: 'box'
-    },
-  },
+  // {
+  //   label: '弹窗',
+  //   key: 'Dialog',
+  //   id: 'Dialog',
+  //   params: {
+  //     type: 'box'
+  //   },
+  // },
 ];

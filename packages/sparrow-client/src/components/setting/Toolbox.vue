@@ -24,7 +24,7 @@
             <el-collapse-item 
               v-for="(item, index) in compList" 
               :key="index" :title="item.label"  :name="index">
-              <div class="comp-list">
+              <div class="comp-list drag-box">
                 <div class="comp-item" 
                   v-for="(comp, index) in item.list" 
                   :key="index"
@@ -80,6 +80,7 @@ import socket from '@/util/socket.js';
 import Loading from '@/util/loading';
 import { AppModule } from '@/store/modules/app';
 import Setting from './Setting';
+import Sortable from 'sortablejs';
 
 export default {
   components: {
@@ -90,7 +91,7 @@ export default {
       search: '',
       widget: '组件',
       compList: [],
-      activeNames: [0, 1],
+      activeNames: [0, 1, 2],
       blockNames: [0],
       staticBlockList: [],
     };
@@ -99,14 +100,30 @@ export default {
     const componentMap = await socket.emit('generator.data.getWidgetList');
     this.compList = componentMap;
   },
+  mounted () {
+    // setTimeout(() => {
+    //   Sortable.create(document.querySelector('.drag-box'), {group:{
+    //     name: 'shared',
+    //     pull: 'clone'
+    //   }, sort: false,});
+    // }, 3000)
+    // const iframe = document.querySelector('#viewContent');
+    // iframe.onload = () => {
+    //   var doc = iframe.contentDocument,
+    //   list = doc.querySelector('.drag-box');
+    //   Sortable.create(list, {group: 'shared'});
+    // };
+  },
   methods: {
     async addComp (id, type, config) {
        if (type === 'box') {
-          await socket.emit('generator.scene.addBox', {
-            id
-          });
+         const params = {
+            boxUuid: AppModule.boxUuid,
+            id,
+            params: config
+          };
+          await socket.emit('generator.scene.addBox', params);
        } else {
-         console.log('**12131*****', AppModule.insertData);
           const params = {
             boxUuid: AppModule.boxUuid,
             data: {
@@ -115,7 +132,6 @@ export default {
               params: config
             }
           };
-          console.log('*****8888*****', params);
           Loading.open();
           await socket.emit('generator.scene.addComponent', params);
           Loading.close();
@@ -260,7 +276,7 @@ export default {
   }
 
   &-content {
-    background-color: #30303d;
+    background-color: #409EFF;
     padding: 10px;
     margin-top: 1px;
     text-align: left;

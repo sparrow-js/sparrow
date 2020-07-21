@@ -29,6 +29,14 @@
       >
         <i class="iconfont icon-changjing"></i>
       </div>
+
+      <div
+        @click="tabChange(3)"
+        class="tabs-item"
+        :class="{ active: activeTreeIndex === 3 }"
+      >
+        <i class="iconfont icon-data"></i>
+      </div>
     </div>
     <div class="tabs-body" v-show="[0, 3].includes(activeTreeIndex)">
       <div class="tree" v-show="activeTreeIndex === 0">

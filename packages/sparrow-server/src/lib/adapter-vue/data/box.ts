@@ -17,12 +17,12 @@ export default [
     label: '表格',
     icon: 'table'
   },
-  {
-    id: 'Dialog',
-    key: 'Dialog',
-    label: '弹窗',
-    icon: ''
-  },
+  // {
+  //   id: 'Dialog',
+  //   key: 'Dialog',
+  //   label: '弹窗',
+  //   icon: ''
+  // },
   {
     id: 'Tabs',
     key: 'Tabs',
@@ -33,6 +33,12 @@ export default [
     id: 'Card',
     key: 'Card',
     label: '卡片',
+    icon: ''
+  },
+  {
+    id: 'Layout',
+    key: 'Layout',
+    label: '布局',
     icon: ''
   },
   // {

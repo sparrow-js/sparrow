@@ -1,11 +1,6 @@
 <template>
   <div id="app"> 
     <router-view/>
-    <!-- <toolbar 
-      :list="toolbarList" 
-      :is-show-toolbar="isShowToolbar" 
-      @change="showToolbarChange"
-    /> -->
     <inline-toolbar />
   </div>
 </template>
@@ -18,7 +13,6 @@ import html2canvas from 'html2canvas';
 export default {
   data () {
     return {
-      toolbarList: [],
       uuid: '',
       isShowToolbar: false
     }
@@ -51,7 +45,6 @@ export default {
         });
       }
     },false);
-    this.getToolbarList();
     Event.on('block-selected', (data) => {
       this.uuid = data.uuid;
     });
@@ -60,31 +53,15 @@ export default {
     Event.on('insert_handler', (data) => {
       setTimeout(() => {
         const {params} = data;
-        // if (params && params.uuid) {
-        //   this.uuid = params.uuid;
-        // }
         message.emit(data.emit || 'client.dashboard.show', {
           uuid: this.uuid,
           data,
         });
-      }, 300);
+      }, 200);
     })
-
-    Event.on('pivot_setting', (setting) => {
-      setTimeout(() => {
-        message.emit('client.setting.show', {
-          uuid: this.uuid,
-          setting
-        });
-      }, 300);
-    });
 
   },
   methods: {
-    async getToolbarList () {
-      const result = await message.emit('generator.data.getBoxList')
-      this.toolbarList = result.list;
-    },
     showToolbarChange (data) {
       this.isShowToolbar = data;
     },
@@ -105,6 +82,10 @@ export default {
 }
 </script>
 <style>
+  html, body, #app{
+    min-width: 100%;
+    height: 100%;
+  }
   .el-form--inline .comp-box{
     display: inline-block;
   }

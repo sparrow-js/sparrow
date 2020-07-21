@@ -29,7 +29,6 @@ export interface IFormSetting{
 }
 
 export default class Form extends Base implements IBaseBox{
-  $fragment: any;
   template: string;
   name: string = 'Form';
   fileName: string = '';
@@ -38,7 +37,6 @@ export default class Form extends Base implements IBaseBox{
   insertComponents:string[] = [];
   components: any = [];
   $blockTemplate: any;
-  activeIndex: number = -1;
   insertFileType: string = 'block';
   type:string = 'inline';
   
@@ -96,9 +94,9 @@ export default class Form extends Base implements IBaseBox{
   }
   
 
-  public getFragment(index: number): any {
-    return this.$fragment;
-  }
+  // public getFragment(index: number): any {
+  //   return this.$fragment;
+  // }
 
   public setPreview () {
 
@@ -251,10 +249,6 @@ export default class Form extends Base implements IBaseBox{
     const {uuid, config} = data;
     const current = this.findComponent(uuid, this.components);
     current && current.setConfig(config);
-  }
-
-  private setActiveIndex (data) {
-    this.activeIndex = parseInt(data.index, 10);
   }
 
   private addlabel (params: any) {
