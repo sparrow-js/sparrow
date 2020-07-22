@@ -35,7 +35,6 @@ export default class Container extends Base  {
   public setPreview () {
     const type = this.storage.get('preview_view_status') || 0;
     if (this.previewType === type) {
-      console.log('******234******')
       this.renderBox();
       return;
     }

@@ -21,7 +21,6 @@ export default class Base {
   resetRender () {}
 
   public getFragment(index: number): any {
-    console.log('******567******', this.name)
     const box = `
       <box 
         data-id="${this.uuid}"

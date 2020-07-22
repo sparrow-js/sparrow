@@ -33,7 +33,6 @@ export default class Column{
   }
   
   addComponent (data: any) {
-    console.log('******9******');
     const {params} = data;
     if(params.type === 'box') {
       const box = new Box();

@@ -89,7 +89,6 @@ export default class Form extends Base implements IBaseBox{
   // }
 
   public setPreview () {
-    console.log('******9876******')
 
     const type = this.storage.get('preview_view_status') || 0;
     if (this.previewType === type) {
@@ -253,10 +252,9 @@ export default class Form extends Base implements IBaseBox{
               `<component-box uuid="${component.uuid}">
                   ${component.getFragment(this.previewType).html()}
                 </component-box>`;
-
-              this.$fragment('.drag-box').append(
-              componentBox
-            );
+              this.$fragment('.drag-box').first().append(
+                componentBox
+              );
           } else {
             this.$fragment('.drag-box').append(component.getFragment(this.previewType).html());
           }

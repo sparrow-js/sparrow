@@ -156,7 +156,6 @@ export default {
   },
   methods: {
     async addComp (id, type, config) {
-      console.log('**********', AppModule.boxUuid);
        if (type === 'box') {
          const params = {
             boxUuid: AppModule.boxUuid,
