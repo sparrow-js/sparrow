@@ -1,14 +1,10 @@
 <template>
   <div class="setting">
-    <div class="tabs-body">
-      <div class="setting-comp" v-if="settingComponent">
-        <component 
-          v-bind:is="settingComponent"
-          :config="config"
-          :uuid="uuid"
-        ></component>
-      </div>
-      <div v-else class="no-data">暂无配置</div>
+    <div class="setting-comp">
+      <FormSetting 
+        :config="config"
+        :uuid="uuid"
+      ></FormSetting>
     </div>
   </div>
 </template>
@@ -34,51 +30,16 @@ import Toolbox from './Toolbox';
   }
 })
 export default class extends Vue {
-  private config = null;
   private uuid = '';
   private innerDrawer = false;
   private dataCode = `var data = {}`
   private activeTreeIndex = 0;
 
-  get showSetting() {
-    return SettingModule.showSetting;
+  get config () {
+    return SettingModule.config;
   }
 
-  get showCodeDraw() {
-    return SettingModule.showCodeDraw;
-  }
-
-  set showCodeDraw (value) {
-    SettingModule.setShowCodeBraw(value);
-  }
-  
-  private async created() {
-    window.addEventListener('message', async event => {
-      const { data } = event;
-      if (!data.handler) return;
-      if(data.handler === 'client.component.getConfig') {
-        const {params} = data.data;
-        this.uuid = params.uuid;
-        const res = await socket.emit('generator.scene.getBoxChildConfig', {
-          boxUuid: AppModule.boxUuid,
-          uuid: params.uuid
-        });
-        this.config = res;
-        AppModule.setUuid(this.uuid);
-      }
-    });
-    this.$root.$on('setting-before-destroy', () => {
-      this.config = null;
-    });
-  }
-
-  get settingComponent() {
-    return SettingModule.settingComponent;
-  }
-
-  private showSettingHandler() {
-    SettingModule.setShowSettingHandler(!SettingModule.showSetting);
-  }
+  private async created() {  }
 
 }
 </script>
@@ -86,9 +47,6 @@ export default class extends Vue {
 .setting {
   background: #fff;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
   height: 100%;
   overflow: hidden;
    &__title {
@@ -105,9 +63,6 @@ export default class extends Vue {
   :hover {
     color: #66b1ff;
   }
-}
-.setting-comp{
-  width: 200px;
 }
 .no-data{
   padding: 10px;

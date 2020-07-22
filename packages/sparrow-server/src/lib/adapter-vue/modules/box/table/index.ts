@@ -211,7 +211,7 @@ export default class Table extends Base implements IBaseBox{
     }
   }
   
-  public getSetting () {
+  public getConfig () {
     return {
       data: []
     }
@@ -225,16 +225,6 @@ export default class Table extends Base implements IBaseBox{
       }
     });
     return comp;
-  }
-
-  getBoxChildConfig(params: any) {
-    const {uuid} = params;
-    const comp = this.findComponents(uuid);
-    if (comp) {
-      return comp.getConfig();
-    } else {
-      return null;
-    }
   }
 
   public renderBox () {

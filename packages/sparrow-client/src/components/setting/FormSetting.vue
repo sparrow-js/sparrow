@@ -1,28 +1,19 @@
 <template>
   <div class="setting">
-      <el-tabs style="width: 100%;" v-model="tabActiveName" @tab-click="handleClick">
-        <el-tab-pane label="组件" name="first">
-          <div>
-            <span class="update-data" @click.stop="syncConfig">更新</span>
-          </div>
-          <el-scrollbar v-if="config" class="right-scrollbar">
-            <el-form size="small" label-width="90px">
+      <div>
+        <div>
+          <span class="update-data" @click.stop="syncConfig">更新</span>
+        </div>
+        <el-divider></el-divider>
+        <el-scrollbar v-if="config" class="right-scrollbar">
+          <el-form size="small" label-width="90px">
+            <div v-if="config._attr">
               <el-form-item 
                 v-if="config._attr['v-model']!==undefined"
                 label="v-model"
               >
-                <el-input v-model="config._attr['v-model']" :disabled="true"></el-input>
+                <el-input v-model="config._attr['v-model']"></el-input>
               </el-form-item>
-  
-
-              <el-form-item 
-                v-if="config._attr[':list']!==undefined"
-                label=":list"
-              >
-                <el-input v-model="config._attr[':list']" :disabled="true"></el-input>
-              </el-form-item>
-
-
               <el-tabs
                 v-if="config._attr[':default']!==undefined"
                 v-model="activeItemCode" @tab-click="handleCodeItemClick">
@@ -40,7 +31,7 @@
                 </el-tab-pane>
               </el-tabs>
 
-   
+  
               <el-form-item 
                 v-if="config._attr.placeholder!==undefined"
                 label="placeholder"
@@ -54,46 +45,53 @@
               >
                 <el-input v-model="config._attr['v-if']" placeholder="请输入内容"></el-input>
               </el-form-item>
-              
-              <div  v-if="config._custom">
-                <el-form-item v-if="config._custom.hasHeader!==undefined" label="卡片头">
-                  <el-switch v-model="config._custom.hasHeader"></el-switch>
-                </el-form-item>
-
-
-                <div v-if="config._custom.required !== undefined">
-                  <el-divider content-position="left">校验</el-divider>
-                  <el-form-item v-if="config._custom.required!==undefined" label="必填">
-                    <el-switch v-model="config._custom.required"></el-switch>
-                  </el-form-item>
-                  <rule-list 
-                    v-if="config._custom.regList!==undefined"
-                    :rules.sync="config._custom.regList"
-                  ></rule-list>
-                </div>
-
-              </div>
+            </div>
             
 
-              <div v-if="config._slot">
-                <el-divider content-position="left">options</el-divider>
-                <div>
-                  <i class="iconfont icon-iconfront-" @click="expansionHandler('formItem')"></i>
-                </div>
-                <el-form-item 
-                  v-if="config._slot.data!==undefined"
-                  label=""
-                  label-width="0"
-                >
-                    <codemirror
-                      v-model="config._slot.data"
-                    ></codemirror>
-                </el-form-item>
-              </div>
-      
-            </el-form>
-          </el-scrollbar>
+                
+            <div  v-if="config._custom">
+              <el-form-item v-if="config._custom.hasHeader!==undefined" label="卡片头">
+                <el-switch v-model="config._custom.hasHeader"></el-switch>
+              </el-form-item>
 
+
+              <div v-if="config._custom.required !== undefined">
+                <el-divider content-position="left">校验</el-divider>
+                <el-form-item v-if="config._custom.required!==undefined" label="必填">
+                  <el-switch v-model="config._custom.required"></el-switch>
+                </el-form-item>
+                <rule-list 
+                  v-if="config._custom.regList!==undefined"
+                  :rules.sync="config._custom.regList"
+                ></rule-list>
+              </div>
+
+            </div>
+
+
+            <div v-if="config._slot">
+              <el-divider content-position="left">options</el-divider>
+              <div>
+                <i class="iconfont icon-iconfront-" @click="expansionHandler('formItem')"></i>
+              </div>
+              <el-form-item 
+                v-if="config._slot.data!==undefined"
+                label=""
+                label-width="0"
+              >
+                  <codemirror
+                    v-model="config._slot.data"
+                  ></codemirror>
+              </el-form-item>
+            </div>
+          </el-form>
+        </el-scrollbar>
+
+
+      </div>
+      <!-- <el-tabs style="width: 100%;" v-model="tabActiveName" @tab-click="handleClick">
+        <el-tab-pane label="组件" name="first">
+     
         </el-tab-pane>
         <el-tab-pane label="表单" name="second">
           <el-collapse v-if="setting" v-model="activeNames">
@@ -129,18 +127,16 @@
           </el-collapse>
 
         </el-tab-pane>
-      </el-tabs>
+      </el-tabs> -->
     <div class="drawer">
-      <el-drawer
+      <!-- <el-drawer
         title=""
         :visible.sync="showCodeDraw"
         :append-to-body="true"
         :modal="false"
         custom-class="drawer-st"
         >
-        <!-- <div slot="title">
-          <el-button size="mini" type="primary" @click="sureCodeHandler">确定</el-button>
-        </div> -->
+
         <div>
           <codemirror
             v-if="codeEditType === 'form'"
@@ -152,7 +148,7 @@
             v-model="config._slot.data"
           ></codemirror>
         </div>
-      </el-drawer>
+      </el-drawer> -->
     </div>
   </div>
 </template>
@@ -195,27 +191,12 @@ export default class extends Vue {
   private codeEditType = '';
 
 
-  // @Watch('config', { immediate: true, deep: true})
-  // private onConfigChange() {
-  //   this.syncConfig();
-  // }
-
-
 
   get showSetting() {
     return SettingModule.showSetting;
   }
 
   private async created() {
-    const result = await socket.emit('generator.scene.getSetting', {
-      boxUuid: AppModule.boxUuid,
-    });
-    if (result) {
-      this.setting = result.data;
-    }
-    if(!this.uuid) {
-      this.tabActiveName = 'second';
-    }
   }
 
   private showSettingHandler() {
@@ -314,7 +295,6 @@ export default class extends Vue {
 .setting {
   width: 100%;
   background: #fff;
-  padding: 10px 6px;
   box-sizing: border-box;
 }
 .update-data {

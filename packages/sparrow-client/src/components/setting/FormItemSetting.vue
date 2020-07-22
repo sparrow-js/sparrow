@@ -23,9 +23,7 @@
   </div>
 </template>
 <script>
-export default {
-  props: ['fieldConfig']
-}
+export default { props: ['fieldConfig'] }
 </script>
 <style lang="scss" scoped>
 

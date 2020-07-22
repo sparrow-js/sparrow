@@ -63,7 +63,6 @@ export default class extends Vue {
 
   private async getSetting() {
     const result = await socket.emit('generator.scene.getSetting', {
-      boxIndex: AppModule.boxIndex,
       boxUuid: AppModule.boxUuid,
     });
     if (result) {

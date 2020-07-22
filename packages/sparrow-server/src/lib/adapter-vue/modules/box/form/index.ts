@@ -23,11 +23,6 @@ const templateStr =  `
 `;
 
 
-export interface IFormSetting{
-  dataCode: string;
-  inline: boolean;
-}
-
 export default class Form extends Base implements IBaseBox{
   template: string;
   name: string = 'Form';
@@ -46,8 +41,7 @@ export default class Form extends Base implements IBaseBox{
   iFormAttrs: any = {};
   formatTemp: string = '';
 
-  config: IFormSetting = {
-    dataCode: `var data = {}`,
+  config: any = {
     inline: false
   }
 
@@ -256,23 +250,10 @@ export default class Form extends Base implements IBaseBox{
     currentComp && currentComp.setLabel(params.value);
   }
   
-  public getSetting () {
-    this.resetRender();
+  public getConfig () {
     return {
       data: this.config
     }
-  }
-
-  public getBoxChildConfig (params:  {
-    uuid: string,
-  }) {
-    const {uuid} = params;
-    const current = this.findComponent(uuid, this.components);
-    if (current &&current.getConfig) {
-      return current.getConfig();
-    } else {
-      return {};
-    } 
   }
 
   public changePosition (order: any) {

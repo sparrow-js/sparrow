@@ -101,18 +101,34 @@ export default {
     this.compList = componentMap;
   },
   mounted () {
-    // setTimeout(() => {
-    //   Sortable.create(document.querySelector('.drag-box'), {group:{
-    //     name: 'shared',
-    //     pull: 'clone'
-    //   }, sort: false,});
-    // }, 3000)
-    // const iframe = document.querySelector('#viewContent');
-    // iframe.onload = () => {
-    //   var doc = iframe.contentDocument,
-    //   list = doc.querySelector('.drag-box');
-    //   Sortable.create(list, {group: 'shared'});
-    // };
+    setTimeout(() => {
+      Sortable.create(document.querySelector('.drag-box'), 
+      {
+        group:{
+          name: 'shared',
+          pull: 'clone',
+          revertClone: true,
+        }, 
+        sort: false, 
+        ghostClass: "sortable-ghost",
+        onStart: (event) => {
+          console.log('**********', event)
+        },
+        onEnd: (event) => {
+          event.item.remove();
+          console.log('******111****', event)
+        }
+      });
+    }, 3000)
+    const iframe = document.querySelector('#viewContent');
+    iframe.onload = () => {
+      var doc = iframe.contentDocument,
+      list = doc.querySelector('.drag-box');
+
+      Sortable.create(list, {group: 'shared', onStart: (event) => {
+        console.log('******8****', event.item)
+      }});
+    };
   },
   methods: {
     async addComp (id, type, config) {

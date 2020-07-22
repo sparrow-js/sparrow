@@ -47,6 +47,7 @@ export default class Base {
   public getFragment(index: number): any {
     const box = `
       <box 
+        data-id="${this.uuid}"
         :uuid="'${this.uuid}'" 
         class="block-item" 
         :label="'${this.name}'"

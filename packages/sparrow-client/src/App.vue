@@ -46,6 +46,7 @@ import { AppModule } from '@/store/modules/app';
 import { SettingModule } from '@/store/modules/setting';
 import CompBox from '@/components/materiel/CompBox/index.vue';
 import JsonEditor from '@/components/JsonEditor/index.vue';
+import _ from 'lodash';
 @Component({
   components: {
     Logo,
@@ -70,10 +71,6 @@ export default class App extends Vue {
     return AppModule.showComponentBox;
   }
 
-  get showSetting() {
-    return SettingModule.showSetting;
-  }
-
   get boxIndex() {
     return AppModule.boxIndex;
   }
@@ -92,16 +89,6 @@ export default class App extends Vue {
       const handlerArr = data.handler.split('.');
       const handlerFirst = handlerArr[0];
       if (handlerFirst === 'client') {
-
-        // 触发组件集
-        if (data.handler === 'client.component.show') {
-          const { type } = data.data;
-          AppModule.setBoxUuid(data.uuid);
-          // AppModule.InsertData(data);
-          AppModule.SetComponentIs(type);
-          AppModule.SetShowComponent(true);
-        }
-
         // 插入组件label
         if (data.handler === 'client.component.insertLabel') {
           const params = {
@@ -116,15 +103,28 @@ export default class App extends Vue {
           const result = await socket.emit('generator.scene.setting', params);
         }
 
-        if (data.handler === 'client.component.insertFormComp') {
-          console.log('***********', data);
-         AppModule.InsertData(data);
+        if (data.handler === 'client.dispatch.component') {
+
+          const result = await socket.emit('generator.scene.getConfig', {
+            uuid: _.get(data, 'data.params.uuid'),
+          });
+          SettingModule.setConfig(result)
         }
 
-        if (data.handler === 'client.component.insertTableComp') {
-          AppModule.InsertData(data);
+        if (data.handler === 'client.dispatch.box') {
+          const result = await socket.emit('generator.scene.getConfig', {
+            uuid: _.get(data, 'uuid'),
+          });
+          SettingModule.setConfig(result)
         }
-        
+
+        // if (data.handler === 'client.component.insertFormComp') {
+        //   AppModule.InsertData(data);
+        // }
+
+        // if (data.handler === 'client.component.insertTableComp') {
+        //   AppModule.InsertData(data);
+        // }
         // 延迟同步uuid
         setTimeout(() => {
           if (data.uuid !== undefined) {

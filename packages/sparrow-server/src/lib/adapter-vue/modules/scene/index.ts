@@ -96,7 +96,7 @@ export default class Scene {
   private async init () {
     const templateStr =  `
       <template>
-        <div class="home">
+        <div class="home drag-box" data-id="${this.uuid}">
         </div>
       </template>
     `;
@@ -287,20 +287,12 @@ export default class Scene {
     return tempComp;
   }
 
-  public getSetting (params) {
-    const { boxUuid } = params;
+  public getConfig (params) {
+    const { uuid } = params;
     
-    const curBox = this.findComponent(boxUuid, this.components);
-    if (curBox && curBox.components[0]) {
-      return curBox.getSetting()
-    }
-  }
-
-  public getBoxChildConfig (params) {
-    const {boxUuid} = params;
-    const curBox = this.findComponent(boxUuid, this.components);
-    if (curBox && curBox.components[0] && curBox.components[0].getBoxChildConfig) {
-      return curBox.components[0].getBoxChildConfig(params);
+    const curBox = this.findComponent(uuid, this.components);
+    if (curBox) {
+      return curBox.getConfig()
     }
   }
 

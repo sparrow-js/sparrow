@@ -125,4 +125,14 @@ export default {
   .custom-inline{
     padding-left: 60px;
   }
+  .home{
+    height: 100%;
+  }
+  .sortable-ghost{
+    height: 5px;
+    background: #409EFF;
+  }
+  .sortable-ghost *{
+    display: none;
+  }
 </style>
