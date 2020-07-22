@@ -108,11 +108,12 @@ export default class Scene {
   }
 
   loopThroughBox (boxs: any,) {
+    const leafToRoot = []; 
     const fn = function (boxs) {
       if (Array.isArray(boxs)) {
         boxs.forEach(item => {
           if (item.widgetType === 'box') {
-            item.setPreview && item.setPreview();
+            leafToRoot.unshift(item);
           }
           if (item.components) {
             fn(item.components)
@@ -120,8 +121,10 @@ export default class Scene {
         });
       }
     }
-
     fn(boxs);
+    leafToRoot.forEach(item => {
+      item.setPreview && item.setPreview();
+    });
   }
   
 
@@ -177,10 +180,9 @@ export default class Scene {
   public addBox (params: any, ctx) {
     const {boxUuid, id} = params;
     if (boxUuid) {
+      const dynamicObj = require(`../box/${id}`).default;
       const currBox = this.findComponent(boxUuid, this.components);
-      const box = new Box();
-      box.addComponent(params);
-      currBox[0].components.push(box);
+      currBox.components.push(new dynamicObj(params, storage));
       // currBox.components.push(new dynamicObj(params, storage));
     } else {
       // const box = new Box();

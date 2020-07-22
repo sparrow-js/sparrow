@@ -25,8 +25,6 @@ class Setting extends VuexModule implements ISettingState {
 
   @Action
   public setConfig(data: any) {
-    console.log('******))))**', data)
-
     this.SET_CONFIG(data)
   }
 }

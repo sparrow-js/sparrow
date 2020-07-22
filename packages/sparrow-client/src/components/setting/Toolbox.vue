@@ -28,6 +28,7 @@
                 <div class="comp-item" 
                   v-for="(comp, index) in item.list" 
                   :key="index"
+                  @mousedown="mousedownWidget(comp, item.type)"
                   @click="addComp(comp.key, item.type, comp.params)"
                 >
                   <span>{{comp.label}}</span>
@@ -94,6 +95,7 @@ export default {
       activeNames: [0, 1, 2],
       blockNames: [0],
       staticBlockList: [],
+      widgetData: {}
     };
   },
   async created () {
@@ -102,36 +104,59 @@ export default {
   },
   mounted () {
     setTimeout(() => {
-      Sortable.create(document.querySelector('.drag-box'), 
-      {
-        group:{
-          name: 'shared',
-          pull: 'clone',
-          revertClone: true,
-        }, 
-        sort: false, 
-        ghostClass: "sortable-ghost",
-        onStart: (event) => {
-          console.log('**********', event)
-        },
-        onEnd: (event) => {
-          event.item.remove();
-          console.log('******111****', event)
-        }
-      });
-    }, 3000)
-    const iframe = document.querySelector('#viewContent');
-    iframe.onload = () => {
-      var doc = iframe.contentDocument,
-      list = doc.querySelector('.drag-box');
+      const dragList = document.querySelectorAll('.drag-box');
+      
+      dragList.forEach(item => {
 
-      Sortable.create(list, {group: 'shared', onStart: (event) => {
-        console.log('******8****', event.item)
-      }});
+        Sortable.create(item, 
+          {
+            group:{
+              name: 'shared',
+              pull: 'clone',
+            }, 
+            sort: false, 
+            ghostClass: "sortable-ghost",
+            onStart: (event) => {},
+            onEnd: async (event) => {
+              const item = event.item;
+              if (item.ownerDocument.querySelector('.sparrow-view')) {
+                item.remove();
+              }
+              
+              const boxUuid = event.to.getAttribute('data-id');
+              
+              const nextSibling = item.nextElementSibling;
+              const nextId = nextSibling.getAttribute('data-id');
+              const params = {
+                boxUuid: '',
+                nextId,
+                id: this.widgetData.id,
+                params: this.widgetData.params
+              };
+
+              Loading.open();
+              await socket.emit('generator.scene.addBox', params);
+              Loading.close();
+
+              setTimeout(() => {
+                this.bindDrag();
+              }, 1000);
+            }
+          }
+        );
+
+      })
+     
+    }, 3000);
+    const iframe = document.querySelector('#viewContent');
+    
+    iframe.onload = () => {
+      this.bindDrag();
     };
   },
   methods: {
     async addComp (id, type, config) {
+      console.log('**********', AppModule.boxUuid);
        if (type === 'box') {
          const params = {
             boxUuid: AppModule.boxUuid,
@@ -155,6 +180,11 @@ export default {
        }
 
     },
+
+    mousedownWidget (widget, config) {
+      this.widgetData = widget;
+    },
+
     handleChange () {
       // material.index.getBlocks
     },
@@ -172,6 +202,23 @@ export default {
       Loading.open();
       await socket.emit('generator.scene.addBlock', {id, originData});
     },
+    bindDrag () {
+      const iframe = document.querySelector('#viewContent');
+      var doc = iframe.contentDocument,
+      list = doc.querySelectorAll('.drag-box');
+      list.forEach(item => {
+
+        Sortable.create(
+          item,
+          {
+            group: 'shared',
+            onStart: (event) => {},
+            onEnd: (event) => {}
+          }
+        );
+        
+      })
+    }
     /**
      * 
      * private async addComponent() {

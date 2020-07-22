@@ -17,34 +17,11 @@ export default class Base {
 
     this.uuid = uuid().split('-')[0]; 
   }
-  
-  /**
-   *  if (this.type === 0) {
-      box = `
-        <box 
-          :uuid="'${this.uuid}'" 
-          class="block-item" 
-          :label="'${this.label}'"
-        >
-          ${content}
-        </box>
-      `
-    } else {
-      box = content
-    }
-    this.$fragment =  cheerio.load(`
-      <div class="block-list">
-        ${box}
-      </div>
-    `, {
-      xmlMode: true,
-      decodeEntities: false
-    });
-   */
 
   resetRender () {}
 
   public getFragment(index: number): any {
+    console.log('******567******', this.name)
     const box = `
       <box 
         data-id="${this.uuid}"
@@ -66,6 +43,26 @@ export default class Base {
     ;
   }
   
+
+  public addComponent (data: any, type: string = 'manual') {
+    if (type === 'manual') {
+      let { id, params = {} } = data;
+      const dynamicObj = require(`../component/${id}`).default;
+      this.components.push(new dynamicObj(params))
+    } else {
+      let { id, config } = data;
+      config.initType = type;
+      const dynamicObj = require(`../component/${id}`).default;
+      const instance = new dynamicObj(config)
+      this.components.push(instance);
+      if (instance.storeType === 'box') {
+        return instance;
+      } else {
+        return null;
+      }
+    }
+  }
+
   observeComp () {
     if (this.observe) {
       unobserve(this.observe);
@@ -82,4 +79,6 @@ export default class Base {
       }
     });
   }
+
+  getConfig () {}
 }

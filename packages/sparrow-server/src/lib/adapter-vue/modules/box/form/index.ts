@@ -6,14 +6,11 @@ import * as cheerio from 'cheerio';
 import * as mkdirp from 'mkdirp';
 import * as util from 'util';
 import Config from '../../../config';
-import VueGenerator from '../../generator';
 import * as prettier from 'prettier';
 import generate from '@babel/generator';
 import Base from '../Base';
 import * as _ from 'lodash';
 const uuid = require('@lukeed/uuid');
-
-
 const templateStr =  `
   <template>
     <div class="root" >
@@ -27,7 +24,6 @@ export default class Form extends Base implements IBaseBox{
   template: string;
   name: string = 'Form';
   fileName: string = '';
-  // VueGenerator: any;
   blockPath: string;
   insertComponents:string[] = [];
   components: any = [];
@@ -73,7 +69,7 @@ export default class Form extends Base implements IBaseBox{
     //   decodeEntities: false
     // });
 
-    this.resetRender = _.throttle(this.resetRender, 100);
+    this.resetRender = _.throttle(this.resetRender, 1000);
     this.$fragment('box-form').append(fragment.eform());
     // this.VueGenerator = new VueGenerator('block');
     this.init();
@@ -93,6 +89,7 @@ export default class Form extends Base implements IBaseBox{
   // }
 
   public setPreview () {
+    console.log('******9876******')
 
     const type = this.storage.get('preview_view_status') || 0;
     if (this.previewType === type) {
@@ -128,55 +125,9 @@ export default class Form extends Base implements IBaseBox{
         xmlMode: true,
         decodeEntities: false
       });
-
-      // this.$fragment = cheerio.load(`<${this.fileName} />`, {
-      //   xmlMode: true,
-      //   decodeEntities: false
-      // });
-      // this.$blockTemplate = cheerio.load(`
-      //   <template>
-      //     <div class="root">
-      //     </div>
-      //   </template>
-      // `, {
-      //   xmlMode: true,
-      //   decodeEntities: false
-      // });
-  
       this.$fragment('.root').append(fragment.eform());
     }
     this.resetRender()
-  }
-
-  public addComponent (data: any, type: string = 'manual') {
-    if (type === 'manual') {
-      let { id, uuid, name, params = {} } = data;
-      const dynamicObj = require(`../../component/${id}`).default;
-      if (name) {
-        params['v-model'] = name;
-      }      
-      let currentComp = this.findComponent(uuid, this.components);
-      if (currentComp) {
-        if (currentComp.name === 'ArrayListBox') {
-          params['v-model'] = `item.${params['v-model']}`;
-        }
-        currentComp.components.push(new dynamicObj(params))
-      } else {
-        this.components.push(new dynamicObj(params))
-      }
-    } else {
-      let { id, config } = data;
-      config.initType = type;
-      const dynamicObj = require(`../../component/${id}`).default;
-      const instance = new dynamicObj(config)
-      this.components.push(instance);
-      if (instance.storeType === 'box') {
-        return instance;
-      } else {
-        return null;
-      }
-    }
-  
   }
 
   private findComponent (uuid, components) {
@@ -209,7 +160,7 @@ export default class Form extends Base implements IBaseBox{
 
   public resetRender () {
     this.renderBox();
-    this.render();
+    this.render(); 
   }
 
 
@@ -286,8 +237,7 @@ export default class Form extends Base implements IBaseBox{
 
   public renderBox () {
 
-    this.$fragment('el-form').empty();
-    // this.resetInitScript();
+    this.$fragment('.drag-box').empty();
     for (let key in this.iFormAttrs) {
       this.$fragment('el-form').attr(key, this.iFormAttrs[key]);
     }
@@ -304,11 +254,11 @@ export default class Form extends Base implements IBaseBox{
                   ${component.getFragment(this.previewType).html()}
                 </component-box>`;
 
-              this.$fragment('el-form').append(
+              this.$fragment('.drag-box').append(
               componentBox
             );
           } else {
-            this.$fragment('el-form').append(component.getFragment(this.previewType).html());
+            this.$fragment('.drag-box').append(component.getFragment(this.previewType).html());
           }
         }
         if (component.type === 'box') {

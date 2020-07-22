@@ -1,5 +1,5 @@
 <template>
-  <div id="app"> 
+  <div id="app" class="sparrow-view"> 
     <router-view/>
     <inline-toolbar />
   </div>
@@ -134,5 +134,9 @@ export default {
   }
   .sortable-ghost *{
     display: none;
+  }
+  .drag-box{
+    width: 100%;
+    min-height: 32px;
   }
 </style>
