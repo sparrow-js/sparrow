@@ -53,7 +53,7 @@
                   class="block-item"
                   v-for="item in staticBlockList"
                   :key="item.key"
-                  @mousedown="mousedownWidget(comp, 'block')"
+                  @mousedown="mousedownWidget(item, 'block')"
                   @click="addStaticBlock(item.key, item.originData)"
                 >
                   <div class="block">
@@ -110,48 +110,12 @@ export default {
       if (event.data.handler === 'webpack.update.success') {
         setTimeout(() => {
           this.bindDrag();
-        }, 200);
+        }, 1000);
       }
     });
 
     setTimeout(() => {
-      const dragList = document.querySelectorAll('.drag-box');
-
-      dragList.forEach(item => {
-        Sortable.create(item, {
-          group: {
-            name: 'shared',
-            pull: 'clone'
-          },
-          sort: false,
-          ghostClass: 'sortable-ghost',
-          onStart: event => {},
-          onEnd: async event => {
-            const item = event.item;
-
-            const boxUuid = event.to.getAttribute('data-id');
-
-            const nextSiblingId =
-              item.nextElementSibling &&
-              item.nextElementSibling.getAttribute('data-id');
-            if (item.ownerDocument.querySelector('.sparrow-view')) {
-              item.remove();
-            }
-
-            const params = {
-              boxUuid,
-              nextSiblingId,
-              id: this.widgetData.id,
-              type: this.widgetData.type,
-              params: this.widgetData.params
-            };
-
-            Loading.open();
-            await socket.emit('generator.scene.addComponent', params);
-            Loading.close();
-          }
-        });
-      });
+      this.bindClientDrag();
     }, 3000);
     const iframe = document.querySelector('#viewContent');
 
@@ -187,6 +151,7 @@ export default {
       if (value === '静态区块') {
         this.getStaticBlock();
       }
+      this.bindClientDrag();
     },
     async getStaticBlock() {
       const blockList = await socket.emit('material.index.getBlocks');
@@ -206,7 +171,6 @@ export default {
       var doc = iframe.contentDocument;
       if (!doc) return;
       const list = doc.querySelectorAll('.drag-box');
-      console.log(list);
       list.forEach(item => {
         Sortable.create(item, {
           group: 'shared',
@@ -214,6 +178,63 @@ export default {
           onEnd: event => {}
         });
       });
+    },
+    bindClientDrag () {
+
+      const dragList = document.querySelectorAll('.drag-box');
+
+      dragList.forEach(item => {
+        Sortable.create(item, {
+          group: {
+            name: 'shared',
+            pull: 'clone'
+          },
+          sort: false,
+          ghostClass: 'sortable-ghost',
+          onStart: event => {},
+          onEnd: async event => {
+            const item = event.item;
+
+            const boxUuid = event.to.getAttribute('data-id');
+
+            const nextSiblingId =
+              item.nextElementSibling &&
+              item.nextElementSibling.getAttribute('data-id');
+
+            if (item.ownerDocument.querySelector('.sparrow-view')) {
+              item.remove();
+            }
+
+
+
+            if (this.widgetData.type === 'block') {
+
+              Loading.open();
+              await socket.emit('generator.scene.addBlock', {
+                boxUuid, 
+                id: this.widgetData.id,
+                type: this.widgetData.type,
+                originData: this.widgetData.originData
+              });
+
+            } else {
+              const params = {
+                boxUuid,
+                nextSiblingId,
+                id: this.widgetData.id,
+                type: this.widgetData.type,
+                params: this.widgetData.params
+              };
+
+              Loading.open();
+              await socket.emit('generator.scene.addComponent', params);
+              Loading.close();
+            }
+
+          }
+        });
+      });
+
     }
   }
 };
