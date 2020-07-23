@@ -20,6 +20,15 @@ const templateStr =  `
 `;
 
 
+export function eform (uuid: string = '') {
+  return `
+    <el-form label-width="100px">
+     <div class="drag-box" data-id=${uuid}></div>
+    </el-form>
+  `;
+}
+
+
 export default class Form extends Base implements IBaseBox{
   template: string;
   name: string = 'Form';
@@ -70,7 +79,7 @@ export default class Form extends Base implements IBaseBox{
     // });
 
     this.resetRender = _.throttle(this.resetRender, 1000);
-    this.$fragment('box-form').append(fragment.eform());
+    this.$fragment('box-form').append(eform(this.uuid));
     // this.VueGenerator = new VueGenerator('block');
     this.init();
     // this.VueGenerator.appendData();
@@ -83,10 +92,6 @@ export default class Form extends Base implements IBaseBox{
     this.blockPath = path.join(Config.componentsDir, `${this.fileName}.vue`);
   }
   
-
-  // public getFragment(index: number): any {
-  //   return this.$fragment;
-  // }
 
   public setPreview () {
 
@@ -106,13 +111,8 @@ export default class Form extends Base implements IBaseBox{
         xmlMode: true,
         decodeEntities: false
       });
-
-      // this.$blockTemplate = cheerio.load(templateStr, {
-      //   xmlMode: true,
-      //   decodeEntities: false
-      // });
   
-      this.$fragment('box-form').append(fragment.eform());
+      this.$fragment('box-form').append(eform(this.uuid));
     } else {
 
       this.$fragment = cheerio.load(` 
@@ -124,7 +124,7 @@ export default class Form extends Base implements IBaseBox{
         xmlMode: true,
         decodeEntities: false
       });
-      this.$fragment('.root').append(fragment.eform());
+      this.$fragment('.root').append(eform(this.uuid));
     }
     this.resetRender()
   }

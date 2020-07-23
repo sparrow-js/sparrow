@@ -220,14 +220,14 @@ export default class extends Vue {
     font-size: 14px;
     margin-right: 16px;
     &:hover {
-      color: #3e71f7;
+      color: #409EFF;
     }
   }
   &__item.success {
     color: #409EFF;
   }
   .active-preview {
-    color: #0247fb;
+    color: #409EFF;
   }
 }
 .scene-item {

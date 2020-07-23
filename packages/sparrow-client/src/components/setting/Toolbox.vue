@@ -4,38 +4,42 @@
       <el-tab-pane label="工具盒" class="widget-collapse">
         <div class="tool-filter">
           <div>
-            <el-input
-              placeholder="请输入内容"
-              v-model="search">
+            <el-input placeholder="请输入内容" v-model="search">
               <i slot="suffix" class="el-input__icon el-icon-search"></i>
             </el-input>
           </div>
           <div style="margin-top: 15px">
-            <el-radio-group v-model="widget" size="small" @change="toggleWidget">
+            <el-radio-group
+              v-model="widget"
+              size="small"
+              @change="toggleWidget"
+            >
               <el-radio-button label="组件"></el-radio-button>
-              <el-radio-button label="动态区块" ></el-radio-button>
-              <el-radio-button label="静态区块" ></el-radio-button>
+              <el-radio-button label="动态区块"></el-radio-button>
+              <el-radio-button label="静态区块"></el-radio-button>
             </el-radio-group>
           </div>
         </div>
         <div class="widget-box" v-if="widget === '组件'">
           <el-collapse v-model="activeNames" @change="handleChange">
-
-            <el-collapse-item 
-              v-for="(item, index) in compList" 
-              :key="index" :title="item.label"  :name="index">
+            <el-collapse-item
+              v-for="(item, index) in compList"
+              :key="index"
+              :title="item.label"
+              :name="index"
+            >
               <div class="comp-list drag-box">
-                <div class="comp-item" 
-                  v-for="(comp, index) in item.list" 
+                <div
+                  class="comp-item"
+                  v-for="(comp, index) in item.list"
                   :key="index"
                   @mousedown="mousedownWidget(comp, item.type)"
                   @click="addComp(comp.key, item.type, comp.params)"
                 >
-                  <span>{{comp.label}}</span>
+                  <span>{{ comp.label }}</span>
                 </div>
               </div>
             </el-collapse-item>
-
           </el-collapse>
         </div>
         <div v-if="widget === '动态区块'">
@@ -44,26 +48,25 @@
         <div class="widget-box" v-if="widget === '静态区块'">
           <el-collapse v-model="blockNames" @change="handleChange">
             <el-collapse-item title="区块" :name="0">
-              <div class="block-list">
-                <div class="block-item" 
-                  v-for="item in staticBlockList" 
+              <div class="block-list drag-box">
+                <div
+                  class="block-item"
+                  v-for="item in staticBlockList"
                   :key="item.key"
+                  @mousedown="mousedownWidget(comp, 'block')"
                   @click="addStaticBlock(item.key, item.originData)"
                 >
-                  
-
-                <div class="block">
-                  <div class="block__toolbar">
-                    <div
-                      class="block__preview"
-                      :style="{ 'background-image': `url(${item.img})` }"
-                    ></div>
+                  <div class="block">
+                    <div class="block__toolbar">
+                      <div
+                        class="block__preview"
+                        :style="{ 'background-image': `url(${item.img})` }"
+                      ></div>
+                    </div>
+                    <div class="block-content">
+                      <h2 class="block-title">{{ item.title }}</h2>
+                    </div>
                   </div>
-                  <div class="block-content">
-                    <h2 class="block-title">{{ item.title }}</h2> 
-                  </div>
-                </div>
-
                 </div>
               </div>
             </el-collapse-item>
@@ -87,7 +90,7 @@ export default {
   components: {
     Setting
   },
-  data () {
+  data() {
     return {
       search: '',
       widget: '组件',
@@ -98,170 +101,137 @@ export default {
       widgetData: {}
     };
   },
-  async created () {
+  async created() {
     const componentMap = await socket.emit('generator.data.getWidgetList');
     this.compList = componentMap;
   },
-  mounted () {
+  mounted() {
+    window.addEventListener('message', event => {
+      if (event.data.handler === 'webpack.update.success') {
+        setTimeout(() => {
+          this.bindDrag();
+        }, 200);
+      }
+    });
+
     setTimeout(() => {
       const dragList = document.querySelectorAll('.drag-box');
-      
+
       dragList.forEach(item => {
+        Sortable.create(item, {
+          group: {
+            name: 'shared',
+            pull: 'clone'
+          },
+          sort: false,
+          ghostClass: 'sortable-ghost',
+          onStart: event => {},
+          onEnd: async event => {
+            const item = event.item;
 
-        Sortable.create(item, 
-          {
-            group:{
-              name: 'shared',
-              pull: 'clone',
-            }, 
-            sort: false, 
-            ghostClass: "sortable-ghost",
-            onStart: (event) => {},
-            onEnd: async (event) => {
-              const item = event.item;
-              if (item.ownerDocument.querySelector('.sparrow-view')) {
-                item.remove();
-              }
-              
-              const boxUuid = event.to.getAttribute('data-id');
-              
-              const nextSibling = item.nextElementSibling;
-              const nextId = nextSibling.getAttribute('data-id');
-              const params = {
-                boxUuid: '',
-                nextId,
-                id: this.widgetData.id,
-                params: this.widgetData.params
-              };
+            const boxUuid = event.to.getAttribute('data-id');
 
-              Loading.open();
-              await socket.emit('generator.scene.addBox', params);
-              Loading.close();
-
-              setTimeout(() => {
-                this.bindDrag();
-              }, 1000);
+            const nextSiblingId =
+              item.nextElementSibling &&
+              item.nextElementSibling.getAttribute('data-id');
+            if (item.ownerDocument.querySelector('.sparrow-view')) {
+              item.remove();
             }
-          }
-        );
 
-      })
-     
+            const params = {
+              boxUuid,
+              nextSiblingId,
+              id: this.widgetData.id,
+              type: this.widgetData.type,
+              params: this.widgetData.params
+            };
+
+            Loading.open();
+            await socket.emit('generator.scene.addComponent', params);
+            Loading.close();
+          }
+        });
+      });
     }, 3000);
     const iframe = document.querySelector('#viewContent');
-    
+
     iframe.onload = () => {
       this.bindDrag();
     };
   },
   methods: {
-    async addComp (id, type, config) {
-       if (type === 'box') {
-         const params = {
-            boxUuid: AppModule.boxUuid,
-            id,
-            params: config
-          };
-          await socket.emit('generator.scene.addBox', params);
-       } else {
-          const params = {
-            boxUuid: AppModule.boxUuid,
-            data: {
-              uuid: _.get(AppModule.insertData, 'data.params.uuid') || '',
-              id,
-              params: config
-            }
-          };
-          Loading.open();
-          await socket.emit('generator.scene.addComponent', params);
-          Loading.close();
-          this.dialogVisible = false;
-       }
-
+    async addComp(id, type, config) {
+      const params = {
+        boxUuid: AppModule.boxUuid,
+        id,
+        type,
+        params: config
+      };
+      Loading.open();
+      await socket.emit('generator.scene.addComponent', params);
+      Loading.close();
+      this.dialogVisible = false;
     },
 
-    mousedownWidget (widget, config) {
+    mousedownWidget(widget, type) {
       this.widgetData = widget;
+      this.widgetData.id = this.widgetData.key;
+      this.widgetData.type = type;
+      console.log(this.widgetData);
     },
 
-    handleChange () {
+    handleChange() {
       // material.index.getBlocks
     },
-    toggleWidget (value) {
+    toggleWidget(value) {
       if (value === '静态区块') {
         this.getStaticBlock();
       }
     },
-    async getStaticBlock () {
+    async getStaticBlock() {
       const blockList = await socket.emit('material.index.getBlocks');
       this.staticBlockList = blockList.list;
-      console.log(this.staticBlockList)
+      console.log(this.staticBlockList);
     },
     async addStaticBlock(id, originData) {
       Loading.open();
-      await socket.emit('generator.scene.addBlock', {id, originData});
+      await socket.emit('generator.scene.addBlock', {
+        boxUuid: AppModule.boxUuid, 
+        id,
+        originData 
+      });
     },
-    bindDrag () {
+    bindDrag() {
       const iframe = document.querySelector('#viewContent');
-      var doc = iframe.contentDocument,
-      list = doc.querySelectorAll('.drag-box');
+      var doc = iframe.contentDocument;
+      if (!doc) return;
+      const list = doc.querySelectorAll('.drag-box');
+      console.log(list);
       list.forEach(item => {
-
-        Sortable.create(
-          item,
-          {
-            group: 'shared',
-            onStart: (event) => {},
-            onEnd: (event) => {}
-          }
-        );
-        
-      })
+        Sortable.create(item, {
+          group: 'shared',
+          onStart: event => {},
+          onEnd: event => {}
+        });
+      });
     }
-    /**
-     * 
-     * private async addComponent() {
-        // if (!this.form.name && type === 0) {
-        //   this.$message.error('变量名必填');
-        //   return;
-        // }
-          const params = {
-            boxUuid: AppModule.boxUuid,
-            data: {
-              uuid: _.get(this.insertData, 'data.params.uuid') || '',
-              id: this.isActiveComp.key,
-              name: this.form.name,
-              params: {
-                type: this.isActiveComp.type
-              }
-            }
-          };
-
-          Loading.open();
-          await socket.emit('generator.scene.addComponent', params);
-          Loading.close();
-          this.dialogVisible = false;
-          this.form.name = '';
-          AppModule.SetShowDashboard(false);
-        }
-     */
   }
-}
+};
 </script>
 <style lang="scss" scoped>
-.toolbox{
+.toolbox {
   width: 280px;
   padding-right: 10px;
   height: 100%;
 }
-.comp-list{
+.comp-list {
   display: flex;
   flex-direction: row;
   border-top: 1px solid #d7d7d7;
   border-left: 1px solid #d7d7d7;
   flex-wrap: wrap;
 }
-.comp-item{
+.comp-item {
   width: 33%;
   height: 80px;
   padding: 10px 5px;
@@ -276,15 +246,15 @@ export default {
   align-items: center;
   cursor: pointer;
 }
-.comp-item:hover{
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+.comp-item:hover {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.block-list{
+.block-list {
   display: flex;
   flex-wrap: wrap;
   padding: 0;
 }
-.block-item{
+.block-item {
   color: #fff;
   width: 100%;
   flex-shrink: 0;
@@ -294,10 +264,10 @@ export default {
   margin-bottom: 10px;
   cursor: pointer;
 }
-.block-item:hover{
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+.block-item:hover {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.block__preview{
+.block__preview {
   width: 100%;
   height: 100%;
   background-position: top center;
@@ -338,7 +308,7 @@ export default {
   }
 
   &-content {
-    background-color: #409EFF;
+    background-color: #409eff;
     padding: 10px;
     margin-top: 1px;
     text-align: left;
@@ -378,27 +348,26 @@ export default {
     margin-bottom: 3px;
   }
 }
-.tool-filter{
+.tool-filter {
   // position: absolute;
   // top: 0;
   // background: #fff;
 }
-.widget-box{
+.widget-box {
   height: calc(100% - 100px);
   overflow: scroll;
   // margin-top: 200px;
 }
-.tabs-box{
+.tabs-box {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-.widget-collapse{
+.widget-collapse {
   height: 100%;
 }
-.no-widget{
+.no-widget {
   padding: 10px;
   color: #909399;
 }
-
 </style>

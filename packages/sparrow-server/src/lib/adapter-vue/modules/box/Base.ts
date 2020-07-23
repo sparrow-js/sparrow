@@ -2,10 +2,11 @@ const uuid = require('@lukeed/uuid');
 import { observable, observe, unobserve } from '@nx-js/observer-util';
 import * as _ from 'lodash';
 import * as cheerio from 'cheerio';
+import Block from './Block';
 
 export default class Base {
   public uuid = '';
-  components: any = {};
+  components: any = [];
   storage: any = {};
   observe: any = null;
   $fragment: any = null;
@@ -32,9 +33,7 @@ export default class Base {
       </box>
     `
     return cheerio.load(`
-    <div class="block-list">
           ${box}
-        </div>
       `, {
         xmlMode: true,
         decodeEntities: false
@@ -43,14 +42,37 @@ export default class Base {
   }
   
 
-  public addComponent (data: any, type: string = 'manual') {
-    if (type === 'manual') {
-      let { id, params = {} } = data;
-      const dynamicObj = require(`../component/${id}`).default;
-      this.components.push(new dynamicObj(params))
+  public addComponent (data: any, operatetype: string = 'manual') {
+    if (operatetype === 'manual') {
+
+      let { id, type, params = {}, nextSiblingId } = data;
+      let compIndex = -2;
+      if (nextSiblingId) {
+        compIndex = this.components.findIndex(item => item.uuid === nextSiblingId);
+      }
+
+
+      if (type === 'box') {
+        const dynamicObj = require(`../box/${id}`).default;
+        const comp = new dynamicObj(params, this.storage)
+        if (compIndex >= 0) {
+          this.components.splice(compIndex, 0, comp)
+        } else {
+          this.components.push(comp);
+        }
+      } else {
+        const dynamicObj = require(`../component/${id}`).default;
+        const comp = new dynamicObj(params);
+        if (compIndex >= 0) {
+          this.components.splice(compIndex, 0, comp)
+        } else {
+          this.components.push(comp);
+        }
+      }
+  
     } else {
       let { id, config } = data;
-      config.initType = type;
+      config.initType = operatetype;
       const dynamicObj = require(`../component/${id}`).default;
       const instance = new dynamicObj(config)
       this.components.push(instance);
@@ -60,6 +82,17 @@ export default class Base {
         return null;
       }
     }
+  }
+
+  public async addBlock (params, ctx) {
+    const block = new Block(this.storage);
+    this.components.push(block);
+    await block.addBlock(params);
+    const { socket } = ctx;
+    socket.emit('generator.scene.block.status', {status: 0, data: {
+      status: 2,
+      message: 'complete',
+    }});
   }
 
   observeComp () {

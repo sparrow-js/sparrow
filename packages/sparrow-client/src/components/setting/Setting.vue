@@ -13,9 +13,8 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import { SettingModule } from '@/store/modules/setting';
 import { AppModule } from '@/store/modules/app';
 import FormSetting from './FormSetting.vue';
-import TableSetting from './TableSetting.vue';
-import TabsSetting from './TabsSetting.vue';
-import CommonSetting from './CommonSetting.vue'
+// import TableSetting from './TableSetting.vue';
+// import TabsSetting from './TabsSetting.vue';
 import socket from '@/util/socket.js';
 import Toolbox from './Toolbox';
 
@@ -23,9 +22,8 @@ import Toolbox from './Toolbox';
   name: 'Setting',
   components: {
     FormSetting,
-    TableSetting,
-    TabsSetting,
-    CommonSetting,
+    // TableSetting,
+    // TabsSetting,
     Toolbox
   }
 })

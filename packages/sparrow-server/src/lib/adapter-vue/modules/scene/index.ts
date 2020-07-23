@@ -13,6 +13,7 @@ import Box from '../box/Box';
 import storage from '../../../storage';
 import lowdb from '../../../lowdb';
 import * as _ from 'lodash'
+import Block from '../box/Block';
 
 const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
@@ -183,57 +184,45 @@ export default class Scene {
       const dynamicObj = require(`../box/${id}`).default;
       const currBox = this.findComponent(boxUuid, this.components);
       currBox.components.push(new dynamicObj(params, storage));
-      // currBox.components.push(new dynamicObj(params, storage));
     } else {
-      // const box = new Box();
-      // box.addComponent(params);
       const dynamicObj = require(`../box/${id}`).default;
       this.components.push(new dynamicObj(params, storage));
     }
 
     this.renderPage();
-      
-    // const { socket } = ctx;
-    // socket.emit('generator.force.refresh', {status: 0});
-
-    // if (boxUuid) {
-    //   const currBox = this.findComponent(boxUuid, this.components);
-    //   currBox.addComponent(data);
-    //   const curBoxParent = this.findBoxParent(boxUuid, this.components)
-    //   curBoxParent.push(new Box());
-    //   this.renderPage();
-      
-    //   const { socket } = ctx;
-    //   socket.emit('generator.force.refresh', {status: 0});
-    // }
   }
 
   public addComponent (params) {
-    const { data, boxUuid} = params;
-    const currBox = this.findComponent(boxUuid, this.components);
-    if (currBox) {
-      currBox.addComponent(data);
-      this.renderPage();
+    const {boxUuid, id} = params;
+    if (!boxUuid || boxUuid === this.uuid) {
+      const dynamicObj = require(`../box/${id}`).default;
+      this.components.push(new dynamicObj(params, storage));
+    } else {
+      const currBox = this.findComponent(boxUuid, this.components);
+      if (currBox) {
+        currBox.addComponent(params);
+      }
     }
+    
+    this.renderPage();
   }
 
   public async addBlock (params, ctx) {
-    const box = new Box();
-    box.addComponent({
-      id: 'Block'
-    });
-    this.components.push(box);
-    await box.components[0].addBlock(params);
+    const {data, boxUuid} = params;
+    const { socket } = ctx;
+    if (!boxUuid || boxUuid === this.uuid) {
+      const block = new Block(storage);
+      this.components.push(block);
+      await block.addBlock(params);
+    } else {
+      const currBox = this.findComponent(boxUuid, this.components);
+      await currBox.addBlock(params, ctx);
+    }
+  
+
     this.renderPage();
 
-    // const {data, boxUuid} = params;
-    // if (boxUuid) {
-    //   const currBox = this.findComponent(boxUuid, this.components);
-    //   await currBox.components[0].addBlock(data);
-    //   this.renderPage();
-    // }
-
-    const { socket } = ctx;
+   
     socket.emit('generator.scene.block.status', {status: 0, data: {
       status: 2,
       message: 'complete',

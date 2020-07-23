@@ -26,3 +26,12 @@ new Vue({
 
 document.domain = 'localhost';
 
+window.addEventListener(
+  'message',
+  e => {
+    if(e.data && e.data.type === 'webpackOk') {
+      message.emit('webpack.update.success');
+    }
+  },
+  false
+);

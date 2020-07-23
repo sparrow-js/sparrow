@@ -37,10 +37,6 @@ export default class PageHeader extends Base implements IBaseBox{
   }
 
 
-  public getFragment(index: number): any {
-    return this.$fragment;
-  }
-
   public setPreview () {
     const type = this.storage.get('preview_view_status') || 0;
     if (this.previewType === type) {

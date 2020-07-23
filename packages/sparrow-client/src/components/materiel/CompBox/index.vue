@@ -31,14 +31,14 @@
       </div>
 
       <div
-        @click="tabChange(3)"
+        @click="tabChange(4)"
         class="tabs-item"
-        :class="{ active: activeTreeIndex === 3 }"
+        :class="{ active: activeTreeIndex === 4 }"
       >
         <i class="iconfont icon-data"></i>
       </div>
     </div>
-    <div class="tabs-body" v-show="[0, 3].includes(activeTreeIndex)">
+    <div class="tabs-body" v-show="[0, 3, 4].includes(activeTreeIndex)">
       <div class="tree" v-show="activeTreeIndex === 0">
         <!-- <el-scrollbar style="height:100%"> -->
         <el-tree
@@ -74,14 +74,6 @@
         </el-tree>
         <!-- </el-scrollbar> -->
       </div>
-<!-- 
-      <div v-show="activeTreeIndex === 1">
-        <component
-          v-if="componentIs"
-          :list="componentList"
-          :is="componentIs"
-        ></component>
-      </div> -->
 
       <div v-show="activeTreeIndex === 3">
         <div class="scene-list">
@@ -121,6 +113,26 @@
           </div>
         </div>
       </div>
+
+      <div v-show="activeTreeIndex === 4">
+        <div class="codemirror-operate">
+          <span class="update-data" @click.stop="updateCodeData"
+            >更新</span
+          >
+          <i class="iconfont icon-iconfront-"></i>
+        </div>
+        <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
+          <el-tab-pane label="code" name="code">
+            <codemirror
+              ref="codemirror"
+              v-model="dataCode"
+            ></codemirror>
+          </el-tab-pane>
+          <el-tab-pane label="json" name="json">
+            <json-handler :json-data="jsonData"></json-handler>
+          </el-tab-pane>
+        </el-tabs>
+      </div>
     </div>
   </div>
 </template>
@@ -134,6 +146,7 @@ import CustominlineBox from './CustominlineBox';
 import ContainerBox from './ContainerBox';
 import EmptyBox from './EmptyBox';
 import socket from '@/util/socket.js';
+import JsonHandler from '@/components/jsonhandler/index.vue';
 
 @Component({
   components: {
@@ -141,7 +154,8 @@ import socket from '@/util/socket.js';
     tableBox: TableBox,
     custominlineBox: CustominlineBox,
     ContainerBox: ContainerBox,
-    EmptyBox
+    EmptyBox,
+    JsonHandler
   }
 })
 export default class CompBox extends Vue {
@@ -152,6 +166,10 @@ export default class CompBox extends Vue {
   private selectedNode = {};
   private currentNodeKey = '';
   private sceneList = [];
+  private dataCode = `var data = {}`;
+  private jsonData = '"{}"';
+  private activeNameCode = 'code';
+
 
   get componentIs() {
     if (AppModule.componentIs) {
@@ -297,6 +315,18 @@ export default class CompBox extends Vue {
       this.$message.error(res.message);
     }
   }
+
+  private handleCodeClick() {
+    if (this.activeNameCode === 'json') {
+      this.jsonData = JSON.stringify(
+        eval(
+          `function getData () {${this.dataCode}; return data;} getData()`
+        )
+      );
+    }
+  }
+
+  private updateCodeData () {}
 }
 </script>
 <style lang="scss" scoped>

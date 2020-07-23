@@ -16,19 +16,18 @@ export default class Container extends Base  {
   config: any = {};
   storage: any = null;
 
-  // 
   constructor (storage: any) {
     super(storage);
     this.uuid = uuid().split('-')[0]; 
     this.storage = storage;
     this.$fragment = cheerio.load(` 
       <div>
-        <div class="drag-box"></div>
+        <div class="drag-box" data-id="${this.uuid}"></div>
       </div>
     `, {
-        xmlMode: true,
-        decodeEntities: false
-      });
+      xmlMode: true,
+      decodeEntities: false
+    });
   }
 
 
