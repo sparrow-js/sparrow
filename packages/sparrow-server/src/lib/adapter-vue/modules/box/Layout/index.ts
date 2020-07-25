@@ -9,6 +9,7 @@ export default class Layout extends Base implements IBaseBox{
   components: any = [];
   template: string;
   params: any;
+  name: string = 'Layout';
 
   constructor (data: any, storage: any) {
     super(storage);
@@ -32,18 +33,9 @@ export default class Layout extends Base implements IBaseBox{
       this.components.push(new Column({}, this.storage));
     })
   }
-  
-  addComponent (data: any) {
-    const { key, boxData, name } = data;
-    const { params } = boxData;
-    const dynamicObj = require(`../../component/${key}`).default;
-    const componentKey = `${params.row}_${params.col}`
-    this.components[componentKey] = new dynamicObj({
-      'slot': componentKey,
-    });
-  }
 
   public getFragment(): any {
+    this.renderBox();
     return this.$fragment;
   }
 

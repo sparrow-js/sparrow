@@ -15,13 +15,6 @@
       >
         <i class="iconfont icon-tree-table"></i>
       </div>
-      <!-- <div
-        @click="tabChange(1)"
-        class="tabs-item"
-        :class="{ active: activeTreeIndex === 1 }"
-      >
-        <i class="iconfont icon-zujian"></i>
-      </div> -->
       <div
         @click="tabChange(3)"
         class="tabs-item"
@@ -40,7 +33,6 @@
     </div>
     <div class="tabs-body" v-show="[0, 3, 4].includes(activeTreeIndex)">
       <div class="tree" v-show="activeTreeIndex === 0">
-        <!-- <el-scrollbar style="height:100%"> -->
         <el-tree
           :data="tree"
           node-key="id"
@@ -72,7 +64,6 @@
       
           </span>
         </el-tree>
-        <!-- </el-scrollbar> -->
       </div>
 
       <div v-show="activeTreeIndex === 3">

@@ -8,8 +8,8 @@ export default class RadioGroup extends Base{
   name: string = 'RadioGroup';
   vueParse: any;
   ele: string = '';
-  constructor (params: any) {
-    super();
+  constructor (params: any, boxPath: string) {
+    super(boxPath);
     this.initVueParse();
     if (params.initType === 'auto') {
       const oldRadionboxOptions = params._slot.data.match(/radionboxOptions[a-z0-9]+/)[0];
@@ -56,23 +56,15 @@ export default class RadioGroup extends Base{
 
   public fragment () {
     return `
-      <el-form-item label=" "
-        ${this._formItemStr}
+      <el-radio-group
+        ${this._attrStr}
       >
-        <label-box 
-          label="${this.config._custom.label}" 
-          uuid="${this.uuid}"
-        ></label-box>
-        <el-radio-group
-          ${this._attrStr}
-        >
-          <${this.ele}
-          v-for="item in radionboxOptions${this.uuid}"
-          :key="item.value"
-          :label="item.label"
-          />
-        </el-radio-group>
-      </el-form-item>
+        <${this.ele}
+        v-for="item in radionboxOptions${this.uuid}"
+        :key="item.value"
+        :label="item.label"
+        />
+      </el-radio-group>
     `;
   }
 

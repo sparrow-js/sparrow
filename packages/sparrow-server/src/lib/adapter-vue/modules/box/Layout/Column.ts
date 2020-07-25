@@ -1,8 +1,7 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
 import storage from '../../../../storage';
-import Box from '../Box';
-
+import Container from '../Container'; 
 
 export default class Column{
   public uuid = '';
@@ -22,28 +21,26 @@ export default class Column{
     
     this.$fragment = cheerio.load(`
       <el-col :span="12">
-        <div class="logic-box">test</div>
+        <div class="column"></div>
       </el-col>
     `, {
       xmlMode: true,
       decodeEntities: false
     });
-
+    this.addComponent();
   }
   
-  addComponent (data: any) {
-    const {params} = data;
-    const dynamicObj = require(`../../component/Table/${data.id}`).default;
-    const obj = new dynamicObj(data, storage)
-    this.components.push(obj);
-    this.renderTemplate();
+  addComponent () {
+    const curBox = new Container({}, this.storage)
+    this.components.push(curBox);
+    return curBox;
   }
 
-  renderTemplate () {
+  renderBox () {
+    this.$fragment('.column').first().empty();
     this.previewType = storage.get('preview_view_status') || 0;
-    this.components.forEach(item => {
-      this.$fragment('.logic-box').append(item.getFragment(this.previewType).html())
-    })
+    let LogicBox = this.components[0].getFragment().html();
+    this.$fragment('.column').first().append(LogicBox);
   }
 
   getConfig() {
@@ -56,7 +53,7 @@ export default class Column{
 
   
   getFragment () {
-    this.renderTemplate();
+    this.renderBox();
     return this.$fragment;
   }
 

@@ -2,6 +2,7 @@ const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
 import storage from '../../../../storage';
 import Box from '../Box';
+import Container from '../Container';
 
 
 export default class Column{
@@ -29,50 +30,23 @@ export default class Column{
         },
       };
     }
-
+    this.addComponent();
   }
-  
-  addComponent (data: any) {
-    const {params} = data;
-    if(params.type === 'box') {
-      const box = new Box();
-      data.displayMode = 'table';
-      box.addComponent(data);
-      this.components.push(box);
-    }  else {
-      const dynamicObj = require(`../../component/Table/${data.id}`).default;
-      const obj = new dynamicObj(data, storage)
-      this.components.push(obj);
-    }
 
-
-    this.renderTemplate();
+  addComponent () {
+    const curBox = new Container({}, this.storage)
+    this.components.push(curBox);
+    return curBox;
   }
 
   renderTemplate () {
     this.previewType = storage.get('preview_view_status') || 0;
-    let compTag = '';
-    this.boxStrs = '';
-    this.components.forEach(item => {
-      if (item.name === 'box') {
-        this.boxStrs = this.boxStrs + item.getFragment().html();
-
-        const fragmentOther = item.getFragmentOther();
-        if (fragmentOther) {
-          compTag = compTag +  fragmentOther.html();
-        }
-      } else {
-        compTag = compTag + item.getFragment(this.previewType).html();
-      }
-
-    });
-
+    let containerBox = this.components[0].getFragment().html();
     let column = '';
     if (this.previewType === 0) {
       const cellbox =  `
       <template slot-scope="{row, column, $index}">
-        ${compTag}
-        <table-cell-box uuid="${this.uuid}"></table-cell-box>
+        ${containerBox}
       </template>
       `
       column = `
@@ -88,7 +62,6 @@ export default class Column{
     } else {
       const cellbox =  `
       <template slot-scope="{row, column, $index}">
-        ${compTag}
       </template>
       `
       column = `

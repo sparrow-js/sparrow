@@ -83,7 +83,6 @@ export default {
 </script>
 <style>
   html, body, #app{
-    min-width: 100%;
     height: 100%;
   }
   .el-form--inline .comp-box{
@@ -136,7 +135,6 @@ export default {
     display: none;
   }
   .drag-box{
-    width: 100%;
     min-height: 32px;
   }
 </style>

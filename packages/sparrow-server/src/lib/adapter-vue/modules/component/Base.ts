@@ -3,7 +3,7 @@ const uuid = require('@lukeed/uuid');
 
 
 export default class Base {
-  public type = 'form';
+  public ascription = 'form'; // 表单归属
   public $fragment: any;
   public labelValue = '';
   public uuid = '';
@@ -11,13 +11,34 @@ export default class Base {
   public _attrStr: string = '';
   public _formItemStr: string = '';
   public insertFileType = 'inline';
+  public boxPath: string = '';
 
-  constructor () {
+  constructor (boxPath: string) {
+    this.boxPath = boxPath || '';
     this.uuid = uuid().split('-')[0]; 
   }
 
   public renderFragment () {
-    this.$fragment = cheerio.load(this.fragment(), {
+    let formItem = ''
+    if (this.boxPath.match('Form')) {
+      formItem = `
+        <el-form-item label=" "
+          ${this._formItemStr}
+        >
+          <label-box 
+            label="${this.config._custom.label}" 
+            uuid="${this.uuid}"
+          ></label-box>
+          ${this.fragment()}
+        </el-form-item>
+      `;
+    } else {
+      formItem = `
+        ${this.fragment()}
+      `;
+    }
+
+    this.$fragment = cheerio.load(formItem, {
       xmlMode: true,
       decodeEntities: false,
     });

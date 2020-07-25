@@ -36,7 +36,13 @@
                   @mousedown="mousedownWidget(comp, item.type)"
                   @click="addComp(comp.key, item.type, comp.params)"
                 >
-                  <span>{{ comp.label }}</span>
+                  <div class="drag-box">
+                    <div class="drag-box-item">
+                        <span
+                      class="comp-list-label">{{ comp.label }}</span>
+                    </div>
+                  </div>
+       
                 </div>
               </div>
             </el-collapse-item>
@@ -85,10 +91,11 @@ import Loading from '@/util/loading';
 import { AppModule } from '@/store/modules/app';
 import Setting from './Setting';
 import Sortable from 'sortablejs';
-
+import ToolBoxTest from './ToolBoxTest';
 export default {
   components: {
-    Setting
+    Setting,
+    ToolBoxTest
   },
   data() {
     return {
@@ -98,7 +105,7 @@ export default {
       activeNames: [0, 1, 2],
       blockNames: [0],
       staticBlockList: [],
-      widgetData: {}
+      widgetData: {},
     };
   },
   async created() {
@@ -138,10 +145,9 @@ export default {
     },
 
     mousedownWidget(widget, type) {
-      this.widgetData = widget;
+=      this.widgetData = widget;
       this.widgetData.id = this.widgetData.key;
       this.widgetData.type = type;
-      console.log(this.widgetData);
     },
 
     handleChange() {
@@ -156,7 +162,6 @@ export default {
     async getStaticBlock() {
       const blockList = await socket.emit('material.index.getBlocks');
       this.staticBlockList = blockList.list;
-      console.log(this.staticBlockList);
     },
     async addStaticBlock(id, originData) {
       Loading.open();
@@ -187,12 +192,17 @@ export default {
         Sortable.create(item, {
           group: {
             name: 'shared',
-            pull: 'clone'
+            pull: 'clone',
+            put: false,
           },
           sort: false,
           ghostClass: 'sortable-ghost',
-          onStart: event => {},
+          // draggable: '',
+          onStart: event => {
+            this.$forceUpdate();
+          },
           onEnd: async event => {
+            // this.$forceUpdate();
             const item = event.item;
 
             const boxUuid = event.to.getAttribute('data-id');
@@ -204,8 +214,6 @@ export default {
             if (item.ownerDocument.querySelector('.sparrow-view')) {
               item.remove();
             }
-
-
 
             if (this.widgetData.type === 'block') {
 
@@ -255,11 +263,8 @@ export default {
 .comp-item {
   width: 33%;
   height: 80px;
-  padding: 10px 5px;
   text-align: center;
   vertical-align: top;
-  border-right: 1px solid #d7d7d7;
-  border-bottom: 1px solid #d7d7d7;
   background-color: #fff;
   box-sizing: border-box;
   display: flex;
@@ -390,5 +395,20 @@ export default {
 .no-widget {
   padding: 10px;
   color: #909399;
+}
+.drag-box{
+  width: 100%;
+  height: 100%;
+}
+.drag-box-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 5px;
+  border-right: 1px solid #d7d7d7;
+  border-bottom: 1px solid #d7d7d7;
+  box-sizing: border-box;
 }
 </style>

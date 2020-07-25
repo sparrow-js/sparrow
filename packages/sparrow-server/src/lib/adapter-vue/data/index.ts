@@ -54,6 +54,11 @@ export default class Data {
             id: 'layout',
             key: 'layout',
             label: 'colum 4',
+          },
+          {
+            id: 'layout',
+            key: 'layout',
+            label: 'colum 6',
           }
         ]
       },

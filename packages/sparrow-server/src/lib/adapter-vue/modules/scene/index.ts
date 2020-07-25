@@ -258,16 +258,18 @@ export default class Scene {
   private findComponent (uuid, components) {
     let tempComp = null;
 
-    const fn = function (uuid, components) {
+    const fn = function (uuid, components, flag = '') {
       if (tempComp === null) {
         if (Array.isArray(components)) {
           components.forEach(item => {
+            const curflag = `${flag}.${item.name}`
             if (item.uuid === uuid) {
               tempComp = item;
+              tempComp.treePath = curflag;
             }
   
             if (item.components && tempComp === null) {
-              fn(uuid, item.components)
+              fn(uuid, item.components, curflag)
             }
           });
         }

@@ -8,8 +8,8 @@ export default class Cascader extends Base {
   name: string = 'Cascader';
   vueParse: any;
 
-  constructor (params: any) {
-    super();
+  constructor (params: any, boxPath: string) {
+    super(boxPath);
     this.init();
     if (params.initType === 'auto') {
       const oldOptions = params._slot.data.match(/cascaderOptions[a-z0-9]+/)[0];
@@ -45,17 +45,11 @@ export default class Cascader extends Base {
 
   public fragment () {
     return `
-      <el-form-item label=" ">
-        <label-box 
-          label="${this.config._custom.label}"
-          uuid="${this.uuid}">
-        </label-box>
-        <el-cascader
-          ${this._attrStr}
-          :options="cascaderOptions${this.uuid}"
-          :props="{ expandTrigger: 'hover' }"
-          @change="handleChange${this.uuid}"></el-cascader>
-      </el-form-item>
+      <el-cascader
+        ${this._attrStr}
+        :options="cascaderOptions${this.uuid}"
+        :props="{ expandTrigger: 'hover' }"
+        @change="handleChange${this.uuid}"></el-cascader>
     `;
   }
 

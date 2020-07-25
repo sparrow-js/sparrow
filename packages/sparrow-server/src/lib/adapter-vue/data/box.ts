@@ -1,5 +1,11 @@
 export default [
   {
+    id: 'Container',
+    key: 'Container',
+    label: '基础',
+    icon: ''
+  },
+  {
     id: 'PageHeader',
     key: 'PageHeader',
     label: '页头',
@@ -33,12 +39,6 @@ export default [
     id: 'Card',
     key: 'Card',
     label: '卡片',
-    icon: ''
-  },
-  {
-    id: 'Layout',
-    key: 'Layout',
-    label: '布局',
     icon: ''
   },
   // {

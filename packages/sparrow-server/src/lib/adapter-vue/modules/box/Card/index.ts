@@ -37,13 +37,13 @@ export default class Card implements IBaseBox{
   }
 
   addComponent () {
-    const curBox = new Container(this.storage)
+    const curBox = new Container({}, this.storage)
     this.components.push(curBox);
     return curBox;
   }
   
 
-  public renderFragment () {
+  public renderBox () {
     if (!this.components[0]) return;
     const {_attr} = this.config;
     let LogicBox = this.components[0].getFragment().html();
@@ -112,7 +112,7 @@ export default class Card implements IBaseBox{
   };
   
   public getFragment () {
-    this.renderFragment();
+    this.renderBox();
     return this.$fragment;
   }
 

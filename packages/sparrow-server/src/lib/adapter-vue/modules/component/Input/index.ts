@@ -3,8 +3,8 @@ import Base from '../Base';
 export default class Input extends Base{
   name: string = 'Input';
 
-  constructor (params: any) {
-    super();
+  constructor (params: any, boxPath: string) {
+    super(boxPath);
     if (params.initType === 'auto') {
       this.config = params;
     } else {
@@ -40,15 +40,7 @@ export default class Input extends Base{
 
   public fragment () {
     return `
-      <el-form-item label=" "
-        ${this._formItemStr}
-      >
-        <label-box 
-          label="${this.config._custom.label}" 
-          uuid="${this.uuid}"
-        ></label-box>
-        <el-input ${this._attrStr}></el-input>
-      </el-form-item>
+      <el-input ${this._attrStr}></el-input>
     `;
   }
 

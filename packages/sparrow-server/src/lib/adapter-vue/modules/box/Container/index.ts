@@ -7,7 +7,7 @@ export default class Container extends Base  {
   public uuid = '';
   public components:any = [];
   public $fragment: any;
-  name: string = 'container';
+  name: string = 'box';
   label: string = '';
   previewType: number = 0;
   type:string = 'inline';
@@ -16,7 +16,7 @@ export default class Container extends Base  {
   config: any = {};
   storage: any = null;
 
-  constructor (storage: any) {
+  constructor (data: any, storage: any) {
     super(storage);
     this.uuid = uuid().split('-')[0]; 
     this.storage = storage;
@@ -42,7 +42,7 @@ export default class Container extends Base  {
 
       this.$fragment = cheerio.load(` 
         <div>
-          <div class="drag-box"></div>
+          <div class="drag-box" data-id="${this.uuid}"></div>
         </div>
       `, {
         xmlMode: true,
@@ -72,7 +72,7 @@ export default class Container extends Base  {
               ${component.getFragment(this.previewType).html()}
             </component-box>`;
 
-          this.$fragment('.drag-box').append(
+          this.$fragment('.drag-box').first().append(
             componentBox
           );
       } else {

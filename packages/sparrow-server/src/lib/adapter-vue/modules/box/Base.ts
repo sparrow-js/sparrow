@@ -12,6 +12,7 @@ export default class Base {
   $fragment: any = null;
   name: string = '';
   widgetType: string = 'box';
+  treePath:string = ''; // 标记容器树路径
 
   constructor (storage) {
     this.storage = storage;
@@ -51,7 +52,6 @@ export default class Base {
         compIndex = this.components.findIndex(item => item.uuid === nextSiblingId);
       }
 
-
       if (type === 'box') {
         const dynamicObj = require(`../box/${id}`).default;
         const comp = new dynamicObj(params, this.storage)
@@ -62,7 +62,7 @@ export default class Base {
         }
       } else {
         const dynamicObj = require(`../component/${id}`).default;
-        const comp = new dynamicObj(params);
+        const comp = new dynamicObj(params, this.treePath);
         if (compIndex >= 0) {
           this.components.splice(compIndex, 0, comp)
         } else {
@@ -72,9 +72,10 @@ export default class Base {
   
     } else {
       let { id, config } = data;
+      
       config.initType = operatetype;
       const dynamicObj = require(`../component/${id}`).default;
-      const instance = new dynamicObj(config)
+      const instance = new dynamicObj(config, this.treePath)
       this.components.push(instance);
       if (instance.storeType === 'box') {
         return instance;
@@ -85,8 +86,21 @@ export default class Base {
   }
 
   public async addBlock (params, ctx) {
+    const {nextSiblingId} = params;
     const block = new Block(this.storage);
-    this.components.push(block);
+    let compIndex = -2;
+    if (nextSiblingId) {
+      compIndex = this.components.findIndex(item => item.uuid === nextSiblingId);
+    }
+
+    if (compIndex >= 0) {
+      this.components.splice(compIndex, 0, block);
+    } else {
+      this.components.push(block);
+    }
+
+    
+   
     await block.addBlock(params);
     const { socket } = ctx;
     socket.emit('generator.scene.block.status', {status: 0, data: {

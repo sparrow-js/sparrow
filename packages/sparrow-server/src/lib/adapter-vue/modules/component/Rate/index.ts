@@ -4,8 +4,8 @@ export default class Rate extends Base{
   name: string = 'Rate';
   params: any;
 
-  constructor (params: any) {
-    super();
+  constructor (params: any, boxPath: string) {
+    super(boxPath);
     this.params = params;
     this.config = {
       // 组件自定义配置
@@ -23,16 +23,7 @@ export default class Rate extends Base{
 
   public fragment () {
     return `
-      <el-form-item
-        label=" "
-        ${this._formItemStr}
-      >
-        <label-box 
-          label="${this.config._custom.label}"
-          uuid="${this.uuid}"
-        ></label-box>
-        <el-rate ${this._attrStr}></el-rate>
-      </el-form-item>
+      <el-rate ${this._attrStr}></el-rate>
     `;
   }
 

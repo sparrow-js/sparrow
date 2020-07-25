@@ -9,8 +9,8 @@ export default class Select extends Base {
   vueParse: any;
   status: string = '';
 
-  constructor (params: any) {
-    super();
+  constructor (params: any, boxPath: string) {
+    super(boxPath);
     this.initVueParse();
     if (params.initType === 'auto') {
       const oldOptions = params._slot.data.match(/selectOptions[a-z0-9]+/)[0];
@@ -61,24 +61,16 @@ export default class Select extends Base {
 
   public fragment () {
     return `
-      <el-form-item label=" "
-        ${this._formItemStr}
-      >
-        <label-box 
-          label="${this.config._custom.label}"
-          uuid="${this.uuid}"
-        ></label-box>
-        <el-select 
-          ${this.status} 
-          ${this._attrStr}>
-          <el-option
-            v-for="item in selectOptions${this.uuid}"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-      </el-form-item>
+      <el-select 
+        ${this.status} 
+        ${this._attrStr}>
+        <el-option
+          v-for="item in selectOptions${this.uuid}"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
     `;
   }
   protected setHandler () {

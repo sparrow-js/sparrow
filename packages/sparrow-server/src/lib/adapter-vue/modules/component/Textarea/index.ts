@@ -2,8 +2,8 @@ import Base from '../Base';
 
 export default class Textarea extends Base {
   name: string = 'Textarea';
-  constructor (params: any) {
-    super();
+  constructor (params: any, boxPath: string) {
+    super(boxPath);
     if (params.initType === 'auto') {
       this.config = params;
     } else {
@@ -29,17 +29,9 @@ export default class Textarea extends Base {
 
   public fragment () {
     return `
-      <el-form-item label=" "
-        ${this._formItemStr}
-      >
-        <label-box 
-          label="${this.config._custom.label}"
-          uuid="${this.uuid}"
-        ></label-box>
-        <el-input
-          ${this._attrStr}
-          type="textarea"></el-input>
-      </el-form-item>
+      <el-input
+        ${this._attrStr}
+        type="textarea"></el-input>
     `;
   }
 
