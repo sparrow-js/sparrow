@@ -191,7 +191,9 @@ export default class extends Vue {
 
   private codeEditType = '';
   private uuid = '';
-  private config = {};
+  private config = {
+    _attr: {}
+  };
 
 
 
@@ -200,6 +202,14 @@ export default class extends Vue {
   // }
 
   private async created() {
+
+    window.EventCustomer.addListener('click_json_tree_callback', data => {
+      try {
+        this.config._attr['v-model'] = data.path === 'JSON' ? '' : data.path.replace('JSON.', '');
+      } catch (e) {}
+      
+    })
+
     window.addEventListener('message', async event => {
       const { data } = event;
       if (data.handler === 'client.dispatch.component') {

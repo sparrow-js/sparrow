@@ -28,7 +28,7 @@ export default class CheckboxGroup extends Base{
         },
         // 组件标签属性
         _attr: {
-          'v-model': params['v-model'] || ''
+          'v-model': params['v-model'] || 'initCheckbox'
         },
         // 插槽属性
         _slot: {

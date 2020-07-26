@@ -95,7 +95,9 @@ export default class App extends Vue {
             }
           };
 
-          const result = await socket.emit('generator.scene.setting', params);
+          console.log('******111*****', params);
+
+          const result = await socket.emit('generator.scene.insertLabel', params);
         }
 
         // if (data.handler === 'client.dispatch.component') {

@@ -1,7 +1,8 @@
 const uuid = require('@lukeed/uuid');
-import { observable, observe, unobserve } from '@nx-js/observer-util';
 import * as _ from 'lodash';
 import * as cheerio from 'cheerio';
+import * as path from 'path';
+import * as fsExtra from 'fs-extra';
 import Block from './Block';
 
 export default class Base {
@@ -46,13 +47,16 @@ export default class Base {
   public addComponent (data: any, operatetype: string = 'manual') {
     if (operatetype === 'manual') {
 
-      let { id, type, params = {}, nextSiblingId } = data;
+      let { id, params = {}, nextSiblingId } = data;
       let compIndex = -2;
       if (nextSiblingId) {
         compIndex = this.components.findIndex(item => item.uuid === nextSiblingId);
       }
 
-      if (type === 'box') {
+      const hasBox = fsExtra.pathExistsSync(path.join(__dirname, `../box/${id}`));
+
+
+      if (hasBox) {
         const dynamicObj = require(`../box/${id}`).default;
         const comp = new dynamicObj(params, this.storage)
         if (compIndex >= 0) {

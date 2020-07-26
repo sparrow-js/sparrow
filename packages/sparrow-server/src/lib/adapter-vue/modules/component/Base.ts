@@ -20,7 +20,8 @@ export default class Base {
 
   public renderFragment () {
     let formItem = ''
-    if (this.boxPath.match('Form')) {
+    if (this.boxPath.match('Form') || this.config._custom.insideForm === true) {
+      this.config._custom.insideForm = true;
       formItem = `
         <el-form-item label=" "
           ${this._formItemStr}
@@ -58,7 +59,7 @@ export default class Base {
     return this.$fragment;
   }
 
-  public setLabel(labelValue: string) {
+  public insertLabel(labelValue: string) {
     this.config._custom.label = labelValue
   }
 

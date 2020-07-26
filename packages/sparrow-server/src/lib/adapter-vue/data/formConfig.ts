@@ -149,39 +149,32 @@ export const componentConf = [
     label: '评分',
     key: 'Rate',
   },
-  {
-    label: '联动容器',
-    key: 'LogicBox',
-    params: {
-      type: 'box'
-    },
-  },
-  {
-    label: '自增容器',
-    key: 'ArrayListBox',
-    params: {
-      type: 'box'
-    },
-  },
-  {
-    label: '卡片容器',
-    key: 'CardBox',
-    params: {
-      type: 'box'
-    },
-  },
-  {
-    label: 'tabs容器',
-    key: 'TabsBox',
-    params: {
-      type: 'box'
-    }, 
-  },
-  {
-    label: '按钮操作',
-    key: 'Custom',
-    params: {
-      type: 'box',
-    },
-  },
+  // {
+  //   label: '联动容器',
+  //   key: 'LogicBox',
+  //   params: {
+  //     type: 'box'
+  //   },
+  // },
+  // {
+  //   label: '自增容器',
+  //   key: 'ArrayListBox',
+  //   params: {
+  //     type: 'box'
+  //   },
+  // },
+  // {
+  //   label: '卡片容器',
+  //   key: 'CardBox',
+  //   params: {
+  //     type: 'box'
+  //   },
+  // },
+  // {
+  //   label: 'tabs容器',
+  //   key: 'TabsBox',
+  //   params: {
+  //     type: 'box'
+  //   }, 
+  // },
 ];

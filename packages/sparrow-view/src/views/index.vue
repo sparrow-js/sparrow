@@ -1,13 +1,13 @@
 <template>
-  <div class="home drag-box" data-id="32e6202f" />
+  <div class="home drag-box" data-id="1dad5bcd" />
 </template>
 
 <script>
 export default {
+  methods: {},
+
   data() {
     return {};
-  },
-
-  methods: {}
+  }
 };
 </script>

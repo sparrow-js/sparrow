@@ -110,7 +110,7 @@
           <span class="update-data" @click.stop="updateCodeData"
             >更新</span
           >
-          <i class="iconfont icon-iconfront-"></i>
+          <!-- <i class="iconfont icon-iconfront-"></i> -->
         </div>
         <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
           <el-tab-pane label="code" name="code">
@@ -223,10 +223,16 @@ export default class CompBox extends Vue {
     this.tree = [tree];
   }
 
+  private async getSceneConfig () {
+    const res = await socket.emit('generator.scene.getConfig', {});
+    this.dataCode = res.dataCode;
+  }
+
   private tabChange(index) {
     AppModule.setActiveTreeIndex(index);
     this.getSceneTree();
     this.getScene();
+    this.getSceneConfig();
   }
 
   private handleNodeClick(node) {
@@ -317,7 +323,23 @@ export default class CompBox extends Vue {
     }
   }
 
-  private updateCodeData () {}
+
+  private async updateCodeData() {
+    const result = await socket.emit('generator.scene.settinVueGenerator', {
+      boxUuid: AppModule.boxUuid,
+      data: {
+        code: this.dataCode
+      }
+    });
+
+    if (result && result.status === 0) {
+      this.$message({
+        message: '操作成功',
+        type: 'success'
+      });
+    }
+  }
+
 }
 </script>
 <style lang="scss" scoped>
@@ -428,5 +450,8 @@ export default class CompBox extends Vue {
 .icon-plus{
   padding: 0 6px;
   color: #909399;
+}
+.update-data{
+  cursor: pointer;
 }
 </style>

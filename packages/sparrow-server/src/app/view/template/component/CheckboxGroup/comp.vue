@@ -13,6 +13,7 @@
 export default {
   data () {
     return {
+      initCheckbox: [],
       checkboxOptions_unique: [
         {
           value: '复选框1',

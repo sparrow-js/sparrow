@@ -35,8 +35,12 @@ export default class Scene {
   tree: any;
   uuid: string = '';
   formatTemp: string = '';
+  config: any = {
+    dataCode: 'var data = {}'
+  };
 
   constructor (params: any = {}) {
+    console.log('************', params);
     this.uuid = uuid().split('-')[0];
     this.VueGenerator = new VueGenerator();
     const {initScene} = params;
@@ -91,7 +95,10 @@ export default class Scene {
       });
     }
     fn(data, this)
-   
+    setTimeout(() => {
+      this.renderPage();
+    }, 200)
+    
   }
 
   private async init () {
@@ -192,8 +199,10 @@ export default class Scene {
     this.renderPage();
   }
 
-  public addComponent (data) {
+  public addComponent (data, operateType = 'manual') {
     const {boxUuid, id, type, params = {}, nextSiblingId} = data;
+
+    let backComp = null;
 
     if (!boxUuid || boxUuid === this.uuid) {
       let compIndex = -2;
@@ -201,7 +210,10 @@ export default class Scene {
         compIndex = this.components.findIndex(item => item.uuid === nextSiblingId);
       }
 
-      if (type === 'box') {
+      const hasBox = fsExtra.pathExistsSync(path.join(__dirname, `../box/${id}`));
+
+
+      if (hasBox) {
         const dynamicObj = require(`../box/${id}`).default;
         const comp = new dynamicObj(data, storage)
         if (compIndex >= 0) {
@@ -209,6 +221,7 @@ export default class Scene {
         } else {
           this.components.push(comp);
         }
+        backComp = comp;
       } else {
         const dynamicObj = require(`../component/${id}`).default;
         const comp = new dynamicObj(params, '');
@@ -217,17 +230,22 @@ export default class Scene {
         } else {
           this.components.push(comp);
         }
+        backComp = null;
       }
 
 
     } else {
       const currBox = this.findComponent(boxUuid, this.components);
       if (currBox) {
-        currBox.addComponent(data);
+        backComp = currBox.addComponent(data);
       }
     }
     
-    this.renderPage();
+    if (operateType !== 'auto') {
+      this.renderPage();
+    }
+
+    return backComp;
   }
 
   public async addBlock (params, ctx) {
@@ -252,6 +270,17 @@ export default class Scene {
     }});
   }
 
+  public insertLabel (params) {
+
+    const {data} = params;
+    const currentComp = this.findComponent(data.uuid, this.components);
+
+    if (currentComp) {
+      currentComp.insertLabel(data.value);
+      this.renderPage();
+    }
+
+  }
 
   public async setting (params: any) {
 
@@ -268,6 +297,15 @@ export default class Scene {
     return {
       status: 1
     }
+  }
+
+  public settinVueGenerator (params: any) {
+    const { data } = params; 
+    this.config.dataCode = data.code;
+    return {
+      status: 0
+    }
+    this.renderPage();
   }
 
   public async settingConfig (params: any) {
@@ -307,10 +345,13 @@ export default class Scene {
 
   public getConfig (params) {
     const { uuid } = params;
-    
-    const curBox = this.findComponent(uuid, this.components);
-    if (curBox) {
-      return curBox.getConfig()
+    if (uuid) {
+      const curBox = this.findComponent(uuid, this.components);
+      if (curBox) {
+        return curBox.getConfig()
+      }
+    } else {
+      return this.config;
     }
   }
 
@@ -498,6 +539,12 @@ export default class Scene {
     this.params.previewViewStatus = storage.get('preview_view_status');
     this.$('.home').empty();
     this.scriptData = this.VueGenerator.initScript();
+
+    if (this.config.dataCode) {
+      const dataCode = this.VueGenerator.getDataStrAst(this.config.dataCode);
+      this.VueGenerator.appendData(dataCode);
+    }
+
     let methods = [];
     let vueData = [];
     this.loopThroughBox(this.components);
