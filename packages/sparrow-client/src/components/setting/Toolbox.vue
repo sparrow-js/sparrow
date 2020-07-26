@@ -145,7 +145,7 @@ export default {
     },
 
     mousedownWidget(widget, type) {
-=      this.widgetData = widget;
+      this.widgetData = widget;
       this.widgetData.id = this.widgetData.key;
       this.widgetData.type = type;
     },

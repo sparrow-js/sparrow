@@ -39,26 +39,41 @@ export default class Data {
             id: 'layout',
             key: 'layout',
             label: 'colum 1',
+            params: {
+              columns: 1
+            }
           },
           {
             id: 'layout',
             key: 'layout',
             label: 'colum 2',
+            params: {
+              columns: 2
+            }
           },
           {
             id: 'layout',
             key: 'layout',
             label: 'colum 3',
+            params: {
+              columns: 3
+            }
           },
           {
             id: 'layout',
             key: 'layout',
             label: 'colum 4',
+            params: {
+              columns: 4
+            }
           },
           {
             id: 'layout',
             key: 'layout',
             label: 'colum 6',
+            params: {
+              columns: 6
+            }
           }
         ]
       },
@@ -72,27 +87,51 @@ export default class Data {
         type: 'component',
         list: [
           {
-            id: 'HText',
-            key: 'HText',
-            label: 'H1',
+            id: 'Typography',
+            key: 'Typography',
+            label: '主标题',
             params: {
               type: 'H1'
             }
           },
           {
-            id: 'HText',
-            key: 'HText',
-            label: 'H2',
+            id: 'Typography',
+            key: 'Typography',
+            label: '标题',
             params: {
               type: 'H2'
             }
           },
           {
-            id: 'HText',
-            key: 'HText',
-            label: 'H3',
+            id: 'Typography',
+            key: 'Typography',
+            label: '次标题',
             params: {
               type: 'H3'
+            }
+          },
+          {
+            id: 'Typography',
+            key: 'Typography',
+            label: '小标题',
+            params: {
+              type: 'H4'
+            }
+          },
+          {
+            id: 'Typography',
+            key: 'Typography',
+            label: '正文',
+            params: {
+              type: 'Text'
+            }
+          },
+          {
+            id: 'Typography',
+            key: 'Typography',
+            label: '辅助文字',
+            params: {
+              type: 'AText'
             }
           }
         ]
@@ -105,17 +144,16 @@ export default class Data {
             id: 'Button',
             key: 'Button',
             label: 'Button',
-            params: {
-              type: 'Button'
-            }
           },
           {
-            id: 'Button',
-            key: 'Button',
+            id: 'Link',
+            key: 'Link',
             label: 'link',
-            params: {
-              type: 'link'
-            }
+          },
+          {
+            id: 'Icon',
+            key: 'Icon',
+            label: 'Icon',
           }
         ]
       }

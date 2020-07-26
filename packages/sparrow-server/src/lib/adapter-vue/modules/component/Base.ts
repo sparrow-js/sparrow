@@ -68,7 +68,7 @@ export default class Base {
 
   protected setHandler () {}
 
-  public setConfig (config: any) {
+  public settingConfig (config: any) {
     this.config = config;
     this.setHandler();
   }

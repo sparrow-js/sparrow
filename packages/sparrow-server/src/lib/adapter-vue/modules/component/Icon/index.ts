@@ -2,8 +2,8 @@
 import * as cheerio from 'cheerio';
 const uuid = require('@lukeed/uuid');
 
-export default class Typography{
-  name: string = 'Button';
+export default class Icon{
+  name: string = 'Icon';
   config: any = {};
   uuid: string = '';
   $fragment: any;
@@ -11,7 +11,7 @@ export default class Typography{
   constructor (params: any) {
     this.uuid = uuid().split('-')[0];
     this.$fragment = cheerio.load(`
-      <el-button type="primary">主要按钮</el-button>
+      <i class="el-icon-question"></i>
     `, {
       xmlMode: true,
       decodeEntities: false,

@@ -18,9 +18,9 @@ export default class Column{
   constructor (data: any, storage: any) {
     this.storage = storage;
     this.uuid = uuid().split('-')[0]; 
-    
+    const {span} = data;
     this.$fragment = cheerio.load(`
-      <el-col :span="12">
+      <el-col :span="${span}">
         <div class="column"></div>
       </el-col>
     `, {

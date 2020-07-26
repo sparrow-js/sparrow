@@ -192,15 +192,38 @@ export default class Scene {
     this.renderPage();
   }
 
-  public addComponent (params) {
-    const {boxUuid, id} = params;
+  public addComponent (data) {
+    const {boxUuid, id, type, params = {}, nextSiblingId} = data;
+
     if (!boxUuid || boxUuid === this.uuid) {
-      const dynamicObj = require(`../box/${id}`).default;
-      this.components.push(new dynamicObj(params, storage));
+      let compIndex = -2;
+      if (nextSiblingId) {
+        compIndex = this.components.findIndex(item => item.uuid === nextSiblingId);
+      }
+
+      if (type === 'box') {
+        const dynamicObj = require(`../box/${id}`).default;
+        const comp = new dynamicObj(data, storage)
+        if (compIndex >= 0) {
+          this.components.splice(compIndex, 0, comp)
+        } else {
+          this.components.push(comp);
+        }
+      } else {
+        const dynamicObj = require(`../component/${id}`).default;
+        const comp = new dynamicObj(params, '');
+        if (compIndex >= 0) {
+          this.components.splice(compIndex, 0, comp)
+        } else {
+          this.components.push(comp);
+        }
+      }
+
+
     } else {
       const currBox = this.findComponent(boxUuid, this.components);
       if (currBox) {
-        currBox.addComponent(params);
+        currBox.addComponent(data);
       }
     }
     
@@ -250,8 +273,10 @@ export default class Scene {
   public async settingConfig (params: any) {
     const {data} = params;
     const currentComp = this.findComponent(data.uuid, this.components);
+
     if (currentComp && currentComp.settingConfig) {
-      currentComp.settingConfig(data);
+      currentComp.settingConfig(data.config);
+      this.renderPage();
     }
   }
 

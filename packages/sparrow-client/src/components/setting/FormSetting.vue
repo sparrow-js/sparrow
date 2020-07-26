@@ -159,6 +159,7 @@ import { AppModule } from '@/store/modules/app';
 import socket from '@/util/socket.js';
 import JsonHandler from '@/components/jsonhandler/index.vue';
 import RuleList from './RuleList.vue';
+import _ from 'lodash';
 
 @Component({
   name: 'Setting',
@@ -168,8 +169,8 @@ import RuleList from './RuleList.vue';
   }
 })
 export default class extends Vue {
-  @Prop({ default: () => null }) private config: any;
-  @Prop({default: ''}) private uuid: string;
+  // @Prop({ default: () => null }) private config: any;
+  // @Prop({default: ''}) private uuid: string;
 
   private activeNames = ['1', '2', '3'];
   private setting = {
@@ -189,54 +190,82 @@ export default class extends Vue {
   private showCodeDraw = false;
 
   private codeEditType = '';
+  private uuid = '';
+  private config = {};
 
 
 
-  get showSetting() {
-    return SettingModule.showSetting;
-  }
+  // get showSetting() {
+  //   return SettingModule.showSetting;
+  // }
 
   private async created() {
+    window.addEventListener('message', async event => {
+      const { data } = event;
+      if (data.handler === 'client.dispatch.component') {
+        this.uuid = _.get(data, 'data.params.uuid');
+
+        const result = await socket.emit('generator.scene.getConfig', {
+          uuid: this.uuid,
+        });
+
+        console.log('******8*****', result)
+
+        this.config = result;
+
+      }
+
+      if (data.handler === 'client.dispatch.box') {
+        this.uuid = _.get(data, 'data.params.uuid');
+
+        const result = await socket.emit('generator.scene.getConfig', {
+          uuid: _.get(data, 'uuid'),
+        });
+        this.config = result;
+      }
+
+
+    })
   }
 
   private showSettingHandler() {
     SettingModule.setShowSettingHandler(!SettingModule.showSetting);
   }
 
-  private async displayChange() {
-    const result = await socket.emit('generator.scene.setting', {
-      boxUuid: AppModule.boxUuid,
-      data: {
-        handler: 'formInline',
-        key: ':inline',
-        value: this.setting.inline
-      }
-    });
+  // private async displayChange() {
+  //   const result = await socket.emit('generator.scene.setting', {
+  //     boxUuid: AppModule.boxUuid,
+  //     data: {
+  //       handler: 'formInline',
+  //       key: ':inline',
+  //       value: this.setting.inline
+  //     }
+  //   });
 
-    if (result && result.status === 0) {
-      this.$message({
-        message: '操作成功',
-        type: 'success'
-      });
-    }
-  }
+  //   if (result && result.status === 0) {
+  //     this.$message({
+  //       message: '操作成功',
+  //       type: 'success'
+  //     });
+  //   }
+  // }
 
-  private async updateCodeData() {
-    const result = await socket.emit('generator.scene.setting', {
-      boxUuid: AppModule.boxUuid,
-      data: {
-        handler: 'data',
-        code: this.setting.dataCode
-      }
-    });
+  // private async updateCodeData() {
+  //   const result = await socket.emit('generator.scene.setting', {
+  //     boxUuid: AppModule.boxUuid,
+  //     data: {
+  //       handler: 'data',
+  //       code: this.setting.dataCode
+  //     }
+  //   });
 
-    if (result && result.status === 0) {
-      this.$message({
-        message: '操作成功',
-        type: 'success'
-      });
-    }
-  }
+  //   if (result && result.status === 0) {
+  //     this.$message({
+  //       message: '操作成功',
+  //       type: 'success'
+  //     });
+  //   }
+  // }
 
 
   private handleCodeClick() {
@@ -264,10 +293,9 @@ export default class extends Vue {
 
   private async syncConfig () {
     if (!this.uuid || !this.config) return;
-     const result = await socket.emit('generator.scene.setting', {
+     const result = await socket.emit('generator.scene.settingConfig', {
       boxUuid: AppModule.boxUuid,
       data: {
-        handler: 'settingConfig',
         uuid: this.uuid,
         config: this.config
       }

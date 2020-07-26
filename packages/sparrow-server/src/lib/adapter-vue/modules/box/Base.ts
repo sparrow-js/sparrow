@@ -109,22 +109,5 @@ export default class Base {
     }});
   }
 
-  observeComp () {
-    if (this.observe) {
-      unobserve(this.observe);
-    }
-
-    this.components = observable(this.components);
-    this.observe = observe(() => {
-      if (Array.isArray(this.components)) {
-        this.resetRender();
-      } else {
-        if (!_.isEmpty(this.components)) {
-          this.resetRender();
-        }
-      }
-    });
-  }
-
   getConfig () {}
 }

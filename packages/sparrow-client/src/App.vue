@@ -71,10 +71,6 @@ export default class App extends Vue {
     return AppModule.showComponentBox;
   }
 
-  get boxIndex() {
-    return AppModule.boxIndex;
-  }
-
   get boxUuid() {
     return AppModule.boxUuid;
   }
@@ -92,7 +88,6 @@ export default class App extends Vue {
         // 插入组件label
         if (data.handler === 'client.component.insertLabel') {
           const params = {
-            boxIndex: this.boxIndex,
             boxUuid: this.boxUuid,
             data: {
               ...data.data.params,
@@ -103,20 +98,20 @@ export default class App extends Vue {
           const result = await socket.emit('generator.scene.setting', params);
         }
 
-        if (data.handler === 'client.dispatch.component') {
+        // if (data.handler === 'client.dispatch.component') {
+        //   const result = await socket.emit('generator.scene.getConfig', {
+        //     uuid: _.get(data, 'data.params.uuid'),
+        //   });
+          
+        //   SettingModule.setConfig(result)
+        // }
 
-          const result = await socket.emit('generator.scene.getConfig', {
-            uuid: _.get(data, 'data.params.uuid'),
-          });
-          SettingModule.setConfig(result)
-        }
-
-        if (data.handler === 'client.dispatch.box') {
-          const result = await socket.emit('generator.scene.getConfig', {
-            uuid: _.get(data, 'uuid'),
-          });
-          SettingModule.setConfig(result)
-        }
+        // if (data.handler === 'client.dispatch.box') {
+        //   const result = await socket.emit('generator.scene.getConfig', {
+        //     uuid: _.get(data, 'uuid'),
+        //   });
+        //   SettingModule.setConfig(result)
+        // }
 
         // if (data.handler === 'client.component.insertFormComp') {
         //   AppModule.InsertData(data);
