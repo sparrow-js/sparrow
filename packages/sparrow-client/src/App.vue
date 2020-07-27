@@ -94,34 +94,20 @@ export default class App extends Vue {
               handler: 'addLabel'
             }
           };
-
-          console.log('******111*****', params);
-
           const result = await socket.emit('generator.scene.insertLabel', params);
         }
 
-        // if (data.handler === 'client.dispatch.component') {
-        //   const result = await socket.emit('generator.scene.getConfig', {
-        //     uuid: _.get(data, 'data.params.uuid'),
-        //   });
-          
-        //   SettingModule.setConfig(result)
-        // }
+        if (data.handler === 'client.screen.keydown') {
+          const {operate} = data;
 
-        // if (data.handler === 'client.dispatch.box') {
-        //   const result = await socket.emit('generator.scene.getConfig', {
-        //     uuid: _.get(data, 'uuid'),
-        //   });
-        //   SettingModule.setConfig(result)
-        // }
+          if (operate === 'ctrl+c') {
+            this.copyHandler();
+          } else if (operate === 'ctrl+v') {
+            this.pasteHandler();
+          }
 
-        // if (data.handler === 'client.component.insertFormComp') {
-        //   AppModule.InsertData(data);
-        // }
+        }
 
-        // if (data.handler === 'client.component.insertTableComp') {
-        //   AppModule.InsertData(data);
-        // }
         // 延迟同步uuid
         setTimeout(() => {
           if (data.uuid !== undefined) {
@@ -153,6 +139,23 @@ export default class App extends Vue {
     const viewContent: any = this.$refs.viewContent;
     viewContent.addEventListener('click', e => {
       e.stopPropagation();
+    });
+  }
+
+  private async pasteHandler () {
+    // pasteHandler
+    const result = await socket.emit('generator.scene.pasteHandler', {
+      compId: this.boxUuid,
+    });
+  }
+
+  private async copyHandler () {
+    const result = await socket.emit('generator.scene.copyHandler', {
+      activeCompId: AppModule.activeCompId
+    });
+    this.$message({
+      message: '复制成功',
+      type: 'success'
     });
   }
 

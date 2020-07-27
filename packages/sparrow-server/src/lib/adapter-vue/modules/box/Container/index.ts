@@ -7,7 +7,7 @@ export default class Container extends Base  {
   public uuid = '';
   public components:any = [];
   public $fragment: any;
-  name: string = 'box';
+  name: string = 'Container';
   label: string = '';
   previewType: number = 0;
   type:string = 'inline';

@@ -15,7 +15,7 @@
               @change="toggleWidget"
             >
               <el-radio-button label="组件"></el-radio-button>
-              <el-radio-button label="动态区块"></el-radio-button>
+              <el-radio-button label="编辑区块"></el-radio-button>
               <el-radio-button label="静态区块"></el-radio-button>
             </el-radio-group>
           </div>
@@ -48,8 +48,33 @@
             </el-collapse-item>
           </el-collapse>
         </div>
-        <div v-if="widget === '动态区块'">
-          <p class="no-widget">啥也没有，开发中</p>
+        <div v-if="widget === '编辑区块'">
+           <el-collapse v-model="editBlockActiveNames" @change="handleChange">
+            <el-collapse-item
+              v-for="(item, index) in editBlockList"
+              :key="index"
+              :title="item.label"
+              :name="index"
+            >
+              <div class="comp-list drag-box">
+                <div
+                  class="comp-item"
+                  v-for="(comp, index) in item.list"
+                  :key="index"
+                  @mousedown="mousedownWidget(comp, item.type)"
+                  @click="addComp(comp.key, item.type, comp.params)"
+                >
+                  <div class="drag-box">
+                    <div class="drag-box-item">
+                        <span
+                      class="comp-list-label">{{ comp.label }}</span>
+                    </div>
+                  </div>
+       
+                </div>
+              </div>
+            </el-collapse-item>
+          </el-collapse>
         </div>
         <div class="widget-box" v-if="widget === '静态区块'">
           <el-collapse v-model="blockNames" @change="handleChange">
@@ -106,6 +131,8 @@ export default {
       blockNames: [0],
       staticBlockList: [],
       widgetData: {},
+      editBlockList: [],
+      editBlockActiveNames: [0, 1, 2]
     };
   },
   async created() {
@@ -157,12 +184,24 @@ export default {
       if (value === '静态区块') {
         this.getStaticBlock();
       }
+      
+      if (value === '编辑区块') {
+        this.getEditBlockList();
+      }
       this.bindClientDrag();
     },
     async getStaticBlock() {
       const blockList = await socket.emit('material.index.getBlocks');
       this.staticBlockList = blockList.list;
     },
+
+    async getEditBlockList() {
+      console.log('*******1188')
+      const blockList = await socket.emit('generator.data.getEditBlockList');
+      console.log('*******8******', blockList);
+      this.editBlockList = blockList;
+    },
+
     async addStaticBlock(id, originData) {
       Loading.open();
       await socket.emit('generator.scene.addBlock', {

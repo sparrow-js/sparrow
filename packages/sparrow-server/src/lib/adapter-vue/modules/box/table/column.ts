@@ -54,7 +54,7 @@ export default class Column{
           label="${this.config._custom.label}"
         >
           <template slot="header" slot-scope="{row, column, $index}">
-            <table-header-box uuid="${this.uuid}" :label="column.label"></table-header-box>
+            <edit-text-box uuid="${this.uuid}" :label="column.label"></edit-text-box>
           </template>
           ${cellbox}
         </el-table-column>  

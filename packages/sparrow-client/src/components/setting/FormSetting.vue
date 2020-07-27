@@ -195,6 +195,8 @@ export default class extends Vue {
     _attr: {}
   };
 
+  
+
 
 
   // get showSetting() {
@@ -218,16 +220,14 @@ export default class extends Vue {
         const result = await socket.emit('generator.scene.getConfig', {
           uuid: this.uuid,
         });
-
-        console.log('******8*****', result)
-
+        AppModule.setActiveCompId(this.uuid);
         this.config = result;
 
       }
 
       if (data.handler === 'client.dispatch.box') {
         this.uuid = _.get(data, 'data.params.uuid');
-
+        AppModule.setActiveCompId(this.uuid);
         const result = await socket.emit('generator.scene.getConfig', {
           uuid: _.get(data, 'uuid'),
         });

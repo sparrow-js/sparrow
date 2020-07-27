@@ -33,21 +33,25 @@
       </el-tooltip>
     </div>
     
-  <!-- <i  @click="saveScene" class="iconfont icon-baocu"> -->
-        <!-- </i> -->
     <div class="toolbar__item">
       <el-tooltip class="item" effect="dark" content="保存" placement="top">
         <i class="iconfont icon-baocun"  @click="saveScene"></i>
       </el-tooltip>
     </div>
 
-    <div class="toolbar__item success" @click="showPopover = !showPopover">
+    <div class="toolbar-search">
+      <el-input size="mini" placeholder="搜索组件" v-model="search">
+        <i slot="suffix" class="el-input__icon el-icon-search"></i>
+      </el-input>
+    </div>
+
+    <!-- <div class="toolbar__item success" @click="showPopover = !showPopover">
       <el-tooltip class="item" effect="dark" content="场景" placement="top">
         <span>
           <font-awesome-icon :icon="['fas', 'file']" />
         </span>
       </el-tooltip>
-    </div>
+    </div> -->
 
     <file-export
       :dialog-visible.sync="dialogVisible"
@@ -55,7 +59,7 @@
       v-if="workFolder"
     ></file-export>
 
-    <el-popover
+    <!-- <el-popover
       ref="popover"
       v-model="showPopover"
       placement="right"
@@ -65,7 +69,7 @@
     >
       <span class="scene-item" @click="sceneHandler('BaseForm')">基础表单</span>
       <span class="scene-item" @click="sceneHandler('BaseTable')">基础表格</span>
-    </el-popover>
+    </el-popover> -->
 
 
     <el-dialog title="创建模块" width="400px" :visible.sync="dialogFormVisible">
@@ -108,6 +112,7 @@ export default class extends Vue {
     name: '',
     url: ''
   };
+  private search = '';
 
   async created() {
     const result = await socket.emit('home.setting.workFolder');
@@ -210,6 +215,7 @@ export default class extends Vue {
   display: flex;
   flex-direction: row;
   margin-left: 10px;
+  align-items: center;
   &__item {
     height: 32px;
     display: flex;
@@ -245,5 +251,10 @@ export default class extends Vue {
   margin-right: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+}
+.toolbar-search{
+  position: absolute;
+  left: 50%;
+  margin-left: -86px;
 }
 </style>

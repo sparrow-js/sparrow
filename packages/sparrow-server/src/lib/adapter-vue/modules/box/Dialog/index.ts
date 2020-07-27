@@ -5,6 +5,7 @@ import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import Config from '../../../config';
 import Box from '../Box';
+import Container from '../Container'
 
 export default class Dialog{
   public uuid = '';
@@ -15,8 +16,11 @@ export default class Dialog{
   insertFileType: string = 'inline';
   vueParse: any;
   displayMode: string;
+  storage: any = null;
 
-  constructor (data: any) {
+
+  constructor (data: any, storage: any) {
+    this.storage = storage;
     this.displayMode = data.displayMode || 'btn';
     this.uuid = uuid().split('-')[0];
     this.renderFragment(0);
@@ -49,7 +53,7 @@ export default class Dialog{
   }
 
   addBox () {
-    this.components.push(new Box());
+    this.components.push(new Container({}, this.storage));
   }
   
   renderTemplate () {

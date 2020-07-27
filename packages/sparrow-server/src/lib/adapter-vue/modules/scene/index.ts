@@ -38,9 +38,9 @@ export default class Scene {
   config: any = {
     dataCode: 'var data = {}'
   };
+  tempCopyStore: any = {};
 
   constructor (params: any = {}) {
-    console.log('************', params);
     this.uuid = uuid().split('-')[0];
     this.VueGenerator = new VueGenerator();
     const {initScene} = params;
@@ -53,48 +53,25 @@ export default class Scene {
     }
 
     if (params.label === 'page') {
-      this.jsonToScene(params);
+      this.jsonToScene(params, this);
     }
 
     this.renderPage();
   }
 
-  private jsonToScene (data: any) {
+  private jsonToScene (data: any, obj) {
     const fn = (data, obj) => {
       const {children} = data;
       children.forEach(item => {
-        if (item.id === 'box') {
-          if (obj.addCustomComp) { // 处理特定场景下box追加
-            const box = obj.addCustomComp(item);
-            const curComp = item.children[0];
-            if (curComp) {
-              const comp = box.addComponent(curComp);
-              if (curComp.children) {
-                fn(curComp, comp);
-              }
-            }
-          } else {
-            const box = new Box();
-            const curComp = item.children[0];
-            if (curComp) {
-              const comp = box.addComponent(curComp);
-              if (curComp.children) {
-                fn(curComp, comp);
-              }
-            }
-            obj.components.push(box);
-          }
-      
-        } else {
-          const curComp = obj.addComponent(item, 'auto');
-          if (item.children && item.children.length) {
-            fn(item,  curComp)
-          }
+    
+        const curComp = obj && obj.addComponent(item, 'auto');
+        if (item.children && item.children.length) {
+          fn(item,  curComp)
         }
   
       });
     }
-    fn(data, this)
+    fn(data, obj)
     setTimeout(() => {
       this.renderPage();
     }, 200)
@@ -299,13 +276,13 @@ export default class Scene {
     }
   }
 
-  public settinVueGenerator (params: any) {
+  public setVueGenerator (params: any) {
     const { data } = params; 
     this.config.dataCode = data.code;
+    this.renderPage();
     return {
       status: 0
     }
-    this.renderPage();
   }
 
   public async settingConfig (params: any) {
@@ -353,6 +330,19 @@ export default class Scene {
     } else {
       return this.config;
     }
+  }
+
+
+  public copyHandler (data) {
+    const { activeCompId } = data;
+    const curBox = this.findComponent(activeCompId, this.components);
+    this.tempCopyStore = this.getSaveTree(curBox);
+  }
+
+  public pasteHandler (data) {
+    const {compId} = data;
+    const curBox = this.findComponent(compId, this.components);
+    this.jsonToScene({children: [this.tempCopyStore]}, curBox)
   }
 
   public getParams () {

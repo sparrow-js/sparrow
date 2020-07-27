@@ -10,10 +10,9 @@ import store from '@/store';
 export interface IAppState {
   showDashboard: boolean;
   showComponentBox: boolean;
-  boxIndex: number;
   boxUuid: string;
+  activeCompId: string;
   insertData: {
-    boxIndex: number;
     data: any;
   };
   insertPosition: any;
@@ -25,9 +24,7 @@ export interface IAppState {
 @Module({ dynamic: true, store, name: 'app' })
 class App extends VuexModule implements IAppState {
   public showDashboard = false;
-  public boxIndex = -1;
   public insertData = {
-    boxIndex: -1,
     data: {}
   };
   public dashboardTabIndex = 0;
@@ -37,6 +34,7 @@ class App extends VuexModule implements IAppState {
   public uuid = '';
   public boxUuid = '';
   public activeTreeIndex = 2;
+  public activeCompId = '';
 
   @Mutation
   private SHOW_DASHBOARD(showDashboard: boolean) {
@@ -48,10 +46,6 @@ class App extends VuexModule implements IAppState {
     this.insertData = insertData;
   }
 
-  @Mutation
-  private SET_BOX_INDEX(index: number) {
-    this.boxIndex = index;
-  }
 
   @Mutation
   private SHOW_COMPONENT(showComponentBox: boolean) {
@@ -82,6 +76,11 @@ class App extends VuexModule implements IAppState {
   private SET_ACTIVE_TREE_INDEX (activeIndex: number) {
     this.activeTreeIndex = activeIndex;
   }
+  @Mutation
+  private SET_ACTIVE_COMP_ID (compId: string) {
+    this.activeCompId = compId;
+  }
+
 
 
   @Action
@@ -94,10 +93,6 @@ class App extends VuexModule implements IAppState {
     this.INSERT_DATA(insertData);
   }
 
-  @Action
-  public SetDoxIndex(index: number) {
-    this.SET_BOX_INDEX(index);
-  }
 
   @Action
   public SetShowComponent(showComponentBox: boolean) {
@@ -127,6 +122,11 @@ class App extends VuexModule implements IAppState {
   @Action
   public setActiveTreeIndex (activeIndex: number) {
     this.SET_ACTIVE_TREE_INDEX(activeIndex);
+  }
+
+  @Action
+  public setActiveCompId (compId: string) {
+    this.SET_ACTIVE_COMP_ID(compId);
   }
 
 }

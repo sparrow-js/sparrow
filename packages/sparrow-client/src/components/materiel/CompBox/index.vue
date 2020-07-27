@@ -229,10 +229,15 @@ export default class CompBox extends Vue {
   }
 
   private tabChange(index) {
+    const codemirror: any = this.$refs.codemirror;
+    
     AppModule.setActiveTreeIndex(index);
     this.getSceneTree();
     this.getScene();
     this.getSceneConfig();
+    setTimeout(() => {
+      codemirror.codemirror.refresh();
+    }, 100);
   }
 
   private handleNodeClick(node) {
@@ -322,10 +327,11 @@ export default class CompBox extends Vue {
       );
     }
   }
+  
 
 
   private async updateCodeData() {
-    const result = await socket.emit('generator.scene.settinVueGenerator', {
+    const result = await socket.emit('generator.scene.setVueGenerator', {
       boxUuid: AppModule.boxUuid,
       data: {
         code: this.dataCode
@@ -403,7 +409,7 @@ export default class CompBox extends Vue {
   padding: 5px;
   width: 100%;
   box-sizing: border-box;
-  background-color: #00000095;
+  background-color: #409EFF;
 }
 .scene-item {
   position: relative;

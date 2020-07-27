@@ -164,4 +164,22 @@ export default class Data {
       // },
     ]
   }
+
+  public getEditBlockList () {
+    return [
+      {
+        label: '页头',
+        type: 'editBox',
+        list: [
+          {
+            id: 'PageHeader',
+            key: 'PageHeader',
+            label: '页头',
+            icon: ''
+          },
+        ]
+      },
+    ]
+  }
+  
 }

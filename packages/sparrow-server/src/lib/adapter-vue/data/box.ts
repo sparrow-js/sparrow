@@ -6,12 +6,6 @@ export default [
     icon: ''
   },
   {
-    id: 'PageHeader',
-    key: 'PageHeader',
-    label: '页头',
-    icon: ''
-  },
-  {
     id: 'Form',
     key: 'Form',
     label: '表单',
@@ -23,12 +17,12 @@ export default [
     label: '表格',
     icon: 'table'
   },
-  // {
-  //   id: 'Dialog',
-  //   key: 'Dialog',
-  //   label: '弹窗',
-  //   icon: ''
-  // },
+  {
+    id: 'Dialog',
+    key: 'Dialog',
+    label: '弹窗',
+    icon: ''
+  },
   {
     id: 'Tabs',
     key: 'Tabs',
