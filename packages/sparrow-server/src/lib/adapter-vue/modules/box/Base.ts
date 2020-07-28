@@ -1,7 +1,7 @@
 const uuid = require('@lukeed/uuid');
 import * as _ from 'lodash';
 import * as cheerio from 'cheerio';
-import * as path from 'path';
+import * as Path from 'path';
 import * as fsExtra from 'fs-extra';
 import Block from './Block';
 
@@ -55,9 +55,9 @@ export default class Base {
   
 
   public addComponent (data: any, operatetype: string = 'manual') {
-    // if (operatetype === 'manual') {
+      console.log('******9*******', data);
 
-      let { id, params = {}, nextSiblingId, config } = data;
+      let { id, params = {}, nextSiblingId, config, path } = data;
       if (config) {
         config.initType = operatetype;
       }
@@ -66,10 +66,19 @@ export default class Base {
         compIndex = this.components.findIndex(item => item.uuid === nextSiblingId);
       }
 
-      const hasBox = fsExtra.pathExistsSync(path.join(__dirname, `../box/${id}`));
+      const hasBox = fsExtra.pathExistsSync(Path.join(__dirname, `../box/${id}`));
       let backComp = null;
+      if (path) {
+        const dynamicObj = require(`..${path}`).default;
+        const comp = new dynamicObj(config || params, this.storage);
+        if (compIndex >= 0) {
+          this.components.splice(compIndex, 0, comp)
+        } else {
+          this.components.push(comp);
+        }
+        backComp = comp;
 
-      if (hasBox) {
+      } else if (hasBox) {
         const dynamicObj = require(`../box/${id}`).default;
         const comp = new dynamicObj(config || params, this.storage)
         if (compIndex >= 0) {
@@ -90,20 +99,6 @@ export default class Base {
       }
 
       return backComp;
-  
-    // } else {
-    //   let { id, config } = data;
-      
-    //   config.initType = operatetype;
-    //   const dynamicObj = require(`../component/${id}`).default;
-    //   const instance = new dynamicObj(config, this.treePath)
-    //   this.components.push(instance);
-    //   if (instance.storeType === 'box') {
-    //     return instance;
-    //   } else {
-    //     return null;
-    //   }
-    // }
   }
 
   public async addBlock (params, ctx) {

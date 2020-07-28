@@ -34,7 +34,7 @@
                   v-for="(comp, index) in item.list"
                   :key="index"
                   @mousedown="mousedownWidget(comp, item.type)"
-                  @click="addComp(comp.key, item.type, comp.params)"
+                  @click="addComp(comp.key, comp.params)"
                 >
                   <div class="drag-box">
                     <div class="drag-box-item">
@@ -62,7 +62,7 @@
                   v-for="(comp, index) in item.list"
                   :key="index"
                   @mousedown="mousedownWidget(comp, item.type)"
-                  @click="addComp(comp.key, item.type, comp.params)"
+                  @click="addComp(comp.key, comp.params)"
                 >
                   <div class="drag-box">
                     <div class="drag-box-item">
@@ -116,11 +116,9 @@ import Loading from '@/util/loading';
 import { AppModule } from '@/store/modules/app';
 import Setting from './Setting';
 import Sortable from 'sortablejs';
-import ToolBoxTest from './ToolBoxTest';
 export default {
   components: {
     Setting,
-    ToolBoxTest
   },
   data() {
     return {
@@ -158,11 +156,10 @@ export default {
     };
   },
   methods: {
-    async addComp(id, type, config) {
+    async addComp(id, config) {
       const params = {
         boxUuid: AppModule.boxUuid,
         id,
-        type,
         params: config
       };
       Loading.open();
@@ -196,9 +193,7 @@ export default {
     },
 
     async getEditBlockList() {
-      console.log('*******1188')
       const blockList = await socket.emit('generator.data.getEditBlockList');
-      console.log('*******8******', blockList);
       this.editBlockList = blockList;
     },
 

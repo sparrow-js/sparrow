@@ -23,7 +23,6 @@ export default class CustomInline extends Base implements IBaseBox{
       decodeEntities: false
     });
 
-    this.observeComp();
   }
 
   public addComponent (data) {

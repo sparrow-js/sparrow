@@ -88,13 +88,17 @@ export default class App extends Vue {
         // 插入组件label
         if (data.handler === 'client.component.insertLabel') {
           const params = {
-            boxUuid: this.boxUuid,
             data: {
               ...data.data.params,
-              handler: 'addLabel'
             }
           };
           const result = await socket.emit('generator.scene.insertLabel', params);
+        }
+
+        // 同步编辑文本文案
+        if (data.handler === 'client.component.insertEditText') {
+          const { params } = data.data;
+          await socket.emit('generator.scene.insertEditText', params);
         }
 
         if (data.handler === 'client.screen.keydown') {

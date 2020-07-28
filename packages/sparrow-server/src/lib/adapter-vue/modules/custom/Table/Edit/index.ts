@@ -17,7 +17,7 @@ export default class Edit extends Base{
       this.config = params.config;
     } else {
       this.config = {
-        type: params.params.type
+        type: params.params.type || 'button'
       }
     }
 

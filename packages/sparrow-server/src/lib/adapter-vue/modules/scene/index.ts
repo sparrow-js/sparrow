@@ -9,7 +9,6 @@ import VueGenerator from '../generator';
 import VueParse from '../generator/VueParse';
 const uuid = require('@lukeed/uuid');
 import Config from '../../config';
-import Box from '../box/Box';
 import storage from '../../../storage';
 import lowdb from '../../../lowdb';
 import * as _ from 'lodash'
@@ -162,22 +161,8 @@ export default class Scene {
     }
   }
 
-  public addBox (params: any, ctx) {
-    const {boxUuid, id} = params;
-    if (boxUuid) {
-      const dynamicObj = require(`../box/${id}`).default;
-      const currBox = this.findComponent(boxUuid, this.components);
-      currBox.components.push(new dynamicObj(params, storage));
-    } else {
-      const dynamicObj = require(`../box/${id}`).default;
-      this.components.push(new dynamicObj(params, storage));
-    }
-
-    this.renderPage();
-  }
-
   public addComponent (data, operateType = 'manual') {
-    const {boxUuid, id, type, params = {}, nextSiblingId} = data;
+    const {boxUuid, id, params = {}, nextSiblingId} = data;
 
     let backComp = null;
 
@@ -525,7 +510,16 @@ export default class Scene {
     this.renderPage();
   }
 
+  public insertEditText (params: any) {
+    const { uuid } = params;
+    const comp = this.findComponent(uuid, this.components);
+    comp && comp.insertEditText(params);
+    this.renderPage();
+  }
+
   public async renderPage () {
+   
+
     this.params.previewViewStatus = storage.get('preview_view_status');
     this.$('.home').empty();
     this.scriptData = this.VueGenerator.initScript();
@@ -538,6 +532,7 @@ export default class Scene {
     let methods = [];
     let vueData = [];
     this.loopThroughBox(this.components);
+    console.log('***********')
     const fn = (boxs, flag = 0) => {
       boxs.map((item, index) => {
         if (flag === 0) {

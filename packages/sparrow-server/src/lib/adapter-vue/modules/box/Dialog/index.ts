@@ -4,7 +4,6 @@ import VueParse from '../../generator/VueParse';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import Config from '../../../config';
-import Box from '../Box';
 import Container from '../Container'
 
 export default class Dialog{

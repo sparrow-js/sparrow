@@ -39,12 +39,6 @@
       </el-tooltip>
     </div>
 
-    <div class="toolbar-search">
-      <el-input size="mini" placeholder="搜索组件" v-model="search">
-        <i slot="suffix" class="el-input__icon el-icon-search"></i>
-      </el-input>
-    </div>
-
     <!-- <div class="toolbar__item success" @click="showPopover = !showPopover">
       <el-tooltip class="item" effect="dark" content="场景" placement="top">
         <span>

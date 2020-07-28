@@ -4,6 +4,8 @@ import {tableConf} from './tableConfig';
 import {BasicTableConf} from './BasicTable';
 import {BaseFormConf} from './BaseForm';
 import RegisterComp from '../../RegisterComp';
+import {custom} from './CustomComp';
+
 export default class Data {
   
   public getBoxList () {
@@ -137,7 +139,7 @@ export default class Data {
         ]
       },
       {
-        label: '按钮',
+        label: '操作',
         type: 'component',
         list: [
           {
@@ -154,6 +156,11 @@ export default class Data {
             id: 'Icon',
             key: 'Icon',
             label: 'Icon',
+          },
+          {
+            id: 'Tag',
+            key: 'Tag',
+            label: 'Tag',
           }
         ]
       }
@@ -180,6 +187,19 @@ export default class Data {
         ]
       },
     ]
+  }
+
+
+  public getCustomComp (params: any) {
+    const {value} = params;
+    if (value === '') return [];
+    const list = custom.filter(item => {
+      if(item.label.match(value) || item.keys.includes(value) || item.des.match(value)) {
+        return true;
+      }
+      return false;
+    });
+    return list;
   }
   
 }

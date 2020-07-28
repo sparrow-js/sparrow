@@ -13,7 +13,6 @@ import {request} from '../../../../../util/request'
 const uuid = require('@lukeed/uuid');
 import * as _ from 'lodash';
 import * as upperCamelCase from 'uppercamelcase';
-import Box from '../Box';
 
 import Base from '../Base';
 import Column from './column';

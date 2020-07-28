@@ -1,7 +1,6 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
 import storage from '../../../../storage';
-import Box from '../Box';
 import Container from '../Container';
 
 
@@ -85,6 +84,11 @@ export default class Column{
 
   public setConfig (config: any) {
     this.config = config;
+  }
+
+  public insertEditText (params) {
+    console.log('*********8********')
+    this.config._custom.label = params.value;
   }
 
   

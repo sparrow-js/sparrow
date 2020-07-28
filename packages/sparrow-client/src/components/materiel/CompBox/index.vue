@@ -30,8 +30,18 @@
       >
         <i class="iconfont icon-data"></i>
       </div>
+
+      <div
+        @click="tabChange(5)"
+        class="tabs-item"
+        :class="{ active: activeTreeIndex === 5 }"
+      >
+        <i class="el-icon el-icon-search"></i>
+      </div>
+
+
     </div>
-    <div class="tabs-body" v-show="[0, 3, 4].includes(activeTreeIndex)">
+    <div class="tabs-body" v-show="[0, 3, 4, 5].includes(activeTreeIndex)">
       <div class="tree" v-show="activeTreeIndex === 0">
         <el-tree
           :data="tree"
@@ -106,23 +116,51 @@
       </div>
 
       <div v-show="activeTreeIndex === 4">
-        <div class="codemirror-operate">
-          <span class="update-data" @click.stop="updateCodeData"
-            >更新</span
-          >
-          <!-- <i class="iconfont icon-iconfront-"></i> -->
+        <div class="file-box">
+          <div class="codemirror-operate">
+            <span class="update-data" @click.stop="updateCodeData">更新</span>
+            <!-- <i class="iconfont icon-iconfront-"></i> -->
+          </div>
+          <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
+            <el-tab-pane label="code" name="code">
+              <codemirror
+                ref="codemirror"
+                v-model="dataCode"
+              ></codemirror>
+            </el-tab-pane>
+            <el-tab-pane label="json" name="json">
+              <json-handler :json-data="jsonData"></json-handler>
+            </el-tab-pane>
+          </el-tabs>
+
         </div>
-        <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
-          <el-tab-pane label="code" name="code">
-            <codemirror
-              ref="codemirror"
-              v-model="dataCode"
-            ></codemirror>
-          </el-tab-pane>
-          <el-tab-pane label="json" name="json">
-            <json-handler :json-data="jsonData"></json-handler>
-          </el-tab-pane>
-        </el-tabs>
+      </div>
+
+      <div class="tab-content" v-show="activeTreeIndex === 5">
+        <div class="custom-comp-box">
+          <div class="toolbar-search">
+            <el-input
+              placeholder="搜索组件"
+              v-model="search"
+              @input="searchChange"
+            >
+              <i slot="suffix" class="el-input__icon el-icon-search"></i>
+            </el-input>
+          </div>
+          <div class="comp-box">
+            <div class="comp-list">
+              <div
+                class="comp-item"
+                v-for="(item, index) in customCompList"
+                :key="index"
+                @click="addComponent(item)"
+              >
+                <div class="comp-item__title">{{ item.label }}</div>
+                <div class="comp-item__des">{{ item.des }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -138,6 +176,8 @@ import ContainerBox from './ContainerBox';
 import EmptyBox from './EmptyBox';
 import socket from '@/util/socket.js';
 import JsonHandler from '@/components/jsonhandler/index.vue';
+import _ from 'lodash';
+import Loading from '@/util/loading';
 
 @Component({
   components: {
@@ -160,7 +200,8 @@ export default class CompBox extends Vue {
   private dataCode = `var data = {}`;
   private jsonData = '"{}"';
   private activeNameCode = 'code';
-
+  private search = '';
+  private customCompList = [];
 
   get componentIs() {
     if (AppModule.componentIs) {
@@ -209,6 +250,7 @@ export default class CompBox extends Vue {
     } else {
       this.componentList = componentMap[params.compBox];
     }
+    this.getCustomComp = _.debounce(this.getCustomComp, 500, { trailing: true });
 
     this.getScene();
   }
@@ -223,18 +265,25 @@ export default class CompBox extends Vue {
     this.tree = [tree];
   }
 
-  private async getSceneConfig () {
+  private async getSceneConfig() {
     const res = await socket.emit('generator.scene.getConfig', {});
     this.dataCode = res.dataCode;
   }
 
+  private async getCustomComp(value) {
+    const res = await socket.emit('generator.data.getCustomComp', {
+      value
+    });
+    this.customCompList = res;
+  }
+
   private tabChange(index) {
     const codemirror: any = this.$refs.codemirror;
-    
     AppModule.setActiveTreeIndex(index);
     this.getSceneTree();
     this.getScene();
     this.getSceneConfig();
+    this.getCustomComp('');
     setTimeout(() => {
       codemirror.codemirror.refresh();
     }, 100);
@@ -327,7 +376,6 @@ export default class CompBox extends Vue {
       );
     }
   }
-  
 
 
   private async updateCodeData() {
@@ -346,6 +394,22 @@ export default class CompBox extends Vue {
     }
   }
 
+  private async addComponent(item) {
+    const { path, key, params } = item;
+    const param = {
+      boxUuid: AppModule.boxUuid,
+      id: key,
+      params: params,
+      path
+    };
+    Loading.open();
+    await socket.emit('generator.scene.addComponent', param);
+    Loading.close();
+  }
+
+  private searchChange(value) {
+    this.getCustomComp(value);
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -460,4 +524,43 @@ export default class CompBox extends Vue {
 .update-data{
   cursor: pointer;
 }
+.el-icon{
+  font-size: 20px;
+}
+.custom-comp-box{
+  padding: 10px;
+  height: calc(100% - 70px);
+}
+.file-box{
+  padding: 10px;
+}
+
+.tab-content{
+  height: 100%;
+}
+
+.comp-box{
+  height: 100%;
+  padding-top: 10px;
+  overflow: scroll;
+}
+.comp-item{
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: 2px;
+  margin-bottom: 5px;
+  &__title{
+    color: #303133;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  &__des{
+    color: #606266;
+    font-size: 12px;
+  }
+}
+.comp-item:hover{
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
 </style>
