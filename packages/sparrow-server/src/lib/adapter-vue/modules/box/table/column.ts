@@ -87,7 +87,6 @@ export default class Column{
   }
 
   public insertEditText (params) {
-    console.log('*********8********')
     this.config._custom.label = params.value;
   }
 

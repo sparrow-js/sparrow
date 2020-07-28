@@ -532,7 +532,6 @@ export default class Scene {
     let methods = [];
     let vueData = [];
     this.loopThroughBox(this.components);
-    console.log('***********')
     const fn = (boxs, flag = 0) => {
       boxs.map((item, index) => {
         if (flag === 0) {

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="sparrow-view"> 
+  <div id="app" @click="clickApp" class="sparrow-view"> 
     <router-view/>
     <inline-toolbar />
   </div>
@@ -93,6 +93,11 @@ export default {
           value: selectedText,
         });
       }
+    },
+    clickApp () {
+      message.emit('client.app.init', {
+        uuid: '',
+      });
     }
   }
 }
