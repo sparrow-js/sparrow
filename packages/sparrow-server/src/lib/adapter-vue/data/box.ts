@@ -1,8 +1,8 @@
 export default [
   {
-    id: 'PageHeader',
-    key: 'PageHeader',
-    label: '页头',
+    id: 'Container',
+    key: 'Container',
+    label: '基础',
     icon: ''
   },
   {

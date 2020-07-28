@@ -1,13 +1,12 @@
 const uuid = require('@lukeed/uuid');
 import IBaseBox from '../IBaseBox';
 import * as cheerio from 'cheerio';
-import BasicBox from '../../component/BasicBox';
 import VueParse from '../../generator/VueParse';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import Config from '../../../config';
 import Base from '../Base';
-import Box from '../Box';
+import Container from '../Container';
 
 export default class Tabs extends Base implements IBaseBox{
   public uuid = '';
@@ -59,7 +58,7 @@ export default class Tabs extends Base implements IBaseBox{
 
       if (tabsData && Array.isArray(tabsData)) {
         tabsData.forEach(tabItem => {
-          const curBasicBox = new Box();
+          const curBasicBox = new Container({}, this.storage)
           curBasicBox.config.unique = tabItem.value;
           this.components.push(curBasicBox);
         });
@@ -75,7 +74,7 @@ export default class Tabs extends Base implements IBaseBox{
 
   
   addCustomComp (data: any) {
-    const curBox = new Box(data.config);
+    const curBox = new Container({}, this.storage);
     this.components.push(curBox);
     return curBox;
   }
@@ -185,7 +184,7 @@ export default class Tabs extends Base implements IBaseBox{
       newData.forEach(item => {
         const index = oldData.findIndex(cur => cur.value === item.value);
         if (index < 0) {
-          const curBasicBox = new Box();
+          const curBasicBox = new Container({}, this.storage);
           curBasicBox.config.unique = item.value;
           this.components.push(curBasicBox);
         }

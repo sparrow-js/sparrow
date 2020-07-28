@@ -2,8 +2,8 @@ import Base from '../Base';
 
 export default class Slider extends Base{
   name: string = 'Slider';
-  constructor (params: any) {
-    super();
+  constructor (params: any, boxPath: string) {
+    super(boxPath);
     if (params.initType === 'auto') {
       this.config = params;
     } else {
@@ -29,17 +29,9 @@ export default class Slider extends Base{
 
   public fragment () {
     return `
-      <el-form-item label=" "
-        ${this._formItemStr}
-      >
-        <label-box 
-          label="${this.config._custom.label}"
-          uuid="${this.uuid}"
-        ></label-box>
-        <el-slider
-          ${this._attrStr}
-        ></el-slider>
-      </el-form-item>
+      <el-slider
+        ${this._attrStr}
+      ></el-slider>
     `;
   }
 

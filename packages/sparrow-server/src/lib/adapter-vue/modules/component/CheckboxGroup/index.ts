@@ -9,8 +9,8 @@ export default class CheckboxGroup extends Base{
   vueParse: any;
   params: any;
   ele: string = '';
-  constructor (params: any) {
-    super();
+  constructor (params: any, boxPath: string) {
+    super(boxPath);
     this.initVueParse();
     this.params = params;
     if (params.initType === 'auto') {
@@ -28,7 +28,7 @@ export default class CheckboxGroup extends Base{
         },
         // 组件标签属性
         _attr: {
-          'v-model': params['v-model'] || ''
+          'v-model': params['v-model'] || 'initCheckbox'
         },
         // 插槽属性
         _slot: {
@@ -57,23 +57,15 @@ export default class CheckboxGroup extends Base{
 
   public fragment () {
     return `
-      <el-form-item label=" "
-        ${this._formItemStr}
+      <el-checkbox-group
+        ${this._attrStr}
       >
-        <label-box 
-          label="${this.config._custom.label}"
-          uuid="${this.uuid}"
-        ></label-box>
-        <el-checkbox-group
-          ${this._attrStr}
-        >
-          <${this.ele}
-            v-for="item in checkboxOptions${this.uuid}"
-            :key="item.value"
-            :label="item.label"
-          />
-        </el-checkbox-group>
-      </el-form-item>
+        <${this.ele}
+          v-for="item in checkboxOptions${this.uuid}"
+          :key="item.value"
+          :label="item.label"
+        />
+      </el-checkbox-group>
     `;
   }
 

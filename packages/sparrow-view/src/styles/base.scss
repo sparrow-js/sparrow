@@ -5,3 +5,50 @@
 [contenteditable="true"]{
   outline: none;
 }
+
+
+div.ant-typography,.ant-typography p {
+  margin-bottom: 1em
+}
+
+h1.s-typography,.s-typography h1 {
+  margin-bottom: .5em;
+  color: #303133;
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 1.23
+}
+
+h2.s-typography,.s-typography h2 {
+  margin-bottom: .5em;
+  color: #303133;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.35
+}
+
+h3.s-typography,.s-typography h3 {
+  margin-bottom: .5em;
+  color: #303133;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.35
+}
+
+h4.s-typography,.s-typography h4 {
+  margin-bottom: .5em;
+  color: #303133;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.4
+}
+
+.s-typography {
+  color: #606266;
+  font-size: 14px;
+  overflow-wrap: break-word;
+}
+.minor-typography.s-typography{
+  color: #909399;
+  font-size: 12px;
+}

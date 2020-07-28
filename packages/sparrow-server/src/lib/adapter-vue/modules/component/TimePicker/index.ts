@@ -4,8 +4,8 @@ export default class TimePicker extends Base {
   name: string = 'TimePicker';
   pickerOptions: string = '';
 
-  constructor (params: any) {
-    super();
+  constructor (params: any, boxPath: string) {
+    super(boxPath);
     if (params.initType === 'auto') {
       this.config = params;
     } else {
@@ -51,21 +51,11 @@ export default class TimePicker extends Base {
 
   public fragment () {
     return `
-      <el-form-item label=" "
-        ${this._formItemStr}
-      >
-        <label-box 
-          label="${this.config._custom.label}"
-          uuid="${this.uuid}"
-        ></label-box>
-        
-        <el-time-picker
-          ${this._attrStr}
-          ${this.pickerOptions}
-          placeholder="选择时间">
-        </el-time-picker>
-
-      </el-form-item>
+      <el-time-picker
+        ${this._attrStr}
+        ${this.pickerOptions}
+        placeholder="选择时间">
+      </el-time-picker>
     `;
   }
 

@@ -13,7 +13,6 @@ import {request} from '../../../../../util/request'
 const uuid = require('@lukeed/uuid');
 import * as _ from 'lodash';
 import * as upperCamelCase from 'uppercamelcase';
-import Box from '../Box';
 
 import Base from '../Base';
 import Column from './column';
@@ -46,7 +45,6 @@ export default class Table extends Base implements IBaseBox{
   blockPath: string;
   insertComponents:string[] = [];
   $blockTemplate: any;
-  activeIndex: number = -1;
   col: number = 2;
 
   data: any = {};
@@ -211,12 +209,8 @@ export default class Table extends Base implements IBaseBox{
       
     }
   }
-
-  private setActiveIndex (data) {
-    this.activeIndex = parseInt(data.index, 10);
-  }
   
-  public getSetting () {
+  public getConfig () {
     return {
       data: []
     }
@@ -230,16 +224,6 @@ export default class Table extends Base implements IBaseBox{
       }
     });
     return comp;
-  }
-
-  getBoxChildConfig(params: any) {
-    const {uuid} = params;
-    const comp = this.findComponents(uuid);
-    if (comp) {
-      return comp.getConfig();
-    } else {
-      return null;
-    }
   }
 
   public renderBox () {

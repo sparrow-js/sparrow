@@ -15,11 +15,6 @@ Event.on('pivot_operate', (data) => {
   message.emit(data.handler, data);
 });
 
-Event.on('pivot_setting', (data) => {
-  message.emit('pivot_setting', data);
-});
-
-
 Vue.config.productionTip = false
 Vue.use(box)
 Vue.use(ElementUI);
@@ -31,3 +26,12 @@ new Vue({
 
 document.domain = 'localhost';
 
+window.addEventListener(
+  'message',
+  e => {
+    if(e.data && e.data.type === 'webpackOk') {
+      message.emit('webpack.update.success');
+    }
+  },
+  false
+);

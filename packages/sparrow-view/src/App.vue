@@ -1,11 +1,6 @@
 <template>
-  <div id="app"> 
+  <div id="app" class="sparrow-view"> 
     <router-view/>
-    <!-- <toolbar 
-      :list="toolbarList" 
-      :is-show-toolbar="isShowToolbar" 
-      @change="showToolbarChange"
-    /> -->
     <inline-toolbar />
   </div>
 </template>
@@ -18,12 +13,27 @@ import html2canvas from 'html2canvas';
 export default {
   data () {
     return {
-      toolbarList: [],
       uuid: '',
       isShowToolbar: false
     }
   },
   created () {
+    document.addEventListener('keydown', (e) => {
+
+      if(e.metaKey && e.keyCode === 67) {
+        message.emit('client.screen.keydown', {
+          operate: 'ctrl+c'
+        });
+      }
+
+      if (e.metaKey && e.keyCode === 86) {
+        message.emit('client.screen.keydown', {
+          operate: 'ctrl+v'
+        });
+      }
+
+    });
+
     this.getSelection = _.debounce(this.getSelection, 500, {
       trailing: true
     })
@@ -51,7 +61,6 @@ export default {
         });
       }
     },false);
-    this.getToolbarList();
     Event.on('block-selected', (data) => {
       this.uuid = data.uuid;
     });
@@ -60,31 +69,15 @@ export default {
     Event.on('insert_handler', (data) => {
       setTimeout(() => {
         const {params} = data;
-        // if (params && params.uuid) {
-        //   this.uuid = params.uuid;
-        // }
         message.emit(data.emit || 'client.dashboard.show', {
           uuid: this.uuid,
           data,
         });
-      }, 300);
+      }, 200);
     })
-
-    Event.on('pivot_setting', (setting) => {
-      setTimeout(() => {
-        message.emit('client.setting.show', {
-          uuid: this.uuid,
-          setting
-        });
-      }, 300);
-    });
 
   },
   methods: {
-    async getToolbarList () {
-      const result = await message.emit('generator.data.getBoxList')
-      this.toolbarList = result.list;
-    },
     showToolbarChange (data) {
       this.isShowToolbar = data;
     },
@@ -105,6 +98,9 @@ export default {
 }
 </script>
 <style>
+  html, body, #app{
+    height: 100%;
+  }
   .el-form--inline .comp-box{
     display: inline-block;
   }
@@ -143,5 +139,18 @@ export default {
   }
   .custom-inline{
     padding-left: 60px;
+  }
+  .home{
+    height: 100%;
+  }
+  .sortable-ghost{
+    height: 5px;
+    background: #409EFF;
+  }
+  .sortable-ghost *{
+    display: none;
+  }
+  .drag-box{
+    min-height: 24px;
   }
 </style>

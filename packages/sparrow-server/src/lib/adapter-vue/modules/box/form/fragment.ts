@@ -4,6 +4,8 @@ export function BoxForm (content: string) {
 
 export function eform (content: string = '') {
   return `
-    <el-form label-width="100px">${content}</el-form>
+    <el-form label-width="100px">
+     <div class="drag-box">${content}</div>
+    </el-form>
   `;
 }

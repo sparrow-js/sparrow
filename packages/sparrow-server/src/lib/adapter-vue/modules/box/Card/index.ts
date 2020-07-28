@@ -1,11 +1,10 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
 import IBaseBox from '../IBaseBox';
+import Container from '../Container'
 
-import Base from '../Base';
-import Box from '../Box';
 
-export default class Card  extends Base implements IBaseBox{
+export default class Card implements IBaseBox{
   public uuid = '';
   $fragment = null;
   public components = [];
@@ -15,10 +14,11 @@ export default class Card  extends Base implements IBaseBox{
   config: any = {};
   _attrStr: string = '';
   labelValue: string = '卡片名称';
+  storage: any = null;
   constructor (data: any, storage: any) {
-    super(storage);
     this.uuid = uuid().split('-')[0];
     const { config } = data;
+    this.storage = storage;
     if (config) {
       this.config = config
     } else {
@@ -36,13 +36,13 @@ export default class Card  extends Base implements IBaseBox{
   }
 
   addComponent () {
-    const curBox = new Box()
+    const curBox = new Container({}, this.storage)
     this.components.push(curBox);
     return curBox;
   }
   
 
-  public renderFragment () {
+  public renderBox () {
     if (!this.components[0]) return;
     const {_attr} = this.config;
     let LogicBox = this.components[0].getFragment().html();
@@ -111,7 +111,7 @@ export default class Card  extends Base implements IBaseBox{
   };
   
   public getFragment () {
-    this.renderFragment();
+    this.renderBox();
     return this.$fragment;
   }
 

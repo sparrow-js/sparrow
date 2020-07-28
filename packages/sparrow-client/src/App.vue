@@ -46,6 +46,7 @@ import { AppModule } from '@/store/modules/app';
 import { SettingModule } from '@/store/modules/setting';
 import CompBox from '@/components/materiel/CompBox/index.vue';
 import JsonEditor from '@/components/JsonEditor/index.vue';
+import _ from 'lodash';
 @Component({
   components: {
     Logo,
@@ -70,14 +71,6 @@ export default class App extends Vue {
     return AppModule.showComponentBox;
   }
 
-  get showSetting() {
-    return SettingModule.showSetting;
-  }
-
-  get boxIndex() {
-    return AppModule.boxIndex;
-  }
-
   get boxUuid() {
     return AppModule.boxUuid;
   }
@@ -92,79 +85,33 @@ export default class App extends Vue {
       const handlerArr = data.handler.split('.');
       const handlerFirst = handlerArr[0];
       if (handlerFirst === 'client') {
-
-        // 触发区块集
-        if (data.handler === 'client.dashboard.show') {
-          AppModule.InsertData(data);
-          AppModule.SetShowDashboard(true);
-        }
-
-        // 展示设置
-        if (data.handler === 'client.setting.show') {
-          const { box, setting } = data;
-          SettingModule.setSettingData(setting.data);
-          const handler = setting.data.handler;
-          if (handler === 'form') {
-            SettingModule.setSettingComponent({
-              compName: 'FormSetting',
-              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
-            });
-          } else if (handler === 'table') {
-            SettingModule.setSettingComponent({
-              compName: 'TableSetting',
-              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
-            });
-          } else if (handler === 'tabs') {
-            SettingModule.setSettingComponent({
-              compName: 'TabsSetting',
-              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
-            });
-          } else if (handler === 'common') {
-            SettingModule.setSettingComponent({
-              compName: 'CommonSetting',
-              forceRefresh: data.uuid && this.boxUuid !== data.uuid ? true : false
-            });
-          } 
-        }
-
-        // 触发组件集
-        if (data.handler === 'client.component.show') {
-          const { type } = data.data;
-          AppModule.setBoxUuid(data.uuid);
-          // AppModule.InsertData(data);
-          AppModule.SetComponentIs(type);
-          AppModule.SetShowComponent(true);
-          AppModule.setActiveTreeIndex(1)
-        }
-
         // 插入组件label
         if (data.handler === 'client.component.insertLabel') {
           const params = {
-            boxIndex: this.boxIndex,
-            boxUuid: this.boxUuid,
             data: {
               ...data.data.params,
-              handler: 'addLabel'
             }
           };
-
-          const result = await socket.emit('generator.scene.setting', params);
+          const result = await socket.emit('generator.scene.insertLabel', params);
         }
 
-        if (data.handler === 'client.component.insertFormComp') {
-          console.log('***********', data);
-         AppModule.InsertData(data);
+        // 同步编辑文本文案
+        if (data.handler === 'client.component.insertEditText') {
+          const { params } = data.data;
+          await socket.emit('generator.scene.insertEditText', params);
         }
 
-        if (data.handler === 'client.component.insertTableComp') {
-          console.log('asdjasdas', data);
-          AppModule.InsertData(data);
+        if (data.handler === 'client.screen.keydown') {
+          const {operate} = data;
+
+          if (operate === 'ctrl+c') {
+            this.copyHandler();
+          } else if (operate === 'ctrl+v') {
+            this.pasteHandler();
+          }
+
         }
 
-
-        if (data.boxIndex !== undefined) {
-          AppModule.SetDoxIndex(data.boxIndex);
-        }
         // 延迟同步uuid
         setTimeout(() => {
           if (data.uuid !== undefined) {
@@ -196,6 +143,23 @@ export default class App extends Vue {
     const viewContent: any = this.$refs.viewContent;
     viewContent.addEventListener('click', e => {
       e.stopPropagation();
+    });
+  }
+
+  private async pasteHandler () {
+    // pasteHandler
+    const result = await socket.emit('generator.scene.pasteHandler', {
+      compId: this.boxUuid,
+    });
+  }
+
+  private async copyHandler () {
+    const result = await socket.emit('generator.scene.copyHandler', {
+      activeCompId: AppModule.activeCompId
+    });
+    this.$message({
+      message: '复制成功',
+      type: 'success'
     });
   }
 

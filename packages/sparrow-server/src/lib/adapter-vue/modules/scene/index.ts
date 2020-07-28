@@ -9,10 +9,10 @@ import VueGenerator from '../generator';
 import VueParse from '../generator/VueParse';
 const uuid = require('@lukeed/uuid');
 import Config from '../../config';
-import Box from '../box/Box';
 import storage from '../../../storage';
 import lowdb from '../../../lowdb';
 import * as _ from 'lodash'
+import Block from '../box/Block';
 
 const cwd = process.cwd();
 const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
@@ -34,6 +34,10 @@ export default class Scene {
   tree: any;
   uuid: string = '';
   formatTemp: string = '';
+  config: any = {
+    dataCode: 'var data = {}'
+  };
+  tempCopyStore: any = {};
 
   constructor (params: any = {}) {
     this.uuid = uuid().split('-')[0];
@@ -48,55 +52,35 @@ export default class Scene {
     }
 
     if (params.label === 'page') {
-      this.jsonToScene(params);
+      this.jsonToScene(params, this);
     }
 
     this.renderPage();
   }
 
-  private jsonToScene (data: any) {
+  private jsonToScene (data: any, obj) {
     const fn = (data, obj) => {
       const {children} = data;
       children.forEach(item => {
-        if (item.id === 'box') {
-          if (obj.addCustomComp) { // 处理特定场景下box追加
-            const box = obj.addCustomComp(item);
-            const curComp = item.children[0];
-            if (curComp) {
-              const comp = box.addComponent(curComp);
-              if (curComp.children) {
-                fn(curComp, comp);
-              }
-            }
-          } else {
-            const box = new Box();
-            const curComp = item.children[0];
-            if (curComp) {
-              const comp = box.addComponent(curComp);
-              if (curComp.children) {
-                fn(curComp, comp);
-              }
-            }
-            obj.components.push(box);
-          }
-      
-        } else {
-          const curComp = obj.addComponent(item, 'auto');
-          if (item.children && item.children.length) {
-            fn(item,  curComp)
-          }
+    
+        const curComp = obj && obj.addComponent(item, 'auto');
+        if (item.children && item.children.length) {
+          fn(item,  curComp)
         }
   
       });
     }
-    fn(data, this)
-   
+    fn(data, obj)
+    setTimeout(() => {
+      this.renderPage();
+    }, 200)
+    
   }
 
   private async init () {
     const templateStr =  `
       <template>
-        <div class="home">
+        <div class="home drag-box" data-id="${this.uuid}">
         </div>
       </template>
     `;
@@ -108,11 +92,12 @@ export default class Scene {
   }
 
   loopThroughBox (boxs: any,) {
+    const leafToRoot = []; 
     const fn = function (boxs) {
       if (Array.isArray(boxs)) {
         boxs.forEach(item => {
-          if (item.name === 'box') {
-            item.setPreview && item.setPreview();
+          if (item.widgetType === 'box') {
+            leafToRoot.unshift(item);
           }
           if (item.components) {
             fn(item.components)
@@ -120,8 +105,10 @@ export default class Scene {
         });
       }
     }
-
     fn(boxs);
+    leafToRoot.forEach(item => {
+      item.setPreview && item.setPreview();
+    });
   }
   
 
@@ -174,60 +161,88 @@ export default class Scene {
     }
   }
 
-  public addBox (params: any, ctx) {
-    const {boxUuid, data} = params;
-    const box = new Box();
-    box.addComponent(params);
-    this.components.push(box);
-    this.renderPage();
-      
-    // const { socket } = ctx;
-    // socket.emit('generator.force.refresh', {status: 0});
+  public addComponent (data, operateType = 'manual') {
+    const {boxUuid, id, params = {}, nextSiblingId} = data;
 
-    // if (boxUuid) {
-    //   const currBox = this.findComponent(boxUuid, this.components);
-    //   currBox.addComponent(data);
-    //   const curBoxParent = this.findBoxParent(boxUuid, this.components)
-    //   curBoxParent.push(new Box());
-    //   this.renderPage();
-      
-    //   const { socket } = ctx;
-    //   socket.emit('generator.force.refresh', {status: 0});
-    // }
-  }
+    let backComp = null;
 
-  public addComponent (params) {
-    const { data, boxUuid} = params;
-    const currBox = this.findComponent(boxUuid, this.components);
-    if (currBox) {
-      currBox.components[0].addComponent(data);
+    if (!boxUuid || boxUuid === this.uuid) {
+      let compIndex = -2;
+      if (nextSiblingId) {
+        compIndex = this.components.findIndex(item => item.uuid === nextSiblingId);
+      }
+
+      const hasBox = fsExtra.pathExistsSync(path.join(__dirname, `../box/${id}`));
+
+
+      if (hasBox) {
+        const dynamicObj = require(`../box/${id}`).default;
+        const comp = new dynamicObj(data, storage)
+        if (compIndex >= 0) {
+          this.components.splice(compIndex, 0, comp)
+        } else {
+          this.components.push(comp);
+        }
+        backComp = comp;
+      } else {
+        const dynamicObj = require(`../component/${id}`).default;
+        const comp = new dynamicObj(params, '');
+        if (compIndex >= 0) {
+          this.components.splice(compIndex, 0, comp)
+        } else {
+          this.components.push(comp);
+        }
+        backComp = null;
+      }
+
+
+    } else {
+      const currBox = this.findComponent(boxUuid, this.components);
+      if (currBox) {
+        backComp = currBox.addComponent(data);
+      }
+    }
+    
+    if (operateType !== 'auto') {
       this.renderPage();
     }
+
+    return backComp;
   }
 
   public async addBlock (params, ctx) {
-    const box = new Box();
-    box.addComponent({
-      id: 'Block'
-    });
-    this.components.push(box);
-    await box.components[0].addBlock(params);
+    const {data, boxUuid} = params;
+    const { socket } = ctx;
+    if (!boxUuid || boxUuid === this.uuid) {
+      const block = new Block(storage);
+      this.components.push(block);
+      await block.addBlock(params);
+    } else {
+      const currBox = this.findComponent(boxUuid, this.components);
+      await currBox.addBlock(params, ctx);
+    }
+  
+
     this.renderPage();
 
-    // const {data, boxUuid} = params;
-    // if (boxUuid) {
-    //   const currBox = this.findComponent(boxUuid, this.components);
-    //   await currBox.components[0].addBlock(data);
-    //   this.renderPage();
-    // }
-
-    const { socket } = ctx;
+   
     socket.emit('generator.scene.block.status', {status: 0, data: {
       status: 2,
       message: 'complete',
     }});
   }
 
+  public insertLabel (params) {
+
+    const {data} = params;
+    const currentComp = this.findComponent(data.uuid, this.components);
+
+    if (currentComp) {
+      currentComp.insertLabel(data.value);
+      this.renderPage();
+    }
+
+  }
 
   public async setting (params: any) {
 
@@ -246,27 +261,40 @@ export default class Scene {
     }
   }
 
+  public setVueGenerator (params: any) {
+    const { data } = params; 
+    this.config.dataCode = data.code;
+    this.renderPage();
+    return {
+      status: 0
+    }
+  }
+
   public async settingConfig (params: any) {
     const {data} = params;
     const currentComp = this.findComponent(data.uuid, this.components);
+
     if (currentComp && currentComp.settingConfig) {
-      currentComp.settingConfig(data);
+      currentComp.settingConfig(data.config);
+      this.renderPage();
     }
   }
 
   private findComponent (uuid, components) {
     let tempComp = null;
 
-    const fn = function (uuid, components) {
+    const fn = function (uuid, components, flag = '') {
       if (tempComp === null) {
         if (Array.isArray(components)) {
           components.forEach(item => {
+            const curflag = `${flag}.${item.name}`
             if (item.uuid === uuid) {
               tempComp = item;
+              tempComp.treePath = curflag;
             }
   
             if (item.components && tempComp === null) {
-              fn(uuid, item.components)
+              fn(uuid, item.components, curflag)
             }
           });
         }
@@ -277,21 +305,29 @@ export default class Scene {
     return tempComp;
   }
 
-  public getSetting (params) {
-    const { boxUuid } = params;
-    
-    const curBox = this.findComponent(boxUuid, this.components);
-    if (curBox && curBox.components[0]) {
-      return curBox.components[0].getSetting()
+  public getConfig (params) {
+    const { uuid } = params;
+    if (uuid) {
+      const curBox = this.findComponent(uuid, this.components);
+      if (curBox) {
+        return curBox.getConfig()
+      }
+    } else {
+      return this.config;
     }
   }
 
-  public getBoxChildConfig (params) {
-    const {boxUuid} = params;
-    const curBox = this.findComponent(boxUuid, this.components);
-    if (curBox && curBox.components[0] && curBox.components[0].getBoxChildConfig) {
-      return curBox.components[0].getBoxChildConfig(params);
-    }
+
+  public copyHandler (data) {
+    const { activeCompId } = data;
+    const curBox = this.findComponent(activeCompId, this.components);
+    this.tempCopyStore = this.getSaveTree(curBox);
+  }
+
+  public pasteHandler (data) {
+    const {compId} = data;
+    const curBox = this.findComponent(compId, this.components);
+    this.jsonToScene({children: [this.tempCopyStore]}, curBox)
   }
 
   public getParams () {
@@ -474,38 +510,50 @@ export default class Scene {
     this.renderPage();
   }
 
+  public insertEditText (params: any) {
+    const { uuid } = params;
+    const comp = this.findComponent(uuid, this.components);
+    comp && comp.insertEditText(params);
+    this.renderPage();
+  }
+
   public async renderPage () {
+   
+
     this.params.previewViewStatus = storage.get('preview_view_status');
     this.$('.home').empty();
     this.scriptData = this.VueGenerator.initScript();
+
+    if (this.config.dataCode) {
+      const dataCode = this.VueGenerator.getDataStrAst(this.config.dataCode);
+      this.VueGenerator.appendData(dataCode);
+    }
+
     let methods = [];
     let vueData = [];
     this.loopThroughBox(this.components);
+    console.log('***********')
     const fn = (boxs, flag = 0) => {
       boxs.map((item, index) => {
         if (flag === 0) {
           const blockListStr = blockList(index, item.getFragment(index).html());
           this.$('.home').append(blockListStr);
         }
-
-        item = item.components && item.components[0] || {};
-
+        
         if (item.insertComponents && item.insertComponents.length) {
           this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));
         }
   
-        if (item.type === 'inline') {
-          if (item.components) {
-            item.components.forEach(comp => {
-              if (comp.vueParse) {
-                methods = methods.concat(comp.vueParse.methods || []);
-                vueData = vueData.concat(comp.vueParse.data || [])
-              }
-            });
-          }
-          if (item.components && item.components.length > 0) {
-            fn(item.components, 1);
-          }
+        if (item.components) {
+          item.components.forEach(comp => {
+            if (comp.vueParse) {
+              methods = methods.concat(comp.vueParse.methods || []);
+              vueData = vueData.concat(comp.vueParse.data || [])
+            }
+          });
+        }
+        if (item.components && item.components.length > 0) {
+          fn(item.components, 1);
         }
   
         if (item.vueParse) {

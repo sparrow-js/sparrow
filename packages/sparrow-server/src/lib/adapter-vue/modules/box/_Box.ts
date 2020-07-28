@@ -43,9 +43,6 @@ export default class Box{
       content = this.components[0].getFragment() && this.components[0].getFragment().html()
     }
 
-
-    let toggleView = '';
-
     let box = '';
     
     if (this.type === 0) {
@@ -55,7 +52,6 @@ export default class Box{
           class="block-item" 
           :label="'${this.label}'"
         >
-          ${toggleView}
           ${content}
         </box>
       `

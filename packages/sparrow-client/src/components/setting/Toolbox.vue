@@ -4,65 +4,100 @@
       <el-tab-pane label="工具盒" class="widget-collapse">
         <div class="tool-filter">
           <div>
-            <el-input
-              placeholder="请输入内容"
-              v-model="search">
+            <el-input placeholder="请输入内容" v-model="search">
               <i slot="suffix" class="el-input__icon el-icon-search"></i>
             </el-input>
           </div>
           <div style="margin-top: 15px">
-            <el-radio-group v-model="widget" size="small" @change="toggleWidget">
+            <el-radio-group
+              v-model="widget"
+              size="small"
+              @change="toggleWidget"
+            >
               <el-radio-button label="组件"></el-radio-button>
-              <el-radio-button label="动态区块" ></el-radio-button>
-              <el-radio-button label="静态区块" ></el-radio-button>
+              <el-radio-button label="编辑区块"></el-radio-button>
+              <el-radio-button label="静态区块"></el-radio-button>
             </el-radio-group>
           </div>
         </div>
         <div class="widget-box" v-if="widget === '组件'">
           <el-collapse v-model="activeNames" @change="handleChange">
-
-            <el-collapse-item 
-              v-for="(item, index) in compList" 
-              :key="index" :title="item.label"  :name="index">
-              <div class="comp-list">
-                <div class="comp-item" 
-                  v-for="(comp, index) in item.list" 
+            <el-collapse-item
+              v-for="(item, index) in compList"
+              :key="index"
+              :title="item.label"
+              :name="index"
+            >
+              <div class="comp-list drag-box">
+                <div
+                  class="comp-item"
+                  v-for="(comp, index) in item.list"
                   :key="index"
-                  @click="addComp(comp.key, item.type, comp.params)"
+                  @mousedown="mousedownWidget(comp, item.type)"
+                  @click="addComp(comp.key, comp.params)"
                 >
-                  <span>{{comp.label}}</span>
+                  <div class="drag-box">
+                    <div class="drag-box-item">
+                        <span
+                      class="comp-list-label">{{ comp.label }}</span>
+                    </div>
+                  </div>
+       
                 </div>
               </div>
             </el-collapse-item>
-
           </el-collapse>
         </div>
-        <div v-if="widget === '动态区块'">
-          <p class="no-widget">啥也没有，开发中</p>
+        <div v-if="widget === '编辑区块'">
+           <el-collapse v-model="editBlockActiveNames" @change="handleChange">
+            <el-collapse-item
+              v-for="(item, index) in editBlockList"
+              :key="index"
+              :title="item.label"
+              :name="index"
+            >
+              <div class="comp-list drag-box">
+                <div
+                  class="comp-item"
+                  v-for="(comp, index) in item.list"
+                  :key="index"
+                  @mousedown="mousedownWidget(comp, item.type)"
+                  @click="addComp(comp.key, comp.params)"
+                >
+                  <div class="drag-box">
+                    <div class="drag-box-item">
+                        <span
+                      class="comp-list-label">{{ comp.label }}</span>
+                    </div>
+                  </div>
+       
+                </div>
+              </div>
+            </el-collapse-item>
+          </el-collapse>
         </div>
         <div class="widget-box" v-if="widget === '静态区块'">
           <el-collapse v-model="blockNames" @change="handleChange">
             <el-collapse-item title="区块" :name="0">
-              <div class="block-list">
-                <div class="block-item" 
-                  v-for="item in staticBlockList" 
+              <div class="block-list drag-box">
+                <div
+                  class="block-item"
+                  v-for="item in staticBlockList"
                   :key="item.key"
+                  @mousedown="mousedownWidget(item, 'block')"
                   @click="addStaticBlock(item.key, item.originData)"
                 >
-                  
-
-                <div class="block">
-                  <div class="block__toolbar">
-                    <div
-                      class="block__preview"
-                      :style="{ 'background-image': `url(${item.img})` }"
-                    ></div>
+                  <div class="block">
+                    <div class="block__toolbar">
+                      <div
+                        class="block__preview"
+                        :style="{ 'background-image': `url(${item.img})` }"
+                      ></div>
+                    </div>
+                    <div class="block-content">
+                      <h2 class="block-title">{{ item.title }}</h2>
+                    </div>
                   </div>
-                  <div class="block-content">
-                    <h2 class="block-title">{{ item.title }}</h2> 
-                  </div>
-                </div>
-
                 </div>
               </div>
             </el-collapse-item>
@@ -80,117 +115,190 @@ import socket from '@/util/socket.js';
 import Loading from '@/util/loading';
 import { AppModule } from '@/store/modules/app';
 import Setting from './Setting';
-
+import Sortable from 'sortablejs';
 export default {
   components: {
-    Setting
+    Setting,
   },
-  data () {
+  data() {
     return {
       search: '',
       widget: '组件',
       compList: [],
-      activeNames: [0, 1],
+      activeNames: [0, 1, 2],
       blockNames: [0],
       staticBlockList: [],
+      widgetData: {},
+      editBlockList: [],
+      editBlockActiveNames: [0, 1, 2]
     };
   },
-  async created () {
+  async created() {
     const componentMap = await socket.emit('generator.data.getWidgetList');
     this.compList = componentMap;
   },
-  methods: {
-    async addComp (id, type, config) {
-       if (type === 'box') {
-          await socket.emit('generator.scene.addBox', {
-            id
-          });
-       } else {
-         console.log('**12131*****', AppModule.insertData);
-          const params = {
-            boxUuid: AppModule.boxUuid,
-            data: {
-              uuid: _.get(AppModule.insertData, 'data.params.uuid') || '',
-              id,
-              params: config
-            }
-          };
-          console.log('*****8888*****', params);
-          Loading.open();
-          await socket.emit('generator.scene.addComponent', params);
-          Loading.close();
-          this.dialogVisible = false;
-       }
+  mounted() {
+    window.addEventListener('message', event => {
+      if (event.data.handler === 'webpack.update.success') {
+        setTimeout(() => {
+          this.bindDrag();
+        }, 1000);
+      }
+    });
 
+    setTimeout(() => {
+      this.bindClientDrag();
+    }, 3000);
+    const iframe = document.querySelector('#viewContent');
+
+    iframe.onload = () => {
+      this.bindDrag();
+    };
+  },
+  methods: {
+    async addComp(id, config) {
+      const params = {
+        boxUuid: AppModule.boxUuid,
+        id,
+        params: config
+      };
+      Loading.open();
+      await socket.emit('generator.scene.addComponent', params);
+      Loading.close();
+      this.dialogVisible = false;
     },
-    handleChange () {
+
+    mousedownWidget(widget, type) {
+      this.widgetData = widget;
+      this.widgetData.id = this.widgetData.key;
+      this.widgetData.type = type;
+    },
+
+    handleChange() {
       // material.index.getBlocks
     },
-    toggleWidget (value) {
+    toggleWidget(value) {
       if (value === '静态区块') {
         this.getStaticBlock();
       }
+      
+      if (value === '编辑区块') {
+        this.getEditBlockList();
+      }
+      this.bindClientDrag();
     },
-    async getStaticBlock () {
+    async getStaticBlock() {
       const blockList = await socket.emit('material.index.getBlocks');
       this.staticBlockList = blockList.list;
-      console.log(this.staticBlockList)
     },
+
+    async getEditBlockList() {
+      const blockList = await socket.emit('generator.data.getEditBlockList');
+      this.editBlockList = blockList;
+    },
+
     async addStaticBlock(id, originData) {
       Loading.open();
-      await socket.emit('generator.scene.addBlock', {id, originData});
+      await socket.emit('generator.scene.addBlock', {
+        boxUuid: AppModule.boxUuid, 
+        id,
+        originData 
+      });
     },
-    /**
-     * 
-     * private async addComponent() {
-        // if (!this.form.name && type === 0) {
-        //   this.$message.error('变量名必填');
-        //   return;
-        // }
-          const params = {
-            boxUuid: AppModule.boxUuid,
-            data: {
-              uuid: _.get(this.insertData, 'data.params.uuid') || '',
-              id: this.isActiveComp.key,
-              name: this.form.name,
-              params: {
-                type: this.isActiveComp.type
-              }
-            }
-          };
+    bindDrag() {
+      const iframe = document.querySelector('#viewContent');
+      var doc = iframe.contentDocument;
+      if (!doc) return;
+      const list = doc.querySelectorAll('.drag-box');
+      list.forEach(item => {
+        Sortable.create(item, {
+          group: 'shared',
+          onStart: event => {},
+          onEnd: event => {}
+        });
+      });
+    },
+    bindClientDrag () {
 
-          Loading.open();
-          await socket.emit('generator.scene.addComponent', params);
-          Loading.close();
-          this.dialogVisible = false;
-          this.form.name = '';
-          AppModule.SetShowDashboard(false);
-        }
-     */
+      const dragList = document.querySelectorAll('.drag-box');
+
+      dragList.forEach(item => {
+        Sortable.create(item, {
+          group: {
+            name: 'shared',
+            pull: 'clone',
+            put: false,
+          },
+          sort: false,
+          ghostClass: 'sortable-ghost',
+          // draggable: '',
+          onStart: event => {
+            this.$forceUpdate();
+          },
+          onEnd: async event => {
+            // this.$forceUpdate();
+            const item = event.item;
+
+            const boxUuid = event.to.getAttribute('data-id');
+
+            const nextSiblingId =
+              item.nextElementSibling &&
+              item.nextElementSibling.getAttribute('data-id');
+
+            if (item.ownerDocument.querySelector('.sparrow-view')) {
+              item.remove();
+            }
+
+            if (this.widgetData.type === 'block') {
+
+              Loading.open();
+              await socket.emit('generator.scene.addBlock', {
+                boxUuid, 
+                id: this.widgetData.id,
+                type: this.widgetData.type,
+                originData: this.widgetData.originData
+              });
+
+            } else {
+              const params = {
+                boxUuid,
+                nextSiblingId,
+                id: this.widgetData.id,
+                type: this.widgetData.type,
+                params: this.widgetData.params
+              };
+
+              Loading.open();
+              await socket.emit('generator.scene.addComponent', params);
+              Loading.close();
+            }
+
+          }
+        });
+      });
+
+    }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
-.toolbox{
+.toolbox {
   width: 280px;
   padding-right: 10px;
   height: 100%;
 }
-.comp-list{
+.comp-list {
   display: flex;
   flex-direction: row;
   border-top: 1px solid #d7d7d7;
   border-left: 1px solid #d7d7d7;
   flex-wrap: wrap;
 }
-.comp-item{
+.comp-item {
   width: 33%;
   height: 80px;
-  padding: 10px 5px;
   text-align: center;
   vertical-align: top;
-  border-right: 1px solid #d7d7d7;
-  border-bottom: 1px solid #d7d7d7;
   background-color: #fff;
   box-sizing: border-box;
   display: flex;
@@ -198,15 +306,15 @@ export default {
   align-items: center;
   cursor: pointer;
 }
-.comp-item:hover{
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+.comp-item:hover {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.block-list{
+.block-list {
   display: flex;
   flex-wrap: wrap;
   padding: 0;
 }
-.block-item{
+.block-item {
   color: #fff;
   width: 100%;
   flex-shrink: 0;
@@ -216,10 +324,10 @@ export default {
   margin-bottom: 10px;
   cursor: pointer;
 }
-.block-item:hover{
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+.block-item:hover {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.block__preview{
+.block__preview {
   width: 100%;
   height: 100%;
   background-position: top center;
@@ -260,7 +368,7 @@ export default {
   }
 
   &-content {
-    background-color: #30303d;
+    background-color: #409eff;
     padding: 10px;
     margin-top: 1px;
     text-align: left;
@@ -300,27 +408,41 @@ export default {
     margin-bottom: 3px;
   }
 }
-.tool-filter{
+.tool-filter {
   // position: absolute;
   // top: 0;
   // background: #fff;
 }
-.widget-box{
+.widget-box {
   height: calc(100% - 100px);
   overflow: scroll;
   // margin-top: 200px;
 }
-.tabs-box{
+.tabs-box {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-.widget-collapse{
+.widget-collapse {
   height: 100%;
 }
-.no-widget{
+.no-widget {
   padding: 10px;
   color: #909399;
 }
-
+.drag-box{
+  width: 100%;
+  height: 100%;
+}
+.drag-box-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 5px;
+  border-right: 1px solid #d7d7d7;
+  border-bottom: 1px solid #d7d7d7;
+  box-sizing: border-box;
+}
 </style>

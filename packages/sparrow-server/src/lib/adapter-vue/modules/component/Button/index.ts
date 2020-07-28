@@ -1,24 +1,29 @@
-import * as fsExtra from 'fs-extra';
-import * as path from 'path';
 
-export default class ResetButton {
-  name: string = 'ResetButton';
-  params: any;
-  vueParse: any;
-  uuid: string;
-  type: string;
-  constructor (type: string) {
-    this.type = type;
-    this.init();
+import * as cheerio from 'cheerio';
+const uuid = require('@lukeed/uuid');
+
+export default class Typography{
+  name: string = 'Button';
+  config: any = {};
+  uuid: string = '';
+  $fragment: any;
+
+  constructor (params: any) {
+    this.uuid = uuid().split('-')[0];
+    this.$fragment = cheerio.load(`
+      <el-button type="primary">主要按钮</el-button>
+    `, {
+      xmlMode: true,
+      decodeEntities: false,
+    });
   }
-  
-  private init () {}
 
-  public fragment () {    
-    return `
-      <el-button type="default" style="margin-right: 10px;">
-        重置
-      </el-button>
-    `;
+  getConfig () {
+    return {};
+  }
+
+
+  public getFragment () {
+    return this.$fragment;
   }
 }

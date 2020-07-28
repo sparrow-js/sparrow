@@ -7,8 +7,8 @@ import Config from '../../../config';
 export default class Autocomplete extends Base{
   name: string = 'Autocomplete';
   vueParse: any;
-  constructor (params: any) {
-    super();
+  constructor (params: any, boxPath: string) {
+    super(boxPath);
 
     if (params.initType === 'auto') {
       this.config = params;
@@ -40,19 +40,11 @@ export default class Autocomplete extends Base{
 
   public fragment () {
     return `
-      <el-form-item label=" "
-        ${this._formItemStr}
-      >
-        <label-box 
-          label="${this.config._custom.label}"
-          uuid="${this.uuid}"
-        ></label-box>
-        <el-autocomplete
-          :fetch-suggestions="querySearch${this.uuid}"
-          @select="handleSelect${this.uuid}"
-          ${this._attrStr}
-        ></el-autocomplete>
-      </el-form-item>
+      <el-autocomplete
+        :fetch-suggestions="querySearch${this.uuid}"
+        @select="handleSelect${this.uuid}"
+        ${this._attrStr}
+      ></el-autocomplete>
     `;
   }
 

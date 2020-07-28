@@ -25,9 +25,8 @@ export default class Block extends Base implements IBaseBox{
   template: string;
   public insertComponents: string[] = [];
 
-  constructor (data: any, storage: any) {
+  constructor (storage: any) {
     super(storage);
-    const { params } = data;
     this.$fragment = cheerio.load('<div class="box"></div>', {
       xmlMode: true,
       decodeEntities: false
