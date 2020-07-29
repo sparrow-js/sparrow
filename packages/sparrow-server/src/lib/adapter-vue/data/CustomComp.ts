@@ -31,21 +31,21 @@ export const custom = [
     key: 'Delete',
     label: '删除',
     des: '表格删除按钮',
-    keys: ['删除', '表格'],
+    keys: ['删除', '表格', 'table'],
     path: '/custom/Table/Delete',
   },
   {
     key: 'Edit',
     label: '编辑',
     des: '编辑按钮',
-    keys: ['编辑', '表格'],
+    keys: ['编辑', '表格', 'table'],
     path: '/custom/Table/Edit',
   },
   {
     key: 'See',
     label: '查看按钮',
     des: '查看按钮',
-    keys: ['查看', '表格'],
+    keys: ['查看', '表格', 'table'],
     path: '/custom/Table/See',
   }
 ]

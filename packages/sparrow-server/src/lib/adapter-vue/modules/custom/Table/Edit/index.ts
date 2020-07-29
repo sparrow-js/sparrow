@@ -13,14 +13,6 @@ export default class Edit extends Base{
   constructor (params: any = {}) {
     super();
 
-    if (params.config) {
-      this.config = params.config;
-    } else {
-      this.config = {
-        type: params.params.type || 'button'
-      }
-    }
-
     this.init();
   }
 
@@ -30,20 +22,10 @@ export default class Edit extends Base{
   }
 
   public fragment () {
-    if (this.config.type === 'button') {
-      return `
-        <el-button size="mini" type="success" @click="handleEdit(row,$index)">
-          编辑
-        </el-button>
-      `;
-    } else if (this.config.type === 'link') {
-      return `
-        <el-link type="success" @click="handleEdit(row,$index)">
-          编辑
-        </el-link>
-      `;
-    }
-    
-    return '';
+    return `
+      <el-button size="mini" type="success" @click="handleEdit(row,$index)">
+        编辑
+      </el-button>
+    `;
   }
 }

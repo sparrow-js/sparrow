@@ -4,7 +4,11 @@
       <el-tab-pane label="工具盒" class="widget-collapse">
         <div class="tool-filter">
           <div>
-            <el-input placeholder="请输入内容" v-model="search">
+            <el-input 
+              placeholder="请输入内容"
+              v-model="search"
+              @input="searchChange"
+            >
               <i slot="suffix" class="el-input__icon el-icon-search"></i>
             </el-input>
           </div>
@@ -28,7 +32,7 @@
               :title="item.label"
               :name="index"
             >
-              <div class="comp-list drag-box">
+              <div class="comp-list">
                 <div
                   class="comp-item"
                   v-for="(comp, index) in item.list"
@@ -38,8 +42,7 @@
                 >
                   <div class="drag-box">
                     <div class="drag-box-item">
-                        <span
-                      class="comp-list-label">{{ comp.label }}</span>
+                        <span class="comp-list-label">{{ comp.label }}</span>
                     </div>
                   </div>
        
@@ -56,7 +59,7 @@
               :title="item.label"
               :name="index"
             >
-              <div class="comp-list drag-box">
+              <div class="comp-list">
                 <div
                   class="comp-item"
                   v-for="(comp, index) in item.list"
@@ -134,8 +137,15 @@ export default {
     };
   },
   async created() {
-    const componentMap = await socket.emit('generator.data.getWidgetList');
-    this.compList = componentMap;
+    this.getWidgetList = _.debounce(this.getWidgetList, 500, { trailing: true });
+    
+    this.getWidgetList('');
+    this.$root.$on('bind_client_drag', (data) => {
+      this.bindClientDrag();
+    });
+    this.$root.$on('mousedown_widget', (data) => {
+      this.widgetData = data;
+    });
   },
   mounted() {
     window.addEventListener('message', event => {
@@ -212,9 +222,22 @@ export default {
       const list = doc.querySelectorAll('.drag-box');
       list.forEach(item => {
         Sortable.create(item, {
-          group: 'shared',
+          group: {
+            name: 'shared',
+            // pull: 'clone',
+          },
+          sort: false,
           onStart: event => {},
-          onEnd: event => {}
+          onEnd: event => {
+            const item = event.item;
+            const compId = item.getAttribute('data-id');
+            const boxId = event.to.getAttribute('data-id');
+            const nextSiblingId =
+              item.nextElementSibling &&
+              item.nextElementSibling.getAttribute('data-id');
+            // item.remove();
+            this.dragViewWidget(compId, boxId, nextSiblingId);
+          }
         });
       });
     },
@@ -265,7 +288,8 @@ export default {
                 nextSiblingId,
                 id: this.widgetData.id,
                 type: this.widgetData.type,
-                params: this.widgetData.params
+                params: this.widgetData.params,
+                path: this.widgetData.path || ''
               };
 
               Loading.open();
@@ -277,6 +301,21 @@ export default {
         });
       });
 
+    },
+    async getWidgetList (value) {
+      const componentMap = await socket.emit('generator.data.getWidgetList', {value});
+      this.compList = componentMap;
+      this.bindClientDrag();
+    },
+    searchChange (value) {
+      this.getWidgetList(value)
+    },
+    async dragViewWidget (compId, boxId, nextSiblingId) {
+      await socket.emit('generator.scene.dragViewWidgetHandler', {
+        compId,
+        boxId,
+        nextSiblingId,
+      });
     }
   }
 };

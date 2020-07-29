@@ -154,9 +154,14 @@
                 v-for="(item, index) in customCompList"
                 :key="index"
                 @click="addComponent(item)"
+                @mousedown="mousedownWidget(item)"
               >
-                <div class="comp-item__title">{{ item.label }}</div>
-                <div class="comp-item__des">{{ item.des }}</div>
+                <div class="drag-box">
+                  <div class="drag-box-item">
+                    <div class="comp-item__title">{{ item.label }}</div>
+                    <div class="comp-item__des">{{ item.des }}</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -202,6 +207,7 @@ export default class CompBox extends Vue {
   private activeNameCode = 'code';
   private search = '';
   private customCompList = [];
+  private widgetData = null;
 
   get componentIs() {
     if (AppModule.componentIs) {
@@ -275,6 +281,12 @@ export default class CompBox extends Vue {
       value
     });
     this.customCompList = res;
+    if (res && res.length > 0) {
+      this.$nextTick(() => {
+        this.$root.$emit('bind_client_drag');
+      })
+    }
+   
   }
 
   private tabChange(index) {
@@ -409,6 +421,13 @@ export default class CompBox extends Vue {
 
   private searchChange(value) {
     this.getCustomComp(value);
+  }
+
+  private mousedownWidget (item) {
+    this.widgetData = item;
+    this.widgetData.id = this.widgetData.key;
+    this.widgetData.type = 'custom';
+    this.$root.$emit('mousedown_widget', this.widgetData);
   }
 }
 </script>

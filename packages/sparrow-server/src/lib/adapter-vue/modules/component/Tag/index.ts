@@ -10,20 +10,42 @@ export default class Tag{
 
   constructor (params: any) {
     this.uuid = uuid().split('-')[0];
+    this.config = {
+      // 组件自定义配置
+      _custom: {
+        label: '主要按钮',
+        type: '',
+        size: '',
+        effect: '',
+      },
+    };
+    this.renderTemplate();
+  }
+
+
+
+  getConfig () {
+    return this.config;
+  }
+
+
+  renderTemplate () {
     this.$fragment = cheerio.load(`
-      <el-tag>标签</el-tag>
+      <el-tag>
+        <edit-text-box :clearClass="true" uuid="${this.uuid}">${this.config._custom.label}</edit-text-box>
+      </el-tag>
     `, {
       xmlMode: true,
       decodeEntities: false,
     });
   }
 
-  getConfig () {
-    return {};
+  public insertEditText (params) {
+    this.config._custom.label = params.value;
   }
 
-
   public getFragment () {
+    this.renderTemplate();
     return this.$fragment;
   }
 }

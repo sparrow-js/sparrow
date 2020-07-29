@@ -117,7 +117,6 @@ export default class App extends Vue {
           if (data.uuid !== undefined) {
             AppModule.setBoxUuid(data.uuid);
           }
-
         }, 200)
 
       }
@@ -132,7 +131,7 @@ export default class App extends Vue {
       const viewContent:any = document.querySelector('#viewContent')
       setTimeout(() => {
         viewContent.contentWindow.location.reload(true)
-      }, 1000)
+      }, 500)
     })
     
 
