@@ -49,7 +49,9 @@ export default class Card implements IBaseBox{
 
     const type = this.storage.get('preview_view_status') || 0;
     let labelBox = `
-      <span>${_attr['label']}</span>
+      <edit-text-box :clearClass="true" uuid="${this.uuid}">
+        ${_attr['label']}
+      </edit-text-box>
     `;
 
     if (type === 1) {
@@ -118,6 +120,10 @@ export default class Card implements IBaseBox{
 
   public getConfig() {
     return this.config
+  }
+
+  public insertEditText (params) {
+    this.config._attr.label = params.value;
   }
 
   getSetting () {
