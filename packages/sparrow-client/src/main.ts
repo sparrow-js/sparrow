@@ -38,3 +38,4 @@ new Vue({
   render: h => h(App)
 }).$mount('#app');
 document.domain = 'localhost';
+Vue.prototype.$EventBus = new Vue();

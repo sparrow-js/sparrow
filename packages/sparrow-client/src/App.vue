@@ -131,7 +131,7 @@ export default class App extends Vue {
       const viewContent:any = document.querySelector('#viewContent')
       setTimeout(() => {
         viewContent.contentWindow.location.reload(true)
-      }, 1000)
+      }, 500)
     })
     
 

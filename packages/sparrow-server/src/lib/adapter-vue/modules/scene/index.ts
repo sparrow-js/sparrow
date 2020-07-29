@@ -38,13 +38,14 @@ export default class Scene {
     dataCode: 'var data = {}'
   };
   tempCopyStore: any = {};
+  renderPageToggle = false;
 
   constructor (params: any = {}) {
     this.uuid = uuid().split('-')[0];
     this.VueGenerator = new VueGenerator();
     const {initScene} = params;
     storage.set('preview_view_status', 0);
-
+    this.renderPage = _.throttle(this.renderPage, 500)
     this.init();
     if (initScene) {
       const fileStr = fsExtra.readFileSync(path.join(Config.templatePath,'scene', initScene,'index.vue'), 'utf8');
@@ -501,13 +502,15 @@ export default class Scene {
     }
   };
   
-  public deleteComponent (params: {id: string}) {
+  public deleteComponent (params: {id: string}, renderPage = true) {
     const {id} = params;
     this.deleteNode({
       uuid: 'page',
       components: this.components
     }, id);
-    this.renderPage();
+    if (renderPage) {
+      this.renderPage();
+    }
   }
 
   public insertEditText (params: any) {
@@ -517,11 +520,33 @@ export default class Scene {
     this.renderPage();
   }
 
-  public async renderPage () {
-   
+  public dragViewWidgetHandler (params: any, ctx) {
+    const { socket } = ctx;
+    const {
+      compId,
+      boxId,
+      nextSiblingId,
+    } = params;
+    const curComp = this.findComponent(compId, this.components);
+    const compJson = this.getSaveTree(curComp);
+    compJson.nextSiblingId = nextSiblingId;
+    const curBox = this.findComponent(boxId, this.components);
+    this.deleteComponent({
+      id: compId
+    }, false);
+    this.renderPageToggle = !this.renderPageToggle; // 强制webpack热更新
+    this.jsonToScene({children: [compJson]}, curBox);
+    // socket.emit('generator.force.refresh');
+  }
 
+  public async renderPage () {
     this.params.previewViewStatus = storage.get('preview_view_status');
     this.$('.home').empty();
+    if (this.renderPageToggle) {
+      this.$('.home').append('<div class="toggle"/>')
+    }
+
+
     this.scriptData = this.VueGenerator.initScript();
 
     if (this.config.dataCode) {
