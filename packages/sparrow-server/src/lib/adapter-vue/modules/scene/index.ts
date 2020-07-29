@@ -528,6 +528,7 @@ export default class Scene {
       nextSiblingId,
     } = params;
     const curComp = this.findComponent(compId, this.components);
+    if (!curComp) return;
     const compJson = this.getSaveTree(curComp);
     compJson.nextSiblingId = nextSiblingId;
     const curBox = this.findComponent(boxId, this.components);
