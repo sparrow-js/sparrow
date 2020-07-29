@@ -15,7 +15,13 @@
   "keywords": [
     "low-code",
     "vue",
-    "GUI"
+    "GUI",
+    "drag-and-drop",
+    "editor",
+    "generator",
+    "page-editor",
+    "sparrow",
+    "sparrow-js"
   ],
   "author": "sparrowwht7@gmail.com",
   "license": "ISC",
