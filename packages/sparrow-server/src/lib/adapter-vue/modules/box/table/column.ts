@@ -29,7 +29,7 @@ export default class Column{
         },
       };
     }
-    this.addComponent();
+    // this.addComponent();
   }
 
   addComponent () {
@@ -61,6 +61,7 @@ export default class Column{
     } else {
       const cellbox =  `
       <template slot-scope="{row, column, $index}">
+        ${containerBox}
       </template>
       `
       column = `

@@ -29,6 +29,7 @@ export default class Base extends Common{
 
   public getFragment () {
     this.renderFragment();
+    console.log('******56******', this.$fragment.html());
     return this.$fragment;
   }
 

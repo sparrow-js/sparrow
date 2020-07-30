@@ -86,7 +86,9 @@ export default class Table extends Base implements IBaseBox{
     if (!data.children) {
       this.col = col;
       for (let i = 0; i < this.col; i++) {
-        this.components.push(new Column({},this.storage));
+        const column = new Column({},this.storage)
+        column.addComponent();
+        this.components.push(column);
       }
     }
   }
@@ -98,9 +100,9 @@ export default class Table extends Base implements IBaseBox{
   }
   
 
-  public getFragment(index: number): any {
-    return this.$fragment;
-  }
+  // public getFragment(index: number): any {
+  //   return this.$fragment;
+  // }
 
   public setPreview () {
     const type = this.storage.get('preview_view_status') || 0;
@@ -154,6 +156,8 @@ export default class Table extends Base implements IBaseBox{
       if (type === 'column') {
         const columnIndex = this.components.findIndex(item => item.uuid === id);
         if (columnIndex >= 0) {
+          const column = new Column(data, this.storage);
+          column.addComponent();
           this.components.splice(columnIndex + 1, 0, new Column({},this.storage));
         }
       } else {
@@ -246,23 +250,6 @@ export default class Table extends Base implements IBaseBox{
         this.boxStrs = this.boxStrs + item.boxStrs;
       }
     })
-
-    // const fn = (components) => {
-    //   components.forEach(item => {
-    //     if (item.vueParse && item.insertFileType === 'inline') {
-    //       item.vueParse.methods && this.VueGenerator.appendMethods(item.vueParse.methods);
-    //       item.vueParse.data && this.VueGenerator.appendData(item.vueParse.data);
-    //     }
-    //     if (item.insertComponents && item.insertComponents.length) {
-    //       this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]), true);
-    //     }
-    //     if (item.insertFileType !== 'block' && item.components && item.components.length > 0) {
-    //       fn(item.components)
-    //     }
-    //   })
-    // }
-
-    // fn(this.components);
     return column;
   }
   

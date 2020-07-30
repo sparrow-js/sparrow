@@ -387,6 +387,7 @@ export default class Scene {
       config: null,
       children: [],
       params: null,
+      path: '',
     };
     if (node.name) {
       tree.id = node.name;
@@ -401,6 +402,10 @@ export default class Scene {
     }
     if (node.params) {
       tree.params = node.params;
+    }
+
+    if (node.path) {
+      tree.path = node.path;
     }
 
     if (node.components || node.boxs) {

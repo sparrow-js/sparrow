@@ -70,6 +70,7 @@ export default class Base {
       if (path) {
         const dynamicObj = require(`..${path}`).default;
         const comp = new dynamicObj(config || params, this.storage);
+        comp.path = path;
         if (compIndex >= 0) {
           this.components.splice(compIndex, 0, comp)
         } else {
