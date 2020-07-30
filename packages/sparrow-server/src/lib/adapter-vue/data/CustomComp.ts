@@ -47,5 +47,12 @@ export const custom = [
     des: '查看按钮',
     keys: ['查看', '表格', 'table'],
     path: '/custom/Table/See',
+  },
+  {
+    key: 'UploadWall',
+    label: '图片墙',
+    des: '上传多图片，图片墙',
+    keys: ['上传', 'img', 'jpg', 'png', 'image', '多图'],
+    path: '/custom/UploadWall',
   }
 ]

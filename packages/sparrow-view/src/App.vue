@@ -149,7 +149,7 @@ export default {
     height: 100%;
   }
   .sortable-ghost{
-    height: 5px;
+    height: 3px;
     background: #409EFF;
   }
   .sortable-ghost *{
@@ -158,4 +158,13 @@ export default {
   .drag-box{
     min-height: 24px;
   }
+  .sortable-chosen{
+    /* display: none; */
+  }
+  .sortable-fallback{
+    background: red;
+    width: 100px;
+    height: 10px;
+  }
+  /* .sortable-chosen{display: none} */
 </style>

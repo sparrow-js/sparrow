@@ -80,7 +80,7 @@ export default class Base {
 
       } else if (hasBox) {
         const dynamicObj = require(`../box/${id}`).default;
-        const comp = new dynamicObj(config || params, this.storage)
+        const comp = new dynamicObj(config || data, this.storage)
         if (compIndex >= 0) {
           this.components.splice(compIndex, 0, comp)
         } else {

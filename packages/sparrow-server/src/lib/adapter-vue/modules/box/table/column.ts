@@ -83,7 +83,7 @@ export default class Column{
     return this.config;
   }
 
-  public setConfig (config: any) {
+  public settingConfig (config: any) {
     this.config = config;
   }
 

@@ -224,7 +224,7 @@ export default {
         Sortable.create(item, {
           group: {
             name: 'shared',
-            // pull: 'clone',
+            pull: 'clone',
           },
           sort: false,
           onStart: event => {},
@@ -316,6 +316,10 @@ export default {
         boxId,
         nextSiblingId,
       });
+
+      setTimeout(() => {
+        this.bindDrag();
+      }, 500)
     }
   }
 };

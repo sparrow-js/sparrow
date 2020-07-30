@@ -12,11 +12,9 @@ import Base from '../Base';
 import * as _ from 'lodash';
 const uuid = require('@lukeed/uuid');
 const templateStr =  `
-  <template>
-    <div class="root" >
-      <box-form></box-form>
-    </div>
-  </template>
+  <div class="root" >
+    <box-form></box-form>
+  </div>
 `;
 
 

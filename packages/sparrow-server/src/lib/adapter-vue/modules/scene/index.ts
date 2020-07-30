@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as Path from 'path';
 import * as fsExtra from 'fs-extra';
 import generate from '@babel/generator';
 import {blockList} from '../fragment/scene';
@@ -15,7 +15,7 @@ import * as _ from 'lodash'
 import Block from '../box/Block';
 
 const cwd = process.cwd();
-const viewPath = path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
+const viewPath = Path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
 
 export default class Scene {
   components: any = [];
@@ -48,7 +48,7 @@ export default class Scene {
     this.renderPage = _.throttle(this.renderPage, 500)
     this.init();
     if (initScene) {
-      const fileStr = fsExtra.readFileSync(path.join(Config.templatePath,'scene', initScene,'index.vue'), 'utf8');
+      const fileStr = fsExtra.readFileSync(Path.join(Config.templatePath,'scene', initScene,'index.vue'), 'utf8');
       this.sceneVueParse = new VueParse(uuid().split('-')[0], fileStr);
     }
 
@@ -163,7 +163,7 @@ export default class Scene {
   }
 
   public addComponent (data, operateType = 'manual') {
-    const {boxUuid, id, params = {}, nextSiblingId} = data;
+    const {boxUuid, id, params = {}, nextSiblingId, path} = data;
 
     let backComp = null;
 
@@ -173,10 +173,21 @@ export default class Scene {
         compIndex = this.components.findIndex(item => item.uuid === nextSiblingId);
       }
 
-      const hasBox = fsExtra.pathExistsSync(path.join(__dirname, `../box/${id}`));
+      const hasBox = fsExtra.pathExistsSync(Path.join(__dirname, `../box/${id}`));
 
 
-      if (hasBox) {
+      if (path) {
+        const dynamicObj = require(`..${path}`).default;
+        const comp = new dynamicObj(params, storage);
+        comp.path = path;
+        if (compIndex >= 0) {
+          this.components.splice(compIndex, 0, comp)
+        } else {
+          this.components.push(comp);
+        }
+        backComp = comp;
+
+      } else if (hasBox) {
         const dynamicObj = require(`../box/${id}`).default;
         const comp = new dynamicObj(data, storage)
         if (compIndex >= 0) {

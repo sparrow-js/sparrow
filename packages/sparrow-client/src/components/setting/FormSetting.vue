@@ -22,7 +22,6 @@
                     <i class="iconfont icon-iconfront-" @click="expansionHandler('form')"></i>
                   </div>
                   <codemirror
-                    ref="codemirror"
                     v-model="config._attr[':default']"
                   ></codemirror>
                 </el-tab-pane>
@@ -80,6 +79,7 @@
                 label-width="0"
               >
                   <codemirror
+                    ref="codemirror"
                     v-model="config._slot.data"
                   ></codemirror>
               </el-form-item>
@@ -195,14 +195,6 @@ export default class extends Vue {
     _attr: {}
   };
 
-  
-
-
-
-  // get showSetting() {
-  //   return SettingModule.showSetting;
-  // }
-
   private async created() {
 
     window.EventCustomer.addListener('click_json_tree_callback', data => {
@@ -222,7 +214,7 @@ export default class extends Vue {
         });
         AppModule.setActiveCompId(this.uuid);
         this.config = result;
-
+        this.refresh();    
       }
 
       if (data.handler === 'client.dispatch.box') {
@@ -232,10 +224,15 @@ export default class extends Vue {
           uuid: _.get(data, 'uuid'),
         });
         this.config = result;
+        this.refresh();
       }
 
-
     })
+  }
+
+  private refresh () {
+    const codemirror: any = this.$refs.codemirror;
+    if (codemirror) codemirror.codemirror.refresh();
   }
 
   private showSettingHandler() {
@@ -338,6 +335,7 @@ export default class extends Vue {
 .update-data {
   margin-left: 10px;
   color: #409eff;
+  cursor: pointer;
   :hover {
     color: #66b1ff;
   }

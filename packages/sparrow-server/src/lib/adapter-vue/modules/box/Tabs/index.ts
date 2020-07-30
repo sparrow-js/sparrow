@@ -89,7 +89,7 @@ export default class Tabs extends Base implements IBaseBox{
   
   
 
-  public renderFragment () {
+  public setPreview () {
     let TabsBox = '';
     const type = this.storage.get('preview_view_status') || 0;
     if (type === 0) {
@@ -162,7 +162,7 @@ export default class Tabs extends Base implements IBaseBox{
     this.setAttrsToStr();
   }
 
-  public setConfig (config: any) {
+  public settingConfig (config: any) {
     const hasNewComp = this.resetComponents(config);
     if (hasNewComp === false) return;
     this.config = config;
@@ -205,11 +205,6 @@ export default class Tabs extends Base implements IBaseBox{
       });
       this._attrStr = formField.join(' ');
     }
-  }
-  
-  public getFragment () {
-    this.renderFragment();
-    return this.$fragment;
   }
 
   public getConfig() {
