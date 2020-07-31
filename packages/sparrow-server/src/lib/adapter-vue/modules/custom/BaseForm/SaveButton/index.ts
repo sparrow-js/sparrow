@@ -1,10 +1,11 @@
 import * as fsExtra from 'fs-extra';
 import VueParse from '../../../generator/VueParse';
 import * as path from 'path';
-import Base from '../Base';
 import Config from '../../../../config';
+import Common from '../../Common';
 
-export default class SaveButton extends Base{
+
+export default class SaveButton extends Common{
   name: string = 'SaveButton';
   params: any;
   vueParse: any;

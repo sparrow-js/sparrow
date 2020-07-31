@@ -1,11 +1,10 @@
 import * as fsExtra from 'fs-extra';
 import VueParse from '../../../generator/VueParse';
 import * as path from 'path';
-import Base from '../Base';
 import Config from '../../../../config';
+import Common from '../../Common';
 
-
-export default class SearchButton extends Base{
+export default class SearchButton extends Common{
   name: string = 'SearchButton';
   params: any;
   vueParse: any;

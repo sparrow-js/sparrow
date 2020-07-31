@@ -1,4 +1,7 @@
 import * as cheerio from 'cheerio';
+import storage from '../../../storage';
+
+
 const uuid = require('@lukeed/uuid');
 
 
@@ -19,6 +22,15 @@ export default class Base {
   }
 
   public renderFragment () {
+    let compBox = `
+      <component-box uuid="${this.uuid}">
+        ${this.fragment()}
+      </component-box>
+    `;
+    const type = storage.get('preview_view_status') || 0;
+    if (type) {
+      compBox = this.fragment();
+    }
     let formItem = ''
     if (this.boxPath.match('Form') || this.config._custom.insideForm === true) {
       this.config._custom.insideForm = true;
@@ -30,12 +42,12 @@ export default class Base {
             label="${this.config._custom.label}" 
             uuid="${this.uuid}"
           ></label-box>
-          ${this.fragment()}
+          ${compBox}
         </el-form-item>
       `;
     } else {
       formItem = `
-        ${this.fragment()}
+        ${compBox}
       `;
     }
 

@@ -1,6 +1,6 @@
-import Base from '../Base';
+import Common from '../../Common';
 
-export default class Delete extends Base{
+export default class Delete extends Common{
   name: string = 'See';
   params: any;
   vueParse: any;

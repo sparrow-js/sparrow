@@ -1,4 +1,5 @@
 import * as cheerio from 'cheerio';
+import storage from '../../../storage';
 const uuid = require('@lukeed/uuid');
 
 export default class Common {
@@ -11,7 +12,18 @@ export default class Common {
   public getConfig () {}
 
   public renderFragment () {
-    this.$fragment = cheerio.load(this.fragment(), {
+    let compBox = `
+      <component-box uuid="${this.uuid}">
+        ${this.fragment()}
+      </component-box>
+    `;
+
+    const type = storage.get('preview_view_status') || 0;
+    if (type) {
+      compBox = this.fragment();
+    }
+
+    this.$fragment = cheerio.load(compBox, {
       xmlMode: true,
       decodeEntities: false,
     });

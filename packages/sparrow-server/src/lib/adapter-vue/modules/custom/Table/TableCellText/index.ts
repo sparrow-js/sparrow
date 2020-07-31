@@ -1,6 +1,6 @@
-import Base from '../Base';
+import Common from '../../Common';
 
-export default class TableCellText extends Base{
+export default class TableCellText extends Common{
   name: string = 'TableCellText';
   params: any;
   vueParse: any;

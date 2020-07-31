@@ -62,11 +62,7 @@ export default class Form extends Base implements IBaseBox{
     // this.fileName = blockName.charAt(0).toUpperCase() + blockName.slice(1)
     // this.insertComponents.push(this.fileName);
 
-    this.$fragment = cheerio.load(` 
-      <div class="box">
-        ${templateStr}
-      </div>
-    `, {
+    this.$fragment = cheerio.load(templateStr, {
         xmlMode: true,
         decodeEntities: false
       });
@@ -101,11 +97,7 @@ export default class Form extends Base implements IBaseBox{
     this.previewType = type;
     if (type === 0) {
 
-      this.$fragment = cheerio.load(` 
-        <div class="box">
-          ${templateStr}
-        </div>
-      `, {
+      this.$fragment = cheerio.load(templateStr, {
         xmlMode: true,
         decodeEntities: false
       });
@@ -114,9 +106,7 @@ export default class Form extends Base implements IBaseBox{
     } else {
 
       this.$fragment = cheerio.load(` 
-        <div class="box">
-          <div class="root">
-          </div>
+        <div class="root">
         </div>
       `, {
         xmlMode: true,
@@ -246,10 +236,7 @@ export default class Form extends Base implements IBaseBox{
       components.forEach((component, index) => {
         if (flag === 0) {
           if (this.previewType === 0) {
-            const componentBox = 
-              `<component-box uuid="${component.uuid}">
-                  ${component.getFragment(this.previewType).html()}
-                </component-box>`;
+            const componentBox = component.getFragment(this.previewType).html();
               this.$fragment('.drag-box').first().append(
                 componentBox
               );
