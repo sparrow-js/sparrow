@@ -51,7 +51,7 @@ export default class Container extends Base  {
     } else {
 
       this.$fragment = cheerio.load(` 
-        <div class="box"></div>
+        <div class="drag-box"></div>
       `, {
         xmlMode: true,
         decodeEntities: false
@@ -62,23 +62,16 @@ export default class Container extends Base  {
 
 
   public renderBox () {
-
     this.$fragment('.drag-box').empty();
     this.components.forEach(component => {
 
-      if (this.previewType === 0) {
-        const componentBox = 
-          `<component-box uuid="${component.uuid}">
-              ${component.getFragment(this.previewType).html()}
-            </component-box>`;
+      this.$fragment('.box').append(component.getFragment(this.previewType).html());
 
-          this.$fragment('.drag-box').first().append(
-            componentBox
-          );
-      } else {
-        this.$fragment('.box').append(component.getFragment(this.previewType).html());
-      }
-    })
+    });
+
+    if (this.components.length  === 0) {
+      this.$fragment('.drag-box').append(`<div class="empty-container">empty</div>`)
+    }
 
   }
   

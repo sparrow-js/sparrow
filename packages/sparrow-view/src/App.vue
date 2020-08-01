@@ -166,5 +166,13 @@ export default {
     width: 100px;
     height: 10px;
   }
+  .empty-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #C0C4CC;
+  }
   /* .sortable-chosen{display: none} */
 </style>
