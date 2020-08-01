@@ -21,20 +21,25 @@ export default class Base {
     this.uuid = uuid().split('-')[0]; 
   }
 
-  public renderFragment () {
-    let compBox = `
-      <component-box uuid="${this.uuid}">
-        ${this.fragment()}
-      </component-box>
-    `;
+  private wrapComponentBox (content) {
     const type = storage.get('preview_view_status') || 0;
-    if (type) {
-      compBox = this.fragment();
+    if (type === 0) {
+      return `
+        <component-box uuid="${this.uuid}">
+          ${content}
+        </component-box>
+      `;
+    } else {
+      return content;
     }
+  }
+
+  public renderFragment () {
     let formItem = ''
     if (this.boxPath.match('Form') || this.config._custom.insideForm === true) {
       this.config._custom.insideForm = true;
-      formItem = `
+      formItem = this.wrapComponentBox(
+        `
         <el-form-item label=" "
           ${this._formItemStr}
         >
@@ -42,14 +47,15 @@ export default class Base {
             label="${this.config._custom.label}" 
             uuid="${this.uuid}"
           ></label-box>
-          ${compBox}
+          ${this.fragment()}
         </el-form-item>
-      `;
+      `
+      );
     } else {
-      formItem = `
-        ${compBox}
-      `;
+      formItem = this.wrapComponentBox(this.fragment())
     }
+
+    
 
     this.$fragment = cheerio.load(formItem, {
       xmlMode: true,

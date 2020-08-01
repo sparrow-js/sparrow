@@ -64,14 +64,12 @@ export default class Container extends Base  {
   public renderBox () {
     this.$fragment('.drag-box').empty();
     this.components.forEach(component => {
-
-      this.$fragment('.box').append(component.getFragment(this.previewType).html());
-
+      this.$fragment('.drag-box').append(component.getFragment(this.previewType).html());
     });
 
-    if (this.components.length  === 0) {
-      this.$fragment('.drag-box').append(`<div class="empty-container">empty</div>`)
-    }
+    // if (this.components.length  === 0) {
+    //   this.$fragment('.drag-box').append(`<div class="empty-container">empty</div>`)
+    // }
 
   }
   
