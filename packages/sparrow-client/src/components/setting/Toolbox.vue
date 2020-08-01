@@ -262,9 +262,6 @@ export default {
           onEnd: async event => {
             // this.$forceUpdate();
             const item = event.item;
-
-            console.log('*****11******');
-
             const boxUuid = event.to.getAttribute('data-id');
 
             const nextSiblingId =
@@ -295,8 +292,6 @@ export default {
                 path: this.widgetData.path || ''
               };
 
-              console.log('*****908******', params);
-
               Loading.open();
               await socket.emit('generator.scene.addComponent', params);
               Loading.close();
@@ -316,7 +311,6 @@ export default {
       this.getWidgetList(value)
     },
     async dragViewWidget (compId, boxId, nextSiblingId) {
-      console.log('*****11******', compId, boxId, nextSiblingId);
       await socket.emit('generator.scene.dragViewWidgetHandler', {
         compId,
         boxId,

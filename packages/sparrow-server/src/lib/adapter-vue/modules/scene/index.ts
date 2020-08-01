@@ -547,7 +547,10 @@ export default class Scene {
     if (!curComp) return;
     const compJson = this.getSaveTree(curComp);
     compJson.nextSiblingId = nextSiblingId;
-    const curBox = this.findComponent(boxId, this.components);
+    let curBox = this.findComponent(boxId, this.components);
+    if (boxId === this.uuid) {
+      curBox = this;
+    }
     this.deleteComponent({
       id: compId
     }, false);
