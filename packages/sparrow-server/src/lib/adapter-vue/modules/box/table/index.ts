@@ -146,32 +146,9 @@ export default class Table extends Base implements IBaseBox{
   }
 
   public addComponent (data?: any, insterType: string = 'manual') {
-    
-    if (insterType === 'auto') {
-      const column = new Column(data, this.storage);
-      this.components.push(column);
-      return column;
-    } else {
-      const {id, params, uuid, type} = data;
-      if (type === 'column') {
-        const columnIndex = this.components.findIndex(item => item.uuid === id);
-        if (columnIndex >= 0) {
-          const column = new Column(data, this.storage);
-          column.addComponent();
-          this.components.splice(columnIndex + 1, 0, new Column({},this.storage));
-        }
-      } else {
-        this.components.forEach(item => {
-          if (item.uuid === uuid) {
-            item.addComponent({
-              id: id,
-              type,
-              params
-            });
-          }
-        });
-      }
-    }
+    const column = new Column({},this.storage)
+    column.addComponent();
+    this.components.push(column);
   }
 
 

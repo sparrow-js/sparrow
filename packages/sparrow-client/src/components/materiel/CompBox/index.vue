@@ -286,7 +286,6 @@ export default class CompBox extends Vue {
         this.$root.$emit('bind_client_drag');
       })
     }
-   
   }
 
   private tabChange(index) {
@@ -344,16 +343,15 @@ export default class CompBox extends Vue {
 
   async addTableColumn(id, selectedNode) {
     let node = selectedNode.parent;
-    while (node && !(node.label == 'box' || node.label == 'page')) {
+    while (node && !(node.label == 'Table' || node.label == 'page')) {
       node = node.parent;
     }
     const params = {
       boxUuid: node.key,
-      data: {
-        id: id,
-        type: 'column'
-      }
+      id: 'Table/column.ts'
     };
+
+    console.log(params)
 
     await socket.emit('generator.scene.addComponent', params);
     this.getSceneTree();

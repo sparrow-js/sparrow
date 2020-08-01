@@ -55,7 +55,7 @@ export default class Base {
   
 
   public addComponent (data: any, operatetype: string = 'manual') {
-
+      console.log('*********9******', data)
       let { id, params = {}, nextSiblingId, config, path } = data;
       if (config) {
         config.initType = operatetype;
