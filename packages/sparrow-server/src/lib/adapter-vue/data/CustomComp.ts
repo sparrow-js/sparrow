@@ -54,5 +54,19 @@ export const custom = [
     des: '上传多图片，图片墙',
     keys: ['上传', 'img', 'jpg', 'png', 'image', '多图'],
     path: '/custom/UploadWall',
+  },
+  {
+    key: 'UploadList',
+    label: '图片列表缩略图',
+    des: '图片列表缩略图',
+    keys: ['上传', 'img', 'jpg', 'png', 'image', '多图'],
+    path: '/custom/UploadList',
+  },
+  {
+    key: 'UploadDrag',
+    label: '拖拽上传',
+    des: '拖拽上传图片',
+    keys: ['拖拽', '上传', 'img', 'jpg', 'png', 'image', '多图'],
+    path: '/custom/UploadDrag',
   }
 ]
