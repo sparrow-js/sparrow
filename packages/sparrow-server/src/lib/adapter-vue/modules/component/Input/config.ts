@@ -13,7 +13,7 @@ export default {
         }
       ],
       label: '文本框',
-      type: 1
+      type: 'input'
     },
     
   },
