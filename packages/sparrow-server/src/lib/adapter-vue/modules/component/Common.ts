@@ -1,16 +1,15 @@
 import * as cheerio from 'cheerio';
 import storage from '../../../storage';
-
-
 const uuid = require('@lukeed/uuid');
 
 
-export default class Base {
+export default class Common {
   public $fragment: any;
   public labelValue = '';
   public uuid = '';
   public config: any = {};
   public storage: any = null; 
+  public _attrStr: string = '';
 
   constructor () {
     this.uuid = uuid().split('-')[0]; 
@@ -50,8 +49,27 @@ export default class Base {
     return this.config
   }
 
+
+  public setAttrsToStr () {
+    const {config} = this;
+    if (config.model.attr) {
+      const formField = [];
+      Object.keys(config.model.attr).forEach(key => {
+        const value = config.model.attr[key];
+        if (typeof value === 'string') {
+          formField.push(`${key}="${value}"`);
+        } else {
+          formField.push(`:${key}="${value}"`);
+        }
+      });
+      this._attrStr = formField.join(' ');
+    }
+    console.log(this._attrStr);
+  }
+
   public settingConfig (config: any) {
     this.config = config;
+    this.setAttrsToStr();
   }
 
 }

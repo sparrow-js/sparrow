@@ -1,25 +1,17 @@
 
-import * as cheerio from 'cheerio';
+import Common from '../Common'
+
 const uuid = require('@lukeed/uuid');
 
-export default class Tag{
+export default class Tag extends Common{
   name: string = 'Tag';
   config: any = {};
-  uuid: string = '';
   $fragment: any;
 
   constructor (params: any) {
-    this.uuid = uuid().split('-')[0];
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        label: '主要按钮',
-        type: '',
-        size: '',
-        effect: '',
-      },
-    };
-    this.renderTemplate();
+    super();
+    this.config = require('./config.ts').default;
+    this.setAttrsToStr();
   }
 
 
@@ -28,24 +20,15 @@ export default class Tag{
     return this.config;
   }
 
-
-  renderTemplate () {
-    this.$fragment = cheerio.load(`
-      <el-tag>
-        <edit-text-box :clearClass="true" uuid="${this.uuid}">${this.config._custom.label}</edit-text-box>
-      </el-tag>
-    `, {
-      xmlMode: true,
-      decodeEntities: false,
-    });
-  }
-
   public insertEditText (params) {
-    this.config._custom.label = params.value;
+    this.config.model.custom.label = params.value;
   }
 
-  public getFragment () {
-    this.renderTemplate();
-    return this.$fragment;
+  public fragment () {
+    return `
+      <el-tag ${this._attrStr}>
+        <edit-text-box :clearClass="true" uuid="${this.uuid}">${this.config.model.custom.label}</edit-text-box>
+      </el-tag>
+    `;
   }
 }

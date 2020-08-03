@@ -21,12 +21,12 @@ export default class UploadAvatar extends Base{
         },
         // 组件标签属性
         _attr: {
-          action: '',
-          ':show-file-list': false,
           'v-model': params['v-model'] || ''
         },
       };
     }
+
+    this.config = require('./config.ts').default;
  
     this.init();
   }

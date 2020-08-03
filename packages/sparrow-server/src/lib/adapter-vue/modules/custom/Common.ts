@@ -5,11 +5,15 @@ const uuid = require('@lukeed/uuid');
 export default class Common {
   $fragment: any;
   uuid: string = '';
+  config: any = {};
+  _attrStr: string = '';
   
   constructor () {
     this.uuid = uuid().split('-')[0]; 
   }
-  public getConfig () {}
+  public getConfig () {
+    return this.config;
+  }
 
   public renderFragment () {
     let compBox = `
@@ -31,6 +35,21 @@ export default class Common {
 
   public fragment () {
     return '';
+  }
+
+
+  public setAttrsToStr () {
+    const {config} = this;
+    if (config.model.attr) {
+      const formField = [];
+      Object.keys(config.model.attr).forEach(key => {
+        if (key === 'v-model' && !config.model.attr[key]) {
+          return;
+        }
+        formField.push(`${key}="${config.model.attr[key]}"`);
+      });
+      this._attrStr = formField.join(' ');
+    }
   }
 
   public getFragment () {
