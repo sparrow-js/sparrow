@@ -10,6 +10,7 @@ export default class Common {
   public config: any = {};
   public storage: any = null; 
   public _attrStr: string = '';
+  public isInline: boolean = false;
 
   constructor () {
     this.uuid = uuid().split('-')[0]; 
@@ -20,7 +21,7 @@ export default class Common {
     const type = this.storage.get('preview_view_status') || 0;
     if (type === 0) {
       return `
-        <component-box uuid="${this.uuid}">
+        <component-box uuid="${this.uuid}" :isInline="${this.isInline}">
           ${content}
         </component-box>
       `;

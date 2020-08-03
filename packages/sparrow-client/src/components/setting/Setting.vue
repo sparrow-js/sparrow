@@ -1,13 +1,9 @@
 <template>
   <div class="setting">
-    <div class="setting-comp">
-      <FormSetting 
-        :config="config"
-        :uuid="uuid"
-      ></FormSetting>
-
-
-    </div>
+    <FormSetting 
+      :config="config"
+      :uuid="uuid"
+    ></FormSetting>
   </div>
 </template>
 <script lang="ts">
@@ -48,7 +44,6 @@ export default class extends Vue {
   background: #fff;
   box-sizing: border-box;
   height: 100%;
-  overflow: scroll;
    &__title {
     padding: 5px 0;
     margin: 0 5px;

@@ -7,6 +7,7 @@ export default class Button extends Common{
   name: string = 'Button';
   config: any = {};
   $fragment: any;
+  isInline: boolean = true; 
 
   constructor (params: any) {
     super();

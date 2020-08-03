@@ -7,6 +7,7 @@ export default class Tag extends Common{
   name: string = 'Tag';
   config: any = {};
   $fragment: any;
+  isInline: boolean = true; 
 
   constructor (params: any) {
     super();

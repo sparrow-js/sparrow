@@ -1,162 +1,40 @@
 <template>
-  <div class="setting">
-      <div>
+  <div class="setting-box">
+      <div style="height: 100%;">
         <div>
           <span class="update-data" @click.stop="syncConfig">更新</span>
         </div>
         <el-divider></el-divider>
-
-        <vue-form-generator 
-          :schema="config.schema" 
-          :model="config.model" 
-          :options="config.formOptions"
-        ></vue-form-generator>
-
-        <!-- <el-scrollbar v-if="config" class="right-scrollbar">
-          <el-form size="small" label-width="90px">
-            <div v-if="config._attr">
-              <el-form-item 
-                v-if="config._attr['v-model']!==undefined"
-                label="v-model"
-              >
-                <el-input v-model="config._attr['v-model']"></el-input>
-              </el-form-item>
-              <el-tabs
-                v-if="config._attr[':default']!==undefined"
-                v-model="activeItemCode" @tab-click="handleCodeItemClick">
-                <el-tab-pane label="code" name="code">
-                  <div class="codemirror-operate">
-                    <i class="iconfont icon-iconfront-" @click="expansionHandler('form')"></i>
-                  </div>
-                  <codemirror
-                    v-model="config._attr[':default']"
-                  ></codemirror>
-                </el-tab-pane>
-                <el-tab-pane label="json" name="json">
-                  <json-handler :json-data="jsonItemData"></json-handler>
-                </el-tab-pane>
-              </el-tabs>
-
-  
-              <el-form-item 
-                v-if="config._attr.placeholder!==undefined"
-                label="placeholder"
-              >
-                <el-input v-model="config._attr.placeholder" placeholder="请输入内容"></el-input>
-              </el-form-item>
-
-              <el-form-item 
-                v-if="config._attr['v-if']!==undefined"
-                label="v-if"
-              >
-                <el-input v-model="config._attr['v-if']" placeholder="请输入内容"></el-input>
-              </el-form-item>
-            </div>
-            
-
-                
-            <div  v-if="config._custom">
-              <el-form-item v-if="config._custom.hasHeader!==undefined" label="卡片头">
-                <el-switch v-model="config._custom.hasHeader"></el-switch>
-              </el-form-item>
-
-
-              <div v-if="config._custom.required !== undefined">
-                <el-divider content-position="left">校验</el-divider>
-                <el-form-item v-if="config._custom.required!==undefined" label="必填">
-                  <el-switch v-model="config._custom.required"></el-switch>
-                </el-form-item>
-                <rule-list 
-                  v-if="config._custom.regList!==undefined"
-                  :rules.sync="config._custom.regList"
-                ></rule-list>
-              </div>
-
-            </div>
-
-
-            <div v-if="config._slot">
-              <el-divider content-position="left">options</el-divider>
-              <div>
-                <i class="iconfont icon-iconfront-" @click="expansionHandler('formItem')"></i>
-              </div>
-              <el-form-item 
-                v-if="config._slot.data!==undefined"
-                label=""
-                label-width="0"
-              >
-                  <codemirror
-                    ref="codemirror"
-                    v-model="config._slot.data"
-                  ></codemirror>
-              </el-form-item>
-            </div>
-          </el-form>
-        </el-scrollbar> -->
-
-
-      </div>
-      <!-- <el-tabs style="width: 100%;" v-model="tabActiveName" @tab-click="handleClick">
-        <el-tab-pane label="组件" name="first">
-     
-        </el-tab-pane>
-        <el-tab-pane label="表单" name="second">
-          <el-collapse v-if="setting" v-model="activeNames">
-            <el-collapse-item title="模式" name="1">
-              <el-switch
-                v-model="setting.inline"
-                active-text="块"
-                inactive-text="行内"
-                @change="displayChange"
-              >
-              </el-switch>
-            </el-collapse-item>
-            <el-collapse-item title="数据" name="2">
-              <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
-                <el-tab-pane label="code" name="code">
-                  <div class="codemirror-operate">
-                    <span class="update-data" @click.stop="updateCodeData"
-                      >更新</span
-                    >
-                    <i class="iconfont icon-iconfront-" @click="expansionHandler('form')"></i>
-                  </div>
-                  <codemirror
-                    v-if="tabActiveName === 'second'"
-                    ref="codemirror"
-                    v-model="setting.dataCode"
-                  ></codemirror>
-                </el-tab-pane>
-                <el-tab-pane label="json" name="json">
-                  <json-handler :json-data="jsonData"></json-handler>
-                </el-tab-pane>
-              </el-tabs>
-            </el-collapse-item>
-          </el-collapse>
-
-        </el-tab-pane>
-      </el-tabs> -->
-    <div class="drawer">
-      <!-- <el-drawer
-        title=""
-        :visible.sync="showCodeDraw"
-        :append-to-body="true"
-        :modal="false"
-        custom-class="drawer-st"
-        >
-
-        <div>
-          <codemirror
-            v-if="codeEditType === 'form'"
-            v-model="setting.dataCode"
-          ></codemirror>
-
-          <codemirror
-            v-if="codeEditType === 'formItem'"
-            v-model="config._slot.data"
-          ></codemirror>
+        <div class="generator-box">
+          <vue-form-generator 
+            :schema="config.schema" 
+            :model="config.model" 
+            :options="config.formOptions"
+          ></vue-form-generator>
         </div>
-      </el-drawer> -->
-    </div>
+      </div>
+      <div class="drawer">
+        <!-- <el-drawer
+          title=""
+          :visible.sync="showCodeDraw"
+          :append-to-body="true"
+          :modal="false"
+          custom-class="drawer-st"
+          >
+
+          <div>
+            <codemirror
+              v-if="codeEditType === 'form'"
+              v-model="setting.dataCode"
+            ></codemirror>
+
+            <codemirror
+              v-if="codeEditType === 'formItem'"
+              v-model="config._slot.data"
+            ></codemirror>
+          </div>
+        </el-drawer> -->
+      </div>
   </div>
 </template>
 <script lang="ts">
@@ -342,10 +220,11 @@ export default class extends Vue {
 }
 </style>
 <style lang="scss" scoped>
-.setting {
+.setting-box {
   width: 100%;
   background: #fff;
   box-sizing: border-box;
+  height: 100%;
 }
 .update-data {
   margin-left: 10px;
@@ -359,5 +238,9 @@ export default class extends Vue {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.generator-box{
+  height: calc(100% - 50px);
+  overflow: scroll;
 }
 </style>
