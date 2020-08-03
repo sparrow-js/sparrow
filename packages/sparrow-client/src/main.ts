@@ -10,7 +10,7 @@ import './assets/icon/iconfont.css';
 import VueFormGenerator from 'vue-form-generator';
 import 'vue-form-generator/dist/vfg.css'
 import ArrayContainer from './components/setting/ArrayContainer';
-
+import sourcecode from './components/field-sourcecode.vue'
 import ModuleLibrary from 'vfg-field-array';
 import ModuleLibrarySourcecode from 'vfg-field-sourcecode';
 import ModuleLibraryObject from 'vfg-field-object';
@@ -39,9 +39,10 @@ library.add(faFileArchive);
 
 Vue.use(VueFormGenerator);
 Vue.use(ModuleLibrary);
-Vue.use(ModuleLibrarySourcecode);
+// Vue.use(ModuleLibrarySourcecode);
 Vue.use(ModuleLibraryObject);
 
+Vue.component("field-sourcecode", sourcecode);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
