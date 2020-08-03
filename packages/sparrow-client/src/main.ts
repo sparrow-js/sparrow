@@ -7,6 +7,14 @@ import 'element-ui/lib/theme-chalk/index.css';
 import { receiveMessage } from './util/messageBridge';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import './assets/icon/iconfont.css';
+import VueFormGenerator from 'vue-form-generator';
+import 'vue-form-generator/dist/vfg.css'
+import ArrayContainer from './components/setting/ArrayContainer';
+
+import ModuleLibrary from 'vfg-field-array';
+import ModuleLibrarySourcecode from 'vfg-field-sourcecode';
+import ModuleLibraryObject from 'vfg-field-object';
+
 import {
   faCode,
   faEye,
@@ -28,7 +36,16 @@ library.add(faFile);
 library.add(faTree);
 library.add(faFileArchive);
 
+
+Vue.use(VueFormGenerator);
+Vue.use(ModuleLibrary);
+Vue.use(ModuleLibrarySourcecode);
+Vue.use(ModuleLibraryObject);
+
+
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+Vue.component("ArrayContainer", ArrayContainer);
 Vue.config.productionTip = false;
 receiveMessage();
 Vue.use(Element);

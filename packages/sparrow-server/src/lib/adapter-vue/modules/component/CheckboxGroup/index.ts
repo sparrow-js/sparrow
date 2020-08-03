@@ -14,28 +14,16 @@ export default class CheckboxGroup extends Base{
     this.initVueParse();
     this.params = params;
     if (params.initType === 'auto') {
-      const oldcheckboxOptions = params._slot.data.match(/checkboxOptions[a-z0-9]+/)[0];
-      params._slot.data = params._slot.data.replace(oldcheckboxOptions, `checkboxOptions${this.uuid}`)
+      const oldcheckboxOptions = params.model.slot.data.match(/checkboxOptions[a-z0-9]+/)[0];
+      params.model.slot.data = params.model.slot.data.replace(oldcheckboxOptions, `checkboxOptions${this.uuid}`)
       this.config = params;
     } else {
-      this.config = {
-        // 组件自定义配置
-        _custom: {
-          required: false,
-          regList: [],
-          label: '多选框',
-          type: params.type
-        },
-        // 组件标签属性
-        _attr: {
-          'v-model': params['v-model'] || 'initCheckbox'
-        },
-        // 插槽属性
-        _slot: {
-          data: this.vueParse.getFormatData()
-        }
-      };
+      this.config = require('./config.ts').default;
+      this.config.model.slot.data = this.vueParse.getFormatData();
+      this.config.model.custom.type = params.type;
+      this.config.model.attr['v-model'] = 'initCheckbox';
     }
+
 
     this.init();
     this.setHandler();
@@ -46,7 +34,7 @@ export default class CheckboxGroup extends Base{
     this.vueParse = new VueParse(this.uuid, fileStr); 
   }
   private init () {
-    const {type} = this.config._custom;
+    const {type} = this.config.model.custom;
     if (type === 'button') {
       this.ele = 'el-checkbox-button';
     } else {
@@ -72,19 +60,20 @@ export default class CheckboxGroup extends Base{
 
   protected setHandler () {
     const {config} = this;
+    const {model} = config;
     this.setAttrsToStr();
 
-    if (config._custom) {
+    if (model.custom) {
       const formItem = [];
       const rules = [];
 
       const required = `{ required: true, message: '必填', trigger: 'change' }`;
-      if (config._custom.required === true) {
+      if (model.custom.required === true) {
         rules.push(required);
       }
 
-      if (config._custom.regList && config._custom.regList.length > 0) {
-        config._custom.regList.forEach(item => {
+      if (model.custom.regList && model.custom.regList.length > 0) {
+        model.custom.regList.forEach(item => {
           if (item.rule && item.message) {
             const customRule = `{ pattern: ${item.rule}, message: '${item.message}', trigger: 'change' }`;
             rules.push(customRule)
@@ -96,8 +85,8 @@ export default class CheckboxGroup extends Base{
         formItem.push(`:rules="[${rules.join(',')}]"`)
       }
 
-      if (config._slot) {
-        const {data} = config._slot;
+      if (model.slot) {
+        const {data} = model.slot;
         if (data) {
           this.vueParse.setData(data);
         }

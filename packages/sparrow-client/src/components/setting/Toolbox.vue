@@ -107,7 +107,7 @@
           </el-collapse>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="属性">
+      <el-tab-pane label="属性" class="widget-collapse">
         <Setting />
       </el-tab-pane>
     </el-tabs>

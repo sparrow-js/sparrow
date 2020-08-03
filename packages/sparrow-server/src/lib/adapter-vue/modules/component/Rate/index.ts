@@ -7,17 +7,7 @@ export default class Rate extends Base{
   constructor (params: any, boxPath: string) {
     super(boxPath);
     this.params = params;
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        required: false,
-        label: '评分',
-      },
-      // 组件标签属性
-      _attr: {
-        'v-model': params['v-model'] || ''
-      },
-    };
+    this.config = require('./config.ts').default;
     this.setHandler();
   }
 
@@ -29,14 +19,15 @@ export default class Rate extends Base{
 
   protected setHandler () {
     const {config} = this;
+    const {model} = config;
     this.setAttrsToStr();
 
-    if (config._custom) {
+    if (model.custom) {
       const formItem = [];
       const rules = [];
 
       const required = `{ required: true, message: '必填', trigger: 'blur' }`;
-      if (config._custom.required === true) {
+      if (model.custom.required === true) {
         rules.push(required);
       }
 

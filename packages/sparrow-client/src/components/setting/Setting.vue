@@ -5,6 +5,8 @@
         :config="config"
         :uuid="uuid"
       ></FormSetting>
+
+
     </div>
   </div>
 </template>
@@ -24,7 +26,7 @@ import Toolbox from './Toolbox';
     FormSetting,
     // TableSetting,
     // TabsSetting,
-    Toolbox
+    Toolbox,
   }
 })
 export default class extends Vue {
@@ -46,13 +48,17 @@ export default class extends Vue {
   background: #fff;
   box-sizing: border-box;
   height: 100%;
-  overflow: hidden;
+  overflow: scroll;
    &__title {
     padding: 5px 0;
     margin: 0 5px;
     border-bottom: 1px solid #409eff;
     color: #409eff;
     font-size: 16px;
+  }
+  .CodeMirror{
+    width: 245px;
+    height: 300px;
   }
 }
 .update-data {

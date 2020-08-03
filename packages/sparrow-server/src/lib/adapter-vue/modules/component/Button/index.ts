@@ -16,6 +16,7 @@ export default class Typography{
       // 组件自定义配置
       _custom: {
         label: '主要按钮',
+        size: '',
       },
     };
 

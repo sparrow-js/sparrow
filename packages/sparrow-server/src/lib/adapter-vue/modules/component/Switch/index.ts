@@ -7,21 +7,7 @@ export default class Switch extends Base{
     if (params.initType === 'auto') {
       this.config = params;
     } else {
-      this.config = {
-        // 组件自定义配置
-        _custom: {
-          required: false,
-          regList: [],
-          label: '开关',
-        },
-        // 组件标签属性
-        _attr: {
-          placeholder: '请输入',
-          'v-model': params['v-model'] || ''
-        },
-        // 插槽属性
-        _slot: {}
-      };
+      this.config = require('./config.ts').default;
     }
   
     this.setHandler();
@@ -37,19 +23,20 @@ export default class Switch extends Base{
 
   protected setHandler () {
     const {config} = this;
+    const {model} = config;
     this.setAttrsToStr();
 
-    if (config._custom) {
+    if (model.custom) {
       const formItem = [];
       const rules = [];
 
       const required = `{ required: true, message: '必填', trigger: 'change' }`;
-      if (config._custom.required === true) {
+      if (model.custom.required === true) {
         rules.push(required);
       }
 
-      if (config._custom.regList && config._custom.regList.length > 0) {
-        config._custom.regList.forEach(item => {
+      if (model.custom.regList && model.custom.regList.length > 0) {
+        model.custom.regList.forEach(item => {
           if (item.rule && item.message) {
             const customRule = `{ pattern: ${item.rule}, message: '${item.message}', trigger: 'change' }`;
             rules.push(customRule)

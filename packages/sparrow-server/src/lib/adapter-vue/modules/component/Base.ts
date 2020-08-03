@@ -36,15 +36,15 @@ export default class Base {
 
   public renderFragment () {
     let formItem = ''
-    if (this.boxPath.match('Form') || this.config._custom.insideForm === true) {
-      this.config._custom.insideForm = true;
+    if (this.boxPath.match('Form') || this.config.model.custom.insideForm === true) {
+      this.config.model.custom.insideForm = true;
       formItem = this.wrapComponentBox(
         `
         <el-form-item label=" "
           ${this._formItemStr}
         >
           <label-box 
-            label="${this.config._custom.label}" 
+            label="${this.config.model.custom.label}" 
             uuid="${this.uuid}"
           ></label-box>
           ${this.fragment()}
@@ -72,13 +72,13 @@ export default class Base {
 
     if (type === 1) {
       this.$fragment('label-box').remove();
-      this.$fragment('el-form-item').attr('label', this.config._custom.label);
+      this.$fragment('el-form-item').attr('label', this.config.model.custom.label);
     }
     return this.$fragment;
   }
 
   public insertLabel(labelValue: string) {
-    this.config._custom.label = labelValue
+    this.config.model.custom.label = labelValue
   }
 
   public getConfig() {
@@ -94,13 +94,13 @@ export default class Base {
 
   public setAttrsToStr () {
     const {config} = this;
-    if (config._attr) {
+    if (config.model.attr) {
       const formField = [];
-      Object.keys(config._attr).forEach(key => {
-        if (key === 'v-model' && !config._attr[key]) {
+      Object.keys(config.model.attr).forEach(key => {
+        if (key === 'v-model' && !config.model.attr[key]) {
           return;
         }
-        formField.push(`${key}="${config._attr[key]}"`);
+        formField.push(`${key}="${config.model.attr[key]}"`);
       });
       this._attrStr = formField.join(' ');
     }

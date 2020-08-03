@@ -12,27 +12,29 @@ export default class Cascader extends Base {
     super(boxPath);
     this.init();
     if (params.initType === 'auto') {
-      const oldOptions = params._slot.data.match(/cascaderOptions[a-z0-9]+/)[0];
-      params._slot.data = params._slot.data.replace(oldOptions, `cascaderOptions${this.uuid}`)
+      const oldOptions = params.model.slot.data.match(/cascaderOptions[a-z0-9]+/)[0];
+      params.model.slot.data = params.model.slot.data.replace(oldOptions, `cascaderOptions${this.uuid}`)
       this.config = params;
     } else {
-      this.config = {
-        // 组件自定义配置
-        _custom: {
-          required: false,
-          regList: [],
-          label: '级联选择器',
-        },
-        // 组件标签属性
-        _attr: {
-          placeholder: '请输入',
-          'v-model': params['v-model'] || ''
-        },
-        // 插槽属性
-        _slot: {
-          data: this.vueParse.getFormatData()
-        }
-      };
+      // this.config = {
+      //   // 组件自定义配置
+      //   _custom: {
+      //     required: false,
+      //     regList: [],
+      //     label: '级联选择器',
+      //   },
+      //   // 组件标签属性
+      //   _attr: {
+      //     placeholder: '请输入',
+      //     'v-model': ''
+      //   },
+      //   // 插槽属性
+      //   _slot: {
+      //     data: this.vueParse.getFormatData()
+      //   }
+      // };
+      this.config = require('./config.ts').default;
+      this.config.model.slot.data = this.vueParse.getFormatData();
     }
 
     this.setHandler();
@@ -55,19 +57,20 @@ export default class Cascader extends Base {
 
   protected setHandler () {
     const {config} = this;
+    const {model} = config;
     this.setAttrsToStr();
 
-    if (config._custom) {
+    if (model.custom) {
       const formItem = [];
       const rules = [];
 
       const required = `{ required: true, message: '必填', trigger: 'change' }`;
-      if (config._custom.required === true) {
+      if (model.custom.required === true) {
         rules.push(required);
       }
 
-      if (config._custom.regList && config._custom.regList.length > 0) {
-        config._custom.regList.forEach(item => {
+      if (model.custom.regList && model.custom.regList.length > 0) {
+        model.custom.regList.forEach(item => {
           if (item.rule && item.message) {
             const customRule = `{ pattern: ${item.rule}, message: '${item.message}', trigger: 'change' }`;
             rules.push(customRule)
@@ -82,8 +85,8 @@ export default class Cascader extends Base {
       this._formItemStr = formItem.join(' ');
     }
 
-    if (config._slot) {
-      const {data} = config._slot;
+    if (model.slot) {
+      const {data} = model.slot;
       if (data) {
         this.vueParse.setData(data);
       }

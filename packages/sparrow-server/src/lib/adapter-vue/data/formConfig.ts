@@ -130,7 +130,7 @@ export const componentConf = [
   },
 
   {
-    label: '基础滑块',
+    label: '滑块',
     key: 'Slider',
     des: '基础滑块',
     keys: ['表单', '组件', '基础滑块'],

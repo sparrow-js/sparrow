@@ -37,6 +37,11 @@ export default class Link{
   }
 
 
+
+  public insertEditText (params) {
+    this.config._custom.label = params.value;
+  }
+
   public getFragment () {
     this.renderTemplate();
     return this.$fragment;

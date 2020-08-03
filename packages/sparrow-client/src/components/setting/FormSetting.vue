@@ -5,7 +5,14 @@
           <span class="update-data" @click.stop="syncConfig">更新</span>
         </div>
         <el-divider></el-divider>
-        <el-scrollbar v-if="config" class="right-scrollbar">
+
+        <vue-form-generator 
+          :schema="config.schema" 
+          :model="config.model" 
+          :options="config.formOptions"
+        ></vue-form-generator>
+
+        <!-- <el-scrollbar v-if="config" class="right-scrollbar">
           <el-form size="small" label-width="90px">
             <div v-if="config._attr">
               <el-form-item 
@@ -85,7 +92,7 @@
               </el-form-item>
             </div>
           </el-form>
-        </el-scrollbar>
+        </el-scrollbar> -->
 
 
       </div>
@@ -192,14 +199,16 @@ export default class extends Vue {
   private codeEditType = '';
   private uuid = '';
   private config = {
-    _attr: {}
+    model: {
+      attr: {}
+    }
   };
 
   private async created() {
 
     window.EventCustomer.addListener('click_json_tree_callback', data => {
       try {
-        this.config._attr['v-model'] = data.path === 'JSON' ? '' : data.path.replace('JSON.', '');
+        this.config.model.attr['v-model'] = data.path === 'JSON' ? '' : data.path.replace('JSON.', '');
       } catch (e) {}
       
     })
@@ -324,6 +333,12 @@ export default class extends Vue {
 .drawer-st{
   right: 290px !important;
   width: 500px !important;
+}
+.vue-form-generator .field-wrap{
+  margin-top: 5px;
+}
+.array-button-add{
+  margin-top: 10px !important;
 }
 </style>
 <style lang="scss" scoped>
