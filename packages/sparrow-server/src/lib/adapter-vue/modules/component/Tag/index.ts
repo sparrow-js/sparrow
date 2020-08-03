@@ -11,7 +11,7 @@ export default class Tag extends Common{
 
   constructor (params: any) {
     super();
-    this.config = require('./config.ts').default;
+    this.config = require('./config').default;
     this.setAttrsToStr();
   }
 

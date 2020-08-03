@@ -33,7 +33,7 @@ export default class Cascader extends Base {
       //     data: this.vueParse.getFormatData()
       //   }
       // };
-      this.config = require('./config.ts').default;
+      this.config = require('./config').default;
       this.config.model.slot.data = this.vueParse.getFormatData();
     }
 

@@ -12,21 +12,9 @@ export default class UploadAvatar extends Base{
     if (params.initType === 'auto') {
       this.config = params;
     } else {
-      this.config = {
-        // 组件自定义配置
-        _custom: {
-          required: false,
-          regList: [],
-          label: '上传头像',
-        },
-        // 组件标签属性
-        _attr: {
-          'v-model': params['v-model'] || ''
-        },
-      };
+      this.config = require('./config.ts').default;
     }
 
-    this.config = require('./config.ts').default;
  
     this.init();
   }

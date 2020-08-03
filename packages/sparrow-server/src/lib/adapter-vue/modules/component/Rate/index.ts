@@ -7,7 +7,7 @@ export default class Rate extends Base{
   constructor (params: any, boxPath: string) {
     super(boxPath);
     this.params = params;
-    this.config = require('./config.ts').default;
+    this.config = require('./config').default;
     this.setHandler();
   }
 

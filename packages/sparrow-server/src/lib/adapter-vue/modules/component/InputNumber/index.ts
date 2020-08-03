@@ -8,7 +8,7 @@ export default class InputNumber extends Base{
     if (params.initType === 'auto') {
       this.config = params;
     } else {
-      this.config = require('./config.ts').default;
+      this.config = require('./config').default;
     }
   }
 

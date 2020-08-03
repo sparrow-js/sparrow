@@ -18,7 +18,7 @@ export default class CheckboxGroup extends Base{
       params.model.slot.data = params.model.slot.data.replace(oldcheckboxOptions, `checkboxOptions${this.uuid}`)
       this.config = params;
     } else {
-      this.config = require('./config.ts').default;
+      this.config = require('./config').default;
       this.config.model.slot.data = this.vueParse.getFormatData();
       this.config.model.custom.type = params.type;
       this.config.model.attr['v-model'] = 'initCheckbox';

@@ -16,7 +16,7 @@ export default class RadioGroup extends Base{
       params.model.slot.data = params.model.slot.data.replace(oldRadionboxOptions, `radionboxOptions${this.uuid}`)
       this.config = params;
     } else {
-      this.config = require('./config.ts').default;
+      this.config = require('./config').default;
       this.config.model.slot.data = this.vueParse.getFormatData();
       this.config.model.custom.type = params.type;
 

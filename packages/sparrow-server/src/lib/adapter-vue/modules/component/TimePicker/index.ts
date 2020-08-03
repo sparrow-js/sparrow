@@ -9,7 +9,7 @@ export default class TimePicker extends Base {
     if (params.initType === 'auto') {
       this.config = params;
     } else {
-      this.config = require('./config.ts').default;
+      this.config = require('./config').default;
       this.config.model.custom.type = params.type;
     }
     this.init();
