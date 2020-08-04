@@ -1,4 +1,5 @@
 import Base from '../Base';
+import * as _ from 'lodash';
 
 export default class Rate extends Base{
   name: string = 'Rate';
@@ -7,7 +8,7 @@ export default class Rate extends Base{
   constructor (params: any, boxPath: string) {
     super(boxPath);
     this.params = params;
-    this.config = require('./config').default;
+    this.config = _.cloneDeep(require('./config').default);
     this.setHandler();
   }
 

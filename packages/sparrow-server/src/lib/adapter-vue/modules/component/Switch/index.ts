@@ -1,4 +1,5 @@
 import Base from '../Base';
+import * as _ from 'lodash';
 
 export default class Switch extends Base{
   name: string = 'Switch';
@@ -7,7 +8,7 @@ export default class Switch extends Base{
     if (params.initType === 'auto') {
       this.config = params;
     } else {
-      this.config = require('./config').default;
+      this.config = _.cloneDeep(require('./config').default);
     }
   
     this.setHandler();

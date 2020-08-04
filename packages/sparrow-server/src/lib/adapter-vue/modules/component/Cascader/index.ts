@@ -3,6 +3,7 @@ import * as fsExtra from 'fs-extra';
 import VueParse from '../../generator/VueParse';
 import * as path from 'path';
 import Config from '../../../config';
+import * as _ from 'lodash';
 
 export default class Cascader extends Base {
   name: string = 'Cascader';
@@ -16,24 +17,7 @@ export default class Cascader extends Base {
       params.model.slot.data = params.model.slot.data.replace(oldOptions, `cascaderOptions${this.uuid}`)
       this.config = params;
     } else {
-      // this.config = {
-      //   // 组件自定义配置
-      //   _custom: {
-      //     required: false,
-      //     regList: [],
-      //     label: '级联选择器',
-      //   },
-      //   // 组件标签属性
-      //   _attr: {
-      //     placeholder: '请输入',
-      //     'v-model': ''
-      //   },
-      //   // 插槽属性
-      //   _slot: {
-      //     data: this.vueParse.getFormatData()
-      //   }
-      // };
-      this.config = require('./config').default;
+      this.config = _.cloneDeep(require('./config').default);
       this.config.model.slot.data = this.vueParse.getFormatData();
     }
 

@@ -3,6 +3,7 @@ import Base from '../Base';
 import VueParse from '../../generator/VueParse';
 import * as path from 'path';
 import Config from '../../../config';
+import * as _ from 'lodash';
 
 export default class Autocomplete extends Base{
   name: string = 'Autocomplete';
@@ -13,7 +14,7 @@ export default class Autocomplete extends Base{
     if (params.initType === 'auto') {
       this.config = params;
     } else {
-      this.config = require('./config').default;
+      this.config = _.cloneDeep(require('./config').default);
     }
 
     this.init();

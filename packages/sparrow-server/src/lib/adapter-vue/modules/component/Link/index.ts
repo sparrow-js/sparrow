@@ -1,5 +1,7 @@
 
-import Common from '../Common'
+import Common from '../Common';
+import * as _ from 'lodash';
+
 const uuid = require('@lukeed/uuid');
 
 export default class Link extends Common{
@@ -9,7 +11,7 @@ export default class Link extends Common{
 
   constructor (params: any) {
     super();
-    this.config = require('./config').default;
+    this.config = _.cloneDeep(require('./config').default);
     this.setAttrsToStr();
   }
 

@@ -2,16 +2,18 @@
 import * as cheerio from 'cheerio';
 import Common from '../Common'
 const uuid = require('@lukeed/uuid');
+import * as _ from 'lodash';
 
 export default class Button extends Common{
   name: string = 'Button';
   config: any = {};
   $fragment: any;
   isInline: boolean = true; 
+  
 
   constructor (params: any) {
     super();
-    this.config = require('./config').default;
+    this.config = _.cloneDeep(require('./config').default);
     this.setAttrsToStr();
   }
 

@@ -3,6 +3,7 @@ import * as fsExtra from 'fs-extra';
 import VueParse from '../../generator/VueParse';
 import * as path from 'path';
 import Config from '../../../config';
+import * as _ from 'lodash';
 
 export default class RadioGroup extends Base{
   name: string = 'RadioGroup';
@@ -16,7 +17,7 @@ export default class RadioGroup extends Base{
       params.model.slot.data = params.model.slot.data.replace(oldRadionboxOptions, `radionboxOptions${this.uuid}`)
       this.config = params;
     } else {
-      this.config = require('./config').default;
+      this.config = _.cloneDeep(require('./config').default);
       this.config.model.slot.data = this.vueParse.getFormatData();
       this.config.model.custom.type = params.type;
 

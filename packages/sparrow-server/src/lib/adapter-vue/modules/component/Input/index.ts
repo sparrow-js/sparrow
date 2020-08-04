@@ -1,4 +1,5 @@
 import Base from '../Base';
+import * as _ from 'lodash';
 
 export default class Input extends Base{
   name: string = 'Input';
@@ -8,7 +9,7 @@ export default class Input extends Base{
     if (params.initType === 'auto') {
       this.config = params;
     } else {
-      this.config = require('./config').default;
+      this.config = _.cloneDeep(require('./config').default);
       this.config.model.custom.type = params.type;
     }
     

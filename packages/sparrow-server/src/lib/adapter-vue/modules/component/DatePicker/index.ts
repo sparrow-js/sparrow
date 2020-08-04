@@ -1,4 +1,5 @@
 import Base from '../Base';
+import * as _ from 'lodash';
 
 export default class DatePicker extends Base {
   name: string = 'DatePicker';
@@ -10,7 +11,7 @@ export default class DatePicker extends Base {
     if (params.initType === 'auto') {
       this.config = params;
     } else {
-      this.config = require('./config').default;
+      this.config = _.cloneDeep(require('./config').default);
       this.config.model.custom.type = params.type;
     }
     

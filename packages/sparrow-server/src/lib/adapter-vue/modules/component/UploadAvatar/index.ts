@@ -3,6 +3,7 @@ import Base from '../Base';
 import VueParse from '../../generator/VueParse';
 import * as path from 'path';
 import Config from '../../../config';
+import * as _ from 'lodash';
 
 export default class UploadAvatar extends Base{
   name: string = 'UploadAvatar';
@@ -12,7 +13,7 @@ export default class UploadAvatar extends Base{
     if (params.initType === 'auto') {
       this.config = params;
     } else {
-      this.config = require('./config.ts').default;
+      this.config = _.cloneDeep(require('./config').default);
     }
 
  

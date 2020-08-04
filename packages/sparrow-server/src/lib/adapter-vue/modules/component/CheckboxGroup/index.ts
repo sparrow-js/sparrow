@@ -3,6 +3,7 @@ import * as fsExtra from 'fs-extra';
 import VueParse from '../../generator/VueParse';
 import * as path from 'path';
 import Config from '../../../config';
+import * as _ from 'lodash';
 
 export default class CheckboxGroup extends Base{
   name: string = 'CheckboxGroup';
@@ -18,7 +19,7 @@ export default class CheckboxGroup extends Base{
       params.model.slot.data = params.model.slot.data.replace(oldcheckboxOptions, `checkboxOptions${this.uuid}`)
       this.config = params;
     } else {
-      this.config = require('./config').default;
+      this.config = _.cloneDeep(require('./config').default);
       this.config.model.slot.data = this.vueParse.getFormatData();
       this.config.model.custom.type = params.type;
       this.config.model.attr['v-model'] = 'initCheckbox';
