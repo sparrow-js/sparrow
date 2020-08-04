@@ -69,11 +69,9 @@
                 >
                   <div class="drag-box">
                     <div class="drag-box-item">
-                        <span
-                      class="comp-list-label">{{ comp.label }}</span>
+                      <span class="comp-list-label">{{ comp.label }}</span>
                     </div>
                   </div>
-       
                 </div>
               </div>
             </el-collapse-item>
@@ -111,6 +109,28 @@
         <Setting />
       </el-tab-pane>
     </el-tabs>
+
+    <div>
+      <el-dialog
+        width="360px"
+        title="创建文件"
+        :visible.sync="dialogCreateFileVisible"
+      >
+        <el-form :model="form">
+          <el-form-item label="文件名">
+            <el-input v-model="form.fileName" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button size="small" @click="dialogCreateFileVisible = false"
+            >取消</el-button
+          >
+          <el-button size="small" type="primary" @click="fileHandler"
+            >确定</el-button
+          >
+        </div>
+      </el-dialog>
+    </div>
   </div>
 </template>
 <script>
@@ -121,7 +141,7 @@ import Setting from './Setting';
 import Sortable from 'sortablejs';
 export default {
   components: {
-    Setting,
+    Setting
   },
   data() {
     return {
@@ -133,12 +153,16 @@ export default {
       staticBlockList: [],
       widgetData: {},
       editBlockList: [],
-      editBlockActiveNames: [0, 1, 2]
+      editBlockActiveNames: [0, 1, 2],
+      form: {
+        fileName: ''
+      },
+      dialogCreateFileVisible: false,
+      fileParams: {}
     };
   },
   async created() {
     this.getWidgetList = _.debounce(this.getWidgetList, 500, { trailing: true });
-    
     this.getWidgetList('');
     this.$root.$on('bind_client_drag', (data) => {
       this.bindClientDrag();
@@ -172,6 +196,17 @@ export default {
         id,
         params: config
       };
+
+      if (id === 'File') {
+        this.dialogCreateFileVisible = true;
+        this.fileParams = {
+          boxUuid: AppModule.boxUuid,
+          id,
+          params: config
+        };
+        return;
+      }
+
       Loading.open();
       await socket.emit('generator.scene.addComponent', params);
       Loading.close();
@@ -191,7 +226,6 @@ export default {
       if (value === '静态区块') {
         this.getStaticBlock();
       }
-      
       if (value === '编辑区块') {
         this.getEditBlockList();
       }
@@ -272,16 +306,27 @@ export default {
               item.remove();
             }
 
-            if (this.widgetData.type === 'block') {
+            if (this.widgetData.key === 'File') {
+              this.dialogCreateFileVisible = true;
+              this.fileParams = {
+                boxUuid,
+                nextSiblingId,
+                id: this.widgetData.id,
+                type: this.widgetData.type,
+                params: this.widgetData.params,
+                path: this.widgetData.path || ''
+              };
+              return;
+            }
 
+            if (this.widgetData.type === 'block') {
               Loading.open();
               await socket.emit('generator.scene.addBlock', {
-                boxUuid, 
+                boxUuid,
                 id: this.widgetData.id,
                 type: this.widgetData.type,
                 originData: this.widgetData.originData
               });
-
             } else {
               const params = {
                 boxUuid,
@@ -296,13 +341,21 @@ export default {
               await socket.emit('generator.scene.addComponent', params);
               Loading.close();
             }
-
           }
         });
       });
-
     },
-    async getWidgetList (value) {
+
+    async fileHandler() {
+      this.dialogCreateFileVisible = false;
+      Loading.open();
+      await socket.emit('generator.scene.addComponent', {
+        ...this.fileParams,
+        fileName: this.form.fileName
+      });
+      Loading.close();
+    },
+    async getWidgetList(value) {
       const componentMap = await socket.emit('generator.data.getWidgetList', {value});
       this.compList = componentMap;
       this.bindClientDrag();

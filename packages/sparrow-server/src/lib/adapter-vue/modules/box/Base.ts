@@ -40,11 +40,7 @@ export default class Base {
         </box>
       `
     } else {
-      box = `
-        <div>
-          ${this.$fragment.html()}
-        </div>
-      `
+      box = this.$fragment.html()
     }
     return cheerio.load(`
           ${box}

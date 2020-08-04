@@ -578,7 +578,7 @@ export default class Scene {
     let vueData = [];
     this.loopThroughBox(this.components);
     const fn = (boxs, flag = 0) => {
-      boxs.map((item, index) => {
+      boxs.forEach((item, index) => {
         if (flag === 0) {
           const blockListStr = blockList(index, item.getFragment(index).html());
           this.$('.home').append(blockListStr);
@@ -586,6 +586,10 @@ export default class Scene {
         
         if (item.insertComponents && item.insertComponents.length) {
           this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));
+        }
+        if (item.name === 'File') {
+          item.renderPage();
+          return;
         }
   
         if (item.components) {

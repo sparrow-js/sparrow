@@ -47,6 +47,14 @@ export default [
     des: '卡片容器',
     keys: ['卡片', '卡片容器'],
   },
+  {
+    id: 'File',
+    key: 'File',
+    label: '文件',
+    icon: '',
+    des: '文件容器',
+    keys: ['文件', 'file', '文件容器'],
+  }
   // {
   //   id: 'CustomInline',
   //   label: '按钮',
