@@ -5,7 +5,7 @@
           <span class="update-data" @click.stop="syncConfig">更新</span>
         </div>
         <el-divider></el-divider>
-        <div class="generator-box">
+        <div class="generator-box" v-if="config && config.schema && config.model">
           <vue-form-generator 
             :schema="config.schema" 
             :model="config.model" 

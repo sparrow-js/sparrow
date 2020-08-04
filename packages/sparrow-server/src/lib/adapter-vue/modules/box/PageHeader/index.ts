@@ -10,22 +10,24 @@ export default class PageHeader extends Base implements IBaseBox{
   type: string = 'inline';
   previewType: number = 0;
   labelValue: string = '详情页面';
+  config: any = {};
 
   constructor (data: any, storage: any) {
     super(storage)
     const { params } = data;
+    this.config = {
+      label: '详情页面'
+    };
     this.$fragment = cheerio.load(
       `
-        <div class="box">
-          <el-page-header content="">
-            <label-box 
-              slot="content"
-              label="${this.labelValue}"
-              :clear-class="true"
-              uuid="${this.uuid}"
-            ></label-box>
-          </el-page-header>
-        </div>
+        <el-page-header content="">
+          <edit-text-box
+            slot="content"
+            :clearClass="true" 
+            uuid="${this.uuid}">
+            ${this.config.label}
+          </edit-text-box>
+        </el-page-header>
       `, {
         xmlMode: true,
         decodeEntities: false
@@ -36,37 +38,33 @@ export default class PageHeader extends Base implements IBaseBox{
     this.labelValue = labelValue;
   }
 
+  public insertEditText (params) {
+    this.config.label = params.value;
+  }
 
   public setPreview () {
     const type = this.storage.get('preview_view_status') || 0;
-    if (this.previewType === type) {
-      return;
-    } else {
-      this.previewType = type;
-    }
 
     if (type === 0) {
       this.$fragment = cheerio.load(
         `
-          <div class="box">
-            <el-page-header content="">
-              <label-box 
-                label="${this.labelValue}"
-                :clear-class="true"
-                uuid="${this.uuid}"
-              ></label-box>
-            </el-page-header>
-          </div>
+        <el-page-header content="">
+          <edit-text-box 
+            slot="content"
+            :clearClass="true" 
+            uuid="${this.uuid}">
+            ${this.config.label}
+          </edit-text-box>
+        </el-page-header>
         `, {
         xmlMode: true,
         decodeEntities: false
       });
     } else {
       this.$fragment = cheerio.load(
-        `<div class="custom-inline">
-          <el-page-header content="${this.labelValue}">
+        ` <el-page-header content="${this.labelValue}">
           </el-page-header>
-        </div>`, {
+        `, {
           xmlMode: true,
           decodeEntities: false
         });

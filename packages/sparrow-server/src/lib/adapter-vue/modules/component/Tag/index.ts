@@ -26,9 +26,17 @@ export default class Tag extends Common{
   }
 
   public fragment () {
+    const type = this.storage.get('preview_view_status') || 0;
+    let textBox = '';
+    if (type === 0) {
+      textBox = `<edit-text-box :clearClass="true" uuid="${this.uuid}">${this.config.model.custom.label}</edit-text-box>`
+    } else {
+      textBox = this.config.model.custom.label;
+    }
+
     return `
       <el-tag ${this._attrStr}>
-        <edit-text-box :clearClass="true" uuid="${this.uuid}">${this.config.model.custom.label}</edit-text-box>
+        ${textBox}
       </el-tag>
     `;
   }

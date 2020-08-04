@@ -25,8 +25,10 @@ export default class Base {
   resetRender () {}
 
   public getFragment(index: number): any {
+    const type = this.storage.get('preview_view_status') || 0;
     let box = '';
-    if (this.previewType === 0) {
+
+    if (type === 0) {
       box = `
         <box 
           data-id="${this.uuid}"

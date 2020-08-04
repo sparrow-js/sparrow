@@ -18,9 +18,17 @@ export default class Link extends Common{
   }
 
   public getFragment () {
+    const type = this.storage.get('preview_view_status') || 0;
+    let textBox = '';
+    if (type === 0) {
+      textBox = `<edit-text-box :clearClass="true" uuid="${this.uuid}">${this.config.model.custom.label}</edit-text-box>`
+    } else {
+      textBox = this.config.model.custom.label;
+    }
+
     return `
       <el-link type="primary">
-        <edit-text-box :clearClass="true" uuid="${this.uuid}">${this.config.model.custom.label}</edit-text-box>
+        ${textBox}
       </el-link>
     `;
   }
