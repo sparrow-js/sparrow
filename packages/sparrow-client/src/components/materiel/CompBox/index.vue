@@ -49,9 +49,6 @@
           :current-node-key="currentNodeKey"
           :highlight-current="true"
           default-expand-all
-          draggable
-          :allow-drop="allowDrop"
-          @node-drop="handleDrop"
           @node-click="handleNodeClick"
           ref="componentTree"
         >
@@ -174,11 +171,6 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import { AppModule } from '@/store/modules/app';
-import FormBox from './FormBox';
-import TableBox from './TableBox';
-import CustominlineBox from './CustominlineBox';
-import ContainerBox from './ContainerBox';
-import EmptyBox from './EmptyBox';
 import socket from '@/util/socket.js';
 import JsonHandler from '@/components/jsonhandler/index.vue';
 import _ from 'lodash';
@@ -186,11 +178,6 @@ import Loading from '@/util/loading';
 
 @Component({
   components: {
-    formBox: FormBox,
-    tableBox: TableBox,
-    custominlineBox: CustominlineBox,
-    ContainerBox: ContainerBox,
-    EmptyBox,
     JsonHandler
   }
 })
@@ -209,26 +196,9 @@ export default class CompBox extends Vue {
   private customCompList = [];
   private widgetData = null;
 
-  get componentIs() {
-    if (AppModule.componentIs) {
-      return AppModule.componentIs + 'Box';
-    } else {
-      return '';
-    }
-  }
 
   get activeTreeIndex() {
     return AppModule.activeTreeIndex;
-  }
-
-  @Watch('componentIs', { immediate: true })
-  private onjsonDataChange() {
-    const { type, params } = this.insertData.data;
-    if (type !== 'custominline') {
-      this.componentList = this.componentMap[type];
-    } else {
-      this.componentList = this.componentMap[params.compBox];
-    }
   }
 
   @Watch('uuid', { immediate: true })
@@ -320,14 +290,6 @@ export default class CompBox extends Vue {
     this.getSceneTree();
   }
 
-  allowDrop(draggingNode, dropNode, type) {
-    if (draggingNode.parent.key === dropNode.parent.key && type !== 'inner') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   async useScene(id) {
     const res = await socket.emit('generator.toolbar.useScene', {
       id
@@ -351,30 +313,8 @@ export default class CompBox extends Vue {
       id: 'Table/column.ts'
     };
 
-    console.log(params)
-
     await socket.emit('generator.scene.addComponent', params);
     this.getSceneTree();
-  }
-
-  async handleDrop(dragNode, dropNode) {
-    const { childNodes } = dropNode.parent;
-    const order = childNodes.reduce((total, item) => {
-      total.push(item.key);
-      return total;
-    }, []);
-    let node = dropNode.parent;
-    while (node && !(node.label == 'box' || node.label == 'page')) {
-      node = node.parent;
-    }
-    const res = await socket.emit('generator.scene.changePosition', {
-      uuid: node.key,
-      label: node.label,
-      order
-    });
-    if (res && res.status === 1) {
-      this.$message.error(res.message);
-    }
   }
 
   private handleCodeClick() {
