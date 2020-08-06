@@ -81,19 +81,6 @@ export default class Dialog{
     return {};
   }
 
-  public  (type: number) {
-    return this.$fragment;
-  }
-
-
-  addComponent () {
-    
-  }
-
-  private renderBox (type) {
-    
-  }
-
   public getConfig() {
     return null
   }

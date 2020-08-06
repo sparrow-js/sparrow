@@ -54,6 +54,15 @@ export default [
     icon: '',
     des: '文件容器',
     keys: ['文件', 'file', '文件容器'],
+  },
+  {
+    id: 'ArrayList',
+    key: 'ArrayList',
+    label: '数组列表',
+    icon: '',
+    des: '数组列表',
+    keys: ['数组', '数组列表'],
+    // ArrayList
   }
   // {
   //   id: 'CustomInline',

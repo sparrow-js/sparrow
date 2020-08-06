@@ -122,5 +122,7 @@ export default class Base {
     }});
   }
 
-  getConfig () {}
+  getConfig () {
+    
+  }
 }

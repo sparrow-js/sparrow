@@ -103,11 +103,6 @@ export default class Card implements IBaseBox{
 
   }
 
-  setLabel (labelValue: string) {
-    this.labelValue = labelValue;
-  }
-  
-
   public setConfig (config: any) {
     this.config = config;
   };
@@ -124,10 +119,6 @@ export default class Card implements IBaseBox{
 
   public insertEditText (params) {
     this.config._attr.label = params.value;
-  }
-
-  getSetting () {
-    return this.config;
   }
 
   setting (data: any) {
