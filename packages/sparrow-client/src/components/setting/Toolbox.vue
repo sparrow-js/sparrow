@@ -42,10 +42,9 @@
                 >
                   <div class="drag-box">
                     <div class="drag-box-item">
-                        <span class="comp-list-label">{{ comp.label }}</span>
+                      <span class="comp-list-label">{{ comp.label }}</span>
                     </div>
                   </div>
-       
                 </div>
               </div>
             </el-collapse-item>
@@ -106,7 +105,7 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="属性" class="widget-collapse">
-        <Setting />
+        <FormSetting />
       </el-tab-pane>
     </el-tabs>
 
@@ -137,11 +136,11 @@
 import socket from '@/util/socket.js';
 import Loading from '@/util/loading';
 import { AppModule } from '@/store/modules/app';
-import Setting from './Setting';
+import FormSetting from './FormSetting';
 import Sortable from 'sortablejs';
 export default {
   components: {
-    Setting
+    FormSetting,
   },
   data() {
     return {
