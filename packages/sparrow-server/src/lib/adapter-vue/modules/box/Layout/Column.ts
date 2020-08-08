@@ -2,8 +2,10 @@ const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
 import storage from '../../../../storage';
 import Container from '../Container'; 
+import * as _ from 'lodash';
+import Base from '../Base';
 
-export default class Column{
+export default class Column extends Base{
   public uuid = '';
   public components:any = [];
   public $fragment: any;
@@ -16,31 +18,37 @@ export default class Column{
   type: string = 'inline';
 
   constructor (data: any, storage: any) {
+    super(storage);
     this.storage = storage;
     this.uuid = uuid().split('-')[0]; 
     const {span} = data;
     this.$fragment = cheerio.load(`
       <el-col :span="${span}">
-        <div class="column"></div>
+        <box 
+          data-id="${this.uuid}"
+          :uuid="'${this.uuid}'" 
+          class="block-item" 
+          label="column"
+        >
+          <div class="column drag-box" data-id="${this.uuid}"></div>
+        </box>
       </el-col>
     `, {
       xmlMode: true,
       decodeEntities: false
     });
-    this.addComponent();
-  }
-  
-  addComponent () {
-    const curBox = new Container({}, this.storage)
-    this.components.push(curBox);
-    return curBox;
+    this.config = _.cloneDeep(require('./config').default);
   }
 
-  renderBox () {
-    this.$fragment('.column').first().empty();
-    this.previewType = storage.get('preview_view_status') || 0;
-    let LogicBox = this.components[0].getFragment().html();
-    this.$fragment('.column').first().append(LogicBox);
+  public renderBox () {
+    this.$fragment('.drag-box').empty();
+    this.components.forEach(component => {
+      this.$fragment('.drag-box').append(component.getFragment(this.previewType).html());
+    });
+
+    if (this.components.length  === 0) {
+      this.$fragment('.drag-box').append(`<div class="empty-container">empty</div>`)
+    }
   }
 
   getConfig() {

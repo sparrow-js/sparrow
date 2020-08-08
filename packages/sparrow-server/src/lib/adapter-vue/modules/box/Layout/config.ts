@@ -26,23 +26,66 @@ export default {
             {
               type: "input",
               inputType: "text",
-              label: "v-model",
-              model: "v-model"
+              label: "span",
+              model: "span"
             },
             {
               type: "input",
               inputType: "text",
-              label: "placeholder",
-              model: "placeholder"
-            }
+              label: "offset",
+              model: "offset"
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "push",
+              model: "push"
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "pull",
+              model: "pull"
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "xs",
+              model: "xs"
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "sm",
+              model: "sm"
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "md",
+              model: "md"
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "lg",
+              model: "lg"
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "xl",
+              model: "xl"
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "tag",
+              model: "tag"
+            },
           ]
         }
       },
     ]
   },
-  formOptions: {
-    validateAfterLoad: true,
-    validateAfterChanged: true,
-    validateAsync: true
-  }
 }
