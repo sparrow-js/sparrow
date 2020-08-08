@@ -33,9 +33,11 @@ export default class Column extends Base{
         this.config.model.attr.span = span;
       }
     }
+    
+    this.setAttrsToStr();
 
     this.$fragment = cheerio.load(`
-      <el-col :span="${this.config.model.attr.span}">
+      <el-col ${this._attrStr}>
         <box 
           data-id="${this.uuid}"
           :uuid="'${this.uuid}'" 
@@ -50,6 +52,40 @@ export default class Column extends Base{
       decodeEntities: false
     });
   }
+
+
+  public setPreview () {
+    const type = this.storage.get('preview_view_status') || 0;
+    this.previewType = type;
+    if (this.previewType === 0) {
+      this.$fragment = cheerio.load(`
+        <el-col ${this._attrStr}>
+          <box 
+            data-id="${this.uuid}"
+            :uuid="'${this.uuid}'" 
+            class="block-item" 
+            label="column"
+          >
+            <div class="column drag-box" data-id="${this.uuid}"></div>
+          </box>
+        </el-col>
+      `, {
+        xmlMode: true,
+        decodeEntities: false
+      });
+    } else {
+      this.$fragment = cheerio.load(`
+        <el-col ${this._attrStr}>
+          <div class="column drag-box"></div>
+        </el-col>
+      `, {
+        xmlMode: true,
+        decodeEntities: false
+      });
+    }
+    this.renderBox();
+
+  }  
 
   public renderBox () {
     this.$fragment('.drag-box').empty();

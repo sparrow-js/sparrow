@@ -16,10 +16,10 @@ export default class Base {
   treePath:string = ''; // 标记容器树路径
   previewType: number = 0;
   config: any = {};
+  _attrStr: string = '';
 
   constructor (storage) {
     this.storage = storage;
-
     this.uuid = uuid().split('-')[0]; 
   }
 
@@ -125,6 +125,21 @@ export default class Base {
 
   public settingConfig (config: any) {
     this.config = config;
+    this.setAttrsToStr();
+  }
+
+  public setAttrsToStr () {
+    const {config} = this;
+    if (_.get(config, 'model.attr')) {
+      const formField = [];
+      Object.keys(config.model.attr).forEach(key => {
+        if (!config.model.attr[key]) {
+          return;
+        }
+        formField.push(`${key}="${config.model.attr[key]}"`);
+      });
+      this._attrStr = formField.join(' ');
+    }
   }
 
   getConfig () {
