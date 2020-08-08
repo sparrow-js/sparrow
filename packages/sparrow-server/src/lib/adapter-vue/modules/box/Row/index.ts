@@ -4,18 +4,15 @@ import * as boxFragment from '../../fragment/box';
 import Base from '../Base';
 import Column from './Column';
 
-export default class Layout extends Base implements IBaseBox{
+export default class Row extends Base implements IBaseBox{
   $fragment: any;
   components: any = [];
   template: string;
   params: any;
-  name: string = 'Layout';
+  name: string = 'Row';
 
   constructor (data: any, storage: any) {
     super(storage);
-    /**
-     * { boxUuid: '', id: 'layout', type: 'box', params: { columns: 1 } }
-     */
     const { params = {} } = data;
     this.params = params;
 
@@ -40,10 +37,10 @@ export default class Layout extends Base implements IBaseBox{
     })
   }
 
-  public getFragment(): any {
+  public setPreview () {
     this.renderBox();
-    return this.$fragment;
   }
+
 
   renderBox () {
     this.$fragment('el-row').empty();

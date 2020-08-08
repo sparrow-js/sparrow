@@ -18,8 +18,8 @@ const widgetList = [
     type: 'box',
     list: [
       {
-        id: 'layout',
-        key: 'layout',
+        id: 'Row',
+        key: 'Row',
         label: 'colum 1',
         params: {
           columns: 1
@@ -28,8 +28,8 @@ const widgetList = [
         keys: ['布局', '1列', '容器', 'column'],
       },
       {
-        id: 'layout',
-        key: 'layout',
+        id: 'Row',
+        key: 'Row',
         label: 'colum 2',
         params: {
           columns: 2
@@ -38,8 +38,8 @@ const widgetList = [
         keys: ['布局', '2列', '容器', 'column'],
       },
       {
-        id: 'layout',
-        key: 'layout',
+        id: 'Row',
+        key: 'Row',
         label: 'colum 3',
         params: {
           columns: 3
@@ -48,8 +48,8 @@ const widgetList = [
         keys: ['布局', '3列', '容器', 'column'],
       },
       {
-        id: 'layout',
-        key: 'layout',
+        id: 'Row',
+        key: 'Row',
         label: 'colum 4',
         params: {
           columns: 4
@@ -58,8 +58,8 @@ const widgetList = [
         keys: ['布局', '4列', '容器', 'column'],
       },
       {
-        id: 'layout',
-        key: 'layout',
+        id: 'Row',
+        key: 'Row',
         label: 'colum 6',
         params: {
           columns: 6

@@ -16,14 +16,26 @@ export default class Column extends Base{
   boxStrs: string = '';
   storage: any = {};
   type: string = 'inline';
+  path: string = '/box/Row/Column';
 
   constructor (data: any, storage: any) {
     super(storage);
     this.storage = storage;
     this.uuid = uuid().split('-')[0]; 
+
     const {span} = data;
+    const { config } = data;
+    if (config) {
+      this.config = config;
+    } else {
+      this.config = _.cloneDeep(require('./config').default);
+      if (span) {
+        this.config.model.attr.span = span;
+      }
+    }
+
     this.$fragment = cheerio.load(`
-      <el-col :span="${span}">
+      <el-col :span="${this.config.model.attr.span}">
         <box 
           data-id="${this.uuid}"
           :uuid="'${this.uuid}'" 
@@ -37,7 +49,6 @@ export default class Column extends Base{
       xmlMode: true,
       decodeEntities: false
     });
-    this.config = _.cloneDeep(require('./config').default);
   }
 
   public renderBox () {
