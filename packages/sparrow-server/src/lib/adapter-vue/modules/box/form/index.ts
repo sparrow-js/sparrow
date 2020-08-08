@@ -59,24 +59,15 @@ export default class Form extends Base implements IBaseBox{
     if (config) {
       this.config = config;
     }
-    // this.fileName = blockName.charAt(0).toUpperCase() + blockName.slice(1)
-    // this.insertComponents.push(this.fileName);
 
     this.$fragment = cheerio.load(templateStr, {
         xmlMode: true,
         decodeEntities: false
       });
 
-    // this.$blockTemplate = cheerio.load(templateStr, {
-    //   xmlMode: true,
-    //   decodeEntities: false
-    // });
-
     this.resetRender = _.throttle(this.resetRender, 1000);
     this.$fragment('box-form').append(eform(this.uuid));
-    // this.VueGenerator = new VueGenerator('block');
     this.init();
-    // this.VueGenerator.appendData();
 
   }
 
@@ -155,8 +146,6 @@ export default class Form extends Base implements IBaseBox{
     const {handler} = data;
     if (handler === 'data') {
       this.config.dataCode = data.code;
-      // const dataCode = this.VueGenerator.getDataStrAst(this.config.dataCode);
-      // this.VueGenerator.appendData(dataCode);
       this.render();
     } else if (handler === 'formInline') {
       this.iFormAttrs[data.key] = data.value;
@@ -168,19 +157,6 @@ export default class Form extends Base implements IBaseBox{
         this[handler](data);
       }
     }
-  }
-
-
-  // private resetInitScript () {
-  //   this.VueGenerator.initScript();
-  //   const dataCode = this.VueGenerator.getDataStrAst(this.config.dataCode);
-  //   this.VueGenerator.appendData(dataCode);
-  // }
-
-  private settingConfig (data) {
-    const {uuid, config} = data;
-    const current = this.findComponent(uuid, this.components);
-    current && current.setConfig(config);
   }
 
   private addlabel (params: any) {
@@ -247,33 +223,10 @@ export default class Form extends Base implements IBaseBox{
         if (component.type === 'box') {
           this.renderBoxRecursion(component.components, 1);
         }
-
-        // if (component.insertComponents) {
-        //   component.insertComponents.forEach(item => {
-        //     this.VueGenerator.appendComponent(item, true);
-        //   })
-        // }
-      
-        // if (component.vueParse) {
-        //   component.vueParse.methods && this.VueGenerator.appendMethods(component.vueParse.methods);
-        //   component.vueParse.data && this.VueGenerator.appendData(component.vueParse.data);
-        // }
       });
     }
    
   }
 
-  public render () {
-    // const template = `${this.$blockTemplate.html()}\n<script>${generate(this.VueGenerator.pageAST).code}</script>`;
-    // const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
-    // if (formatTemp === this.formatTemp) {
-    //   return;
-    // }
-    // this.formatTemp = formatTemp;
-    // fsExtra.writeFile(this.blockPath, formatTemp, 'utf8');
-  }
-
-  setTemplate () {
-
-  }
+  public render () {}
 }

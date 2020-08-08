@@ -15,6 +15,7 @@ export default class Base {
   widgetType: string = 'box';
   treePath:string = ''; // 标记容器树路径
   previewType: number = 0;
+  config: any = {};
 
   constructor (storage) {
     this.storage = storage;
@@ -120,6 +121,10 @@ export default class Base {
       status: 2,
       message: 'complete',
     }});
+  }
+
+  public settingConfig (config: any) {
+    this.config = config;
   }
 
   getConfig () {

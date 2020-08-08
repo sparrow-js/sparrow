@@ -66,10 +66,6 @@ export default class Column extends Base{
     return this.config;
   }
 
-  public setConfig (config: any) {
-    this.config = config;
-  }
-
   
   getFragment () {
     this.renderBox();
