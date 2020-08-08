@@ -52,9 +52,4 @@ export default {
       },
     ]
   },
-  formOptions: {
-    validateAfterLoad: true,
-    validateAfterChanged: true,
-    validateAsync: true
-  }
 }

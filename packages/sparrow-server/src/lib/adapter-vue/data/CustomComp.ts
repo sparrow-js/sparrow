@@ -68,5 +68,12 @@ export const custom = [
     des: '拖拽上传图片',
     keys: ['拖拽', '上传', 'img', 'jpg', 'png', 'image', '多图'],
     path: '/custom/UploadDrag',
+  },
+  {
+    key: 'PanelGroup',
+    label: '面板组',
+    des: '面板组',
+    keys: ['面板组'],
+    path: '/custom/PanelGroup',
   }
 ]

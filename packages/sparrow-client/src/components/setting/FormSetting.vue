@@ -9,7 +9,7 @@
           <vue-form-generator 
             :schema="config.schema" 
             :model="config.model" 
-            :options="config.formOptions"
+            :options="formOptions"
           ></vue-form-generator>
         </div>
       </div>
@@ -80,6 +80,12 @@ export default class extends Vue {
     model: {
       attr: {}
     }
+  };
+
+  private formOptions = {
+    validateAfterLoad: true,
+    validateAfterChanged: true,
+    validateAsync: true
   };
 
   private async created() {
