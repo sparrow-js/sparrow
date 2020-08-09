@@ -75,5 +75,12 @@ export const custom = [
     des: '面板组',
     keys: ['面板组'],
     path: '/custom/PanelGroup',
+  },
+  {
+    key: 'CardPannel',
+    label: '卡片面板',
+    des: '卡片面板',
+    keys: ['卡片面板'],
+    path: '/EditBlock/PanelGroup/CardPanel',
   }
 ]

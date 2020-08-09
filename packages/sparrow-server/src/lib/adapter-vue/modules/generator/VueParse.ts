@@ -12,6 +12,7 @@ export default class VueParse{
   vueScript: string = '';
   $: any;
   scriptAst: any;
+  style: string = '';
 
   constructor (uuid: string, vueStr: string) {
     this.uuid = uuid;
@@ -21,6 +22,7 @@ export default class VueParse{
 
   private init () {
     const template = this.vueStr.match(/<template>([\s\S])*<\/template>/g)[0];
+    this.style = this.vueStr.match(/(?<=<style[\s\S]*>)[\s\S]*(?=<\/style>)/g)[0];
 
     this.$ = cheerio.load(template, {
       xmlMode: true,

@@ -3,6 +3,7 @@ import * as cheerio from 'cheerio';
 import * as boxFragment from '../../fragment/box';
 import Base from '../Base';
 import Column from './Column';
+import * as _ from 'lodash';
 
 export default class Row extends Base implements IBaseBox{
   $fragment: any;
@@ -13,18 +14,28 @@ export default class Row extends Base implements IBaseBox{
 
   constructor (data: any, storage: any) {
     super(storage);
-    const { params = {} } = data;
+    const { params = {}, config} = data;
     this.params = params;
+
+    if (config) {
+      this.config = config;
+    } else {
+      this.config = _.cloneDeep(require('./rowConfig').default);
+      if (params.columns) {
+        this.initComponent(params.columns);
+      }
+    }
 
     this.$fragment = cheerio.load(`
       <div class="box">
-        <el-row></el-row>
+        <el-row ${this._attrStr}></el-row>
       </div>
     `, {
       xmlMode: true,
       decodeEntities: false
     });
-    this.initComponent(params.columns);
+    
+
     this.renderBox();
   }
 
@@ -38,6 +49,15 @@ export default class Row extends Base implements IBaseBox{
   }
 
   public setPreview () {
+    this.$fragment = cheerio.load(`
+      <div class="box">
+        <el-row ${this._attrStr}></el-row>
+      </div>
+    `, {
+      xmlMode: true,
+      decodeEntities: false
+    });
+
     this.renderBox();
   }
 

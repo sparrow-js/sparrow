@@ -1,7 +1,5 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
-import storage from '../../../../storage';
-import Container from '../Container'; 
 import * as _ from 'lodash';
 import Base from '../Base';
 
@@ -97,11 +95,6 @@ export default class Column extends Base{
       this.$fragment('.drag-box').append(`<div class="empty-container">empty</div>`)
     }
   }
-
-  getConfig() {
-    return this.config;
-  }
-
   
   getFragment () {
     this.renderBox();

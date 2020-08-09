@@ -39,6 +39,7 @@ export default class Scene {
   };
   tempCopyStore: any = {};
   renderPageToggle = false;
+  style: string = '';
 
   constructor (params: any = {}) {
     this.uuid = uuid().split('-')[0];
@@ -329,7 +330,6 @@ export default class Scene {
     }
   }
 
-
   public copyHandler (data) {
     const { activeCompId } = data;
     const curBox = this.findComponent(activeCompId, this.components);
@@ -562,6 +562,7 @@ export default class Scene {
   public async renderPage () {
     this.params.previewViewStatus = storage.get('preview_view_status');
     this.$('.home').empty();
+    this.style = '';
     if (this.renderPageToggle) {
       this.$('.home').append('<div class="toggle"/>')
     }
@@ -595,6 +596,7 @@ export default class Scene {
         if (item.components) {
           item.components.forEach(comp => {
             if (comp.vueParse) {
+              this.style += comp.vueParse.style;
               methods = methods.concat(comp.vueParse.methods || []);
               vueData = vueData.concat(comp.vueParse.data || [])
             }
@@ -605,6 +607,7 @@ export default class Scene {
         }
   
         if (item.vueParse) {
+          this.style += item.vueParse.style;
           item.vueParse.methods && this.VueGenerator.appendMethods(item.vueParse.methods);
           item.vueParse.data && this.VueGenerator.appendData(item.vueParse.data);
         }
@@ -615,6 +618,7 @@ export default class Scene {
     fn(this.components);
     
     if (this.sceneVueParse) {
+      this.style += this.sceneVueParse.style;
       this.sceneVueParse.methods && this.VueGenerator.appendMethods(this.sceneVueParse.methods);
       this.sceneVueParse.data && this.VueGenerator.appendData(this.sceneVueParse.data);
     }
@@ -625,7 +629,7 @@ export default class Scene {
   }
 
   private writeTemplate () {
-    const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script>`;
+    const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script> <style lang="scss" scoped>${this.style}</style>`;
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
     if (formatTemp === this.formatTemp) {
       return;

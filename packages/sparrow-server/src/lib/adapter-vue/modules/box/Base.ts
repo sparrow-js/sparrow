@@ -136,13 +136,13 @@ export default class Base {
         if (!config.model.attr[key]) {
           return;
         }
-        formField.push(`${key}="${config.model.attr[key]}"`);
+        formField.push(`:${key}="${config.model.attr[key]}"`);
       });
       this._attrStr = formField.join(' ');
     }
   }
 
-  getConfig () {
-    
+  getConfig() {
+    return this.config;
   }
 }
