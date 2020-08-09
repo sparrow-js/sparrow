@@ -37,6 +37,11 @@ export default class Common {
     return '';
   }
 
+  public settingConfig (config: any) {
+    this.config = config;
+    this.setAttrsToStr();
+  }
+
 
   public setAttrsToStr () {
     const {config} = this;
