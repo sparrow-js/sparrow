@@ -64,7 +64,7 @@
                   v-for="(comp, index) in item.list"
                   :key="index"
                   @mousedown="mousedownWidget(comp, item.type)"
-                  @click="addComp(comp.key, comp.params)"
+                  @click="addEditComp(comp.key, comp.params, comp.path)"
                 >
                   <div class="drag-box">
                     <div class="drag-box-item">
@@ -210,6 +210,22 @@ export default {
       await socket.emit('generator.scene.addComponent', params);
       Loading.close();
       this.dialogVisible = false;
+    },
+
+    async addEditComp (id, config, path) {
+      const params = {
+        boxUuid: AppModule.boxUuid,
+        id,
+        params: config,
+        path
+      };
+
+      // path
+
+      Loading.open();
+      await socket.emit('generator.scene.addEditComp', params);
+      Loading.close();
+
     },
 
     mousedownWidget(widget, type) {

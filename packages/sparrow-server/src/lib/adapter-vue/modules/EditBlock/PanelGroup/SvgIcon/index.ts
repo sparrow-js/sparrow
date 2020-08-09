@@ -22,9 +22,10 @@ export default class CardPanel extends Common{
   }
 
   public fragment () {
-    console.log('****51234*****', this._attrStr);
     return `
-      <svg-icon ${this._attrStr} class-name="card-panel-icon" />
+      <div class="card-panel-icon-wrapper ${this.config.model.custom['icon-color']}">
+        <svg-icon ${this._attrStr} class-name="card-panel-icon" />
+      </div>  
     `;
   }
 }

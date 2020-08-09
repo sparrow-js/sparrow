@@ -38,36 +38,36 @@ export default {}
       color: #fff;
     }
 
-    .icon-people {
+    .icon-color-1 {
       background: #40c9c6;
     }
 
-    .icon-message {
+    .icon-color-2 {
       background: #36a3f7;
     }
 
-    .icon-money {
+    .icon-color-3 {
       background: #f4516c;
     }
 
-    .icon-shopping {
+    .icon-color-4 {
       background: #34bfa3
     }
   }
 
-  .icon-people {
+  .icon-color-1 {
     color: #40c9c6;
   }
 
-  .icon-message {
+  .icon-color-2 {
     color: #36a3f7;
   }
 
-  .icon-money {
+  .icon-color-3 {
     color: #f4516c;
   }
 
-  .icon-shopping {
+  .icon-color-4 {
     color: #34bfa3
   }
 

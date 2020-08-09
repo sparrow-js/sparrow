@@ -25,6 +25,7 @@ export default class Row extends Base implements IBaseBox{
         this.initComponent(params.columns);
       }
     }
+    this.setAttrsToStr();
 
     this.$fragment = cheerio.load(`
       <div class="box">

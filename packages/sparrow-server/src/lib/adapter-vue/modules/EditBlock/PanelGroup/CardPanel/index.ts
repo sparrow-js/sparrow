@@ -19,8 +19,11 @@ export default class CardPanel extends Base{
 
   constructor (params: any = {}, storage) {
     super(storage);
+    const {config = {}} = params;
     this.init();
-    this.initComp();
+    if (config.initType !== 'auto') {
+      this.initComp();
+    }
   }
 
   private initComp () {
@@ -37,10 +40,8 @@ export default class CardPanel extends Base{
     const findEditText = this.components.find(item => item.name === 'EditText');
     const findSvgIcon = this.components.find(item => item.name === 'SvgIcon');
     this.$fragment = cheerio.load( `
-    <div class="card-panel">
-      <div class="card-panel-icon-wrapper icon-people">
-        ${findSvgIcon.getFragment().html()}
-      </div>
+    <div class="card-panel card-panel-col">
+      ${findSvgIcon.getFragment().html()}
       <div class="card-panel-description">
         <div class="card-panel-text">
           ${findEditText.getFragment().html()}

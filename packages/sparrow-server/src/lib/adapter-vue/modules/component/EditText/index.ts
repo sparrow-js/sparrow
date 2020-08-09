@@ -1,26 +1,28 @@
 
 import * as cheerio from 'cheerio';
 import Common from '../Common';
+import * as _ from 'lodash';
+
 const uuid = require('@lukeed/uuid');
 
 export default class EditText extends Common{
   name: string = 'EditText';
   config: any = {};
-  uuid: string = '';
   $fragment: any;
 
   constructor (params: any) {
     super();
-    this.config = {
-      // 组件自定义配置
-      _custom: {
-        label: 'Hello',
-      },
-    };
+    console.log('******89*******', params);
+    const {initType} = params;
+    if (initType === 'auto' ) {
+      this.config = params;
+    } else {
+      this.config = _.cloneDeep(require('./config').default);
+    }
   }
 
   public insertEditText (params) {
-    this.config._custom.label = params.value;
+    this.config.model.custom.label = params.value;
   }
 
 
@@ -31,12 +33,12 @@ export default class EditText extends Common{
     if (type === 0) {
       typography = `
         <edit-text-box :clearClass="true" uuid="${this.uuid}">
-          ${this.config._custom.label}
+          ${this.config.model.custom.label}
         </edit-text-box>
       `
     } else {
       typography = `
-        <div>${this.config._custom.label}</div>
+        <div>${this.config.model.custom.label}</div>
       `;
     }
     return typography;

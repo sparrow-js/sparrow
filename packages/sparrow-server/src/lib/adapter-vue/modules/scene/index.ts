@@ -40,6 +40,7 @@ export default class Scene {
   tempCopyStore: any = {};
   renderPageToggle = false;
   style: string = '';
+  storeStyleRepeat = [];
 
   constructor (params: any = {}) {
     this.uuid = uuid().split('-')[0];
@@ -342,6 +343,24 @@ export default class Scene {
     this.jsonToScene({children: [this.tempCopyStore]}, curBox)
   }
 
+  public addEditComp(data) {
+    /**
+     * 
+     *   const params = {
+        boxUuid: AppModule.boxUuid,
+        id,
+        params: config,
+        path
+      };
+     */
+
+    const {path} = data;
+    const curBox = this;
+    const box = require(`..${path}/init`).default;
+    console.log('************', box)
+    this.jsonToScene({children: [box]}, curBox)
+  }
+
   public getParams () {
     return this.params;
   }
@@ -563,6 +582,7 @@ export default class Scene {
     this.params.previewViewStatus = storage.get('preview_view_status');
     this.$('.home').empty();
     this.style = '';
+    this.storeStyleRepeat = [];
     if (this.renderPageToggle) {
       this.$('.home').append('<div class="toggle"/>')
     }
@@ -596,7 +616,12 @@ export default class Scene {
         if (item.components) {
           item.components.forEach(comp => {
             if (comp.vueParse) {
-              this.style += comp.vueParse.style;
+
+              if (!this.hasStyle(comp.name)) {
+                this.style += comp.vueParse.style;
+                this.storeStyleRepeat.push(comp.name)
+              }
+              
               methods = methods.concat(comp.vueParse.methods || []);
               vueData = vueData.concat(comp.vueParse.data || [])
             }
@@ -607,7 +632,10 @@ export default class Scene {
         }
   
         if (item.vueParse) {
-          this.style += item.vueParse.style;
+          if (!this.hasStyle(item.name)) {
+            this.style += item.vueParse.style;
+            this.storeStyleRepeat.push(item.name)
+          }
           item.vueParse.methods && this.VueGenerator.appendMethods(item.vueParse.methods);
           item.vueParse.data && this.VueGenerator.appendData(item.vueParse.data);
         }
@@ -626,6 +654,13 @@ export default class Scene {
     this.VueGenerator.appendData(vueData);
 
     this.writeTemplate();
+  }
+
+  private hasStyle (name: string) {
+    if (this.storeStyleRepeat.includes(name)) {
+      return true;
+    }
+    return false;
   }
 
   private writeTemplate () {

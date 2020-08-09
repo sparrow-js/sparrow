@@ -3,6 +3,9 @@ export default {
     attr: {
       'icon-class': 'peoples'
     },
+    custom: {
+      'icon-color': 'icon-color-1'
+    }
   },
   schema: {
     fields: [
@@ -20,7 +23,27 @@ export default {
             }
           ]
         }
+      },
+      {
+        type: 'object',
+        label: '',
+        model: 'custom',
+        schema: {
+          fields: [
+            {
+              type: "select",
+              label: "icon-color",
+              model: "icon-color",
+              values: [
+                  "icon-color-1",
+                  "icon-color-2",
+                  "icon-color-3",
+                  "icon-color-4",
+              ]    
+            }
+          ]
+        }
       }
-    ]
+    ],
   },
 }

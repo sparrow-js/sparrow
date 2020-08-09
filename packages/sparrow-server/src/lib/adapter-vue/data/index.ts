@@ -220,13 +220,14 @@ export default class Data {
   public getEditBlockList () {
     return [
       {
-        label: '页头',
+        label: '卡片面板',
         type: 'editBox',
         list: [
           {
-            id: 'PageHeader',
-            key: 'PageHeader',
-            label: '页头',
+            id: 'PanelGroup',
+            key: 'PanelGroup',
+            label: '卡片面板',
+            path: '/EditBlock/PanelGroup',
             icon: ''
           },
         ]
