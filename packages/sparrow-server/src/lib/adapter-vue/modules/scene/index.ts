@@ -653,7 +653,8 @@ export default class Scene {
   }
 
   private writeTemplate () {
-    const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script> <style lang="scss" scoped>${this.style}</style>`;
+    console.log('**********', this.style)
+    const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script> <style lang="scss" scoped>${this.style || ''}</style>`;
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
     if (formatTemp === this.formatTemp) {
       return;

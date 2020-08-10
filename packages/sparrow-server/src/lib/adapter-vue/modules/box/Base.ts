@@ -126,6 +126,7 @@ export default class Base {
   public settingConfig (config: any) {
     this.config = config;
     this.setAttrsToStr();
+    console.log('******111*****', this._attrStr)
   }
 
   public setAttrsToStr () {
@@ -136,7 +137,7 @@ export default class Base {
         if (!config.model.attr[key]) {
           return;
         }
-        formField.push(`:${key}="${config.model.attr[key]}"`);
+        formField.push(`${key}="${config.model.attr[key]}"`);
       });
       this._attrStr = formField.join(' ');
     }

@@ -22,7 +22,10 @@ export default class VueParse{
 
   private init () {
     const template = this.vueStr.match(/<template>([\s\S])*<\/template>/g)[0];
-    this.style = this.vueStr.match(/(?<=<style[\s\S]*>)[\s\S]*(?=<\/style>)/g)[0];
+    const style = this.vueStr.match(/(?<=<style[\s\S]*>)[\s\S]*(?=<\/style>)/g);
+    if (style) {
+      this.style = style[0];
+    }
 
     this.$ = cheerio.load(template, {
       xmlMode: true,

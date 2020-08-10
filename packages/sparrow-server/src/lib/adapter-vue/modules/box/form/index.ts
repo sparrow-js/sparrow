@@ -58,6 +58,8 @@ export default class Form extends Base implements IBaseBox{
     this.params = params;
     if (config) {
       this.config = config;
+    } else {
+      this.config = _.cloneDeep(require('./config').default);
     }
 
     this.$fragment = cheerio.load(templateStr, {
@@ -66,7 +68,11 @@ export default class Form extends Base implements IBaseBox{
       });
 
     this.resetRender = _.throttle(this.resetRender, 1000);
-    this.$fragment('box-form').append(eform(this.uuid));
+    this.$fragment('box-form').append(`
+      <el-form label-width="100px" ${this._attrStr}>
+        <div class="drag-box" data-id=${this.uuid}></div>
+      </el-form>
+    `);
     this.init();
 
   }
@@ -79,12 +85,7 @@ export default class Form extends Base implements IBaseBox{
   
 
   public setPreview () {
-
     const type = this.storage.get('preview_view_status') || 0;
-    if (this.previewType === type) {
-      this.resetRender();
-      return;
-    }
     this.previewType = type;
     if (type === 0) {
 
@@ -93,7 +94,11 @@ export default class Form extends Base implements IBaseBox{
         decodeEntities: false
       });
   
-      this.$fragment('box-form').append(eform(this.uuid));
+      this.$fragment('box-form').append(`
+        <el-form label-width="100px" ${this._attrStr}>
+          <div class="drag-box" data-id=${this.uuid}></div>
+        </el-form>
+      `);
     } else {
 
       this.$fragment = cheerio.load(` 
@@ -103,7 +108,11 @@ export default class Form extends Base implements IBaseBox{
         xmlMode: true,
         decodeEntities: false
       });
-      this.$fragment('.root').append(eform(this.uuid));
+      this.$fragment('.root').append(`
+        <el-form label-width="100px" ${this._attrStr}>
+          <div class="drag-box" data-id=${this.uuid}></div>
+        </el-form>
+      `);
     }
     this.resetRender()
   }
@@ -164,11 +173,6 @@ export default class Form extends Base implements IBaseBox{
     currentComp && currentComp.setLabel(params.value);
   }
   
-  public getConfig () {
-    return {
-      data: this.config
-    }
-  }
 
   public changePosition (order: any) {
     let obj = this.findComponents(order[0]);
