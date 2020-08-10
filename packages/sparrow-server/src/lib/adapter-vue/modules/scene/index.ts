@@ -344,20 +344,9 @@ export default class Scene {
   }
 
   public addEditComp(data) {
-    /**
-     * 
-     *   const params = {
-        boxUuid: AppModule.boxUuid,
-        id,
-        params: config,
-        path
-      };
-     */
-
     const {path} = data;
     const curBox = this;
     const box = require(`..${path}/init`).default;
-    console.log('************', box)
     this.jsonToScene({children: [box]}, curBox)
   }
 

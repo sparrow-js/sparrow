@@ -31,6 +31,8 @@ export default class File extends Base implements IBaseBox{
   storage: any;
   scriptData: any;
   formatTemp: string = '';
+  style: string = '';
+  storeStyleRepeat = [];
 
   config: any = {
     inline: false
@@ -100,7 +102,8 @@ export default class File extends Base implements IBaseBox{
   public async renderPage () {
     this.$('.home-file').empty();
     this.scriptData = this.VueGenerator.initScript();
-
+    this.style = '';
+    this.storeStyleRepeat = [];
     if (this.config.dataCode) {
       const dataCode = this.VueGenerator.getDataStrAst(this.config.dataCode);
       this.VueGenerator.appendData(dataCode);
@@ -123,6 +126,10 @@ export default class File extends Base implements IBaseBox{
         if (item.components) {
           item.components.forEach(comp => {
             if (comp.vueParse) {
+              if (!this.hasStyle(comp.name)) {
+                this.style += comp.vueParse.style;
+                this.storeStyleRepeat.push(comp.name)
+              }
               methods = methods.concat(comp.vueParse.methods || []);
               vueData = vueData.concat(comp.vueParse.data || [])
             }
@@ -133,6 +140,10 @@ export default class File extends Base implements IBaseBox{
         }
   
         if (item.vueParse) {
+          if (!this.hasStyle(item.name)) {
+            this.style += item.vueParse.style;
+            this.storeStyleRepeat.push(item.name)
+          }
           item.vueParse.methods && this.VueGenerator.appendMethods(item.vueParse.methods);
           item.vueParse.data && this.VueGenerator.appendData(item.vueParse.data);
         }
@@ -148,8 +159,15 @@ export default class File extends Base implements IBaseBox{
     this.writeTemplate();
   }
 
+  private hasStyle (name: string) {
+    if (this.storeStyleRepeat.includes(name)) {
+      return true;
+    }
+    return false;
+  }
+
   private writeTemplate () {
-    const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script>`;
+    const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script> <style lang="scss" scoped>${this.style}</style>`;
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
     if (formatTemp === this.formatTemp) {
       return;
