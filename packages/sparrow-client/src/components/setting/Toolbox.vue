@@ -60,7 +60,7 @@
             >
               <div class="comp-list">
                 <div
-                  class="comp-item"
+                  class="edit-box-item"
                   v-for="(comp, index) in item.list"
                   :key="index"
                   @mousedown="mousedownWidget(comp, item.type)"
@@ -416,6 +416,21 @@ export default {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+.edit-box-item{
+  width: 50%;
+  height: 120px;
+  text-align: center;
+  vertical-align: top;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.edit-box-item:hover{
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .comp-item:hover {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);

@@ -1,5 +1,5 @@
 <template>
-  <div class="home drag-box" data-id="519b1928" />
+  <div class="home drag-box" data-id="c5c19854" />
 </template>
 
 <script>

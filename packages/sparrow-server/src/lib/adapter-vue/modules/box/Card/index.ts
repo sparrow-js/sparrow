@@ -101,24 +101,10 @@ export default class Card extends Base{
   public setConfig (config: any) {
     this.config = config;
   };
-  
-  // public getFragment () {
-  //   this.renderBox();
-  //   return this.$fragment;
-  // }
 
-
-  public getConfig() {
-    return this.config
-  }
 
   public insertEditText (params) {
     this.config.model.custom.label = params.value;
-  }
-
-  setting (data: any) {
-    const {config} = data;
-    this.config = config;
   }
 
 }
