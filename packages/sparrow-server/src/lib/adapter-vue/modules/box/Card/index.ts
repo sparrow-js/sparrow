@@ -2,9 +2,11 @@ const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
 import IBaseBox from '../IBaseBox';
 import Container from '../Container'
+import * as _ from 'lodash';
+import Base from '../Base';
 
 
-export default class Card implements IBaseBox{
+export default class Card extends Base{
   public uuid = '';
   $fragment = null;
   public components = [];
@@ -13,23 +15,16 @@ export default class Card implements IBaseBox{
   insertFileType: string = 'inline';
   config: any = {};
   _attrStr: string = '';
-  labelValue: string = '卡片名称';
   storage: any = null;
   constructor (data: any, storage: any) {
+    super(storage);
     this.uuid = uuid().split('-')[0];
     const { config } = data;
     this.storage = storage;
     if (config) {
       this.config = config
     } else {
-      this.config = {
-        _attr: {
-          label: '卡片名称'
-        },
-        _custom: {
-          hasHeader: true,
-        },
-      };
+      this.config = _.cloneDeep(require('./config').default);
       this.addComponent();
     }
   
@@ -42,27 +37,27 @@ export default class Card implements IBaseBox{
   }
   
 
-  public renderBox () {
+  public setPreview () {
     if (!this.components[0]) return;
-    const {_attr} = this.config;
+    const {model} = this.config;
     let LogicBox = this.components[0].getFragment().html();
 
     const type = this.storage.get('preview_view_status') || 0;
     let labelBox = `
       <edit-text-box :clearClass="true" uuid="${this.uuid}">
-        ${_attr['label']}
+        ${model.custom['label']}
       </edit-text-box>
     `;
 
     if (type === 1) {
       labelBox = `
-        <span>${_attr['label']}</span>
+        <span>${model.custom['label']}</span>
       `;
     }
 
     let headerBox = '';
 
-    if (this.config._custom.hasHeader === true) {
+    if (this.config.model.custom.hasHeader === true) {
       headerBox = `
         <div slot="header" class="clearfix">
           ${labelBox}
@@ -107,10 +102,10 @@ export default class Card implements IBaseBox{
     this.config = config;
   };
   
-  public getFragment () {
-    this.renderBox();
-    return this.$fragment;
-  }
+  // public getFragment () {
+  //   this.renderBox();
+  //   return this.$fragment;
+  // }
 
 
   public getConfig() {
@@ -118,7 +113,7 @@ export default class Card implements IBaseBox{
   }
 
   public insertEditText (params) {
-    this.config._attr.label = params.value;
+    this.config.model.custom.label = params.value;
   }
 
   setting (data: any) {
