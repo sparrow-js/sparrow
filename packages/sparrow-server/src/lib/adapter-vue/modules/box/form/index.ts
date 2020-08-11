@@ -1,30 +1,15 @@
 import IBaseBox from '../IBaseBox';
-import * as fragment from './fragment';
-import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import * as cheerio from 'cheerio';
 import * as mkdirp from 'mkdirp';
-import * as util from 'util';
 import Config from '../../../config';
-import * as prettier from 'prettier';
-import generate from '@babel/generator';
 import Base from '../Base';
 import * as _ from 'lodash';
-const uuid = require('@lukeed/uuid');
 const templateStr =  `
   <div class="root" >
     <box-form></box-form>
   </div>
 `;
-
-
-export function eform (uuid: string = '') {
-  return `
-    <el-form label-width="100px">
-     <div class="drag-box" data-id=${uuid}></div>
-    </el-form>
-  `;
-}
 
 
 export default class Form extends Base implements IBaseBox{

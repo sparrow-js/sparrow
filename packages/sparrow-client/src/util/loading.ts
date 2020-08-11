@@ -4,7 +4,7 @@ export default {
   open() {
     loadingInstance = Loading.service({
       lock: true,
-      background: 'rgba(0, 0, 0, 0.6)'
+      background: 'rgba(0, 0, 0, 0)'
     });
   },
   close() {

@@ -126,7 +126,6 @@ export default class Base {
   public settingConfig (config: any) {
     this.config = config;
     this.setAttrsToStr();
-    console.log('******111*****', this._attrStr)
   }
 
   public setAttrsToStr () {

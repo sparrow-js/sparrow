@@ -43,7 +43,8 @@ export default class Base {
         <el-form-item label=" "
           ${this._formItemStr}
         >
-          <label-box 
+          <label-box
+            slot="label"
             label="${this.config.model.custom.label}" 
             uuid="${this.uuid}"
           ></label-box>

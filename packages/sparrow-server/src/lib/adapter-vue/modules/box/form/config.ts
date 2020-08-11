@@ -1,7 +1,10 @@
 export default {
   model: {
     attr: {
-      'label-position': ''
+      'label-position': '',
+      ':inline': false,
+      'label-width': '50px',
+      'size': ''
     },
   },
   schema: {
@@ -17,6 +20,25 @@ export default {
               inputType: "text",
               label: "label-position",
               model: "label-position"
+            },
+            {
+              type: "switch",
+              label: "inline",
+              model: ":inline",
+              textOn: 'inline',
+              textOff: '非inline'
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "label-width",
+              model: "label-width"
+            },
+            {
+              type: "select",
+              label: "size",
+              model: "size",
+              values: ["medium", "small", "mini"]
             },
           ]
         }
