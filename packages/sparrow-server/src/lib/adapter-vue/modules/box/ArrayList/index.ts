@@ -20,14 +20,7 @@ export default class ArrayList extends Base{
     if (config) {
       this.config = config
     } else {
-      this.config = {
-        _attr: {
-          label: '卡片名称'
-        },
-        _custom: {
-          hasHeader: true,
-        },
-      };
+      this.config = {};
 
       this.insertComponents.push('ArrayList');
       const componentsDir = Config.componentsDir; 
@@ -47,12 +40,11 @@ export default class ArrayList extends Base{
 
   public renderBox () {
     if (!this.components[0]) return;
-    const {_attr} = this.config;
     let LogicBox = this.components[0].getFragment().html();
 
 
   let arrayListBox = `
-    <array-list ${this._attrStr}>
+    <array-list>
       <template v-slot:item="{ item }">
         ${LogicBox}
       </template>
@@ -69,10 +61,6 @@ export default class ArrayList extends Base{
 
   }
   
-
-  public setConfig (config: any) {
-    this.config = config;
-  };
   
   public getFragment () {
     this.renderBox();
@@ -80,17 +68,8 @@ export default class ArrayList extends Base{
   }
 
 
-  public getConfig() {
-    return this.config
-  }
-
   public insertEditText (params) {
     this.config._attr.label = params.value;
-  }
-
-  setting (data: any) {
-    const {config} = data;
-    this.config = config;
   }
 
 }
