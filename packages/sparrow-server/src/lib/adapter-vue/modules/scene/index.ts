@@ -56,9 +56,9 @@ export default class Scene {
 
     if (params.label === 'page') {
       this.jsonToScene(params, this);
+    } else {
+      this.renderPage();
     }
-
-    this.renderPage();
   }
 
   private jsonToScene (data: any, obj) {
@@ -568,6 +568,8 @@ export default class Scene {
   }
 
   public async renderPage () {
+    console.log('**********8***8')
+
     this.params.previewViewStatus = storage.get('preview_view_status');
     this.$('.home').empty();
     this.style = '';
@@ -653,7 +655,6 @@ export default class Scene {
   }
 
   private writeTemplate () {
-    console.log('**********', this.style)
     const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script> <style lang="scss" scoped>${this.style || ''}</style>`;
     const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
     if (formatTemp === this.formatTemp) {

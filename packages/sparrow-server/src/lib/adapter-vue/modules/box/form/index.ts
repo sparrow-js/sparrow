@@ -46,6 +46,7 @@ export default class Form extends Base implements IBaseBox{
     } else {
       this.config = _.cloneDeep(require('./config').default);
     }
+    this.setAttrsToStr();
 
     this.$fragment = cheerio.load(templateStr, {
         xmlMode: true,
