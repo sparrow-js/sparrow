@@ -7,6 +7,7 @@ import * as path from 'path';
 import Config from '../../../config';
 import Base from '../Base';
 import Container from '../Container';
+import * as _ from 'lodash';
 
 export default class Tabs extends Base implements IBaseBox{
   public uuid = '';
@@ -26,34 +27,8 @@ export default class Tabs extends Base implements IBaseBox{
     if (config) {
       this.config = config;
     } else {
-      this.config = {
-        _attr: {
-          ':active-name': 'first'
-        },
-        _slot: {
-          data: `
-[
-  {
-    label: '用户管理',
-    value: 'first'
-  },
-  {
-    label: '配置管理',
-    value: 'second'
-  },
-  {
-    label: '角色管理',
-    value: 'third'
-  },
-  {
-    label: '定时任务补偿',
-    value: 'fourth'
-  },
-]
-          `
-        } 
-      };
-      
+      this.config = _.cloneDeep(require('./config').default);
+
       const tabsData = this.getTabsData();
 
       if (tabsData && Array.isArray(tabsData)) {
@@ -64,9 +39,6 @@ export default class Tabs extends Base implements IBaseBox{
         });
       }
     }
-  
-
-
 
     const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/TabsBox', 'comp.vue'), 'utf8');
     this.vueParse = new VueParse(this.uuid, fileStr); 
@@ -81,7 +53,7 @@ export default class Tabs extends Base implements IBaseBox{
 
   private getTabsData (config: any = null) {
     try {
-      return new Function(`var data = ${config ? config : this.config._slot.data}; return data;`)();
+      return new Function(`var data = ${config ? config : this.config.model.slot.data}; return data;`)();
     } catch (e) {
       return null;
     }
@@ -90,6 +62,7 @@ export default class Tabs extends Base implements IBaseBox{
   
 
   public setPreview () {
+    this.resetComponents();
     let TabsBox = '';
     const type = this.storage.get('preview_view_status') || 0;
     if (type === 0) {
@@ -108,7 +81,7 @@ export default class Tabs extends Base implements IBaseBox{
         <div style="margin-bottom: 20px;">
           <tabs-box
             :status="'box'"
-            :list="${this.config._slot.data}"
+            :list="${this.config.model.slot.data}"
             :uuid="'${this.uuid}'"
             :active-name="'first'"
           >
@@ -154,23 +127,8 @@ export default class Tabs extends Base implements IBaseBox{
     });
   }
 
-  public setting (data: any) {
-    const {config} = data;
-    const hasNewComp = this.resetComponents(config);
-    if (hasNewComp === false) return;
-    this.config = config;
-    this.setAttrsToStr();
-  }
-
-  public settingConfig (config: any) {
-    const hasNewComp = this.resetComponents(config);
-    if (hasNewComp === false) return;
-    this.config = config;
-    this.setAttrsToStr();
-  };
-
-  private resetComponents (config: any) {
-    const newData = this.getTabsData(config._slot.data);
+  private resetComponents () {
+    const newData = this.getTabsData(this.config.model.slot.data);
     const oldData = this.getTabsData();
     if (newData && Array.isArray(newData)) {
       oldData.forEach(item => {
@@ -194,24 +152,5 @@ export default class Tabs extends Base implements IBaseBox{
       return false;
     }
 
-  } 
-
-  public setAttrsToStr () {
-    const {config} = this;
-    if (config._attr) {
-      const formField = [];
-      Object.keys(config._attr).forEach(key => {
-        formField.push(`${key}="${config._attr[key]}"`);
-      });
-      this._attrStr = formField.join(' ');
-    }
-  }
-
-  public getConfig() {
-    return this.config
-  }
-
-  getSetting () {
-    return this.config;
   }
 }
