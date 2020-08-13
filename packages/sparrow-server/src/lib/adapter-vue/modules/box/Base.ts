@@ -126,7 +126,10 @@ export default class Base {
   public settingConfig (config: any) {
     this.config = config;
     this.setAttrsToStr();
+    this.customAttrHandler();
   }
+
+  public customAttrHandler () {}
 
   public setAttrsToStr () {
     const {config} = this;

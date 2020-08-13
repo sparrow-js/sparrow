@@ -13,7 +13,6 @@ export default class ArrayList extends Base{
   name: string = 'ArrayList';
   insertComponents:string[] = [];
   config: any = {};
-  _attrStr: string = '';
   constructor (data: any, storage: any) {
     super(storage)
     const { config } = data;

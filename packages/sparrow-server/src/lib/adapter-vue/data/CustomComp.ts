@@ -82,5 +82,13 @@ export const custom = [
     des: '卡片面板',
     keys: ['卡片面板'],
     path: '/EditBlock/PanelGroup/CardPanel',
+  },
+  {
+    // Clipboard
+    key: 'Clipboard',
+    label: '剪贴板',
+    des: '剪贴板，复制',
+    keys: ['Clipboard', '复制', 'copy'],
+    path: '/custom/Clipboard',
   }
 ]

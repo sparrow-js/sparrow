@@ -1,6 +1,7 @@
 import * as parser from '@babel/parser';
 import traverse from '@babel/traverse';
 import * as t from '@babel/types';
+import * as _ from 'lodash';
 
 import fragment from './fragment';
 
@@ -10,6 +11,7 @@ export default class VueGenerator {
   type: string;
 
   importComps: any = [];
+  imports: any = [];
 
   constructor (type?: string) {
     this.type = type;
@@ -50,6 +52,7 @@ export default class VueGenerator {
 
   public initScript () {
     this.importComps = [];
+    this.imports = [];
     let scriptStr = fragment.scriptViewStr;
     if (this.type === 'block') {
       scriptStr = fragment.scriptBlockStr;
@@ -59,6 +62,17 @@ export default class VueGenerator {
     });
     this.pageAST = pageAST;
     return this.pageAST;
+  }
+
+  public appendImport (listImport) {
+    const body = _.get(this.pageAST, 'program.body') || [];
+    listImport.forEach(item => {
+      if(this.imports.includes(item.path)) {
+        return;
+      }
+      this.imports.push(item.path);
+      body.unshift(item.node);
+    })
   }
 
 

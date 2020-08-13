@@ -2,11 +2,13 @@ import * as cheerio from 'cheerio';
 import * as parser from '@babel/parser';
 import traverse from '@babel/traverse';
 import generate from '@babel/generator';
+import * as _ from 'lodash';
 
 export default class VueParse{
   template: string = '';
   data: any = [];
   methods: any = [];
+  importDeclarations: any = [];
   uuid: string = '';
   vueStr: string = '';
   vueScript: string = '';
@@ -42,8 +44,10 @@ export default class VueParse{
         "jsx",
       ]
     });
+
     this.data = this.getData() || [];
     this.methods = this.getMethods() || [];
+    this.getImport();
   }
 
 
@@ -102,10 +106,6 @@ export default class VueParse{
     })
 
     return generate(dataAst).code;
-
-    // ObjectExpression
-
-    // generate().code
   }
 
   public getMethods () {
@@ -119,5 +119,17 @@ export default class VueParse{
       }
     });
     return methods;
+  }
+
+  public getImport () {
+    const body = _.get(this.scriptAst, 'program.body') || [];
+    body.forEach(item => {
+      if (item.type === 'ImportDeclaration') {
+        this.importDeclarations.push({
+          path: _.get(item, 'source.value'),
+          node: item
+        });
+      }
+    });    
   }
 }

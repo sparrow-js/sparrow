@@ -568,7 +568,6 @@ export default class Scene {
   }
 
   public async renderPage () {
-    console.log('**********8***8')
 
     this.params.previewViewStatus = storage.get('preview_view_status');
     this.$('.home').empty();
@@ -588,6 +587,7 @@ export default class Scene {
 
     let methods = [];
     let vueData = [];
+    let importDeclarations = [];
     this.loopThroughBox(this.components);
     const fn = (boxs, flag = 0) => {
       boxs.forEach((item, index) => {
@@ -615,6 +615,7 @@ export default class Scene {
               
               methods = methods.concat(comp.vueParse.methods || []);
               vueData = vueData.concat(comp.vueParse.data || [])
+              importDeclarations = importDeclarations.concat(comp.vueParse.importDeclarations || [])
             }
           });
         }
@@ -629,6 +630,7 @@ export default class Scene {
           }
           item.vueParse.methods && this.VueGenerator.appendMethods(item.vueParse.methods);
           item.vueParse.data && this.VueGenerator.appendData(item.vueParse.data);
+          item.vueParse.importDeclarations && this.VueGenerator.appendImport(item.vueParse.importDeclarations);
         }
   
       });
@@ -640,10 +642,11 @@ export default class Scene {
       this.style += this.sceneVueParse.style;
       this.sceneVueParse.methods && this.VueGenerator.appendMethods(this.sceneVueParse.methods);
       this.sceneVueParse.data && this.VueGenerator.appendData(this.sceneVueParse.data);
+      this.sceneVueParse.importDeclarations && this.VueGenerator.appendImport(this.sceneVueParse.importDeclarations);
     }
     this.VueGenerator.appendMethods(methods);
     this.VueGenerator.appendData(vueData);
-
+    this.VueGenerator.appendImport(importDeclarations);
     this.writeTemplate();
   }
 
