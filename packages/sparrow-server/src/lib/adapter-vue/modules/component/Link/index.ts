@@ -19,7 +19,7 @@ export default class Link extends Common{
     this.config.model.custom.label = params.value;
   }
 
-  public getFragment () {
+  public fragment () {
     const type = this.storage.get('preview_view_status') || 0;
     let textBox = '';
     if (type === 0) {
