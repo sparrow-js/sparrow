@@ -1,10 +1,10 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
 import storage from '../../../../storage';
-import Container from '../Container';
+import Base from '../Base';
 
 
-export default class Column{
+export default class Column extends Base{
   public uuid = '';
   public components:any = [];
   public $fragment: any;
@@ -17,6 +17,7 @@ export default class Column{
   type: string = 'inline';
 
   constructor (data: any, storage: any) {
+    super(storage);
     this.storage = storage;
     this.uuid = uuid().split('-')[0]; 
     if (data.config) {
@@ -29,20 +30,22 @@ export default class Column{
         },
       };
     }
-    // this.addComponent();
   }
 
-  addComponent () {
-    const curBox = new Container({}, this.storage)
-    this.components.push(curBox);
-    return curBox;
-  }
-
-  renderTemplate () {
+  setPreview () {
     this.previewType = storage.get('preview_view_status') || 0;
-    let containerBox = this.components[0].getFragment().html();
+    let containerBox = `<div class="drag-box"></div>`;
     let column = '';
     if (this.previewType === 0) {
+      containerBox = ` 
+        <box 
+          data-id="${this.uuid}"
+          :uuid="'${this.uuid}'" 
+          class="block-item" 
+          label="column"
+        >
+          <div class="drag-box"></div>
+        </box>`;
       const cellbox =  `
       <template slot-scope="{row, column, $index}">
         ${containerBox}
@@ -77,30 +80,15 @@ export default class Column{
       xmlMode: true,
       decodeEntities: false
     });
-  }
-
-  getConfig() {
-    return this.config;
-  }
-
-  public settingConfig (config: any) {
-    this.config = config;
+    this.renderComp();
   }
 
   public insertEditText (params) {
     this.config._custom.label = params.value;
   }
 
-  
   getFragment () {
-    this.renderTemplate();
     return this.$fragment;
   }
 
-  getFragmentOther () {
-    if (this.components[0]) {
-      return this.components[0].getFragmentOther(); 
-    }
-    return null;
-  }
 }

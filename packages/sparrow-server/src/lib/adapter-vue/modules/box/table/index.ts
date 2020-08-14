@@ -63,7 +63,6 @@ export default class Table extends Base implements IBaseBox{
     if (!data.children) {
       for (let i = 0; i < this.col; i++) {
         const column = new Column({},this.storage)
-        column.addComponent();
         this.components.push(column);
       }
     }
@@ -106,7 +105,6 @@ export default class Table extends Base implements IBaseBox{
 
   public addComponent (data?: any, insterType: string = 'manual') {
     const column = new Column({},this.storage)
-    column.addComponent();
     this.components.push(column);
   }
 
