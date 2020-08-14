@@ -28,7 +28,7 @@ export default class Column extends Base{
     } else {
       this.config = _.cloneDeep(require('./config').default);
       if (span) {
-        this.config.model.attr.span = span;
+        this.config.model.attr[':span'] = span;
       }
     }
     
