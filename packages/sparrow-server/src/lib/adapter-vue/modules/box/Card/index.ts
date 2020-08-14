@@ -7,40 +7,27 @@ import Base from '../Base';
 
 
 export default class Card extends Base{
-  public uuid = '';
   $fragment = null;
   public components = [];
   name: string = 'Card';
   type: string = 'inline';
-  insertFileType: string = 'inline';
   config: any = {};
-  _attrStr: string = '';
   storage: any = null;
   constructor (data: any, storage: any) {
     super(storage);
-    this.uuid = uuid().split('-')[0];
     const { config } = data;
     this.storage = storage;
     if (config) {
       this.config = config
     } else {
       this.config = _.cloneDeep(require('./config').default);
-      this.addComponent();
     }
-  
-  }
-
-  addComponent () {
-    const curBox = new Container({}, this.storage)
-    this.components.push(curBox);
-    return curBox;
+    this.setAttrsToStr();
   }
   
 
   public setPreview () {
-    if (!this.components[0]) return;
     const {model} = this.config;
-    let LogicBox = this.components[0].getFragment().html();
 
     const type = this.storage.get('preview_view_status') || 0;
     let labelBox = `
@@ -67,25 +54,19 @@ export default class Card extends Base{
     
     let CardBox = `
       <div style="margin-bottom: 20px;">
-        <config-box>
-          <el-card class="box-card">
-            ${headerBox}
-            <div class="card-content">
-              ${LogicBox}
-            </div>
-          </el-card>
-        </config-box>
+        <el-card class="box-card" ${this._attrStr}>
+          ${headerBox}
+          <div class="card-content drag-box" data-id="${this.uuid}"></div>
+        </el-card>
       </div>
     `;
 
     if (type === 1) {
       CardBox = `
         <div style="margin-bottom: 20px;">
-          <el-card class="box-card">
+          <el-card class="box-card" ${this._attrStr}>
             ${headerBox}
-            <div class="card-content">
-              ${LogicBox}
-            </div>
+            <div class="card-content drag-box"></div>
           </el-card>
         </div>
       `;
@@ -96,15 +77,23 @@ export default class Card extends Base{
       decodeEntities: false,
     });
 
+    this.renderBox();
   }
-
-  public setConfig (config: any) {
-    this.config = config;
-  };
 
 
   public insertEditText (params) {
     this.config.model.custom.label = params.value;
+  }
+
+  public renderBox () {
+    this.$fragment('.drag-box').first().empty();
+    this.components.forEach(component => {
+      this.$fragment('.drag-box').first().append(component.getFragment(this.previewType).html());
+    });
+
+    if (this.components.length  === 0) {
+      this.$fragment('.drag-box').first().append(`<div class="empty-container">empty</div>`)
+    }
   }
 
 }

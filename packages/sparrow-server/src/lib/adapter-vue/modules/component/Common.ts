@@ -57,10 +57,8 @@ export default class Common {
       const formField = [];
       Object.keys(config.model.attr).forEach(key => {
         const value = config.model.attr[key];
-        if (typeof value === 'string') {
+        if(value) {
           formField.push(`${key}="${value}"`);
-        } else {
-          formField.push(`:${key}="${value}"`);
         }
       });
       this._attrStr = formField.join(' ');

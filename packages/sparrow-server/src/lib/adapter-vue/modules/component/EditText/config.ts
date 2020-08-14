@@ -1,12 +1,29 @@
 export default {
   model: {
+    attr: {
+      class: ""
+    },
     custom: {
       label: '输入文本',
     },
-    
   },
   schema: {
     fields: [
+      {
+        type: 'object',
+        label: '',
+        model: 'attr',
+        schema: {
+          fields: [
+            {
+              type: "input",
+              inputType: "text",
+              label: "class",
+              model: "class"
+            },
+          ]
+        }
+      },
       {
         type: 'object',
         label: '',

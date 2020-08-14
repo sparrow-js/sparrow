@@ -64,9 +64,9 @@ export default class Row extends Base implements IBaseBox{
 
 
   renderBox () {
-    this.$fragment('el-row').empty();
+    this.$fragment('el-row').first().empty();
     this.components.forEach(item => {
-      this.$fragment('el-row').append(item.getFragment(0).html())
+      this.$fragment('el-row').first().append(item.getFragment(0).html())
     });
   }
 

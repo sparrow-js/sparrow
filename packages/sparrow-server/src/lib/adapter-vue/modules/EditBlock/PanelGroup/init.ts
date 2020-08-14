@@ -1,4 +1,4 @@
-export default           {
+export default {
   "id": "Row",
   "config": {
     "model": {

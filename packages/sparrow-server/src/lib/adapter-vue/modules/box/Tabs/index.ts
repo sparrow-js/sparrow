@@ -8,6 +8,7 @@ import Config from '../../../config';
 import Base from '../Base';
 import Container from '../Container';
 import * as _ from 'lodash';
+import TabPane from './TabPane';
 
 export default class Tabs extends Base implements IBaseBox{
   public uuid = '';
@@ -17,7 +18,6 @@ export default class Tabs extends Base implements IBaseBox{
   type: string = 'inline';
   insertFileType: string = 'inline';
   config: any = {};
-  _attrStr: string = '';
   vueParse: any;
 
   constructor (data: any, storage: any) {
@@ -28,129 +28,41 @@ export default class Tabs extends Base implements IBaseBox{
       this.config = config;
     } else {
       this.config = _.cloneDeep(require('./config').default);
-
-      const tabsData = this.getTabsData();
-
-      if (tabsData && Array.isArray(tabsData)) {
-        tabsData.forEach(tabItem => {
-          const curBasicBox = new Container({}, this.storage)
-          curBasicBox.config.unique = tabItem.value;
-          this.components.push(curBasicBox);
-        });
-      }
+      this.initComponent();
     }
 
     const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'component/TabsBox', 'comp.vue'), 'utf8');
     this.vueParse = new VueParse(this.uuid, fileStr); 
   }
 
-  
-  addCustomComp (data: any) {
-    const curBox = new Container({}, this.storage);
-    this.components.push(curBox);
-    return curBox;
-  }
-
-  private getTabsData (config: any = null) {
-    try {
-      return new Function(`var data = ${config ? config : this.config.model.slot.data}; return data;`)();
-    } catch (e) {
-      return null;
+  initComponent () {
+    for(let i = 0; i < 3; i++) {
+      this.components.push(new TabPane({name: `tab${i + 1}`}, this.storage));
     }
   }
-  
   
 
   public setPreview () {
-    this.resetComponents();
-    let TabsBox = '';
     const type = this.storage.get('preview_view_status') || 0;
-    if (type === 0) {
-      let tabsItemArr = [];
-      if (this.components && Array.isArray(this.components)) {
-        this.components.forEach(tabItem => {
-          tabsItemArr.push(`
-            <div slot="tab_${tabItem.config.unique}">
-              ${tabItem.getFragment(type).html()}
-            </div>
-          `);
-        });
-      }
-  
-      TabsBox = `
-        <div style="margin-bottom: 20px;">
-          <tabs-box
-            :status="'box'"
-            :list="${this.config.model.slot.data}"
-            :uuid="'${this.uuid}'"
-            :active-name="'first'"
-          >
-            ${tabsItemArr.join('')}
-          </tabs-box>
-        </div>
-      `;
-    } else {
-      let tabsItemArr = [];
-      if (this.components && Array.isArray(this.components)) {
-       const tabsData = this.getTabsData();
-        this.components.forEach(tabItem => {
-          const current = tabsData.find(item => item.value === tabItem.config.unique);
-          if (current) {
-            tabsItemArr.push(`
-            <el-tab-pane
-              label="${current.label}" 
-              name="${tabItem.config.unique}"
-            >
-              <div>
-                ${tabItem.getFragment(type).html()}
-              </div>
-            </el-tab-pane>
-  
-            `);
-          }
-        });
-      }
 
-      TabsBox = `
-        <div style="margin-bottom: 20px;">
-          <el-tabs v-model="activeName" @tab-click="handleClick">
-            ${tabsItemArr.join('')}
-          </el-tabs>
-        </div>
-      ` 
-    }
-    
+    let TabsBox = '';
+
+    TabsBox = `
+      <div style="margin-bottom: 20px;">
+        <el-tabs v-model="activeName" ${this._attrStr} @tab-click="handleClick">
+        </el-tabs>
+      </div>
+    `;
 
     this.$fragment = cheerio.load(TabsBox, {
       xmlMode: true,
       decodeEntities: false,
     });
-  }
 
-  private resetComponents () {
-    const newData = this.getTabsData(this.config.model.slot.data);
-    const oldData = this.getTabsData();
-    if (newData && Array.isArray(newData)) {
-      oldData.forEach(item => {
-        const index = newData.findIndex(cur => cur.value === item.value);
-        if (index < 0) {
-         const compIndex = this.components.findIndex(cur => cur.config.unique  === item.value);
-         this.components.splice(compIndex, 1);
-        }
-      });
-
-      newData.forEach(item => {
-        const index = oldData.findIndex(cur => cur.value === item.value);
-        if (index < 0) {
-          const curBasicBox = new Container({}, this.storage);
-          curBasicBox.config.unique = item.value;
-          this.components.push(curBasicBox);
-        }
-      });
-      return true;
-    } else {
-      return false;
-    }
-
+    this.$fragment('el-tabs').empty();
+    this.components.forEach(item => {
+      this.$fragment('el-tabs').append(item.getFragment(0).html())
+    });
+  
   }
 }

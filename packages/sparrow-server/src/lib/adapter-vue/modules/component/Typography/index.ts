@@ -6,7 +6,6 @@ const uuid = require('@lukeed/uuid');
 export default class Typography extends Common{
   name: string = 'Typography';
   config: any = {};
-  uuid: string = '';
   $fragment: any;
 
   constructor (params: any) {

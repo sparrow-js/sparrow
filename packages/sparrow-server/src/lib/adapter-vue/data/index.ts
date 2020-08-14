@@ -137,6 +137,12 @@ const widgetList = [
         },
         des: '辅助文字, AText',
         keys: ['辅助文字', 'AText', '文案', '文本'],
+      },
+      {
+        id: 'EditText',
+        key: 'EditText',
+        label: '自定义文案',
+        des: '自定义文案, 自定义样式',
       }
     ]
   },
@@ -158,13 +164,6 @@ const widgetList = [
         des: '按钮，link',
         keys: ['链接', 'link', '操作'],
       },
-      // {
-      //   id: 'Icon',
-      //   key: 'Icon',
-      //   label: 'Icon',
-      //   des: '图标，Icon',
-      //   keys: ['图标', 'Icon', '操作'],
-      // },
       {
         id: 'Tag',
         key: 'Tag',
@@ -173,6 +172,20 @@ const widgetList = [
         keys: ['标签', 'Icon', '操作'],
       }
     ]
+  },
+  {
+    label: '图片',
+    type: 'component',
+    list: [
+      {
+        id: 'Image',
+        key: 'Image',
+        label: 'Image',
+        des: '图片，Image',
+        keys: ['图片', 'Image', '展示'],
+      },
+    ]
+    // Image
   }
 ];
 
@@ -226,12 +239,32 @@ export default class Data {
           {
             id: 'PanelGroup',
             key: 'PanelGroup',
-            label: '卡片面板',
+            label: '数据面板',
             path: '/EditBlock/PanelGroup',
+            icon: ''
+          },
+          {
+            id: 'CardGroup',
+            key: 'CardGroup',
+            label: '介绍面板',
+            path: '/EditBlock/CardGroup',
             icon: ''
           },
         ]
       },
+      {
+        label: '卡片表单',
+        type: 'editBox',
+        list: [
+          {
+            id: 'CardForm',
+            key: 'CardForm',
+            label: '卡片表单',
+            path: '/EditBlock/CardForm',
+            icon: ''
+          },
+        ]
+      }
     ]
   }
 

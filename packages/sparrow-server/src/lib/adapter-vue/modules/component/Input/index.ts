@@ -7,6 +7,7 @@ export default class Input extends Base{
   constructor (params: any, boxPath: string) {
     super(boxPath);
     if (params.initType === 'auto') {
+      console.log('***********', params)
       this.config = params;
     } else {
       this.config = _.cloneDeep(require('./config').default);

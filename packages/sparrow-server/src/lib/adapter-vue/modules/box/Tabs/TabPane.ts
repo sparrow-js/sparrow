@@ -14,68 +14,57 @@ export default class Column extends Base{
   boxStrs: string = '';
   storage: any = {};
   type: string = 'inline';
-  path: string = '/box/Row/Column';
+  path: string = '/box/Tabs/TabPane';
 
   constructor (data: any, storage: any) {
     super(storage);
     this.storage = storage;
     this.uuid = uuid().split('-')[0]; 
 
-    const {span} = data;
-    const { config } = data;
+    const { config, name } = data;
     if (config) {
       this.config = config;
     } else {
-      this.config = _.cloneDeep(require('./config').default);
-      if (span) {
-        this.config.model.attr.span = span;
-      }
+      this.config = _.cloneDeep(require('./tabPaneConfig').default);
+      this.config.model.custom.name = name;
+      this.config.model.custom.label = name;
     }
     
     this.setAttrsToStr();
-
-    this.$fragment = cheerio.load(`
-      <el-col ${this._attrStr}>
-        <box 
-          data-id="${this.uuid}"
-          :uuid="'${this.uuid}'" 
-          class="block-item" 
-          label="column"
-        >
-          <div class="column drag-box" data-id="${this.uuid}"></div>
-        </box>
-      </el-col>
-    `, {
-      xmlMode: true,
-      decodeEntities: false
-    });
   }
 
 
   public setPreview () {
     const type = this.storage.get('preview_view_status') || 0;
     this.previewType = type;
+    
     if (this.previewType === 0) {
       this.$fragment = cheerio.load(`
-        <el-col ${this._attrStr}>
+        <el-tab-pane
+          label="${_.get(this.config, 'model.custom.label')}" 
+          name="${_.get(this.config, 'model.custom.name')}"
+        >
           <box 
             data-id="${this.uuid}"
             :uuid="'${this.uuid}'" 
             class="block-item" 
-            label="column"
+            label="TabPane"
           >
             <div class="column drag-box" data-id="${this.uuid}"></div>
           </box>
-        </el-col>
+        </el-tab-pane>
       `, {
         xmlMode: true,
         decodeEntities: false
       });
     } else {
       this.$fragment = cheerio.load(`
-        <el-col ${this._attrStr}>
+        <el-tab-pane
+          label="label" 
+          name="unique"
+        >
           <div class="column drag-box"></div>
-        </el-col>
+        </el-tab-pane>
       `, {
         xmlMode: true,
         decodeEntities: false
@@ -86,13 +75,13 @@ export default class Column extends Base{
   }  
 
   public renderBox () {
-    this.$fragment('.drag-box').first().empty();
+    this.$fragment('.drag-box').empty();
     this.components.forEach(component => {
-      this.$fragment('.drag-box').first().append(component.getFragment(this.previewType).html());
+      this.$fragment('.drag-box').append(component.getFragment(this.previewType).html());
     });
 
     if (this.components.length  === 0) {
-      this.$fragment('.drag-box').first().append(`<div class="empty-container">empty</div>`)
+      this.$fragment('.drag-box').append(`<div class="empty-container">empty</div>`)
     }
   }
   
@@ -100,5 +89,4 @@ export default class Column extends Base{
     this.renderBox();
     return this.$fragment;
   }
-
 }

@@ -1,7 +1,8 @@
 export default {
   model: {
     attr: {
-      'shadow': 'always'
+      'shadow': 'always',
+      ':body-style': '{}'
     },
     custom: {
       'hasHeader': true,
@@ -10,21 +11,6 @@ export default {
   },
   schema: {
     fields: [
-      {
-        type: 'object',
-        label: '',
-        model: 'attr',
-        schema: {
-          fields: [
-            {
-              type: "select",
-              label: "shadow",
-              model: "shadow",
-              values: ["always", "hover", "never"]
-            },
-          ]
-        }
-      },
       {
         type: 'object',
         label: '',
@@ -46,7 +32,33 @@ export default {
             }
           ]
         }
-      }
+      },
+      {
+        type: 'object',
+        label: '',
+        model: 'attr',
+        schema: {
+          fields: [
+            {
+              type: "select",
+              label: "shadow",
+              model: "shadow",
+              values: ["always", "hover", "never"]
+            },
+            {
+              type: "sourcecode",
+              label: "body-style",
+              model: ":body-style",
+              theme: 'neo',
+              mode: {
+                name: "javascript",
+                json: true
+              }
+            }
+
+          ]
+        }
+      },
     ]
   },
 }

@@ -12,13 +12,13 @@ export default class EditText extends Common{
 
   constructor (params: any) {
     super();
-    console.log('******89*******', params);
     const {initType} = params;
     if (initType === 'auto' ) {
       this.config = params;
     } else {
       this.config = _.cloneDeep(require('./config').default);
     }
+    this.setAttrsToStr();
   }
 
   public insertEditText (params) {
@@ -32,13 +32,13 @@ export default class EditText extends Common{
     let typography = '';
     if (type === 0) {
       typography = `
-        <edit-text-box :clearClass="true" uuid="${this.uuid}">
+        <edit-text-box :clearClass="true" uuid="${this.uuid}" ${this._attrStr}>
           ${this.config.model.custom.label}
         </edit-text-box>
       `
     } else {
       typography = `
-        <div>${this.config.model.custom.label}</div>
+        <div ${this._attrStr}>${this.config.model.custom.label}</div>
       `;
     }
     return typography;

@@ -84,6 +84,13 @@ export const custom = [
     path: '/EditBlock/PanelGroup/CardPanel',
   },
   {
+    key: 'CardInfo',
+    label: '卡片文案容器',
+    des: '卡片文案容器',
+    keys: ['卡片文案容器'],
+    path: '/EditBlock/CardGroup/CardInfo',
+  },
+  {
     // Clipboard
     key: 'Clipboard',
     label: '剪贴板',

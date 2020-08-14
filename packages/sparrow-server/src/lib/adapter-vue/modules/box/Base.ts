@@ -78,7 +78,7 @@ export default class Base {
 
       } else if (hasBox) {
         const dynamicObj = require(`../box/${id}`).default;
-        const comp = new dynamicObj(config || data, this.storage)
+        const comp = new dynamicObj(data, this.storage)
         if (compIndex >= 0) {
           this.components.splice(compIndex, 0, comp)
         } else {
@@ -142,6 +142,17 @@ export default class Base {
         formField.push(`${key}="${config.model.attr[key]}"`);
       });
       this._attrStr = formField.join(' ');
+    }
+  }
+
+  public renderComp () {
+    this.$fragment('.drag-box').empty();
+    this.components.forEach(component => {
+      this.$fragment('.drag-box').append(component.getFragment(this.previewType).html());
+    });
+
+    if (this.components.length  === 0) {
+      this.$fragment('.drag-box').append(`<div class="empty-container">empty</div>`)
     }
   }
 

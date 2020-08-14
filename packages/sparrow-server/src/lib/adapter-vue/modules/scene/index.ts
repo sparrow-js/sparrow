@@ -347,6 +347,7 @@ export default class Scene {
     const {path} = data;
     const curBox = this;
     const box = require(`..${path}/init`).default;
+    console.log('**********', path);
     this.jsonToScene({children: [box]}, curBox)
   }
 

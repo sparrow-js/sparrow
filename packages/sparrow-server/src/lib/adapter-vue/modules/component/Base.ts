@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio';
 import storage from '../../../storage';
+import * as _ from 'lodash';
 
 
 const uuid = require('@lukeed/uuid');
@@ -36,8 +37,9 @@ export default class Base {
 
   public renderFragment () {
     let formItem = ''
-    if (this.boxPath.match('Form') || this.config.model.custom.insideForm === true) {
+    if (this.boxPath.match('Form') || _.get(this.config, 'model.custom.insideForm') === true) {
       this.config.model.custom.insideForm = true;
+      
       formItem = this.wrapComponentBox(
         `
         <el-form-item label=" "
@@ -45,7 +47,7 @@ export default class Base {
         >
           <label-box
             slot="label"
-            label="${this.config.model.custom.label}" 
+            label="${_.get(this.config, 'model.custom.label')}" 
             uuid="${this.uuid}"
           ></label-box>
           ${this.fragment()}
@@ -73,7 +75,7 @@ export default class Base {
 
     if (type === 1) {
       this.$fragment('label-box').remove();
-      this.$fragment('el-form-item').attr('label', this.config.model.custom.label);
+      this.$fragment('el-form-item').attr('label', _.get(this.config, 'model.custom.label'));
     }
     return this.$fragment;
   }
@@ -90,6 +92,8 @@ export default class Base {
 
   public settingConfig (config: any) {
     this.config = config;
+
+    this.setAttrsToStr();
     this.setHandler();
   }
 
@@ -98,7 +102,8 @@ export default class Base {
     if (config.model.attr) {
       const formField = [];
       Object.keys(config.model.attr).forEach(key => {
-        if (key === 'v-model' && !config.model.attr[key]) {
+        // key === 'v-model' && 
+        if (config.model.attr[key] === '') {
           return;
         }
         formField.push(`${key}="${config.model.attr[key]}"`);
