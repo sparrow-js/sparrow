@@ -1,4 +1,4 @@
-export default {
+export default           {
   "id": "Form",
   "config": {
     "model": {
@@ -188,7 +188,7 @@ export default {
               "config": {
                 "model": {
                   "attr": {
-                    ":span": "",
+                    ":span": 8,
                     ":offset": "",
                     ":push": "",
                     ":pull": "",
@@ -197,8 +197,7 @@ export default {
                     ":md": "",
                     ":lg": "",
                     ":xl": "",
-                    "tag": "",
-                    "span": 8
+                    "tag": ""
                   },
                   "custom": {}
                 },
@@ -294,7 +293,7 @@ export default {
                             "label": ""
                           }
                         ],
-                        "label": "文本框",
+                        "label": "仓库名",
                         "insideForm": true
                       }
                     },
@@ -389,7 +388,7 @@ export default {
               "config": {
                 "model": {
                   "attr": {
-                    ":span": "",
+                    ":span": 8,
                     ":offset": "",
                     ":push": "",
                     ":pull": "",
@@ -398,210 +397,7 @@ export default {
                     ":md": "",
                     ":lg": "",
                     ":xl": "",
-                    "tag": "",
-                    "span": 8
-                  },
-                  "custom": {}
-                },
-                "schema": {
-                  "fields": [
-                    {
-                      "type": "object",
-                      "label": "",
-                      "model": "attr",
-                      "schema": {
-                        "fields": [
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "span",
-                            "model": ":span"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "offset",
-                            "model": ":offset"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "push",
-                            "model": ":push"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "pull",
-                            "model": ":pull"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "xs",
-                            "model": ":xs"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "sm",
-                            "model": ":sm"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "md",
-                            "model": ":md"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "lg",
-                            "model": ":lg"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "xl",
-                            "model": ":xl"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "tag",
-                            "model": "tag"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                "initType": "auto"
-              },
-              "children": [
-                {
-                  "id": "InputNumber",
-                  "config": {
-                    "model": {
-                      "attr": {
-                        "placeholder": "",
-                        "v-model": ""
-                      },
-                      "custom": {
-                        "required": false,
-                        "regList": [
-                          {
-                            "value": "",
-                            "label": ""
-                          }
-                        ],
-                        "label": "数字文本框",
-                        "type": 1,
-                        "insideForm": true
-                      }
-                    },
-                    "schema": {
-                      "fields": [
-                        {
-                          "type": "object",
-                          "label": "",
-                          "model": "attr",
-                          "schema": {
-                            "fields": [
-                              {
-                                "type": "input",
-                                "inputType": "text",
-                                "label": "v-model",
-                                "model": "v-model"
-                              },
-                              {
-                                "type": "input",
-                                "inputType": "text",
-                                "label": "placeholder",
-                                "model": "placeholder"
-                              }
-                            ]
-                          }
-                        },
-                        {
-                          "type": "object",
-                          "label": "",
-                          "model": "custom",
-                          "schema": {
-                            "fields": [
-                              {
-                                "type": "switch",
-                                "label": "required",
-                                "model": "required",
-                                "textOn": "必填",
-                                "textOff": "非必填"
-                              },
-                              {
-                                "type": "array",
-                                "label": "regList",
-                                "model": "regList",
-                                "itemContainerComponent": "ArrayContainer",
-                                "showRemoveButton": false,
-                                "fieldClasses": "array-editor",
-                                "newElementButtonLabelClasses": "el-button el-button--primary el-button--small array-button-add",
-                                "items": {
-                                  "type": "object",
-                                  "default": {},
-                                  "schema": {
-                                    "fields": [
-                                      {
-                                        "type": "input",
-                                        "inputType": "text",
-                                        "label": "label",
-                                        "model": "label"
-                                      },
-                                      {
-                                        "type": "input",
-                                        "inputType": "text",
-                                        "label": "value",
-                                        "model": "value"
-                                      }
-                                    ]
-                                  }
-                                }
-                              },
-                              {
-                                "type": "input",
-                                "inputType": "text",
-                                "label": "label",
-                                "model": "label"
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    },
-                    "initType": "auto"
-                  },
-                  "children": [],
-                  "params": null,
-                  "path": ""
-                }
-              ],
-              "params": null,
-              "path": "/box/Row/Column"
-            },
-            {
-              "id": "column",
-              "config": {
-                "model": {
-                  "attr": {
-                    ":span": "",
-                    ":offset": "",
-                    ":push": "",
-                    ":pull": "",
-                    ":xs": "",
-                    ":sm": "",
-                    ":md": "",
-                    ":lg": "",
-                    ":xl": "",
-                    "tag": "",
-                    "span": 8
+                    "tag": ""
                   },
                   "custom": {}
                 },
@@ -697,475 +493,7 @@ export default {
                             "label": ""
                           }
                         ],
-                        "label": "文本框",
-                        "type": 1,
-                        "insideForm": true
-                      }
-                    },
-                    "schema": {
-                      "fields": [
-                        {
-                          "type": "object",
-                          "label": "",
-                          "model": "attr",
-                          "schema": {
-                            "fields": [
-                              {
-                                "type": "input",
-                                "inputType": "text",
-                                "label": "v-model",
-                                "model": "v-model"
-                              },
-                              {
-                                "type": "input",
-                                "inputType": "text",
-                                "label": "placeholder",
-                                "model": "placeholder"
-                              }
-                            ]
-                          }
-                        },
-                        {
-                          "type": "object",
-                          "label": "",
-                          "model": "custom",
-                          "schema": {
-                            "fields": [
-                              {
-                                "type": "switch",
-                                "label": "required",
-                                "model": "required",
-                                "textOn": "必填",
-                                "textOff": "非必填"
-                              },
-                              {
-                                "type": "array",
-                                "label": "regList",
-                                "model": "regList",
-                                "itemContainerComponent": "ArrayContainer",
-                                "showRemoveButton": false,
-                                "fieldClasses": "array-editor",
-                                "newElementButtonLabelClasses": "el-button el-button--primary el-button--small array-button-add",
-                                "items": {
-                                  "type": "object",
-                                  "default": {},
-                                  "schema": {
-                                    "fields": [
-                                      {
-                                        "type": "input",
-                                        "inputType": "text",
-                                        "label": "label",
-                                        "model": "label"
-                                      },
-                                      {
-                                        "type": "input",
-                                        "inputType": "text",
-                                        "label": "value",
-                                        "model": "value"
-                                      }
-                                    ]
-                                  }
-                                }
-                              },
-                              {
-                                "type": "input",
-                                "inputType": "text",
-                                "label": "label",
-                                "model": "label"
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    },
-                    "initType": "auto"
-                  },
-                  "children": [],
-                  "params": null,
-                  "path": ""
-                }
-              ],
-              "params": null,
-              "path": "/box/Row/Column"
-            }
-          ],
-          "params": {
-            "columns": 3
-          },
-          "path": ""
-        },
-        {
-          "id": "Row",
-          "config": {
-            "model": {
-              "attr": {
-                "gutter": "40",
-                "type": "",
-                "justify": "",
-                "align": "",
-                "tag": ""
-              },
-              "custom": {}
-            },
-            "schema": {
-              "fields": [
-                {
-                  "type": "object",
-                  "label": "",
-                  "model": "attr",
-                  "schema": {
-                    "fields": [
-                      {
-                        "type": "input",
-                        "inputType": "text",
-                        "label": "gutter",
-                        "model": "gutter"
-                      },
-                      {
-                        "type": "input",
-                        "inputType": "text",
-                        "label": "type",
-                        "model": "type"
-                      },
-                      {
-                        "type": "input",
-                        "inputType": "text",
-                        "label": "justify",
-                        "model": "justify"
-                      },
-                      {
-                        "type": "input",
-                        "inputType": "text",
-                        "label": "align",
-                        "model": "align"
-                      },
-                      {
-                        "type": "input",
-                        "inputType": "text",
-                        "label": "tag",
-                        "model": "tag"
-                      }
-                    ]
-                  }
-                }
-              ]
-            },
-            "initType": "auto"
-          },
-          "children": [
-            {
-              "id": "column",
-              "config": {
-                "model": {
-                  "attr": {
-                    ":span": "",
-                    ":offset": "",
-                    ":push": "",
-                    ":pull": "",
-                    ":xs": "",
-                    ":sm": "",
-                    ":md": "",
-                    ":lg": "",
-                    ":xl": "",
-                    "tag": "",
-                    "span": 8
-                  },
-                  "custom": {}
-                },
-                "schema": {
-                  "fields": [
-                    {
-                      "type": "object",
-                      "label": "",
-                      "model": "attr",
-                      "schema": {
-                        "fields": [
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "span",
-                            "model": ":span"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "offset",
-                            "model": ":offset"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "push",
-                            "model": ":push"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "pull",
-                            "model": ":pull"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "xs",
-                            "model": ":xs"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "sm",
-                            "model": ":sm"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "md",
-                            "model": ":md"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "lg",
-                            "model": ":lg"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "xl",
-                            "model": ":xl"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "tag",
-                            "model": "tag"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                "initType": "auto"
-              },
-              "children": [
-                {
-                  "id": "Input",
-                  "config": {
-                    "model": {
-                      "attr": {
-                        "placeholder": "",
-                        "v-model": ""
-                      },
-                      "custom": {
-                        "required": false,
-                        "regList": [
-                          {
-                            "value": "",
-                            "label": ""
-                          }
-                        ],
-                        "label": "文本框",
-                        "insideForm": true
-                      }
-                    },
-                    "schema": {
-                      "fields": [
-                        {
-                          "type": "object",
-                          "label": "",
-                          "model": "attr",
-                          "schema": {
-                            "fields": [
-                              {
-                                "type": "input",
-                                "inputType": "text",
-                                "label": "v-model",
-                                "model": "v-model"
-                              },
-                              {
-                                "type": "input",
-                                "inputType": "text",
-                                "label": "placeholder",
-                                "model": "placeholder"
-                              }
-                            ]
-                          }
-                        },
-                        {
-                          "type": "object",
-                          "label": "",
-                          "model": "custom",
-                          "schema": {
-                            "fields": [
-                              {
-                                "type": "switch",
-                                "label": "required",
-                                "model": "required",
-                                "textOn": "必填",
-                                "textOff": "非必填"
-                              },
-                              {
-                                "type": "array",
-                                "label": "regList",
-                                "model": "regList",
-                                "itemContainerComponent": "ArrayContainer",
-                                "showRemoveButton": false,
-                                "fieldClasses": "array-editor",
-                                "newElementButtonLabelClasses": "el-button el-button--primary el-button--small array-button-add",
-                                "items": {
-                                  "type": "object",
-                                  "default": {},
-                                  "schema": {
-                                    "fields": [
-                                      {
-                                        "type": "input",
-                                        "inputType": "text",
-                                        "label": "label",
-                                        "model": "label"
-                                      },
-                                      {
-                                        "type": "input",
-                                        "inputType": "text",
-                                        "label": "value",
-                                        "model": "value"
-                                      }
-                                    ]
-                                  }
-                                }
-                              },
-                              {
-                                "type": "input",
-                                "inputType": "text",
-                                "label": "label",
-                                "model": "label"
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    },
-                    "initType": "auto"
-                  },
-                  "children": [],
-                  "params": null,
-                  "path": ""
-                }
-              ],
-              "params": null,
-              "path": "/box/Row/Column"
-            },
-            {
-              "id": "column",
-              "config": {
-                "model": {
-                  "attr": {
-                    ":span": "",
-                    ":offset": "",
-                    ":push": "",
-                    ":pull": "",
-                    ":xs": "",
-                    ":sm": "",
-                    ":md": "",
-                    ":lg": "",
-                    ":xl": "",
-                    "tag": "",
-                    "span": 8
-                  },
-                  "custom": {}
-                },
-                "schema": {
-                  "fields": [
-                    {
-                      "type": "object",
-                      "label": "",
-                      "model": "attr",
-                      "schema": {
-                        "fields": [
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "span",
-                            "model": ":span"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "offset",
-                            "model": ":offset"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "push",
-                            "model": ":push"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "pull",
-                            "model": ":pull"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "xs",
-                            "model": ":xs"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "sm",
-                            "model": ":sm"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "md",
-                            "model": ":md"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "lg",
-                            "model": ":lg"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "xl",
-                            "model": ":xl"
-                          },
-                          {
-                            "type": "input",
-                            "inputType": "text",
-                            "label": "tag",
-                            "model": "tag"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                "initType": "auto"
-              },
-              "children": [
-                {
-                  "id": "InputNumber",
-                  "config": {
-                    "model": {
-                      "attr": {
-                        "placeholder": "",
-                        "v-model": ""
-                      },
-                      "custom": {
-                        "required": false,
-                        "regList": [
-                          {
-                            "value": "",
-                            "label": ""
-                          }
-                        ],
-                        "label": "数字文本框",
+                        "label": "仓库管理员",
                         "type": 1,
                         "insideForm": true
                       }
@@ -1261,7 +589,7 @@ export default {
               "config": {
                 "model": {
                   "attr": {
-                    ":span": "",
+                    ":span": 8,
                     ":offset": "",
                     ":push": "",
                     ":pull": "",
@@ -1270,8 +598,7 @@ export default {
                     ":md": "",
                     ":lg": "",
                     ":xl": "",
-                    "tag": "",
-                    "span": 8
+                    "tag": ""
                   },
                   "custom": {}
                 },
@@ -1352,7 +679,7 @@ export default {
               },
               "children": [
                 {
-                  "id": "Autocomplete",
+                  "id": "DatePicker",
                   "config": {
                     "model": {
                       "attr": {
@@ -1367,8 +694,7 @@ export default {
                             "label": ""
                           }
                         ],
-                        "label": "文本框",
-                        "type": 1,
+                        "label": "生效日期",
                         "insideForm": true
                       }
                     },
