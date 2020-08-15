@@ -1,9 +1,10 @@
 <template>
-  <div class="home drag-box" data-id="d0f65527" />
+  <div class="home drag-box" data-id="0291c149" />
 </template>
 
 <script>
 export default {
+  components: {},
   methods: {},
 
   data() {

@@ -4,8 +4,9 @@ import VueParse from '../../generator/VueParse';
 import * as path from 'path';
 import Config from '../../../config';
 
-export default class Clipboard extends Common{
-  name: string = 'Clipboard';
+
+export default class Dropzone extends Common{
+  name: string = 'Dropzone';
   params: any;
   vueParse: any;
   type: string;
@@ -16,15 +17,13 @@ export default class Clipboard extends Common{
   }
   
   private init () {
-    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'Custom/Clipboard', 'comp.vue'), 'utf8');
+    const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'Custom/Dropzone', 'comp.vue'), 'utf8');
     this.vueParse = new VueParse(this.uuid, fileStr);
   }
 
   public fragment () {
     return `
-      <el-button type="primary" icon="el-icon-document" @click="handleCopy('clipboard',$event)">
-        copy
-      </el-button>
+      <dropzone id="dropzone${this.uuid}" url="https://httpbin.org/post" @dropzone-removedFile="dropzoneR" @dropzone-success="dropzoneS" />
     `;
   }
 }

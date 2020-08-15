@@ -347,7 +347,6 @@ export default class Scene {
     const {path} = data;
     const curBox = this;
     const box = require(`..${path}/init`).default;
-    console.log('**********', path);
     this.jsonToScene({children: [box]}, curBox)
   }
 
@@ -589,6 +588,7 @@ export default class Scene {
     let methods = [];
     let vueData = [];
     let importDeclarations = [];
+    let vueComponents = [];
     this.loopThroughBox(this.components);
     const fn = (boxs, flag = 0) => {
       boxs.forEach((item, index) => {
@@ -617,6 +617,7 @@ export default class Scene {
               methods = methods.concat(comp.vueParse.methods || []);
               vueData = vueData.concat(comp.vueParse.data || [])
               importDeclarations = importDeclarations.concat(comp.vueParse.importDeclarations || [])
+              vueComponents= vueComponents.concat(comp.vueParse.components || []);
             }
           });
         }
@@ -632,6 +633,7 @@ export default class Scene {
           item.vueParse.methods && this.VueGenerator.appendMethods(item.vueParse.methods);
           item.vueParse.data && this.VueGenerator.appendData(item.vueParse.data);
           item.vueParse.importDeclarations && this.VueGenerator.appendImport(item.vueParse.importDeclarations);
+          this.VueGenerator.appendAutoComponents(item.vueParse.components);
         }
   
       });
@@ -644,10 +646,12 @@ export default class Scene {
       this.sceneVueParse.methods && this.VueGenerator.appendMethods(this.sceneVueParse.methods);
       this.sceneVueParse.data && this.VueGenerator.appendData(this.sceneVueParse.data);
       this.sceneVueParse.importDeclarations && this.VueGenerator.appendImport(this.sceneVueParse.importDeclarations);
+      this.VueGenerator.appendAutoComponents(this.sceneVueParse.components);
     }
     this.VueGenerator.appendMethods(methods);
     this.VueGenerator.appendData(vueData);
     this.VueGenerator.appendImport(importDeclarations);
+    this.VueGenerator.appendAutoComponents(vueComponents);
     this.writeTemplate();
   }
 

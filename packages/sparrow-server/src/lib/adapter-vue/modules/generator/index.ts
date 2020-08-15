@@ -189,4 +189,32 @@ export default class VueGenerator {
       }
     })
   }
+
+
+  public appendAutoComponents (componentsProps: any) {
+    this.initVueProps('components');
+
+    traverse(this.pageAST, {
+      ObjectProperty: (path) => {
+        const { node } = path;
+        if (node.key && node.key.name === 'components') {
+
+          const currentProperties = node.value.properties;
+          componentsProps.forEach((curData) => {
+            const findIndex = currentProperties.findIndex(item => item.key.name ===curData.key.name);
+            if (findIndex === -1) {
+              currentProperties.push(curData);
+            } else {
+              currentProperties[findIndex] = curData;
+            }
+          })
+
+          node.value.properties = currentProperties;
+        }
+      }
+    })
+
+
+  }
+
 }

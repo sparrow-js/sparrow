@@ -97,5 +97,12 @@ export const custom = [
     des: '剪贴板，复制',
     keys: ['Clipboard', '复制', 'copy'],
     path: '/custom/Clipboard',
+  },
+  {
+    key: 'Dropzone',
+    label: 'Dropzone',
+    des: 'Dropzone，上传图片',
+    keys: ['上传图片', 'Dropzone'],
+    path: '/custom/Dropzone',
   }
 ]

@@ -8,6 +8,7 @@ export default class VueParse{
   template: string = '';
   data: any = [];
   methods: any = [];
+  components: any = [];
   importDeclarations: any = [];
   uuid: string = '';
   vueStr: string = '';
@@ -47,6 +48,8 @@ export default class VueParse{
 
     this.data = this.getData() || [];
     this.methods = this.getMethods() || [];
+    this.components = this.getComponents() || [];
+    console.log('********8*******',this.components);
     this.getImport();
   }
 
@@ -119,6 +122,19 @@ export default class VueParse{
       }
     });
     return methods;
+  }
+
+  public getComponents () {
+    let components = [];
+    traverse(this.scriptAst, {
+      ObjectProperty: (path) => {
+        const {node} = path;
+        if (node.key.name === 'components') {
+          components = node.value.properties;
+        }
+      }
+    });
+    return components;
   }
 
   public getImport () {
