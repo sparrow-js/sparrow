@@ -3,12 +3,13 @@ export default {
     attr: {
       size: 'medium',
       type: 'primary',
-      plain: true,
+      ':plain': true,
       round: false,
       circle: false,
       loading: false,
       disabled: false,
       icon: '',
+      '@click': ''
     },
     custom: {
       label: '主要按钮'
@@ -81,6 +82,12 @@ export default {
               inputType: "text",
               label: "icon",
               model: "icon",
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "click",
+              model: "@click",
             }
           ]
         }

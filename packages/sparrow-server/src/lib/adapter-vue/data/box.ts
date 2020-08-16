@@ -63,6 +63,15 @@ export default [
     des: '数组列表',
     keys: ['数组', '数组列表'],
     // ArrayList
+  },
+  {
+    // Steps
+    id: 'Steps',
+    key: 'Steps',
+    label: '步骤',
+    icon: '',
+    des: 'Steps，步骤',
+    keys: ['步骤', 'Steps'],
   }
   // {
   //   id: 'CustomInline',

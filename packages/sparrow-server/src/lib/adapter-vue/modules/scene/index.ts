@@ -165,7 +165,7 @@ export default class Scene {
   }
 
   public addComponent (data, operateType = 'manual') {
-    const {boxUuid, id, params = {}, nextSiblingId, path} = data;
+    const {boxUuid, id, params = {}, config, nextSiblingId, path} = data;
 
     let backComp = null;
 
@@ -177,6 +177,9 @@ export default class Scene {
 
       const hasBox = fsExtra.pathExistsSync(Path.join(__dirname, `../box/${id}`));
 
+      if (config) {
+        config.initType = operateType;
+      }
 
       if (path) {
         const dynamicObj = require(`..${path}`).default;
@@ -200,7 +203,7 @@ export default class Scene {
         backComp = comp;
       } else {
         const dynamicObj = require(`../component/${id}`).default;
-        const comp = new dynamicObj(params, '');
+        const comp = new dynamicObj(config || params, '');
         if (compIndex >= 0) {
           this.components.splice(compIndex, 0, comp)
         } else {

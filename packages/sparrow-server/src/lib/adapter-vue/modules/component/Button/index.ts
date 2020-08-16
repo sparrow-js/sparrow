@@ -13,12 +13,14 @@ export default class Button extends Common{
 
   constructor (params: any) {
     super();
-    this.config = _.cloneDeep(require('./config').default);
-    this.setAttrsToStr();
-  }
+    console.log('*********', params);
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = _.cloneDeep(require('./config').default);
+    }
 
-  getConfig () {
-    return this.config;
+    this.setAttrsToStr();
   }
 
   public insertEditText (params) {
