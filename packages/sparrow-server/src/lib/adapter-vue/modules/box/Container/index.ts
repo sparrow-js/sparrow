@@ -1,10 +1,10 @@
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
-import storage from '../../../../storage';
 import Base from '../Base';
+import * as _ from 'lodash';
+
 
 export default class Container extends Base  {
-  public uuid = '';
   public components:any = [];
   public $fragment: any;
   name: string = 'Container';
@@ -14,12 +14,17 @@ export default class Container extends Base  {
   unique: string | number;
   toggle: boolean = false;
   config: any = {};
-  storage: any = null;
+  params: any = {};
 
   constructor (data: any, storage: any) {
     super(storage);
-    this.uuid = uuid().split('-')[0]; 
-    this.storage = storage;
+    const { params, config } = data;
+    this.params = params;
+    if (config) {
+      this.config = config;
+    } else {
+      this.config = _.cloneDeep(require('./config').default);
+    }
     this.$fragment = cheerio.load(` 
       <div>
         <div class="drag-box" data-id="${this.uuid}"></div>

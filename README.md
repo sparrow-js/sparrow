@@ -1,6 +1,6 @@
 # sparrow
 
-![](https://imgkr.cn-bj.ufileos.com/81adc347-2e30-4f28-8d97-e55e755d47c8.png)
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8aa8330af05846dfbcae01de8f1a19ee~tplv-k3u1fbpfcp-zoom-1.image?imageslim)
 
 #### 场景化低代码（LowCode）搭建工作台；
 sparrow的核心目标仅有一条“提生研发效率”，目前提供基于vue、element-ui组件库中后台项目的实践，新功能持续新增中；
