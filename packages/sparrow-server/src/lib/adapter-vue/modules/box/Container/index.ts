@@ -25,28 +25,20 @@ export default class Container extends Base  {
     } else {
       this.config = _.cloneDeep(require('./config').default);
     }
-    this.$fragment = cheerio.load(` 
-      <div>
-        <div class="drag-box" data-id="${this.uuid}"></div>
-      </div>
-    `, {
-      xmlMode: true,
-      decodeEntities: false
-    });
+
+    this.setAttrsToStr();
+
+    this.setPreview();
   }
 
 
   public setPreview () {
     const type = this.storage.get('preview_view_status') || 0;
-    if (this.previewType === type) {
-      this.renderBox();
-      return;
-    }
     this.previewType = type;
     if (type === 0) {
 
       this.$fragment = cheerio.load(` 
-        <div>
+        <div ${this._attrStr}>
           <div class="drag-box" data-id="${this.uuid}"></div>
         </div>
       `, {
@@ -56,7 +48,7 @@ export default class Container extends Base  {
     } else {
 
       this.$fragment = cheerio.load(` 
-        <div class="drag-box"></div>
+        <div class="drag-box" ${this._attrStr}></div>
       `, {
         xmlMode: true,
         decodeEntities: false
