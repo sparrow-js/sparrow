@@ -197,32 +197,10 @@ export const componentConf = [
     des: '评分',
     keys: ['表单', '组件', '评分'],
   },
-  // {
-  //   label: '联动容器',
-  //   key: 'LogicBox',
-  //   params: {
-  //     type: 'box'
-  //   },
-  // },
-  // {
-  //   label: '自增容器',
-  //   key: 'ArrayListBox',
-  //   params: {
-  //     type: 'box'
-  //   },
-  // },
-  // {
-  //   label: '卡片容器',
-  //   key: 'CardBox',
-  //   params: {
-  //     type: 'box'
-  //   },
-  // },
-  // {
-  //   label: 'tabs容器',
-  //   key: 'TabsBox',
-  //   params: {
-  //     type: 'box'
-  //   }, 
-  // },
+  {
+    label: '详情展示',
+    key: 'FormEditText',
+    des: '详情展示',
+    keys: ['表单', '详情展示'],
+  }
 ];

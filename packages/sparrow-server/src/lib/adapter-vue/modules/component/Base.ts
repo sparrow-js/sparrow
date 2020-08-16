@@ -16,10 +16,12 @@ export default class Base {
   public _formItemStr: string = '';
   public insertFileType = 'inline';
   public boxPath: string = '';
+  public storage: any = {};
 
   constructor (boxPath: string) {
     this.boxPath = boxPath || '';
-    this.uuid = uuid().split('-')[0]; 
+    this.uuid = uuid().split('-')[0];
+    this.storage = storage;
   }
 
   private wrapComponentBox (content) {
