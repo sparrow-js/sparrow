@@ -18,13 +18,13 @@ export default class Step extends Base{
     super(storage);
     this.storage = storage;
 
-    const { config, name } = data;
+    const { config } = data;
     if (config) {
       this.config = config;
     } else {
-      this.config = {};
+      this.config = _.cloneDeep(require('./stepConfig').default);
     }
-    
+
     this.setAttrsToStr();
   }
 
@@ -35,7 +35,10 @@ export default class Step extends Base{
     
     if (this.previewType === 0) {
       this.$fragment = cheerio.load(`
-        <el-step title="步骤 1">
+        <el-step>
+          <edit-text-box slot="title" :clearClass="true" uuid="${this.uuid}">
+            ${this.config.model.custom.label}
+          </edit-text-box>
           <box
             data-id="${this.uuid}"
             :uuid="'${this.uuid}'" 
@@ -72,6 +75,10 @@ export default class Step extends Base{
     if (this.components.length  === 0) {
       this.$fragment('.drag-box').append(`<div class="empty-container">empty</div>`)
     }
+  }
+
+  public insertEditText (params) {
+    this.config.model.custom.label = params.value;
   }
   
   getFragment () {
