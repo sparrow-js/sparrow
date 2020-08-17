@@ -276,9 +276,9 @@ export default {
             pull: 'clone',
           },
           sort: false,
+          ghostClass: 'sortable-ghost',
           onStart: event => {},
           onEnd: event => {
-
             const item = event.item;
             const compId = item.getAttribute('data-id');
             const boxId = event.to.getAttribute('data-id');
@@ -291,8 +291,7 @@ export default {
         });
       });
     },
-    bindClientDrag () {
-
+    bindClientDrag() {
       const dragList = document.querySelectorAll('.drag-box');
 
       dragList.forEach(item => {

@@ -5,8 +5,8 @@ import * as _ from 'lodash';
 
 const uuid = require('@lukeed/uuid');
 
-export default class EditText extends Base{
-  name: string = 'EditText';
+export default class FormEditText extends Base{
+  name: string = 'FormEditText';
   config: any = {};
   $fragment: any;
 
@@ -42,7 +42,7 @@ export default class EditText extends Base{
       `
     } else {
       typography = `
-        <div ${this._attrStr}>${this.config.model.custom.label}</div>
+        <div ${this._attrStr}>${this.config.model.custom.des}</div>
       `;
     }
     return typography;

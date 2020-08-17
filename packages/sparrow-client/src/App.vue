@@ -62,6 +62,7 @@ export default class App extends Vue {
   private settingData = null;
   private settingWidth = '80px';
   private formIndex = 0;
+  private isCompPast = true;
 
   get showDashboard() {
     return AppModule.showDashboard;
@@ -105,11 +106,20 @@ export default class App extends Vue {
           const {operate} = data;
 
           if (operate === 'ctrl+c') {
+            this.isCompPast = true;
             this.copyHandler();
           } else if (operate === 'ctrl+v') {
-            this.pasteHandler();
+            setTimeout(() => {
+              if (this.isCompPast) {
+                this.pasteHandler();
+              }
+            }, 500);
           }
 
+        }
+
+        if (data.handler === 'client.component.paste') {
+          this.isCompPast = false;
         }
 
         // 延迟同步uuid
@@ -133,7 +143,6 @@ export default class App extends Vue {
         viewContent.contentWindow.location.reload(true)
       }, 500)
     })
-    
 
     this.settingData = {};
   }

@@ -140,7 +140,7 @@ export default {
     padding: 4px 8px !important;
   }
   .block-list{
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
   }
   .custom-inline{
     padding-left: 60px;
@@ -149,26 +149,31 @@ export default {
     height: 100%;
   }
   .sortable-ghost{
-    height: 3px;
+    height: 3px !important;
+    overflow: hidden;
     background: #409EFF;
+    
+  }
+  .sortable-ghost .empty-container{
+    display: none;
   }
   .sortable-ghost *{
     display: none;
   }
-  .drag-box{
+  /* .drag-box{
     min-height: 24px;
-  }
+  } */
   .sortable-chosen{
     /* display: none; */
   }
-  .sortable-fallback{
+  /* .sortable-fallback{
     background: red;
     width: 100px;
     height: 10px;
-  }
+  } */
   .empty-container{
     width: 100%;
-    height: 24px;
+    /* height: 24px; */
     display: flex;
     justify-content: center;
     align-items: center;

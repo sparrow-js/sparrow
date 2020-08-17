@@ -263,8 +263,15 @@ export default class Data {
             path: '/EditBlock/CardForm',
             icon: ''
           },
+          {
+            id: 'StepsForm',
+            key: 'StepsForm',
+            label: '步骤表单',
+            path: '/EditBlock/StepsForm',
+            icon: ''
+          }
         ]
-      }
+      },
     ]
   }
 
