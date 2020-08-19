@@ -13,7 +13,6 @@ export default class Button extends Common{
 
   constructor (params: any) {
     super();
-    console.log('*********', params);
     if (params.initType === 'auto') {
       this.config = params;
     } else {

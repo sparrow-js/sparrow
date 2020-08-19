@@ -277,6 +277,7 @@ export default {
           },
           sort: false,
           ghostClass: 'sortable-ghost',
+          filter: '.empty-container',
           onStart: event => {},
           onEnd: event => {
             const item = event.item;

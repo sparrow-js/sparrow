@@ -15,8 +15,7 @@ export default class UploadAvatar extends Base{
     } else {
       this.config = _.cloneDeep(require('./config').default);
     }
-
- 
+    
     this.init();
   }
 

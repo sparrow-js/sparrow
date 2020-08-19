@@ -1,5 +1,4 @@
 const uuid = require('@lukeed/uuid');
-import IBaseBox from '../IBaseBox';
 import * as cheerio from 'cheerio';
 import VueParse from '../../generator/VueParse';
 import * as fsExtra from 'fs-extra';

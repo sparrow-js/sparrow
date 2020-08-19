@@ -1,9 +1,7 @@
-import IBaseBox from '../IBaseBox';
-import * as boxFragment from '../../fragment/box';
 import * as cheerio from 'cheerio';
 import Base from '../Base';
 
-export default class Pagination extends Base implements IBaseBox{
+export default class Pagination extends Base{
   name: string = 'Pagination';
   $fragment: any;
   components: any = [];
@@ -52,9 +50,6 @@ export default class Pagination extends Base implements IBaseBox{
           decodeEntities: false
         });
     }
-  }
-  public getSetting () {
-    return {};
   }
 
 }

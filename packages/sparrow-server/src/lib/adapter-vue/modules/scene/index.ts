@@ -113,56 +113,6 @@ export default class Scene {
       item.setPreview && item.setPreview();
     });
   }
-  
-
-  public findBoxParent (uuid: string, components: any) {
-
-    let tempComp = null;
-
-    const fn = function (uuid, components) {
-      if (tempComp === null) {
-        if (Array.isArray(components)) {
-          components.forEach(item => {
-            if (item.uuid === uuid) {
-              tempComp = components;
-            }
-  
-            if (item.components && tempComp === null) {
-              fn(uuid, item.components)
-            }
-          });
-        }
-      }
-    }
-
-    fn(uuid, components);
-    return tempComp;
-  }
-
-  changePosition (params) {
-
-    const { uuid, order, label} = params;
-    if (label === 'page') {
-      const components = order.reduce((total, key)=> {
-        total.push(this.components.find(comp => comp.uuid === key));
-        return total;
-      }, []);
-      this.components = components;
-      this.renderPage();
-      return {};
-    }
-    const currBox = this.findComponent(uuid, this.components);
-    if (currBox && currBox.components[0].changePosition) {
-      const res = currBox.components[0].changePosition(order);
-      this.renderPage();
-      return res;
-    } else {
-      return {
-        status: 1,
-        message: '暂不支持拖拽'
-      }
-    }
-  }
 
   public addComponent (data, operateType = 'manual') {
     const {boxUuid, id, params = {}, config, nextSiblingId, path} = data;
@@ -257,24 +207,6 @@ export default class Scene {
     if (currentComp) {
       currentComp.insertLabel(data.value);
       this.renderPage();
-    }
-
-  }
-
-  public async setting (params: any) {
-
-    const { data, boxUuid} = params;
-    const curBox = this.findComponent(boxUuid, this.components);
-    if (curBox && curBox.components[0]) {
-      await curBox.components[0].setting(data);
-      this.renderPage();
-      return {
-        status: 0
-      }
-    }
-
-    return {
-      status: 1
     }
   }
 

@@ -104,5 +104,12 @@ export const custom = [
     des: 'Dropzone，上传图片',
     keys: ['上传图片', 'Dropzone'],
     path: '/custom/Dropzone',
+  },
+  {
+    key: 'Pagination',
+    label: 'Pagination',
+    des: '分页，Pagination',
+    keys: ['分页', 'Pagination'],
+    path: '/custom/Pagination',
   }
 ]

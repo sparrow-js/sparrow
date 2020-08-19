@@ -70,8 +70,5 @@ export default class PageHeader extends Base implements IBaseBox{
         });
     }
   }
-  public getSetting () {
-    return {};
-  }
 
 }

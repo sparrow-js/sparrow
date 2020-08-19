@@ -45,15 +45,9 @@
 </template>
 
 <script>
-import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article'
-import { parseTime } from '@/utils'
-import Pagination from '@/components/Pagination' // secondary package based on el-pagination
-
-
 
 export default {
   name: 'ComplexTable',
-  components: { Pagination },
   data() {
     return {
       list: null,

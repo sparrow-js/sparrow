@@ -1,6 +1,5 @@
 import IBaseBox from '../IBaseBox';
 import * as cheerio from 'cheerio';
-import * as boxFragment from '../../fragment/box';
 import Base from '../Base';
 import Column from './Column';
 import * as _ from 'lodash';
@@ -69,7 +68,4 @@ export default class Row extends Base implements IBaseBox{
       this.$fragment('el-row').first().append(item.getFragment(0).html())
     });
   }
-
-  render () {}
-  public getSetting () {}
 }

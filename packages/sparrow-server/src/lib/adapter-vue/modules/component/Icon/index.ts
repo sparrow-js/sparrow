@@ -18,11 +18,6 @@ export default class Icon{
     });
   }
 
-  getConfig () {
-    return {};
-  }
-
-
   public getFragment () {
     return this.$fragment;
   }

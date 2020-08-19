@@ -1,8 +1,5 @@
 import IBaseBox from '../IBaseBox';
-import * as path from 'path';
 import * as cheerio from 'cheerio';
-import * as mkdirp from 'mkdirp';
-import Config from '../../../config';
 import Base from '../Base';
 import * as _ from 'lodash';
 const templateStr =  `

@@ -1,7 +1,4 @@
-const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
-import IBaseBox from '../IBaseBox';
-import Container from '../Container'
 import * as _ from 'lodash';
 import Base from '../Base';
 

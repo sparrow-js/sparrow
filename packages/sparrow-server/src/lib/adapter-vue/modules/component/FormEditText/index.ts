@@ -1,9 +1,6 @@
 
-import * as cheerio from 'cheerio';
 import Base from '../Base';
 import * as _ from 'lodash';
-
-const uuid = require('@lukeed/uuid');
 
 export default class FormEditText extends Base{
   name: string = 'FormEditText';

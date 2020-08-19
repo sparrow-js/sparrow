@@ -12,7 +12,6 @@ import VueGenerator from '../../generator';
 import {blockList} from '../../fragment/scene';
 import * as upperCamelCase from 'uppercamelcase';
 import generate from '@babel/generator';
-import Container from '../Container'
 
 const uuid = require('@lukeed/uuid');
 

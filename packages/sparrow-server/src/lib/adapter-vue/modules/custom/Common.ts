@@ -7,9 +7,11 @@ export default class Common {
   uuid: string = '';
   config: any = {};
   _attrStr: string = '';
+  storage: any = {};
   
   constructor () {
     this.uuid = uuid().split('-')[0]; 
+    this.storage = storage;
   }
   public getConfig () {
     return this.config;

@@ -10,21 +10,6 @@ import * as _ from 'lodash';
 import Base from '../Base';
 import Column from './column';
 
-const templateStr =  `
-  <template>
-    <div class="root">
-      <table-box>
-        <el-table
-          border
-          style="width: 100%"
-          :data="tableData">
-        </el-table>
-      </table-box>
-      <div class="other"></div>
-    </div>
-  </template>
-`;
-
 export default class Table extends Base implements IBaseBox{
   $fragment: any;
   name: string = 'Table';
@@ -50,13 +35,6 @@ export default class Table extends Base implements IBaseBox{
       this.config = _.cloneDeep(require('./config').default);
     }
     this.col = _.get(this.config, 'model.custom.col') || 8;
-    this.$fragment = cheerio.load(
-      `<div class="box">
-        ${templateStr}
-      </div>`, {
-      xmlMode: true,
-      decodeEntities: false
-    });
 
     this.setVueParse('Base');
 
@@ -66,20 +44,27 @@ export default class Table extends Base implements IBaseBox{
         this.components.push(column);
       }
     }
+    this.setAttrsToStr();
   }
 
   public setPreview () {
     const type = this.storage.get('preview_view_status') || 0;
-    if (this.previewType === type) {
-      this.renderBox();
-      return;
-    }
-    
     this.previewType = type;
     if (type === 0) {
       this.$fragment = cheerio.load(`
         <div class="box">
-          ${templateStr}
+          <template>
+            <div class="root">
+              <table-box>
+                <el-table
+                  ${this._attrStr}
+                  style="width: 100%"
+                  :data="tableData">
+                </el-table>
+              </table-box>
+              <div class="other"></div>
+            </div>
+          </template>
         </div>`, {
         xmlMode: true,
         decodeEntities: false
@@ -89,7 +74,7 @@ export default class Table extends Base implements IBaseBox{
       this.$fragment = cheerio.load(`
       <div class="root">
         <el-table
-          border
+          ${this._attrStr}
           style="width: 100%"
           :data="tableData">
         </el-table>
