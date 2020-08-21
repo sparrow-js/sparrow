@@ -73,38 +73,4 @@ export default [
     des: 'Steps，步骤',
     keys: ['步骤', 'Steps'],
   }
-  // {
-  //   id: 'CustomInline',
-  //   label: '按钮',
-  //   key: 'buttonBox',
-  //   params: {
-  //     compBox: 'buttonBox'
-  //   }
-  // }
-
-  
-  // {
-  //   id: 'Alert',
-  //   value: 'alert',
-  //   name: '警告',
-  //   icon: 'alert'
-  // },
-  // {
-  //   id: 'inline',
-  //   value: 'inline',
-  //   name: '行内',
-  //   icon: ''
-  // },
-  // {
-  //   id: 'layout',
-  //   value: 'layout',
-  //   name: '布局',
-  //   icon: 'grip-horizontal'
-  // },
-  // {
-  //   id: 'list',
-  //   value: 'list',
-  //   name: 'list',
-  //   icon: 'list',
-  // },
 ]

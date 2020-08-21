@@ -275,7 +275,7 @@ export default class Scene {
   public pasteHandler (data) {
     const {compId} = data;
     const curBox = this.findComponent(compId, this.components);
-    this.jsonToScene({children: [this.tempCopyStore]}, curBox)
+    this.jsonToScene({children: [_.cloneDeep(this.tempCopyStore)]}, curBox)
   }
 
   public addEditComp(data) {

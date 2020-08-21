@@ -1,9 +1,8 @@
 import IBaseBox from '../IBaseBox';
-import * as boxFragment from '../../fragment/box';
 import * as cheerio from 'cheerio';
 import Base from '../Base';
 
-export default class PageHeader extends Base implements IBaseBox{
+export default class PageHeader extends Base{
   name: string = 'PageHeader';
   $fragment: any;
   components: any = [];

@@ -5,7 +5,6 @@ export default {
     },
     custom: {
       label: '输入文本',
-      inline: false
     },
   },
   schema: {
@@ -36,14 +35,7 @@ export default {
               inputType: "text",
               label: "label",
               model: "label"
-            },
-            {
-              type: "switch",
-              label: "inline",
-              model: "inline",
-              textOn: "行内",
-              textOff: "否行内"
-            },
+            }
           ]
         }
       }

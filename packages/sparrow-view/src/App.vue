@@ -172,8 +172,8 @@ export default {
     height: 10px;
   } */
   .empty-container{
-    width: 100%;
-    /* height: 24px; */
+    width: 50px;
+    margin-left: calc(50% - 25px);
     display: flex;
     justify-content: center;
     align-items: center;

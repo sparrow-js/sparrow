@@ -39,12 +39,6 @@ export default class Form extends Base implements IBaseBox{
         decodeEntities: false
       });
 
-    this.$fragment('box-form').append(`
-      <el-form label-width="100px" ${this._attrStr}>
-        <div class="drag-box" data-id=${this.uuid}></div>
-      </el-form>
-    `);
-
   }
   
 
@@ -59,7 +53,7 @@ export default class Form extends Base implements IBaseBox{
       });
   
       this.$fragment('box-form').append(`
-        <el-form label-width="100px" ${this._attrStr}>
+        <el-form ${this._attrStr}>
           <div class="drag-box" data-id=${this.uuid}></div>
         </el-form>
       `);
@@ -73,7 +67,7 @@ export default class Form extends Base implements IBaseBox{
         decodeEntities: false
       });
       this.$fragment('.root').append(`
-        <el-form label-width="100px" ${this._attrStr}>
+        <el-form ${this._attrStr}>
           <div class="drag-box" data-id=${this.uuid}></div>
         </el-form>
       `);

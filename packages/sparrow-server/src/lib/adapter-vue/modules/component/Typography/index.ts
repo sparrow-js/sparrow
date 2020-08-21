@@ -1,6 +1,7 @@
 
 import * as cheerio from 'cheerio';
 import Common from '../Common';
+import * as _ from 'lodash';
 const uuid = require('@lukeed/uuid');
 
 export default class Typography extends Common{
@@ -10,14 +11,13 @@ export default class Typography extends Common{
 
   constructor (params: any) {
     super();
-    this.config = {
-      // 组件自定义配置
-      custom: {
-        label: 'Hello',
-        type: params.type
-      },
-    };
-    this.renderTemplate();
+
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = _.cloneDeep(require('./config').default);
+      this.config.model.custom.type = params.type;
+    }
   }
 
   private wrapEditText (content) {
@@ -34,62 +34,54 @@ export default class Typography extends Common{
 
   }
 
-  renderTemplate () {
+  public fragment () {
     let typography = '';
-    switch (this.config.custom.type) {
+    const label = _.get(this.config, 'model.custom.label');
+    switch (this.config.model.custom.type) {
       case 'H1':
         typography = `
         <h1 class="s-typography">
-          ${this.wrapEditText(this.config.custom.label)}
+          ${this.wrapEditText(label)}
         </h1>`;
         break;
       case 'H2':
         typography = `
         <h2 class="s-typography">
-          ${this.wrapEditText(this.config.custom.label)}
+          ${this.wrapEditText(label)}
         </h2>`;
         break;
       case 'H3':
         typography = `
         <h3 class="s-typography">
-          ${this.wrapEditText(this.config.custom.label)}
+          ${this.wrapEditText(label)}
         </h3>`;
         break;
       case 'H4':
         typography = `
         <h4 class="s-typography">
-          ${this.wrapEditText(this.config.custom.label)}
+          ${this.wrapEditText(label)}
         </h4>`;
         break;
       case 'Text':
         typography = `
         <p class="s-typography">
-          ${this.wrapEditText(this.config.custom.label)}
+          ${this.wrapEditText(label)}
         </p>`;
         break;
       case 'AText':
         typography = `
         <p class="s-typography minor-typography">
-          ${this.wrapEditText(this.config.custom.labe)}
+          ${this.wrapEditText(label)}
         </p>`;
         break;    
       default:
         break;  
     }
-    this.$fragment = cheerio.load(typography, {
-      xmlMode: true,
-      decodeEntities: false,
-    });
-
+    return typography;
   }
 
   public insertEditText (params) {
-    this.config.custom.label = params.value;
+    this.config.model.custom.label = params.value;
   }
 
-
-  public getFragment () {
-    this.renderTemplate();
-    return this.$fragment;
-  }
 }

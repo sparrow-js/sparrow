@@ -17,7 +17,7 @@ export default class Common {
     this.storage = storage;
   }
 
-  private wrapComponentBox (content) {
+  public wrapComponentBox (content) {
     const type = this.storage.get('preview_view_status') || 0;
     if (type === 0) {
       return `

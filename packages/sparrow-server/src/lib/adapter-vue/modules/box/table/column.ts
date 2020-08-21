@@ -2,6 +2,7 @@ const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
 import storage from '../../../../storage';
 import Base from '../Base';
+import * as _ from 'lodash';
 
 
 export default class Column extends Base{
@@ -15,6 +16,8 @@ export default class Column extends Base{
   boxStrs: string = '';
   storage: any = {};
   type: string = 'inline';
+  path: string = '/box/Table/column';
+
 
   constructor (data: any, storage: any) {
     super(storage);
@@ -23,19 +26,21 @@ export default class Column extends Base{
     if (data.config) {
       this.config = data.config;
     } else {
-      this.config = {
-        // 组件自定义配置
-        _custom: {
-          label: '',
-        },
-      };
+      this.config =  _.cloneDeep(require('./columnConfig').default);
     }
+    this.setAttrsToStr();
   }
 
   setPreview () {
     this.previewType = storage.get('preview_view_status') || 0;
+    const type = _.get(this.config, 'model.custom.type');
     let containerBox = `<div class="drag-box"></div>`;
     let column = '';
+    let expandStr = '';
+    if (type === 'expand') {
+      expandStr = `type="${type}"`
+    }
+
     if (this.previewType === 0) {
       containerBox = ` 
         <box 
@@ -44,16 +49,19 @@ export default class Column extends Base{
           class="block-item" 
           label="column"
         >
+          ${expandStr ? '<div />' : ''}
           <div class="drag-box"></div>
         </box>`;
-      const cellbox =  `
+      const cellbox = `
       <template slot-scope="{row, column, $index}">
         ${containerBox}
       </template>
       `
       column = `
         <el-table-column
-          label="${this.config._custom.label}"
+          ${this._attrStr}
+          ${expandStr}
+          label="${_.get(this.config, 'model.custom.label')}"
         >
           <template slot="header" slot-scope="{row, column, $index}">
             <edit-text-box uuid="${this.uuid}" :label="column.label"></edit-text-box>
@@ -69,11 +77,25 @@ export default class Column extends Base{
       `
       column = `
         <el-table-column
-          label="${this.config._custom.label}"
+          ${this._attrStr}
+          ${expandStr}
+          label="${_.get(this.config, 'model.custom.label')}"
         >
           ${cellbox}
         </el-table-column>  
       `
+    }
+
+
+    if (type === 'index' || type === 'selection') {
+      column = `
+        <el-table-column
+          ${this._attrStr}
+          type="${type}"
+          label="${_.get(this.config, 'model.custom.label')}"
+        >
+        </el-table-column>  
+      `;
     }
    
     this.$fragment =  cheerio.load(column, {
@@ -84,7 +106,7 @@ export default class Column extends Base{
   }
 
   public insertEditText (params) {
-    this.config._custom.label = params.value;
+    this.config.model.custom.label = params.value;
   }
 
   getFragment () {

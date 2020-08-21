@@ -3,7 +3,7 @@ export default {
     attr: {
       'label-position': '',
       ':inline': false,
-      'label-width': '50px',
+      'label-width': '100px',
       'size': ''
     },
   },
@@ -16,10 +16,10 @@ export default {
         schema: {
           fields: [
             {
-              type: "input",
-              inputType: "text",
+              type: "select",
               label: "label-position",
-              model: "label-position"
+              model: "label-position",
+              values: ["right", "left", "top", ""]
             },
             {
               type: "switch",

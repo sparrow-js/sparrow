@@ -14,7 +14,7 @@ export default class EditText extends Common{
     super();
     const {initType} = params;
     if (initType === 'auto' ) {
-      this.config = params;
+      this.config = _.cloneDeep(params);
     } else {
       this.config = _.cloneDeep(require('./config').default);
     }
@@ -25,6 +25,23 @@ export default class EditText extends Common{
     this.config.model.custom.label = params.value;
   }
 
+  public wrapComponentBox (content) {
+    const type = this.storage.get('preview_view_status') || 0;
+    const inline = _.get(this.config, 'model.custom.inline');
+    let inlineStr = '';
+    if (inline) {
+      inlineStr = `:is-inline="true"`;
+    }
+    if (type === 0) {
+      return `
+        <component-box ${inlineStr} uuid="${this.uuid}">
+          ${content}
+        </component-box>
+      `;
+    } else {
+      return content;
+    }
+  }
 
   public fragment () {
 
@@ -37,9 +54,17 @@ export default class EditText extends Common{
         </edit-text-box>
       `
     } else {
-      typography = `
-        <div ${this._attrStr}>${this.config.model.custom.label}</div>
-      `;
+      const inline = _.get(this.config, 'model.custom.inline');
+      if (inline) {
+        typography = `
+          <span ${this._attrStr}>${this.config.model.custom.label}</span>
+        `;
+      } else {
+        typography = `
+          <div ${this._attrStr}>${this.config.model.custom.label}</div>
+        `;
+      }
+
     }
     return typography;
   }

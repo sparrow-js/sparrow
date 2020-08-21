@@ -186,6 +186,19 @@ const widgetList = [
       },
     ]
     // Image
+  },
+  {
+    label: '其他',
+    type: 'component',
+    list: [
+      {
+        id: 'Divider',
+        key: 'Divider',
+        label: 'Divider',
+        des: '分割线, Divider',
+        keys: ['分割线', 'Divider']
+      }
+    ]
   }
 ];
 
@@ -241,6 +254,7 @@ export default class Data {
             key: 'PanelGroup',
             label: '数据面板',
             path: '/EditBlock/PanelGroup',
+            thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.1/assets/1000002.png',
             icon: ''
           },
           {
@@ -248,8 +262,17 @@ export default class Data {
             key: 'CardGroup',
             label: '介绍面板',
             path: '/EditBlock/CardGroup',
+            thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.1/assets/1000003.png',
             icon: ''
           },
+          {
+            id: 'CardDetail',
+            key: 'CardDetail',
+            label: '卡片详情',
+            path: '/EditBlock/CardDetail',
+            thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.1/assets/1000001.png',
+            icon: ''
+          }
         ]
       },
       {
@@ -261,6 +284,7 @@ export default class Data {
             key: 'CardForm',
             label: '卡片表单',
             path: '/EditBlock/CardForm',
+            thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.1/assets/1000004.png',
             icon: ''
           },
           {
@@ -268,10 +292,25 @@ export default class Data {
             key: 'StepsForm',
             label: '步骤表单',
             path: '/EditBlock/StepsForm',
+            thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.1/assets/1000005.png',
             icon: ''
           }
         ]
       },
+      {
+        label: '表格',
+        type: 'editBox',
+        list: [
+          {
+            id: 'TableExpand',
+            key: 'TableExpand',
+            label: '展开行表格',
+            path: '/EditBlock/TableExpand',
+            thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.1/assets/1000006.png',
+            icon: ''
+          }
+        ]
+      }
     ]
   }
 

@@ -16,7 +16,8 @@ h1.s-typography,.s-typography h1 {
   color: #303133;
   font-weight: 600;
   font-size: 38px;
-  line-height: 1.23
+  line-height: 1.23;
+  margin-top: .5em;
 }
 
 h2.s-typography,.s-typography h2 {
@@ -32,15 +33,17 @@ h3.s-typography,.s-typography h3 {
   color: #303133;
   font-weight: 600;
   font-size: 24px;
-  line-height: 1.35
+  line-height: 1.35;
+  margin-top: .5em;
 }
 
 h4.s-typography,.s-typography h4 {
   margin-bottom: .5em;
   color: #303133;
   font-weight: 600;
-  font-size: 20px;
-  line-height: 1.4
+  font-size: 16px;
+  line-height: 1.4;
+  margin-top: .5em;
 }
 
 .s-typography {
@@ -51,4 +54,36 @@ h4.s-typography,.s-typography h4 {
 .minor-typography.s-typography{
   color: #909399;
   font-size: 12px;
+}
+
+.sp-descriptions-item-label {
+  color: rgba(0,0,0,.85);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5
+}
+
+.sp-descriptions-item-label:after {
+  position: relative;
+  top: -.5px;
+  margin: 0 8px 0 2px;
+  content: " "
+}
+
+.sp-descriptions-item-colon:after {
+  content: ":"
+}
+
+.sp-descriptions-item-no-label:after {
+  margin: 0;
+  content: ""
+}
+
+.sp-descriptions-item-content {
+  color: rgba(0,0,0,.65);
+  font-size: 14px;
+  line-height: 1.5
+}
+.column{
+  margin-bottom: 10px;
 }

@@ -4,44 +4,41 @@ import VueParse from '../../generator/VueParse';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import Config from '../../../config';
-import Container from '../Container'
+import * as _ from 'lodash';
+import Base from '../Base';
 
-export default class Dialog{
-  public uuid = '';
+
+export default class Dialog  extends Base {
   $fragment = null;
   public components = [];
   name: string = 'Dialog';
-  type: string = 'inline';
-  insertFileType: string = 'inline';
   vueParse: any;
-  displayMode: string;
   storage: any = null;
-
+  config: any = {};
 
   constructor (data: any, storage: any) {
+    super(storage);
+    const { config } = data;
+    if (config) {
+      this.config = config
+    } else {
+      this.config = _.cloneDeep(require('./config').default);
+      this.config.model.custom.showMethod = `dialogVisibleHandler${this.uuid}`
+    }
     this.storage = storage;
-    this.displayMode = data.displayMode || 'btn';
-    this.uuid = uuid().split('-')[0];
-    this.renderFragment(0);
-    this.addBox();
     const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'box/dialog', 'comp.vue'), 'utf8');
     this.vueParse = new VueParse(this.uuid, fileStr); 
   }
 
-  public renderFragment (type: number) {
-    let btn = '';
-    if (this.displayMode === 'btn') {
-      btn = `<el-button type="primary" size="mini" @click="dialogVisibleHandler${this.uuid}">弹窗</el-button>`
-    }
-    
+  public setPreview (type: number) {    
     const DialogBox = `
       <div>
-        ${btn}
-        <div class="comp-box">
-          <el-dialog width="70%" title="收货地址" :visible.sync="dialogVisible">
-            <div class="dialog-home"></div>
-          </el-dialog>
-        </div>
+        <el-dialog width="70%" :visible.sync="dialogVisible">
+          <edit-text-box slot="title" :clearClass="true" uuid="${this.uuid}">
+            ${this.config.model.custom.label}
+          </edit-text-box>
+          <div class="dialog-content drag-box" data-id="${this.uuid}"></div>
+        </el-dialog>
       </div>
     `;
 
@@ -49,40 +46,11 @@ export default class Dialog{
       xmlMode: true,
       decodeEntities: false,
     });
+    this.renderComp();
   }
 
-  addBox () {
-    this.components.push(new Container({}, this.storage));
-  }
-  
-  renderTemplate () {
-    this.$fragment('.dialog-home').empty();
-    this.components.forEach(item => {
-      this.$fragment('.dialog-home').append(item.getFragment().html())
-    });
-  }
-
-  public setConfig (config: any) {};
-
-  public getFragment () {
-    this.renderTemplate();
-    return this.$fragment;
-  }
-
-  public getFragmentOther () {
-    return cheerio.load(
-      `<el-button type="primary" size="small" @click="dialogVisibleHandler${this.uuid}">弹窗</el-button>`, {
-      xmlMode: true,
-      decodeEntities: false,
-    });
-  }
-
-  getSetting () {
-    return {};
-  }
-
-  public getConfig() {
-    return null
+  public insertEditText (params) {
+    this.config.model.custom.label = params.value;
   }
 
 } 

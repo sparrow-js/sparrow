@@ -50,7 +50,7 @@
             </el-collapse-item>
           </el-collapse>
         </div>
-        <div v-if="widget === '编辑区块'">
+        <div class="widget-box" v-if="widget === '编辑区块'">
            <el-collapse v-model="editBlockActiveNames" @change="handleChange">
             <el-collapse-item
               v-for="(item, index) in editBlockList"
@@ -68,7 +68,8 @@
                 >
                   <div class="drag-box">
                     <div class="drag-box-item">
-                      <span class="comp-list-label">{{ comp.label }}</span>
+                      <img :src="comp.thumb" style="width: 100%" />
+                      <span class="comp-list-label edit-box-label">{{ comp.label }}</span>
                     </div>
                   </div>
                 </div>
@@ -564,11 +565,17 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 10px 5px;
   border-right: 1px solid #d7d7d7;
   border-bottom: 1px solid #d7d7d7;
   box-sizing: border-box;
+  position: relative;
+}
+.edit-box-label{
+  position: absolute;
+  bottom: 5px;
 }
 </style>

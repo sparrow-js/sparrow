@@ -1,4 +1,3 @@
-import IBaseBox from '../IBaseBox';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import * as cheerio from 'cheerio';
@@ -10,7 +9,7 @@ import * as _ from 'lodash';
 import Base from '../Base';
 import Column from './column';
 
-export default class Table extends Base implements IBaseBox{
+export default class Table extends Base{
   $fragment: any;
   name: string = 'Table';
   VueGenerator: any;
@@ -23,6 +22,7 @@ export default class Table extends Base implements IBaseBox{
   params: any = null;
   components: any = [];
   storage: any = {};
+  vueParseArr: any = [];
 
   constructor (data: any, storage: any) {
     super(storage);
@@ -33,17 +33,18 @@ export default class Table extends Base implements IBaseBox{
       this.config = config;
     } else {
       this.config = _.cloneDeep(require('./config').default);
+      this.col = _.get(this.config, 'model.custom.col') || 8;
+      if (!data.children) {
+        for (let i = 0; i < this.col; i++) {
+          const column = new Column({},this.storage)
+          this.components.push(column);
+        }
+      }
     }
-    this.col = _.get(this.config, 'model.custom.col') || 8;
 
     this.setVueParse('Base');
 
-    if (!data.children) {
-      for (let i = 0; i < this.col; i++) {
-        const column = new Column({},this.storage)
-        this.components.push(column);
-      }
-    }
+   
     this.setAttrsToStr();
   }
 
@@ -62,7 +63,6 @@ export default class Table extends Base implements IBaseBox{
                   :data="tableData">
                 </el-table>
               </table-box>
-              <div class="other"></div>
             </div>
           </template>
         </div>`, {
@@ -78,7 +78,6 @@ export default class Table extends Base implements IBaseBox{
           style="width: 100%"
           :data="tableData">
         </el-table>
-        <div class="other"></div>
       </div>
       `, {
         xmlMode: true,
@@ -88,7 +87,7 @@ export default class Table extends Base implements IBaseBox{
     this.renderBox();
   }
 
-  public addComponent (data?: any, insterType: string = 'manual') {
+  public initComponent (data?: any, insterType: string = 'manual') {
     const column = new Column({},this.storage)
     this.components.push(column);
   }
@@ -98,7 +97,7 @@ export default class Table extends Base implements IBaseBox{
     const curCol = this.components.length;
     if (col > curCol) {
       for (let i = 0; i < col - curCol; i++) {
-        this.addComponent();
+        this.initComponent();
       }
     }
   }

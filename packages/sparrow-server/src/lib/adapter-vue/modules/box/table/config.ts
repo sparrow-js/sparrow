@@ -1,11 +1,16 @@
 export default {
   model: {
     attr: {
-      stripe: '',
-      border: 'true',
+      stripe: '', // 斑马线
+      border: 'true', // 边框
+      height: '', // 固定表头
+      'max-height': '',
+      'highlight-current-row': '',
+      ':default-sort': ''
     },
     custom: {
       col: 5,
+      checkbox: false,
     },
   },
   schema: {
@@ -29,6 +34,24 @@ export default {
               label: "border",
               model: "border",
             },
+            {
+              type: "input",
+              inputType: "text",
+              label: "height",
+              model: "height",
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "max-height",
+              model: "max-height",
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "highlight-current-row",
+              model: "highlight-current-row",
+            },
           ]
         }
 
@@ -45,7 +68,12 @@ export default {
               label: "col",
               model: "col"
             },
-           
+            {
+              type: "checkbox",
+              label: "checkbox",
+              model: "checkbox",
+              default: true
+            }
           ]
         }
       }

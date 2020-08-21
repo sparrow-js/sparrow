@@ -1,12 +1,13 @@
 export default {
   model: {
     attr: {
-      class: ""
+      ':fixed': false, // 斑马线
+      'sortable': '',
     },
     custom: {
-      label: '输入文本',
-      inline: false
-    },
+      label: '',
+      type: ''
+    }
   },
   schema: {
     fields: [
@@ -17,13 +18,16 @@ export default {
         schema: {
           fields: [
             {
-              type: "input",
-              inputType: "text",
-              label: "class",
-              model: "class"
+              type: "switch",
+              readonly: false,
+              label: ":fixed",
+              model: ":fixed",
+              textOn: "固定列",
+              textOff: "否固定列",
             },
           ]
         }
+
       },
       {
         type: 'object',
@@ -38,11 +42,10 @@ export default {
               model: "label"
             },
             {
-              type: "switch",
-              label: "inline",
-              model: "inline",
-              textOn: "行内",
-              textOff: "否行内"
+              type: "select",
+              label: "type",
+              model: "type",
+              values: ["selection", "index", "expand"]
             },
           ]
         }
