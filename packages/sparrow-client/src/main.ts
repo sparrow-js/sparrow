@@ -9,7 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import './assets/icon/iconfont.css';
 import VueFormGenerator from 'vue-form-generator';
 import 'vue-form-generator/dist/vfg.css'
-import ArrayContainer from './components/setting/ArrayContainer';
+import ArrayContainer from './components/setting/ArrayContainer.vue';
 import sourcecode from './components/field-sourcecode.vue'
 import ModuleLibrary from 'vfg-field-array';
 import ModuleLibrarySourcecode from 'vfg-field-sourcecode';

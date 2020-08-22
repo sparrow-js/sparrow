@@ -47,11 +47,9 @@ export default class Base {
         <el-form-item label=" "
           ${this._formItemStr}
         >
-          <label-box
-            slot="label"
-            label="${_.get(this.config, 'model.custom.label')}" 
-            uuid="${this.uuid}"
-          ></label-box>
+          <edit-text-box slot="label" :clearClass="true" uuid="${this.uuid}">
+            ${_.get(this.config, 'model.custom.label')}
+          </edit-text-box>
           ${this.fragment()}
         </el-form-item>
       `
