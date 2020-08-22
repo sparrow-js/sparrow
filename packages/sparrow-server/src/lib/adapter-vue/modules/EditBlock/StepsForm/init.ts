@@ -177,7 +177,7 @@ export default {
               "attr": {
                 "label-position": "",
                 ":inline": false,
-                "label-width": "50px",
+                "label-width": "100px",
                 "size": ""
               }
             },
@@ -246,7 +246,7 @@ export default {
                     "insideForm": true
                   },
                   "slot": {
-                    "data": "var data = {\n  selectOptions54ceb376: [{\n    value: '选项1',\n    label: '选项1'\n  }, {\n    value: '选项2',\n    label: '选项2'\n  }, {\n    value: '选项3',\n    label: '选项3'\n  }]\n};"
+                    "data": "var data = {\n  selectOptionsa46c0769: [{\n    value: '选项1',\n    label: '选项1'\n  }, {\n    value: '选项2',\n    label: '选项2'\n  }, {\n    value: '选项3',\n    label: '选项3'\n  }]\n};"
                   }
                 },
                 "schema": {
@@ -701,7 +701,7 @@ export default {
               "attr": {
                 "label-position": "",
                 ":inline": false,
-                "label-width": "50px",
+                "label-width": "100px",
                 "size": ""
               }
             },
