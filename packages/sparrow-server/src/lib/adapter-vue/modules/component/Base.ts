@@ -80,8 +80,8 @@ export default class Base {
     return this.$fragment;
   }
 
-  public insertEditText(labelValue: string) {
-    this.config.model.custom.label = labelValue
+  public insertEditText (params) {
+    this.config.model.custom.label = params.value;
   }
 
   public getConfig() {

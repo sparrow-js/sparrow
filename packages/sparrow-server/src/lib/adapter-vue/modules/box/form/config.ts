@@ -1,6 +1,7 @@
 export default {
   model: {
     attr: {
+      'ref': '',
       'label-position': '',
       ':inline': false,
       'label-width': '100px',
@@ -15,6 +16,12 @@ export default {
         model: 'attr',
         schema: {
           fields: [
+            {
+              type: "input",
+              inputType: "text",
+              label: "ref",
+              model: "ref"
+            },
             {
               type: "select",
               label: "label-position",

@@ -2,7 +2,7 @@ export default {
   model: {
     attr: {
       stripe: '', // 斑马线
-      border: 'true', // 边框
+      ':border': true, // 边框
       height: '', // 固定表头
       'max-height': '',
       'highlight-current-row': '',
@@ -29,10 +29,11 @@ export default {
               textOff: '非斑马纹'
             },
             {
-              type: "input",
-              inputType: "text",
+              type: "switch",
               label: "border",
-              model: "border",
+              model: ":border",
+              textOn: 'border',
+              textOff: '非border'
             },
             {
               type: "input",

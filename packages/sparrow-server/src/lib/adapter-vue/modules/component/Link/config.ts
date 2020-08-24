@@ -7,7 +7,8 @@ export default {
       href: '',
     },
     custom: {
-      label: '文字链接'
+      label: '文字链接',
+      value: ''
     }
   },
   schema: {
@@ -50,6 +51,21 @@ export default {
           ]
         }
       },
+      {
+        type: 'object',
+        label: '',
+        model: 'custom',
+        schema: {
+          fields: [
+            {
+              type: "input",
+              inputType: "text",
+              label: "value",
+              model: "value",
+            },
+          ]
+        }  
+      }
     ]
   },
 }

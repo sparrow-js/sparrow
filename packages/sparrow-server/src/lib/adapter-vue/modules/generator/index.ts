@@ -213,8 +213,22 @@ export default class VueGenerator {
         }
       }
     })
-
-
   }
 
+  public appendCreated (createdProp: any) {
+    const propName = 'created';
+    traverse(this.pageAST, {
+      ObjectExpression: (path) => {
+        if (path.parent.type === 'ExportDefaultDeclaration') {
+          const {node} = path;
+          let dataNode = node.properties.find(item => {
+            return item.key && item.key.name === propName;
+          });
+          if (!dataNode) {
+            node.properties.unshift(createdProp);
+          }
+        }
+      },
+    })
+  }
 }

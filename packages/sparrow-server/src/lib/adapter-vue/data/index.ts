@@ -308,6 +308,14 @@ export default class Data {
             path: '/EditBlock/TableExpand',
             thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.1/assets/1000006.png',
             icon: ''
+          },
+          {
+            id: 'ComplexTable',
+            key: 'ComplexTable',
+            label: '综合表格',
+            path: '/EditBlock/ComplexTable',
+            thumb: '',
+            icon: ''
           }
         ]
       }

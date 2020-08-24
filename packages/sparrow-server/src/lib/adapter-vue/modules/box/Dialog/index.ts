@@ -33,7 +33,7 @@ export default class Dialog  extends Base {
   public setPreview (type: number) {    
     const DialogBox = `
       <div>
-        <el-dialog width="70%" :visible.sync="dialogVisible">
+        <el-dialog width="70%" :visible.sync="${_.get(this.config, 'model.custom.visible')}">
           <edit-text-box slot="title" :clearClass="true" uuid="${this.uuid}">
             ${this.config.model.custom.label}
           </edit-text-box>

@@ -67,7 +67,7 @@ export default class Base {
       let backComp = null;
       if (path) {
         const dynamicObj = require(`..${path}`).default;
-        const comp = new dynamicObj(data, this.storage);
+        const comp = new dynamicObj(config || data, this.storage);
         comp.path = path;
         if (compIndex >= 0) {
           this.components.splice(compIndex, 0, comp)
@@ -146,12 +146,14 @@ export default class Base {
   }
 
   public renderComp () {
+    const type = this.storage.get('preview_view_status') || 0;
+
     this.$fragment('.drag-box').first().empty();
     this.components.forEach(component => {
       this.$fragment('.drag-box').first().append(component.getFragment(this.previewType).html());
     });
 
-    if (this.components.length  === 0) {
+    if (this.components.length  === 0 && type === 0) {
       this.$fragment('.drag-box').first().append(`<div class="empty-container">empty</div>`)
     }
   }

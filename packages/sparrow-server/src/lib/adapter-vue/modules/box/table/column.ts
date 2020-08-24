@@ -23,8 +23,8 @@ export default class Column extends Base{
     super(storage);
     this.storage = storage;
     this.uuid = uuid().split('-')[0]; 
-    if (data.config) {
-      this.config = data.config;
+    if (data.initType === 'auto') {
+      this.config = data;
     } else {
       this.config =  _.cloneDeep(require('./columnConfig').default);
     }
@@ -34,12 +34,19 @@ export default class Column extends Base{
   setPreview () {
     this.previewType = storage.get('preview_view_status') || 0;
     const type = _.get(this.config, 'model.custom.type');
-    let containerBox = `<div class="drag-box"></div>`;
+    let value = _.get(this.config, 'model.custom.value') || '';
+    if (value) {
+      value = `{{ ${value} }}`;
+    }
+
     let column = '';
     let expandStr = '';
     if (type === 'expand') {
       expandStr = `type="${type}"`
     }
+    
+    let containerBox = `<div class="drag-box"></div>`;
+
 
     if (this.previewType === 0) {
       containerBox = ` 
@@ -50,6 +57,7 @@ export default class Column extends Base{
           label="column"
         >
           ${expandStr ? '<div />' : ''}
+          ${value}
           <div class="drag-box"></div>
         </box>`;
       const cellbox = `
@@ -72,6 +80,7 @@ export default class Column extends Base{
     } else {
       const cellbox =  `
       <template slot-scope="{row, column, $index}">
+        ${value}
         ${containerBox}
       </template>
       `

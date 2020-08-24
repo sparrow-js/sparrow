@@ -21,11 +21,19 @@ export default class Link extends Common{
 
   public fragment () {
     const type = this.storage.get('preview_view_status') || 0;
+    const value = _.get(this.config, 'model.custom.value') || '';
+    const label = _.get(this.config, 'model.custom.label') || '';
+    let text = '';
+    if (value) {
+      text = `{{${value}}}`
+    } else {
+      text = label;
+    }
     let textBox = '';
     if (type === 0) {
-      textBox = `<edit-text-box :clearClass="true" uuid="${this.uuid}">${this.config.model.custom.label}</edit-text-box>`
+      textBox = `<edit-text-box :clearClass="true" uuid="${this.uuid}">${text}</edit-text-box>`
     } else {
-      textBox = this.config.model.custom.label;
+      textBox = text;
     }
 
     return `

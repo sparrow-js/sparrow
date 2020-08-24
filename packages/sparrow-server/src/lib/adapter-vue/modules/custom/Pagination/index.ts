@@ -10,7 +10,7 @@ export default class Pagination extends Common{
 
   constructor (data: any) {
     super();
-    this.init();
+    // this.init();
   }
 
   private init () {

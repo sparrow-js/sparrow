@@ -6,7 +6,6 @@ import * as _ from 'lodash';
 
 export default class Button extends Common{
   name: string = 'Button';
-  config: any = {};
   $fragment: any;
   isInline: boolean = true; 
   
@@ -18,7 +17,6 @@ export default class Button extends Common{
     } else {
       this.config = _.cloneDeep(require('./config').default);
     }
-
     this.setAttrsToStr();
   }
 
@@ -35,7 +33,7 @@ export default class Button extends Common{
       textBox = this.config.model.custom.label;
     }
     return `
-      <el-button type="primary" ${this._attrStr}>
+      <el-button ${this._attrStr}>
         ${textBox}
       </el-button>
     `;

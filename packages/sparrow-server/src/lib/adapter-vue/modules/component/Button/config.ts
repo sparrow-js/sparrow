@@ -3,13 +3,14 @@ export default {
     attr: {
       size: 'medium',
       type: 'primary',
-      ':plain': true,
+      ':plain': false,
       round: false,
       circle: false,
       loading: false,
       disabled: false,
       icon: '',
-      '@click': ''
+      '@click': '',
+      'v-if': '',
     },
     custom: {
       label: '主要按钮'
@@ -88,6 +89,12 @@ export default {
               inputType: "text",
               label: "click",
               model: "@click",
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "v-if",
+              model: "v-if",
             }
           ]
         }

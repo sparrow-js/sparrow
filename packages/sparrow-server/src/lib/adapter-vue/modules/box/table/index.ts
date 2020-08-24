@@ -60,7 +60,7 @@ export default class Table extends Base{
                 <el-table
                   ${this._attrStr}
                   style="width: 100%"
-                  :data="tableData">
+                  :data="list">
                 </el-table>
               </table-box>
             </div>
@@ -76,7 +76,7 @@ export default class Table extends Base{
         <el-table
           ${this._attrStr}
           style="width: 100%"
-          :data="tableData">
+          :data="list">
         </el-table>
       </div>
       `, {

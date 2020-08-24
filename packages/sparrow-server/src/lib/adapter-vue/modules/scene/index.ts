@@ -133,7 +133,7 @@ export default class Scene {
 
       if (path) {
         const dynamicObj = require(`..${path}`).default;
-        const comp = new dynamicObj(params, storage);
+        const comp = new dynamicObj(data, storage);
         comp.path = path;
         if (compIndex >= 0) {
           this.components.splice(compIndex, 0, comp)
@@ -282,7 +282,7 @@ export default class Scene {
     const {path} = data;
     const curBox = this;
     const box = require(`..${path}/init`).default;
-    this.jsonToScene({children: [box]}, curBox)
+    this.jsonToScene({children: Array.isArray(box) ? box : [box]}, curBox)
   }
 
   public getParams () {
@@ -556,6 +556,7 @@ export default class Scene {
             }
           });
         }
+
         if (item.components && item.components.length > 0) {
           fn(item.components, 1);
         }
@@ -569,8 +570,8 @@ export default class Scene {
           item.vueParse.data && this.VueGenerator.appendData(item.vueParse.data);
           item.vueParse.importDeclarations && this.VueGenerator.appendImport(item.vueParse.importDeclarations);
           this.VueGenerator.appendAutoComponents(item.vueParse.components);
+          item.vueParse.created && this.VueGenerator.appendCreated(item.vueParse.created);
         }
-  
       });
     }
 

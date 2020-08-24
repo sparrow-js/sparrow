@@ -16,6 +16,8 @@ export default class VueParse{
   $: any;
   scriptAst: any;
   style: string = '';
+  created: any;
+
 
   constructor (uuid: string, vueStr: string) {
     this.uuid = uuid;
@@ -49,8 +51,8 @@ export default class VueParse{
     this.data = this.getData() || [];
     this.methods = this.getMethods() || [];
     this.components = this.getComponents() || [];
-    console.log('********8*******',this.components);
     this.getImport();
+    this.created = this.getCreated();
   }
 
 
@@ -147,5 +149,18 @@ export default class VueParse{
         });
       }
     });    
+  }
+
+  public getCreated () {
+    let created = null;
+    traverse(this.scriptAst, {
+      ObjectMethod: (path) => {
+        const {node} = path;
+        if (node.key.name === 'created') {
+          created = node;
+        }
+      }
+    });
+    return created;
   }
 }

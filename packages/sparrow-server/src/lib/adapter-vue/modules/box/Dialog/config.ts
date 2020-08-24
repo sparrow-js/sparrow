@@ -3,6 +3,7 @@ export default {
     custom: {
       label: '弹窗',
       showMethod: '',
+      visible: 'dialogVisible',
     }
   },
   schema: {
@@ -24,6 +25,12 @@ export default {
               inputType: "text",
               label: "showMethod",
               model: "showMethod"
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "visible",
+              model: "visible"
             },
           ]
         }

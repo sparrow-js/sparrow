@@ -6,7 +6,8 @@ export default {
     },
     custom: {
       label: '',
-      type: ''
+      type: '',
+      value: '',
     }
   },
   schema: {
@@ -46,6 +47,12 @@ export default {
               label: "type",
               model: "type",
               values: ["selection", "index", "expand"]
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "value",
+              model: "value"
             },
           ]
         }

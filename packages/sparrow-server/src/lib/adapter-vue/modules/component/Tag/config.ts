@@ -8,9 +8,11 @@ export default {
       hit: false,
       color: '',
       effect: 'light',
+      'v-if': ''
     },
     custom: {
-      label: '主要按钮'
+      label: '主要标签',
+      value: '',
     }
   },
   schema: {
@@ -72,9 +74,32 @@ export default {
               multi: true,
               values: ["dark", "light", "plain"]
             },
+            {
+              type: "input",
+              inputType: "text",
+              label: "v-if",
+              model: "v-if",
+            },
           ]
         }
       },
+      {
+        type: 'object',
+        label: '',
+        model: 'custom',
+        schema: {
+          fields: [
+            {
+              type: "input",
+              inputType: "text",
+              label: "value",
+              model: "value",
+            },
+          ]
+        }  
+      }
+
+
     ]
   },
 }
