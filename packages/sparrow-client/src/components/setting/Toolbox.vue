@@ -1,7 +1,7 @@
 <template>
   <div class="toolbox">
-    <el-tabs type="border-card" class="tabs-box">
-      <el-tab-pane label="工具盒" class="widget-collapse">
+    <el-tabs v-model="activeBoxName" type="border-card" class="tabs-box">
+      <el-tab-pane label="工具盒" class="widget-collapse" name="tool">
         <div class="tool-filter">
           <div>
             <el-input 
@@ -105,8 +105,11 @@
           </el-collapse>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="属性" class="widget-collapse">
-        <FormSetting />
+      <el-tab-pane label="属性" class="widget-collapse" name="setting">
+        <FormSetting @change="settingChange"/>
+        <div class="footer-delete" @click="deleteComp">
+          删除
+        </div>
       </el-tab-pane>
     </el-tabs>
 
@@ -158,7 +161,9 @@ export default {
         fileName: ''
       },
       dialogCreateFileVisible: false,
-      fileParams: {}
+      fileParams: {},
+      activeBoxName: 'tool',
+      settingId: ''
     };
   },
   async created() {
@@ -389,6 +394,17 @@ export default {
       setTimeout(() => {
         this.bindDrag();
       }, 500)
+    },
+    settingChange (data) {
+      this.settingId = data.id;
+      this.activeBoxName = 'setting';
+    },
+    async deleteComp () {  
+      await socket.emit('generator.scene.deleteComponent', {
+        id: this.settingId
+      });
+      this.activeBoxName = 'tool';
+      
     }
   }
 };
@@ -577,5 +593,25 @@ export default {
 .edit-box-label{
   position: absolute;
   bottom: 5px;
+}
+
+.footer-delete{
+  height: 48px;
+  width: 100%;
+  font-size: 16px;
+  color: #F56C6C;
+  border: 1px solid #d7dae2;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f5;
+  cursor: pointer;
+}
+.footer-delete:hover{
+  background-color: #fef0f0;
 }
 </style>

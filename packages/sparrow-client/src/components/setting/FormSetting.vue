@@ -13,6 +13,7 @@
           ></vue-form-generator>
         </div>
       </div>
+  
       <div class="drawer">
         <!-- <el-drawer
           title=""
@@ -107,7 +108,8 @@ export default class extends Vue {
         });
         AppModule.setActiveCompId(this.uuid);
         this.config = result;
-        this.refresh();    
+        this.$emit('change', {id: this.uuid});
+        this.refresh(); 
       }
 
       if (data.handler === 'client.dispatch.box') {
@@ -117,6 +119,7 @@ export default class extends Vue {
           uuid: _.get(data, 'uuid'),
         });
         this.config = result;
+        this.$emit('change', {id: this.uuid});
         this.refresh();
       }
 
@@ -246,7 +249,9 @@ export default class extends Vue {
   align-items: center;
 }
 .generator-box{
-  height: calc(100% - 50px);
+  height: calc(100% - 100px);
+  padding-bottom: 50px;
   overflow: scroll;
 }
+
 </style>
