@@ -12,7 +12,11 @@ export default class Tag extends Common{
 
   constructor (params: any) {
     super();
-    this.config = _.cloneDeep(require('./config').default);
+    if (params.initType === 'auto') {
+      this.config = params;
+    } else {
+      this.config = _.cloneDeep(require('./config').default);
+    }
     this.setAttrsToStr();
   }
 

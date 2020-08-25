@@ -22,9 +22,8 @@ export default class Column extends Base{
     this.uuid = uuid().split('-')[0]; 
 
     const {span} = data;
-    const { config } = data;
-    if (config) {
-      this.config = config;
+    if (data.initType === 'auto') {
+      this.config = data;
     } else {
       this.config = _.cloneDeep(require('./config').default);
       if (span) {
