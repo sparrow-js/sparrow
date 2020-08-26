@@ -314,7 +314,7 @@ export default class Data {
             key: 'ComplexTable',
             label: '综合表格',
             path: '/EditBlock/ComplexTable',
-            thumb: '',
+            thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.3/assets/1000013.png',
             icon: ''
           }
         ]

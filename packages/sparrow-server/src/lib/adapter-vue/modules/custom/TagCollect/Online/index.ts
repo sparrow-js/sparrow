@@ -5,7 +5,7 @@ export default class PublishedTag extends Tag{
   vueParse: any;
   constructor (params: any) {
     super(params)
-    this.config.model.custom.label = '已发布';
+    this.config.model.custom.label = '已上线';
     this.config.model.attr.type = 'success';
     this.setAttrsToStr();
   }

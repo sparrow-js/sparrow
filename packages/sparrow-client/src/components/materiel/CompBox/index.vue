@@ -154,7 +154,10 @@
                 @mousedown="mousedownWidget(item)"
               >
                 <div class="drag-box">
-                  <div class="drag-box-item">
+                  <div class="drag-box-item"  v-if="item.thumb">
+                    <img :src="item.thumb" class="thumb-img">
+                  </div>
+                  <div>
                     <div class="comp-item__title">{{ item.label }}</div>
                     <div class="comp-item__des">{{ item.des }}</div>
                   </div>
@@ -518,6 +521,27 @@ export default class CompBox extends Vue {
 }
 .comp-item:hover{
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+.drag-box{}
+.drag-box-item {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 5px;
+  box-sizing: border-box;
+  position: relative;
+  margin-bottom: 5px;
+  overflow: hidden;
+  border-bottom: 1px solid #F2F6FC;
+}
+
+.thumb-img{
+  border: none;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 </style>

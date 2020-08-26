@@ -10,7 +10,6 @@ export default class StatusButton extends Button{
   vueParse: any;
   constructor (params: any) {
     super(params)
-    console.log('*******123', JSON.stringify(params))
     this.config.model.custom.label = '发布';
     this.config.model.attr.size = 'mini';
     this.config.model.attr['@click'] = `handleModifyStatus(row,'published')`;

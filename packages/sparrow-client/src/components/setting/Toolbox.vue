@@ -404,7 +404,7 @@ export default {
         id: this.settingId
       });
       this.activeBoxName = 'tool';
-      
+
     }
   }
 };
@@ -613,5 +613,11 @@ export default {
 }
 .footer-delete:hover{
   background-color: #fef0f0;
+}
+
+</style>
+<style lang="scss">
+.toolbox .el-tabs--border-card>.el-tabs__content{
+  height: 100%;
 }
 </style>

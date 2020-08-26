@@ -173,6 +173,7 @@ export const custom = [
     label: '审核中',
     des: '审核中，tag',
     keys: ['审核中', '审核', 'tag', '标签'],
+    thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.2/assets/1000010.png',
     path: '/custom/TagCollect/Audit',
   },
   {
@@ -180,6 +181,7 @@ export const custom = [
     label: '已删除',
     des: '已删除，tag',
     keys: ['已删除', '删除', 'tag', '标签'],
+    thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.2/assets/1000012.png',
     path: '/custom/TagCollect/Deleted',
   },
   {
@@ -187,6 +189,7 @@ export const custom = [
     label: '下线',
     des: '下线，tag',
     keys: ['下线', 'tag', '标签'],
+    thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.2/assets/1000009.png',
     path: '/custom/TagCollect/Offline',
   },
   {
@@ -194,6 +197,7 @@ export const custom = [
     label: '上线',
     des: '上线，tag',
     keys: ['上线', 'tag', '标签'],
+    thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.2/assets/1000011.png',
     path: '/custom/TagCollect/Online',
   },
   {
@@ -201,6 +205,7 @@ export const custom = [
     label: '草稿',
     des: '草稿，tag',
     keys: ['草稿', 'tag', '标签'],
+    thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.2/assets/1000007.png',
     path: '/custom/TagCollect/Draft',
   },
   {
@@ -208,6 +213,7 @@ export const custom = [
     label: '已发布',
     des: '已发布，tag',
     keys: ['已发布', 'tag', '标签'],
+    thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.2/assets/1000008.png',
     path: '/custom/TagCollect/Published',
   }
 ]
