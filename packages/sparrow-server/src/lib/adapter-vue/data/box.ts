@@ -72,5 +72,12 @@ export default [
     icon: '',
     des: 'Steps，步骤',
     keys: ['步骤', 'Steps'],
+  },
+  {
+    id: 'Alert',
+    key: 'Alert',
+    label: '警告',
+    des: 'Alert，警告',
+    keys: ['警告', 'Alert'],
   }
 ]

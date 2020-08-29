@@ -1,8 +1,10 @@
 export default {
   model: {
     attr: {
-      placeholder: '',
-      'v-model': ''
+      title: '',
+      type: '',
+      closable: true,
+      center: ''
     },
     custom: {
       required: false,
