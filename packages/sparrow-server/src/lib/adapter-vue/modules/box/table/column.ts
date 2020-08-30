@@ -58,7 +58,7 @@ export default class Column extends Base{
         >
           ${expandStr ? '<div />' : ''}
           ${value}
-          <div class="drag-box"></div>
+          <div class="drag-box" data-id="${this.uuid}"></div>
         </box>`;
       const cellbox = `
       <template slot-scope="{row, column, $index}">

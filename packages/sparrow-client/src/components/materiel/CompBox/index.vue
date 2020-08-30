@@ -311,8 +311,11 @@ export default class CompBox extends Vue {
     while (node && !(node.label == 'Table' || node.label == 'page')) {
       node = node.parent;
     }
+    // nextSibling
+    console.log('****12345******', selectedNode);
     const params = {
       boxUuid: node.key,
+      nextSiblingId: selectedNode.nextSibling ? selectedNode.nextSibling.data.id : '',
       id: 'Table/column.ts'
     };
 
