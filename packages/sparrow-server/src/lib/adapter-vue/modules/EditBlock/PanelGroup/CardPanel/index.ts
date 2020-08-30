@@ -19,9 +19,8 @@ export default class CardPanel extends Base{
 
   constructor (params: any = {}, storage) {
     super(storage);
-    const {config = {}} = params;
     this.init();
-    if (config.initType !== 'auto') {
+    if (params.initType !== 'auto') {
       this.initComp();
     }
   }

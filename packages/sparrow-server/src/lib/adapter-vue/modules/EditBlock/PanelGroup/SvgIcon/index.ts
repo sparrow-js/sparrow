@@ -12,9 +12,8 @@ export default class CardPanel extends Common{
 
   constructor (params: any = {}) {
     super();
-    const {config} = params;
-    if (config) {
-      this.config = config;
+    if (params.initType === 'auto') {
+      this.config = params;
     } else {
       this.config = _.cloneDeep(require('./config').default);
     }

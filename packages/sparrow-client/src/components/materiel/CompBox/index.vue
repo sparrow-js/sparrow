@@ -120,10 +120,7 @@
           </div>
           <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
             <el-tab-pane label="code" name="code">
-              <codemirror
-                ref="codemirror"
-                v-model="dataCode"
-              ></codemirror>
+              <codemirror ref="codemirror" v-model="dataCode"></codemirror>
             </el-tab-pane>
             <el-tab-pane label="json" name="json">
               <json-handler :json-data="jsonData"></json-handler>
@@ -312,10 +309,11 @@ export default class CompBox extends Vue {
       node = node.parent;
     }
     // nextSibling
-    console.log('****12345******', selectedNode);
     const params = {
       boxUuid: node.key,
-      nextSiblingId: selectedNode.nextSibling ? selectedNode.nextSibling.data.id : '',
+      nextSiblingId: selectedNode.nextSibling
+        ? selectedNode.nextSibling.data.id
+        : '',
       id: 'Table/column.ts'
     };
 
@@ -326,13 +324,10 @@ export default class CompBox extends Vue {
   private handleCodeClick() {
     if (this.activeNameCode === 'json') {
       this.jsonData = JSON.stringify(
-        eval(
-          `function getData () {${this.dataCode}; return data;} getData()`
-        )
+        eval(`function getData () {${this.dataCode}; return data;} getData()`)
       );
     }
   }
-
 
   private async updateCodeData() {
     const result = await socket.emit('generator.scene.setVueGenerator', {
