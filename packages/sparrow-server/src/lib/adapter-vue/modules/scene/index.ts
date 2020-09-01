@@ -476,6 +476,10 @@ export default class Scene {
     const { uuid } = params;
     const comp = this.findComponent(uuid, this.components);
     comp && comp.insertEditText(params);
+    // this.renderPage(); 插入文本只同步数据，不刷新数据
+  }
+
+  public refresh () {
     this.renderPage();
   }
 

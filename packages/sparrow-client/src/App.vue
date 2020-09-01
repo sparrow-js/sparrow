@@ -79,6 +79,10 @@ export default class App extends Vue {
   async created() {
     await socket.emit('home.index.init');
 
+    window.onunload = async e => {
+      await socket.emit('generator.scene.refresh');
+    };
+
     window.addEventListener('message', async event => {
       const { data } = event;
       if (!data.handler) return;

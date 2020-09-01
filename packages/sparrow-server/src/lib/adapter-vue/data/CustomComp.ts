@@ -120,6 +120,14 @@ export const custom = [
     path: '/EditBlock/ComplexTable',
   },
   {
+    key: 'AdvancedTable',
+
+    label: 'AdvancedTable',
+    des: '高级表格, 编辑表格, AdvancedTable',
+    keys: ['高级表格', 'AdvancedTable'],
+    path: '/EditBlock/AdvancedTable',
+  },
+  {
     key: 'CreateButton',
     label: 'CreateButton',
     des: '添加按钮，弹窗',

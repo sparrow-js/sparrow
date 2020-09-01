@@ -2,9 +2,11 @@ const Mock = require('mockjs')
 const { param2Obj } = require('./utils')
 
 const article = require('./article')
+const advancedTable = require('./advancedTable')
 
 const mocks = [
   ...article,
+  ...advancedTable,
 ]
 
 // for front mock
