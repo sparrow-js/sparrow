@@ -3,10 +3,12 @@ const { param2Obj } = require('./utils')
 
 const article = require('./article')
 const advancedTable = require('./advancedTable')
+const table = require('./table')
 
 const mocks = [
   ...article,
   ...advancedTable,
+  ...table
 ]
 
 // for front mock

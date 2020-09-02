@@ -120,14 +120,6 @@ export const custom = [
     path: '/EditBlock/ComplexTable',
   },
   {
-    key: 'AdvancedTable',
-
-    label: 'AdvancedTable',
-    des: '高级表格, 编辑表格, AdvancedTable',
-    keys: ['高级表格', 'AdvancedTable'],
-    path: '/EditBlock/AdvancedTable',
-  },
-  {
     key: 'CreateButton',
     label: 'CreateButton',
     des: '添加按钮，弹窗',
@@ -223,5 +215,58 @@ export const custom = [
     keys: ['已发布', 'tag', '标签'],
     thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.2/assets/1000008.png',
     path: '/custom/TagCollect/Published',
-  }
+  },
+
+  // AdvancedTable
+  {
+    key: 'AdvancedTable',
+
+    label: 'AdvancedTable',
+    des: '高级表格, 编辑表格, AdvancedTable',
+    keys: ['高级表格', 'AdvancedTable'],
+    path: '/EditBlock/AdvancedTable',
+  },
+  {
+    key: 'AddButton',
+    label: 'AddButton',
+    des: '添加按钮，高级表单',
+    keys: ['表格', 'AdvancedTable', '高级表单', '添加'],
+    path: '/EditBlock/AdvancedTable/AddButton',
+  },
+  {
+    key: 'CancelButton',
+    label: 'CancelButton',
+    des: '取消按钮，高级表单',
+    keys: ['表格', 'AdvancedTable', '高级表单', '取消'],
+    path: '/EditBlock/AdvancedTable/CancelButton',
+  },
+  {
+    key: 'DeleteButton',
+    label: 'DeleteButton',
+    des: '删除按钮，高级表单',
+    keys: ['表格', 'AdvancedTable', '高级表单', '删除'],
+    path: '/EditBlock/AdvancedTable/DeleteButton',
+  },
+  {
+    key: 'EditButton',
+    label: 'EditButton',
+    des: '编辑按钮，高级表单',
+    keys: ['表格', 'AdvancedTable', '高级表单', '编辑'],
+    path: '/EditBlock/AdvancedTable/EditButton',
+  },
+  {
+    key: 'SaveButton',
+    label: 'SaveButton',
+    des: '保存按钮，高级表单',
+    keys: ['表格', 'AdvancedTable', '高级表单', '保存'],
+    path: '/EditBlock/AdvancedTable/SaveButton',
+  },
+  {
+    key: 'NewButton',
+    label: 'NewButton',
+    des: '新增按钮，高级表单',
+    keys: ['表格', 'AdvancedTable', '高级表单', '新增'],
+    path: '/EditBlock/AdvancedTable/NewButton',
+  },
+
 ]

@@ -1,7 +1,8 @@
 export default {
   model: {
     attr: {
-      class: ""
+      class: "",
+      'content-position': '',
     },
     custom: {
       label: '输入文本',
@@ -16,10 +17,18 @@ export default {
         schema: {
           fields: [
             {
-              type: "input",
-              inputType: "text",
-              label: "class",
-              model: "class"
+              type: "select",
+              label: "size",
+              model: "size",
+              multi: true,
+              values: ["horizontal", "vertical", ""]
+            },
+            {
+              type: "select",
+              label: "content-position",
+              model: "content-position",
+              multi: true,
+              values: ["left", "right", "center", ""]
             },
           ]
         }

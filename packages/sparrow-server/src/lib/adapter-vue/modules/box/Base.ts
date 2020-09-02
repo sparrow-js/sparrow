@@ -113,8 +113,6 @@ export default class Base {
       this.components.push(block);
     }
 
-    
-   
     await block.addBlock(params);
     const { socket } = ctx;
     socket.emit('generator.scene.block.status', {status: 0, data: {

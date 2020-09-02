@@ -4,7 +4,9 @@ export default {
       title: '',
       type: '',
       closable: true,
-      center: ''
+      center: '',
+      size: '',
+
     },
     custom: {
       required: false,
@@ -38,7 +40,14 @@ export default {
               inputType: "text",
               label: "placeholder",
               model: "placeholder"
-            }
+            },
+            {
+              type: "select",
+              label: "size",
+              model: "size",
+              multi: true,
+              values: ["medium", "small", "mini", ""]
+            },
           ]
         }
       },

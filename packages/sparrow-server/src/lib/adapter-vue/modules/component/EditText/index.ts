@@ -9,6 +9,7 @@ export default class EditText extends Common{
   name: string = 'EditText';
   config: any = {};
   $fragment: any;
+  forceRefresh: Boolean = false;
 
   constructor (params: any) {
     super();
@@ -23,6 +24,10 @@ export default class EditText extends Common{
 
   public insertEditText (params) {
     this.config.model.custom.label = params.value;
+  }
+
+  customAttrHandler () {
+    this.forceRefresh = !this.forceRefresh;
   }
 
   public wrapComponentBox (content) {
@@ -42,26 +47,36 @@ export default class EditText extends Common{
       return content;
     }
   }
+  
 
   public fragment () {
 
     const type = this.storage.get('preview_view_status') || 0;
+
+    let value = _.get(this.config, 'model.custom.value') || '';
+    if (value) {
+      value = `{{ ${value} }}`;
+    } else {
+      value = this.config.model.custom.label;
+    }
+
     let typography = '';
     if (type === 0) {
       typography = `
         <edit-text-box :clearClass="true" uuid="${this.uuid}" ${this._attrStr}>
-          ${this.config.model.custom.label}
+          ${this.forceRefresh ? '<div />' : ''}
+          ${value}
         </edit-text-box>
       `
     } else {
       const inline = _.get(this.config, 'model.custom.inline');
       if (inline) {
         typography = `
-          <span ${this._attrStr}>${this.config.model.custom.label}</span>
+          <span ${this._attrStr}>${value}</span>
         `;
       } else {
         typography = `
-          <div ${this._attrStr}>${this.config.model.custom.label}</div>
+          <div ${this._attrStr}>${value}</div>
         `;
       }
 

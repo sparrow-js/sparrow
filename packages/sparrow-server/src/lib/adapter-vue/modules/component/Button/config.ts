@@ -9,6 +9,7 @@ export default {
       loading: false,
       disabled: false,
       icon: '',
+      style: '',
       '@click': '',
       'v-if': '',
     },

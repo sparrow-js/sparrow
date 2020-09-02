@@ -6,14 +6,11 @@ import * as _ from 'lodash';
 
 
 export default class Column extends Base{
-  public uuid = '';
   public components:any = [];
   public $fragment: any;
   name: string = 'column';
   previewType: number = 0;
-  unique: string | number;
   config: any = null;
-  boxStrs: string = '';
   storage: any = {};
   type: string = 'inline';
   path: string = '/box/Table/column';
@@ -22,7 +19,6 @@ export default class Column extends Base{
   constructor (data: any, storage: any) {
     super(storage);
     this.storage = storage;
-    this.uuid = uuid().split('-')[0]; 
     if (data.initType === 'auto') {
       this.config = data;
     } else {
@@ -30,6 +26,8 @@ export default class Column extends Base{
     }
     this.setAttrsToStr();
   }
+
+
 
   setPreview () {
     this.previewType = storage.get('preview_view_status') || 0;

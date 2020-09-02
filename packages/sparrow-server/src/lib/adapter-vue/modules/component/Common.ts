@@ -66,8 +66,11 @@ export default class Common {
     console.log(this._attrStr);
   }
 
+  public customAttrHandler () {}
+
   public settingConfig (config: any) {
     this.config = config;
+    this.customAttrHandler();
     this.setAttrsToStr();
   }
 

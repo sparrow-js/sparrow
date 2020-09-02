@@ -1,11 +1,12 @@
 export default {
   model: {
     attr: {
-      class: ""
+      class: "",
     },
     custom: {
       label: '输入文本',
-      inline: false
+      inline: false,
+      value: "",
     },
   },
   schema: {
@@ -36,6 +37,12 @@ export default {
               inputType: "text",
               label: "label",
               model: "label"
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "value",
+              model: "value"
             },
             {
               type: "switch",
