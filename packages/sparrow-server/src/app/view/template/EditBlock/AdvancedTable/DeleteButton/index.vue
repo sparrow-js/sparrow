@@ -9,8 +9,8 @@
 export default {
   methods: {
     remove (id) {
-      const newData = this.data.filter(item => item.id !== id)
-      this.data = newData
+      const newData = this.list.filter(item => item.id !== id)
+      this.list = newData
     },
   }
 }

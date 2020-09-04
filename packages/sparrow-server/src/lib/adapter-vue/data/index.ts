@@ -276,7 +276,7 @@ export default class Data {
         ]
       },
       {
-        label: '卡片表单',
+        label: '表单',
         type: 'editBox',
         list: [
           {
@@ -293,6 +293,14 @@ export default class Data {
             label: '步骤表单',
             path: '/EditBlock/StepsForm',
             thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.1/assets/1000005.png',
+            icon: ''
+          },
+          {
+            id: 'AdvancedTable',
+            key: 'AdvancedTable',
+            label: '高级表单',
+            path: '/EditBlock/AdvancedTable',
+            thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.6/assets/1000014.png',
             icon: ''
           }
         ]
