@@ -106,6 +106,27 @@ export const custom = [
     path: '/custom/Dropzone',
   },
   {
+    key: 'Tinymce',
+    label: 'Tinymce',
+    des: 'Tinymce, 富文本编辑器',
+    keys: ['富文本编辑器', 'Tinymce'],
+    path: '/custom/Tinymce',
+  },
+  {
+    key: 'Sticky',
+    label: 'Sticky',
+    des: 'Sticky, 吸顶',
+    keys: ['吸顶', 'Sticky'],
+    path: '/custom/Sticky',
+  },
+  {
+    key: 'DragSelect',
+    label: 'DragSelect',
+    des: 'DragSelect, 拖拽Select',
+    keys: ['拖拽Select', 'DragSelect'],
+    path: '/custom/DragSelect',
+  },
+  {
     key: 'Pagination',
     label: 'Pagination',
     des: '分页，Pagination',
