@@ -79,5 +79,20 @@ export default [
     label: '警告',
     des: 'Alert，警告',
     keys: ['警告', 'Alert'],
+  },
+  {
+    // RouterLink
+    id: 'RouterLink',
+    key: 'RouterLink',
+    label: 'RouterLink',
+    des: 'RouterLink',
+    keys: ['RouterLink'],
   }
+  // {
+  //   id: 'Popconfirm',
+  //   key: 'Popconfirm',
+  //   label: '气泡确认框',
+  //   des: 'Popconfirm, 气泡确认框',
+  //   keys: ['气泡确认框', 'Popconfirm'],
+  // }
 ]

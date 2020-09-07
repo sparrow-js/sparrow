@@ -197,6 +197,13 @@ const widgetList = [
         label: 'Divider',
         des: '分割线, Divider',
         keys: ['分割线', 'Divider']
+      },
+      {
+        id: 'Popconfirm',
+        key: 'Popconfirm',
+        label: 'Popconfirm',
+        des: '气泡确认框, Popconfirm',
+        keys: ['气泡确认框', 'Popconfirm']
       }
     ]
   }

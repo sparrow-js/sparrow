@@ -12,6 +12,7 @@ export default class Base {
   observe: any = null;
   $fragment: any = null;
   name: string = '';
+  alias: string = '';
   widgetType: string = 'box';
   treePath:string = ''; // 标记容器树路径
   previewType: number = 0;
@@ -35,7 +36,7 @@ export default class Base {
           data-id="${this.uuid}"
           :uuid="'${this.uuid}'" 
           class="block-item" 
-          :label="'${this.name}'"
+          :label="'${this.alias || this.name}'"
         >
           ${this.$fragment.html()}
         </box>

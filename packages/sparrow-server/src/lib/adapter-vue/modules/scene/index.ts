@@ -41,6 +41,7 @@ export default class Scene {
   renderPageToggle = false;
   style: string = '';
   storeStyleRepeat = [];
+  forceRender: boolean = true;
 
   constructor (params: any = {}) {
     this.uuid = uuid().split('-')[0];
@@ -55,6 +56,7 @@ export default class Scene {
     }
 
     if (params.label === 'page') {
+      this.config = params.config;
       this.jsonToScene(params, this);
     } else {
       this.renderPage();
@@ -325,6 +327,7 @@ export default class Scene {
   getSerializeTree () {
     let tree = {
       label: 'page',
+      config: this.config,
       children: []
     }
 
@@ -595,6 +598,8 @@ export default class Scene {
     if (!this.$('.home').html()) {
       this.$('.home').append('<img style="width: 400px;height: 400px;position: absolute;left: 50%;transform: translate(-200px, 100px);" src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dded9db02e3f4052bbf451f04d3d9b5b~tplv-k3u1fbpfcp-zoom-1.image" />')
     }
+    this.$('.home').append(this.forceRender ?  '<div />' : '')
+    this.forceRender = !this.forceRender
     this.writeTemplate();
   }
 
