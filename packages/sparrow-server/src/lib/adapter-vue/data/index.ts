@@ -236,7 +236,7 @@ export default class Data {
       const filterWidgetList = curWidgetList.map(item => {
         const list:any = item.list
         item.list = list.filter(comp => {
-          if(comp.label.match(value) || comp.keys.includes(value) || comp.des.match(value)) {
+          if(comp.label.match(RegExp(value, 'i')) || (comp.keys && comp.keys.includes(value))  || comp.des.match(RegExp(value, 'i'))) {
             return true;
           }
           return false;
