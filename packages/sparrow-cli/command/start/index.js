@@ -111,7 +111,7 @@ async function start(options = {}) {
 
 function startSparrowView (options) {
   let [command, ...args] = parseArgs('vue-cli-service serve --port 9000');
-  const child = execa(path.join(VIEW_PATH, 'node_modules/@vue/cli-service/bin/vue-cli-service.js'), args, {
+  const child = execa(`node ${path.join(VIEW_PATH, 'node_modules/@vue/cli-service/bin/vue-cli-service.js')}`, args, {
     cwd: VIEW_PATH,
     stdio: ['inherit', 'pipe', 'pipe'],
     shell: true
