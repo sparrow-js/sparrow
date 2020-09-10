@@ -136,7 +136,7 @@ export const custom = [
   {
     key: 'ComplexTable',
     label: 'ComplexTable',
-    des: '综合表格, 初始化, ComplexTable',
+    des: '综合表格, 初始化数据,',
     keys: ['综合表格', 'ComplexTable'],
     path: '/EditBlock/ComplexTable',
   },
