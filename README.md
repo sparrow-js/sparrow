@@ -1,8 +1,10 @@
 # sparrow
 
- <img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8aa8330af05846dfbcae01de8f1a19ee~tplv-k3u1fbpfcp-zoom-1.image?imageslim" width = "560"  alt="图片名称" align="center" />
+ <img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8aa8330af05846dfbcae01de8f1a19ee~tplv-k3u1fbpfcp-zoom-1.image?imageslim" width = "520"  alt="图片名称" align="center" />
 
- <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/64c5d79b33254cef855c7bf005756d2f~tplv-k3u1fbpfcp-zoom-1.image" width = "560"  alt="图片名称" align="center" />
+ <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/64c5d79b33254cef855c7bf005756d2f~tplv-k3u1fbpfcp-zoom-1.image" width = "520"  alt="图片名称" align="center" />
+
+ <img src="https://unpkg.com/@sparrow-vue/images@1.0.8/assets/init-page.png"  width = "520"  alt="图片名称" align="center" >
 
 > 出现localhost拒绝了我们的连接请求怎么办？
 - 参考issues：https://github.com/sparrow-js/sparrow/issues/2 如无法解决可描述下问题基本信息，在此issues留言
