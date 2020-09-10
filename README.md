@@ -13,7 +13,9 @@
 - 讨论：https://github.com/sparrow-js/sparrow/issues/6
 
 #### 场景化低代码（LowCode）搭建工作台；
+
 sparrow的核心目标仅有一条“提生研发效率”，目前提供基于vue、element-ui组件库中后台项目的实践，新功能持续新增中；
+
 ---
 ## 特性
 
