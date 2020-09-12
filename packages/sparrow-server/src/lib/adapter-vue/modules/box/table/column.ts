@@ -9,6 +9,7 @@ export default class Column extends Base{
   public components:any = [];
   public $fragment: any;
   name: string = 'column';
+  alias: string = 'col';
   previewType: number = 0;
   config: any = null;
   storage: any = {};
@@ -52,7 +53,7 @@ export default class Column extends Base{
           data-id="${this.uuid}"
           :uuid="'${this.uuid}'" 
           class="block-item" 
-          label="column"
+          label="${this.alias}"
         >
           ${expandStr ? '<div />' : ''}
           ${value}

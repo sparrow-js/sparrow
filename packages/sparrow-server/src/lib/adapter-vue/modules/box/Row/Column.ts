@@ -8,6 +8,7 @@ export default class Column extends Base{
   public components:any = [];
   public $fragment: any;
   name: string = 'column';
+  alias: string = 'col';
   previewType: number = 0;
   unique: string | number;
   config: any = null;
@@ -46,7 +47,7 @@ export default class Column extends Base{
             data-id="${this.uuid}"
             :uuid="'${this.uuid}'" 
             class="block-item" 
-            label="column"
+            label="${this.alias}"
           >
             <div class="column drag-box" data-id="${this.uuid}"></div>
           </box>
