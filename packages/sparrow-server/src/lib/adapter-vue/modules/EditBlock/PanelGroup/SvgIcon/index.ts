@@ -1,7 +1,7 @@
 import Common from '../../Common';
 import * as _ from 'lodash';
 
-export default class CardPanel extends Common{
+export default class SvgIcon extends Common{
   name: string = 'SvgIcon';
   params: any;
   uuid: string;

@@ -1,4 +1,5 @@
 export const custom = [
+  // 基础表单
   {
     key: 'ResetButton',
     label: '重置',
@@ -13,41 +14,46 @@ export const custom = [
     keys: ['保存', 'Form', '表单'],
     path: '/custom/BaseForm/SaveButton',
   },
-  {
-    key: 'CreateButton',
-    label: '创建',
-    des: '创建跳转按钮',
-    keys: ['创建', 'Form', '表单', '表格'],
-    path: '/custom/BaseTable/CreateButton',
-  },
-  {
-    key: 'SearchButton',
-    label: '搜索',
-    des: '搜索按钮',
-    keys: ['搜索', 'Form', '表单', '表格'],
-    path: '/custom/BaseTable/SearchButton',
-  },
-  {
-    key: 'Delete',
-    label: '删除',
-    des: '表格删除按钮',
-    keys: ['删除', '表格', 'table'],
-    path: '/custom/Table/Delete',
-  },
-  {
-    key: 'Edit',
-    label: '编辑',
-    des: '编辑按钮',
-    keys: ['编辑', '表格', 'table'],
-    path: '/custom/Table/Edit',
-  },
-  {
-    key: 'See',
-    label: '查看按钮',
-    des: '查看按钮',
-    keys: ['查看', '表格', 'table'],
-    path: '/custom/Table/See',
-  },
+
+  // 基础表格
+  // {
+  //   key: 'CreateButton',
+  //   label: '创建',
+  //   des: '创建跳转按钮',
+  //   keys: ['创建', 'Form', '表单', '表格'],
+  //   path: '/custom/BaseTable/CreateButton',
+  // },
+  // {
+  //   key: 'SearchButton',
+  //   label: '搜索',
+  //   des: '搜索按钮',
+  //   keys: ['搜索', 'Form', '表单', '表格'],
+  //   path: '/custom/BaseTable/SearchButton',
+  // },
+  // 表单删除、编辑、查看
+  // {
+  //   key: 'Delete',
+  //   label: '删除',
+  //   des: '表格删除按钮',
+  //   keys: ['删除', '表格', 'table'],
+  //   path: '/custom/Table/Delete',
+  // },
+  // {
+  //   key: 'Edit',
+  //   label: '编辑',
+  //   des: '编辑按钮',
+  //   keys: ['编辑', '表格', 'table'],
+  //   path: '/custom/Table/Edit',
+  // },
+  // {
+  //   key: 'See',
+  //   label: '查看按钮',
+  //   des: '查看按钮',
+  //   keys: ['查看', '表格', 'table'],
+  //   path: '/custom/Table/See',
+  // },
+
+  // 图片处理区
   {
     key: 'UploadWall',
     label: '图片墙',
@@ -59,16 +65,27 @@ export const custom = [
     key: 'UploadList',
     label: '图片列表缩略图',
     des: '图片列表缩略图',
-    keys: ['上传', 'img', 'jpg', 'png', 'image', '多图'],
+    keys: ['上传', 'img', 'jpg', 'png', 'image', '图片列表'],
     path: '/custom/UploadList',
   },
   {
     key: 'UploadDrag',
     label: '拖拽上传',
     des: '拖拽上传图片',
-    keys: ['拖拽', '上传', 'img', 'jpg', 'png', 'image', '多图'],
+    keys: ['拖拽', '上传', 'img', 'jpg', 'png', 'image'],
     path: '/custom/UploadDrag',
   },
+
+  // Dropzone
+  {
+    key: 'Dropzone',
+    label: 'Dropzone',
+    des: 'Dropzone，上传图片',
+    keys: ['上传图片', 'Dropzone'],
+    path: '/custom/Dropzone',
+  },
+
+  // 面板组
   {
     key: 'PanelGroup',
     label: '面板组',
@@ -76,6 +93,8 @@ export const custom = [
     keys: ['面板组'],
     path: '/custom/PanelGroup',
   },
+
+  // 卡片面板
   {
     key: 'CardPannel',
     label: '卡片面板',
@@ -83,6 +102,17 @@ export const custom = [
     keys: ['卡片面板'],
     path: '/EditBlock/PanelGroup/CardPanel',
   },
+  // SvgIcon
+  {
+    key: 'SvgIcon',
+    label: 'SvgIcon',
+    des: 'SvgIcon',
+    keys: ['SvgIcon'],
+    path: '/EditBlock/PanelGroup/SvgIcon',
+  },
+  
+
+  // 卡片信息
   {
     key: 'CardInfo',
     label: '卡片文案容器',
@@ -91,20 +121,15 @@ export const custom = [
     path: '/EditBlock/CardGroup/CardInfo',
   },
   {
-    // Clipboard
+    // Clipboard 剪贴板
     key: 'Clipboard',
     label: '剪贴板',
     des: '剪贴板，复制',
     keys: ['Clipboard', '复制', 'copy'],
     path: '/custom/Clipboard',
   },
-  {
-    key: 'Dropzone',
-    label: 'Dropzone',
-    des: 'Dropzone，上传图片',
-    keys: ['上传图片', 'Dropzone'],
-    path: '/custom/Dropzone',
-  },
+
+  // 富文本编辑器
   {
     key: 'Tinymce',
     label: 'Tinymce',
@@ -112,6 +137,8 @@ export const custom = [
     keys: ['富文本编辑器', 'Tinymce'],
     path: '/custom/Tinymce',
   },
+
+  // 吸顶
   {
     key: 'Sticky',
     label: 'Sticky',
@@ -119,6 +146,7 @@ export const custom = [
     keys: ['吸顶', 'Sticky'],
     path: '/custom/Sticky',
   },
+  // 拖拽选择
   {
     key: 'DragSelect',
     label: 'DragSelect',
@@ -126,17 +154,20 @@ export const custom = [
     keys: ['拖拽Select', 'DragSelect'],
     path: '/custom/DragSelect',
   },
+  // 分页
   {
     key: 'Pagination',
     label: 'Pagination',
     des: '分页，Pagination',
-    keys: ['分页', 'Pagination'],
+    keys: ['分页', 'Pagination', 'page'],
     path: '/custom/Pagination',
   },
+
+  // 综合表单
   {
     key: 'ComplexTable',
     label: 'ComplexTable',
-    des: '综合表格, 初始化数据,',
+    des: '综合表格, 初始化数据',
     keys: ['综合表格', 'ComplexTable'],
     path: '/EditBlock/ComplexTable',
   },
@@ -189,6 +220,8 @@ export const custom = [
     keys: ['状态', '按钮'],
     path: '/EditBlock/ComplexTable/StatusButton',
   },
+
+  // 标签
   {
     key: 'AuditTag',
     label: '审核中',
@@ -238,10 +271,9 @@ export const custom = [
     path: '/custom/TagCollect/Published',
   },
 
-  // AdvancedTable
+  // AdvancedTable 高级表单
   {
     key: 'AdvancedTable',
-
     label: 'AdvancedTable',
     des: '高级表格, 编辑表格, AdvancedTable',
     keys: ['高级表格', 'AdvancedTable'],
@@ -289,5 +321,7 @@ export const custom = [
     keys: ['表格', 'AdvancedTable', '高级表单', '新增'],
     path: '/EditBlock/AdvancedTable/NewButton',
   },
+
+  // ing
 
 ]
