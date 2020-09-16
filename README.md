@@ -6,12 +6,6 @@
 
  <img src="https://unpkg.com/@sparrow-vue/images@1.0.8/assets/init-page.png"  width = "520"  alt="图片名称" align="center" >
 
-> 出现localhost拒绝了我们的连接请求怎么办？
-- 参考issues：https://github.com/sparrow-js/sparrow/issues/2 如无法解决可描述下问题基本信息，在此issues留言
-
-> 有想法、有兴趣、想交流可以留言交流技术
-- 讨论：https://github.com/sparrow-js/sparrow/issues/6
-
 #### 场景化低代码（LowCode）搭建工作台；
 
 sparrow的核心目标仅有一条“提生研发效率”，目前提供基于vue、element-ui组件库中后台项目的实践，新功能持续新增中；
