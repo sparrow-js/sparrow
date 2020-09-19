@@ -1,44 +1,51 @@
 <template>
   <div class="toolbar" @click="toolbarClick">
-    <div class="toolbar__item">
-      <el-tooltip class="item" effect="dark" content="重置" placement="top">
-        <span @click="trashHandler">
-          <font-awesome-icon :icon="['fas', 'trash-restore-alt']" />
-        </span>
-      </el-tooltip>
-    </div>
+    <div class="toolbar-left">
+      <div class="toolbar__item">
+        <el-tooltip class="item" effect="dark" content="重置" placement="top">
+          <span @click="trashHandler">
+            <font-awesome-icon :icon="['fas', 'trash-restore-alt']" />
+          </span>
+        </el-tooltip>
+      </div>
 
-    <div class="toolbar__item toolbar__preview">
-      <el-tooltip class="item" effect="dark" content="预览" placement="top">
-        <span
-          :class="{ 'active-preview': previewStatus }"
-          @click="previewHandler"
-        >
-          <font-awesome-icon :icon="['fas', 'eye']" />
-        </span>
-      </el-tooltip>
+      <div class="toolbar__item toolbar__preview">
+        <el-tooltip class="item" effect="dark" content="预览" placement="top">
+          <span
+            :class="{ 'active-preview': previewStatus }"
+            @click="previewHandler"
+          >
+            <font-awesome-icon :icon="['fas', 'eye']" />
+          </span>
+        </el-tooltip>
+      </div>
+      <div class="toolbar__item">
+        <el-tooltip class="item" effect="dark" content="导出" placement="top">
+          <span @click="fileExportHandler">
+            <font-awesome-icon :icon="['fas', 'file-export']" />
+          </span>
+        </el-tooltip>
+      </div>
+      <div class="toolbar__item">
+        <el-tooltip class="item" effect="dark" content="源代码" placement="top">
+          <span @click="openEditorHandler">
+            <font-awesome-icon :icon="['fas', 'code']" />
+          </span>
+        </el-tooltip>
+      </div>
+      <div class="toolbar__item">
+        <el-tooltip class="item" effect="dark" content="保存" placement="top">
+          <i class="iconfont icon-baocun"  @click="saveScene"></i>
+        </el-tooltip>
+      </div>
     </div>
-    <div class="toolbar__item">
-      <el-tooltip class="item" effect="dark" content="导出" placement="top">
-        <span @click="fileExportHandler">
-          <font-awesome-icon :icon="['fas', 'file-export']" />
-        </span>
-      </el-tooltip>
+    <div class="toolbar-right">
+      <div class="toolbar__item">
+        <a class="help-link" target="_blank" href="https://sparrow-js.github.io/sparrow-vue-site/">
+          <i class="iconfont icon-bangzhu"></i>
+        </a>
+      </div>
     </div>
-    <div class="toolbar__item">
-      <el-tooltip class="item" effect="dark" content="源代码" placement="top">
-        <span @click="openEditorHandler">
-          <font-awesome-icon :icon="['fas', 'code']" />
-        </span>
-      </el-tooltip>
-    </div>
-    
-    <div class="toolbar__item">
-      <el-tooltip class="item" effect="dark" content="保存" placement="top">
-        <i class="iconfont icon-baocun"  @click="saveScene"></i>
-      </el-tooltip>
-    </div>
-
     <!-- <div class="toolbar__item success" @click="showPopover = !showPopover">
       <el-tooltip class="item" effect="dark" content="场景" placement="top">
         <span>
@@ -197,7 +204,6 @@ export default class extends Vue {
       return true;
     }
   }
-  
   allowDrag(draggingNode) {
     return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
   }
@@ -208,8 +214,17 @@ export default class extends Vue {
 .toolbar {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   margin-left: 10px;
-  align-items: center;
+  &-left {
+    display: flex;
+    flex-direction: row;
+  }
+  &-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
   &__item {
     height: 32px;
     display: flex;
@@ -250,5 +265,11 @@ export default class extends Vue {
   position: absolute;
   left: 50%;
   margin-left: -86px;
+}
+.help-link{
+  text-decoration: none;
+  &:hover {
+    color: #409EFF;
+  }
 }
 </style>

@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "14420971",
+      "name": "前进",
+      "font_class": "qianjin",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "14421022",
+      "name": "后退",
+      "font_class": "houtui",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "7956371",
+      "name": "帮助",
+      "font_class": "bangzhu",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
       "icon_id": "3878658",
       "name": "数据",
       "font_class": "data",
