@@ -285,4 +285,7 @@ export default class extends Vue {
     color: #409EFF;
   }
 }
+.icon-houtui,.icon-qianjin{
+  font-size: 20px;
+}
 </style>

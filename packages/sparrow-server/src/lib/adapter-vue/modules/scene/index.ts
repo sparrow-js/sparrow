@@ -515,7 +515,9 @@ export default class Scene {
 
   public async prevScene() {
     this.isTime = true;
+    if (this.timeCursor <= 0) return;
     const tree = this.timeCache[--this.timeCursor];
+    if (!tree) return;
     this.components = [];
     this.jsonToScene(tree, this);
   }
@@ -523,7 +525,10 @@ export default class Scene {
   public async nextScene() {
     this.isTime = true;
     const tree = this.timeCache[++this.timeCursor];
-    if (!tree) return;
+    if (!tree)  {
+      this.timeCursor = this.timeCache.length - 1;
+      return;
+    }
     this.components = [];
     this.jsonToScene(tree, this);
   }
