@@ -35,8 +35,15 @@
       </div>
       <div class="toolbar__item">
         <el-tooltip class="item" effect="dark" content="保存" placement="top">
-          <i class="iconfont icon-baocun"  @click="saveScene"></i>
+          <i class="iconfont icon-baocun" @click="saveScene"></i>
         </el-tooltip>
+      </div>
+
+      <div class="toolbar__item">
+        <i class="iconfont icon-houtui" @click="prevScene"></i>
+      </div>
+      <div class="toolbar__item">
+        <i class="iconfont icon-qianjin" @click="nextScene"></i>
       </div>
     </div>
     <div class="toolbar-right">
@@ -168,17 +175,23 @@ export default class extends Vue {
     viewFrame.contentWindow.postMessage({ handler: 'document-click' }, '*');
   }
 
-  private async saveScene () {
+  private async saveScene() {
     this.dialogFormVisible = true;
     const viewFrame: any = document.querySelector('#viewContent');
     viewFrame.contentWindow.postMessage({ handler: 'html-2-canvas' }, '*');
   }
 
-  private async sureSaveScene () {
+  private async prevScene() {
+    await socket.emit('generator.scene.prevScene');
+  }
 
+  private async nextScene() {
+    await socket.emit('generator.scene.nextScene');
+  }
+
+  private async sureSaveScene() {
     await socket.emit('generator.scene.saveScene', this.form);
     this.dialogFormVisible = false;
-    
   }
 
   private async getSerializeTree () {

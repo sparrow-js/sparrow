@@ -43,6 +43,10 @@ export default class Scene {
   storeStyleRepeat = [];
   forceRender: boolean = true;
 
+  timeCache: any = [];
+  timeCursor: number = 0;
+  isTime: boolean = false;
+
   constructor (params: any = {}) {
     this.uuid = uuid().split('-')[0];
     this.VueGenerator = new VueGenerator();
@@ -509,6 +513,27 @@ export default class Scene {
     // socket.emit('generator.force.refresh');
   }
 
+  public async prevScene() {
+    this.isTime = true;
+    const tree = this.timeCache[--this.timeCursor];
+    this.components = [];
+    this.jsonToScene(tree, this);
+  }
+
+  public async nextScene() {
+    this.isTime = true;
+    const tree = this.timeCache[++this.timeCursor];
+    console.log('********8', tree);
+    this.components = [];
+    this.jsonToScene(tree, this);
+  }
+
+  public storageScene () {
+    const tree = this.getSerializeTree();
+    this.timeCache.push(tree);
+    this.timeCursor = this.timeCache.length - 1;
+  }
+
   public async renderPage () {
 
     this.params.previewViewStatus = storage.get('preview_view_status');
@@ -617,6 +642,10 @@ export default class Scene {
       return;
     }
     this.formatTemp = formatTemp;
+    if (this.isTime === false) {
+      this.storageScene();
+    }
+    this.isTime = false;
     fsExtra.writeFileSync(viewPath, formatTemp, 'utf8');
   }
 }
