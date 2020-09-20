@@ -523,12 +523,15 @@ export default class Scene {
   public async nextScene() {
     this.isTime = true;
     const tree = this.timeCache[++this.timeCursor];
-    console.log('********8', tree);
+    if (!tree) return;
     this.components = [];
     this.jsonToScene(tree, this);
   }
 
   public storageScene () {
+    if (this.timeCursor < this.timeCache.length - 1) {
+      this.timeCache.splice(this.timeCursor, 100);
+    }
     const tree = this.getSerializeTree();
     this.timeCache.push(tree);
     this.timeCursor = this.timeCache.length - 1;
