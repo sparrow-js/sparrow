@@ -13,6 +13,7 @@ import storage from '../../../storage';
 import lowdb from '../../../lowdb';
 import * as _ from 'lodash'
 import Block from '../box/Block';
+import { file } from '@babel/types';
 
 const cwd = process.cwd();
 const viewPath = Path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
@@ -215,6 +216,7 @@ export default class Scene {
       this.renderPage();
     }
   }
+  
 
   public setVueGenerator (params: any) {
     const { data } = params; 
@@ -321,6 +323,32 @@ export default class Scene {
       return {
         list: _.clone(scenes).reverse()
       }
+  }
+
+  getFileList () {
+    const fileList = [{
+      fileName: 'home',
+      uuid: this.uuid
+    }]
+    const fn = (components) => {
+      components.forEach(item => {
+        if (item.name === 'File') {
+          fileList.push({
+            uuid: item.uuid,
+            fileName: item.fileName
+          })
+        }
+        if (item.components) {
+          fn(item.components)
+        }
+      });
+    }
+
+    fn(this.components);
+    
+    return {
+      list: fileList
+    };
   }
 
   useScene (params) {
@@ -542,7 +570,21 @@ export default class Scene {
     this.timeCursor = this.timeCache.length - 1;
   }
 
-  public async renderPage () {
+   public async getOriginalCode ({uuid}) {
+     // uuid
+
+    const comp = this.findComponent(uuid, this.components) || this;
+    const previewViewStatus = storage.get('preview_view_status');
+    storage.set('preview_view_status', true);
+    const code = await comp.renderPage(false);
+    storage.set('preview_view_status', previewViewStatus);
+    return {
+      code
+    }
+  }
+
+
+  public async renderPage (outputToFile: boolean = true) {
 
     this.params.previewViewStatus = storage.get('preview_view_status');
     this.$('.home').empty();
@@ -551,7 +593,6 @@ export default class Scene {
     if (this.renderPageToggle) {
       this.$('.home').append('<div class="toggle"/>')
     }
-
 
     this.scriptData = this.VueGenerator.initScript();
 
@@ -633,7 +674,12 @@ export default class Scene {
     }
     this.$('.home').append(this.forceRender ?  '<div />' : '')
     this.forceRender = !this.forceRender
-    this.writeTemplate();
+    if (outputToFile) {
+      this.writeTemplate();
+    } else {
+      return this.getCode();
+    }
+
   }
 
   private hasStyle (name: string) {
@@ -641,6 +687,12 @@ export default class Scene {
       return true;
     }
     return false;
+  }
+
+  private getCode () {
+    const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script> <style lang="scss" scoped>${this.style || ''}</style>`;
+    const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
+    return formatTemp;
   }
 
   private writeTemplate () {

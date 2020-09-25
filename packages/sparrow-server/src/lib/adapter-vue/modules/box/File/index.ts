@@ -97,8 +97,13 @@ export default class File extends Base implements IBaseBox{
     });
   }
 
+  private getCode () {
+    const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script> <style lang="scss" scoped>${this.style}</style>`;
+    const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
+    return formatTemp;
+  }
 
-  public async renderPage () {
+  public async renderPage (outputToFile: boolean = true) {
     this.$('.home-file').empty();
     this.scriptData = this.VueGenerator.initScript();
     this.style = '';
@@ -155,7 +160,11 @@ export default class File extends Base implements IBaseBox{
     this.VueGenerator.appendMethods(methods);
     this.VueGenerator.appendData(vueData);
 
-    this.writeTemplate();
+    if (outputToFile) {
+      this.writeTemplate();
+    } else {
+      return this.getCode();
+    }
   }
 
   private hasStyle (name: string) {

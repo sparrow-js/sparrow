@@ -10,7 +10,8 @@ db.defaults({
   scenes: [],
   components: {},
   tasks: [],
-  config: {}
+  config: {},
+  apis: [],
 }).write()
 
 export default db;

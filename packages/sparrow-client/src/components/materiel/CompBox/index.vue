@@ -113,6 +113,15 @@
       </div>
 
       <div v-show="activeTreeIndex === 4">
+        <div>
+          <div class="file-item"
+            v-for="item in fileList"
+            :key="item.uuid"
+            @click="openToolDialog(item)"
+          >
+            {{ item.fileName }}
+          </div>
+        </div>
         <div class="file-box">
           <div class="codemirror-operate">
             <span class="update-data" @click.stop="updateCodeData">更新</span>
@@ -165,6 +174,12 @@
         </div>
       </div>
     </div>
+
+    <el-dialog :visible.sync="toolVisible">
+      <div>
+        <tool-box v-if="toolVisible" />
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -175,10 +190,12 @@ import socket from '@/util/socket.js';
 import JsonHandler from '@/components/jsonhandler/index.vue';
 import _ from 'lodash';
 import Loading from '@/util/loading';
+import ToolBox from './ToolBox.vue';
 
 @Component({
   components: {
-    JsonHandler
+    JsonHandler,
+    ToolBox
   }
 })
 export default class CompBox extends Vue {
@@ -195,7 +212,8 @@ export default class CompBox extends Vue {
   private search = '';
   private customCompList = [];
   private widgetData = null;
-
+  private fileList = [];
+  private toolVisible = false;
 
   get activeTreeIndex() {
     return AppModule.activeTreeIndex;
@@ -265,6 +283,7 @@ export default class CompBox extends Vue {
     this.getScene();
     this.getSceneConfig();
     this.getCustomComp('');
+    this.getFileList();
     setTimeout(() => {
       codemirror.codemirror.refresh();
     }, 100);
@@ -327,6 +346,16 @@ export default class CompBox extends Vue {
         eval(`function getData () {${this.dataCode}; return data;} getData()`)
       );
     }
+  }
+
+  private async getFileList() {
+    const result = await socket.emit('generator.scene.getFileList');
+    this.fileList = result.list;
+  }
+
+  private openToolDialog(item) {
+    this.toolVisible = true;
+    AppModule.setSelecedFileInfo(item);
   }
 
   private async updateCodeData() {
@@ -542,4 +571,13 @@ export default class CompBox extends Vue {
   max-height: 100%;
 }
 
+.file-item {
+  padding: 10px;
+  border-bottom: 1px solid #dcdfe6;
+  cursor: pointer;
+}
+.file-item:hover{
+  background-color: #79bbff;
+  color: #fff;
+}
 </style>

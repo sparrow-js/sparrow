@@ -18,7 +18,8 @@ export interface IAppState {
   insertPosition: any;
   componentIs: string;
   uuid: string;
-  activeTreeIndex: number
+  activeTreeIndex: number,
+  selecedFileInfo: any,
 }
 
 @Module({ dynamic: true, store, name: 'app' })
@@ -35,6 +36,8 @@ class App extends VuexModule implements IAppState {
   public boxUuid = '';
   public activeTreeIndex = 2;
   public activeCompId = '';
+
+  public selecedFileInfo = null;
 
   @Mutation
   private SHOW_DASHBOARD(showDashboard: boolean) {
@@ -81,7 +84,10 @@ class App extends VuexModule implements IAppState {
     this.activeCompId = compId;
   }
 
-
+  @Mutation
+  private SET_SELECTED_FILE_INFO(item: any) {
+    this.selecedFileInfo = item;
+  }
 
   @Action
   public SetShowDashboard(showDashboard: boolean) {
@@ -92,7 +98,6 @@ class App extends VuexModule implements IAppState {
   public InsertData(insertData: any) {
     this.INSERT_DATA(insertData);
   }
-
 
   @Action
   public SetShowComponent(showComponentBox: boolean) {
@@ -129,5 +134,9 @@ class App extends VuexModule implements IAppState {
     this.SET_ACTIVE_COMP_ID(compId);
   }
 
+  @Action
+  public setSelecedFileInfo(item: any) {
+    this.SET_SELECTED_FILE_INFO(item);
+  }
 }
 export const AppModule = getModule(App);
