@@ -1,11 +1,23 @@
 const uuid = require('@lukeed/uuid');
+import * as prettier from 'prettier';
+import * as fsExtra from 'fs-extra';
+import * as Path from 'path';
+
+const cwd = process.cwd();
+const viewPath = Path.join(cwd, '..', 'sparrow-view/src/views/api.js')
 
 export default class Api {
   list:any = [];
+  scene: any = null;
+  constructor (scene: any) {
+    this.scene = scene;
+  }
 
-  constructor () {}
+  public resetScene (scene: any) {
+    this.scene = scene;
+  }
 
-  save (apiInfo, ctx) {
+  async save (apiInfo, ctx) {
     const { socket } = ctx;
     if (apiInfo.id) {
       const findIndex = this.list.findIndex(item => item.id === apiInfo.id);
@@ -16,6 +28,7 @@ export default class Api {
     }
 
     this.generateApi();
+    this.scene.appendApi(this.list);
 
     return {
       status: 0,
@@ -67,10 +80,25 @@ export default class Api {
           }
         `;
       }
-   
+
+      const formatTemp = prettier.format(apiTemp, { semi: true, parser: "babel" });
+      fsExtra.writeFileSync(viewPath, formatTemp, 'utf8');
     });
-    console.log('*********', apiTemp)
+
+    /**
+     * 
+     *  const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script> <style lang="scss" scoped>${this.style || ''}</style>`;
+    const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
+    if (formatTemp === this.formatTemp) {
+      return;
+    }
+    this.formatTemp = formatTemp;
+    if (this.isTime === false) {
+      this.storageScene();
+    }
+    this.isTime = false;
+    fsExtra.writeFileSync(viewPath, formatTemp, 'utf8');
+     */
+
   }
-
-
 }

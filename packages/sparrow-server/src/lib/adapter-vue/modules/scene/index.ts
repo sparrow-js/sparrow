@@ -13,7 +13,7 @@ import storage from '../../../storage';
 import lowdb from '../../../lowdb';
 import * as _ from 'lodash'
 import Block from '../box/Block';
-import { file } from '@babel/types';
+import ApiComp from '../api/api';
 
 const cwd = process.cwd();
 const viewPath = Path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
@@ -583,6 +583,19 @@ export default class Scene {
     }
   }
 
+  public appendApi (data) {
+    const apiComp = new ApiComp(data);
+
+    const findIndex = this.components.findIndex(item => item.name === 'api');
+    if (findIndex >= 0) {
+      this.components.splice(findIndex, 1, apiComp);
+    } else {
+      this.components.push(apiComp);
+    }
+
+    this.renderPage();
+  }
+
 
   public async renderPage (outputToFile: boolean = true) {
 
@@ -608,7 +621,8 @@ export default class Scene {
     this.loopThroughBox(this.components);
     const fn = (boxs, flag = 0) => {
       boxs.forEach((item, index) => {
-        if (flag === 0) {
+
+        if (flag === 0 && item.getFragment) {
           const blockListStr = blockList(index, item.getFragment(index).html());
           this.$('.home').append(blockListStr);
         }

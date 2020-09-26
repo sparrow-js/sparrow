@@ -131,8 +131,7 @@ export default class App extends Vue {
           if (data.uuid !== undefined) {
             AppModule.setBoxUuid(data.uuid);
           }
-        }, 200)
-
+        }, 200);
       }
     });
 

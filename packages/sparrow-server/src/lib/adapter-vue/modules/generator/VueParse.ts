@@ -26,18 +26,24 @@ export default class VueParse{
   }
 
   private init () {
-    const template = this.vueStr.match(/<template>([\s\S])*<\/template>/g)[0];
+    let template:any = this.vueStr.match(/<template>([\s\S])*<\/template>/g);
+    if (template) {
+      template = template[0];
+    }
     const style = this.vueStr.match(/(?<=<style[\s\S]*>)[\s\S]*(?=<\/style>)/g);
     if (style) {
       this.style = style[0];
     }
 
-    this.$ = cheerio.load(template, {
-      xmlMode: true,
-      decodeEntities: false
-    });
-
-    this.template = this.$('.root').html();
+    if (template) {
+      this.$ = cheerio.load(template, {
+        xmlMode: true,
+        decodeEntities: false
+      });
+  
+      this.template = this.$('.root').html();
+    }
+    
 
 
     this.vueScript = this.vueStr.match(/(?<=<script>)[\s\S]*(?=<\/script>)/g)[0];
