@@ -1,6 +1,9 @@
 <template>
   <div class="home drag-box" data-id="7a129dde">
     <div class="root">
+      <div class="tool-box">
+        <el-button type="primary" size="mini">swagger(待开发)</el-button>
+      </div>
       <el-table :border="true" style="width: 100%" :data="list">
         <el-table-column label="url">
           <template slot-scope="{ row, column, $index }">
@@ -66,7 +69,7 @@
 
                   <el-popconfirm
                     title="确定删除吗？"
-                    @onConfirm="remove(row.id)"
+                    @onConfirm="remove(row.id, $index)"
                   >
                     <el-button slot="reference" size="mini" type="danger">
                       删除
@@ -94,7 +97,10 @@
                   编辑
                 </el-button>
 
-                <el-popconfirm title="确定删除吗？" @onConfirm="remove(row.id)">
+                <el-popconfirm
+                  title="确定删除吗？"
+                  @onConfirm="remove(row.id, $index)"
+                >
                   <el-button slot="reference" size="mini" type="danger">
                     删除
                   </el-button>
@@ -124,6 +130,7 @@
 <script>
 import socket from '@/util/socket.js';
 import _ from 'lodash';
+import { AppModule } from '@/store/modules/app';
 
 export default {
   data() {
@@ -164,6 +171,7 @@ export default {
         return;
       } // 模拟网络请求、卡顿 800ms
       const res = await socket.emit('generator.api.save', {
+        uuid: AppModule.selecedFileInfo.uuid,
         id,
         url,
         methodName,
@@ -178,13 +186,18 @@ export default {
       this.listLoading = false;
     },
 
-    async remove(id) {
+    async remove(id, index) {
       // delete
-      const res = await socket.emit('generator.api.delete', {
-        id
-      });
-      const newData = this.list.filter(item => item.id !== id);
-      this.list = newData;
+      if (id) {
+        const res = await socket.emit('generator.api.delete', {
+          uuid: AppModule.selecedFileInfo.uuid,
+          id
+        });
+        const newData = this.list.filter(item => item.id !== id);
+        this.list = newData;
+      } else {
+        this.list.splice(index, 1);
+      }
     },
 
     cancel(id) {
@@ -203,7 +216,9 @@ export default {
 
     async fetchData() {
       this.listLoading = true;
-      const res = await socket.emit('generator.api.getList');
+      const res = await socket.emit('generator.api.getList', {
+        uuid: AppModule.selecedFileInfo.uuid
+      });
 
       this.list = res.list.map(item => {
         item.editable = false;

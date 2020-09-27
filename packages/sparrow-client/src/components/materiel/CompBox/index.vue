@@ -122,10 +122,9 @@
             {{ item.fileName }}
           </div>
         </div>
-        <div class="file-box">
+        <!-- <div class="file-box">
           <div class="codemirror-operate">
             <span class="update-data" @click.stop="updateCodeData">更新</span>
-            <!-- <i class="iconfont icon-iconfront-"></i> -->
           </div>
           <el-tabs v-model="activeNameCode" @tab-click="handleCodeClick">
             <el-tab-pane label="code" name="code">
@@ -135,8 +134,7 @@
               <json-handler :json-data="jsonData"></json-handler>
             </el-tab-pane>
           </el-tabs>
-
-        </div>
+        </div> -->
       </div>
 
       <div class="tab-content" v-show="activeTreeIndex === 5">

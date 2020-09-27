@@ -34,6 +34,7 @@ class generator{
 
   public async trash () {
     this.scene = new Scene();
+    this.api = new Api(this.scene);
     this.toolbar.resetScene(this.scene)
     await rimrafAsync(Config.componentsDir);
     return {

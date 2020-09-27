@@ -5,13 +5,13 @@ export default class ApiComp {
   uuid: string = '';
   vueParse: any;
   name: string = 'api';
+  path: string = '/api/api';
 
   constructor (data) {
     this.uuid = uuid().split('-')[0];
 
     const apiMethodList = [];
     const apiMethodNameList = [];
-    console.log('***11111****', data)
 
     data.forEach(item => {
       apiMethodNameList.push(item.methodName)
@@ -37,13 +37,13 @@ export default class ApiComp {
 
     const apiMethod = `
       <script>
-        import {${apiMethodNameList.join(',')}} from './api';
+        import {${apiMethodNameList.join(',')}} from '@/views/api';
         export default{
           methods: {
             ${apiMethodList.join(',')}
           }
         }
-      </script>  
+      </script>
     `;
 
     this.vueParse = new VueParse(this.uuid, apiMethod);

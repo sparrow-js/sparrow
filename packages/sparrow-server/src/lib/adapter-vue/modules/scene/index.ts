@@ -14,6 +14,7 @@ import lowdb from '../../../lowdb';
 import * as _ from 'lodash'
 import Block from '../box/Block';
 import ApiComp from '../api/api';
+import LifeCycle from '../LifeCycle'
 
 const cwd = process.cwd();
 const viewPath = Path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
@@ -55,6 +56,7 @@ export default class Scene {
     storage.set('preview_view_status', 0);
     this.renderPage = _.throttle(this.renderPage, 500)
     this.init();
+    this.initLifeCycle();
     if (initScene) {
       const fileStr = fsExtra.readFileSync(Path.join(Config.templatePath,'scene', initScene,'index.vue'), 'utf8');
       this.sceneVueParse = new VueParse(uuid().split('-')[0], fileStr);
@@ -99,6 +101,29 @@ export default class Scene {
       decodeEntities: false
     });
     this.scriptData = this.VueGenerator.initScript();
+
+    // 初始化生命周期
+  }
+
+  private async initLifeCycle() {
+    this.components.push(new LifeCycle());
+  }
+
+  async getLifeCycle({uuid}) {
+    const comp = this.findComponent(uuid, this.components) || this;
+    const lifeCycle = comp.components.find(item => item.name === 'lifeCycle');
+    return {
+      code: lifeCycle.getCode(),
+      status: 0
+    } 
+  }
+
+  async saveLifeCycle (data) {
+    const {uuid, code} = data;
+    const comp = this.findComponent(uuid, this.components) || this;
+    const lifeCycle = comp.components.find(item => item.name === 'lifeCycle');
+    lifeCycle.setCode(code);
+    this.renderPage();
   }
 
   loopThroughBox (boxs: any,) {
@@ -583,14 +608,15 @@ export default class Scene {
     }
   }
 
-  public appendApi (data) {
+  public appendApi (data, uuid) {
     const apiComp = new ApiComp(data);
+    const comp = this.findComponent(uuid, this.components) || this;
 
-    const findIndex = this.components.findIndex(item => item.name === 'api');
+    const findIndex = comp.components.findIndex(item => item.name === 'api');
     if (findIndex >= 0) {
-      this.components.splice(findIndex, 1, apiComp);
+      comp.components.splice(findIndex, 1, apiComp);
     } else {
-      this.components.push(apiComp);
+      comp.components.push(apiComp);
     }
 
     this.renderPage();

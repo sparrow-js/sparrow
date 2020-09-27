@@ -19,6 +19,7 @@ export default class Api {
 
   async save (apiInfo, ctx) {
     const { socket } = ctx;
+    const uuidStr = apiInfo.uuid;
     if (apiInfo.id) {
       const findIndex = this.list.findIndex(item => item.id === apiInfo.id);
       this.list[findIndex] = apiInfo;
@@ -28,7 +29,7 @@ export default class Api {
     }
 
     this.generateApi();
-    this.scene.appendApi(this.list);
+    this.scene.appendApi(this.list.filter(item => item.uuid === uuidStr), uuidStr);
 
     return {
       status: 0,
@@ -38,19 +39,21 @@ export default class Api {
     }
   }
 
-  delete (id) {
+  delete ({id, uuid}) {
     const findIndex = this.list.findIndex(item => item.id === id);
     this.list.splice(findIndex);
     this.generateApi();
+
+    this.scene.appendApi(this.list, uuid);
     return {
       status: 0
     }
   }
 
 
-  getList () {
+  getList ({uuid}) {
     return {
-      list: this.list,
+      list: this.list.filter(item => item.uuid === uuid),
       status: 0,
     }
   }
@@ -84,21 +87,5 @@ export default class Api {
       const formatTemp = prettier.format(apiTemp, { semi: true, parser: "babel" });
       fsExtra.writeFileSync(viewPath, formatTemp, 'utf8');
     });
-
-    /**
-     * 
-     *  const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script> <style lang="scss" scoped>${this.style || ''}</style>`;
-    const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
-    if (formatTemp === this.formatTemp) {
-      return;
-    }
-    this.formatTemp = formatTemp;
-    if (this.isTime === false) {
-      this.storageScene();
-    }
-    this.isTime = false;
-    fsExtra.writeFileSync(viewPath, formatTemp, 'utf8');
-     */
-
   }
 }
