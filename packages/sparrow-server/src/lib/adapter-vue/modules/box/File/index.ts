@@ -13,6 +13,8 @@ import {blockList} from '../../fragment/scene';
 import * as upperCamelCase from 'uppercamelcase';
 import generate from '@babel/generator';
 import LifeCycle from '../../LifeCycle'
+import ApiComp from '../../api';
+
 
 const uuid = require('@lukeed/uuid');
 
@@ -49,6 +51,8 @@ export default class File extends Base implements IBaseBox{
     this.params = params;
     if (config) {
       this.config = config;
+    } else {
+      this.initApi();
     }
     
     this.fileName = fileName.charAt(0).toUpperCase() + fileName.slice(1);
@@ -77,6 +81,11 @@ export default class File extends Base implements IBaseBox{
   init () {
     mkdirp.sync(Config.componentsDir);
     this.blockPath = path.join(Config.componentsDir, `${this.fileName}.vue`);
+  }
+
+  public initApi () {
+    const apiComp = new ApiComp();
+    this.components.push(apiComp);
   }
 
   private async initLifeCycle() {

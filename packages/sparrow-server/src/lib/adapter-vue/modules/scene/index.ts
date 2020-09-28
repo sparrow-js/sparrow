@@ -13,7 +13,7 @@ import storage from '../../../storage';
 import lowdb from '../../../lowdb';
 import * as _ from 'lodash'
 import Block from '../box/Block';
-import ApiComp from '../api/api';
+import ApiComp from '../api';
 import LifeCycle from '../LifeCycle'
 
 const cwd = process.cwd();
@@ -66,6 +66,7 @@ export default class Scene {
       this.config = params.config;
       this.jsonToScene(params, this);
     } else {
+      this.initApi();
       this.renderPage();
     }
   }
@@ -608,18 +609,55 @@ export default class Scene {
     }
   }
 
-  public appendApi (data, uuid) {
-    const apiComp = new ApiComp(data);
-    const comp = this.findComponent(uuid, this.components) || this;
+  public initApi () {
+    const apiComp = new ApiComp();
+    this.components.push(apiComp);
+  }
 
-    const findIndex = comp.components.findIndex(item => item.name === 'api');
-    if (findIndex >= 0) {
-      comp.components.splice(findIndex, 1, apiComp);
-    } else {
-      comp.components.push(apiComp);
-    }
+  public handlerApi(params) {
 
-    this.renderPage();
+    const {uuid, data} = params;
+    const apiCompBox = this.findComponent(uuid, this.components) || this;
+    const apiComp = apiCompBox.components.find(item => item.name === 'api');
+    return apiComp.handlerApi(data);
+  }
+
+
+  public renderApiFile(list: any) {
+    const apiList = list.reduce((origin,item) => {
+      const apiComp = item.components.find(comp => comp.name === 'api');
+      return origin.concat(apiComp.config.list);
+    }, []);
+
+    let apiTemp = `import request from '@/utils/request'`;
+    apiList.forEach(item => {
+      if (item.methodType === 'get') {
+        apiTemp += `
+          export function ${item.methodName}(params) {
+            return request({
+              url: '${item.url}',
+              method: '${item.methodType}',
+              params
+            })
+          }
+        `;
+
+      } else if (item.methodType === 'post') {
+        apiTemp += `
+          export function ${item.methodName}(data) {
+            return request({
+              url: '${item.url}',
+              method: '${item.methodType}',
+              data
+            })
+          }
+        `;
+      }
+
+      const formatTemp = prettier.format(apiTemp, { semi: true, parser: "babel" });
+      fsExtra.writeFileSync(viewPath, formatTemp, 'utf8');
+    });
+
   }
 
 
@@ -644,6 +682,7 @@ export default class Scene {
     let vueData = [];
     let importDeclarations = [];
     let vueComponents = [];
+    let fileList = [this];
     this.loopThroughBox(this.components);
     const fn = (boxs, flag = 0) => {
       boxs.forEach((item, index) => {
@@ -657,6 +696,7 @@ export default class Scene {
           this.VueGenerator.appendComponent(upperCamelCase(item.insertComponents[0]));
         }
         if (item.name === 'File') {
+          fileList.push(item);
           item.renderPage();
           return;
         }
@@ -709,6 +749,7 @@ export default class Scene {
     this.VueGenerator.appendData(vueData);
     this.VueGenerator.appendImport(importDeclarations);
     this.VueGenerator.appendAutoComponents(vueComponents);
+    this.renderApiFile(fileList);
     if (!this.$('.home').html()) {
       this.$('.home').append('<img style="width: 400px;height: 400px;position: absolute;left: 50%;transform: translate(-200px, 100px);" src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dded9db02e3f4052bbf451f04d3d9b5b~tplv-k3u1fbpfcp-zoom-1.image" />')
     }

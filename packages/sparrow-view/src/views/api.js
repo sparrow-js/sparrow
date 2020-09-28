@@ -6,3 +6,11 @@ export function getList(params) {
     params
   });
 }
+
+export function save(data) {
+  return request({
+    url: "/api/save",
+    method: "post",
+    data
+  });
+}

@@ -6,7 +6,6 @@ import * as util from 'util';
 import Config from '../../adapter-vue/config';
 import SceneData from '../../adapter-vue/data/SceneData'
 import lowdb from '../../lowdb';
-import Api from '../../adapter-vue/modules/api';
 const uuid = require('@lukeed/uuid');
 
 
@@ -25,7 +24,6 @@ class generator{
   public ready() {
 
     this.scene = new Scene();
-    this.api = new Api(this.scene);
     this.toolbar = new Toolbar(this.scene);
     this.toolbar.trash = this.trash.bind(this);
     this.toolbar.initScene = this.initScene.bind(this);
@@ -34,7 +32,6 @@ class generator{
 
   public async trash () {
     this.scene = new Scene();
-    this.api = new Api(this.scene);
     this.toolbar.resetScene(this.scene)
     await rimrafAsync(Config.componentsDir);
     return {
@@ -47,7 +44,6 @@ class generator{
     await this.trash();
     this.scene = new Scene(params.config);
     this.toolbar.resetScene(this.scene);
-    this.api.resetScene(this.scene);
   }
 
   public async useScene (params: any) {
@@ -56,7 +52,6 @@ class generator{
     await this.trash()
     this.scene = new Scene(scene.config);
     this.toolbar.resetScene(this.scene);
-    this.api.resetScene(this.scene);
   }
 }
 

@@ -170,12 +170,15 @@ export default {
         this.$message.error("请填写完整信息。");
         return;
       } // 模拟网络请求、卡顿 800ms
-      const res = await socket.emit('generator.api.save', {
+      const res = await socket.emit('generator.scene.handlerApi', {
         uuid: AppModule.selecedFileInfo.uuid,
-        id,
-        url,
-        methodName,
-        methodType
+        data: {
+          handler: 'save',
+          id,
+          url,
+          methodName,
+          methodType
+        }
       });
       const cur = this.list[index];
 
@@ -187,11 +190,13 @@ export default {
     },
 
     async remove(id, index) {
-      // delete
       if (id) {
-        const res = await socket.emit('generator.api.delete', {
+        const res = await socket.emit('generator.scene.handlerApi', {
           uuid: AppModule.selecedFileInfo.uuid,
-          id
+          data: {
+            handler: 'delete',
+            id
+          }
         });
         const newData = this.list.filter(item => item.id !== id);
         this.list = newData;
@@ -216,8 +221,11 @@ export default {
 
     async fetchData() {
       this.listLoading = true;
-      const res = await socket.emit('generator.api.getList', {
-        uuid: AppModule.selecedFileInfo.uuid
+      const res = await socket.emit('generator.scene.handlerApi', {
+        uuid: AppModule.selecedFileInfo.uuid,
+        data: {
+          handler: 'getList'
+        }
       });
 
       this.list = res.list.map(item => {
