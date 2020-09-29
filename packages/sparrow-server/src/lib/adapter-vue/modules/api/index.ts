@@ -10,8 +10,12 @@ export default class ApiComp {
     list: []
   };
 
-  constructor () {
+  constructor (data: any = {}) {
     this.uuid = uuid().split('-')[0];
+    const { config } = data;
+    if (config) {
+      this.config = config;
+    }
     this.renderApi();
   }
 
