@@ -1,8 +1,15 @@
 <template>
   <div class="home drag-box" data-id="7a129dde">
     <div class="root">
-      <div class="tool-box">
+      <!-- <div class="tool-box">
         <el-button type="primary" size="mini">swagger(待开发)</el-button>
+      </div> -->
+      <div>
+        <el-tag 
+          v-for="(item, index) in quickList"
+          :key="index"
+          @click="addQuick(item)"
+        >{{item.label}}</el-tag>
       </div>
       <el-table :border="true" style="width: 100%" :data="list">
         <el-table-column label="url">
@@ -145,6 +152,15 @@ export default {
           label: "post"
         }
       ],
+      quickList: [
+        {
+          url: '',
+          methodName: 'getList',
+          label: '获取列表',
+          methodType: 'get',
+          apiType: 'getList'
+        }
+      ],
       list: [],
       listLoading: true,
       tableItem: {
@@ -174,10 +190,7 @@ export default {
         uuid: AppModule.selecedFileInfo.uuid,
         data: {
           handler: 'save',
-          id,
-          url,
-          methodName,
-          methodType
+          ...row
         }
       });
       const cur = this.list[index];
@@ -240,6 +253,15 @@ export default {
         editable: true,
         isNew: true
       });
+      this.list.push(item);
+    },
+
+    addQuick(quickItem) {
+      const item = Object.assign(_.cloneDeep(quickItem), {
+        editable: true,
+        isNew: true
+      });
+
       this.list.push(item);
     }
   },

@@ -1,4 +1,5 @@
 import VueParse from '../generator/VueParse';
+import {getApiTemp} from './ApiStr';
 const uuid = require('@lukeed/uuid');
 
 export default class ApiComp {
@@ -72,7 +73,12 @@ export default class ApiComp {
     const apiMethodNameList = [];
     const {list} = this.config;
     list.forEach(item => {
-      apiMethodNameList.push(item.methodName)
+      apiMethodNameList.push(item.methodName);
+      if (item.apiType) {
+        apiMethodList.push(getApiTemp(item.apiType, item.methodName));
+        return;
+      }
+
       if (item.methodType === 'get') {
         apiMethodList.push(
           `
