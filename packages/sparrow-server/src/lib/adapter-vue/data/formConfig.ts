@@ -88,7 +88,7 @@ export const componentConf = [
     keys: ['表单', '组件', '选择器'],
   },
   {
-    label: '可清空单选选择器',
+    label: '清空单选选择器',
     key: 'Select',
     icon: '#icon-xuanzeqi',
     params: {
@@ -108,7 +108,7 @@ export const componentConf = [
     keys: ['表单', '组件', '多选选择器'],
   },
   {
-    label: '可搜索选择器',
+    label: '搜索选择器',
     key: 'Select',
     icon: '#icon-xuanzeqi',
     params: {
@@ -178,36 +178,36 @@ export const componentConf = [
     keys: ['表单', '组件', '日期选择'],
   },
   {
-    label: '范围日期选择',
+    label: '范围日期',
     key: 'DatePicker',
     icon: '#icon-riqi',
     params: {
       type: 'range'
     },
-    des: '范围日期选择',
+    des: '范围日期',
     keys: ['表单', '组件', '范围日期选择'],
   },
 
   {
-    label: '日期时间选择',
+    label: '日期时间',
     key: 'DateTimePicker',
     des: '日期时间选择',
     icon: '#icon-riqi',
     keys: ['表单', '组件', '日期时间选择'],
   },
   {
-    label: '范围日期时间选择',
+    label: '范围日期时间',
     key: 'DateTimePicker',
     icon: '#icon-riqi',
     params: {
       type: 'range'
     }, 
-    des: '范围日期时间选择',
+    des: '范围日期时间',
     keys: ['表单', '组件', '范围日期时间选择'],
   },
 
   {
-    label: '用户头像上传',
+    label: '头像上传',
     key: 'UploadAvatar',
     des: '用户头像上传',
     icon: '#icon-icon-test',

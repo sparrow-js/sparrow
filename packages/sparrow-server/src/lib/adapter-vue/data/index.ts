@@ -198,6 +198,7 @@ const widgetList = [
         id: 'Divider',
         key: 'Divider',
         label: 'Divider',
+        icon: '#icon-fengexian',
         des: '分割线, Divider',
         keys: ['分割线', 'Divider']
       },
@@ -205,6 +206,7 @@ const widgetList = [
         id: 'Popconfirm',
         key: 'Popconfirm',
         label: 'Popconfirm',
+        icon: '#icon-zujian-danchuang',
         des: '气泡确认框, Popconfirm',
         keys: ['气泡确认框', 'Popconfirm']
       }
