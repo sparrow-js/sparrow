@@ -7,6 +7,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import { receiveMessage } from './util/messageBridge';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import './assets/icon/iconfont.css';
+import './assets/icon/iconfont.js';
+import './assets/index.css';
 import VueFormGenerator from 'vue-form-generator';
 import 'vue-form-generator/dist/vfg.css'
 import ArrayContainer from './components/setting/ArrayContainer.vue';

@@ -1,8 +1,7 @@
 import box from './box';
 import {componentConf} from './formConfig';
 import {tableConf} from './tableConfig';
-import {BasicTableConf} from './BasicTable';
-import {BaseFormConf} from './BaseForm';
+// import {BasicTableConf} from './BasicTable';
 import RegisterComp from '../../RegisterComp';
 import {custom} from './CustomComp';
 import * as _ from 'lodash';
@@ -155,12 +154,14 @@ const widgetList = [
         key: 'Button',
         label: 'Button',
         des: '按钮，Button',
+        icon: '#icon-button-component',
         keys: ['按钮', 'Button', '操作'],
       },
       {
         id: 'Link',
         key: 'Link',
         label: 'link',
+        icon: '#icon-link',
         des: '按钮，link',
         keys: ['链接', 'link', '操作'],
       },
@@ -168,6 +169,7 @@ const widgetList = [
         id: 'Tag',
         key: 'Tag',
         label: 'Tag',
+        icon: '#icon-biaoqian',
         des: '标签，Icon',
         keys: ['标签', 'Icon', '操作'],
       }
@@ -181,6 +183,7 @@ const widgetList = [
         id: 'Image',
         key: 'Image',
         label: 'Image',
+        icon: '#icon-tupian',
         des: '图片，Image',
         keys: ['图片', 'Image', '展示'],
       },
@@ -221,8 +224,8 @@ export default class Data {
     return {
       form: componentConf,
       table: tableConf,
-      BasicTable: BasicTableConf,
-      BaseForm: BaseFormConf,
+      // BasicTable: BasicTableConf,
+      // BaseForm: BaseFormConf,
       Container: {
         list: box
       }

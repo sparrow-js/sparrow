@@ -42,6 +42,11 @@
                 >
                   <div class="drag-box">
                     <div class="drag-box-item">
+                      <div class="svg-icon-box">
+                        <svg class="icon svg-icon" aria-hidden="true">
+                          <use :xlink:href="comp.icon"></use>
+                        </svg>
+                      </div>
                       <span class="comp-list-label">{{ comp.label }}</span>
                     </div>
                   </div>
@@ -615,6 +620,16 @@ export default {
   background-color: #fef0f0;
 }
 
+.svg-icon{
+  // width: 2em;
+}
+.svg-icon-box{
+  width: 36px;
+  height: 46px;
+}
+.icon{
+  height: 28px;
+}
 </style>
 <style lang="scss">
 .toolbox .el-tabs--border-card>.el-tabs__content{

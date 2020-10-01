@@ -16,12 +16,14 @@ export const componentConf = [
     label: '输入框',
     key: 'Input',
     des: '标准输入框',
+    icon: '#icon-shurukuang',
     keys: ['表单', '组件', '输入框'],
   },
   {
     label: '文本域',
     key: 'Input',
     des: '文本域',
+    icon: '#icon-wenbenyu',
     keys: ['表单', '组件', '输入框', '文本域'],
     params: {
       type: 'textarea',
@@ -31,12 +33,14 @@ export const componentConf = [
     label: '输入建议',
     key: 'Autocomplete',
     des: '输入建议',
+    icon: '#icon-Advice_icon',
     keys: ['表单', '组件', '输入框', '输入建议'],
   },
   {
     label: '计数器',
     key: 'InputNumber',
     des: '计数器',
+    icon: '#icon-jisuanqi',
     keys: ['表单', '组件', '输入框', '计数器', '计数'],
   },
 
@@ -44,11 +48,13 @@ export const componentConf = [
     label: '单选框',
     key: 'RadioGroup',
     des: '单选框',
+    icon: '#icon-danxuankuang',
     keys: ['表单', '组件', '单选框'],
   },
   {
     label: '按钮单选',
     key: 'RadioGroup',
+    icon: '#icon-danxuankuang',
     params: {
       type: 'button'
     },
@@ -59,12 +65,14 @@ export const componentConf = [
   {
     label: '多选框',
     key: 'CheckboxGroup',
+    icon: '#icon-duoxuankuangxuanzhong',
     des: '多选框',
     keys: ['表单', '组件', '多选框'],
   },
   {
     label: '多选按钮',
     key: 'CheckboxGroup',
+    icon: '#icon-duoxuankuangxuanzhong',
     params: {
       type: 'button'
     },
@@ -75,12 +83,14 @@ export const componentConf = [
   {
     label: '选择器',
     key: 'Select',
+    icon: '#icon-xuanzeqi',
     des: '选择器',
     keys: ['表单', '组件', '选择器'],
   },
   {
     label: '可清空单选选择器',
     key: 'Select',
+    icon: '#icon-xuanzeqi',
     params: {
       type: 'clearable'
     },
@@ -90,6 +100,7 @@ export const componentConf = [
   {
     label: '多选选择器',
     key: 'Select',
+    icon: '#icon-xuanzeqi',
     params: {
       type: 'multiple'
     },
@@ -99,6 +110,7 @@ export const componentConf = [
   {
     label: '可搜索选择器',
     key: 'Select',
+    icon: '#icon-xuanzeqi',
     params: {
       type: 'filterable'
     },
@@ -108,6 +120,7 @@ export const componentConf = [
   {
     label: '创建条目选择器',
     key: 'Select',
+    icon: '#icon-xuanzeqi',
     params: {
       type: 'allow-create'
     },
@@ -118,6 +131,7 @@ export const componentConf = [
   {
     label: '级联选择器',
     key: 'Cascader',
+    icon: '#icon-jiliandongxuanzeqi',
     des: '级联选择器',
     keys: ['表单', '组件', '级联选择器'],
   },
@@ -126,6 +140,7 @@ export const componentConf = [
     label: '基础开关',
     key: 'Switch',
     des: '基础开关',
+    icon: '#icon-kaiguan',
     keys: ['表单', '组件', '基础开关'],
   },
 
@@ -133,6 +148,7 @@ export const componentConf = [
     label: '滑块',
     key: 'Slider',
     des: '基础滑块',
+    icon: '#icon-huakuai',
     keys: ['表单', '组件', '基础滑块'],
   },
 
@@ -140,11 +156,13 @@ export const componentConf = [
     label: '时间选择',
     key: 'TimePicker',
     des: '时间选择',
+    icon: '#icon-shijian',
     keys: ['表单', '组件', '时间选择'],
   },
   {
     label: '范围时间选择',
     key: 'TimePicker',
+    icon: '#icon-shijian',
     params: {
       type: 'range',
     },
@@ -156,11 +174,13 @@ export const componentConf = [
     label: '日期选择',
     key: 'DatePicker',
     des: '日期选择',
+    icon: '#icon-riqi',
     keys: ['表单', '组件', '日期选择'],
   },
   {
     label: '范围日期选择',
     key: 'DatePicker',
+    icon: '#icon-riqi',
     params: {
       type: 'range'
     },
@@ -172,11 +192,13 @@ export const componentConf = [
     label: '日期时间选择',
     key: 'DateTimePicker',
     des: '日期时间选择',
+    icon: '#icon-riqi',
     keys: ['表单', '组件', '日期时间选择'],
   },
   {
     label: '范围日期时间选择',
     key: 'DateTimePicker',
+    icon: '#icon-riqi',
     params: {
       type: 'range'
     }, 
@@ -188,6 +210,7 @@ export const componentConf = [
     label: '用户头像上传',
     key: 'UploadAvatar',
     des: '用户头像上传',
+    icon: '#icon-icon-test',
     keys: ['表单', '组件', '用户头像上传'],
   },
 
@@ -195,12 +218,14 @@ export const componentConf = [
     label: '评分',
     key: 'Rate',
     des: '评分',
+    icon: '#icon-pingfen',
     keys: ['表单', '组件', '评分'],
   },
   {
     label: '详情展示',
     key: 'FormEditText',
     des: '详情展示',
+    icon: '',
     keys: ['表单', '详情展示'],
   }
 ];
