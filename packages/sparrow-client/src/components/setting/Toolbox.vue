@@ -156,12 +156,12 @@ export default {
       search: '',
       widget: '组件',
       compList: [],
-      activeNames: [0, 1, 2],
+      activeNames: [0, 1, 2, 3, 4, 5, 6],
       blockNames: [0],
       staticBlockList: [],
       widgetData: {},
       editBlockList: [],
-      editBlockActiveNames: [0, 1, 2],
+      editBlockActiveNames: [0, 1, 2, 3, 4, 5, 6],
       form: {
         fileName: ''
       },

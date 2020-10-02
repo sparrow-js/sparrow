@@ -292,6 +292,15 @@ export default class Data {
         type: 'editBox',
         list: [
           {
+            // BaseForm
+            id: 'BaseForm',
+            key: 'BaseForm',
+            label: '基础表单',
+            path: '/EditBlock/BaseForm',
+            thumb: '',
+            icon: ''
+          },
+          {
             id: 'CardForm',
             key: 'CardForm',
             label: '卡片表单',

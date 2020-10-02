@@ -38,8 +38,6 @@
       >
         <i class="el-icon el-icon-search"></i>
       </div>
-
-
     </div>
     <div class="tabs-body" v-show="[0, 3, 4, 5].includes(activeTreeIndex)">
       <div class="tree" v-show="activeTreeIndex === 0">
@@ -61,14 +59,13 @@
                   @click="deleteComponent(data.id)"
                 ></i>
               </span>
-               <span class="icon-plus" v-if="data.label === 'column'">
-                  <i
-                    class="el-icon-circle-plus"
-                    @click="addTableColumn(data.id, node)"
-                  ></i>
-                </span>
+              <span class="icon-plus" v-if="data.label === 'column'">
+                <i
+                  class="el-icon-circle-plus"
+                  @click="addTableColumn(data.id, node)"
+                ></i>
+              </span>
             </div>
-      
           </span>
         </el-tree>
       </div>
@@ -113,13 +110,14 @@
       </div>
 
       <div v-show="activeTreeIndex === 4">
-        <div>
-          <div class="file-item"
-            v-for="item in fileList"
-            :key="item.uuid"
-            @click="openToolDialog(item)"
-          >
-            {{ item.fileName }}
+        <div class="file-item"
+          v-for="item in fileList"
+          :key="item.uuid"
+          @click="openToolDialog(item)"
+        >
+          {{ item.fileName }}
+          <div>
+            <i @click.stop="openDrawerHandler" class="iconfont icon-data"></i>
           </div>
         </div>
         <!-- <div class="file-box">
@@ -178,6 +176,18 @@
         <tool-box v-if="toolVisible" />
       </div>
     </el-dialog>
+
+    <el-drawer
+      title="我是标题"
+      :visible.sync="openDrawer"
+      :modal="false"
+      class="custom-drawer"
+      :direction="'ltr'"
+      :before-close="handleClose"
+      :size="'320px'"
+      :wrapperClosable="false">
+      <json-handler :json-data="jsonData"></json-handler>
+    </el-drawer>
   </div>
 </template>
 
@@ -212,6 +222,7 @@ export default class CompBox extends Vue {
   private widgetData = null;
   private fileList = [];
   private toolVisible = false;
+  private openDrawer = false;
 
   get activeTreeIndex() {
     return AppModule.activeTreeIndex;
@@ -395,6 +406,11 @@ export default class CompBox extends Vue {
     this.widgetData.type = 'custom';
     this.$root.$emit('mousedown_widget', this.widgetData);
   }
+
+  private openDrawerHandler() {
+    this.openDrawer = true;
+    console.log('*************')
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -573,9 +589,15 @@ export default class CompBox extends Vue {
   padding: 10px;
   border-bottom: 1px solid #dcdfe6;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .file-item:hover{
   background-color: #79bbff;
   color: #fff;
+}
+.custom-drawer{
+  width: 321px;
 }
 </style>

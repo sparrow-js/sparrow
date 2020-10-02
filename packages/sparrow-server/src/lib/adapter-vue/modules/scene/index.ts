@@ -56,7 +56,6 @@ export default class Scene {
     storage.set('preview_view_status', 0);
     this.renderPage = _.throttle(this.renderPage, 500)
     this.init();
-    this.initLifeCycle();
     if (initScene) {
       const fileStr = fsExtra.readFileSync(Path.join(Config.templatePath,'scene', initScene,'index.vue'), 'utf8');
       this.sceneVueParse = new VueParse(uuid().split('-')[0], fileStr);
@@ -67,6 +66,7 @@ export default class Scene {
       this.jsonToScene(params, this);
     } else {
       this.initApi();
+      this.initLifeCycle();
       this.renderPage();
     }
   }
