@@ -1,4 +1,7 @@
 import VueParse from '../generator/VueParse';
+import generate from '@babel/generator';
+import * as parser from '@babel/parser';
+
 const uuid = require('@lukeed/uuid');
 
 export default class LifeCycle {
@@ -29,6 +32,18 @@ export default class LifeCycle {
     }
 
     this.parseToVueParse();
+  }
+
+  private handlerLifeCycle (data) {
+    const {handler} = data;
+    if (this[handler]) {
+      return this[handler](data);
+    }
+  }
+
+  private getData() {
+    console.log('************',this.vueParse.getFormatData());
+    return new Function(`${this.vueParse.getFormatData()};return data;`)();
   }
 
   private parseToVueParse () {

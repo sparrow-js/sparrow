@@ -615,12 +615,20 @@ export default class Scene {
   }
 
   public handlerApi(params) {
-
     const {uuid, data} = params;
     const apiCompBox = this.findComponent(uuid, this.components) || this;
     const apiComp = apiCompBox.components.find(item => item.name === 'api');
     return apiComp.handlerApi(data);
   }
+
+  public handlerLifeCycle(params) {
+    const {uuid, data} = params;
+    const apiCompBox = this.findComponent(uuid, this.components) || this;
+    const apiComp = apiCompBox.components.find(item => item.name === 'lifeCycle');
+    console.log('******11******', params);
+    return apiComp.handlerLifeCycle(data);
+  }
+
 
 
   public renderApiFile(list: any) {

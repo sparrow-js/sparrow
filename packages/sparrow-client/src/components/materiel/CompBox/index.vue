@@ -117,7 +117,7 @@
         >
           {{ item.fileName }}
           <div>
-            <i @click.stop="openDrawerHandler" class="iconfont icon-data"></i>
+            <i @click.stop="openDrawerHandler(item)" class="iconfont icon-data"></i>
           </div>
         </div>
         <!-- <div class="file-box">
@@ -183,7 +183,6 @@
       :modal="false"
       class="custom-drawer"
       :direction="'ltr'"
-      :before-close="handleClose"
       :size="'320px'"
       :wrapperClosable="false">
       <json-handler :json-data="jsonData"></json-handler>
@@ -407,9 +406,14 @@ export default class CompBox extends Vue {
     this.$root.$emit('mousedown_widget', this.widgetData);
   }
 
-  private openDrawerHandler() {
+  private async openDrawerHandler(item) {
     this.openDrawer = true;
-    console.log('*************')
+    const res = await socket.emit('generator.scene.handlerLifeCycle', {
+      uuid: item.uuid,
+      data: {
+        handler: 'getData'
+      }
+    });
   }
 }
 </script>
