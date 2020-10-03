@@ -42,7 +42,6 @@ export default class LifeCycle {
   }
 
   private getData() {
-    console.log('************',this.vueParse.getFormatData());
     return new Function(`${this.vueParse.getFormatData()};return data;`)();
   }
 

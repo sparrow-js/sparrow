@@ -414,6 +414,7 @@ export default class CompBox extends Vue {
         handler: 'getData'
       }
     });
+    this.jsonData = JSON.stringify(res);
   }
 }
 </script>

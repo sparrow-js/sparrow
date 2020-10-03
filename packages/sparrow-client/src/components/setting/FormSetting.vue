@@ -93,7 +93,8 @@ export default class extends Vue {
 
     window.EventCustomer.addListener('click_json_tree_callback', data => {
       try {
-        this.config.model.attr['v-model'] = data.path === 'JSON' ? '' : data.path.replace('JSON.', '');
+        this.$set(this.config.model.attr, 'v-model', data.path === 'JSON' ? '' : data.path.replace('JSON.', ''))
+        // this.config.model.attr['v-model'] = data.path === 'JSON' ? '' : data.path.replace('JSON.', '');
       } catch (e) {}
       
     })
