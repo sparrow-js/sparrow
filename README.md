@@ -1,6 +1,6 @@
 # sparrow
 
- <img src="https://unpkg.com/@sparrow-vue/images@1.0.16/assets/home.gif"  width = "520"  alt="图片名称" align="center" >
+ <img src="https://unpkg.com/@sparrow-vue/images@1.0.17/assets/anim.gif"  width = "520"  alt="图片名称" align="center" >
 
  <img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8aa8330af05846dfbcae01de8f1a19ee~tplv-k3u1fbpfcp-zoom-1.image?imageslim" width = "520"  alt="图片名称" align="center" />
 
