@@ -28,10 +28,10 @@ export default class Divider extends Common{
     const type = this.storage.get('preview_view_status') || 0;
     let divider = '';
     if (type === 0) {
-      divider = `<el-divider></el-divider>`
+      divider = `<el-divider ${this._attrStr}></el-divider>`
     } else {
       divider = `
-        <el-divider></el-divider>
+        <el-divider ${this._attrStr}></el-divider>
       `;
     }
     return divider;

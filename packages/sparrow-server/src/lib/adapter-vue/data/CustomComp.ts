@@ -321,6 +321,21 @@ export const custom = [
     keys: ['表格', 'AdvancedTable', '高级表单', '新增'],
     path: '/EditBlock/AdvancedTable/NewButton',
   },
+  // divder
+  {
+    key: 'HDivder',
+    label: 'HDivder',
+    des: '水平分割线',
+    keys: ['水平分割线', 'Divder'],
+    path: '/custom/DividerCollect/HDivder',
+  },
+  {
+    key: 'VDivder',
+    label: 'VDivder',
+    des: '垂直分割线',
+    keys: ['垂直分割线', '分割线'],
+    path: '/custom/DividerCollect/VDivder',
+  },
 
   // ing
 

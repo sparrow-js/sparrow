@@ -1,7 +1,7 @@
 export default {
   model: {
     attr: {
-      class: "",
+      direction: "",
       'content-position': '',
     },
     custom: {
@@ -18,8 +18,8 @@ export default {
           fields: [
             {
               type: "select",
-              label: "size",
-              model: "size",
+              label: "direction",
+              model: "direction",
               multi: true,
               values: ["horizontal", "vertical", ""]
             },

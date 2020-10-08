@@ -88,7 +88,7 @@ export const componentConf = [
     keys: ['表单', '组件', '选择器'],
   },
   {
-    label: '清空单选选择器',
+    label: '清空单选',
     key: 'Select',
     icon: '#icon-xuanzeqi',
     params: {
@@ -118,7 +118,7 @@ export const componentConf = [
     keys: ['表单', '组件', '可搜索选择器'],
   },
   {
-    label: '创建条目选择器',
+    label: '创建条目',
     key: 'Select',
     icon: '#icon-xuanzeqi',
     params: {
@@ -160,13 +160,13 @@ export const componentConf = [
     keys: ['表单', '组件', '时间选择'],
   },
   {
-    label: '范围时间选择',
+    label: '范围时间',
     key: 'TimePicker',
     icon: '#icon-shijian',
     params: {
       type: 'range',
     },
-    des: '范围时间选择',
+    des: '范围时间',
     keys: ['表单', '组件', '范围时间选择'],
   },
 
@@ -196,7 +196,7 @@ export const componentConf = [
     keys: ['表单', '组件', '日期时间选择'],
   },
   {
-    label: '范围日期时间',
+    label: '范围日时',
     key: 'DateTimePicker',
     icon: '#icon-riqi',
     params: {
