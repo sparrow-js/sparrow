@@ -2,6 +2,7 @@ export default {
   model: {
     attr: {
       'v-if': '',
+      ':style': '',
     },
   },
   schema: {
@@ -21,6 +22,22 @@ export default {
           ]
         }
       },
+      {
+        type: 'object',
+        label: '',
+        model: 'attr',
+        schema: {
+          fields: [
+            {
+              type: "input",
+              inputType: "text",
+              label: "style",
+              model: ":style"
+            },
+          ]
+        }
+      }
+
     ]
   },
 }

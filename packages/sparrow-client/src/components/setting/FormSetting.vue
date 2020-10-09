@@ -1,41 +1,40 @@
 <template>
   <div class="setting-box">
-      <div style="height: 100%;">
+    <div style="height: 100%;">
+      <div>
+        <span class="update-data" @click.stop="syncConfig">更新</span>
+      </div>
+      <el-divider></el-divider>
+      <div class="generator-box" v-if="config && config.schema && config.model">
+        <vue-form-generator 
+          :schema="config.schema" 
+          :model="config.model" 
+          :options="formOptions"
+        ></vue-form-generator>
+      </div>
+    </div>
+    <div class="drawer">
+      <!-- <el-drawer
+        title=""
+        :visible.sync="showCodeDraw"
+        :append-to-body="true"
+        :modal="false"
+        custom-class="drawer-st"
+        >
+
         <div>
-          <span class="update-data" @click.stop="syncConfig">更新</span>
-        </div>
-        <el-divider></el-divider>
-        <div class="generator-box" v-if="config && config.schema && config.model">
-          <vue-form-generator 
-            :schema="config.schema" 
-            :model="config.model" 
-            :options="formOptions"
-          ></vue-form-generator>
-        </div>
-      </div>
-  
-      <div class="drawer">
-        <!-- <el-drawer
-          title=""
-          :visible.sync="showCodeDraw"
-          :append-to-body="true"
-          :modal="false"
-          custom-class="drawer-st"
-          >
+          <codemirror
+            v-if="codeEditType === 'form'"
+            v-model="setting.dataCode"
+          ></codemirror>
 
-          <div>
-            <codemirror
-              v-if="codeEditType === 'form'"
-              v-model="setting.dataCode"
-            ></codemirror>
-
-            <codemirror
-              v-if="codeEditType === 'formItem'"
-              v-model="config._slot.data"
-            ></codemirror>
-          </div>
-        </el-drawer> -->
-      </div>
+          <codemirror
+            v-if="codeEditType === 'formItem'"
+            v-model="config._slot.data"
+          ></codemirror>
+        </div>
+      </el-drawer> -->
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -110,7 +109,7 @@ export default class extends Vue {
         AppModule.setActiveCompId(this.uuid);
         this.config = result;
         this.$emit('change', {id: this.uuid});
-        this.refresh(); 
+        this.refresh();
       }
 
       if (data.handler === 'client.dispatch.box') {
@@ -123,7 +122,6 @@ export default class extends Vue {
         this.$emit('change', {id: this.uuid});
         this.refresh();
       }
-
     })
   }
 

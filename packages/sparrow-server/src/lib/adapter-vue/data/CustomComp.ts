@@ -337,6 +337,14 @@ export const custom = [
     path: '/custom/DividerCollect/VDivder',
   },
 
+  // AdvancedSearch 折叠搜索
+  {
+    key: 'Advanced',
+    label: 'Advanced',
+    des: '折叠搜索',
+    keys: ['折叠搜索', '收起', '展开'],
+    path: '/EditBlock/AdvancedSearch/Advanced',
+  }
   // ing
 
 ]

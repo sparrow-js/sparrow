@@ -323,6 +323,14 @@ export default class Data {
             path: '/EditBlock/AdvancedTable',
             thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.6/assets/1000014.png',
             icon: ''
+          },
+          {
+            id: 'AdvancedSearch',
+            key: 'AdvancedSearch',
+            label: '折叠搜索表单',
+            path: '/EditBlock/AdvancedSearch',
+            thumb: '',
+            icon: ''
           }
         ]
       },

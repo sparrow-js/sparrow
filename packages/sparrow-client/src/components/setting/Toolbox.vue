@@ -111,7 +111,7 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="属性" class="widget-collapse" name="setting">
-        <FormSetting @change="settingChange"/>
+        <FormSetting @change="settingChange" />
         <div class="footer-delete" @click="deleteComp">
           删除
         </div>
@@ -402,7 +402,7 @@ export default {
     },
     settingChange (data) {
       this.settingId = data.id;
-      this.activeBoxName = 'setting';
+      // this.activeBoxName = 'setting';
     },
     async deleteComp () {  
       await socket.emit('generator.scene.deleteComponent', {
