@@ -284,7 +284,7 @@ export default {
         Sortable.create(item, {
           group: {
             name: 'shared',
-            pull: 'clone',
+            // pull: 'clone',
           },
           sort: false,
           ghostClass: 'sortable-ghost',

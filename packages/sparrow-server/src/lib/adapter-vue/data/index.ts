@@ -329,7 +329,7 @@ export default class Data {
             key: 'AdvancedSearch',
             label: '折叠搜索表单',
             path: '/EditBlock/AdvancedSearch',
-            thumb: '',
+            thumb: 'https://unpkg.com/@sparrow-vue/images@1.0.22/assets/1000033.png',
             icon: ''
           }
         ]
