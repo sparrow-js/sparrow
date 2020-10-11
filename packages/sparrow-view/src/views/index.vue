@@ -1,44 +1,20 @@
 <template>
-  <div class="home drag-box" data-id="f451a28d">
+  <div class="home drag-box" data-id="dba44842">
     <el-container
       data-design-mode="design-border"
       data-instance-name="box"
       class="drag-box"
-      data-id="8d2f24b1"
+      data-id="42aac032"
     >
-      <el-header
+      <el-aside
         data-design-mode="design-border"
-        data-instance-name="ElHeader"
+        data-instance-name="ElAside"
+        width="100px"
         class="drag-box"
-        data-id="2f24b132"
-        ><div class="empty-container">empty</div></el-header
+        data-id="aac0329f"
+        ><div class="empty-container">empty</div></el-aside
       >
-
-      <el-container
-        data-design-mode="design-border"
-        data-instance-name="box"
-        class="drag-box"
-        data-id="24b13226"
-      >
-        <el-aside
-          data-design-mode="design-border"
-          data-instance-name="ElAside"
-          class="drag-box"
-          data-id="b1322688"
-          ><div class="empty-container">empty</div></el-aside
-        >
-
-        <el-main
-          data-design-mode="design-border"
-          data-instance-name="ElMain"
-          class="drag-box"
-          data-id="3226889d"
-          ><div class="empty-container">empty</div></el-main
-        >
-      </el-container>
     </el-container>
-
-    <div />
   </div>
 </template>
 

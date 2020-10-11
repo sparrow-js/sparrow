@@ -34,6 +34,7 @@ export default class ElAside extends Base  {
   public setPreview () {
     const type = this.storage.get('preview_view_status') || 0;
     this.previewType = type;
+    console.log('*************', this._attrStr);
     if (type === 0) {
 
       this.$fragment = cheerio.load(` 

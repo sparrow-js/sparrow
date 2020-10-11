@@ -124,6 +124,11 @@ export default {
           const uuid = target.dataset.id;
           message.emit('client.dispatch.box', {
             uuid,
+            data: {
+              params: {
+                uuid,
+              }
+            }
           });
         }
       })
@@ -208,7 +213,7 @@ export default {
     align-items: center;
     color: #C0C4CC;
   }
-  /* .sortable-chosen{display: none} */
+
   [data-design-mode*=design-]{
     padding: 5px;
   }
