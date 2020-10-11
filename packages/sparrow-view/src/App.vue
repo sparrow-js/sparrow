@@ -77,6 +77,9 @@ export default {
     })
 
   },
+  mounted () {
+    this.bindBoxClick();
+  },
   methods: {
     showToolbarChange (data) {
       this.isShowToolbar = data;
@@ -98,6 +101,32 @@ export default {
       message.emit('client.app.init', {
         uuid: '',
       });
+    },
+    bindBoxClick () {
+      // const boxList = document.querySelectorAll('[data-design-mode*=design-]');
+      //.addEventListener('click', )
+      document.body.addEventListener('click', (event) => {
+        let {target} = event;
+        while(target && target.dataset.designMode === undefined) {
+          const node = target.parentNode;
+          if (node.nodeName === 'BODY') {
+            target = undefined;
+          } else {
+            target = node;
+          }
+        }
+        if (target) {
+          const boxList = document.querySelectorAll('[data-design-mode*=design-]');
+          boxList.forEach((item) => {
+            item.removeAttribute('data-active');
+          })
+          target.setAttribute('data-active', true);
+          const uuid = target.dataset.id;
+          message.emit('client.dispatch.box', {
+            uuid,
+          });
+        }
+      })
     }
   }
 }
@@ -180,4 +209,45 @@ export default {
     color: #C0C4CC;
   }
   /* .sortable-chosen{display: none} */
+  [data-design-mode*=design-]{
+    padding: 5px;
+  }
+  [data-design-mode*=design-][data-active=true]{
+    outline: 1px solid #1861d5!important;
+    position: relative;
+  }
+
+  [data-design-mode*=design-]:hover {
+    outline: 1px dotted #2077ff
+  }
+
+
+  [data-design-mode*=design-][data-active=true]:before{
+    display: block;
+    color: #fff!important;
+    background: #1861d5!important;
+  }
+
+  [data-design-mode*=design-]:before{
+    display: none;
+    content: attr(data-instance-name)!important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: unset;
+    bottom: unset;
+    color: #666!important;
+    font-size: 12px!important;
+    float: left;
+    padding: 0 5px!important;
+    line-height: 12px!important;
+    height: 12px;
+    overflow: hidden;
+    background: hsla(0,0%,87.1%,.7);
+    z-index: 2;
+    border-left: 3px solid transparent;
+    transform-origin: 0 0;
+    transform: scale(.8);
+    transition: all .3s ease
+  }
 </style>

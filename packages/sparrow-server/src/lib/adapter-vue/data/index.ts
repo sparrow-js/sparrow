@@ -1,7 +1,6 @@
 import box from './box';
 import {componentConf} from './formConfig';
 import {tableConf} from './tableConfig';
-// import {BasicTableConf} from './BasicTable';
 import RegisterComp from '../../RegisterComp';
 import {custom} from './CustomComp';
 import * as _ from 'lodash';
@@ -65,6 +64,40 @@ const widgetList = [
         },
         des: '布局容器，6列布局',
         keys: ['布局', '6列', '容器', 'column'],
+      }
+    ]
+  },
+  {
+    label: '布局容器',
+    type: 'box', // ElContainer
+    list: [
+      {
+        id: 'ElContainer',
+        key: 'ElContainer',
+        label: 'Container',
+        des: '布局容器',
+        keys: ['ElContainer'],
+      },
+      {
+        id: 'ElHeader',
+        key: 'ElHeader',
+        label: 'ElHeader',
+        des: '容器头',
+        keys: ['ElHeader'],
+      },
+      {
+        id: 'ElMain',
+        key: 'ElMain',
+        label: 'ElMain',
+        des: '容器体',
+        keys: ['ElMain'],
+      },
+      {
+        id: 'ElAside',
+        key: 'ElAside',
+        label: 'ElAside',
+        des: '容器侧边',
+        keys: ['ElAside'],
       }
     ]
   },
