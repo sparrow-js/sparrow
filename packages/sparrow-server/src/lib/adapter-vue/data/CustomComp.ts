@@ -344,7 +344,16 @@ export const custom = [
     des: '折叠搜索',
     keys: ['折叠搜索', '收起', '展开'],
     path: '/EditBlock/AdvancedSearch/Advanced',
+  },
+
+  {
+    key: 'info',
+    label: 'info',
+    des: '信息盒',
+    keys: ['信息盒', 'info'],
+    path: '/custom/info',
   }
   // ing
+  
 
 ]

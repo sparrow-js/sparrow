@@ -1,13 +1,14 @@
 import * as cheerio from 'cheerio';
-import Base from '../Base';
+import Base from '../../box/Base';
 import * as _ from 'lodash';
+import Config from '../../../config';
+import * as path from 'path';
+import * as fsExtra from 'fs-extra';
 
-
-export default class Container extends Base  {
+export default class info extends Base  {
   public components:any = [];
   public $fragment: any;
-  name: string = 'Container';
-  alias: string = 'box';
+  name: string = 'info';
   label: string = '';
   previewType: number = 0;
   type:string = 'inline';
@@ -15,6 +16,7 @@ export default class Container extends Base  {
   toggle: boolean = false;
   config: any = {};
   params: any = {};
+  insertComponents:string[] = [];
 
   constructor (data: any, storage: any) {
     super(storage);
@@ -23,6 +25,10 @@ export default class Container extends Base  {
     if (config) {
       this.config = config;
     } else {
+      this.insertComponents.push('Info');
+      const componentsDir = Config.componentsDir; 
+      const compDir = path.join(componentsDir, 'Info')
+      fsExtra.copySync(path.join(Config.serverBusinessPath, 'Info'), compDir)
       this.config = _.cloneDeep(require('./config').default);
     }
 
@@ -35,19 +41,17 @@ export default class Container extends Base  {
     const type = this.storage.get('preview_view_status') || 0;
     this.previewType = type;
     if (type === 0) {
-
       this.$fragment = cheerio.load(` 
-        <div ${this._attrStr}>
+        <info ${this._attrStr}>
           <div class="drag-box" data-id="${this.uuid}"></div>
-        </div>
+        </info>
       `, {
         xmlMode: true,
         decodeEntities: false
       });
     } else {
-
-      this.$fragment = cheerio.load(` 
-        <div class="drag-box" ${this._attrStr}></div>
+      this.$fragment = cheerio.load(`
+        <info class="drag-box" ${this._attrStr}></info>
       `, {
         xmlMode: true,
         decodeEntities: false
@@ -63,10 +67,8 @@ export default class Container extends Base  {
       this.$fragment('.drag-box').first().append(component.getFragment(this.previewType).html());
     });
 
-    if (this.components.length  === 0) {
+    if (this.components.length  === 0 && this.previewType === 0) {
       this.$fragment('.drag-box').first().append(`<div class="empty-container">empty</div>`)
     }
-
   }
-  
 }
