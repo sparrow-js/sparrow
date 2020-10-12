@@ -1,20 +1,10 @@
 <template>
-  <div class="home drag-box" data-id="dba44842">
-    <el-container
-      data-design-mode="design-border"
-      data-instance-name="box"
-      class="drag-box"
-      data-id="42aac032"
-    >
-      <el-aside
-        data-design-mode="design-border"
-        data-instance-name="ElAside"
-        width="100px"
-        class="drag-box"
-        data-id="aac0329f"
-        ><div class="empty-container">empty</div></el-aside
-      >
-    </el-container>
+  <div class="home drag-box" data-id="1e347e32">
+    <img
+      style="width: 400px;height: 400px;position: absolute;left: 50%;transform: translate(-200px, 100px);"
+      src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dded9db02e3f4052bbf451f04d3d9b5b~tplv-k3u1fbpfcp-zoom-1.image"
+    />
+    <div />
   </div>
 </template>
 

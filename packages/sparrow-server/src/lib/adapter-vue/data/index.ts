@@ -242,6 +242,15 @@ const widgetList = [
         icon: '#icon-zujian-danchuang',
         des: '气泡确认框, Popconfirm',
         keys: ['气泡确认框', 'Popconfirm']
+      },
+      {
+        // Avatar
+        id: 'Avatar',
+        key: 'Avatar',
+        label: 'Avatar',
+        icon: '',
+        des: 'Avatar',
+        keys: ['头像', 'Avatar']
       }
     ]
   }
