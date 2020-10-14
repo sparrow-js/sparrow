@@ -15,6 +15,7 @@ export default class Container extends Base  {
   toggle: boolean = false;
   config: any = {};
   params: any = {};
+  styleStr: string = '';
 
   constructor (data: any, storage: any) {
     super(storage);
@@ -38,7 +39,7 @@ export default class Container extends Base  {
 
       this.$fragment = cheerio.load(` 
         <div ${this._attrStr}>
-          <div class="drag-box" data-id="${this.uuid}"></div>
+          <div class="drag-box" data-id="${this.uuid}" ${this.styleStr}></div>
         </div>
       `, {
         xmlMode: true,
@@ -47,7 +48,7 @@ export default class Container extends Base  {
     } else {
 
       this.$fragment = cheerio.load(` 
-        <div class="drag-box" ${this._attrStr}></div>
+        <div class="drag-box" ${this._attrStr} ${this.styleStr}></div>
       `, {
         xmlMode: true,
         decodeEntities: false
@@ -56,6 +57,28 @@ export default class Container extends Base  {
     this.renderBox()
   }
 
+  public customAttrHandler () {
+    const custom = _.get(this.config, 'model.custom');
+    const styleKeys = [
+      'display',
+      'flex-direction',
+      'justify-content',
+      'align-items',
+      'flex-wrap',
+      'style',
+    ];
+
+    const styleArr = [];
+    
+    styleKeys.forEach(key => {
+      if (custom[key]) {
+        styleArr.push(`${key}: ${custom[key]}`);
+      }
+    });
+    if (styleArr.length > 0) {
+      this.styleStr = `style="${styleArr.join(';')}"`
+    }    
+  }
 
   public renderBox () {
     this.$fragment('.drag-box').first().empty();
@@ -68,5 +91,4 @@ export default class Container extends Base  {
     }
 
   }
-  
 }

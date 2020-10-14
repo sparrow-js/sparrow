@@ -1,17 +1,9 @@
 <template>
-  <div class="home drag-box" data-id="aa457b55">
-    <box
-      data-id="5593d0a0"
-      :uuid="'5593d0a0'"
-      class="block-item"
-      :label="'box'"
-    >
-      <div>
-        <div class="drag-box" data-id="5593d0a0">
-          <div class="empty-container">empty</div>
-        </div>
-      </div>
-    </box>
+  <div class="home drag-box" data-id="c128017e">
+    <img
+      style="width: 400px;height: 400px;position: absolute;left: 50%;transform: translate(-200px, 100px);"
+      src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dded9db02e3f4052bbf451f04d3d9b5b~tplv-k3u1fbpfcp-zoom-1.image"
+    />
   </div>
 </template>
 

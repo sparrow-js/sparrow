@@ -2,7 +2,6 @@ export default {
   model: {
     attr: {
       'v-if': '',
-      ':style': '',
       class: '',
     },
     custom: {
@@ -10,7 +9,8 @@ export default {
       'flex-direction': 'column',
       'justify-content': '',
       'align-items': '',
-      'flex-wrap': ''
+      'flex-wrap': '',
+      'style': '',
     }
   },
   schema: {
@@ -27,12 +27,6 @@ export default {
               inputType: "text",
               label: "v-if",
               model: "v-if"
-            },
-            {
-              type: "input",
-              inputType: "text",
-              label: "style",
-              model: ":style"
             },
             {
               type: "input",
@@ -106,9 +100,14 @@ export default {
                 "wrap",
                 'wrap-reverse',
               ]
-            }
+            },
 
-
+            {
+              type: "input",
+              inputType: "text",
+              label: "style",
+              model: "style"
+            },
           ]
         }
       },
