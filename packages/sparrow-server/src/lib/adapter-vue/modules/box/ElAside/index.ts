@@ -67,11 +67,5 @@ export default class ElAside extends Base  {
     }
 
   }
-
-  getFragment () {
-    this.renderBox();
-    return this.$fragment;
-  }
-  
   
 }

@@ -67,10 +67,5 @@ export default class ElFooter extends Base  {
     }
 
   }
-
-  getFragment () {
-    this.renderBox();
-    return this.$fragment;
-  }
   
 }

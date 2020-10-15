@@ -31,16 +31,21 @@ export default class Base {
     let box = '';
 
     if (type === 0) {
-      box = `
-        <box 
-          data-id="${this.uuid}"
-          :uuid="'${this.uuid}'" 
-          class="block-item" 
-          :label="'${this.alias || this.name}'"
-        >
-          ${this.$fragment.html()}
-        </box>
-      `
+      // box = `
+      //   <box 
+      //     data-id="${this.uuid}"
+      //     :uuid="'${this.uuid}'" 
+      //     class="block-item" 
+      //     :label="'${this.alias || this.name}'"
+      //   >
+      //     ${this.$fragment.html()}
+      //   </box>
+      // `;
+      this.$fragment.root().children().attr('data-design-mode', 'design-border');
+      this.$fragment.root().children().attr('data-instance-name', this.name);
+      this.$fragment.root().children().attr('data-id', this.uuid);
+      box = this.$fragment.html();
+      // <div class="drag-box" data-design-mode="design-border" data-instance-name="${this.name}" data-id="${this.uuid}" ${this._attrStr} ${this.styleStr}></div>
     } else {
       box = this.$fragment.html()
     }

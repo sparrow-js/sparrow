@@ -67,10 +67,4 @@ export default class ElContainer extends Base  {
     }
 
   }
-
-  getFragment () {
-    this.renderBox();
-    return this.$fragment;
-  }
-  
 }

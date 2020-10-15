@@ -38,9 +38,7 @@ export default class Container extends Base  {
     if (type === 0) {
 
       this.$fragment = cheerio.load(` 
-        <div ${this._attrStr}>
-          <div class="drag-box" data-id="${this.uuid}" ${this.styleStr}></div>
-        </div>
+        <div class="drag-box" data-design-mode="design-border" data-instance-name="${this.name}" data-id="${this.uuid}" ${this._attrStr} ${this.styleStr}></div>
       `, {
         xmlMode: true,
         decodeEntities: false
@@ -71,6 +69,10 @@ export default class Container extends Base  {
     const styleArr = [];
     
     styleKeys.forEach(key => {
+      if (key === 'style') {
+        styleArr.push(custom[key]);
+        return;
+      }
       if (custom[key]) {
         styleArr.push(`${key}: ${custom[key]}`);
       }
@@ -90,5 +92,10 @@ export default class Container extends Base  {
       this.$fragment('.drag-box').first().append(`<div class="empty-container">empty</div>`)
     }
 
+  }
+
+  getFragment () {
+    this.renderBox();
+    return this.$fragment;
   }
 }

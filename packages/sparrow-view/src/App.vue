@@ -122,14 +122,26 @@ export default {
           })
           target.setAttribute('data-active', true);
           const uuid = target.dataset.id;
-          message.emit('client.dispatch.box', {
-            uuid,
-            data: {
-              params: {
-                uuid,
+          if (target.dataset.type === 'component') {
+            message.emit('client.dispatch.component', {
+              uuid,
+              data: {
+                params: {
+                  uuid,
+                }
               }
-            }
-          });
+            });
+          } else {
+            message.emit('client.dispatch.box', {
+              uuid,
+              data: {
+                params: {
+                  uuid,
+                }
+              }
+            });
+          }
+          
         }
       })
     }

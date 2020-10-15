@@ -8,6 +8,7 @@ export default class Common {
   config: any = {};
   _attrStr: string = '';
   storage: any = {};
+  name: string = '';
   
   constructor () {
     this.uuid = uuid().split('-')[0]; 
@@ -18,21 +19,18 @@ export default class Common {
   }
 
   public renderFragment () {
-    let compBox = `
-      <component-box uuid="${this.uuid}">
-        ${this.fragment()}
-      </component-box>
-    `;
-
-    const type = storage.get('preview_view_status') || 0;
-    if (type) {
-      compBox = this.fragment();
-    }
-
-    this.$fragment = cheerio.load(compBox, {
+    this.$fragment = cheerio.load(this.fragment(), {
       xmlMode: true,
       decodeEntities: false,
     });
+
+    const type = storage.get('preview_view_status') || 0;
+    if (type === 0) {
+      this.$fragment.root().children().attr('data-design-mode', 'design-border');
+      this.$fragment.root().children().attr('data-instance-name', this.name);
+      this.$fragment.root().children().attr('data-id', this.uuid);
+      this.$fragment.root().children().attr('data-type', 'component');
+    }
   }
 
   public fragment () {

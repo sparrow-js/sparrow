@@ -11,30 +11,25 @@ export default class Common {
   public storage: any = null; 
   public _attrStr: string = '';
   public isInline: boolean = false;
+  public name: string = '';
 
   constructor () {
     this.uuid = uuid().split('-')[0]; 
     this.storage = storage;
   }
 
-  public wrapComponentBox (content) {
-    const type = this.storage.get('preview_view_status') || 0;
-    if (type === 0) {
-      return `
-        <component-box uuid="${this.uuid}" :isInline="${this.isInline}">
-          ${content}
-        </component-box>
-      `;
-    } else {
-      return content;
-    }
-  }
-
   public renderFragment () {
-    this.$fragment = cheerio.load(this.wrapComponentBox(this.fragment()), {
+    this.$fragment = cheerio.load(this.fragment(), {
       xmlMode: true,
       decodeEntities: false,
     });
+    const type = this.storage.get('preview_view_status') || 0;
+    if (type === 0) {
+      this.$fragment.root().children().attr('data-design-mode', 'design-border');
+      this.$fragment.root().children().attr('data-instance-name', this.name);
+      this.$fragment.root().children().attr('data-id', this.uuid);
+      this.$fragment.root().children().attr('data-type', 'component');
+    }
   }
 
   public fragment () {

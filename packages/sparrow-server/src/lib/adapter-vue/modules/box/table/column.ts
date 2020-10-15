@@ -48,17 +48,11 @@ export default class Column extends Base{
 
 
     if (this.previewType === 0) {
-      containerBox = ` 
-        <box 
-          data-id="${this.uuid}"
-          :uuid="'${this.uuid}'" 
-          class="block-item" 
-          label="${this.alias}"
-        >
+      containerBox = `
           ${expandStr ? '<div />' : ''}
           ${value}
-          <div class="drag-box" data-id="${this.uuid}"></div>
-        </box>`;
+          <div class="drag-box" data-design-mode="design-border" data-instance-name="${this.name}" data-id="${this.uuid}" ></div>
+        `;
       const cellbox = `
       <template slot-scope="{row, column, $index}">
         ${containerBox}

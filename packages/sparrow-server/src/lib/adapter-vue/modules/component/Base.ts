@@ -17,6 +17,7 @@ export default class Base {
   public insertFileType = 'inline';
   public boxPath: string = '';
   public storage: any = {};
+  public name: string = '';
 
   constructor (boxPath: string) {
     this.boxPath = boxPath || '';
@@ -24,26 +25,12 @@ export default class Base {
     this.storage = storage;
   }
 
-  public wrapComponentBox (content) {
-    const type = storage.get('preview_view_status') || 0;
-    if (type === 0) {
-      return `
-        <component-box uuid="${this.uuid}">
-          ${content}
-        </component-box>
-      `;
-    } else {
-      return content;
-    }
-  }
-
   public renderFragment () {
     let formItem = ''
     if (this.boxPath.match('Form') || _.get(this.config, 'model.custom.insideForm') === true) {
       this.config.model.custom.insideForm = true;
       
-      formItem = this.wrapComponentBox(
-        `
+      formItem =  `
         <el-form-item label=" "
           ${this._formItemStr}
         >
@@ -52,10 +39,9 @@ export default class Base {
           </edit-text-box>
           ${this.fragment()}
         </el-form-item>
-      `
-      );
+      `;
     } else {
-      formItem = this.wrapComponentBox(this.fragment())
+      formItem = this.fragment();
     }
 
     
@@ -64,6 +50,13 @@ export default class Base {
       xmlMode: true,
       decodeEntities: false,
     });
+    const type = storage.get('preview_view_status') || 0;
+    if (type === 0) {
+      this.$fragment.root().children().attr('data-design-mode', 'design-border');
+      this.$fragment.root().children().attr('data-instance-name', this.name);
+      this.$fragment.root().children().attr('data-id', this.uuid);
+      this.$fragment.root().children().attr('data-type', 'component');
+    }
   }
 
   public fragment () {

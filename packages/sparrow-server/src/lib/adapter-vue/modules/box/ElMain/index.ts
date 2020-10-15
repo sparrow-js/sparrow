@@ -67,10 +67,5 @@ export default class ElMain extends Base  {
     }
 
   }
-
-  getFragment () {
-    this.renderBox();
-    return this.$fragment;
-  }
   
 }

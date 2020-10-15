@@ -43,14 +43,7 @@ export default class Column extends Base{
     if (this.previewType === 0) {
       this.$fragment = cheerio.load(`
         <el-col ${this._attrStr}>
-          <box 
-            data-id="${this.uuid}"
-            :uuid="'${this.uuid}'" 
-            class="block-item" 
-            label="${this.alias}"
-          >
-            <div class="column drag-box" data-id="${this.uuid}"></div>
-          </box>
+          <div class="column drag-box"  data-design-mode="design-border" data-instance-name="${this.name}" data-id="${this.uuid}"></div>
         </el-col>
       `, {
         xmlMode: true,
@@ -80,10 +73,4 @@ export default class Column extends Base{
       this.$fragment('.drag-box').first().append(`<div class="empty-container">empty</div>`)
     }
   }
-  
-  getFragment () {
-    this.renderBox();
-    return this.$fragment;
-  }
-
 }

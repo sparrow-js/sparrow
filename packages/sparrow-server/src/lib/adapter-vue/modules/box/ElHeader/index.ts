@@ -67,9 +67,4 @@ export default class ElHeader extends Base  {
     }
 
   }
-
-  getFragment () {
-    this.renderBox();
-    return this.$fragment;
-  }
 }

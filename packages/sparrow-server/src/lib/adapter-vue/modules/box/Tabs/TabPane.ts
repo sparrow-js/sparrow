@@ -44,14 +44,7 @@ export default class Column extends Base{
           label="${_.get(this.config, 'model.custom.label')}" 
           name="${_.get(this.config, 'model.custom.name')}"
         >
-          <box 
-            data-id="${this.uuid}"
-            :uuid="'${this.uuid}'" 
-            class="block-item" 
-            label="TabPane"
-          >
-            <div class="column drag-box" data-id="${this.uuid}"></div>
-          </box>
+          <div class="column drag-box" data-design-mode="design-border" data-instance-name="${this.name}" data-id="${this.uuid}"></div>
         </el-tab-pane>
       `, {
         xmlMode: true,
