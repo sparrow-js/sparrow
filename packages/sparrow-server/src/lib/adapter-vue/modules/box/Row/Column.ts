@@ -42,9 +42,7 @@ export default class Column extends Base{
     this.previewType = type;
     if (this.previewType === 0) {
       this.$fragment = cheerio.load(`
-        <el-col ${this._attrStr}>
-          <div class="column drag-box"  data-design-mode="design-border" data-instance-name="${this.name}" data-id="${this.uuid}"></div>
-        </el-col>
+        <el-col ${this._attrStr} class="column drag-box"  data-design-mode="design-border" data-instance-name="${this.name}" data-id="${this.uuid}"></el-col>
       `, {
         xmlMode: true,
         decodeEntities: false

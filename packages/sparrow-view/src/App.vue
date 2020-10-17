@@ -240,13 +240,13 @@ export default {
 
 
   [data-design-mode*=design-][data-active=true]:before{
-    display: block;
+    display: block !important;
     color: #fff!important;
     background: #1861d5!important;
   }
 
   [data-design-mode*=design-]:before{
-    display: none;
+    display: none !important;
     content: attr(data-instance-name)!important;
     position: absolute;
     left: 0;
@@ -267,4 +267,23 @@ export default {
     transform: scale(.8);
     transition: all .3s ease
   }
+  .design-container{
+    overflow: hidden;
+  }
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    font-size:0;
+}
+
+/* .el-form-item::after, .el-form-item::before{
+  display: none !important;
+} */
+  /* [data-design-mode*=design-] .el-form-item::after,[data-design-mode*=design-] .el-form-item::before{
+    display: none;
+  } */
 </style>

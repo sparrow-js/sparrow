@@ -38,7 +38,7 @@ export default class Container extends Base  {
     if (type === 0) {
 
       this.$fragment = cheerio.load(` 
-        <div class="drag-box" data-design-mode="design-border" data-instance-name="${this.name}" data-id="${this.uuid}" ${this._attrStr} ${this.styleStr}></div>
+        <div class="drag-box clearfix" data-design-mode="design-border" data-instance-name="${this.name}" data-id="${this.uuid}" ${this._attrStr} ${this.styleStr}></div>
       `, {
         xmlMode: true,
         decodeEntities: false
