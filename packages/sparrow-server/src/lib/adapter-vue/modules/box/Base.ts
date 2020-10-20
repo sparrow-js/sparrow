@@ -70,8 +70,23 @@ export default class Base {
       }
 
       const hasBox = fsExtra.pathExistsSync(Path.join(__dirname, `../box/${id}`));
+      let isPlugins = false;
+      if (id.includes('sparrow')) {
+        isPlugins = true;
+      }
       let backComp = null;
-      if (path) {
+      if (isPlugins) {
+        const dynamicObj = require(path).default;
+        const comp = new dynamicObj(config || data, this.storage);
+        comp.path = path;
+        if (compIndex >= 0) {
+          this.components.splice(compIndex, 0, comp)
+        } else {
+          this.components.push(comp);
+        }
+        backComp = comp;
+      } 
+      else if (path) {
         const dynamicObj = require(`..${path}`).default;
         const comp = new dynamicObj(config || data, this.storage);
         comp.path = path;
@@ -158,7 +173,7 @@ export default class Base {
     });
 
     if (this.components.length  === 0 && type === 0) {
-      this.$fragment('.drag-box').first().append(`<div class="empty-container">empty</div>`)
+      this.$fragment('.drag-box').attr('data-empty', true);
     }
   }
 

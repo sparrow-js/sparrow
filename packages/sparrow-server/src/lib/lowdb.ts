@@ -12,6 +12,7 @@ db.defaults({
   tasks: [],
   config: {},
   apis: [],
+  plugins: [],
 }).write()
 
 export default db;

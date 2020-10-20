@@ -1,3 +1,5 @@
+import Config from '../config';
+console.log('******9***', Config.pluginPath + '/sparrow-test-component/src')
 export const custom = [
   // 基础表单
   {
@@ -352,8 +354,13 @@ export const custom = [
     des: '信息盒',
     keys: ['信息盒', 'info'],
     path: '/custom/info',
-  }
+  },
   // ing
-  
-
+  {
+    key: 'sparrow-test-component',
+    label: 'Test',
+    des: '测试sparrow插件',
+    keys: ['测试', '插件'],
+    path: Config.pluginPath + '/sparrow-test-component/dist',
+  }
 ]

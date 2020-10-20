@@ -38,8 +38,16 @@
       >
         <i class="el-icon el-icon-search"></i>
       </div>
+
+      <div
+        @click="tabChange(6)"
+        class="tabs-item"
+        :class="{ active: activeTreeIndex === 6 }"
+      >
+        <i class="iconfont icon-chajian"></i>
+      </div>
     </div>
-    <div class="tabs-body" v-show="[0, 3, 4, 5].includes(activeTreeIndex)">
+    <div class="tabs-body" v-show="[0, 3, 4, 5, 6].includes(activeTreeIndex)">
       <div class="tree" v-show="activeTreeIndex === 0">
         <el-tree
           :data="tree"
@@ -169,6 +177,23 @@
           </div>
         </div>
       </div>
+
+      <div class="tab-content" v-show="activeTreeIndex === 6">
+        <div class="plugin-box">
+          <el-input
+            v-model="packageName"
+            placeholder="请输入包名"
+            size="small"
+          ></el-input>
+          <el-button
+            style="margin-left: 5px"
+            type="primary"
+            size="small"
+            @click="installPlugin"
+            >安装</el-button
+          >
+        </div>
+      </div>
     </div>
 
     <el-dialog :visible.sync="toolVisible">
@@ -222,6 +247,7 @@ export default class CompBox extends Vue {
   private fileList = [];
   private toolVisible = false;
   private openDrawer = false;
+  private packageName = '';
 
   get activeTreeIndex() {
     return AppModule.activeTreeIndex;
@@ -253,7 +279,10 @@ export default class CompBox extends Vue {
       this.componentList = componentMap[params.compBox];
     }
     this.getCustomComp = _.debounce(this.getCustomComp, 500, { trailing: true });
-
+    socket.on('generator.plugin.status', data => {
+      Loading.close();
+      this.getPlugin();
+    });
     this.getScene();
   }
 
@@ -292,6 +321,8 @@ export default class CompBox extends Vue {
     this.getSceneConfig();
     this.getCustomComp('');
     this.getFileList();
+    this.getPlugin();
+
     setTimeout(() => {
       codemirror.codemirror.refresh();
     }, 100);
@@ -415,6 +446,20 @@ export default class CompBox extends Vue {
       }
     });
     this.jsonData = JSON.stringify(res);
+  }
+
+  private async installPlugin() {
+    Loading.open();
+    const res = await socket.emit('generator.plugin.installPlugin', {
+      packageName: this.packageName
+    });
+  }
+
+  private async getPlugin() {
+    const res = await socket.emit('generator.plugin.getPlugin', {
+      packageName: this.packageName
+    });
+    console.log('*****888989******', res);
   }
 }
 </script>
@@ -604,5 +649,9 @@ export default class CompBox extends Vue {
 }
 .custom-drawer{
   width: 321px;
+}
+.plugin-box{
+  display: flex;
+  padding: 10px 10px 0;
 }
 </style>

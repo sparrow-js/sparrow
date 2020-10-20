@@ -1,7 +1,5 @@
 import * as cheerio from 'cheerio';
-import storage from '../../../storage';
 import * as _ from 'lodash';
-
 const uuid = require('@lukeed/uuid');
 
 export default class Base {
@@ -17,10 +15,9 @@ export default class Base {
   public storage: any = {};
   public name: string = '';
 
-  constructor (boxPath: string) {
-    this.boxPath = boxPath || '';
-    this.uuid = uuid().split('-')[0];
+  constructor (storage: any = {}) {
     this.storage = storage;
+    this.uuid = uuid().split('-')[0];
   }
 
   public renderFragment () {
@@ -42,13 +39,11 @@ export default class Base {
       formItem = this.fragment();
     }
 
-    
-
     this.$fragment = cheerio.load(formItem, {
       xmlMode: true,
       decodeEntities: false,
     });
-    const type = storage.get('preview_view_status') || 0;
+    const type = this.storage.get('preview_view_status') || 0;
     if (type === 0) {
       this.$fragment.root().children().attr('data-design-mode', 'design-border');
       this.$fragment.root().children().attr('data-instance-name', this.name);

@@ -164,7 +164,21 @@ export default class Scene {
         config.initType = operateType;
       }
 
-      if (path) {
+      let isPlugins = false;
+      if (id.includes('sparrow')) {
+        isPlugins = true;
+      }
+      if (isPlugins) {
+        const dynamicObj = require(path).default;
+        const comp = new dynamicObj(data, storage);
+        comp.path = path;
+        if (compIndex >= 0) {
+          this.components.splice(compIndex, 0, comp)
+        } else {
+          this.components.push(comp);
+        }
+        backComp = comp;
+      } else if (path) {
         const dynamicObj = require(`..${path}`).default;
         const comp = new dynamicObj(data, storage);
         comp.path = path;
@@ -625,7 +639,6 @@ export default class Scene {
     const {uuid, data} = params;
     const apiCompBox = this.findComponent(uuid, this.components) || this;
     const apiComp = apiCompBox.components.find(item => item.name === 'lifeCycle');
-    console.log('******11******', params);
     return apiComp.handlerLifeCycle(data);
   }
 

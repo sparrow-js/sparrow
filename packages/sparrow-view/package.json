@@ -1,6 +1,6 @@
 {
   "name": "sparrow-view",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "scripts": {
     "serve": "vue-cli-service serve --port 9000",
     "build": "vue-cli-service build"

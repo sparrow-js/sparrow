@@ -63,7 +63,7 @@ export default class ElAside extends Base  {
     });
 
     if (this.components.length  === 0) {
-      this.$fragment('.drag-box').first().append(`<div class="empty-container">empty</div>`)
+      this.$fragment('.drag-box').attr('data-empty', true);
     }
 
   }

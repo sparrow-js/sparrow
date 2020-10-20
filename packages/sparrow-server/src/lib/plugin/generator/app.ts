@@ -1,6 +1,7 @@
 import Scene from '../../adapter-vue'
 import Data from '../../adapter-vue/data';
 import Toolbar from '../../adapter-vue/modules/toolbar';
+import Plugin from '../../adapter-vue/modules/plugin';
 import * as rimraf from 'rimraf';
 import * as util from 'util';
 import Config from '../../adapter-vue/config';
@@ -15,14 +16,15 @@ class generator{
   data: any;
   toolbar: any;
   api: any;
+  plugin: any;
 
   constructor () {
     this.data = new Data();
   }
 
   public ready() {
-
     this.scene = new Scene();
+    this.plugin = new Plugin();
     this.toolbar = new Toolbar(this.scene);
     this.toolbar.trash = this.trash.bind(this);
     this.toolbar.useScene = this.useScene.bind(this);

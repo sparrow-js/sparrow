@@ -228,6 +228,8 @@ export default {
 
   [data-design-mode*=design-]{
     padding: 5px;
+    position: relative;
+    min-height: 30px;
   }
   [data-design-mode*=design-][data-active=true]{
     outline: 1px solid #1861d5!important;
@@ -278,6 +280,23 @@ export default {
     visibility: hidden;
     height: 0;
     font-size:0;
+}
+
+[data-empty=true]:after{
+  content: "\8BF7\62D6\5165\7EC4\4EF6";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  opacity: 1!important;
+  visibility: visible!important;
+  line-height: 30px;
+  height: 30px;
+  font-size: 13px;
+  color: #ccc;
+  text-align: center;
 }
 
 /* .el-form-item::after, .el-form-item::before{

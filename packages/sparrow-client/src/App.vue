@@ -140,6 +140,11 @@ export default class App extends Vue {
       Loading.close();
     });
 
+    socket.on('generator.plugin.status', data => {
+      console.log('**********9*******');
+      Loading.close();
+    });
+
     socket.on('generator.force.refresh',data => {
       const viewContent:any = document.querySelector('#viewContent')
       setTimeout(() => {
