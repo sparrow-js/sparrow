@@ -180,9 +180,15 @@
 
       <div class="tab-content" v-show="activeTreeIndex === 6">
         <div class="plugin-box">
+          <el-radio-group v-model="installType" size="mini">
+            <el-radio :label="1">npm</el-radio>
+            <el-radio :label="2">本地</el-radio>
+          </el-radio-group>
+        </div>
+        <div class="plugin-box">
           <el-input
             v-model="packageName"
-            placeholder="请输入包名"
+            :placeholder="installType === 1 ? '输入包名' : '输入路径'"
             size="small"
           ></el-input>
           <el-button
@@ -192,6 +198,44 @@
             @click="installPlugin"
             >安装</el-button
           >
+        </div>
+        <div class="plugin-list">
+          <div
+            class="plugin-item"
+            v-for="item in pluginList"
+            :key="item.key"
+            @click="addComponent(item)"
+            @mousedown="mousedownWidget(item)"
+          >
+            <el-card class="box-card" shadow="hover" :body-style="{}">
+              <div class="card-content">
+                <div
+                  class="drag-box"
+                  style="display: flex;flex-direction: row;align-items: center;"
+                >
+                  <el-image
+                    :src="item.thumb"
+                    style="height: 64px;width:64px;flex-shrink: 0;"
+                    :lazy="false"
+                  >
+                  </el-image>
+                  <div
+                    class="drag-box"
+                    style="display: block;flex-direction: column;margin-left:8px;"
+                  >
+                    <h4 class="s-typography">
+                      {{ item.name }}
+                    </h4>
+                    <p class="s-typography">
+                      {{ item.description }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </el-card>
+
+          </div>
+         
         </div>
       </div>
     </div>
@@ -248,6 +292,8 @@ export default class CompBox extends Vue {
   private toolVisible = false;
   private openDrawer = false;
   private packageName = '';
+  private pluginList = [];
+  private installType = 1;
 
   get activeTreeIndex() {
     return AppModule.activeTreeIndex;
@@ -451,7 +497,8 @@ export default class CompBox extends Vue {
   private async installPlugin() {
     Loading.open();
     const res = await socket.emit('generator.plugin.installPlugin', {
-      packageName: this.packageName
+      packageName: this.packageName,
+      installType: this.installType,
     });
   }
 
@@ -459,7 +506,8 @@ export default class CompBox extends Vue {
     const res = await socket.emit('generator.plugin.getPlugin', {
       packageName: this.packageName
     });
-    console.log('*****888989******', res);
+    const {list} = res;
+    this.pluginList = list;
   }
 }
 </script>
@@ -653,5 +701,11 @@ export default class CompBox extends Vue {
 .plugin-box{
   display: flex;
   padding: 10px 10px 0;
+}
+.plugin-list{
+  margin-top: 10px;
+}
+.plugin-item{
+  margin-bottom: 10px;
 }
 </style>

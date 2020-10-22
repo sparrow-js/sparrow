@@ -230,6 +230,7 @@ export default {
     padding: 5px;
     position: relative;
     min-height: 30px;
+    min-width: 30px;
   }
   [data-design-mode*=design-][data-active=true]{
     outline: 1px solid #1861d5!important;
@@ -299,10 +300,4 @@ export default {
   text-align: center;
 }
 
-/* .el-form-item::after, .el-form-item::before{
-  display: none !important;
-} */
-  /* [data-design-mode*=design-] .el-form-item::after,[data-design-mode*=design-] .el-form-item::before{
-    display: none;
-  } */
 </style>

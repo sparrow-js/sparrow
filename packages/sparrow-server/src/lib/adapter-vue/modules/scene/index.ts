@@ -148,7 +148,7 @@ export default class Scene {
   }
 
   public addComponent (data, operateType = 'manual') {
-    const {boxUuid, id, params = {}, config, nextSiblingId, path} = data;
+    let {boxUuid, id, params = {}, config, nextSiblingId, path} = data;
 
     let backComp = null;
 
@@ -167,11 +167,12 @@ export default class Scene {
       let isPlugins = false;
       if (id.includes('sparrow')) {
         isPlugins = true;
+        path = path || Path.join(Config.pluginPath, id, 'dist');
       }
+
       if (isPlugins) {
         const dynamicObj = require(path).default;
-        const comp = new dynamicObj(data, storage);
-        comp.path = path;
+        const comp = new dynamicObj(data, storage, {projectPaths: Config});
         if (compIndex >= 0) {
           this.components.splice(compIndex, 0, comp)
         } else {
@@ -191,7 +192,7 @@ export default class Scene {
 
       } else if (hasBox) {
         const dynamicObj = require(`../box/${id}`).default;
-        const comp = new dynamicObj(data, storage)
+        const comp = new dynamicObj(data, storage, {projectPaths: Config})
         if (compIndex >= 0) {
           this.components.splice(compIndex, 0, comp)
         } else {

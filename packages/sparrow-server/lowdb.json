@@ -1798,9 +1798,17 @@
   "plugins": [
     {
       "key": "sparrow-test-component",
+      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/plugin-demo/sparrow-test-component/dist",
       "name": "sparrow-test-component",
       "description": "Test sparrow",
       "thumb": "https://unpkg.com/@sparrow-vue/images@1.0.25/assets/plugin.png"
+    },
+    {
+      "key": "sparrow-test-box",
+      "path": "/Users/haitaowu/test/sparrow-test-box/src",
+      "name": "sparrow-test-box",
+      "description": "Test sparrow box",
+      "thumb": "https://unpkg.com/@sparrow-vue/images@1.0.26/assets/box.png"
     }
   ]
 }

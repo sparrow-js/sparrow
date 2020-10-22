@@ -83,7 +83,8 @@
     "overrideDefault": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/config.local.ts",
     "ignoreDirs": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-development/config/config.default.js",
     "fastReady": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-development/config/config.default.js",
-    "reloadOnDebug": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-development/config/config.default.js"
+    "reloadOnDebug": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-development/config/config.default.js",
+    "overrideIgnore": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-development/config/config.default.js"
   },
   "session": {
     "maxAge": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-session/config/config.default.js",

@@ -11,6 +11,7 @@ const open = require('open');
 const spawn = require('cross-spawn');
 const checkVersion = require('../../lib/checkVersion');
 const downloadView = require('./downloadView');
+const downloadPlugins = require('./downloadPlugin');
 const parseArgs = require('../../lib/parseArgs');
 const execa = require('execa');
 
@@ -18,9 +19,32 @@ const SPARROW_PATH = path.join(userHome, '.sparrow');
 const SERVER_PATH = path.join(SPARROW_PATH, 'sparrow-server');
 // const SERVER_PATH = path.join(__dirname, '../../../', 'sparrow-server');
 const VIEW_PATH = path.join(SPARROW_PATH, 'sparrow-view');
+const PLUGINS_PATH = path.join(SPARROW_PATH, 'plugins');
+
 
 let commonOptions = {};
 let mode = false;
+async function startPlugin(options = {}) {
+  const pkgPath = path.join(PLUGINS_PATH, 'package.json');
+  let packageConfig;
+  try {
+    packageConfig = require(pkgPath);
+  } catch (err) {
+    await downloadPlugins();
+    return;
+  }
+
+  const packageName = packageConfig.name;
+  const packageVersion = packageConfig.version;
+  console.log(chalk.grey('sparrow view Core:', packageVersion, SERVER_PATH));
+
+  const answers = await checkServerVersion(packageName, packageVersion);
+  if (answers && answers.update) {
+    await downloadPlugins();
+  }
+
+}
+
 async function startView(options = {}) {
   const pkgPath = path.join(VIEW_PATH, 'package.json');
   let packageConfig;
@@ -58,6 +82,7 @@ async function startView(options = {}) {
 async function start(options = {}) {
   commonOptions = options;
   mode = options.mode;
+  await startPlugin();
   await startView();
   const pkgPath = path.join(SERVER_PATH, 'package.json');
   let packageConfig;

@@ -1,14 +1,16 @@
 {
   "name": "sparrow-view",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "scripts": {
     "serve": "vue-cli-service serve --port 9000",
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@lukeed/uuid": "^1.0.1",
     "@sparrow-vue/boxs": "^1.1.7",
     "@vue-materials/basic-container": "^1.0.0",
     "axios": "^0.20.0",
+    "cheerio": "^1.0.0-rc.3",
     "core-js": "^3.4.3",
     "dropzone": "^5.7.2",
     "element-ui": "^2.13.0",
