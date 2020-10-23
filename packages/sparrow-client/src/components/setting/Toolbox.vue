@@ -248,12 +248,12 @@ export default {
     handleChange() {
       // material.index.getBlocks
     },
-    toggleWidget(value) {
+    async toggleWidget(value) {
       if (value === '静态区块') {
-        this.getStaticBlock();
+        await this.getStaticBlock();
       }
       if (value === '编辑区块') {
-        this.getEditBlockList();
+        await this.getEditBlockList();
       }
       this.bindClientDrag();
     },
@@ -284,7 +284,7 @@ export default {
         Sortable.create(item, {
           group: {
             name: 'shared',
-            // pull: 'clone',
+            pull: 'clone',
           },
           sort: false,
           ghostClass: 'sortable-ghost',
@@ -344,8 +344,17 @@ export default {
               };
               return;
             }
+            if (this.widgetData.type ==='editBox') {
+              const params = {
+                boxUuid,
+                id: this.widgetData.id,
+                params: this.widgetData,
+                path: this.widgetData.path || ''
+              };
 
-            if (this.widgetData.type === 'block') {
+              await socket.emit('generator.scene.addEditComp', params);
+
+            } else if (this.widgetData.type === 'block') {
               Loading.open();
               await socket.emit('generator.scene.addBlock', {
                 boxUuid,
@@ -387,7 +396,7 @@ export default {
       this.bindClientDrag();
     },
     searchChange (value) {
-      this.getWidgetList(value)
+      this.getWidgetList(value);
     },
     async dragViewWidget (compId, boxId, nextSiblingId) {
       await socket.emit('generator.scene.dragViewWidgetHandler', {
