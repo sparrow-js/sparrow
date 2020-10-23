@@ -22,7 +22,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const uuid = require('@lukeed/uuid');
 const _ = __importStar(require("lodash"));
 const cheerio = __importStar(require("cheerio"));
-const Path = __importStar(require("path"));
 const fsExtra = __importStar(require("fs-extra"));
 class Box {
     constructor(storage, globalConfig) {
@@ -74,7 +73,7 @@ class Box {
         if (nextSiblingId) {
             compIndex = this.components.findIndex((item) => item.uuid === nextSiblingId);
         }
-        const hasBox = fsExtra.pathExistsSync(Path.join(__dirname, `../box/${id}`));
+        const hasBox = fsExtra.pathExistsSync(projectPaths.materielPath + `/box/${id}`);
         let isPlugins = false;
         if (id.includes('sparrow')) {
             isPlugins = true;

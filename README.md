@@ -69,6 +69,10 @@ export default {
 
 
 ```
+### 讨论
+理性交流，感兴趣可以一起讨论，精力有限不保证及时回复。
+- QQ群号：190047310
+
 
 ## License
 [MIT](http://opensource.org/licenses/MIT)

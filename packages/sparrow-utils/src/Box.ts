@@ -59,7 +59,7 @@ export default class Box {
         compIndex = this.components.findIndex((item:any ) => item.uuid === nextSiblingId);
       }
 
-      const hasBox = fsExtra.pathExistsSync(Path.join(__dirname, `../box/${id}`));
+      const hasBox = fsExtra.pathExistsSync(projectPaths.materielPath + `/box/${id}`);
       let isPlugins = false;
       if (id.includes('sparrow')) {
         isPlugins = true;
