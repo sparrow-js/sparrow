@@ -4,8 +4,8 @@ import * as _ from 'lodash';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 const cwd = process.cwd();
-export default class TestComponent extends Component{
-  name: string = 'TestComponent';
+export default class SparrowTestComponent extends Component{
+  name: string = 'sparrow-test-component';
   config: any = {};
   $fragment: any;
   vueParse: any;
