@@ -67,8 +67,7 @@ export default class Form extends Base implements IBaseBox{
         decodeEntities: false
       });
       this.$fragment('.root').append(`
-        <el-form ${this._attrStr}>
-          <div class="drag-box" data-id=${this.uuid}></div>
+        <el-form ${this._attrStr} class="drag-box">
         </el-form>
       `);
     }

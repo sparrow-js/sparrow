@@ -65,7 +65,7 @@ export default class Base {
     this.renderFragment();
 
     if (type === 1) {
-      this.$fragment('label-box').remove();
+      this.$fragment('edit-text-box').remove();
       this.$fragment('el-form-item').attr('label', _.get(this.config, 'model.custom.label'));
     }
     return this.$fragment;
