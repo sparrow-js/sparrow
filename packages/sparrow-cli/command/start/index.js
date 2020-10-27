@@ -144,6 +144,7 @@ function startSparrowView (options) {
 
   child.stdout.on('data', buffer => {
     console.log(buffer.toString())
+    console.log('😄访问服务：http://localhost:8000/')
   })
   child.stderr.on('data', buffer => {
     console.log(buffer.toString());

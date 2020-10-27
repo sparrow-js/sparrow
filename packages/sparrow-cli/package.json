@@ -1,6 +1,6 @@
 {
   "name": "sparrow-code",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "sparrow CLI for develop project/material-collection/component.",
   "main": "bin/sparrow.js",
   "bin": {
