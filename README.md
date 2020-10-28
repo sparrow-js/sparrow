@@ -1,6 +1,6 @@
 # sparrow
 
- <img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0cd1a94e9b4e41ef8b0332b75692c63f~tplv-k3u1fbpfcp-watermark.image"  width = "520"  alt="图片名称" align="center" >
+ <img src="https://unpkg.com/@sparrow-vue/images@1.0.18/assets/anim1.gif"  width = "520"  alt="图片名称" align="center" >
 
 <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6e8640213efb453a8177a959e24f7da1~tplv-k3u1fbpfcp-watermark.image" width = "400"  alt="图片名称" align="center" /><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6db9f5bff2414c958fd0b8862e489810~tplv-k3u1fbpfcp-watermark.image" width = "400"  alt="图片名称" align="center" />
 
