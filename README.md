@@ -100,8 +100,8 @@ sparrow 提供多种类型的物料源，以此提升研发效率。
 ## 讨论
 理性交流，感兴趣可以一起讨论，精力有限不保证能够及时回复，尽力。
 - 微信号：sparrow777-js
-- QQ群号：190047310（临时，后续不打算用QQ了）
-
+<img src="https://unpkg.com/@sparrow-vue/images@1.0.29/assets/WechatIMG613.jpeg
+" width = "200"  alt="图片名称" align="center" />
 
 
 ## License
