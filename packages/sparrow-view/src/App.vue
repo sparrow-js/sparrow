@@ -300,4 +300,10 @@ export default {
   text-align: center;
 }
 
+.home{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 400px;
+}
+
 </style>
