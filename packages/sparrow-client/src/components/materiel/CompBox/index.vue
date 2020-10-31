@@ -233,9 +233,7 @@
                 </div>
               </div>
             </el-card>
-
           </div>
-         
         </div>
       </div>
     </div>
@@ -312,7 +310,7 @@ export default class CompBox extends Vue {
     return AppModule.insertData;
   }
   get uuid() {
-    return AppModule.uuid;
+    return AppModule.activeCompId;
   }
 
   async created() {
@@ -355,7 +353,7 @@ export default class CompBox extends Vue {
     if (res && res.length > 0) {
       this.$nextTick(() => {
         this.$root.$emit('bind_client_drag');
-      })
+      });
     }
   }
 
@@ -384,7 +382,7 @@ export default class CompBox extends Vue {
       '*'
     );
     this.selectedNode = node;
-    AppModule.setUuid(node.id);
+    // AppModule.setUuid(node.id);
   }
 
   private async deleteComponent(id) {
@@ -392,6 +390,14 @@ export default class CompBox extends Vue {
       id
     });
     this.getSceneTree();
+  }
+
+  private compClick(uuid) {
+    const viewFrame: any = document.querySelector('#viewContent');
+    viewFrame.contentWindow.postMessage(
+      { handler: 'tree-selected', uuid },
+      '*'
+    );
   }
 
   async useScene(id) {

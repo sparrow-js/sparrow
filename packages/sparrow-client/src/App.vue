@@ -141,7 +141,6 @@ export default class App extends Vue {
     });
 
     socket.on('generator.plugin.status', data => {
-      console.log('**********9*******');
       Loading.close();
     });
 

@@ -60,6 +60,10 @@ export default {
           });
         });
       }
+      // emitComponentSelected
+      if(data.handler === 'view.component.selected') {
+        this.emitComponentSelected(data.uuid)
+      }
     },false);
     Event.on('block-selected', (data) => {
       this.uuid = data.uuid;
@@ -115,35 +119,42 @@ export default {
             target = node;
           }
         }
-        if (target) {
-          const boxList = document.querySelectorAll('[data-design-mode*=design-]');
-          boxList.forEach((item) => {
-            item.removeAttribute('data-active');
-          })
-          target.setAttribute('data-active', true);
-          const uuid = target.dataset.id;
-          if (target.dataset.type === 'component') {
-            message.emit('client.dispatch.component', {
-              uuid,
-              data: {
-                params: {
-                  uuid,
-                }
-              }
-            });
-          } else {
-            message.emit('client.dispatch.box', {
-              uuid,
-              data: {
-                params: {
-                  uuid,
-                }
-              }
-            });
-          }
-          
-        }
+        this.emitCompMessage(target);
       })
+    },
+    emitComponentSelected (uuid) {
+      const comp = document.querySelector(`[data-id="${uuid}"]`);
+      this.emitCompMessage(comp);
+    },
+    emitCompMessage (target) {
+      if (target) {
+        const boxList = document.querySelectorAll('[data-design-mode*=design-]');
+        boxList.forEach((item) => {
+          item.removeAttribute('data-active');
+        })
+        target.setAttribute('data-active', true);
+        const uuid = target.dataset.id;
+        if (target.dataset.type === 'component') {
+          message.emit('client.dispatch.component', {
+            uuid,
+            data: {
+              params: {
+                uuid,
+              }
+            }
+          });
+        } else {
+          message.emit('client.dispatch.box', {
+            uuid,
+            data: {
+              params: {
+                uuid,
+              }
+            }
+          });
+        }
+        
+      }
     }
   }
 }
