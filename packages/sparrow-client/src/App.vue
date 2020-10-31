@@ -245,4 +245,7 @@ body {
 .is-drop-inner>.el-tree-node__content .custom-tree-node{
   background: #409EFF;
 }
+.drag-class{
+  display: none;
+}
 </style>

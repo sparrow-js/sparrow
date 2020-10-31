@@ -286,9 +286,10 @@ export default {
             name: 'shared',
             pull: 'clone',
           },
+          forceFallback: false,
           sort: false,
           ghostClass: 'sortable-ghost',
-          filter: '.empty-container',
+          dragClass: 'drag-class',
           onStart: event => {},
           onEnd: event => {
             const item = event.item;
@@ -315,6 +316,9 @@ export default {
           },
           sort: false,
           ghostClass: 'sortable-ghost',
+          forceFallback: false,
+          dragClass: 'drag-class',
+          chosenClass: 'chosen-class',
           // draggable: '',
           onStart: event => {
             this.$forceUpdate();
@@ -643,5 +647,9 @@ export default {
 <style lang="scss">
 .toolbox .el-tabs--border-card>.el-tabs__content{
   height: 100%;
+}
+.drag-class{
+  // display: none !important;
+  // background: red;
 }
 </style>

@@ -206,16 +206,17 @@ export default {
     height: 100%;
   }
   .sortable-ghost{
-    height: 3px !important;
+    /* height: 3px !important; */
     overflow: hidden;
     background: #409EFF;
-    
+    padding: 0 !important; 
+    min-height: 0px !important;
+    outline: 1px solid #1861d5!important;
   }
-  .sortable-ghost .empty-container{
-    display: none;
-  }
+  
+
   .sortable-ghost *{
-    display: none;
+    display: none !important;
   }
   /* .drag-box{
     min-height: 24px;
