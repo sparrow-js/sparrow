@@ -1,5 +1,4 @@
 import Config from '../config';
-console.log('******9***', Config.pluginPath + '/sparrow-test-component/src')
 export const custom = [
   // 基础表单
   {

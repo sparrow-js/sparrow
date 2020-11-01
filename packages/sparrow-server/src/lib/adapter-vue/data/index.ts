@@ -397,6 +397,21 @@ export default class Data {
             icon: ''
           }
         ]
+      },
+      {
+        label: '列表',
+        type: 'editBox',
+        list: [
+          {
+            id: 'ListItem',
+            key: 'ListItem',
+            label: '列表',
+            path: '/EditBlock/ListItem',
+            thumb: '',
+            icon: ''
+          }
+        ]
+        // ListItem
       }
     ]
   }

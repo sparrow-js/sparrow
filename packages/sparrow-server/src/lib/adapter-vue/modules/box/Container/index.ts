@@ -29,6 +29,7 @@ export default class Container extends Base  {
 
     this.setAttrsToStr();
     this.setPreview();
+    this.customAttrHandler();
   }
 
 

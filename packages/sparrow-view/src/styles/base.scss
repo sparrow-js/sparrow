@@ -12,16 +12,13 @@ div.ant-typography,.ant-typography p {
 }
 
 h1.s-typography,.s-typography h1 {
-  margin-bottom: .5em;
   color: #303133;
   font-weight: 600;
   font-size: 38px;
   line-height: 1.23;
-  margin-top: .5em;
 }
 
 h2.s-typography,.s-typography h2 {
-  margin-bottom: .5em;
   color: #303133;
   font-weight: 600;
   font-size: 30px;
@@ -29,27 +26,24 @@ h2.s-typography,.s-typography h2 {
 }
 
 h3.s-typography,.s-typography h3 {
-  margin-bottom: .5em;
   color: #303133;
   font-weight: 600;
   font-size: 24px;
   line-height: 1.35;
-  margin-top: .5em;
 }
 
 h4.s-typography,.s-typography h4 {
-  margin-bottom: .5em;
   color: #303133;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.4;
-  margin-top: .5em;
 }
 
 .s-typography {
   color: #606266;
   font-size: 14px;
   overflow-wrap: break-word;
+  margin: 0;
 }
 .minor-typography.s-typography{
   color: #909399;
@@ -86,4 +80,84 @@ h4.s-typography,.s-typography h4 {
 }
 .column{
   margin-bottom: 10px;
+}
+
+.mt8{
+  margin-top: 8px;
+}
+
+.mt10{
+  margin-top: 10px;
+}
+
+.mt12{
+  margin-top: 12px;
+}
+
+.mt15{
+  margin-top: 15px;
+}
+
+.mt30{
+  margin-top: 30px;
+}
+
+.mb8{
+  margin-bottom: 8px;
+}
+
+.mb10{
+  margin-bottom: 10px;
+}
+
+.mb15{
+  margin-bottom: 15px;
+}
+
+.mb20{
+  margin-bottom: 20px;
+}
+
+.mb30{
+  margin-bottom: 30px;
+}
+
+.ml8{
+  margin-left: 8px;
+}
+
+.ml10{
+  margin-left: 10px;
+}
+
+.ml15{
+  margin-left: 15px;
+}
+
+.ml20{
+  margin-left: 20px;
+}
+
+.ml30{
+  margin-left: 30px;
+}
+
+.mr8{
+  margin-right: 8px;
+}
+
+.mr10{
+  margin-right: 10px;
+}
+
+.mr15{
+  margin-right: 15px;
+}
+
+.mr20{
+  margin-right: 20px;
+}
+
+.mr30{
+  margin-right: 30px;
 }
