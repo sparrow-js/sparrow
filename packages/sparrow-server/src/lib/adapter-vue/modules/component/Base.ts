@@ -80,12 +80,14 @@ export default class Base {
   }
 
   protected setHandler () {}
+  public customAttrHandler () {}
 
   public settingConfig (config: any) {
     this.config = config;
 
     this.setAttrsToStr();
     this.setHandler();
+    this.customAttrHandler();
   }
 
   public setAttrsToStr () {

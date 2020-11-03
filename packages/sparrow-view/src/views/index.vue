@@ -1,9 +1,16 @@
 <template>
-  <div
-    class="home drag-box"
-    data-id="2b96d2f2"
-    style="backgroundImage: url(https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dded9db02e3f4052bbf451f04d3d9b5b~tplv-k3u1fbpfcp-zoom-1.image);"
-  />
+  <div class="home drag-box" data-id="4392aebc" style="">
+    <span
+      data-design-mode="design-border"
+      data-instance-name="Icon"
+      data-id="bc03c395"
+      data-type="component"
+    >
+      <i class="el-icon-question" style="color: #909399;font-size: 48px;" />
+    </span>
+
+    <div />
+  </div>
 </template>
 
 <script>

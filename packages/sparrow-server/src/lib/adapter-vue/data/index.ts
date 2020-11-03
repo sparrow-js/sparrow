@@ -251,6 +251,14 @@ const widgetList = [
         icon: '',
         des: 'Avatar',
         keys: ['头像', 'Avatar']
+      },
+      {
+        id: 'Icon',
+        key: 'Icon',
+        label: 'Icon',
+        icon: '',
+        des: 'Icon',
+        keys: ['Icon']
       }
     ]
   }
