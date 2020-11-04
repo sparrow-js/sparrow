@@ -293,7 +293,7 @@ export default {
           onStart: event => {},
           onEnd: event => {
             const item = event.item;
-            const compId = item.getAttribute('data-id');
+            const compId = item.getAttribute('data-id') || item.querySelector('[data-design-mode=design-border]').getAttribute('data-id');
             const boxId = event.to.getAttribute('data-id');
             const nextSiblingId =
               item.nextElementSibling &&
