@@ -1,13 +1,13 @@
 <template>
-  <div class="home drag-box" data-id="4392aebc" style="">
-    <span
+  <div class="home drag-box" data-id="14db8a6b" style="">
+    <div
+      class="drag-box clearfix"
       data-design-mode="design-border"
-      data-instance-name="Icon"
-      data-id="bc03c395"
-      data-type="component"
-    >
-      <i class="el-icon-question" style="color: #909399;font-size: 48px;" />
-    </span>
+      data-instance-name="Container"
+      data-id="6b669471"
+      style="display: block;flex-direction: column;"
+      data-empty="true"
+    />
 
     <div />
   </div>
