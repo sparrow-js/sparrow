@@ -781,7 +781,7 @@ export default class Scene {
         backgroundImage: ''
       })
     }
-    this.$('.home').append(this.forceRender ?  '<div />' : '')
+    this.$('.home').append(this.forceRender ?  '<div />' : '');
     this.forceRender = !this.forceRender
     if (outputToFile) {
       this.writeTemplate();

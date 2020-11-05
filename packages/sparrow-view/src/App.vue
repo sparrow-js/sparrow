@@ -211,7 +211,10 @@ export default {
     background: #409EFF;
     padding: 0 !important; 
     min-height: 0px !important;
+    height: 0;
     outline: 1px solid #1861d5!important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
 
