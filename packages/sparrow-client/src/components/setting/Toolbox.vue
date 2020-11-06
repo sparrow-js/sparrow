@@ -28,7 +28,7 @@
           <el-collapse v-model="activeNames" @change="handleChange">
             <el-collapse-item
               v-for="(item, index) in compList"
-              :key="index"
+              :key="item.label"
               :title="item.label"
               :name="index"
             >

@@ -417,6 +417,14 @@ export default class Data {
             path: '/EditBlock/ListItem',
             thumb: '',
             icon: ''
+          },
+          {
+            id: 'List1',
+            key: 'List1',
+            label: '列表1',
+            path: '/EditBlock/List1',
+            thumb: '',
+            icon: ''
           }
         ]
         // ListItem
