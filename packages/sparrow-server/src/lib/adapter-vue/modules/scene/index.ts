@@ -684,7 +684,6 @@ export default class Scene {
 
 
   public async renderPage (outputToFile: boolean = true) {
-
     this.params.previewViewStatus = storage.get('preview_view_status');
     this.$('.home').empty();
     this.style = '';
