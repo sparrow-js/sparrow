@@ -17,6 +17,7 @@ program
   .command('start')
   .description('start and open the sparrow')
   .option('-m, --mode [mode]')
+  .option('-i, --init [init]')
   .on('--help', () => {
     console.log('');
     console.log('Examples:');
@@ -28,6 +29,7 @@ program
       // eslint-disable-next-line global-require
       await require('../command/start')({
         mode: cmd.mode,
+        init: cmd.init,
         projectPath,
       });
     }  catch (err) {

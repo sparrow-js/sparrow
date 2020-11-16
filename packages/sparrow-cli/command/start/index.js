@@ -92,8 +92,12 @@ async function start(options = {}) {
     packageConfig = require(pkgPath);
   } catch(err) {
     await downloadServer();
-    startSparrowView(options);
-    await startSparrowworks(options);
+    if (options.init === 'true') {
+      console.log("Just download packages to init sparrow");
+    } else {
+      startSparrowView(options);
+      await startSparrowworks(options);
+    }
     // const answers = await inquirer.prompt([
     //   {
     //     type: 'confirm',
@@ -129,9 +133,13 @@ async function start(options = {}) {
       await downloadServer();
     }
   }
-  startSparrowView(options);
 
-  await startSparrowworks(options);
+  if (options.init === 'true') {
+    console.log("Just download packages to init sparrow");
+  } else {
+    startSparrowView(options);
+    await startSparrowworks(options);
+  }
 }
 
 function startSparrowView (options) {
