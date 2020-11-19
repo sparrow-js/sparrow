@@ -18,6 +18,7 @@ program
   .description('start and open the sparrow')
   .option('-m, --mode [mode]')
   .option('-i, --init [init]')
+  .option('-f, --forbidupdate [forbidupdate]')
   .on('--help', () => {
     console.log('');
     console.log('Examples:');
@@ -30,6 +31,7 @@ program
       await require('../command/start')({
         mode: cmd.mode,
         init: cmd.init,
+        forbidupdate: cmd.forbidupdate,
         projectPath,
       });
     }  catch (err) {
@@ -57,7 +59,8 @@ program.parse(process.argv);
   if (!process.argv.slice(2).length) {
     try {
       await require('../command/start')({
-        mode: false
+        mode: false,
+        forbidupdate: false
       });
     } catch (err) {
       console.error(err.stack)

@@ -24,6 +24,7 @@ const PLUGINS_PATH = path.join(SPARROW_PATH, 'plugins');
 
 let commonOptions = {};
 let mode = false;
+let forbidupdate = false;
 async function startPlugin(options = {}) {
   const pkgPath = path.join(PLUGINS_PATH, 'package.json');
   let packageConfig;
@@ -82,6 +83,12 @@ async function startView(options = {}) {
 async function start(options = {}) {
   commonOptions = options;
   mode = options.mode;
+  forbidupdate = options.forbidupdate || false;
+  if (forbidupdate) {
+    startSparrowView(options);
+    await startSparrowworks(options);
+    return;
+  }
   await startPlugin();
   await startView();
   const pkgPath = path.join(SERVER_PATH, 'package.json');
