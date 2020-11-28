@@ -97,17 +97,6 @@ sparrow 提供多种类型的物料源，以此提升研发效率。
 - 文本编辑
 - 等等功能
 
-## 优质内推位
-展示朋友或前同事的内推信息（本人不收取任何费用、不做中间商、不参与），感兴趣可自行联系
-
-- 职位：美团优选-前端
-- 描述1：大量前端的坑, 薪资 open,欢迎来撩🎉🎉🎁🥳🍻,
-- 描述2: 有机会参与，设计与实现对未来发展有深远影响的技术基建
-- 联系方式：
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1dae6c109e9a4854b826c8fa869978be~tplv-k3u1fbpfcp-watermark.image" width = "200"  alt="图片名称" align="center" />
-
-- 职位详情：[职位详情->](https://p0.meituan.net/travelcube/f5d5386469b5e27adc156dd615cdfe0d932843.png)
-
 ## 讨论
 理性交流，感兴趣可以一起讨论，精力有限不保证能够及时回复，尽力。
 - 微信号：sparrow777-js
