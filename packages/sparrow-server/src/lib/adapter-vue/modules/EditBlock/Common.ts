@@ -8,6 +8,7 @@ export default class Common {
   config: any = {};
   _attrStr: string = '';
   name: string = '';
+  widgetType: string = 'EditBlock';
   
   constructor () {
     this.uuid = uuid().split('-')[0]; 

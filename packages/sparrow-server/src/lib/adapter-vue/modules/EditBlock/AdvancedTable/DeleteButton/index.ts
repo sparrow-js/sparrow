@@ -8,6 +8,8 @@ import Button from '../../../component/Button';
 export default class DeleteButton extends Button{
   name: string = 'DeleteButton';
   vueParse: any;
+  widgetType: string = 'EditBlock';
+
   constructor (params: any) {
     super(params)
     this.config.model.custom.label = '删除';

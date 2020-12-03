@@ -2,10 +2,10 @@ import * as fsExtra from 'fs-extra';
 import * as cheerio from 'cheerio';
 import VueParse from '../../generator/VueParse';
 import * as path from 'path';
-import Base from '../../box/Base'
+import BaseEditBlock from '../BaseEditBlock'
 import Config from '../../../config';
 
-export default class AdvancedTable extends Base{
+export default class AdvancedTable extends BaseEditBlock{
   name: string = 'AdvancedTable';
   params: any;
   vueParse: any;

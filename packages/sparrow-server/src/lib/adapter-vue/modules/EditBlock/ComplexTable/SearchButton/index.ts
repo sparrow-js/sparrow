@@ -8,6 +8,8 @@ import Button from '../../../component/Button';
 export default class SearchButton extends Button{
   name: string = 'SearchButton';
   vueParse: any;
+  widgetType: string = 'EditBlock';
+
   constructor (params: any) {
     super(params);
     this.config.model.custom.label = '搜索';

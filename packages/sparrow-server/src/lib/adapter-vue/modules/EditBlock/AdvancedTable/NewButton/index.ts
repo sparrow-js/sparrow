@@ -9,6 +9,8 @@ export default class NewButton extends Button{
   name: string = 'NewButton';
   vueParse: any;
   isInline: boolean = false; 
+  widgetType: string = 'EditBlock';
+
   constructor (params: any) {
 
     super(params)

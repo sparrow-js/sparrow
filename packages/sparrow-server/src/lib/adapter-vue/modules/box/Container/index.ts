@@ -57,7 +57,7 @@ export default class Container extends Base  {
   }
 
   public customAttrHandler () {
-    const custom = _.get(this.config, 'model.custom');
+    let custom = _.get(this.config, 'model.custom') || {};
     const styleKeys = [
       'display',
       'flex-direction',
@@ -68,7 +68,6 @@ export default class Container extends Base  {
     ];
 
     const styleArr = [];
-    
     styleKeys.forEach(key => {
       if (key === 'style') {
         styleArr.push(custom[key]);
@@ -78,6 +77,7 @@ export default class Container extends Base  {
         styleArr.push(`${key}: ${custom[key]}`);
       }
     });
+
     if (styleArr.length > 0) {
       this.styleStr = `style="${styleArr.join(';')}"`
     }    

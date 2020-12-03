@@ -8,6 +8,8 @@ import Button from '../../../component/Button';
 export default class FormUpdateButton extends Button{
   name: string = 'FormUpdateButton';
   vueParse: any;
+  widgetType: string = 'EditBlock';
+
   constructor (params: any) {
     super(params)
     super(params)

@@ -8,6 +8,8 @@ import Button from '../../../component/Button';
 export default class SaveButton extends Button{
   name: string = 'SaveButton';
   vueParse: any;
+  widgetType: string = 'EditBlock';
+
   constructor (params: any) {
 
     super(params)

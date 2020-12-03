@@ -8,6 +8,8 @@ import Button from '../../../component/Button';
 export default class StatusButton extends Button{
   name: string = 'StatusButton';
   vueParse: any;
+  widgetType: string = 'EditBlock';
+
   constructor (params: any) {
     super(params)
     this.config.model.custom.label = '发布';

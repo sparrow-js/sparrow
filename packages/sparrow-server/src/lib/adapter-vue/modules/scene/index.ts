@@ -132,7 +132,7 @@ export default class Scene {
     const fn = function (boxs) {
       if (Array.isArray(boxs)) {
         boxs.forEach(item => {
-          if (item.widgetType === 'box') {
+          if (item.widgetType === 'box' || item.isBox) {
             leafToRoot.unshift(item);
           }
           if (item.components) {
@@ -425,6 +425,10 @@ export default class Scene {
 
     if (node.fileName) {
       tree.fileName = node.fileName;
+    }
+
+    if (node.widgetType) {
+      tree.type = node.widgetType;
     }
 
     if (node.config) {

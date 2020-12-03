@@ -1,4 +1,4 @@
-import Common from '../../../custom/Common';
+import Common from '../../Common';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import Config from '../../../../config';

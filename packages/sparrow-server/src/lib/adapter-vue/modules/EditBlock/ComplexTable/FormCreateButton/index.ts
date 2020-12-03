@@ -8,6 +8,8 @@ import Button from '../../../component/Button';
 export default class FormCreateButton extends Button{
   name: string = 'FormCreateButton';
   vueParse: any;
+  widgetType: string = 'EditBlock';
+
   constructor (params: any) {
     super(params)
     this.config.model.custom.label = '确定';

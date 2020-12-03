@@ -2,7 +2,7 @@ import * as fsExtra from 'fs-extra';
 import * as cheerio from 'cheerio';
 import VueParse from '../../generator/VueParse';
 import * as path from 'path';
-import Base from '../../box/Base'
+import Base from '../BaseEditBlock'
 import Config from '../../../config';
 
 export default class ComplexTable extends Base{

@@ -8,6 +8,8 @@ import Button from '../../../component/Button';
 export default class EditButton extends Button{
   name: string = 'EditButton';
   vueParse: any;
+  widgetType: string = 'EditBlock';
+
   constructor (params: any) {
     super(params)
     this.config.model.custom.label = '编辑';
