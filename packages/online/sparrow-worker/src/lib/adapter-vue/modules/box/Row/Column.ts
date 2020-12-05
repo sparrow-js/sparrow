@@ -19,11 +19,11 @@ export default class Column extends Base{
   constructor (data: any, storage: any) {
     super(storage);
     this.storage = storage;
-    const { params = {}, config} = data;
-    const {span} = config;
+    const { params = {}, config = {}} = data;
     if (config.initType === 'auto') {
       this.config = config;
     } else {
+      const {span} = data;
       this.config = _.cloneDeep(require('./config'));
       if (span) {
         this.config.model.attr[':span'] = span;
