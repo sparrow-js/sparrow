@@ -16,7 +16,7 @@ export default class Column extends Base{
 
   constructor (data: any, storage: any) {
     super(storage);
-    const {config} = data;
+    const {config = {}} = data;
     if (config.initType === 'auto') {
       this.config = config;
     } else {
