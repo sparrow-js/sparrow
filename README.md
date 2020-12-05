@@ -23,6 +23,12 @@ sparrow的核心目标仅有一条“提升研发效率”，目前提供基于v
 
 ## 快速使用
 
+### 线上版
+线上体验版，代码生成worker、浏览器构建、可视化操作、实时输出源代码、多种类型物料源，更多精彩内容逐步开放
+
+[https://sparrow-js.github.io/sparrow-online/](https://sparrow-js.github.io/sparrow-online/)
+
+
 ### 全局安装
 
 ```bash
