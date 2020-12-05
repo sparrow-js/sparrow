@@ -9,6 +9,8 @@ export default class Common {
   _attrStr: string = '';
   storage: any = {};
   name: string = '';
+  widgetType: string = 'custom';
+
   
   constructor () {
     this.uuid = uuid().split('-')[0]; 
