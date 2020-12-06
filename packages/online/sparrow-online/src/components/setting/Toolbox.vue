@@ -149,7 +149,8 @@ export default {
     setTimeout(() => {
       this.getWidgetList('');
     }, 2000);
-    document.querySelector('#sparrowWorker').onload(() => {
+
+    this.$EventBus.$on('sparrow-worker-load', () => {
       setTimeout(() => {
         this.getWidgetList('');
       }, 1000)
@@ -165,7 +166,7 @@ export default {
   mounted() {
     Message.on('codesandbox', ({data = {}}) => {
       if (data.type === 'done') {
-        setTimeout(() => {
+        setTimeout(() => {        
           this.bindDrag();
         }, 1000);
       }
@@ -212,11 +213,7 @@ export default {
         path
       };
 
-      // path
-
-      Loading.open();
       await Message.emit('generator.scene.addEditComp', params);
-      Loading.close();
 
     },
 
@@ -261,6 +258,7 @@ export default {
       const iframe = document.querySelector('#viewContent').contentDocument.querySelector('[title=sandpack-sandbox]');
       var doc = iframe.contentDocument;
       if (!doc) return;
+      console.log('*********8*********');
       const list = doc.querySelectorAll('.drag-box');
       list.forEach(item => {
         Sortable.create(item, {

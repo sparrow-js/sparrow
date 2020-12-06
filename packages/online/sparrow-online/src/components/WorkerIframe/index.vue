@@ -9,7 +9,9 @@
 <script>
 export default {
   methods: {
-    iframeOnload () {}
+    iframeOnload () {
+      this.$EventBus.$emit('sparrow-worker-load');
+    }
   }
 }
 </script>

@@ -49,9 +49,10 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component("ArrayContainer", ArrayContainer);
 Vue.config.productionTip = false;
 Vue.use(Element);
+Vue.prototype.$EventBus = new Vue();
+
 new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app');
-Vue.prototype.$EventBus = new Vue();
