@@ -123,7 +123,7 @@ export default {
       })
     },
     emitComponentSelected (uuid) {
-      const comp = document.querySelector(`[data-id="${uuid}"]`);
+      const comp = document.querySelector( '[data-id="' + uuid + '"]');
       this.emitCompMessage(comp);
     },
     emitCompMessage (target) {

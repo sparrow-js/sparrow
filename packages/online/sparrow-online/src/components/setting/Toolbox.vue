@@ -200,11 +200,7 @@ export default {
         };
         return;
       }
-
-      Loading.open();
-      
       const res = await Message.emit('generator.scene.addComponent', params);      
-      Loading.close();
       this.dialogVisible = false;
     },
 
