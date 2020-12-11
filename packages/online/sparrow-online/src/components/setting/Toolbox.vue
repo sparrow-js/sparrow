@@ -258,7 +258,6 @@ export default {
       const iframe = document.querySelector('#viewContent').contentDocument.querySelector('[title=sandpack-sandbox]');
       var doc = iframe.contentDocument;
       if (!doc) return;
-      console.log('*********8*********');
       const list = doc.querySelectorAll('.drag-box');
       list.forEach(item => {
         Sortable.create(item, {

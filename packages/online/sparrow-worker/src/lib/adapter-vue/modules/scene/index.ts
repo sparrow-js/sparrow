@@ -54,7 +54,6 @@ export default class Scene {
     lowdb.set('preview_view_status', 0).write();
     this.renderPage = _.throttle(this.renderPage, 500)
     this.init();
-    console.log('****************', params);
 
     if (params.label === 'page') {
       this.config = params.config;

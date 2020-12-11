@@ -183,6 +183,12 @@ export default {
     this.$root.$on('mousedown_widget', (data) => {
       this.widgetData = data;
     });
+
+    this.img = new Image();
+    this.img.style.position = 'absolute';
+    this.img.style.top = '-10000px';
+    this.img.style.width = '100px';
+    document.body.appendChild(this.img);
   },
   mounted() {
     window.addEventListener('message', event => {
@@ -294,6 +300,9 @@ export default {
           ghostClass: 'sortable-ghost',
           dragClass: 'drag-class',
           onStart: event => {},
+          setData: (dataTransfer, dragEl) => {
+            this.setDragImage(dataTransfer, dragEl, '拖拽组件');
+          },
           onEnd: event => {
             const item = event.item;
             const compId = item.getAttribute('data-id') || item.querySelector('[data-design-mode=design-border]').getAttribute('data-id');
@@ -326,21 +335,7 @@ export default {
             this.$forceUpdate();
           },
           setData: (dataTransfer, dragEl) => {
-            const canvas = document.createElement('canvas');
-            canvas.width = 200;
-            canvas.height = 60;
-            const context = canvas.getContext('2d');
-            context.fillStyle = '#00000090';
-            context.fillRect(0, 0, 200, 60);
-            context.font = '24px Georgia';
-            context.fillStyle = '#fff';
-            context.fillText(dragEl.dataset.name, 30, 40);
-            const img = new Image();
-            img.style.position = 'absolute';
-            img.style.top = '-10000px';
-            (img.style.width = '100px'), (img.src = canvas.toDataURL());
-            document.body.appendChild(img);
-            dataTransfer.setDragImage(img, 10, 10);
+            this.setDragImage(dataTransfer, dragEl);
           },
           onEnd: async event => {
             // this.$forceUpdate();
@@ -402,6 +397,22 @@ export default {
           }
         });
       });
+    },
+
+    setDragImage (dataTransfer, dragEl, text = '') {
+      const canvas = document.createElement('canvas');
+      canvas.width = 200;
+      canvas.height = 60;
+      const context = canvas.getContext('2d');
+      context.clearRect(0, 0, 200, 60);
+      context.fillStyle = '#00000090';
+      context.fillRect(0, 0, 200, 60);
+      context.font = '24px Georgia';
+      context.fillStyle = '#fff';
+      context.fillText(text || dragEl.dataset.name, 30, 40);
+      this.img.src = canvas.toDataURL();
+      document.body.appendChild(this.img);
+      dataTransfer.setDragImage(this.img, 10, 10);
     },
 
     async fileHandler() {
