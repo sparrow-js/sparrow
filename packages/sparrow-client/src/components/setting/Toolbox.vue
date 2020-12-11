@@ -41,7 +41,7 @@
                   @click="addComp(comp.key, comp.params)"
                 >
                   <div class="drag-box">
-                    <div class="drag-box-item">
+                    <div class="drag-box-item" :data-name="comp.label">
                       <div class="svg-icon-box">
                         <svg class="icon svg-icon" aria-hidden="true">
                           <use :xlink:href="comp.icon"></use>
@@ -72,7 +72,7 @@
                   @click="addEditComp(comp.key, comp.params, comp.path)"
                 >
                   <div class="drag-box">
-                    <div class="drag-box-item">
+                    <div class="drag-box-item" :data-name="comp.label">
                       <img :src="comp.thumb" style="width: 100%" />
                       <span class="comp-list-label edit-box-label">{{ comp.label }}</span>
                     </div>
@@ -88,6 +88,7 @@
               <div class="block-list drag-box">
                 <div
                   class="block-item"
+                  :data-name="comp.label"
                   v-for="item in staticBlockList"
                   :key="item.key"
                   @mousedown="mousedownWidget(item, 'block')"
@@ -147,6 +148,8 @@ import Loading from '@/util/loading';
 import { AppModule } from '@/store/modules/app';
 import FormSetting from './FormSetting';
 import Sortable from 'sortablejs';
+import html2canvas from 'html2canvas';
+
 export default {
   components: {
     FormSetting,
@@ -305,8 +308,7 @@ export default {
       });
     },
     bindClientDrag() {
-      const dragList = document.querySelectorAll('.drag-box');
-
+      const dragList = document.querySelectorAll('.drag-box'); 
       dragList.forEach(item => {
         Sortable.create(item, {
           group: {
@@ -322,6 +324,23 @@ export default {
           // draggable: '',
           onStart: event => {
             this.$forceUpdate();
+          },
+          setData: (dataTransfer, dragEl) => {
+            const canvas = document.createElement('canvas');
+            canvas.width = 200;
+            canvas.height = 60;
+            const context = canvas.getContext('2d');
+            context.fillStyle = '#00000090';
+            context.fillRect(0, 0, 200, 60);
+            context.font = '24px Georgia';
+            context.fillStyle = '#fff';
+            context.fillText(dragEl.dataset.name, 30, 40);
+            const img = new Image();
+            img.style.position = 'absolute';
+            img.style.top = '-10000px';
+            (img.style.width = '100px'), (img.src = canvas.toDataURL());
+            document.body.appendChild(img);
+            dataTransfer.setDragImage(img, 10, 10);
           },
           onEnd: async event => {
             // this.$forceUpdate();
