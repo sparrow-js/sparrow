@@ -240,12 +240,9 @@ export default {
         path
       };
 
-      // path
-
       Loading.open();
       await socket.emit('generator.scene.addEditComp', params);
       Loading.close();
-
     },
 
     mousedownWidget(widget, type) {
@@ -279,9 +276,9 @@ export default {
     async addStaticBlock(id, originData) {
       Loading.open();
       await socket.emit('generator.scene.addBlock', {
-        boxUuid: AppModule.boxUuid, 
+        boxUuid: AppModule.boxUuid,
         id,
-        originData 
+        originData
       });
     },
     bindDrag() {

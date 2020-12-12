@@ -53,7 +53,7 @@ class PreviewSandBox extends Component {
     const {toggleIde} = this.state;
     return (
       <div className={styles.preview}>
-        <SandpackProvider files={this.state.files} dependencies={dependencies} entry="/src/main.js" bundlerURL={'https://sparrow-js.github.io/sparrow-code-packager/'}>
+        <SandpackProvider files={this.state.files} dependencies={dependencies} entry="/src/main.js" bundlerURL={'http://192.168.199.156:3000'}>
           <div style={{ display: 'flex', width: '100%', height: '100%' }}>
             <div className={styles.previewIdeBox}>
               {

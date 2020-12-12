@@ -162,6 +162,13 @@ export default {
     this.$root.$on('mousedown_widget', (data) => {
       this.widgetData = data;
     });
+
+    this.img = new Image();
+    this.img.style.position = 'absolute';
+    this.img.style.top = '-10000px';
+    this.img.style.width = '100px';
+    document.body.appendChild(this.img);
+
   },
   mounted() {
     Message.on('codesandbox', ({data = {}}) => {
@@ -176,11 +183,6 @@ export default {
     setTimeout(() => {
       this.bindClientDrag();
     }, 3000);
-    // const iframe = document.querySelector('#viewContent').contentDocument.querySelector('[title=sandpack-sandbox]');
-
-    // iframe.onload = () => {
-    //   this.bindDrag();
-    // };
   },
   methods: {
     async addComp(id, config, comp) {
@@ -212,9 +214,7 @@ export default {
         params: config,
         path
       };
-
       await Message.emit('generator.scene.addEditComp', params);
-
     },
 
     mousedownWidget(widget, type) {
@@ -262,14 +262,20 @@ export default {
       list.forEach(item => {
         Sortable.create(item, {
           group: {
-            name: 'shared',
+            name: 'nested',
             pull: 'clone',
           },
           forceFallback: false,
+          animation: 150,
+          fallbackOnBody: true,
+          swapThreshold: 0.1,
           sort: false,
           ghostClass: 'sortable-ghost',
           dragClass: 'drag-class',
           onStart: event => {},
+          setData: (dataTransfer, dragEl) => {
+            this.setDragImage(dataTransfer, dragEl, '拖拽组件');
+          },
           onEnd: event => {
             const item = event.item;
             const compId = item.getAttribute('data-id') || item.querySelector('[data-design-mode=design-border]').getAttribute('data-id');
@@ -283,6 +289,7 @@ export default {
         });
       });
     },
+    
     bindClientDrag() {
       const dragList = document.querySelectorAll('.drag-box');
 
@@ -298,7 +305,9 @@ export default {
           forceFallback: false,
           dragClass: 'drag-class',
           chosenClass: 'chosen-class',
-          // draggable: '',
+          setData: (dataTransfer, dragEl) => {
+            this.setDragImage(dataTransfer, dragEl);
+          },
           onStart: event => {
             this.$forceUpdate();
           },
@@ -408,7 +417,24 @@ export default {
             this.bindClientDrag();
 
       this.bindDrag();
-    }
+    },
+
+    setDragImage (dataTransfer, dragEl, text = '') {
+      const canvas = document.createElement('canvas');
+      canvas.width = 200;
+      canvas.height = 60;
+      const context = canvas.getContext('2d');
+      context.clearRect(0, 0, 200, 60);
+      context.fillStyle = '#00000090';
+      context.fillRect(0, 0, 200, 60);
+      context.font = '24px Georgia';
+      context.fillStyle = '#fff';
+      context.fillText(text || dragEl.dataset.name, 30, 40);
+      this.img.src = canvas.toDataURL();
+      document.body.appendChild(this.img);
+      dataTransfer.setDragImage(this.img, 10, 10);
+    },
+
   }
 };
 </script>
