@@ -112,4 +112,4 @@ sparrow 提供多种类型的物料源，以此提升研发效率。
 
 
 ## License
-[MIT](http://opensource.org/licenses/MIT)
+[MIT](https://github.com/sparrow-js/sparrow/blob/master/LICENSE)
