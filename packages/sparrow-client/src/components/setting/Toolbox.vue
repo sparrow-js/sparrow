@@ -292,16 +292,22 @@ export default {
       list.forEach(item => {
         Sortable.create(item, {
           group: {
-            name: 'shared',
-            pull: 'clone',
+            name: 'nested',
+            // pull: 'clone',
           },
           forceFallback: false,
+          animation: 150,
+          fallbackOnBody: true,
+          swapThreshold: 0.1,
           sort: false,
           ghostClass: 'sortable-ghost',
           dragClass: 'drag-class',
           onStart: event => {},
           setData: (dataTransfer, dragEl) => {
             this.setDragImage(dataTransfer, dragEl, '拖拽组件');
+          },
+          onMove: evt => {
+            // evt.related.style.outline = '1px solid #1861d5';
           },
           onEnd: event => {
             const item = event.item;
