@@ -324,7 +324,7 @@ export default {
       dragList.forEach(item => {
         Sortable.create(item, {
           group: {
-            name: 'shared',
+            name: 'nested',
             pull: 'clone',
             put: false,
           },
