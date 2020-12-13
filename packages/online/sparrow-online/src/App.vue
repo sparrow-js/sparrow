@@ -16,7 +16,7 @@
                 id="viewContent"
                 ref="viewContent"
                 class="view-content"
-                src="http://192.168.199.156:3000/view"
+                src="https://sparrow-js.github.io/sparrow-preview/"
               />
             </div>
           </div>
@@ -128,7 +128,6 @@ export default class App extends Vue {
 
         if (data.handler === 'client.screen.keydown') {
           const {operate} = data;
-
           if (operate === 'ctrl+c') {
             this.isCompPast = true;
             this.copyHandler();

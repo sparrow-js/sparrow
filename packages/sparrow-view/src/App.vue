@@ -19,7 +19,6 @@ export default {
   },
   created () {
     document.addEventListener('keydown', (e) => {
-
       if(e.metaKey && e.keyCode === 67) {
         message.emit('client.screen.keydown', {
           operate: 'ctrl+c'
@@ -29,6 +28,13 @@ export default {
       if (e.metaKey && e.keyCode === 86) {
         message.emit('client.screen.keydown', {
           operate: 'ctrl+v'
+        });
+      }
+
+      if (e.keyCode === 8) {
+        message.emit('client.screen.keydown', {
+          operate: 'delete',
+          keyCode: e.keyCode
         });
       }
 

@@ -3,7 +3,7 @@
     id="sparrowWorker"
     class="sparrow-worker"
     @load="iframeOnload"
-    src="http://localhost:9999/example/example-dev.html"
+    src="https://sparrow-js.github.io/sparrow-worker/"
   />
 </template>
 <script>

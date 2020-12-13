@@ -118,6 +118,8 @@ export default class App extends Vue {
                 this.pasteHandler();
               }
             }, 500);
+          } else if (operate === 'delete') {
+            this.deleteComp();
           }
 
         }
@@ -165,6 +167,12 @@ export default class App extends Vue {
     // pasteHandler
     const result = await socket.emit('generator.scene.pasteHandler', {
       compId: this.boxUuid,
+    });
+  }
+
+  private async deleteComp () {
+    await socket.emit('generator.scene.deleteComponent', {
+      id: AppModule.activeCompId
     });
   }
 
