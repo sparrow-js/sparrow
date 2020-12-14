@@ -5,7 +5,7 @@
         <top-toolbar></top-toolbar>
       </el-header>
 
-      <el-container style="height: calc(100% - 45px);">
+      <el-container style="height: calc(100% - 55px);">
         <div>
           <comp-box></comp-box>
         </div>
@@ -239,7 +239,7 @@ body {
 #app .el-main {
   color: #333;
   text-align: center;
-  padding-top: 0;
+  padding: 0;
 }
 .container {
   height: 100%;

@@ -19,5 +19,7 @@ export default {
 .sparrow-worker{
   width: 0;
   height: 0;
+  position: fixed;
+  top: -10000px;
 }
 </style>

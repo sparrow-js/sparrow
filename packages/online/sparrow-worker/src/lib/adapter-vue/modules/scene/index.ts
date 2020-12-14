@@ -38,7 +38,6 @@ export default class Scene {
     dataCode: 'var data = {}'
   };
   tempCopyStore: any = {};
-  renderPageToggle = false;
   style: string = '';
   storeStyleRepeat = [];
   forceRender: boolean = true;
@@ -582,7 +581,6 @@ export default class Scene {
     this.deleteComponent({
       id: compId
     }, false);
-    this.renderPageToggle = !this.renderPageToggle; // 强制webpack热更新
     this.jsonToScene({children: [compJson]}, curBox);
   }
 
@@ -691,9 +689,6 @@ export default class Scene {
     this.$('.home').empty();
     this.style = '';
     this.storeStyleRepeat = [];
-    if (this.renderPageToggle) {
-      this.$('.home').append('<div class="toggle"/>')
-    }
 
     this.scriptData = this.VueGenerator.initScript();
 
