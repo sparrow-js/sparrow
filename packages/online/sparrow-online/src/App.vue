@@ -16,7 +16,7 @@
                 id="viewContent"
                 ref="viewContent"
                 class="view-content"
-                src="https://sparrow-js.github.io/sparrow-preview/"
+                src="http://192.168.199.156:3000/view"
               />
             </div>
           </div>
@@ -137,6 +137,8 @@ export default class App extends Vue {
                 this.pasteHandler();
               }
             }, 500);
+          } else if (operate === 'delete') {
+            this.deleteComp();
           }
 
         }
@@ -189,6 +191,12 @@ export default class App extends Vue {
     // pasteHandler
     const result = await Message.emit('generator.scene.pasteHandler', {
       compId: this.boxUuid,
+    });
+  }
+
+  private async deleteComp () {
+    await Message.emit('generator.scene.deleteComponent', {
+      id: AppModule.activeCompId
     });
   }
 

@@ -50,7 +50,7 @@ export default class Base {
     });
     const type = storage.get('preview_view_status') || 0;
     if (type === 0) {
-      this.$fragment.root().children().attr('data-design-mode', 'design-border');
+      this.$fragment.root().children().attr('data-design-mode', 'design-border-component');
       this.$fragment.root().children().attr('data-instance-name', this.name);
       this.$fragment.root().children().attr('data-id', this.uuid);
       this.$fragment.root().children().attr('data-type', 'component');

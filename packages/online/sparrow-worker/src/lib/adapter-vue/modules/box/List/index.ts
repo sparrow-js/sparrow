@@ -45,7 +45,7 @@ export default class List extends Base  {
 
       this.$fragment = cheerio.load(` 
         <ul class="list list-split">
-          <li class="list-item drag-box clearfix" data-design-mode="design-border" data-instance-name="${this.name}" data-id="${this.uuid}" ${this._attrStr} ${this.styleStr}></li>
+          <li class="list-item drag-box clearfix" data-design-mode="design-border-box" data-instance-name="${this.name}" data-id="${this.uuid}" ${this._attrStr} ${this.styleStr}></li>
         </ul>
         `, {
         xmlMode: true,

@@ -246,9 +246,10 @@ export default {
     align-items: center;
     color: #C0C4CC;
   }
-
-  [data-design-mode*=design-]{
+  [data-design-mode=design-border-box] {
     padding: 5px;
+  }
+  [data-design-mode*=design-]{
     position: relative;
     min-height: 30px;
     min-width: 30px;

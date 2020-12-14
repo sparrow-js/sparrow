@@ -37,7 +37,7 @@ export default class ElFooter extends Base  {
     if (type === 0) {
 
       this.$fragment = cheerio.load(` 
-        <el-footer data-design-mode="design-border" data-instance-name="${this.name}" ${this._attrStr} class="drag-box" data-id="${this.uuid}">
+        <el-footer data-design-mode="design-border-box" data-instance-name="${this.name}" ${this._attrStr} class="drag-box" data-id="${this.uuid}">
         </el-footer>
       `, {
         xmlMode: true,

@@ -37,7 +37,7 @@ export default class ElHeader extends Base  {
     if (type === 0) {
 
       this.$fragment = cheerio.load(` 
-        <el-header data-design-mode="design-border" data-instance-name="${this.name}" ${this._attrStr} class="drag-box" data-id="${this.uuid}">
+        <el-header data-design-mode="design-border-box" data-instance-name="${this.name}" ${this._attrStr} class="drag-box" data-id="${this.uuid}">
         </el-header>
       `, {
         xmlMode: true,

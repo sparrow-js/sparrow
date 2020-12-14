@@ -4,7 +4,7 @@ import * as cheerio from 'cheerio';
 import prettier from "prettier/standalone";
 import parserHtml from 'prettier/parser-html';
 import parserBabel from 'prettier/parser-babel';
-import * as upperCamelCase from 'uppercamelcase';
+import upperCamelCase from 'uppercamelcase';
 import VueGenerator from '../generator';
 import VueParse from '../generator/VueParse';
 import { v4 as uuid } from '@lukeed/uuid';

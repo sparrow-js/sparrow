@@ -40,6 +40,13 @@ export default {
               operate: 'ctrl+v'
             });
           }
+          
+          if (e.keyCode === 8) {
+            message.emit('client.screen.keydown', {
+              operate: 'delete',
+              keyCode: e.keyCode
+            });
+          }
     
         });
     
@@ -220,6 +227,7 @@ export default {
         outline: 1px solid #1861d5!important;
         margin: 0 !important;
         padding: 0 !important;
+        z-index: 1000;
       }
       
     
@@ -234,9 +242,12 @@ export default {
         align-items: center;
         color: #C0C4CC;
       }
+
+      [data-design-mode=design-border-box] {
+        padding: 5px;
+      }
     
       [data-design-mode*=design-]{
-        padding: 5px;
         position: relative;
         min-height: 30px;
         min-width: 30px;

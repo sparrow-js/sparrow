@@ -11,6 +11,9 @@ import * as upperCamelCase from 'uppercamelcase';
 import generate from '@babel/generator';
 import LifeCycle from '../../LifeCycle'
 import ApiComp from '../../api';
+import Message from '../../../../../utils/message';
+import parserHtml from 'prettier/parser-html';
+import parserBabel from 'prettier/parser-babel';
 
 
 const uuid = require('@lukeed/uuid');
@@ -76,8 +79,7 @@ export default class File extends Base implements IBaseBox{
   }
 
   init () {
-    // mkdirp.sync(Config.componentsDir);
-    // this.blockPath = path.join(Config.componentsDir, `${this.fileName}.vue`);
+    this.blockPath = `/src/views/components/${this.fileName}.vue`;
   }
 
   public initApi () {
@@ -213,11 +215,15 @@ export default class File extends Base implements IBaseBox{
 
   private writeTemplate () {
     const template = `${this.$.html()}\n<script>${generate(this.scriptData).code}</script> <style lang="scss" scoped>${this.style}</style>`;
-    const formatTemp = prettier.format(template, { semi: true, parser: "vue" });
+    const formatTemp = prettier.format(template, { semi: true, parser:"vue", plugins: [parserHtml, parserBabel]});
     if (formatTemp === this.formatTemp) {
       return;
     }
     this.formatTemp = formatTemp;
-    // fsExtra.writeFileSync(this.blockPath, formatTemp, 'utf8');
+    
+    Message.emit('generate-file', {
+      code: formatTemp,
+      path: this.blockPath,
+    });
   }
 }
