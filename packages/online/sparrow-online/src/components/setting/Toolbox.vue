@@ -172,17 +172,15 @@ export default {
   },
   mounted() {
     Message.on('codesandbox', ({data = {}}) => {
-      if (data.type === 'done') {
-        setTimeout(() => {        
-          this.bindDrag();
-        }, 1000);
+      if (data.type === 'done' || data.type === 'test') {
+        this.bindDrag();
       }
     });
 
 
-    setTimeout(() => {
-      this.bindClientDrag();
-    }, 3000);
+    // setTimeout(() => {
+    //   this.bindClientDrag();
+    // }, 3000);
   },
   methods: {
     async addComp(id, config, comp) {
@@ -205,6 +203,9 @@ export default {
       }
       const res = await Message.emit('generator.scene.addComponent', params);      
       this.dialogVisible = false;
+      // setTimeout(() => {
+      //   this.bindDrag();
+      // }, 500);
     },
 
     async addEditComp (id, config, path) {
@@ -263,7 +264,7 @@ export default {
         Sortable.create(item, {
           group: {
             name: 'shared',
-            pull: 'clone',
+            // pull: 'clone',
           },
           forceFallback: false,
           animation: 150,
@@ -397,7 +398,6 @@ export default {
         nextSiblingId,
       });
 
-
       // setTimeout(() => {
       //   this.bindDrag();
       // }, 500)
@@ -414,9 +414,9 @@ export default {
 
     },
     dragHandler () {
-            this.bindClientDrag();
+      this.bindClientDrag();
 
-      this.bindDrag();
+      // this.bindDrag();
     },
 
     setDragImage (dataTransfer, dragEl, text = '') {
