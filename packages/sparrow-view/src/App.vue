@@ -31,7 +31,7 @@ export default {
         });
       }
 
-      if (e.keyCode === 8) {
+      if (e.metaKey && e.keyCode === 8) {
         message.emit('client.screen.keydown', {
           operate: 'delete',
           keyCode: e.keyCode

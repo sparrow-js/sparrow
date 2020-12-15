@@ -19,7 +19,7 @@ export default class extends Vue {}
 .setting {
   background: #fff;
   box-sizing: border-box;
-  height: 100%;
+  height: calc(100% - 3px);
    &__title {
     padding: 5px 0;
     margin: 0 5px;
