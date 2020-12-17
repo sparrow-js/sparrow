@@ -577,6 +577,9 @@ export default class Scene {
     let curBox = this.findComponent(boxId, this.components);
     if (boxId === this.uuid) {
       curBox = this;
+      if (_.get(compJson, 'config.model.custom.insideForm')) {
+        _.set(compJson, 'config.model.custom.insideForm', '');
+      }     
     }
     this.deleteComponent({
       id: compId

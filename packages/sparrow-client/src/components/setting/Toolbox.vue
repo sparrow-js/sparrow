@@ -171,7 +171,8 @@ export default {
       dialogCreateFileVisible: false,
       fileParams: {},
       activeBoxName: 'tool',
-      settingId: ''
+      settingId: '',
+      relatedId: ''
     };
   },
   async created() {
@@ -304,9 +305,22 @@ export default {
             this.setDragImage(dataTransfer, dragEl, '拖拽组件');
           },
           onMove: evt => {
+            const relatedId = evt.related.dataset.id;
+            // evt.related.setAttribute('data-active', true);
+            // if (this.relatedId !== relatedId && this.relatedId) {
+            //   document
+            //     .querySelector('#viewContent')
+            //     .contentDocument.querySelector(`[data-id="${this.relatedId}"]`)
+            //     .removeAttribute('data-active');
+            //   document
+            //     .querySelector(`[data-id="${this.relatedId}"]`)
+            //     .removeAttribute('data-active');
+            // }
+            this.relatedId = relatedId;
             // evt.related.style.outline = '1px solid #1861d5';
           },
           onEnd: event => {
+            this.relatedId = '';
             const item = event.item;
             const compId = item.getAttribute('data-id') || item.querySelector('[data-design-mode*=design-]').getAttribute('data-id');
             const boxId = event.to.getAttribute('data-id');
