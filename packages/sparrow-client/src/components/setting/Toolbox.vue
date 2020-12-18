@@ -282,6 +282,25 @@ export default {
         originData
       });
     },
+    findBoxNode(node) {
+      let tempNode = node;
+
+      while (tempNode && tempNode.dataset && tempNode.dataset.type !== 'box') {
+        tempNode = tempNode.parentNode;
+      }
+      if (tempNode && tempNode.dataset && tempNode.dataset.type === 'box') {
+        return tempNode;
+      }
+      return null;
+    },
+    cancelBoxActive() {
+      const boxNodeList = document
+        .querySelector('#viewContent')
+        .contentDocument.querySelectorAll('[data-type="box"]');
+      boxNodeList.forEach(item => {
+        item.removeAttribute('data-active');
+      });
+    },
     bindDrag() {
       const iframe = document.querySelector('#viewContent');
       var doc = iframe.contentDocument;
@@ -305,19 +324,16 @@ export default {
             this.setDragImage(dataTransfer, dragEl, '拖拽组件');
           },
           onMove: evt => {
-            const relatedId = evt.related.dataset.id;
-            // evt.related.setAttribute('data-active', true);
-            // if (this.relatedId !== relatedId && this.relatedId) {
-            //   document
-            //     .querySelector('#viewContent')
-            //     .contentDocument.querySelector(`[data-id="${this.relatedId}"]`)
-            //     .removeAttribute('data-active');
-            //   document
-            //     .querySelector(`[data-id="${this.relatedId}"]`)
-            //     .removeAttribute('data-active');
-            // }
+            const { related } = evt;
+            const relatedId = related.dataset.id;
+            if (this.relatedId !== relatedId) {
+              const boxNode = this.findBoxNode(related);
+              if (boxNode) {
+                this.cancelBoxActive();
+                boxNode.setAttribute('data-active', true);
+              }
+            }
             this.relatedId = relatedId;
-            // evt.related.style.outline = '1px solid #1861d5';
           },
           onEnd: event => {
             this.relatedId = '';
@@ -353,6 +369,18 @@ export default {
           },
           setData: (dataTransfer, dragEl) => {
             this.setDragImage(dataTransfer, dragEl);
+          },
+          onMove: evt => {
+            const { related } = evt;
+            const relatedId = related.dataset.id;
+            if (this.relatedId !== relatedId) {
+              const boxNode = this.findBoxNode(related);
+              if (boxNode) {
+                this.cancelBoxActive();
+                boxNode.setAttribute('data-active', true);
+              }
+            }
+            this.relatedId = relatedId;
           },
           onEnd: async event => {
             // this.$forceUpdate();

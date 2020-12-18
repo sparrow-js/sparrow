@@ -21,7 +21,6 @@ class TestComponent extends sparrow_utils_1.Component {
         this.setAttrsToStr();
     }
     initVueParse() {
-        console.log('*****', __dirname);
         const fileStr = fsExtra.readFileSync(path.join(__dirname, '..', 'src/index.vue'), 'utf8');
         this.vueParse = new sparrow_utils_1.VueParse(this.uuid, fileStr);
     }
