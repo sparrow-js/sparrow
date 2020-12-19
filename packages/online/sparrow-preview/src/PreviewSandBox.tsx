@@ -26,9 +26,16 @@ class PreviewSandBox extends Component {
   componentDidMount() {
     Message.on('generate-file', (data: any) => {
       let {files} = this.state;
-      files[data.path] = {
-        code: data.code
-      };
+      let fileArr = data;
+      if (!Array.isArray(data)) {
+        fileArr = [data];
+      }
+      fileArr.forEach((item: any) => {
+        files[item.path] = {
+          code: item.code
+        };
+      })
+  
       this.setState({
         files,
       })
@@ -59,8 +66,12 @@ class PreviewSandBox extends Component {
               {
                 toggleIde && (
                   <div className={styles.previewIde}>
-                    <FileExplorer style={{ width: 200, height: 'fit-content', textAlign: 'left' }} />
-                    <CodeMirror style={{ width: 400, textAlign: 'left' }} />
+                    <div className={styles.previewTree}>
+                      <FileExplorer style={{ width: 200, height: 'fit-content', textAlign: 'left' }} />
+                    </div>
+                    <div className={styles.previewCode}>
+                      <CodeMirror style={{ width: 400, textAlign: 'left' }} />
+                    </div>
                   </div>
                 )
               }

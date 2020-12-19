@@ -3,6 +3,8 @@ import * as cheerio from 'cheerio';
 import Config from '../../../config';
 import Container from '../Container'
 import Base from '../Base';
+import ArrayListTemp from './component';
+import Message from '../../../../../utils/message';
 
 
 export default class ArrayList extends Base{
@@ -18,11 +20,12 @@ export default class ArrayList extends Base{
       this.config = config
     } else {
       this.config = {};
-
       this.insertComponents.push('ArrayList');
-      const componentsDir = Config.componentsDir; 
-      // const compDir = path.join(componentsDir, 'ArrayList')
-      // fsExtra.copySync(path.join(Config.serverBusinessPath, 'ArrayList'), compDir)
+      const componentsDir = Config.componentsDir;
+      Message.emit('generate-file', {
+        code: ArrayListTemp.code,
+        path: `/src/views/components/ArrayList/index.vue`,
+      });
       this.initComponent();
     }
   
