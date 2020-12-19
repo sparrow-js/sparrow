@@ -32,6 +32,7 @@ export default class Base {
       this.$fragment.root().children().attr('data-design-mode', 'design-border-box');
       this.$fragment.root().children().attr('data-instance-name', this.name);
       this.$fragment.root().children().attr('data-id', this.uuid);
+      this.$fragment.root().children().attr('data-type', 'box');
       box = this.$fragment.html();
     } else {
       box = this.$fragment.html()

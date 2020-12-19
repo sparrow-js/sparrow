@@ -141,7 +141,8 @@ export default {
       dialogCreateFileVisible: false,
       fileParams: {},
       activeBoxName: 'tool',
-      settingId: ''
+      settingId: '',
+      relatedId: ''
     };
   },
   async created() {
@@ -255,6 +256,28 @@ export default {
         originData 
       });
     },
+
+    findBoxNode(node) {
+      let tempNode = node;
+
+      while (tempNode && tempNode.dataset && tempNode.dataset.type !== 'box') {
+        tempNode = tempNode.parentNode;
+      }
+      if (tempNode && tempNode.dataset && tempNode.dataset.type === 'box') {
+        return tempNode;
+      }
+      return null;
+    },
+    cancelBoxActive() {
+      const boxNodeList = document
+        .querySelector('#viewContent')
+        .contentDocument.querySelector('[title=sandpack-sandbox]')
+        .contentDocument.querySelectorAll('[data-type="box"]');
+      boxNodeList.forEach(item => {
+        item.removeAttribute('data-active');
+      });
+    },
+
     bindDrag() {
       const iframe = document.querySelector('#viewContent').contentDocument.querySelector('[title=sandpack-sandbox]');
       var doc = iframe.contentDocument;
@@ -276,6 +299,19 @@ export default {
           onStart: event => {},
           setData: (dataTransfer, dragEl) => {
             this.setDragImage(dataTransfer, dragEl, '拖拽组件');
+          },
+          onMove: evt => {
+            const { related } = evt;
+            const relatedId = related.dataset.id;
+            console.log('**********', related);
+            if (this.relatedId !== relatedId) {
+              const boxNode = this.findBoxNode(related);
+              if (boxNode) {
+                this.cancelBoxActive();
+                boxNode.setAttribute('data-active', true);
+              }
+            }
+            this.relatedId = relatedId;
           },
           onEnd: event => {
             const item = event.item;
@@ -308,6 +344,18 @@ export default {
           chosenClass: 'chosen-class',
           setData: (dataTransfer, dragEl) => {
             this.setDragImage(dataTransfer, dragEl);
+          },
+          onMove: evt => {
+            const { related } = evt;
+            const relatedId = related.dataset.id;
+            if (this.relatedId !== relatedId) {
+              const boxNode = this.findBoxNode(related);
+              if (boxNode) {
+                this.cancelBoxActive();
+                boxNode.setAttribute('data-active', true);
+              }
+            }
+            this.relatedId = relatedId;
           },
           onStart: event => {
             this.$forceUpdate();
