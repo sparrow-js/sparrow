@@ -30,7 +30,6 @@ export default class BaseApi  extends Base {
     const custom = _.get(this.config, 'model.custom');
     let apiMethodStr = '';
     if (custom) {
-      
 
       if (custom.methodType === 'get') {
         apiMethodStr = `
@@ -45,8 +44,6 @@ export default class BaseApi  extends Base {
           }
         `
       }
-
-
 
       const apiMethod = `
         <script>
