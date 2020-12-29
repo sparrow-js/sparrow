@@ -95,7 +95,28 @@ export default class VueParse{
         }
       }
     });
+  }
 
+  public setImport (importStr : string) {
+    const dataAst = parser.parse(importStr, {
+      sourceType: 'module',
+      plugins: [
+        "jsx",
+      ]
+    });
+
+    const body = _.get(dataAst, 'program.body') || [];
+    const rootBody = _.get(this.scriptAst, 'program.body') || [];
+
+    body.forEach(item => {
+      if (item.type === 'ImportDeclaration') {
+        this.importDeclarations.push({
+          path: _.get(item, 'source.value'),
+          node: item
+        });
+        rootBody.push(item);
+      }
+    });
   }
   
   public getFormatData () {

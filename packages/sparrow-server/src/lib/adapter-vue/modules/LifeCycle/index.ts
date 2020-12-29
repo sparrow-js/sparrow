@@ -53,12 +53,18 @@ export default class LifeCycle {
     `);
   }
 
+  public setImport (importStr: string) {
+    console.log('***********9********')
+    this.vueParse.setImport(importStr);
+  }
+
   public setCode (lifeCycleData: string) {
     this.config.temp = lifeCycleData;
     this.parseToVueParse();
   }
 
   public getCode () {
+    console.log(generate(this.vueParse.scriptAst).code)
     return this.config.temp;
   }
   

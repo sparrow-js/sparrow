@@ -26,7 +26,7 @@ export default class List extends Base  {
     if (config) {
       this.config = config;
     } else {
-      this.config = _.cloneDeep(require('./config').default);
+      this.config = _.cloneDeep(require('./config'));
     }
 
     // const fileStr = fsExtra.readFileSync(path.join(Config.templatePath, 'box/list', 'index.vue'), 'utf8');

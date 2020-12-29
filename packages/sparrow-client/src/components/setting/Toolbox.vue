@@ -4,7 +4,7 @@
       <el-tab-pane label="工具盒" class="widget-collapse" name="tool">
         <div class="tool-filter">
           <div>
-            <el-input 
+            <el-input
               placeholder="请输入内容"
               v-model="search"
               @input="searchChange"
@@ -38,7 +38,7 @@
                   v-for="(comp, index) in item.list"
                   :key="index"
                   @mousedown="mousedownWidget(comp, item.type)"
-                  @click="addComp(comp.key, comp.params)"
+                  @click="addComp(comp.key, comp.params, item.type)"
                 >
                   <div class="drag-box">
                     <div class="drag-box-item" :data-name="comp.label">
@@ -56,7 +56,7 @@
           </el-collapse>
         </div>
         <div class="widget-box" v-if="widget === '编辑区块'">
-           <el-collapse v-model="editBlockActiveNames" @change="handleChange">
+          <el-collapse v-model="editBlockActiveNames" @change="handleChange">
             <el-collapse-item
               v-for="(item, index) in editBlockList"
               :key="index"
@@ -74,7 +74,9 @@
                   <div class="drag-box">
                     <div class="drag-box-item" :data-name="comp.label">
                       <img :src="comp.thumb" style="width: 100%" />
-                      <span class="comp-list-label edit-box-label">{{ comp.label }}</span>
+                      <span class="comp-list-label edit-box-label">{{
+                        comp.label
+                      }}</span>
                     </div>
                   </div>
                 </div>
@@ -140,6 +142,52 @@
         </div>
       </el-dialog>
     </div>
+
+    <div>
+      <el-dialog
+        width="360px"
+        title="创建接口"
+        :visible.sync="dialogCreateApiVisible"
+      >
+        <el-form
+          label-width="100px"
+          size="small"
+          class="drag-box"
+          :model="apiForm"
+        >
+          <el-form-item label="URL">
+            <el-input v-model="apiForm.url" closable="true" />
+          </el-form-item>
+
+          <el-form-item label="请求方式">
+            <el-radio-group v-model="apiForm.methodType">
+              <el-radio
+                v-for="item in radionboxOptionse2600d1c"
+                :key="item.value"
+                :label="item.label"
+              />
+            </el-radio-group>
+          </el-form-item>
+
+          <el-form-item label="方法名">
+            <el-input closable="true" v-model="apiForm.methodName" />
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button
+            size="mini"
+            type="info"
+            @click="dialogCreateApiVisible = false"
+          >
+            取消
+          </el-button>
+
+          <el-button size="mini" type="primary" @click="apiHandler">
+            保存
+          </el-button>
+        </div>
+      </el-dialog>
+    </div>
   </div>
 </template>
 <script>
@@ -152,7 +200,7 @@ import html2canvas from 'html2canvas';
 
 export default {
   components: {
-    FormSetting,
+    FormSetting
   },
   data() {
     return {
@@ -172,16 +220,34 @@ export default {
       fileParams: {},
       activeBoxName: 'tool',
       settingId: '',
-      relatedId: ''
+      relatedId: '',
+      dialogCreateApiVisible: false,
+      radionboxOptionse2600d1c: [
+        {
+          value: 'get',
+          label: 'get'
+        },
+        {
+          value: 'post',
+          label: 'post'
+        }
+      ],
+      apiForm: {
+        url: '',
+        methodType: 'get',
+        methodName: ''
+      }
     };
   },
   async created() {
-    this.getWidgetList = _.debounce(this.getWidgetList, 500, { trailing: true });
+    this.getWidgetList = _.debounce(this.getWidgetList, 500, {
+      trailing: true
+    });
     this.getWidgetList('');
-    this.$root.$on('bind_client_drag', (data) => {
+    this.$root.$on('bind_client_drag', data => {
       this.bindClientDrag();
     });
-    this.$root.$on('mousedown_widget', (data) => {
+    this.$root.$on('mousedown_widget', data => {
       this.widgetData = data;
     });
 
@@ -210,7 +276,7 @@ export default {
     };
   },
   methods: {
-    async addComp(id, config) {
+    async addComp(id, config, type) {
       const params = {
         boxUuid: AppModule.boxUuid,
         id,
@@ -227,13 +293,23 @@ export default {
         return;
       }
 
+      if (type === 'api') {
+        this.dialogCreateApiVisible = true;
+        this.apiParams = {
+          boxUuid: AppModule.boxUuid,
+          id,
+          params: config
+        };
+        return;
+      }
+
       Loading.open();
       await socket.emit('generator.scene.addComponent', params);
       Loading.close();
       this.dialogVisible = false;
     },
 
-    async addEditComp (id, config, path) {
+    async addEditComp(id, config, path) {
       const params = {
         boxUuid: AppModule.boxUuid,
         id,
@@ -309,7 +385,7 @@ export default {
       list.forEach(item => {
         Sortable.create(item, {
           group: {
-            name: 'nested',
+            name: 'nested'
             // pull: 'clone',
           },
           forceFallback: false,
@@ -338,7 +414,11 @@ export default {
           onEnd: event => {
             this.relatedId = '';
             const item = event.item;
-            const compId = item.getAttribute('data-id') || item.querySelector('[data-design-mode*=design-]').getAttribute('data-id');
+            const compId =
+              item.getAttribute('data-id') ||
+              item
+                .querySelector('[data-design-mode*=design-]')
+                .getAttribute('data-id');
             const boxId = event.to.getAttribute('data-id');
             const nextSiblingId =
               item.nextElementSibling &&
@@ -350,13 +430,13 @@ export default {
       });
     },
     bindClientDrag() {
-      const dragList = document.querySelectorAll('.drag-box'); 
+      const dragList = document.querySelectorAll('.drag-box');
       dragList.forEach(item => {
         Sortable.create(item, {
           group: {
             name: 'nested',
             pull: 'clone',
-            put: false,
+            put: false
           },
           sort: false,
           ghostClass: 'sortable-ghost',
@@ -407,7 +487,7 @@ export default {
               };
               return;
             }
-            if (this.widgetData.type ==='editBox') {
+            if (this.widgetData.type === 'editBox') {
               const params = {
                 boxUuid,
                 id: this.widgetData.id,
@@ -416,7 +496,6 @@ export default {
               };
 
               await socket.emit('generator.scene.addEditComp', params);
-
             } else if (this.widgetData.type === 'block') {
               Loading.open();
               await socket.emit('generator.scene.addBlock', {
@@ -444,7 +523,7 @@ export default {
       });
     },
 
-    setDragImage (dataTransfer, dragEl, text = '') {
+    setDragImage(dataTransfer, dragEl, text = '') {
       const canvas = document.createElement('canvas');
       canvas.width = 200;
       canvas.height = 60;
@@ -460,6 +539,17 @@ export default {
       dataTransfer.setDragImage(this.img, 10, 10);
     },
 
+    async apiHandler() {
+      this.dialogCreateApiVisible = false;
+      Loading.open();
+      console.log('******1*******', this.apiForm);
+      await socket.emit('generator.scene.addComponent', {
+        ...this.apiParams,
+        apiForm: this.apiForm
+      });
+      Loading.close();
+    },
+
     async fileHandler() {
       this.dialogCreateFileVisible = false;
       Loading.open();
@@ -470,34 +560,35 @@ export default {
       Loading.close();
     },
     async getWidgetList(value) {
-      const componentMap = await socket.emit('generator.data.getWidgetList', {value});
+      const componentMap = await socket.emit('generator.data.getWidgetList', {
+        value
+      });
       this.compList = componentMap;
       this.bindClientDrag();
     },
-    searchChange (value) {
+    searchChange(value) {
       this.getWidgetList(value);
     },
-    async dragViewWidget (compId, boxId, nextSiblingId) {
+    async dragViewWidget(compId, boxId, nextSiblingId) {
       await socket.emit('generator.scene.dragViewWidgetHandler', {
         compId,
         boxId,
-        nextSiblingId,
+        nextSiblingId
       });
 
       setTimeout(() => {
         this.bindDrag();
-      }, 500)
+      }, 500);
     },
-    settingChange (data) {
+    settingChange(data) {
       this.settingId = data.id;
       // this.activeBoxName = 'setting';
     },
-    async deleteComp () {  
+    async deleteComp() {
       await socket.emit('generator.scene.deleteComponent', {
         id: this.settingId
       });
       this.activeBoxName = 'tool';
-
     }
   }
 };
@@ -527,7 +618,7 @@ export default {
   align-items: center;
   cursor: pointer;
 }
-.edit-box-item{
+.edit-box-item {
   width: 50%;
   height: 120px;
   text-align: center;
@@ -539,7 +630,7 @@ export default {
   align-items: center;
   cursor: pointer;
 }
-.edit-box-item:hover{
+.edit-box-item:hover {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .comp-item:hover {
@@ -666,7 +757,7 @@ export default {
   padding: 10px;
   color: #909399;
 }
-.drag-box{
+.drag-box {
   width: 100%;
   height: 100%;
 }
@@ -683,16 +774,16 @@ export default {
   box-sizing: border-box;
   position: relative;
 }
-.edit-box-label{
+.edit-box-label {
   position: absolute;
   bottom: 5px;
 }
 
-.footer-delete{
+.footer-delete {
   height: 48px;
   width: 100%;
   font-size: 16px;
-  color: #F56C6C;
+  color: #f56c6c;
   border: 1px solid #d7dae2;
   border-radius: 4px;
   position: absolute;
@@ -704,26 +795,26 @@ export default {
   background-color: #f4f4f5;
   cursor: pointer;
 }
-.footer-delete:hover{
+.footer-delete:hover {
   background-color: #fef0f0;
 }
 
-.svg-icon{
+.svg-icon {
   // width: 2em;
 }
-.svg-icon-box{
+.svg-icon-box {
   width: 36px;
   height: 46px;
 }
-.icon{
+.icon {
   height: 28px;
 }
 </style>
 <style lang="scss">
-.toolbox .el-tabs--border-card>.el-tabs__content{
+.toolbox .el-tabs--border-card > .el-tabs__content {
   height: 100%;
 }
-.drag-class{
+.drag-class {
   // display: none !important;
   // background: red;
 }

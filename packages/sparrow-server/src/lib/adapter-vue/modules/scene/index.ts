@@ -132,7 +132,7 @@ export default class Scene {
     const fn = function (boxs) {
       if (Array.isArray(boxs)) {
         boxs.forEach(item => {
-          if (item.widgetType === 'box' || item.isBox) {
+          if (item.widgetType === 'box' || item.widgetType === 'api' || item.isBox) {
             leafToRoot.unshift(item);
           }
           if (item.components) {
@@ -149,7 +149,6 @@ export default class Scene {
 
   public addComponent (data, operateType = 'manual') {
     let {boxUuid, id, params = {}, config, nextSiblingId, path} = data;
-
     let backComp = null;
 
     if (!boxUuid || boxUuid === this.uuid) {
@@ -159,7 +158,8 @@ export default class Scene {
       }
 
       const hasBox = fsExtra.pathExistsSync(Path.join(__dirname, `../box/${id}`));
-
+      const hasApi = fsExtra.pathExistsSync(Path.join(__dirname, `../DataBind/${id}`));
+      
       if (config) {
         config.initType = operateType;
       }
@@ -193,6 +193,15 @@ export default class Scene {
       } else if (hasBox) {
         const dynamicObj = require(`../box/${id}`).default;
         const comp = new dynamicObj(data, storage, {projectPaths: Config})
+        if (compIndex >= 0) {
+          this.components.splice(compIndex, 0, comp)
+        } else {
+          this.components.push(comp);
+        }
+        backComp = comp;
+      } else if (hasApi) {
+        const dynamicObj = require(`../DataBind/${id}`).default;
+        const comp = new dynamicObj(data, storage)
         if (compIndex >= 0) {
           this.components.splice(compIndex, 0, comp)
         } else {
@@ -619,8 +628,6 @@ export default class Scene {
   }
 
    public async getOriginalCode ({uuid}) {
-     // uuid
-
     const comp = this.findComponent(uuid, this.components) || this;
     const previewViewStatus = storage.get('preview_view_status');
     storage.set('preview_view_status', true);
@@ -641,6 +648,21 @@ export default class Scene {
     const apiCompBox = this.findComponent(uuid, this.components) || this;
     const apiComp = apiCompBox.components.find(item => item.name === 'api');
     return apiComp.handlerApi(data);
+  }
+
+
+  public insertApi () {
+    const apiList = this.components.filter(item => item.widgetType === 'api');
+    let methodNames = [];
+    apiList.forEach(item => {
+      const custom = _.get(item.config, 'model.custom');
+      methodNames.push(custom.methodName);
+    });
+    if (methodNames.length > 0) {
+      const lifeCycle = this.components.find(item => item.name === 'lifeCycle');
+      console.log('**********1', `import {${methodNames.join(',')}} from './api'`);
+      lifeCycle.setImport(`import {${methodNames.join(',')}} from './api'`)
+    } 
   }
 
   public handlerLifeCycle(params) {
@@ -711,6 +733,7 @@ export default class Scene {
     let importDeclarations = [];
     let vueComponents = [];
     let fileList = [this];
+    this.insertApi();
     this.loopThroughBox(this.components);
     const fn = (boxs, flag = 0) => {
       boxs.forEach((item, index) => {

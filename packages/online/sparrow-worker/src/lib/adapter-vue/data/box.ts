@@ -81,14 +81,14 @@ export default [
     des: 'Alert，警告',
     keys: ['警告', 'Alert'],
   },
-  {
-    id: 'List',
-    key: 'List',
-    label: '列表',
-    icon: '#icon-liebiao',
-    des: 'List，列表',
-    keys: ['列表', 'List'],
-  },
+  // {
+  //   id: 'List',
+  //   key: 'List',
+  //   label: '列表',
+  //   icon: '#icon-liebiao',
+  //   des: 'List，列表',
+  //   keys: ['列表', 'List'],
+  // },
   {
     // RouterLink
     id: 'RouterLink',

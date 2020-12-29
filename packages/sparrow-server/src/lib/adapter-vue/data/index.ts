@@ -7,6 +7,19 @@ import * as _ from 'lodash';
 
 const widgetList = [
   {
+    label: '数据',
+    type: 'api',
+    list: [
+      {
+        id: 'BaseApi',
+        key: 'BaseApi',
+        label: 'base api',
+        des: '接口生成',
+        keys: ['接口'],
+      }
+    ]
+  },
+  {
     label: '容器',
     type: 'box',
     list: box,

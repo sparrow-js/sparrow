@@ -75,6 +75,10 @@ export default class VueGenerator {
     })
   }
 
+  public appendImportStr (importStr) {
+    
+  }
+
 
   public appendComponent (componentName: string, importComp: boolean = false) {
     if (this.importComps.includes(componentName)) {

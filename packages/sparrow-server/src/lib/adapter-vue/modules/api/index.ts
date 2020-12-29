@@ -58,7 +58,6 @@ export default class ApiComp {
     }
   }
 
-
   getList () {
     const {list} = this.config;
     return {
@@ -66,7 +65,6 @@ export default class ApiComp {
       status: 0,
     }
   }
-
 
   private renderApi () {
     const apiMethodList = [];
