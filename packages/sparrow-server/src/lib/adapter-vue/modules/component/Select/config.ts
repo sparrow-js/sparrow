@@ -12,6 +12,7 @@ export default {
           label: ''
         }
       ],
+      source: '',
       label: '特殊资源',
     },
     slot: {
@@ -83,6 +84,12 @@ export default {
                 }
               }
 
+            },
+            {
+              type: "input",
+              inputType: "text",
+              label: "source",
+              model: "source"
             },
             {
               type: "input",

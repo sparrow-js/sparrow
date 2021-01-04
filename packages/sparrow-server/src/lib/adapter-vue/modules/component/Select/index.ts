@@ -4,6 +4,7 @@ import VueParse from '../../generator/VueParse';
 import * as path from 'path';
 import Config from '../../../config';
 import * as _ from 'lodash';
+import {apiUrlParse} from '../../../../../util/apiUtil';
 
 export default class Select extends Base {
   name: string = 'Select';
@@ -12,6 +13,7 @@ export default class Select extends Base {
 
   constructor (params: any, boxPath: string) {
     super(boxPath);
+    apiUrlParse('');
     this.initVueParse();
     if (params.initType === 'auto') {
       const oldOptions = params.model.slot.data.match(/selectOptions[a-z0-9]+/)[0];

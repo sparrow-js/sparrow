@@ -16,6 +16,13 @@ const widgetList = [
         label: 'base api',
         des: '接口生成',
         keys: ['接口'],
+      },
+      {
+        id: 'ListApi',
+        key: 'ListApi',
+        label: 'list',
+        des: '接口生成',
+        keys: ['接口'],
       }
     ]
   },

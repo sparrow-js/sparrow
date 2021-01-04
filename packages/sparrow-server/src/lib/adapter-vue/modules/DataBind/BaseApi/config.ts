@@ -4,6 +4,7 @@ export default {
       url: '',
       methodType: 'get',
       methodName: '',
+      dataName: '',
     }
   },
   schema: {
@@ -32,6 +33,12 @@ export default {
               label: "visible",
               model: "visible"
             },
+            {
+              type: "input",
+              inputType: "text",
+              label: "dataName",
+              model: "dataName"
+            }
           ]
         }
       },

@@ -28,6 +28,7 @@ export default class BaseApi  extends Base {
 
   private renderApi () {
     const custom = _.get(this.config, 'model.custom');
+    const dataName = custom.dataName || `data${this.uuid}`;
     let apiMethodStr = '';
     if (custom) {
 
@@ -35,12 +36,18 @@ export default class BaseApi  extends Base {
         apiMethodStr = `
           async ${custom.methodName}() {
             const res = await ${custom.methodName}(this.listQuery);
+            if (res && res.data) {
+              this.${dataName} = res.data;
+            }
           }
         `
       } else {
         apiMethodStr = `
           async ${custom.methodName}() {
             const res = await ${custom.methodName}(this.form);
+            if (res && res.data) {
+              this.${dataName} = res.data;
+            }
           }
         `
       }
@@ -48,6 +55,11 @@ export default class BaseApi  extends Base {
       const apiMethod = `
         <script>
           export default{
+            data () {
+              return {
+
+              },
+            },
             methods: {
               ${apiMethodStr}
             }

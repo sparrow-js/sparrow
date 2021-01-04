@@ -8,6 +8,16 @@ export default class ListApi  extends Base {
   constructor (data: any, storage: any) {
     super(storage);
 
+    const {apiForm, config} = data;
+    if (config) {
+      this.config = config;
+    } else {
+      this.config = _.cloneDeep(require('./config').default);
+      _.set(this.config, 'model.custom', apiForm);
+    }
+
+    this.renderApi();
+
   }
 
   public setPreview (type: number) {    
@@ -16,9 +26,10 @@ export default class ListApi  extends Base {
 
   private renderApi () {
     const custom = _.get(this.config, 'model.custom');
+    console.log('*********8*******', custom);
+    
     let apiMethodStr = '';
     if (custom) {
-
       apiMethodStr = `
         async ${custom.methodName}() {
           const res = await ${custom.methodName}(this.listQuery);
