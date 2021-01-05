@@ -57,8 +57,8 @@ export default class BaseApi  extends Base {
           export default{
             data () {
               return {
-
-              },
+                ${dataName}: null
+              };
             },
             methods: {
               ${apiMethodStr}

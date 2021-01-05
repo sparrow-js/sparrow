@@ -1,20 +1,32 @@
 <template>
-  <div
-    class="home drag-box"
-    data-id="d0b2316f"
-    style="backgroundImage: url(https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dded9db02e3f4052bbf451f04d3d9b5b~tplv-k3u1fbpfcp-zoom-1.image);"
-  >
-    <div />
+  <div class="home drag-box" data-id="7a32948a" style="">
+    <div
+      data-design-mode="design-border-api"
+      data-instance-name="api"
+      data-id="8ad7115e"
+      data-type="api"
+    />
   </div>
 </template>
 
 <script>
+import { getList } from "./api";
 export default {
   components: {},
-  methods: {},
+  methods: {
+    async getList() {
+      const res = await getList(this.listQuery);
+
+      if (res && res.data) {
+        this.data8ad7115e = res.data;
+      }
+    }
+  },
 
   data() {
-    return {};
+    return {
+      data8ad7115e: null
+    };
   }
 };
 </script>
