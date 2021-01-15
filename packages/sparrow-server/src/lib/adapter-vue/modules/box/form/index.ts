@@ -58,7 +58,6 @@ export default class Form extends Base implements IBaseBox{
         </el-form>
       `);
     } else {
-
       this.$fragment = cheerio.load(` 
         <div class="root">
         </div>

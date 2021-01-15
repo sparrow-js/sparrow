@@ -41,7 +41,7 @@ export default class VueParse{
         decodeEntities: false
       });
   
-      this.template = this.$('.root').html();
+      this.template = template;
     }
     
 
