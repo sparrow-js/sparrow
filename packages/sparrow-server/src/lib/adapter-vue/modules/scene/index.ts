@@ -136,7 +136,7 @@ export default class Scene {
     const fn = function (boxs) {
       if (Array.isArray(boxs)) {
         boxs.forEach(item => {
-          if (item.widgetType === 'box' || item.widgetType === 'api' || item.isBox) {
+          if (item.widgetType === 'DVue' || item.widgetType === 'box' || item.widgetType === 'api' || item.isBox) {
             leafToRoot.unshift(item);
           }
           if (item.components) {

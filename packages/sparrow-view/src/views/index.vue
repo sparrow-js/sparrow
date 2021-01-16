@@ -1,5 +1,5 @@
 <template>
-  <div class="home drag-box" data-id="c3723dcc" style="">
+  <div class="home drag-box" data-id="30aec502" style="">
     <template>
       <div>
         <el-form
@@ -16,7 +16,16 @@
             <el-button @click="resetForm('ruleForm')">重置</el-button>
           </el-form-item>
         </el-form>
-        <div class="test">test</div>
+        <div class="drag-box">
+          <div
+            class="drag-box clearfix"
+            data-design-mode="design-border-box"
+            data-instance-name="Container"
+            data-id="c5021563"
+            style="display: block;flex-direction: column;"
+            data-empty="true"
+          />
+        </div>
       </div>
     </template>
     <div />

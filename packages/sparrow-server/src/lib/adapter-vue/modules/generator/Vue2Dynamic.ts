@@ -1,12 +1,17 @@
 import  VueParse from './VueParse';
 const uuid = require('@lukeed/uuid');
 import * as cheerio from 'cheerio';
+import Container from '../box/Container';
+import storage from '../../../storage';
 
 export default class Vue2Dynamic{
   rootTemplate: string = '';
   vueParse: any;
   uuid:string = '';
   $fragment: any;
+  components: any = [];
+  widgetType: string = 'DVue';
+  dComponents: any = [];
 
   constructor (template: string = '') {
     this.uuid = uuid().split('-')[0]; 
@@ -15,6 +20,7 @@ export default class Vue2Dynamic{
     this.templateParse();
     this.injectionSlot();
     this.activeCode();
+    this.components.push(new Container({}, storage));
     console.log(this.$fragment.html());
   }
   
@@ -46,10 +52,29 @@ export default class Vue2Dynamic{
   
   // 注入占位
   injectionSlot () {
-    this.$fragment('template').children('div').append('<div class="test">test</div>')
+    this.$fragment('template').children('div').append('<div class="drag-box">empty</div>')
   }
+
+  public setPreview () {
+    this.renderComp();
+  }
+
+  public renderComp () {
+    this.$fragment('.drag-box').first().empty();
+    this.components.forEach(component => {
+      this.$fragment('.drag-box').first().append(component.getFragment(0).html());
+    });
+
+    if (this.components.length  === 0) {
+      this.$fragment('.drag-box').attr('data-empty', true);
+    }
+  }
+
+  public addComponent (data) {}
+
 
   public getFragment(index: number): any {
     return this.$fragment;
   }
+
 }

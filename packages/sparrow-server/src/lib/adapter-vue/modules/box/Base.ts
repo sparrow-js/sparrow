@@ -45,7 +45,6 @@ export default class Base {
         xmlMode: true,
         decodeEntities: false
       });
-    ;
   }
   
 
