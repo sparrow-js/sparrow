@@ -143,6 +143,7 @@ export default {
         if (target.dataset.type === 'component') {
           message.emit('client.dispatch.component', {
             uuid,
+            childUuid: target.dataset.childId || '',
             data: {
               params: {
                 uuid,
@@ -152,6 +153,7 @@ export default {
         } else {
           message.emit('client.dispatch.box', {
             uuid,
+            childUuid: target.dataset.childId || '',
             data: {
               params: {
                 uuid,

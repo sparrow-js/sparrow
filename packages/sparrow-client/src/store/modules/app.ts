@@ -11,6 +11,7 @@ export interface IAppState {
   showDashboard: boolean;
   showComponentBox: boolean;
   boxUuid: string;
+  boxChildrenUuid: string;
   activeCompId: string;
   insertData: {
     data: any;
@@ -38,6 +39,7 @@ class App extends VuexModule implements IAppState {
   public activeCompId = '';
 
   public selecedFileInfo = null;
+  public boxChildrenUuid = '';
 
   @Mutation
   private SHOW_DASHBOARD(showDashboard: boolean) {
@@ -48,7 +50,6 @@ class App extends VuexModule implements IAppState {
   private INSERT_DATA(insertData: any) {
     this.insertData = insertData;
   }
-
 
   @Mutation
   private SHOW_COMPONENT(showComponentBox: boolean) {
