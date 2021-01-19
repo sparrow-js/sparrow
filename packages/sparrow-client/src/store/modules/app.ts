@@ -77,6 +77,11 @@ class App extends VuexModule implements IAppState {
   }
 
   @Mutation
+  private SET_BOXCHILDRENUUID(id: string) {
+    this.boxChildrenUuid = id;
+  }
+
+  @Mutation
   private SET_ACTIVE_TREE_INDEX (activeIndex: number) {
     this.activeTreeIndex = activeIndex;
   }
@@ -123,6 +128,11 @@ class App extends VuexModule implements IAppState {
   @Action
   public setBoxUuid (id: string) {
     this.SET_BOXUUID(id);
+  }
+
+  @Action
+  public setBoxChildrenUuid(id: string) {
+    this.SET_BOXCHILDRENUUID(id);
   }
 
   @Action

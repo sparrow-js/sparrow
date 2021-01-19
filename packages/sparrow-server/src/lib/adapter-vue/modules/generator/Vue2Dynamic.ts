@@ -52,6 +52,7 @@ export default class Vue2Dynamic{
         uuid: tempUuid,
         node: currentNode,
         components: [],
+        selector: key,
       })
     });
   }
@@ -77,65 +78,68 @@ export default class Vue2Dynamic{
   }
 
   public addComponent (data, operatetype: string = 'manual') {
-    console.log('**********8*****', data);
-    // let { id, params = {}, nextSiblingId, config, path } = data;
-    //   if (config) {
-    //     config.initType = operatetype;
-    //   }
-    //   let compIndex = -2;
-    //   if (nextSiblingId) {
-    //     compIndex = this.components.findIndex(item => item.uuid === nextSiblingId);
-    //   }
+    let { id, boxChildUuid, params = {}, nextSiblingId, config, path } = data;
+    const currentComp = this.dComponents.find(item => item.uuid === boxChildUuid);
+    
+    if (config) {
+      config.initType = operatetype;
+    }
+    let compIndex = -2;
+    if (nextSiblingId) {
+      compIndex = this.components.findIndex(item => item.uuid === nextSiblingId);
+    }
 
-    //   const hasBox = fsExtra.pathExistsSync(Path.join(__dirname, `../box/${id}`));
-    //   let isPlugins = false;
-    //   if (id.includes('sparrow')) {
-    //     isPlugins = true;
-    //   }
-    //   let backComp = null;
-    //   if (isPlugins) {
-    //     const dynamicObj = require(path).default;
-    //     const comp = new dynamicObj(config || data, storage);
-    //     comp.path = path;
-    //     if (compIndex >= 0) {
-    //       this.components.splice(compIndex, 0, comp)
-    //     } else {
-    //       this.components.push(comp);
-    //     }
-    //     backComp = comp;
-    //   } 
-    //   else if (path) {
-    //     const dynamicObj = require(`..${path}`).default;
-    //     const comp = new dynamicObj(config || data, storage);
-    //     comp.path = path;
-    //     if (compIndex >= 0) {
-    //       this.components.splice(compIndex, 0, comp)
-    //     } else {
-    //       this.components.push(comp);
-    //     }
-    //     backComp = comp;
+    const hasBox = fsExtra.pathExistsSync(Path.join(__dirname, `../box/${id}`));
+    let isPlugins = false;
+    if (id.includes('sparrow')) {
+      isPlugins = true;
+    }
+    let backComp = null;
+    if (isPlugins) {
+      const dynamicObj = require(path).default;
+      const comp = new dynamicObj(config || data, storage);
+      comp.path = path;
+      if (compIndex >= 0) {
+        currentComp.components.splice(compIndex, 0, comp)
+      } else {
+        currentComp.components.push(comp);
+      }
+      backComp = comp;
+    } 
+    else if (path) {
+      const dynamicObj = require(`..${path}`).default;
+      const comp = new dynamicObj(config || data, storage);
+      comp.path = path;
+      if (compIndex >= 0) {
+        currentComp.components.splice(compIndex, 0, comp)
+      } else {
+        currentComp.components.push(comp);
+      }
+      backComp = comp;
 
-    //   } else if (hasBox) {
-    //     const dynamicObj = require(`../box/${id}`).default;
-    //     const comp = new dynamicObj(data, storage)
-    //     if (compIndex >= 0) {
-    //       this.components.splice(compIndex, 0, comp)
-    //     } else {
-    //       this.components.push(comp);
-    //     }
-    //     backComp = comp;
-    //   } else {
-    //     const dynamicObj = require(`../component/${id}`).default;
-    //     const comp = new dynamicObj(config || params, '');
-    //     if (compIndex >= 0) {
-    //       this.components.splice(compIndex, 0, comp)
-    //     } else {
-    //       this.components.push(comp);
-    //     }
-    //     backComp = null;
-    //   }
+    } else if (hasBox) {
+      const dynamicObj = require(`../box/${id}`).default;
+      const comp = new dynamicObj(data, storage)
+      if (compIndex >= 0) {
+        currentComp.components.splice(compIndex, 0, comp)
+      } else {
+        currentComp.components.push(comp);
+      }
+      backComp = comp;
+    } else {
+      const dynamicObj = require(`../component/${id}`).default;
+      const comp = new dynamicObj(config || params, '');
+      if (compIndex >= 0) {
+        currentComp.components.splice(compIndex, 0, comp)
+      } else {
+        currentComp.components.push(comp);
+      }
+      backComp = null;
+    }
 
-    //   return backComp;
+    console.log('********1**8*****', this.dComponents);
+
+    return backComp;
   }
 
   public getFragment(index: number): any {

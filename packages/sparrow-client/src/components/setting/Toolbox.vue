@@ -279,6 +279,7 @@ export default {
     async addComp(id, config, type) {
       const params = {
         boxUuid: AppModule.boxUuid,
+        boxChildUuid: AppModule.boxChildrenUuid,
         id,
         params: config
       };

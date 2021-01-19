@@ -469,6 +469,7 @@ export default class CompBox extends Vue {
     const { path, key, params } = item;
     const param = {
       boxUuid: AppModule.boxUuid,
+      boxChildUuid: AppModule.boxChildrenUuid,
       id: key,
       params: params,
       path

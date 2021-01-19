@@ -1,5 +1,5 @@
 <template>
-  <div class="home drag-box" data-id="7d689a27" style="">
+  <div class="home drag-box" data-id="7c169417" style="">
     <template>
       <div>
         <el-form
@@ -8,8 +8,8 @@
           data-design-mode="design-border-box"
           data-instance-name="el-form"
           data-type="box"
-          data-id="689a27fe"
-          data-child-id="9a27fe28"
+          data-id="16941731"
+          data-child-id="941731ef"
         >
           <el-form-item label="文本框">
             <el-input closable="true" />
@@ -37,7 +37,7 @@
             class="drag-box clearfix"
             data-design-mode="design-border-box"
             data-instance-name="Container"
-            data-id="fe286df2"
+            data-id="31efa117"
             style="display: block;flex-direction: column;"
             data-empty="true"
           />

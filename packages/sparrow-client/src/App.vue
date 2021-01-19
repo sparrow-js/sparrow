@@ -130,7 +130,9 @@ export default class App extends Vue {
 
         // 延迟同步uuid
         setTimeout(() => {
-          console.log('*********88((((999*******', data.childUuid);
+          if (data.childUuid !== undefined) {
+            AppModule.setBoxChildrenUuid(data.childUuid);
+          }
           if (data.uuid !== undefined) {
             AppModule.setBoxUuid(data.uuid);
           }
