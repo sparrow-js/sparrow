@@ -62,8 +62,8 @@ export default class Scene {
       this.sceneVueParse = new VueParse(uuid().split('-')[0], fileStr);
     }
 
-    const testStr = fsExtra.readFileSync(Path.join(Config.templatePath,'scene/originvue','index.vue'), 'utf8');
-    this.components.push(new Vue2Dynamic(testStr));
+    // const testStr = fsExtra.readFileSync(Path.join(Config.templatePath,'scene/originvue','index.vue'), 'utf8');
+    // this.components.push(new Vue2Dynamic(testStr));
 
     if (params.label === 'page') {
       this.config = params.config;
@@ -73,6 +73,11 @@ export default class Scene {
       this.initLifeCycle();
       this.renderPage();
     }
+  }
+
+  private redevelopment({vueTemplate}) {
+    this.components.push(new Vue2Dynamic(vueTemplate));
+    this.renderPage();
   }
 
   private jsonToScene (data: any, obj) {
@@ -306,6 +311,16 @@ export default class Scene {
   
             if (item.components && tempComp === null) {
               fn(uuid, item.components, curflag)
+            }
+            // 多槽点处理
+            let dComponentList = [];
+            if (item.dComponents && tempComp === null) {
+              item.dComponents.forEach(compBoxItem => {
+                dComponentList = dComponentList.concat(compBoxItem.components);
+              })
+            }
+            if (dComponentList && dComponentList.length) {
+              fn(uuid, dComponentList, curflag)
             }
           });
         }
@@ -774,6 +789,14 @@ export default class Scene {
 
         if (item.components && item.components.length > 0) {
           fn(item.components, 1);
+        }
+
+        if (item.dComponents) {
+          item.dComponents.forEach(comps => {
+            if (comps.components.length > 0) {
+              fn(comps.components, 1);
+            }
+          })
         }
   
         if (item.vueParse) {

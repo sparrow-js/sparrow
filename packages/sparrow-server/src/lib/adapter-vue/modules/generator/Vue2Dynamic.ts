@@ -23,7 +23,6 @@ export default class Vue2Dynamic{
     this.injectionSlot();
     this.activeCode();
     this.components.push(new Container({}, storage));
-    console.log(this.$fragment.html());
   }
   
   templateParse () {
@@ -31,7 +30,6 @@ export default class Vue2Dynamic{
       xmlMode: true,
       decodeEntities: false,
     });
-    // console.log('********', this.$fragment('template').toArray());
   }
   
   // 激活容器
@@ -51,6 +49,7 @@ export default class Vue2Dynamic{
       this.dComponents.push({
         uuid: tempUuid,
         node: currentNode,
+        originNode: currentNode.html(),
         components: [],
         selector: key,
       })
@@ -75,6 +74,16 @@ export default class Vue2Dynamic{
     if (this.components.length  === 0) {
       this.$fragment('.drag-box').attr('data-empty', true);
     }
+    
+    this.dComponents.forEach(compBox => {
+      compBox.node.html(compBox.originNode);
+      compBox.components.forEach(component => {
+        if (component.ascription === 'form' && compBox.selector === 'el-form') {
+          component.boxPath = 'Form'
+        } 
+        compBox.node.append(component.getFragment(0).html())
+      });
+    });
   }
 
   public addComponent (data, operatetype: string = 'manual') {
@@ -136,9 +145,6 @@ export default class Vue2Dynamic{
       }
       backComp = null;
     }
-
-    console.log('********1**8*****', this.dComponents);
-
     return backComp;
   }
 

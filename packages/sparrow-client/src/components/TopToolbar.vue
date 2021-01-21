@@ -47,6 +47,14 @@
       </div>
     </div>
     <div class="toolbar-right">
+      <!-- icon-shiyan -->
+      <div class="toolbar__item">
+        <span @click="redevelopmentVisible = true">
+          <svg class="icon svg-icon" aria-hidden="true">
+            <use :xlink:href="'#icon-shiyan'"></use>
+          </svg>
+        </span>
+      </div>
       <div class="toolbar__item">
         <a class="help-link" target="_blank" href="https://sparrow-js.github.io/sparrow-vue-site/">
           <i class="iconfont icon-bangzhu"></i>
@@ -79,7 +87,6 @@
       <span class="scene-item" @click="sceneHandler('BaseTable')">基础表格</span>
     </el-popover> -->
 
-
     <el-dialog title="创建模块" width="400px" :visible.sync="dialogFormVisible">
       <el-form :model="form" label-width="80px">
         <el-form-item label="模块名称" required>
@@ -95,6 +102,14 @@
       </div>
     </el-dialog>
 
+    <el-dialog title="二次开发实验室" :visible.sync="redevelopmentVisible">
+      <div>
+        <el-button type="primary" @click="redevelopmentHandler">提交</el-button>
+      </div>
+      <div>
+        <codemirror ref="codemirror" v-model="redevelopmentCode"></codemirror>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script lang="ts">
@@ -121,11 +136,13 @@ export default class extends Vue {
     url: ''
   };
   private search = '';
+  private redevelopmentVisible = false;
+  private redevelopmentCode = '';
 
   async created() {
     const result = await socket.emit('home.setting.workFolder');
     this.workFolder = result;
-  
+
     this.init();
     socket.on('generator.toolbar.openCodeEditor.result', data => {
       this.$message.error('打开编辑器失败，请先手动启动编辑器，或者将编辑器注册到终端命令行中');
@@ -136,7 +153,7 @@ export default class extends Vue {
       if (data.handler === 'client.screen.capture') {
         this.form.url = data.url;
       }
-    })   
+    });
   }
 
   private async previewHandler() {
@@ -221,6 +238,13 @@ export default class extends Vue {
     return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
   }
 
+  private async redevelopmentHandler() {
+    // redevelopment
+    this.redevelopmentVisible = false;
+    await socket.emit('generator.scene.redevelopment', {
+      vueTemplate: this.redevelopmentCode
+    });
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -287,5 +311,9 @@ export default class extends Vue {
 }
 .icon-houtui,.icon-qianjin{
   font-size: 20px;
+}
+.icon{
+  font-size: 18px;
+  cursor: pointer;
 }
 </style>
