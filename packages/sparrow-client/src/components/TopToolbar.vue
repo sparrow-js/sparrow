@@ -102,7 +102,7 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="二次开发实验室" :visible.sync="redevelopmentVisible">
+    <el-dialog title="二次开发" :visible.sync="redevelopmentVisible">
       <div>
         <el-button type="primary" @click="redevelopmentHandler">提交</el-button>
       </div>
