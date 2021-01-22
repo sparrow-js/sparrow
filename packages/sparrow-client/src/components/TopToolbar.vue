@@ -104,10 +104,10 @@
 
     <el-dialog title="二次开发" :visible.sync="redevelopmentVisible">
       <div>
-        <el-button type="primary" @click="redevelopmentHandler">提交</el-button>
+        <codemirror ref="codemirror" v-model="redevelopmentCode"></codemirror>
       </div>
       <div>
-        <codemirror ref="codemirror" v-model="redevelopmentCode"></codemirror>
+        <el-button type="primary" @click="redevelopmentHandler">提交</el-button>
       </div>
     </el-dialog>
   </div>
