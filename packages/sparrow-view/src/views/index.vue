@@ -1,9 +1,25 @@
 <template>
-  <div
-    class="home drag-box"
-    data-id="8eae1f92"
-    style="backgroundImage: url(https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dded9db02e3f4052bbf451f04d3d9b5b~tplv-k3u1fbpfcp-zoom-1.image);"
-  />
+  <div class="home drag-box" data-id="7a711f51" style="">
+    <div
+      class="drag-box clearfix"
+      data-design-mode="design-border-box"
+      data-instance-name="Container"
+      data-id="510cc69a"
+      style="display: block;flex-direction: column;"
+      data-empty="true"
+    />
+
+    <div
+      class="drag-box clearfix"
+      data-design-mode="design-border-box"
+      data-instance-name="Container"
+      data-id="0cc69a39"
+      style="display: block;flex-direction: column;"
+      data-empty="true"
+    />
+
+    <div />
+  </div>
 </template>
 
 <script>

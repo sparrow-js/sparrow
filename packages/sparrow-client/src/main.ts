@@ -38,7 +38,6 @@ library.add(faFile);
 library.add(faTree);
 library.add(faFileArchive);
 
-
 Vue.use(VueFormGenerator);
 Vue.use(ModuleLibrary);
 // Vue.use(ModuleLibrarySourcecode);

@@ -23,6 +23,7 @@ export default class ArrayList extends Base{
 
       this.insertComponents.push('ArrayList');
       const componentsDir = Config.componentsDir; 
+      console.log('*****8******', componentsDir);
       const compDir = path.join(componentsDir, 'ArrayList')
       fsExtra.copySync(path.join(Config.serverBusinessPath, 'ArrayList'), compDir)
       this.initComponent();

@@ -49,11 +49,32 @@
     <div class="toolbar-right">
       <!-- icon-shiyan -->
       <div class="toolbar__item">
-        <span @click="redevelopmentVisible = true">
-          <svg class="icon svg-icon" aria-hidden="true">
-            <use :xlink:href="'#icon-shiyan'"></use>
-          </svg>
-        </span>
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="实验：项目内开发"
+          placement="top"
+        >
+          <span @click="projectVisible = true">
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use :xlink:href="'#icon-xiangmu'"></use>
+            </svg>
+          </span>
+        </el-tooltip>
+      </div>
+      <div class="toolbar__item">
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="实验：二次开发"
+          placement="top"
+        >
+          <span @click="redevelopmentVisible = true">
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use :xlink:href="'#icon-shiyan'"></use>
+            </svg>
+          </span>
+        </el-tooltip>
       </div>
       <div class="toolbar__item">
         <a class="help-link" target="_blank" href="https://sparrow-js.github.io/sparrow-vue-site/">
@@ -110,6 +131,30 @@
         <el-button type="primary" @click="redevelopmentHandler">提交</el-button>
       </div>
     </el-dialog>
+
+    <el-dialog width="500px" :visible.sync="projectVisible">
+      <span slot="title">
+        弹窗
+      </span>
+      <div class="dialog-content">
+        <div class="root">
+          <el-form label-width="100px">
+            <el-form-item label="路径：">
+              <el-input v-model="projectForm.path" />
+            </el-form-item>
+
+            <el-button
+              type="primary"
+              @click="submitProjectForm()"
+              style="margin-right: 10px;"
+              size="mini"
+            >
+              保存
+            </el-button>
+          </el-form>
+        </div>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script lang="ts">
@@ -138,6 +183,12 @@ export default class extends Vue {
   private search = '';
   private redevelopmentVisible = false;
   private redevelopmentCode = '';
+
+  private projectVisible = false;
+
+  private projectForm = {
+    path: ''
+  };
 
   async created() {
     const result = await socket.emit('home.setting.workFolder');
@@ -245,6 +296,13 @@ export default class extends Vue {
       vueTemplate: this.redevelopmentCode
     });
   }
+  private async submitProjectForm() {
+    const res = await socket.emit('generator.scene.storageProjectPath', this.projectForm);
+    this.projectVisible = false;
+    if (res.status !== 0) {
+      this.$message.error(res.message);
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -315,5 +373,7 @@ export default class extends Vue {
 .icon{
   font-size: 18px;
   cursor: pointer;
+  margin: 0;
+  height: 30px;
 }
 </style>

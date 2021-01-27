@@ -18,7 +18,7 @@ import LifeCycle from '../LifeCycle'
 import Vue2Dynamic from '../generator/Vue2Dynamic';
 
 const cwd = process.cwd();
-const viewPath = Path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
+let viewPath = Path.join(cwd, '..', 'sparrow-view/src/views/index.vue')
 
 export default class Scene {
   components: any = [];
@@ -61,9 +61,6 @@ export default class Scene {
       const fileStr = fsExtra.readFileSync(Path.join(Config.templatePath,'scene', initScene,'index.vue'), 'utf8');
       this.sceneVueParse = new VueParse(uuid().split('-')[0], fileStr);
     }
-
-    // const testStr = fsExtra.readFileSync(Path.join(Config.templatePath,'scene/originvue','index.vue'), 'utf8');
-    // this.components.push(new Vue2Dynamic(testStr));
 
     if (params.label === 'page') {
       this.config = params.config;
@@ -113,6 +110,24 @@ export default class Scene {
     this.scriptData = this.VueGenerator.initScript();
 
     // 初始化生命周期
+  }
+
+  public async storageProjectPath({path}) {
+    const existsPath = fsExtra.existsSync(path);
+    if (existsPath) {
+      viewPath = `${path}/index.vue`;
+      Config.componentsDir = `${path}/components`;
+      return {
+        status: 0,
+        message: '',
+      };
+    } else {
+      return {
+        status: 1,
+        message: '路径不存在',
+      };
+    }
+
   }
 
   private async initLifeCycle() {
