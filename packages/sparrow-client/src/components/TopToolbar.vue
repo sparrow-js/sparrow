@@ -96,18 +96,6 @@
       v-if="workFolder"
     ></file-export>
 
-    <!-- <el-popover
-      ref="popover"
-      v-model="showPopover"
-      placement="right"
-      title="场景"
-      width="200"
-      trigger="click"
-    >
-      <span class="scene-item" @click="sceneHandler('BaseForm')">基础表单</span>
-      <span class="scene-item" @click="sceneHandler('BaseTable')">基础表格</span>
-    </el-popover> -->
-
     <el-dialog title="创建模块" width="400px" :visible.sync="dialogFormVisible">
       <el-form :model="form" label-width="80px">
         <el-form-item label="模块名称" required>
@@ -134,7 +122,7 @@
 
     <el-dialog width="500px" :visible.sync="projectVisible">
       <span slot="title">
-        弹窗
+        项目路径
       </span>
       <div class="dialog-content">
         <div class="root">
@@ -142,17 +130,18 @@
             <el-form-item label="路径：">
               <el-input v-model="projectForm.path" />
             </el-form-item>
-
-            <el-button
-              type="primary"
-              @click="submitProjectForm()"
-              style="margin-right: 10px;"
-              size="mini"
-            >
-              保存
-            </el-button>
           </el-form>
         </div>
+      </div>
+      <div slot="footer" class="dialog-footer">
+        <el-button
+          type="primary"
+          @click="submitProjectForm()"
+          style="margin-right: 10px;"
+          size="mini"
+        >
+          保存
+        </el-button>
       </div>
     </el-dialog>
   </div>

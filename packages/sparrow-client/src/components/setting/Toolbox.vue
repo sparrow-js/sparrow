@@ -380,7 +380,7 @@ export default {
     },
     bindDrag() {
       const iframe = document.querySelector('#viewContent');
-      var doc = iframe.contentDocument;
+      var doc =  iframe.contentDocument;
       if (!doc) return;
       const list = doc.querySelectorAll('.drag-box');
       list.forEach(item => {

@@ -27,6 +27,7 @@
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-codemirror": "^4.0.6",
+    "vue-color": "^2.8.1",
     "vue-form-generator": "^2.3.4",
     "vue-instantsearch": "^3.4.2",
     "vue-property-decorator": "^8.3.0",
