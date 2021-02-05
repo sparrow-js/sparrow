@@ -12,6 +12,38 @@
     <css-item>
       <box-model :boxModelForm="boxModelForm" @change="boxModelChange"/>
     </css-item>
+    <css-item label="主轴方向">
+      <s-radio-group
+        :value="cssForm.display"
+        :list="flexDirectionList"
+        @change="layoutStyleChange('display', $event)"
+      />
+    </css-item>
+
+    <css-item label="主轴对齐">
+       <s-radio-group
+        :value="cssForm.display"
+        :list="justifyContentList"
+        @change="layoutStyleChange('display', $event)"
+      />
+    </css-item>
+
+    <css-item label="辅轴对齐">
+      <s-radio-group
+        :value="cssForm.display"
+        :list="alignItemsList"
+        @change="layoutStyleChange('display', $event)"
+      />
+    </css-item>
+
+    <css-item label="换行">
+      <s-radio-group
+        :value="cssForm.display"
+        :list="flexWrapList"
+        @change="layoutStyleChange('display', $event)"
+      />
+    </css-item>
+
     <css-item>
       <size />
     </css-item>

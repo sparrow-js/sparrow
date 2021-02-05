@@ -27,6 +27,7 @@ export default {
     width: 80px;
   }
   &__body {
+    flex: 1;
   }
 }
 </style>

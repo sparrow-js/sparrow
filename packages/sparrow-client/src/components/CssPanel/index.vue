@@ -1,13 +1,23 @@
 <template>
   <div>
     <layout />
+    <div>
+      <font />
+    </div>
+    <div>
+      <location />
+    </div>
   </div>
 </template>
 <script>
 import Layout from './Layout';
+import Font from './Font';
+import Location from './Location';
 export default {
   components: {
-    Layout
+    Layout,
+    Font,
+    Location
   }
 };
 </script>
