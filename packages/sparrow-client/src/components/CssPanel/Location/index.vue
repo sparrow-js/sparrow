@@ -32,16 +32,12 @@
 import CssItem from '../CssItem';
 import SRadioGroup from '../RadioGroup';
 import PositionModel from '../PositionModel';
-import CssItem from '../CssItem.vue';
-import CssItem from '../CssItem.vue';
 
 export default {
   components: {
     CssItem,
     SRadioGroup,
     PositionModel
-    CssItem
-    CssItem
   },
   data() {
     return {
