@@ -256,4 +256,10 @@ export default {
   text-align: center;
   padding: 0 13px;
 }
+
+.next-input.next-medium input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
 </style>

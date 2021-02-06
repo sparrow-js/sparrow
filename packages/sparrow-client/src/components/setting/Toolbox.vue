@@ -386,8 +386,8 @@ export default {
       list.forEach(item => {
         Sortable.create(item, {
           group: {
-            name: 'nested'
-            // pull: 'clone',
+            name: 'nested',
+            pull: 'clone',
           },
           forceFallback: false,
           animation: 150,
@@ -425,7 +425,7 @@ export default {
               item.nextElementSibling &&
               item.nextElementSibling.getAttribute('data-id');
             // item.remove();
-            this.dragViewWidget(compId, boxId, nextSiblingId);
+            // this.dragViewWidget(compId, boxId, nextSiblingId);
           }
         });
       });
