@@ -1,18 +1,22 @@
 <template>
   <div class="css-panel">
-    <layout />
-    <div>
-      <font />
-    </div>
-    <div>
-      <location />
-    </div>
-    <div>
-      <background />
-    </div>
-    <div>
-      <border />
-    </div>
+    <el-collapse v-model="activeNames" @change="handleChange">
+      <el-collapse-item title="布局" name="1">
+        <layout />
+      </el-collapse-item>
+      <el-collapse-item title="文字" name="2">
+        <font />
+      </el-collapse-item>
+      <el-collapse-item title="定位" name="3">
+        <location />
+      </el-collapse-item>
+      <el-collapse-item title="背景" name="4">
+        <background />
+      </el-collapse-item>
+      <el-collapse-item title="边框" name="5">
+        <border />
+      </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 <script>
@@ -28,11 +32,17 @@ export default {
     Location,
     Background,
     Border
+  },
+  data() {
+    return {
+      activeNames: ['1', '2', '3', '4', '5', '6']
+    };
   }
 };
 </script>
 <style lang="scss" scoped>
 .css-panel{
-  width: 300px;
+  overflow: scroll;
+  height: 100%;
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <css-panel />
     <el-container class="container">
       <el-header height="45px">
         <top-toolbar></top-toolbar>
@@ -48,7 +47,6 @@ import { SettingModule } from '@/store/modules/setting';
 import CompBox from '@/components/materiel/CompBox/index.vue';
 import JsonEditor from '@/components/JsonEditor/index.vue';
 import _ from 'lodash';
-import CssPanel from '@/components/CssPanel/index.vue';
 @Component({
   components: {
     Logo,
@@ -57,7 +55,6 @@ import CssPanel from '@/components/CssPanel/index.vue';
     Setting,
     CompBox,
     JsonEditor,
-    CssPanel
   }
 })
 export default class App extends Vue {

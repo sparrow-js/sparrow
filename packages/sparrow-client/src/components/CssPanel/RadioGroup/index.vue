@@ -46,7 +46,7 @@ export default {
   flex-direction: row;
   .radio-item{
     border: 1px solid #dcdfe6;
-    min-width: 36px;
+    flex: 1;
     height: 28px;
     margin: 0 0 0 -1px;
     display: flex;

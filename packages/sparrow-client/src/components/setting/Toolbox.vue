@@ -119,6 +119,10 @@
           删除
         </div>
       </el-tab-pane>
+      <el-tab-pane label="样式" class="widget-collapse" name="style">
+        <css-panel />
+      </el-tab-pane>
+
     </el-tabs>
 
     <div>
@@ -197,10 +201,12 @@ import { AppModule } from '@/store/modules/app';
 import FormSetting from './FormSetting';
 import Sortable from 'sortablejs';
 import html2canvas from 'html2canvas';
+import CssPanel from '@/components/CssPanel/index.vue';
 
 export default {
   components: {
-    FormSetting
+    FormSetting,
+    CssPanel
   },
   data() {
     return {
@@ -596,7 +602,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .toolbox {
-  width: 280px;
+  width: 320px;
   padding-right: 10px;
   height: 100%;
 }

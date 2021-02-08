@@ -1,7 +1,7 @@
 <template>
   <div>
     <css-item label="定位类型">
-      <el-select v-model="locationForm.position" clearable placeholder="请选择">
+      <el-select size="mini" v-model="locationForm.position" clearable placeholder="请选择">
         <el-option
           v-for="item in positionOptions"
           :key="item.value"
@@ -16,6 +16,7 @@
     </css-item>
     <css-item label="清除位置">
       <el-input-number
+        size="mini"
         v-model="locationForm.zIndex"
         controls-position="right"
       ></el-input-number>

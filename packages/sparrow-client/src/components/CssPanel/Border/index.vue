@@ -12,9 +12,7 @@
     <css-item class="边框">
       <border-model />
     </css-item>
-    <css-item class="阴影">
-      <s-radio-group :list="shadowList" />
-    </css-item>
+    <shadow />
   </div>
 </template>
 <script>
@@ -22,13 +20,15 @@ import SRadioGroup from '../RadioGroup';
 import CssItem from '../CssItem';
 import BorderModel from '../BorderModel';
 import BorderRadius from '../BorderRadius';
+import Shadow from '../Shadow';
 
 export default {
   components: {
     SRadioGroup,
     BorderModel,
     CssItem,
-    BorderRadius
+    BorderRadius,
+    Shadow
   },
   data() {
     return {
@@ -53,18 +53,6 @@ export default {
           value: ''
         }
       ],
-      shadowList: [
-        {
-          label: '外阴影',
-          icon: '',
-          value: ''
-        },
-        {
-          label: '内阴影',
-          icon: '',
-          value: 'inset'
-        }
-      ]
     };
   }
 };
