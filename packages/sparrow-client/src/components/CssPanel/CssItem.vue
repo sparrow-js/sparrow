@@ -25,6 +25,8 @@ export default {
   margin-bottom: 10px;
   &__header {
     width: 80px;
+    padding-top: 4px;
+    color: #333;
   }
   &__body {
     flex: 1;

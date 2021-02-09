@@ -259,4 +259,7 @@ body {
 .drag-class{
   display: none;
 }
+.mb5{
+  margin-bottom: 5px;
+}
 </style>

@@ -13,6 +13,7 @@
         :class="{ selected: item.value === value }"
         @click="radioChange(item)"
       >
+        {{ item.icon }}
       </span>
     </el-tooltip>
   </div>

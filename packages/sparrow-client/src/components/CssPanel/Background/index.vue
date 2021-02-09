@@ -17,7 +17,7 @@
     </css-item>
     <css-item>
       <el-input
-        size="mini" 
+        size="mini"
         placeholder="请输入URL"
         v-model="backgroundForm.backgroundImage"
       ></el-input>

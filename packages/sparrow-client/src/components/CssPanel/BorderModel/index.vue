@@ -35,21 +35,27 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <div>
-          <el-input-number size="mini" controls-position="right"></el-input-number>
-        </div>
-        <div>
-          <el-input size="mini" placeholder="请输入内容" v-model="input2">
-            <template slot="append">
-              <el-popover placement="bottom" width="225" trigger="click">
-                <chrome-picker
-                  v-model="borderForm.backgroundColor"
-                ></chrome-picker>
-                <span slot="reference">color</span>
-              </el-popover>
-            </template>
-          </el-input>
-        </div>
+        <el-input-number
+          class="width100 mb10"
+          size="mini"
+          controls-position="right"
+        ></el-input-number>
+
+        <el-input
+          class="mb10"
+          size="mini"
+          placeholder="请输入内容"
+          v-model="input2"
+        >
+          <template slot="append">
+            <el-popover placement="bottom" width="225" trigger="click">
+              <chrome-picker
+                v-model="borderForm.backgroundColor"
+              ></chrome-picker>
+              <span slot="reference">color</span>
+            </el-popover>
+          </template>
+        </el-input>
       </el-col>
     </el-row>
     <div>
@@ -75,46 +81,52 @@ export default {
         {
           label: 'none',
           icon: '',
-          value: 'none',
+          value: 'none'
         },
         {
           label: 'solid',
           icon: '',
-          value: 'solid',
+          value: 'solid'
         },
         {
           label: 'dashed',
           icon: '',
-          value: 'dashed',
+          value: 'dashed'
         },
         {
           label: 'dotted',
           icon: '',
-          value: 'dotted',
-        },
+          value: 'dotted'
+        }
       ]
     };
   }
 };
 </script>
 <style lang="scss" scoped>
-.quick-list{
+.quick-list {
   display: flex;
   flex-wrap: wrap;
-  .quick-item{
+  .quick-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    span{
+    span {
       width: 20px;
       height: 20px;
     }
   }
-  .item-all{
+  .item-all {
     flex: 0 0 100%;
   }
-  .item-3{
+  .item-3 {
     flex: 0 0 33.33%;
   }
+}
+.width100{
+  width: 100px;
+}
+.mb10{
+  margin-bottom: 10px;
 }
 </style>

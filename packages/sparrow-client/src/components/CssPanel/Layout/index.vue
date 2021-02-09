@@ -84,120 +84,120 @@ export default {
       layoutList: [
         {
           label: '内联布局 inline',
-          icon: '',
+          icon: '内联',
           value: 'inline',
         },
         {
           label: '弹性布局 flex',
-          icon: 'flex',
+          icon: '弹性',
           value: 'flex',
         },
         {
           label: '块级布局 block',
-          icon: 'block',
+          icon: '块级',
           value: 'block',
         },
         {
           label: '行内块级 inline-block',
-          icon: 'inline-block',
+          icon: '行内块',
           value: 'inline-block',
         },
         {
           label: '隐藏',
-          icon: 'none',
+          icon: '隐藏',
           value: 'none',
         }
       ],
       flexDirectionList: [
         {
           label: 'row',
-          icon: '',
+          icon: '水平',
           value: 'row',
         },
         {
           label: 'column',
-          icon: '',
+          icon: '垂直',
           value: 'column',
         },
         {
           label: 'row-reverse',
-          icon: '',
+          icon: '逆水平',
           value: 'row-reverse',
         },
         {
           label: 'column-reverse',
-          icon: '',
+          icon: '逆垂直',
           value: 'column-reverse',
         }
       ],
       justifyContentList: [
         {
           label: 'flex-start',
-          icon: '',
+          icon: '左对',
           value: 'flex-start',
         },
         {
           label: 'flex-end',
-          icon: '',
+          icon: '右对',
           value: 'flex-end',
         },
         {
           label: 'center',
-          icon: '',
+          icon: '中心',
           value: 'center',
         },
         {
           label: 'space-between',
-          icon: '',
+          icon: '两端',
           value: 'space-between',
         },
         {
           label: 'space-around',
-          icon: '',
+          icon: '横向平',
           value: 'space-around',
         },
       ],
       alignItemsList: [
         {
           label: 'flex-start',
-          icon: '',
+          icon: '起点',
           value: 'flex-start'
         },
         {
           label: 'flex-end',
-          icon: '',
+          icon: '终点',
           value: 'flex-end'
         },
         {
           label: 'center',
-          icon: '',
+          icon: '中心',
           value: 'center'
         },
         {
           label: 'baseline',
-          icon: '',
+          icon: '基线',
           value: 'baseline'
         },
         {
           label: 'stretch',
-          icon: '',
+          icon: '容器',
           value: 'stretch'
         }
       ],
       flexWrapList: [
         {
           label: 'nowrap',
-          icon: '',
+          icon: '不换行',
           value: 'nowrap'
         },
         {
           label: 'wrap',
-          icon: '',
+          icon: '换行',
           value: 'wrap'
         },
         {
           label: 'wrap-reverse',
-          icon: '',
+          icon: '逆换行',
           value: 'wrap-reverse'
         }
       ]
