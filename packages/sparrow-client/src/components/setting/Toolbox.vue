@@ -349,6 +349,7 @@ export default {
     },
     async getStaticBlock() {
       const blockList = await socket.emit('material.index.getBlocks');
+      console.log('*****111******', blockList)
       this.staticBlockList = blockList.list;
     },
 

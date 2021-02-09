@@ -3,7 +3,12 @@
     <css-item label="字符">
       <div>
         <div>
-          <el-select class="mb10" size="mini" v-model="value" placeholder="请选择">
+          <el-select
+            v-model="fontForm.fontWeight"
+            class="mb10"
+            size="mini"
+            placeholder="请选择"
+          >
             <el-option
               v-for="item in fontWeightOptions"
               :key="item.value"
@@ -15,14 +20,11 @@
           <el-input-number
             class="mb10"
             size="mini"
-            v-model="num"
             controls-position="right"
-            :min="0"
-            :max="1000"
           ></el-input-number>
         </div>
         <div>
-          <el-input class="mb10" size="mini" placeholder="请输入内容" v-model="input2">
+          <el-input class="mb10" size="mini" placeholder="请输入内容">
             <template slot="append">
               <el-popover placement="bottom" width="225" trigger="click">
                 <chrome-picker v-model="fontForm.color"></chrome-picker>
@@ -30,7 +32,12 @@
               </el-popover>
             </template>
           </el-input>
-          <el-input class="mb10" size="mini" v-model="fontForm.lineHeight" placeholder="行距"></el-input>
+          <el-input
+            class="mb10"
+            size="mini"
+            v-model="fontForm.lineHeight"
+            placeholder="行距"
+          ></el-input>
         </div>
       </div>
     </css-item>
@@ -39,7 +46,8 @@
     </css-item>
     <css-item label="透明度">
       <div>
-        <el-slider size="mini" min="0" max="100" v-model="fontForm.opacity" show-input> </el-slider>
+        <el-slider size="mini" v-model="fontForm.opacity" show-input>
+        </el-slider>
       </div>
     </css-item>
   </div>

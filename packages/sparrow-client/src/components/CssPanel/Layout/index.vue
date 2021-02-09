@@ -10,7 +10,10 @@
       </div>
     </css-item>
     <css-item>
-      <box-model :boxModelForm="boxModelForm" @change="boxModelChange"/>
+      <box-model
+        :boxModelForm="cssForm.boxModelForm"
+        @change="boxModelChange"
+      />
     </css-item>
     <css-item label="主轴方向">
       <s-radio-group
@@ -21,7 +24,7 @@
     </css-item>
 
     <css-item label="主轴对齐">
-       <s-radio-group
+      <s-radio-group
         :value="cssForm.display"
         :list="justifyContentList"
         @change="layoutStyleChange('display', $event)"

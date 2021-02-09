@@ -7,7 +7,7 @@
       <border-radius></border-radius>
     </css-item>
     <css-item>
-      <el-slider v-model="value" show-input> </el-slider>
+      <el-slider v-model="borderForm.borderRadius" show-input> </el-slider>
     </css-item>
     <css-item class="边框">
       <border-model />
@@ -38,7 +38,7 @@ export default {
         borderTopRightRadius: '',
         borderBottomLeftRadius: '',
         borderBottomRightRadius: '',
-        borderRadius: '',
+        borderRadius: 0,
         boxShadow: ''
       },
       borderRadiuslist: [

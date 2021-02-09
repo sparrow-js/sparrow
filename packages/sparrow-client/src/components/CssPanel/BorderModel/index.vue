@@ -41,12 +41,7 @@
           controls-position="right"
         ></el-input-number>
 
-        <el-input
-          class="mb10"
-          size="mini"
-          placeholder="请输入内容"
-          v-model="input2"
-        >
+        <el-input class="mb10" size="mini" placeholder="请输入内容">
           <template slot="append">
             <el-popover placement="bottom" width="225" trigger="click">
               <chrome-picker

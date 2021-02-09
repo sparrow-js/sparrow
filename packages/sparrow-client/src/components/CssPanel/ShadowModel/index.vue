@@ -5,10 +5,10 @@
         <s-radio-group :list="shadowList" />
       </div>
       <div class="mb10">
-        <el-input size="mini" placeholder="请输入内容" v-model="input2">
+        <el-input size="mini" placeholder="请输入内容">
           <template slot="append">
             <el-popover placement="bottom" width="225" trigger="click">
-              <chrome-picker></chrome-picker>
+              <chrome-picker v-model="shadowForm.background"></chrome-picker>
               <span slot="reference">color</span>
             </el-popover>
           </template>
@@ -70,6 +70,9 @@ export default {
   },
   data() {
     return {
+      shadowForm: {
+        background: ''
+      },
       shadowList: [
         {
           label: '外阴影',

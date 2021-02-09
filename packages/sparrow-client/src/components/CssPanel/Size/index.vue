@@ -7,7 +7,6 @@
       <div>
         <el-input
           size="mini"
-          v-model="input"
           placeholder="请输入内容"
           @input="sizeChange"
         ></el-input>
@@ -20,7 +19,6 @@
       <div>
         <el-input
           size="mini"
-          v-model="input"
           placeholder="请输入内容"
           @input="sizeChange"
         ></el-input>
