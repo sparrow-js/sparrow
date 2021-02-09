@@ -25,6 +25,12 @@
     <css-item label="尺寸">
       <s-radio-group :list="backgroundSizeList"></s-radio-group>
     </css-item>
+    <css-item>
+      <size />
+    </css-item>
+    <css-item label="定位">
+      <background-position />
+    </css-item>
     <css-item label="重复显示">
       <s-radio-group :list="backgroundRepeatList"></s-radio-group>
     </css-item>
@@ -34,12 +40,16 @@
 import CssItem from '../CssItem';
 import SRadioGroup from '../RadioGroup';
 import { Chrome } from 'vue-color';
+import Size from '../Size';
+import BackgroundPosition from '../BackgroundPosition';
 
 export default {
   components: {
     CssItem,
     SRadioGroup,
-    ChromePicker: Chrome
+    ChromePicker: Chrome,
+    Size,
+    BackgroundPosition
   },
   data() {
     return {
@@ -53,52 +63,52 @@ export default {
       backgroundTypeList: [
         {
           label: 'color',
-          icon: '',
+          icon: '颜色',
           value: 'color'
         },
         {
           label: 'image',
-          icon: '',
+          icon: '图片',
           value: 'image'
         }
       ],
       backgroundSizeList: [
         {
           label: '默认',
-          icon: '',
+          icon: '默认',
           value: ''
         },
         {
           label: 'contain',
-          icon: '',
+          icon: '填充',
           value: 'contain'
         },
         {
           label: 'cover',
-          icon: '',
+          icon: '覆盖',
           value: 'cover'
         }
       ],
       backgroundRepeatList: [
         {
           label: 'repeat',
-          icon: '',
-          value: ''
+          icon: '重复',
+          value: 'repeat'
         },
         {
           label: 'repeat-x',
-          icon: '',
-          value: ''
+          icon: '重复x',
+          value: 'repeat-x'
         },
         {
           label: 'repeat-y',
-          icon: '',
-          value: ''
+          icon: '重复y',
+          value: 'repeat-y'
         },
         {
           label: 'no-repeat',
-          icon: '',
-          value: ''
+          icon: '不重复',
+          value: 'no-repeat'
         }
       ]
     };

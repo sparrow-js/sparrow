@@ -1,6 +1,6 @@
 <template>
   <div class="css-panel">
-    <el-collapse v-model="activeNames" @change="handleChange">
+    <el-collapse v-model="activeNames">
       <el-collapse-item title="布局" name="1">
         <layout />
       </el-collapse-item>

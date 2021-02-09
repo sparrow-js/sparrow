@@ -80,22 +80,22 @@ export default {
       borderStyleList: [
         {
           label: 'none',
-          icon: '',
+          icon: '无',
           value: 'none'
         },
         {
           label: 'solid',
-          icon: '',
+          icon: '实线',
           value: 'solid'
         },
         {
           label: 'dashed',
-          icon: '',
+          icon: '虚线',
           value: 'dashed'
         },
         {
           label: 'dotted',
-          icon: '',
+          icon: '点线',
           value: 'dotted'
         }
       ]

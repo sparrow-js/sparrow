@@ -1,6 +1,6 @@
 <template>
   <div class="css-item">
-    <div class="css-item__header">
+    <div class="css-item__header" :style="{width: width}">
       {{ label }}
     </div>
     <div class="css-item__body">
@@ -14,6 +14,10 @@ export default {
     label: {
       type: String,
       default: ''
+    },
+    width: {
+      type: String,
+      default: '80px'
     }
   }
 };
@@ -25,6 +29,7 @@ export default {
   margin-bottom: 10px;
   &__header {
     width: 80px;
+    flex-shrink: 0;
     padding-top: 4px;
     color: #333;
   }

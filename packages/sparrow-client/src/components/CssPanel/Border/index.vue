@@ -12,7 +12,7 @@
     <css-item class="边框">
       <border-model />
     </css-item>
-    <shadow />
+    <shadow-model />
   </div>
 </template>
 <script>
@@ -20,7 +20,7 @@ import SRadioGroup from '../RadioGroup';
 import CssItem from '../CssItem';
 import BorderModel from '../BorderModel';
 import BorderRadius from '../BorderRadius';
-import Shadow from '../Shadow';
+import ShadowModel from '../ShadowModel';
 
 export default {
   components: {
@@ -28,7 +28,7 @@ export default {
     BorderModel,
     CssItem,
     BorderRadius,
-    Shadow
+    ShadowModel
   },
   data() {
     return {
@@ -44,13 +44,13 @@ export default {
       borderRadiuslist: [
         {
           label: '固定圆角',
-          icon: '',
-          value: ''
+          icon: '固定圆角',
+          value: 'radius'
         },
         {
           label: '独立定义',
-          icon: '',
-          value: ''
+          icon: '独立定义',
+          value: 'radius-alone'
         }
       ],
     };

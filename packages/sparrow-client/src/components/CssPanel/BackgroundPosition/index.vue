@@ -1,66 +1,73 @@
 <template>
-  <div>
-    <div>
-      <div></div>
+  <div class="background-position">
+    <div class="quick-list">
+      <div class="quick-item" v-for="item in quickList" :key="item.value">
+        <span>
+          {{ item.label }}
+        </span>
+      </div>
     </div>
     <div>
-      <div>
-        <label><span>左</span></label>
-        <el-input placeholder="请输入内容"></el-input>
-      </div>
-      <div>
-        <label><span>顶</span></label>
-        <el-input placeholder="请输入内容"></el-input>
-      </div>
+      <css-item label="左" width="30px">
+        <el-input size="mini" placeholder="请输入内容"></el-input>
+      </css-item>
+      <css-item label="顶" width="30px">
+        <el-input size="mini" placeholder="请输入内容"></el-input>
+      </css-item>
     </div>
   </div>
 </template>
 <script>
+import CssItem from '../CssItem';
+
 export default {
+  components: {
+    CssItem,
+  },
   data () {
     return {
       quickList: [
         {
           icon: '',
-          value: '',
+          value: 'left-up',
           label: '左上'
         },
         {
           icon: '',
-          value: '',
+          value: 'up',
           label: '上'
         },{
           icon: '',
-          value: '',
+          value: 'right-up',
           label: '右上'
         },
         {
           icon: '',
-          value: '',
+          value: 'left',
           label: '左'
         },{
           icon: '',
-          value: '',
+          value: 'middle',
           label: '中'
         },
         {
           icon: '',
-          value: '',
+          value: 'right',
           label: '右'
         },
         {
           icon: '',
-          value: '',
+          value: 'down-left',
           label: '左下'
         },
         {
-          icon: '',
-          value: '',
+          icon: 'down',
+          value: 'down',
           label: '下'
         },
         {
           icon: '',
-          value: '',
+          value: 'down-right',
           label: '右下'
         }
       ]
@@ -68,4 +75,28 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.background-position{
+  display: flex;
+  flex-direction: row;
+}
+.quick-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100px;
+  height: 80px;
+  flex-shrink: 0;
+  margin-right: 5px;
+  .quick-item {
+    flex: 0 0 33.33%;
+    justify-content: center;
+    span{
+      width: 28px;
+      display: flex;
+      justify-content: center;
+      border: 1px solid #333;
+      font-size: 12px;
+    }
+  }
+}
+</style>

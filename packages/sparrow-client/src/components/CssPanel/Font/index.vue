@@ -34,6 +34,9 @@
         </div>
       </div>
     </css-item>
+    <css-item lang="对齐方式">
+      <s-radio-group :list="textAlignList"></s-radio-group>
+    </css-item>
     <css-item label="透明度">
       <div>
         <el-slider size="mini" min="0" max="100" v-model="fontForm.opacity" show-input> </el-slider>
@@ -44,11 +47,13 @@
 <script>
 import CssItem from '../CssItem';
 import { Chrome } from 'vue-color';
+import SRadioGroup from '../RadioGroup';
 
 export default {
   components: {
     CssItem,
-    ChromePicker: Chrome
+    ChromePicker: Chrome,
+    SRadioGroup
   },
   data() {
     return {
@@ -73,6 +78,28 @@ export default {
         {
           value: 'lighter',
           label: '细体'
+        }
+      ],
+      textAlignList: [
+        {
+          label: 'left',
+          icon: '左',
+          value: 'left',
+        },
+        {
+          label: 'center',
+          icon: '中',
+          value: 'center',
+        },
+        {
+          label: 'right',
+          icon: '右',
+          value: 'right',
+        },
+        {
+          label: 'justify',
+          icon: '两端',
+          value: 'justify',
         }
       ]
     };

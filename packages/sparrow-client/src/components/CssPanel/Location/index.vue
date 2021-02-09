@@ -73,39 +73,39 @@ export default {
       floatList: [
         {
           label: 'none',
-          icon: '',
+          icon: '不',
           value: 'none',
         },
         {
           label: 'left',
-          icon: '',
+          icon: '左',
           value: 'left',
         },
         {
           label: 'right',
-          icon: '',
+          icon: '右',
           value: 'right',
         }
       ],
       clearList: [
         {
           label: 'none',
-          icon: '',
+          icon: '不',
           value: 'none',
         },
         {
           label: 'left',
-          icon: '',
+          icon: '左',
           value: 'left',
         },
         {
           label: 'right',
-          icon: '',
+          icon: '右',
           value: 'right',
         },
         {
           label: 'both',
-          icon: '',
+          icon: '左右',
           value: 'both',
         },
       ]
