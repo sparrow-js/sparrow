@@ -24,7 +24,12 @@
           ></el-input-number>
         </div>
         <div>
-          <el-input class="mb10" size="mini" placeholder="请输入内容">
+          <el-input
+            v-model="fontForm.color"
+            class="mb10"
+            size="mini"
+            placeholder="请输入内容"
+          >
             <template slot="append">
               <el-popover placement="bottom" width="225" trigger="click">
                 <chrome-picker v-model="fontForm.color"></chrome-picker>
@@ -42,7 +47,16 @@
       </div>
     </css-item>
     <css-item lang="对齐方式">
-      <s-radio-group :list="textAlignList"></s-radio-group>
+      <s-radio-group
+        v-model="fontForm.textAlign"
+        :list="textAlignList"
+      ></s-radio-group>
+    </css-item>
+    <css-item>
+      <s-radio-group
+        v-model="fontForm.verticalAlign"
+        :list="verticalAlignList"
+      ></s-radio-group>
     </css-item>
     <css-item label="透明度">
       <div>
@@ -68,7 +82,7 @@ export default {
       fontForm: {
         fontWeight: '',
         fontSize: '',
-        color: '#000000',
+        color: '',
         lineHeight: '',
         textAlign: '',
         verticalAlign: '',
@@ -109,8 +123,38 @@ export default {
           icon: '两端',
           value: 'justify',
         }
+      ],
+      verticalAlignList: [
+        {
+          label: 'baseline',
+          icon: '基线',
+          value: 'baseline',
+        },
+        {
+          label: 'top',
+          icon: '上',
+          value: 'top',
+        },
+        {
+          label: 'bottom',
+          icon: '下',
+          value: 'bottom',
+        },
+        {
+          label: 'middle',
+          icon: '居中',
+          value: 'middle',
+        }
       ]
     };
+  },
+  watch: {
+    fontForm: {
+      handler: function(val, oldVal) {
+        this.$emit('change', this.fontForm);
+      },
+      deep: true
+    }
   }
 };
 </script>
