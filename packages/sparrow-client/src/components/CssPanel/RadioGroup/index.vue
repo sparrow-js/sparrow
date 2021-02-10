@@ -20,6 +20,10 @@
 </template>
 <script>
 export default {
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   props: {
     list: {
       type: Array,
@@ -34,9 +38,7 @@ export default {
       if (this.value === value) {
         value = '';
       }
-      this.$emit('change', {
-        value,
-      });
+      this.$emit('change', value);
     }
   }
 }

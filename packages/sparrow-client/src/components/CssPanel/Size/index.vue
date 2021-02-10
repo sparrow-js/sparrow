@@ -6,9 +6,9 @@
       </label>
       <div>
         <el-input
+          v-model="size.width"
           size="mini"
           placeholder="请输入内容"
-          @input="sizeChange"
         ></el-input>
       </div>
     </div>
@@ -18,9 +18,9 @@
       </label>
       <div>
         <el-input
+          v-model="size.height"
           size="mini"
           placeholder="请输入内容"
-          @input="sizeChange"
         ></el-input>
       </div>
     </div>

@@ -2,53 +2,38 @@
   <div class="layout-box">
     <css-item label="布局模式">
       <div>
-        <s-radio-group
-          :value="cssForm.display"
-          :list="layoutList"
-          @change="layoutStyleChange('display', $event)"
-        />
+        <s-radio-group v-model="cssForm.display" :list="layoutList" />
       </div>
     </css-item>
     <css-item>
-      <box-model
-        :boxModelForm="cssForm.boxModelForm"
-        @change="boxModelChange"
-      />
+      <box-model :boxModelForm="cssForm.boxModelForm" />
     </css-item>
-    <css-item label="主轴方向">
-      <s-radio-group
-        :value="cssForm.display"
-        :list="flexDirectionList"
-        @change="layoutStyleChange('display', $event)"
-      />
-    </css-item>
+    <div v-show="cssForm.display === 'flex'">
+      <css-item label="主轴方向">
+        <s-radio-group
+          v-model="cssForm.flexDirection"
+          :list="flexDirectionList"
+        />
+      </css-item>
 
-    <css-item label="主轴对齐">
-      <s-radio-group
-        :value="cssForm.display"
-        :list="justifyContentList"
-        @change="layoutStyleChange('display', $event)"
-      />
-    </css-item>
+      <css-item label="主轴对齐">
+        <s-radio-group
+          v-model="cssForm.justifyContent"
+          :list="justifyContentList"
+        />
+      </css-item>
 
-    <css-item label="辅轴对齐">
-      <s-radio-group
-        :value="cssForm.display"
-        :list="alignItemsList"
-        @change="layoutStyleChange('display', $event)"
-      />
-    </css-item>
+      <css-item label="辅轴对齐">
+        <s-radio-group v-model="cssForm.alignItems" :list="alignItemsList" />
+      </css-item>
 
-    <css-item label="换行">
-      <s-radio-group
-        :value="cssForm.display"
-        :list="flexWrapList"
-        @change="layoutStyleChange('display', $event)"
-      />
-    </css-item>
+      <css-item label="换行">
+        <s-radio-group v-model="cssForm.flexWrap" :list="flexWrapList" />
+      </css-item>
+    </div>
 
     <css-item>
-      <size />
+      <size :size="cssForm.size" />
     </css-item>
   </div>
 </template>
@@ -62,12 +47,16 @@ export default {
     CssItem,
     SRadioGroup,
     BoxModel,
-    Size,
+    Size
   },
   data() {
     return {
       cssForm: {
         display: '',
+        flexDirection: '',
+        justifyContent: '',
+        alignItems: '',
+        flexWrap: '',
         boxModelForm: {
           margin_top: '',
           margin_bottom: '',
@@ -88,77 +77,77 @@ export default {
         {
           label: '内联布局 inline',
           icon: '内联',
-          value: 'inline',
+          value: 'inline'
         },
         {
           label: '弹性布局 flex',
           icon: '弹性',
-          value: 'flex',
+          value: 'flex'
         },
         {
           label: '块级布局 block',
           icon: '块级',
-          value: 'block',
+          value: 'block'
         },
         {
           label: '行内块级 inline-block',
           icon: '行内块',
-          value: 'inline-block',
+          value: 'inline-block'
         },
         {
           label: '隐藏',
           icon: '隐藏',
-          value: 'none',
+          value: 'none'
         }
       ],
       flexDirectionList: [
         {
           label: 'row',
           icon: '水平',
-          value: 'row',
+          value: 'row'
         },
         {
           label: 'column',
           icon: '垂直',
-          value: 'column',
+          value: 'column'
         },
         {
           label: 'row-reverse',
           icon: '逆水平',
-          value: 'row-reverse',
+          value: 'row-reverse'
         },
         {
           label: 'column-reverse',
           icon: '逆垂直',
-          value: 'column-reverse',
+          value: 'column-reverse'
         }
       ],
       justifyContentList: [
         {
           label: 'flex-start',
           icon: '左对',
-          value: 'flex-start',
+          value: 'flex-start'
         },
         {
           label: 'flex-end',
           icon: '右对',
-          value: 'flex-end',
+          value: 'flex-end'
         },
         {
           label: 'center',
           icon: '中心',
-          value: 'center',
+          value: 'center'
         },
         {
           label: 'space-between',
           icon: '两端',
-          value: 'space-between',
+          value: 'space-between'
         },
         {
           label: 'space-around',
           icon: '横向平',
-          value: 'space-around',
-        },
+          value: 'space-around'
+        }
       ],
       alignItemsList: [
         {
@@ -213,8 +202,15 @@ export default {
       }
     },
     boxModelChange() {}
+  },
+  watch: {
+    cssForm: {
+      handler: function(val, oldVal) {
+        this.$emit('change', this.cssForm);
+      },
+      deep: true
+    }
   }
 };
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
