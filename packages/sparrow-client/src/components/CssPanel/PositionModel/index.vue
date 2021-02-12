@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="quick-list">
+    <div
+      class="quick-list"
+      v-if="position === 'absolute' || position === 'fixed'"
+    >
       <el-tooltip
         v-for="item in quickList"
         :key="item.value"
@@ -9,7 +12,9 @@
         :content="item.label"
         placement="top"
       >
-        <div class="quick-item"></div>
+        <span class="quick-item">
+          {{ item.label }}
+        </span>
       </el-tooltip>
     </div>
     <div class="luna-comp luna-position-space luna-position-space" id="space">
@@ -21,8 +26,7 @@
               maxlength="6"
               height="100%"
               autocomplete="off"
-              value=""
-              data-spm-anchor-id="0.appIde.0.i86.484f6a5b2Jh4KW"
+              v-model="positionSize.top"
           /></span>
         </div>
         <div class="right-div">
@@ -32,7 +36,7 @@
               maxlength="6"
               height="100%"
               autocomplete="off"
-              value=""
+              v-model="positionSize.right"
           /></span>
         </div>
         <div class="bottom-div">
@@ -42,7 +46,7 @@
               maxlength="6"
               height="100%"
               autocomplete="off"
-              value=""
+              v-model="positionSize.bottom"
           /></span>
         </div>
         <div class="left-div">
@@ -52,7 +56,7 @@
               maxlength="6"
               height="100%"
               autocomplete="off"
-              value=""
+              v-model="positionSize.left"
           /></span>
         </div>
       </div>
@@ -61,6 +65,20 @@
 </template>
 <script>
 export default {
+  props: {
+    position: String,
+    positionSize: {
+      type: Object,
+      default() {
+        return {
+          top: '',
+          left: '',
+          bottom: '',
+          right: ''
+        };
+      }
+    }
+  },
   data() {
     return {
       quickList: [
@@ -108,6 +126,9 @@ export default {
 <style lang="scss" scoped>
 .quick-list {
   .quick-item {
+    border: 1px solid #333;
+    font-size: 12px;
+    margin-right: 3px;
   }
 }
 

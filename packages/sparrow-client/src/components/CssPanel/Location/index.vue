@@ -1,7 +1,12 @@
 <template>
   <div>
     <css-item label="定位类型">
-      <el-select size="mini" v-model="locationForm.position" clearable placeholder="请选择">
+      <el-select
+        size="mini"
+        v-model="locationForm.position"
+        clearable
+        placeholder="请选择"
+      >
         <el-option
           v-for="item in positionOptions"
           :key="item.value"
@@ -11,8 +16,11 @@
         </el-option>
       </el-select>
     </css-item>
-    <css-item>
-      <position-model></position-model>
+    <css-item v-if="locationForm.position !== 'static'">
+      <position-model
+        :position="locationForm.position"
+        :position-size="locationForm.positionSize"
+      ></position-model>
     </css-item>
     <css-item label="清除位置">
       <el-input-number
@@ -22,10 +30,16 @@
       ></el-input-number>
     </css-item>
     <css-item label="浮动">
-      <s-radio-group :list="floatList"></s-radio-group>
+      <s-radio-group
+        v-model="locationForm.float"
+        :list="floatList"
+      ></s-radio-group>
     </css-item>
     <css-item label="清除浮动">
-      <s-radio-group :list="clearList"></s-radio-group>
+      <s-radio-group
+        v-model="locationForm.clear"
+        :list="clearList"
+      ></s-radio-group>
     </css-item>
   </div>
 </template>
@@ -46,7 +60,13 @@ export default {
         position: '',
         zIndex: '',
         float: '',
-        clear: ''
+        clear: '',
+        positionSize: {
+          top: '',
+          left: '',
+          bottom: '',
+          right: ''
+        },
       },
       positionOptions: [
         {
@@ -110,6 +130,14 @@ export default {
         },
       ]
     };
+  },
+  watch: {
+    cssForm: {
+      handler: function(val, oldVal) {
+        this.$emit('change', this.cssForm);
+      },
+      deep: true
+    }
   }
 };
 </script>
