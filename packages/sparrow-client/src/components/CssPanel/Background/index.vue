@@ -1,9 +1,12 @@
 <template>
   <div>
     <css-item label="背景类型">
-      <s-radio-group :list="backgroundTypeList"></s-radio-group>
+      <s-radio-group
+        v-model="backgroundForm.backgroundType"
+        :list="backgroundTypeList"
+      ></s-radio-group>
     </css-item>
-    <css-item>
+    <css-item v-if="backgroundForm.backgroundType === 'color'">
       <el-input size="mini" placeholder="请输入内容">
         <template slot="append">
           <el-popover placement="bottom" width="225" trigger="click">
@@ -15,25 +18,35 @@
         </template>
       </el-input>
     </css-item>
-    <css-item>
-      <el-input
-        size="mini"
-        placeholder="请输入URL"
-        v-model="backgroundForm.backgroundImage"
-      ></el-input>
-    </css-item>
-    <css-item label="尺寸">
-      <s-radio-group :list="backgroundSizeList"></s-radio-group>
-    </css-item>
-    <css-item>
-      <size />
-    </css-item>
-    <css-item label="定位">
-      <background-position />
-    </css-item>
-    <css-item label="重复显示">
-      <s-radio-group :list="backgroundRepeatList"></s-radio-group>
-    </css-item>
+    <div v-if="backgroundForm.backgroundType === 'image'">
+      <css-item>
+        <el-input
+          size="mini"
+          placeholder="请输入URL"
+          v-model="backgroundForm.backgroundImage"
+        ></el-input>
+      </css-item>
+      <css-item label="尺寸">
+        <s-radio-group
+          v-model="backgroundForm.backgroundSize"
+          :list="backgroundSizeList"
+        ></s-radio-group>
+      </css-item>
+      <css-item>
+        <size :size="backgroundForm.size" />
+      </css-item>
+      <css-item label="定位">
+        <background-position
+          :background-position="backgroundForm.backgroundPosition"
+        />
+      </css-item>
+      <css-item label="重复显示">
+        <s-radio-group
+          v-model="backgroundForm.backgroundRepeat"
+          :list="backgroundRepeatList"
+        ></s-radio-group>
+      </css-item>
+    </div>
   </div>
 </template>
 <script>
@@ -54,11 +67,19 @@ export default {
   data() {
     return {
       backgroundForm: {
+        backgroundType: '',
         backgroundColor: '',
         backgroundImage: '',
         backgroundSize: '',
-        backgroundPosition: '',
-        backgroundRepeat: ''
+        backgroundPosition: {
+          left: '',
+          top: ''
+        },
+        backgroundRepeat: '',
+        size: {
+          width: '',
+          height: ''
+        }
       },
       backgroundTypeList: [
         {

@@ -9,10 +9,18 @@
     </div>
     <div>
       <css-item label="左" width="30px">
-        <el-input size="mini" placeholder="请输入内容"></el-input>
+        <el-input
+          size="mini"
+          placeholder="请输入内容"
+          v-model="backgroundPosition.left"
+        ></el-input>
       </css-item>
       <css-item label="顶" width="30px">
-        <el-input size="mini" placeholder="请输入内容"></el-input>
+        <el-input
+          size="mini"
+          placeholder="请输入内容"
+          v-model="backgroundPosition.top"
+        ></el-input>
       </css-item>
     </div>
   </div>
@@ -21,10 +29,21 @@
 import CssItem from '../CssItem';
 
 export default {
-  components: {
-    CssItem,
+  props: {
+    backgroundPosition: {
+      type: Object,
+      default() {
+        return {
+          left: '',
+          top: ''
+        };
+      }
+    }
   },
-  data () {
+  components: {
+    CssItem
+  },
+  data() {
     return {
       quickList: [
         {
@@ -36,7 +55,8 @@ export default {
           icon: '',
           value: 'up',
           label: '上'
-        },{
+        },
+        {
           icon: '',
           value: 'right-up',
           label: '右上'
@@ -45,7 +65,8 @@ export default {
           icon: '',
           value: 'left',
           label: '左'
-        },{
+        },
+        {
           icon: '',
           value: 'middle',
           label: '中'
@@ -71,12 +92,12 @@ export default {
           label: '右下'
         }
       ]
-    }
+    };
   }
 };
 </script>
 <style lang="scss" scoped>
-.background-position{
+.background-position {
   display: flex;
   flex-direction: row;
 }
@@ -90,7 +111,7 @@ export default {
   .quick-item {
     flex: 0 0 33.33%;
     justify-content: center;
-    span{
+    span {
       width: 28px;
       display: flex;
       justify-content: center;
