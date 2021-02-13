@@ -68,7 +68,7 @@ export default {
           icon: '独立定义',
           value: 'radius-alone'
         }
-      ],
+      ]
     };
   },
   watch: {

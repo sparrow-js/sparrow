@@ -2,19 +2,19 @@
   <div class="css-panel">
     <el-collapse v-model="activeNames">
       <el-collapse-item title="布局" name="1">
-        <layout />
+        <layout @change="change" />
       </el-collapse-item>
       <el-collapse-item title="文字" name="2">
-        <font />
+        <font @change="change"/>
       </el-collapse-item>
       <el-collapse-item title="定位" name="3">
-        <location />
+        <location @change="change"/>
       </el-collapse-item>
       <el-collapse-item title="背景" name="4">
-        <background />
+        <background @change="change"/>
       </el-collapse-item>
       <el-collapse-item title="边框" name="5">
-        <border />
+        <border @change="change"/>
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -35,8 +35,14 @@ export default {
   },
   data() {
     return {
-      activeNames: ['1', '2', '3', '4', '5', '6']
+      activeNames: ['1', '2', '3', '4', '5', '6'],
+      form: {}
     };
+  },
+  methods: {
+    change (data) {
+
+    }
   }
 };
 </script>
