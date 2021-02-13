@@ -5,31 +5,31 @@
         <div class="quick-list">
           <el-tooltip class="item" effect="dark" content="上" placement="top">
             <div class="quick-item item-all">
-              <span>上</span>
+              <span @click="positionHandler('top')">上</span>
             </div>
           </el-tooltip>
 
           <el-tooltip class="item" effect="dark" content="左" placement="top">
             <div class="quick-item item-3">
-              <span>左</span>
+              <span @click="positionHandler('left')">左</span>
             </div>
           </el-tooltip>
 
           <el-tooltip class="item" effect="dark" content="中" placement="top">
             <div class="quick-item item-3">
-              <span>中</span>
+              <span @click="positionHandler('middle')">中</span>
             </div>
           </el-tooltip>
 
           <el-tooltip class="item" effect="dark" content="右" placement="top">
             <div class="quick-item item-3">
-              <span>右</span>
+              <span @click="positionHandler('right')">右</span>
             </div>
           </el-tooltip>
 
           <el-tooltip class="item" effect="dark" content="下" placement="top">
             <div class="quick-item item-all">
-              <span>下</span>
+              <span @click="positionHandler('bottom')">下</span>
             </div>
           </el-tooltip>
         </div>
@@ -39,14 +39,18 @@
           class="width100 mb10"
           size="mini"
           controls-position="right"
+          v-model="borderRect.width"
         ></el-input-number>
 
-        <el-input class="mb10" size="mini" placeholder="请输入内容">
+        <el-input
+          v-model="borderRect.color"
+          class="mb10"
+          size="mini"
+          placeholder="请输入内容"
+        >
           <template slot="append">
             <el-popover placement="bottom" width="225" trigger="click">
-              <chrome-picker
-                v-model="borderForm.backgroundColor"
-              ></chrome-picker>
+              <chrome-picker v-model="borderRect.color"></chrome-picker>
               <span slot="reference">color</span>
             </el-popover>
           </template>
@@ -54,7 +58,10 @@
       </el-col>
     </el-row>
     <div>
-      <s-radio-group :list="borderStyleList"></s-radio-group>
+      <s-radio-group
+        v-model="borderRect.style"
+        :list="borderStyleList"
+      ></s-radio-group>
     </div>
   </div>
 </template>
@@ -63,6 +70,19 @@ import { Chrome } from 'vue-color';
 import SRadioGroup from '../RadioGroup';
 
 export default {
+  props: {
+    borderRect: {
+      type: Object,
+      default() {
+        return {
+          position: '',
+          width: '',
+          style: '',
+          color: '',
+        };
+      }
+    }
+  },
   components: {
     ChromePicker: Chrome,
     SRadioGroup
@@ -95,6 +115,15 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    positionHandler(type) {
+      if (this.borderRect.position === type) {
+        this.borderRect.position = '';
+      } else {
+        this.borderRect.position = type;
+      }
+    }
   }
 };
 </script>
@@ -109,6 +138,11 @@ export default {
     span {
       width: 20px;
       height: 20px;
+      border: 1px solid #333;
+      padding: 2px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
   .item-all {

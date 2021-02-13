@@ -6,6 +6,7 @@
           class="input-number-width100 mb10"
           controls-position="right"
           size="mini"
+          v-model="rect.borderTopLeftRadius"
         ></el-input-number>
       </el-col>
       <el-col :span="12">
@@ -13,6 +14,7 @@
           class="input-number-width100 mb10"
           controls-position="right"
           size="mini"
+          v-model="rect.borderTopRightRadius"
         ></el-input-number>
       </el-col>
       <el-col :span="12">
@@ -20,6 +22,7 @@
           class="input-number-width100"
           controls-position="right"
           size="mini"
+          v-model="rect.borderBottomLeftRadius"
         ></el-input-number>
       </el-col>
       <el-col :span="12">
@@ -27,13 +30,28 @@
           class="input-number-width100"
           controls-position="right"
           size="mini"
+          v-model="rect.borderBottomRightRadius"
         ></el-input-number>
       </el-col>
     </el-row>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props: {
+    rect: {
+      type: Object,
+      default () {
+        return {
+          borderTopLeftRadius: '',
+          borderTopRightRadius: '',
+          borderBottomLeftRadius: '',
+          borderBottomRightRadius: '',
+        };
+      }
+    }
+  }
+};
 </script>
 <style lang="scss" scoped>
 .input-number-width100{

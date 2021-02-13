@@ -1,18 +1,18 @@
 <template>
   <div>
     <css-item label="圆角">
-      <s-radio-group :list="borderRadiuslist" />
+      <s-radio-group v-model="borderForm.borderType" :list="borderRadiuslist" />
     </css-item>
-    <css-item>
-      <border-radius></border-radius>
+    <css-item v-if="borderForm.borderType === 'radius-alone'">
+      <border-radius :rect="borderForm.borderRadiusRect"></border-radius>
     </css-item>
-    <css-item>
+    <css-item v-if="borderForm.borderType === 'radius'">
       <el-slider v-model="borderForm.borderRadius" show-input> </el-slider>
     </css-item>
     <css-item class="边框">
-      <border-model />
+      <border-model :border-rect="borderForm.borderRect" />
     </css-item>
-    <shadow-model />
+    <shadow-model :box-shadow="borderForm.boxShadow" />
   </div>
 </template>
 <script>
@@ -33,13 +33,29 @@ export default {
   data() {
     return {
       borderForm: {
+        borderType: 'radius',
         border: '',
-        borderTopLeftRadius: '',
-        borderTopRightRadius: '',
-        borderBottomLeftRadius: '',
-        borderBottomRightRadius: '',
+        borderRadiusRect: {
+          borderTopLeftRadius: '',
+          borderTopRightRadius: '',
+          borderBottomLeftRadius: '',
+          borderBottomRightRadius: '',
+        },
+        borderRect: {
+          position: '',
+          width: '',
+          style: '',
+          color: '',
+        },
         borderRadius: 0,
-        boxShadow: ''
+        boxShadow: {
+          hShadow: '',
+          vShadow: '',
+          blur: '',
+          spread: '',
+          color: '',
+          inset: ''
+        }
       },
       borderRadiuslist: [
         {
@@ -54,6 +70,14 @@ export default {
         }
       ],
     };
+  },
+  watch: {
+    borderForm: {
+      handler: function(val, oldVal) {
+        this.$emit('change', this.cssForm);
+      },
+      deep: true
+    }
   }
 };
 </script>

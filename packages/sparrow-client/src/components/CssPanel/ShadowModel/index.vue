@@ -2,13 +2,17 @@
   <div>
     <css-item label="阴影">
       <div class="mb10">
-        <s-radio-group :list="shadowList" />
+        <s-radio-group v-model="shadowForm.inset" :list="shadowList" />
       </div>
       <div class="mb10">
-        <el-input size="mini" placeholder="请输入内容">
+        <el-input
+          v-model="shadowForm.color"
+          size="mini"
+          placeholder="请输入内容"
+        >
           <template slot="append">
             <el-popover placement="bottom" width="225" trigger="click">
-              <chrome-picker v-model="shadowForm.background"></chrome-picker>
+              <chrome-picker v-model="shadowForm.color"></chrome-picker>
               <span slot="reference">color</span>
             </el-popover>
           </template>
@@ -22,6 +26,7 @@
                 class="width70"
                 size="mini"
                 controls-position="right"
+                v-model="boxShadow.hShadow"
               ></el-input-number>
             </css-item>
           </el-col>
@@ -31,6 +36,7 @@
                 class="width70"
                 size="mini"
                 controls-position="right"
+                v-model="boxShadow.vShadow"
               ></el-input-number>
             </css-item>
           </el-col>
@@ -40,6 +46,7 @@
                 class="width70"
                 size="mini"
                 controls-position="right"
+                v-model="boxShadow.blur"
               ></el-input-number>
             </css-item>
           </el-col>
@@ -48,6 +55,7 @@
               <el-input-number
                 class="width70"
                 size="mini"
+                v-model="boxShadow.spread"
                 controls-position="right"
               ></el-input-number>
             </css-item>
@@ -63,6 +71,21 @@ import { Chrome } from 'vue-color';
 import CssItem from '../CssItem';
 
 export default {
+  props: {
+    boxShadow: {
+      type: Object,
+      default() {
+        return {
+          hShadow: '',
+          vShadow: '',
+          blur: '',
+          spread: '',
+          color: '',
+          inset: ''
+        };
+      }
+    }
+  },
   components: {
     SRadioGroup,
     ChromePicker: Chrome,

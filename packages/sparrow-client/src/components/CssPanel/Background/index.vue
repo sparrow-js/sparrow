@@ -6,7 +6,12 @@
         :list="backgroundTypeList"
       ></s-radio-group>
     </css-item>
-    <css-item v-if="backgroundForm.backgroundType === 'color'">
+    <css-item
+      v-if="
+        backgroundForm.backgroundType === '' ||
+          backgroundForm.backgroundType === 'color'
+      "
+    >
       <el-input size="mini" placeholder="请输入内容">
         <template slot="append">
           <el-popover placement="bottom" width="225" trigger="click">
