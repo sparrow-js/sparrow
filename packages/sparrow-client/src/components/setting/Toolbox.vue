@@ -90,8 +90,8 @@
               <div class="block-list drag-box">
                 <div
                   class="block-item"
-                  :data-name="comp.label"
                   v-for="item in staticBlockList"
+                  :data-name="item.label"
                   :key="item.key"
                   @mousedown="mousedownWidget(item, 'block')"
                   @click="addStaticBlock(item.key, item.originData)"
@@ -349,7 +349,6 @@ export default {
     },
     async getStaticBlock() {
       const blockList = await socket.emit('material.index.getBlocks');
-      console.log('*****111******', blockList)
       this.staticBlockList = blockList.list;
     },
 
