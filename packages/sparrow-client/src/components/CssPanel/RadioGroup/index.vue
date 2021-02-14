@@ -61,6 +61,7 @@ export default {
   }
   .selected{
     background-color: #409EFF;
+    color: #fff;
   }
   .selected:hover{
     background-color: #409EFF;

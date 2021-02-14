@@ -40,7 +40,11 @@ export default {
     };
   },
   methods: {
-    change (data) {
+    change(data) {
+      const {css, type} = data;
+      
+    },
+    transformToCss() {
 
     }
   }

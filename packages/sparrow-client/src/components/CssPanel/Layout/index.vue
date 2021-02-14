@@ -72,7 +72,6 @@ export default {
           height: ''
         }
       },
-      font: {},
       layoutList: [
         {
           label: '内联布局 inline',
@@ -206,7 +205,10 @@ export default {
   watch: {
     cssForm: {
       handler: function(val, oldVal) {
-        this.$emit('change', this.cssForm);
+        this.$emit('change', {
+          css: this.cssForm,
+          type: 'layout'
+        });
       },
       deep: true
     }
