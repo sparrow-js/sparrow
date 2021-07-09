@@ -303,7 +303,6 @@ export default {
           onMove: evt => {
             const { related } = evt;
             const relatedId = related.dataset.id;
-            console.log('**********', related);
             if (this.relatedId !== relatedId) {
               const boxNode = this.findBoxNode(related);
               if (boxNode) {
