@@ -76,7 +76,7 @@
     "onerror": {
       "errorPageUrl": "",
       "appErrorFilter": null,
-      "templatePath": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-onerror/lib/onerror_page.mustache"
+      "templatePath": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-onerror/lib/onerror_page.mustache"
     },
     "i18n": {
       "defaultLocale": "en_US",
@@ -89,8 +89,8 @@
     "watcher": {
       "type": "development",
       "eventSources": {
-        "default": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-watcher/lib/event-sources/default",
-        "development": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-watcher/lib/event-sources/development"
+        "default": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-watcher/lib/event-sources/default",
+        "development": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-watcher/lib/event-sources/development"
       }
     },
     "customLogger": {
@@ -113,7 +113,7 @@
       "files": 10,
       "fileExtensions": [],
       "whitelist": null,
-      "tmpdir": "/var/folders/j0/c7q04h3j6l50bjrddgf4_38m0000gn/T/egg-multipart-tmp/sparrow-server",
+      "tmpdir": "/var/folders/vc/gg6ncfdd7xv5ff0m6px6l4j80000gn/T/egg-multipart-tmp/sparrow-server",
       "cleanSchedule": {
         "cron": "0 30 4 * * *"
       }
@@ -131,7 +131,8 @@
       "ignoreDirs": [],
       "fastReady": false,
       "reloadOnDebug": true,
-      "overrideDefault": true
+      "overrideDefault": true,
+      "overrideIgnore": false
     },
     "logrotator": {
       "filesRotateByHour": null,
@@ -144,14 +145,14 @@
     },
     "static": {
       "prefix": "/public/",
-      "dir": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/app/public",
+      "dir": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/src/app/public",
       "dynamic": true,
       "preload": false,
       "buffer": false,
       "maxFiles": 1000
     },
     "view": {
-      "root": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/app/view",
+      "root": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/src/app/view",
       "cache": false,
       "defaultExtension": ".html",
       "defaultViewEngine": "nunjucks",
@@ -321,9 +322,9 @@
       "author": "wuhaitao",
       "license": "MIT"
     },
-    "baseDir": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src",
+    "baseDir": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/src",
     "HOME": "/Users/haitaowu",
-    "rundir": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/run",
+    "rundir": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/run",
     "dump": {
       "ignore": "<Set>"
     },
@@ -355,7 +356,7 @@
       "onerror": "<Function onerror>"
     },
     "logger": {
-      "dir": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/logs/sparrow-server",
+      "dir": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/logs/sparrow-server",
       "encoding": "utf8",
       "env": "local",
       "level": "INFO",
@@ -421,7 +422,6 @@
     "pluginOverwrite": false,
     "container": {
       "ignore": [
-        "**/node_modules/**",
         "**/logs/**",
         "**/run/**",
         "**/public/**",
@@ -430,16 +430,16 @@
         "**/config/**",
         "**/app/extend/**"
       ],
-      "baseDir": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src"
+      "baseDir": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/src"
     },
     "alinode": {
       "logdir": "/tmp",
       "error_log": [
-        "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/logs/sparrow-server/common-error.log",
-        "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/logs/stderr.log"
+        "/Users/haitaowu/lab/sparrow/packages/sparrow-server/logs/sparrow-server/common-error.log",
+        "/Users/haitaowu/lab/sparrow/packages/sparrow-server/logs/stderr.log"
       ],
       "packages": [
-        "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/package.json"
+        "/Users/haitaowu/lab/sparrow/packages/sparrow-server/package.json"
       ]
     },
     "middleware": [
@@ -450,43 +450,6 @@
     "appMiddleware": "~config~middleware"
   },
   "plugins": {
-    "session": {
-      "enable": true,
-      "package": "egg-session",
-      "name": "session",
-      "dependencies": [],
-      "optionalDependencies": [],
-      "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-session",
-      "version": "3.1.0"
-    },
-    "security": {
-      "enable": true,
-      "package": "egg-security",
-      "name": "security",
-      "dependencies": [],
-      "optionalDependencies": [
-        "session"
-      ],
-      "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-security",
-      "version": "2.7.1"
-    },
-    "jsonp": {
-      "enable": true,
-      "package": "egg-jsonp",
-      "name": "jsonp",
-      "dependencies": [],
-      "optionalDependencies": [
-        "security"
-      ],
-      "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-jsonp",
-      "version": "2.0.0"
-    },
     "onerror": {
       "enable": true,
       "package": "egg-onerror",
@@ -496,9 +459,20 @@
         "jsonp"
       ],
       "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-onerror",
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-onerror",
       "version": "2.1.0"
+    },
+    "session": {
+      "enable": true,
+      "package": "egg-session",
+      "name": "session",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-session",
+      "version": "3.2.0"
     },
     "i18n": {
       "enable": true,
@@ -507,8 +481,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-i18n",
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-i18n",
       "version": "2.1.1"
     },
     "watcher": {
@@ -518,20 +492,9 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-watcher",
-      "version": "3.1.0"
-    },
-    "schedule": {
-      "enable": true,
-      "package": "egg-schedule",
-      "name": "schedule",
-      "dependencies": [],
-      "optionalDependencies": [],
-      "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-schedule",
-      "version": "3.6.4"
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-watcher",
+      "version": "3.1.1"
     },
     "multipart": {
       "enable": true,
@@ -542,9 +505,22 @@
         "schedule"
       ],
       "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-multipart",
-      "version": "2.10.1"
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-multipart",
+      "version": "2.10.3"
+    },
+    "security": {
+      "enable": true,
+      "package": "egg-security",
+      "name": "security",
+      "dependencies": [],
+      "optionalDependencies": [
+        "session"
+      ],
+      "env": [],
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-security",
+      "version": "2.8.0"
     },
     "development": {
       "enable": true,
@@ -557,9 +533,9 @@
       "env": [
         "local"
       ],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-development",
-      "version": "2.4.3"
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-development",
+      "version": "2.7.0"
     },
     "logrotator": {
       "enable": true,
@@ -570,9 +546,20 @@
       ],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-logrotator",
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-logrotator",
       "version": "3.1.0"
+    },
+    "schedule": {
+      "enable": true,
+      "package": "egg-schedule",
+      "name": "schedule",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-schedule",
+      "version": "3.6.6"
     },
     "static": {
       "enable": true,
@@ -581,9 +568,22 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-static",
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-static",
       "version": "2.2.0"
+    },
+    "jsonp": {
+      "enable": true,
+      "package": "egg-jsonp",
+      "name": "jsonp",
+      "dependencies": [],
+      "optionalDependencies": [
+        "security"
+      ],
+      "env": [],
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-jsonp",
+      "version": "2.0.0"
     },
     "view": {
       "enable": true,
@@ -592,9 +592,9 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-view",
-      "version": "2.1.2"
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-view",
+      "version": "2.1.3"
     },
     "schedulePlus": {
       "enable": true,
@@ -605,9 +605,9 @@
         "schedule"
       ],
       "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/midway-web/config/plugin.js",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/midway-schedule",
-      "version": "1.18.0"
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/midway-web/config/plugin.js",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/midway-schedule",
+      "version": "1.20.3"
     },
     "nunjucks": {
       "enable": true,
@@ -619,9 +619,9 @@
       ],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/plugin.ts",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-view-nunjucks",
-      "version": "2.2.0"
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/src/config/plugin.ts",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-view-nunjucks",
+      "version": "2.3.0"
     },
     "io": {
       "enable": true,
@@ -632,8 +632,8 @@
       ],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/plugin.ts",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-socket.io",
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/src/config/plugin.ts",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-socket.io",
       "version": "4.1.6"
     },
     "cors": {
@@ -643,18 +643,18 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/plugin.ts",
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/node_modules/egg-cors",
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/src/config/plugin.ts",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/node_modules/egg-cors",
       "version": "2.2.3"
     },
     "generator": {
       "enable": true,
-      "path": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/lib/plugin/generator",
+      "path": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/src/lib/plugin/generator",
       "name": "generator",
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/haitaowu/real-lab/sparrow-js/sparrow/packages/sparrow-server/src/config/plugin.ts"
+      "from": "/Users/haitaowu/lab/sparrow/packages/sparrow-server/src/config/plugin.ts"
     }
   }
 }
