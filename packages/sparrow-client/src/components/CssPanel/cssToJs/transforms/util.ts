@@ -46,9 +46,10 @@ export const parseShadowOffset = tokenStream => {
 }
 
 export const parseShadow = tokenStream => {
-  let offsetX
-  let offsetY
-  let radius
+  let shadowOffsetX
+  let shadowOffsetY
+  let shadowBlur
+  let shadowSpread
   let color
 
   if (tokenStream.matches(NONE)) {
@@ -63,21 +64,22 @@ export const parseShadow = tokenStream => {
   let didParseFirst = false
   while (tokenStream.hasTokens()) {
     if (didParseFirst) tokenStream.expect(SPACE)
-
     if (
-      offsetX === undefined &&
-      tokenStream.matches(LENGTH, UNSUPPORTED_LENGTH_UNIT)
+      shadowOffsetX === undefined &&
+      tokenStream.matches(LENGTHUNIT, LENGTH, UNSUPPORTED_LENGTH_UNIT)
     ) {
-      offsetX = tokenStream.lastValue
+      shadowOffsetX = tokenStream.lastValue
       tokenStream.expect(SPACE)
-      offsetY = tokenStream.expect(LENGTH, UNSUPPORTED_LENGTH_UNIT)
+      shadowOffsetY = tokenStream.expect(LENGTHUNIT, LENGTH, UNSUPPORTED_LENGTH_UNIT)
+      tokenStream.expect(SPACE)
+      shadowBlur = tokenStream.expect(LENGTHUNIT, LENGTH, UNSUPPORTED_LENGTH_UNIT)
+      tokenStream.saveRewindPoint();
 
-      tokenStream.saveRewindPoint()
       if (
         tokenStream.matches(SPACE) &&
-        tokenStream.matches(LENGTH, UNSUPPORTED_LENGTH_UNIT)
+        tokenStream.matches(LENGTHUNIT, LENGTH, UNSUPPORTED_LENGTH_UNIT)
       ) {
-        radius = tokenStream.lastValue
+        shadowSpread = tokenStream.lastValue
       } else {
         tokenStream.rewind()
       }
@@ -90,11 +92,13 @@ export const parseShadow = tokenStream => {
     didParseFirst = true
   }
 
-  if (offsetX === undefined) tokenStream.throw()
+  if (shadowOffsetX === undefined) tokenStream.throw()
 
   return {
-    offset: { width: offsetX, height: offsetY },
-    radius: radius !== undefined ? radius : 0,
-    color: color !== undefined ? color : 'black',
+    shadowOffsetX,
+    shadowOffsetY,
+    shadowBlur,
+    shadowSpread: shadowSpread !== undefined ? shadowSpread : 0,
+    shadowColor: color !== undefined ? color : 'black',
   }
 }

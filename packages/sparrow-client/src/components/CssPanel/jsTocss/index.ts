@@ -5,15 +5,32 @@ const unNeedProcessingList = [
   'paddingTop',
   'paddingRight',
   'paddingBottom',
+
+  'shadowOffsetX', // shadow 相关key统一放在shadowColor里处理
+  'shadowOffsetY',
+  'shadowBlur',
+  'shadowSpread',
+
+  'borderWidth', // border 相关key统一放在borderDirection里处理
+  'borderStyle',
+  'borderColor',
+
+  'borderRadiusWidth', // borderRadiusDirection 相关key统一放在borderRadiusDirection里处理
+
+  'marginLeft',
+  'marginTop',
+  'marginRight',
+  'marginBottom',
+
 ];
 
 export const transformRawValue = (propName, value) => {
   const transformPropName = getPropsNameToCss(propName);
-  if (typeof value === 'string') {
+  if (typeof value === 'string' || typeof value === 'number') {
     return [transformPropName, value];
   }
 
-  if (value.value && value.unit) {
+  if (value.value !== '' && value.value !== null) {
     return [transformPropName, `${value.value}${value.unit}`]
   }
   return null;

@@ -6,6 +6,7 @@ import {
   UNSUPPORTED_LENGTH_UNIT,
   PERCENT,
   AUTO,
+  LENGTHUNIT,
 } from '../tokenTypes'
 import border from './border'
 import boxShadow from './boxShadow'
@@ -23,19 +24,19 @@ import { directionFactory, parseShadowOffset } from './util'
 const background = tokenStream => ({
   backgroundColor: tokenStream.expect(COLOR),
 })
-const borderColor = directionFactory({
-  types: [COLOR],
-  prefix: 'border',
-  suffix: 'Color',
-})
+// const borderColor = directionFactory({
+//   types: [COLOR],
+//   prefix: 'border',
+//   suffix: 'Color',
+// })
 const borderRadius = directionFactory({
   directions: ['TopLeft', 'TopRight', 'BottomRight', 'BottomLeft'],
   prefix: 'border',
   suffix: 'Radius',
 })
-const borderWidth = directionFactory({ prefix: 'border', suffix: 'Width' })
+// const borderWidth = directionFactory({ prefix: 'border', suffix: 'Width' })
 const margin = directionFactory({
-  types: [LENGTH, UNSUPPORTED_LENGTH_UNIT, PERCENT, AUTO],
+  types: [LENGTHUNIT, LENGTH, UNSUPPORTED_LENGTH_UNIT, PERCENT, AUTO],
   prefix: 'margin',
 })
 const padding = directionFactory({ prefix: 'padding' });
@@ -55,9 +56,9 @@ const textShadowOffset = tokenStream => ({
 export default {
   background,
   border,
-  borderColor,
+  // borderColor,
   borderRadius,
-  borderWidth,
+  // borderWidth,
   boxShadow,
   flex,
   flexFlow,
@@ -74,4 +75,8 @@ export default {
   textDecoration,
   textDecorationLine,
   transform,
+  borderTop: border,
+  borderBottom: border,
+  borderLeft: border,
+  borderRight: border,
 }

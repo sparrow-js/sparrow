@@ -76,6 +76,110 @@ const padding = function (originCssObj) {
   return partToCss;
 }
 
+// todo 这里和padding基本一样，待封装
+const margin = function (originCssObj) {
+  const {marginLeft,marginRight, marginTop, marginBottom, margin} = originCssObj;
+  const marginLeftValue = getCssValue(marginLeft);
+  const marginRightValue = getCssValue(marginRight);
+  const marginTopValue = getCssValue(marginTop);
+  const marginBottomValue = getCssValue(marginBottom);
+  const marginValue = getCssValue(margin);
+  if (
+    !isEmptyValue(marginLeftValue) &&
+    !isEmptyValue(marginRightValue)&&
+    !isEmptyValue(marginTopValue) &&
+    !isEmptyValue(marginBottomValue) &&
+    !isEmptyValue(marginValue)
+  ) {
+    // example: margin: 10px
+    if (
+      marginValue === marginBottomValue &&
+      marginValue === marginTopValue &&
+      marginValue === marginRightValue && 
+      marginValue === marginLeftValue
+    ) {
+      return ['margin', marginValue];
+    }
+    // example: margin: 10px 10px;
+    if (
+      marginTopValue === marginBottomValue &&
+      marginLeftValue === marginRightValue
+    ) {
+      return ['margin', `${marginTopValue} ${marginLeftValue}`];
+    }
+    // example: margin: 10px 10px 10px 10px;
+    return ['margin', `${marginTopValue} ${marginLeftValue} ${marginRightValue} ${marginBottomValue}`]
+  }
+
+  const partToCss = [];
+
+  if (!isEmptyValue(marginLeftValue)) {
+    partToCss.push([getPropsNameToCss('marginLeft'), marginLeftValue])
+  }
+
+  if (!isEmptyValue(marginRightValue)) {
+    partToCss.push([getPropsNameToCss('marginRight'), marginRightValue])
+  }
+
+  if (!isEmptyValue(marginTopValue)) {
+    partToCss.push([getPropsNameToCss('marginTop'), marginTopValue])
+  }
+
+  if (!isEmptyValue(marginBottomValue)) {
+    partToCss.push([getPropsNameToCss('marginBottom'), marginBottomValue])
+  }
+  return partToCss;
+}
+
+const shadowColor = function (originCssObj) {
+  const {shadowOffsetX, shadowOffsetY, shadowBlur, shadowSpread, shadowColor} = originCssObj;
+  const shadowOffsetXValue = getCssValue(shadowOffsetX);
+  const shadowOffsetYValue = getCssValue(shadowOffsetY);
+  const shadowBlurValue = getCssValue(shadowBlur);
+  const shadowSpreadValue = getCssValue(shadowSpread);
+  if (isEmptyValue(shadowOffsetXValue) || isEmptyValue(shadowOffsetYValue)) {
+    return [];
+  }
+  return ['box-shadow', `${shadowOffsetXValue} ${shadowOffsetYValue} ${shadowBlurValue} ${shadowSpreadValue} ${shadowColor}`]
+}
+
+const borderDirection = function (originCssObj) {
+  const {borderDirection, borderWidth, borderStyle, borderColor} = originCssObj;
+  const borderWidthValue = getCssValue(borderWidth);
+  if (isEmptyValue(borderWidthValue) || !borderStyle || !borderColor) {
+    const partToCss = [];
+    if(!isEmptyValue(borderWidthValue)) {
+      partToCss.push(['border-width', borderWidthValue]);
+    }
+
+    if (borderStyle) {
+      partToCss.push(['border-style', borderStyle]);
+    }
+
+    if (borderColor) {
+      partToCss.push(['border-color', borderColor]);
+    }
+
+    return partToCss;
+  }
+  return [`border${borderDirection === '' ? '' : `-${borderDirection}`}`, `${borderWidthValue} ${borderStyle} ${borderColor}`]
+}
+
+const borderRadiusDirection = function (originCssObj) {
+  const {borderRadiusDirection, borderRadiusWidth} = originCssObj;
+  const borderWidthValue = getCssValue(borderRadiusWidth);
+  if (isEmptyValue(borderWidthValue)) {
+    return []
+  }
+
+  return [`border-radius${borderRadiusDirection === '' ? '' : `-${borderRadiusDirection}`}`, `${borderWidthValue}`]
+}
+
+
 export default {
-  padding
+  padding,
+  margin,
+  shadowColor,
+  borderDirection,
+  borderRadiusDirection
 }

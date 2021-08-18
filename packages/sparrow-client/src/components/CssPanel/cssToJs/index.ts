@@ -4,7 +4,7 @@ import camelizeStyleName from 'camelize'
 import transforms from './transforms/index'
 import devPropertiesWithoutUnitsRegExp from './devPropertiesWithoutUnitsRegExp'
 import TokenStream from './TokenStream'
-import { ChildNode, Declaration, parse as postcssParse, Root } from "postcss";
+import { parse as postcssParse, Root } from "postcss";
 import _ from 'lodash';
 
 // Note if this is wrong, you'll need to change tokenTypes.js too
@@ -54,7 +54,7 @@ export const transformRawValue = (propName, value) => {
 const baseTransformShorthandValue = (propName, value) => {
   const ast = parse(value)
   const tokenStream = new TokenStream(ast.nodes)
-  return transforms[propName](tokenStream)
+  return transforms[propName](tokenStream, propName)
 }
 
 const transformShorthandValue =
@@ -86,13 +86,9 @@ export const getPropertyName = propName => {
   return camelizeStyleName(propName)
 }
 
-/*
-// .match(/^:\w+[^{]+\{[^}]*\}/)
-import { ChildNode, Declaration, parse, Root } from "postcss";
-*/
-
 export default function transform(css: string, shorthandBlacklist = []) {
   try {
+    // css = ':root { box-shadow: 10px 10px 5px 10px #888888;}'
     const root: Root = postcssParse(css);
     const nodes = _.get(root, 'nodes[0].nodes');
     const rules = nodes.reduce((rules, current) => {
@@ -105,26 +101,18 @@ export default function transform(css: string, shorthandBlacklist = []) {
       const propertyName = getPropertyName(rule[0])
       const value = rule[1]
       const allowShorthand = shorthandBlacklist.indexOf(propertyName) === -1
-      return Object.assign(
-        accum,
-        getStylesForProperty(propertyName, value, allowShorthand)
-      )
+      try {
+        return Object.assign(
+          accum,
+          getStylesForProperty(propertyName, value, allowShorthand)
+        )
+      } catch (e) {
+        return accum;
+      }
+   
     }, {});
     return res;
   } catch (e) {
-    throw new Error(`${e.reason} on line ${e.line}`);
+    console.error(`${e.reason} on line ${e.line}`);
   }
 }
-
-
-
-// export default (rules, shorthandBlacklist = []) =>
-//   rules.reduce((accum, rule) => {
-//     const propertyName = getPropertyName(rule[0])
-//     const value = rule[1]
-//     const allowShorthand = shorthandBlacklist.indexOf(propertyName) === -1
-//     return Object.assign(
-//       accum,
-//       getStylesForProperty(propertyName, value, allowShorthand)
-//     )
-//   }, {})
