@@ -1,6 +1,6 @@
 <template>
   <div class="style-config" >
-    <a-popover
+    <!-- <a-popover
       title="样式编辑"
       trigger="click"
       placement="leftTop"
@@ -16,26 +16,25 @@
         源码编辑
       </a-button>
     </a-popover>
-    <a-divider />
-    <a-form>
-      <a-form-item :colon="false" label="宽" :label-col="labelWrapCol" :wrapper-col="wrapperCol">
-         <a-input-group compact>
-          <a-input-number
-            :min="0"
-            v-model:value="formStyle.width.value"
-            style="width: 129px;"
-          />
-          <a-select v-model:value="formStyle.width.unit">
-            <a-select-option value="px">
-              px
-            </a-select-option>
-            <a-select-option value="%">
-              %
-            </a-select-option>
-          </a-select>
-        </a-input-group>
-      </a-form-item>
-       <a-divider />
+    <a-divider /> -->
+    <el-form>
+      <el-form-item label="宽">
+        <el-input 
+          placeholder="请输入内容"           
+          :min="0"
+          v-model="formStyle.width.value" 
+        >
+          <el-select
+            v-model="formStyle.width.unit" 
+            slot="append"
+            placeholder="请选择"
+          >
+            <el-option label="px" :value="'px'"></el-option>
+            <el-option label="%" :value="'%'"></el-option>
+          </el-select>
+        </el-input>
+      </el-form-item>
+       <!-- <a-divider />
       <a-form-item :colon="false" label="高" :label-col="labelWrapCol" :wrapper-col="wrapperCol">
         <a-input-group compact>
           <a-input-number
@@ -138,22 +137,21 @@
             {{item.value}}
           </a-select-option>
         </a-select>
-      </a-form-item>
-    </a-form>
+      </a-form-item> -->
+    </el-form>
   </div>
 </template>
 <script>
-  import { reactive, toRefs, watch, computed } from 'vue';
   import generator from './jsTocss/index.ts';
-  import CssMonacoEditor from './css-monaco-editor/index.vue';
+  // import CssMonacoEditor from './css-monaco-editor/index.vue';
   import transform from './cssToJs/index.ts';
-  import Black from './black/index.vue';
-  import MarginPadding from './margin-padding/index.vue';
-  import Font from './font/index.vue';
-  import Background from './background/index.vue';
-  import Border from './border/index.vue';
-  import Shadow from './shadow/index.vue';
-  import cloneDeep from 'lodash-es/cloneDeep';
+  // import Black from './black/index.vue';
+  // import MarginPadding from './margin-padding/index.vue';
+  // import Font from './font/index.vue';
+  // import Background from './background/index.vue';
+  // import Border from './border/index.vue';
+  // import Shadow from './shadow/index.vue';
+  import cloneDeep from 'lodash/cloneDeep';
   const initStyle = {
     width: {
       value: '',
@@ -262,8 +260,15 @@
     cursor: ''
   };
   export default {
-    components: {Black, CssMonacoEditor, MarginPadding, Font, Background, Border, Shadow},
-    emits: ['onChange'],
+    components: {
+      // Black, 
+      // CssMonacoEditor, 
+      // MarginPadding,
+      // Font, 
+      // Background, 
+      // Border, 
+      // Shadow
+    },
     props: {
       componentsSchema: { // 项目所有组件的信息
         type: Array,
@@ -278,81 +283,90 @@
         default: ''
       }
     },
-    setup (props, {emit}) {
-      const state = reactive({
-        formStyle: cloneDeep(initStyle),
-        cursorList: [
-          {
-            label: 'default',
-            value: 'default'
-          },
-          {
-            label: 'pointer',
-            value: 'pointer'
-          }
-        ],
-        openSourceCss: false,
-        cssCode: '',
-        labelWrapCol: {
-          style: {
-            'display': 'flex',
-            'align-items': 'center',
-            'width': '70px'
-          }
-        },
-        wrapperCol: {
-          style: {
-            'width': '190px'
-          }
-        },
-      });
-      const handleSourceCssChange = (visible) => {
-        state.openSourceCss = visible;
-      }
-
-      const cssMonacoCode = computed(() => {
-        return props.componentsSchema?.properties?.styleCode?.default;
-      });
-
-      const syncCss = () => {
-        const initCss = props.componentsSchema.properties?.styleCode?.default;
-        if (!initCss) return;
-        const cssObj = transform(initCss.match(/:\w+[^{]+\{[^}]*\}/g));
-        if (cssObj) {
-          state.formStyle = Object.assign(cloneDeep(initStyle), cssObj);
-        }
-      }
-
-      watch(() => props.componentId, () => {
-        // 组件切换初始化数据
-        syncCss();
-      },
-      {
-        immediate: true,
-        deep: true,
-      })
-
-      watch(() => state.formStyle, () => {
-        state.cssCode = generator({
-          ...state.formStyle,
-        });
-        emit('onChange', state.cssCode);
-      },
-      {
-        immediate: false,
-        deep: true,
-      });
-
+    data () {
       return {
-        ...toRefs(state),
-        handleSourceCssChange,
-        cssMonacoCode,
-        syncCss
+        test: 'px',
+        formStyle: cloneDeep(initStyle),
       }
+    },
+    created () {
+
     }
+    // setup (props, {emit}) {
+    //   const state = reactive({
+    //     formStyle: cloneDeep(initStyle),
+    //     cursorList: [
+    //       {
+    //         label: 'default',
+    //         value: 'default'
+    //       },
+    //       {
+    //         label: 'pointer',
+    //         value: 'pointer'
+    //       }
+    //     ],
+    //     openSourceCss: false,
+    //     cssCode: '',
+    //     labelWrapCol: {
+    //       style: {
+    //         'display': 'flex',
+    //         'align-items': 'center',
+    //         'width': '70px'
+    //       }
+    //     },
+    //     wrapperCol: {
+    //       style: {
+    //         'width': '190px'
+    //       }
+    //     },
+    //   });
+    //   const handleSourceCssChange = (visible) => {
+    //     state.openSourceCss = visible;
+    //   }
+
+    //   const cssMonacoCode = computed(() => {
+    //     return props.componentsSchema?.properties?.styleCode?.default;
+    //   });
+
+    //   const syncCss = () => {
+    //     const initCss = props.componentsSchema.properties?.styleCode?.default;
+    //     if (!initCss) return;
+    //     const cssObj = transform(initCss.match(/:\w+[^{]+\{[^}]*\}/g));
+    //     if (cssObj) {
+    //       state.formStyle = Object.assign(cloneDeep(initStyle), cssObj);
+    //     }
+    //   }
+
+    //   watch(() => props.componentId, () => {
+    //     // 组件切换初始化数据
+    //     syncCss();
+    //   },
+    //   {
+    //     immediate: true,
+    //     deep: true,
+    //   })
+
+    //   watch(() => state.formStyle, () => {
+    //     state.cssCode = generator({
+    //       ...state.formStyle,
+    //     });
+    //     emit('onChange', state.cssCode);
+    //   },
+    //   {
+    //     immediate: false,
+    //     deep: true,
+    //   });
+
+    //   return {
+    //     ...toRefs(state),
+    //     handleSourceCssChange,
+    //     cssMonacoCode,
+    //     syncCss
+    //   }
+    // }
   }
 </script>
-<style lang="less">
+<style lang="scss">
 .style-config{
   padding: 0 16px 16px;
   .ant-form-item{
@@ -371,6 +385,10 @@
 .css-editor-box{
   width: 300px;
   height: 420px;
+}
+
+.el-select .el-input {
+  width: 80px;
 }
 
 </style>

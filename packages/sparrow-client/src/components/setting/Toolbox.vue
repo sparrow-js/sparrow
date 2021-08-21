@@ -119,9 +119,9 @@
           删除
         </div>
       </el-tab-pane>
-      <!-- <el-tab-pane label="样式" class="widget-collapse" name="style">
+      <el-tab-pane label="样式" class="widget-collapse" name="style">
         <css-panel />
-      </el-tab-pane> -->
+      </el-tab-pane>
 
     </el-tabs>
 
@@ -201,12 +201,12 @@ import { AppModule } from '@/store/modules/app';
 import FormSetting from './FormSetting';
 import Sortable from 'sortablejs';
 import html2canvas from 'html2canvas';
-// import CssPanel from '@/components/CssPanel/index.vue';
+import CssPanel from '@/components/CssPanel/index.vue';
 
 export default {
   components: {
     FormSetting,
-    // CssPanel
+    CssPanel
   },
   data() {
     return {
