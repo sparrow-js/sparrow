@@ -34,32 +34,38 @@
           </el-select>
         </el-input>
       </el-form-item>
-       <!-- <a-divider />
-      <a-form-item :colon="false" label="高" :label-col="labelWrapCol" :wrapper-col="wrapperCol">
-        <a-input-group compact>
-          <a-input-number
-            :min="0"
-            v-model:value="formStyle.height.value"
-            style="width: 129px;"
-          />
-          <a-select v-model:value="formStyle.height.unit">
-            <a-select-option value="px">
-              px
-            </a-select-option>
-            <a-select-option value="%">
-              %
-            </a-select-option>
-          </a-select>
-        </a-input-group>
-      </a-form-item>
-       <a-divider />
+      <el-divider />
+      <el-form-item label="高">
+        <el-input 
+          placeholder="请输入内容"           
+          :min="0"
+          v-model="formStyle.height.value" 
+        >
+          <el-select
+            v-model="formStyle.height.unit" 
+            slot="append"
+            placeholder="请选择"
+          >
+            <el-option label="px" value="px"></el-option>
+            <el-option label="%" value="%"></el-option>
+          </el-select>
+        </el-input>
+      </el-form-item>
+      <el-divider />
       <Black
-        v-model:display="formStyle.display"
-        v-model:flexDirection="formStyle.flexDirection"
-        v-model:alignItems="formStyle.alignItems"
-        v-model:justifyContent="formStyle.justifyContent"
+        :display="formStyle.display"
+        :flexDirection="formStyle.flexDirection"
+        :alignItems="formStyle.alignItems"
+        :justifyContent="formStyle.justifyContent"
+        @displayChange="(value) => this.formStyle.display = value"
+        @flexDirectionChange="(value) => this.formStyle.flexDirection = value"
+        @justifyContentChange="(value) => this.formStyle.justifyContent = value"
+        @alignItemsChange="(value) => this.formStyle.alignItems = value"
       />
-       <a-divider />
+      <el-divider />
+       <!-- 
+     
+    
       <MarginPadding
         v-model:base="formStyle.padding"
         v-model:top="formStyle.paddingTop"
@@ -145,7 +151,7 @@
   import generator from './jsTocss/index.ts';
   // import CssMonacoEditor from './css-monaco-editor/index.vue';
   import transform from './cssToJs/index.ts';
-  // import Black from './black/index.vue';
+  import Black from './black/index.vue';
   // import MarginPadding from './margin-padding/index.vue';
   // import Font from './font/index.vue';
   // import Background from './background/index.vue';
@@ -261,7 +267,7 @@
   };
   export default {
     components: {
-      // Black, 
+      Black, 
       // CssMonacoEditor, 
       // MarginPadding,
       // Font, 

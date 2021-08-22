@@ -119,7 +119,7 @@
           删除
         </div>
       </el-tab-pane>
-      <el-tab-pane label="样式" class="widget-collapse" name="style">
+      <el-tab-pane style="overflow: scroll;" label="样式" class="widget-collapse" name="style">
         <css-panel />
       </el-tab-pane>
 
