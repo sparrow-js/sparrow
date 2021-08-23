@@ -63,18 +63,16 @@
         @alignItemsChange="(value) => this.formStyle.alignItems = value"
       />
       <el-divider />
-       <!-- 
-     
-    
-      <MarginPadding
-        v-model:base="formStyle.padding"
-        v-model:top="formStyle.paddingTop"
-        v-model:right="formStyle.paddingRight"
-        v-model:bottom="formStyle.paddingBottom"
-        v-model:left="formStyle.paddingLeft"
+      <!-- <margin-padding
+        :base="formStyle.padding"
+        :top="formStyle.paddingTop"
+        :right="formStyle.paddingRight"
+        :bottom="formStyle.paddingBottom"
+        :left="formStyle.paddingLeft"
         prefix="内边距"
       />
-      <a-divider />
+      <el-divider /> -->
+       <!-- 
       <MarginPadding
         v-model:base="formStyle.margin"
         v-model:top="formStyle.marginTop"
@@ -152,7 +150,7 @@
   // import CssMonacoEditor from './css-monaco-editor/index.vue';
   import transform from './cssToJs/index.ts';
   import Black from './black/index.vue';
-  // import MarginPadding from './margin-padding/index.vue';
+  import MarginPadding from './margin-padding/index.vue';
   // import Font from './font/index.vue';
   // import Background from './background/index.vue';
   // import Border from './border/index.vue';
@@ -269,7 +267,7 @@
     components: {
       Black, 
       // CssMonacoEditor, 
-      // MarginPadding,
+      MarginPadding,
       // Font, 
       // Background, 
       // Border, 
@@ -393,7 +391,7 @@
   height: 420px;
 }
 
-.el-select .el-input {
+.el-input .el-select .el-input {
   width: 80px;
 }
 

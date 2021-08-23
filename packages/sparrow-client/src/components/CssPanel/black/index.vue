@@ -152,13 +152,13 @@ export default {
     displayChange (value) {
       this.$emit('displayChange', value);
     },
-    flexDirectionChange () {
+    flexDirectionChange (value) {
       this.$emit('flexDirectionChange', value);
     },
-    justifyContentChange () {
+    justifyContentChange (value) {
       this.$emit('justifyContentChange', value);
     },
-    alignItemsChange () {
+    alignItemsChange (value) {
       this.$emit('alignItemsChange', value);
     }
   }

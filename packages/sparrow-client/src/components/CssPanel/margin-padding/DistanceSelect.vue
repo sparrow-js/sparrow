@@ -1,51 +1,18 @@
 <template>
-  <div 
-    @mousedown="handleOpenSelect($event)"
-  >
-    <a-select 
-      :value="selectValue"
+  <div>
+    <el-select 
+      v-model="selectValue"
       :open="selectOpen"
       @select="handleSelect"
     >
-      <template #dropdownRender="{ menuNode: menu }">
-        <v-nodes :vnodes="menu" />
-        <a-divider style="margin: 4px 0" />
-        <div
-          style="padding: 4px 8px; cursor: pointer"
-        >
-          <a-input-group compact>
-            <a-input 
-              style="width: 60%"
-              v-model:value="customItem.value"
-              @click="e=>{e => e.preventDefault();e.target.focus()}"
-              @change="customChange"
-              placeholder="自定义"
-            />
-            <a-select
-              v-model:value="customItem.unit"
-              @change="customChange"
-            >
-              <a-select-option value="px">
-                px
-              </a-select-option>
-              <a-select-option value="%">
-                %
-              </a-select-option>
-            </a-select>
-          </a-input-group>
-        </div>
-      </template>
-      <a-select-option v-for="item in items" :key="item.label" :value="item.id">
-        {{ item.label }}
-      </a-select-option>
-    </a-select>
+      <el-option v-for="item in items" :key="item.label"  :label="item.label" :value="item.id">
+      </el-option>
+    </el-select>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, toRefs, computed, nextTick } from 'vue';
-
-export default defineComponent({
+<script>
+export default {
   props: {
     type: {
       type: String,
@@ -61,9 +28,9 @@ export default defineComponent({
       }
     }
   },
-  emits: ['change', 'customChange'],
-  setup(props, {emit}) {
-    const state = reactive({
+  data () {
+    return {
+      selectValue: '',
       selectOpen: false,
       customItem: {
         value: '',
@@ -127,67 +94,76 @@ export default defineComponent({
           }
         }
       ]
-    })
-    if ((props as any).type == 'base') {
-      state.items.push({
-        label: '自定义',
-        id: '',
-        value: {
-          value: '',
-          unit: '',
-        }
-      });
-    }
-
-    const selectValue = computed(function () {
-      if ((props as any).value.value === '' && (props as any).value.unit === '') {
-        return '';
-      }
-      return `${(props as any).value.value}${(props as any).value.unit}`;
-    });
-
-    const handleSelect = (value) => {
-      state.selectOpen = false;
-      const option = state.items.find(item => item.id === value);
-      if (value == '') {
-         emit('customChange', option.value);
-      } else {
-        if (option) {
-          emit('change', option.value);
-        }
-      }
-    };
-
-
-    const handleOpenSelect = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      state.selectOpen = !state.selectOpen;
-    }
-
-    const customChange = () => {
-      emit('change', state.customItem);
-    };
-    nextTick(() => {
-      document.querySelector('.right-board').addEventListener('mousedown', () => {
-        state.selectOpen = false;
-      });
-    })
-
-    // const set
-
-    return {
-      ...toRefs(state),
-      handleSelect,
-      customChange,
-      handleOpenSelect,
-      selectValue,
     };
   },
-  components: {
-    VNodes: (_, { attrs }) => {
-      return attrs.vnodes;
+  computed: {},
+  methods: {
+    handleSelect (value) {
+      this.$emit('change', value);
     },
-  },
-});
+  }
+  // emits: ['change', 'customChange'],
+  // setup(props, {emit}) {
+  //   if ((props as any).type == 'base') {
+  //     state.items.push({
+  //       label: '自定义',
+  //       id: '',
+  //       value: {
+  //         value: '',
+  //         unit: '',
+  //       }
+  //     });
+  //   }
+
+  //   const selectValue = computed(function () {
+  //     if ((props as any).value.value === '' && (props as any).value.unit === '') {
+  //       return '';
+  //     }
+  //     return `${(props as any).value.value}${(props as any).value.unit}`;
+  //   });
+
+  //   const handleSelect = (value) => {
+  //     state.selectOpen = false;
+  //     const option = state.items.find(item => item.id === value);
+  //     if (value == '') {
+  //        emit('customChange', option.value);
+  //     } else {
+  //       if (option) {
+  //         emit('change', option.value);
+  //       }
+  //     }
+  //   };
+
+
+  //   const handleOpenSelect = (e) => {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+  //     state.selectOpen = !state.selectOpen;
+  //   }
+
+  //   const customChange = () => {
+  //     emit('change', state.customItem);
+  //   };
+  //   nextTick(() => {
+  //     document.querySelector('.right-board').addEventListener('mousedown', () => {
+  //       state.selectOpen = false;
+  //     });
+  //   })
+
+  //   // const set
+
+  //   return {
+  //     ...toRefs(state),
+  //     handleSelect,
+  //     customChange,
+  //     handleOpenSelect,
+  //     selectValue,
+  //   };
+  // },
+  // components: {
+  //   VNodes: (_, { attrs }) => {
+  //     return attrs.vnodes;
+  //   },
+  // },
+};
 </script>

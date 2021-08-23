@@ -1,42 +1,38 @@
 <template>
   <div>
-    <a-form-item :colon="false" :label-col="labelWrapCol" :wrapper-col="wrapperCol">
-      <template #label>
-        <div @click="handlChildOpen">
-          <CaretDownOutlined v-if="childOpen"/>
-          <CaretRightOutlined v-else />
-          <span>{{prefix}}</span>
-        </div>
-      </template>
+    <el-form-item :colon="false">
+      <div slot="label" @click="handlChildOpen">
+        <i class="el-icon-caret-bottom" v-if="childOpen"/>
+        <i class="el-icon-caret-right" v-else />
+        <span>{{prefix}}</span>
+      </div>
       <DistanceSelect 
         type="base" 
         :value="base" 
         @change="handlePaddingChange('base', $event)"
-        @customChange="handleCustomChange"
       />
-    </a-form-item>
+    </el-form-item>
     
-    <div class="card-box" v-show="childOpen" :label-col="labelWrapCol" :wrapper-col="wrapperCol">
-      <a-form-item :colon="false" :label="`上${prefix}`" :label-col="labelWrapCol" :wrapper-col="wrapperCol">
+    <div class="card-box" v-show="childOpen" >
+      <el-form-item :colon="false" :label="`上${prefix}`">
         <DistanceSelect :value="top" @change="handlePaddingChange('top', $event)"/>
-      </a-form-item>
-      <a-form-item :colon="false" :label="`右${prefix}`" :label-col="labelWrapCol" :wrapper-col="wrapperCol">
+      </el-form-item>
+      <el-form-item :colon="false" :label="`右${prefix}`">
         <DistanceSelect :value="right" @change="handlePaddingChange('right', $event)"/>
-      </a-form-item>
-      <a-form-item :colon="false" :label="`下${prefix}`" :label-col="labelWrapCol" :wrapper-col="wrapperCol">
+      </el-form-item>
+      <el-form-item :colon="false" :label="`下${prefix}`">
         <DistanceSelect :value="bottom" @change="handlePaddingChange('bottom', $event)"/>
-      </a-form-item>
-      <a-form-item :colon="false" :label="`左${prefix}`" :label-col="labelWrapCol" :wrapper-col="wrapperCol">
+      </el-form-item>
+      <el-form-item :colon="false" :label="`左${prefix}`">
         <DistanceSelect :value="left" @change="handlePaddingChange('left', $event)"/>
-      </a-form-item>
+      </el-form-item>
     </div>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
+<script>
 import DistanceSelect from './DistanceSelect.vue';
-const customEventList = ['update:base', 'update:top', 'update:right', 'update:bottom', 'update:left'];
-export default defineComponent({
+export default {
+  name: 'MarginPadding',
   props: {
     prefix: {
       type: String,
@@ -62,57 +58,55 @@ export default defineComponent({
       type: Object,
       default() {return {}}
     },
-  } as any,
+  },
   components: {
     DistanceSelect
   },
-  emits: customEventList,
-  setup(props, {emit}) {
-    const state = reactive({
+  data () {
+    return {
       childOpen: true,
       selectName: '',
-      labelWrapCol: {
-        style: {
-          'display': 'flex',
-          'align-items': 'center',
-          'width': '70px'
-        }
-      },
-      wrapperCol: {
-        style: {
-          'flex': '1'
-        }
-      },
-    })
-    const handlChildOpen = () => {
-      state.childOpen = !state.childOpen;
-    };
-    const handlePaddingChange = (type, data) => {
-      if (type === 'base') {
-        customEventList.forEach(item => {
-          emit(item as any, data);
-        })
-      } else {
-        emit(`update:base` as any, {
-          value: '',
-          unit: '',
-        });
-        emit(`update:${type}` as any, data);
-      }
-    }
-    const handleCustomChange = () => {
-      state.childOpen = true;
-    }
-    return {
-      ...toRefs(state),
-      handlChildOpen,
-      handlePaddingChange,
-      handleCustomChange
     };
   },
-});
+  methods: {
+    handlChildOpen () {
+      this.childOpen = !this.childOpen;
+    },
+    handleCustomChange () {
+      this.childOpen = true;
+    },
+    handlePaddingChange (type, data) {
+      
+    }
+  },
+  // setup(props, {emit}) {
+
+  //   const handlePaddingChange = (type, data) => {
+  //     if (type === 'base') {
+  //       customEventList.forEach(item => {
+  //         emit(item as any, data);
+  //       })
+  //     } else {
+  //       emit(`update:base` as any, {
+  //         value: '',
+  //         unit: '',
+  //       });
+  //       emit(`update:${type}` as any, data);
+  //     }
+  //   }
+  //   const handleCustomChange = () => {
+  //     state.childOpen = true;
+  //   }
+  //   return {
+  //     ...toRefs(state),
+  //     handlChildOpen,
+  //     handlePaddingChange,
+  //     handleCustomChange
+  //   };
+  // },
+};
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .card-box{
   background-color: rgba(31,56,88,.04);
   padding: 8px;
