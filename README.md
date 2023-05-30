@@ -1,3 +1,5 @@
+本项目由于设计的不够好，不易在项目中使用，短期内不会有更新。新起了个项目，主要功能是源代码编辑和与chatgpt的结合，持续开发中感兴趣可以关注下：https://github.com/sparrow-js/firefly 
+
 # sparrow
 
  <img src="https://unpkg.com/@sparrow-vue/images@1.0.18/assets/anim1.gif"  width = "520"  alt="图片名称" align="center" >
@@ -105,11 +107,6 @@ sparrow 提供多种类型的物料源，以此提升研发效率。
 - 等等功能
 
 ## 讨论（本项目没有群，讨论可发到github discussions）
-理性交流，如无具体事情不需加微信，精力有限不保证能够及时回复。
-- 微信号：sparrow777-js
-
-<img src="https://unpkg.com/@sparrow-vue/images@1.0.29/assets/WechatIMG613.jpeg" width = "200"  alt="图片名称" align="center" />
-
 
 ## License
 [MIT](https://github.com/sparrow-js/sparrow/blob/master/LICENSE)
