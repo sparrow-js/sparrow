@@ -1,4 +1,0 @@
-digraph G {
-  "homeController" [ label = "homeController(HomeController)
-scope:Request", fontsize = 10 ];
-}

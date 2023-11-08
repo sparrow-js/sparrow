@@ -1,0 +1,43 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    align-items: center;
+    justify-content: space-between;
+    width: (100 / 3) * 1%;
+    height: 114px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-right: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.2s ease;
+  
+    &:hover {
+      box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.15);
+      border-color: transparent;
+    }
+  
+    .icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 1px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      > img {
+        width: 100%;
+      }
+    }
+  
+    .name {
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      color: black;
+      text-align: center;
+    }
+}
+  

@@ -1,6 +1,0 @@
-digraph G {
-  "goldlogController" [ label = "goldlogController(GoldlogController)
-scope:Request", fontsize = 10 ];
-  "homeController" [ label = "homeController(HomeController)
-scope:Request", fontsize = 10 ];
-}

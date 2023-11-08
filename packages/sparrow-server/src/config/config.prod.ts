@@ -1,3 +1,0 @@
-exports.logger = {
-  disableConsoleAfterReady: false,
-};

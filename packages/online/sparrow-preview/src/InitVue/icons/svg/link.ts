@@ -1,8 +1,0 @@
-
-export default {
-  '/src/icons/svg/link.svg': 
-    {
-      code: decodeURIComponent(`%3Csvg%20width%3D%22128%22%20height%3D%22128%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M115.625%20127.937H.063V12.375h57.781v12.374H12.438v90.813h90.813V70.156h12.374z%22%2F%3E%3Cpath%20d%3D%22M116.426%202.821l8.753%208.753-56.734%2056.734-8.753-8.745z%22%2F%3E%3Cpath%20d%3D%22M127.893%2037.982h-12.375V12.375H88.706V0h39.187z%22%2F%3E%3C%2Fsvg%3E`)
-    }    
-  
-}

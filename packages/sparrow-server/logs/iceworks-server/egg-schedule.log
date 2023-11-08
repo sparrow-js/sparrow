@@ -1,3 +1,0 @@
-2020-01-01 14:02:56,827 INFO 96297 [Timer] /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/app/schedule/clean_tmpdir.js next time will execute after 52023184ms at 2020-01-02 04:30:00.011
-2020-01-01 14:02:56,837 INFO 96298 [Job#1577858576807998842744194741] /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/app/schedule/clean_tmpdir.js executing by app
-2020-01-01 14:02:56,870 INFO 96298 [Job#1577858576807998842744194741] /Users/haitaowu/real-lab/sparrow/packages/sparrow-server/node_modules/egg-multipart/app/schedule/clean_tmpdir.js execute succeed, used 30ms
