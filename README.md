@@ -1,6 +1,6 @@
 ## 被裁员失业中，如果有岗位有兴趣联系聊聊（北京），wx：sparrow777-js
 
-本项目由于设计的不够好，不易在项目中使用，短期内不会有更新。新起了个项目，主要功能是源代码编辑和与chatgpt的结合，持续开发中感兴趣可以关注下：https://github.com/sparrow-js/firefly 
+本项目由于设计的不够好，短期内不会有更新。新起了个分支，主要功能是源代码编辑和与chatgpt的结合，持续开发中感兴趣可以关注下：https://github.com/sparrow-js/firefly 
 
 # sparrow
 
