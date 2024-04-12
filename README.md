@@ -1,4 +1,4 @@
-## 被裁员失业中，如果有前端岗位联系聊聊（北京），wx：sparrow777-js
+## 被裁员失业中，如果有前端岗位联系聊聊，wx：sparrow777-js
 
 新分支，主要功能是源代码编辑和与chatgpt的结合，持续开发中感兴趣可以关注：[https://github.com/sparrow-js/sparrow/tree/sparrow-next](https://github.com/sparrow-js/sparrow/tree/sparrow-next)
 
