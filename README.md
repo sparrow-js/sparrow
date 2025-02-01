@@ -105,7 +105,5 @@ sparrow 提供多种类型的物料源，以此提升研发效率。
 - 文本编辑
 - 等等功能
 
-## 讨论（本项目没有群，讨论可发到github discussions）
-
 ## License
 [MIT](https://github.com/sparrow-js/sparrow/blob/master/LICENSE)
