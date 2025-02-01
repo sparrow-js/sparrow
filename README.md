@@ -1,6 +1,3 @@
-##  wx（有具体事情可加）：sparrow777-js
-
-新分支，主要功能是源代码编辑和与chatgpt的结合，持续开发中感兴趣可以关注：[https://github.com/sparrow-js/sparrow/tree/sparrow-next](https://github.com/sparrow-js/sparrow/tree/sparrow-next)
 
 # sparrow
 
